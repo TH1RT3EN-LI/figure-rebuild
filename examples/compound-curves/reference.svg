@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360">
+  <rect id="white-canvas" width="640" height="360" fill="#FFFFFF"/>
+  <g id="compound-ring">
+    <path id="ring-with-hole" fill="#860000" d="M 245 180 A 75 75 0 1 1 95 180 A 75 75 0 1 1 245 180 Z M 210 180 A 40 40 0 1 0 130 180 A 40 40 0 1 0 210 180 Z"/>
+    <circle id="hole-center-marker" cx="170" cy="180" r="7" fill="#333333"/>
+  </g>
+  <g id="curved-flow">
+    <path id="smooth-route" d="M 310 220 C 340 65 450 80 450 170 S 535 265 575 110" fill="none" stroke="#555555" stroke-width="5"/>
+    <path id="flow-arrow" d="M 564 124 L 575 102 L 583 127 Z" fill="#555555"/>
+  </g>
+  <rect id="rounded-region" x="320" y="275" width="240" height="44" rx="20" fill="#DDDDDD" stroke="#555555" stroke-width="2"/>
+</svg>

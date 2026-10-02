@@ -1,0 +1,4 @@
+interface:
+  display_name: "Figure Rebuild"
+  short_description: "Rebuild diagrams as editable PowerPoint objects"
+  default_prompt: "Use $figure-rebuild to reconstruct this reference diagram as an editable PowerPoint."

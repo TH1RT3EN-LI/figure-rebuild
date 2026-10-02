@@ -1,0 +1,13 @@
+.local/
+jobs/
+build/
+exports/
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+node_modules/
+*.pptx
+*.ttf
+*.otf
+*.ttc
