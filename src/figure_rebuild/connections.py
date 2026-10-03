@@ -248,7 +248,7 @@ def validate_connections(manifest):
                         not isinstance(arrow[end], str) or arrow[end] not in ARROWS for end in ('start', 'end')):
                     raise ValueError('Connector needs explicit supported start/end arrow types: ' + key)
                 style = obj.get('style')
-                if not isinstance(style, dict) or style.get('fill', 'none') != 'none' or not isinstance(style.get('stroke'), str) or not re.fullmatch(r'#[0-9a-fA-F]{6}', style['stroke']):
+                if not isinstance(style, dict) or 'fill_gradient' in style or style.get('fill', 'none') != 'none' or not isinstance(style.get('stroke'), str) or not re.fullmatch(r'#[0-9a-fA-F]{6}', style['stroke']):
                     raise ValueError('Connector needs solid stroke and no fill: ' + key)
                 if not _finite(style.get('stroke_width')) or style['stroke_width'] <= 0:
                     raise ValueError('Connector needs positive stroke_width: ' + key)

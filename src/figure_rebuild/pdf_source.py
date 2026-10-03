@@ -20,6 +20,9 @@ from fontTools.pens.boundsPen import BoundsPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.svgLib.path import parse_path
 
+from .pdf_dash import PdfDashError, lower_dashes
+from .pdf_fill import prove_evenodd_nonzero_equivalent
+
 
 class PdfSourceError(ValueError):
     """Invalid or unsupported source input; no assets were written."""
@@ -332,6 +335,19 @@ def _disjoint(a, b):
     return a[2] < b[0] or b[2] < a[0] or a[3] < b[1] or b[3] < a[1]
 
 
+def _axis_rectangle(commands):
+    """Prove a single closed, nondegenerate axis-aligned rectangle."""
+    if not commands or commands[-1][0] != "Z" or sum(c[0] == "M" for c in commands) != 1 or any(c[0] not in ("M", "L", "Z") for c in commands):
+        return False
+    if sum(c[0] == "Z" for c in commands) != 1:
+        return False
+    points = [c[1] for c in commands if c[0] != "Z"]
+    if len(points) > 1 and points[-1] == points[0]: points.pop()
+    return (len(points) == 4 and len(set(points)) == 4
+            and len({p[0] for p in points}) == len({p[1] for p in points}) == 2
+            and all(a[0] == b[0] or a[1] == b[1] for a,b in zip(points, points[1:]+points[:1])))
+
+
 def _rect_clip(context):
     if not context["element"]: raise UnsupportedPdfPaintError("Missing or external clip resource")
     root = ET.fromstring(context["element"])
@@ -364,7 +380,8 @@ def _rect_clip(context):
 
 def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                   paint_ids: Sequence[str] | None = None, region: Sequence[float] | None = None,
-                  transform: Sequence[float] = _IDENTITY) -> PdfOutlineResult:
+                  transform: Sequence[float] = _IDENTITY, dash_tolerance: float = 1e-4,
+                  max_clip_overhang: float = 0.) -> PdfOutlineResult:
     """Lower an explicit selection to native path objects, or raise.
 
     ``glyph_mode='outline'`` is required, including for ordinary labels. It
@@ -372,9 +389,18 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
     Rectangular clips/ROI are accepted only when proven disjoint or no-op;
     crossing or complex clips, images and group compositing remain unsupported.
     ``paint_ids`` is an explicit subset, reported as such in the result.
-    ``transform`` maps source PDF coordinates into the target canvas.
+    ``transform`` maps source PDF coordinates into the target canvas. Positive
+    dash arrays are lowered before any clipping, with ``dash_tolerance`` in
+    source coordinate units and numerical arc-placement bounds in provenance.
+    ``max_clip_overhang`` defaults to zero. An explicit positive source-unit
+    bound permits only tiny rectangular clip overhang on a proved axis-aligned
+    rectangle stroke, recorded as bounded_source_rounding (never exact/no-op).
     """
     if glyph_mode != "outline": raise PdfSourceError("Explicit glyph_mode='outline' is required; live text policy is unchanged")
+    max_clip_overhang = _number(max_clip_overhang)
+    if not 0 <= max_clip_overhang <= .01: raise PdfSourceError("Clip overhang allowance must be within [0, .01] source units")
+    dash_tolerance = _number(dash_tolerance)
+    if not 1e-9 <= dash_tolerance <= 1: raise PdfSourceError("Invalid source-unit dash tolerance")
     transform = tuple(_number(v) for v in transform)
     if len(transform) != 6: raise PdfSourceError("Target transform requires six values")
     if region is not None:
@@ -400,7 +426,12 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                 if group["display"] != "inline": raise UnsupportedPdfPaintError("Group display override is unsupported")
             for key, default in (("mask", "none"), ("filter", "none"), ("mix-blend-mode", "normal"), ("isolation", "auto"), ("display", "inline"), ("visibility", "visible"), ("vector-effect", "none"), ("paint-order", "normal")):
                 if style.get(key, default) != default: raise UnsupportedPdfPaintError(f"Unsupported {key}={style[key]!r}")
-            if style["fill-rule"] != "nonzero": raise UnsupportedPdfPaintError("Evenodd fill requires explicit winding normalization")
+            fill_rule_proof = None
+            if style["fill-rule"] == "evenodd":
+                fill_rule_proof = prove_evenodd_nonzero_equivalent(paint.commands)
+                if fill_rule_proof is None: raise UnsupportedPdfPaintError("Evenodd fill requires explicit winding normalization")
+            elif style["fill-rule"] != "nonzero":
+                raise UnsupportedPdfPaintError("Unsupported source fill-rule")
             fill, stroke = (_color(style[k], style["color"]) for k in ("fill", "stroke"))
             width = _number(style["stroke-width"])
             if width < 0: raise UnsupportedPdfPaintError("Negative stroke width")
@@ -408,6 +439,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             total = _mul(transform, paint.transform)
             target_scale = math.hypot(total[0], total[1])
             stroke_fields = {}
+            dash_pattern = None
             miter_limit = _number(style["stroke-miterlimit"])
             if stroke != "none":
                 cap, join = style["stroke-linecap"], style["stroke-linejoin"]
@@ -422,43 +454,99 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                     a,b,c,d,_,_ = m
                     if not math.isclose(a*a+b*b, c*c+d*d, rel_tol=1e-10, abs_tol=1e-15) or not math.isclose(a*c+b*d, 0, abs_tol=1e-10):
                         raise UnsupportedPdfPaintError("Nonuniform/skew stroke transform requires exact stroke expansion")
-                for key, default in (("stroke-dasharray", "none"), ("stroke-dashoffset", "0")):
-                    if style[key] != default: raise UnsupportedPdfPaintError(f"Unsupported stroke effect {key}={style[key]!r}")
+                if style["stroke-dasharray"] != "none":
+                    raw_pattern = style["stroke-dasharray"].strip()
+                    if not re.fullmatch(_NUMBER + r"(?:(?:\s*,\s*|\s+)" + _NUMBER + r")*", raw_pattern):
+                        raise UnsupportedPdfPaintError("Only explicit unitless positive dash arrays are supported")
+                    dash_pattern = tuple(_number(v) for v in re.split(r"[\s,]+", raw_pattern))
             opacity, fa, sa = (_alpha(style.get(k, "1")) for k in ("opacity", "fill-opacity", "stroke-opacity"))
             if fill != "none" and stroke != "none" and (fa != 1 or sa != 1 or opacity != 1): raise UnsupportedPdfPaintError("Combined fill/stroke alpha requires separate verified compositing")
             bounds = _bounds(paint.commands)
             if bounds is None:
                 skipped.append({"source_id": paint.source_id, "reason": "source outline has no drawable segment"})
                 continue
-            edge = width*source_scale*max(2, miter_limit/2) if stroke != "none" else 0  # conservative cap/join envelope
+            rectangle_stroke = stroke != "none" and _axis_rectangle(paint.commands)
+            # Every side/corner of an axis-aligned rectangle stays within half
+            # a stroke width on each axis, for supported caps/joins. This is a
+            # tighter proof than the general conservative miter envelope.
+            edge = (width*source_scale/2 if rectangle_stroke else width*source_scale*max(2, miter_limit/2)) if stroke != "none" else 0
             bounds = (bounds[0]-edge, bounds[1]-edge, bounds[2]+edge, bounds[3]+edge)
             rectangles = [_rect_clip(c) for c in paint.clips]
             if region is not None: rectangles.append(region)
             if any(_disjoint(r, bounds) for r in rectangles):
                 skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region"})
                 continue
-            if any(not _contains(r, bounds) for r in rectangles): raise UnsupportedPdfPaintError("Path crosses clip/region; exact clipping is not implemented")
-            commands = []
-            for op, *points in paint.commands:
-                points = [_point(transform, point) for point in points]
-                if op == "Z": commands.append({"close": {}})
-                elif op in ("M", "L"): commands.append({"moveTo" if op == "M" else "lineTo": {"x": points[0][0], "y": points[0][1]}})
-                else: commands.append({"cubicTo": {"x1": points[0][0], "y1": points[0][1], "x2": points[1][0], "y2": points[1][1], "x": points[2][0], "y": points[2][1]}})
-            objects.append({"id": paint.source_id, "kind": "path", "z_index": paint.paint_index, "commands": commands,
-                            "style": {"fill": fill, "stroke": stroke, "stroke_width": width*target_scale if stroke != "none" else 0, "opacity": opacity*(fa if fill != "none" else sa), **stroke_fields}})
-            provenance.append({"object_id": paint.source_id, "source_svg_sha256": document.source_sha256,
-                               "source_paint_index": paint.paint_index, "source_xml_path": list(paint.xml_path),
-                               "source_instance_path": list(paint.xml_path),
-                               "source_element_id": paint.source_element_id, "resource_id": paint.resource_id,
-                               "reference_chain": list(paint.reference_chain), "source_kind": paint.kind,
-                               "source_text_unverified": paint.source_text, "text_editable": False,
-                               "geometry_method": "source Bezier controls; exact affine and quadratic degree elevation",
-                               "source_transform": list(paint.transform), "target_transform": list(transform),
-                               "clip_context": list(paint.clips), "group_context": list(paint.groups),
-                               "stroke_native_fields": stroke_fields,
-                               "stroke_visual_verification_required": bool(stroke_fields),
-                               "stroke_preview_renderer_support": "not_verified_or_unsupported" if stroke_fields else "not_applicable",
-                               "stroke_miterlimit_native_quantization": 1e-5 if "stroke_miterlimit" in stroke_fields else None})
+            clip_rounding = []
+            for clip_index, rectangle in enumerate(rectangles):
+                overhang = [max(0., rectangle[0]-bounds[0]), max(0., rectangle[1]-bounds[1]),
+                            max(0., bounds[2]-rectangle[2]), max(0., bounds[3]-rectangle[3])]
+                if not any(overhang): continue
+                if not rectangle_stroke or max(overhang) > max_clip_overhang:
+                    raise UnsupportedPdfPaintError("Path crosses clip/region; exact clipping is not implemented")
+                clip_rounding.append({"classification": "bounded_source_rounding", "clip_index": clip_index,
+                                      "source_clip": list(rectangle), "source_stroke_bounds": list(bounds),
+                                      "overhang_left_top_right_bottom_source_units": overhang,
+                                      "max_clip_overhang_source_units": max_clip_overhang,
+                                      "maximum_overhang_target_units": max(overhang)*math.hypot(transform[0], transform[1]),
+                                      "proof": "axis_aligned_closed_rectangle_stroke; half-width axis support",
+                                      "exact_noop_clip": False})
+            dash_result = None
+            if dash_pattern is not None:
+                try:
+                    if source_scale == 0: raise UnsupportedPdfPaintError("Degenerate stroke transform")
+                    # Dash in the path's original user space before applying
+                    # its affine. In particular, a scaled integer-coordinate
+                    # rectangle must not acquire spurious seam gaps from PDF-
+                    # space subtraction roundoff.
+                    local_commands = _commands(ET.fromstring(paint.source_xml).get("d", ""), _IDENTITY)
+                    dash_result = lower_dashes(local_commands, dash_pattern,
+                                              _number(style["stroke-dashoffset"]),
+                                              tolerance=dash_tolerance/source_scale)
+                except PdfDashError as exc:
+                    raise UnsupportedPdfPaintError(str(exc)) from exc
+            variants = [(paint.source_id, paint.commands, fill, stroke, 0, "original")]
+            if dash_result is not None:
+                variants = []
+                if fill != "none":
+                    variants.append((paint.source_id+"-fill", paint.commands, fill, "none", 0, "fill"))
+                if dash_result.commands:
+                    variants.append((paint.source_id if fill == "none" else paint.source_id+"-dash-stroke",
+                                     tuple((op, *(_point(paint.transform, point) for point in points)) for op, *points in dash_result.commands),
+                                     "none", stroke, 1 if fill != "none" else 0, "dash-stroke"))
+                else:
+                    skipped.append({"source_id": paint.source_id, "reason": "dash pattern has no visible stroke run", "dash_lowering": dash_result.provenance})
+            for object_id, source_commands, part_fill, part_stroke, suborder, part in variants:
+                commands = []
+                for op, *points in source_commands:
+                    points = [_point(transform, point) for point in points]
+                    if op == "Z": commands.append({"close": {}})
+                    elif op in ("M", "L"): commands.append({"moveTo" if op == "M" else "lineTo": {"x": points[0][0], "y": points[0][1]}})
+                    else: commands.append({"cubicTo": {"x1": points[0][0], "y1": points[0][1], "x2": points[1][0], "y2": points[1][1], "x": points[2][0], "y": points[2][1]}})
+                part_stroke_fields = stroke_fields if part_stroke != "none" else {}
+                objects.append({"id": object_id, "kind": "path", "z_index": paint.paint_index, "commands": commands,
+                                "style": {"fill": part_fill, "stroke": part_stroke, "stroke_width": width*target_scale if part_stroke != "none" else 0,
+                                          "opacity": opacity*(fa if part_fill != "none" else sa), **part_stroke_fields}})
+                record = {"object_id": object_id, "source_paint_id": paint.source_id, "source_paint_part": part,
+                          "source_paint_suborder": suborder, "source_svg_sha256": document.source_sha256,
+                          "source_paint_index": paint.paint_index, "source_xml_path": list(paint.xml_path),
+                          "source_instance_path": list(paint.xml_path),
+                          "source_element_id": paint.source_element_id, "resource_id": paint.resource_id,
+                          "reference_chain": list(paint.reference_chain), "source_kind": paint.kind,
+                          "source_text_unverified": paint.source_text, "text_editable": False,
+                          "geometry_method": "source Bezier controls; exact affine and quadratic degree elevation",
+                          "source_transform": list(paint.transform), "target_transform": list(transform),
+                          "clip_context": list(paint.clips), "group_context": list(paint.groups),
+                          "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
+                          "stroke_native_fields": part_stroke_fields,
+                          "stroke_visual_verification_required": bool(part_stroke_fields),
+                          "stroke_preview_renderer_support": "not_verified_or_unsupported" if part_stroke_fields else "not_applicable",
+                          "stroke_miterlimit_native_quantization": 1e-5 if "stroke_miterlimit" in part_stroke_fields else None}
+                if part == "dash-stroke":
+                    record["dash_lowering"] = dash_result.provenance
+                    record["dash_coordinate_system"] = "original SVG path user space, before source affine"
+                    record["dash_maximum_arc_error_source_units"] = dash_result.provenance["maximum_arc_position_error_upper"] * source_scale
+                    record["dash_maximum_arc_error_target_units"] = dash_result.provenance["maximum_arc_position_error_upper"] * target_scale
+                provenance.append(record)
         except PdfSourceError as exc:
             raise UnsupportedPdfPaintError(f"{paint.source_id} (paint {paint.paint_index}): {exc}") from exc
     return PdfOutlineResult(objects, provenance, skipped, tuple(p.source_id for p in document.paints if p.source_id in selected), len(document.paints))

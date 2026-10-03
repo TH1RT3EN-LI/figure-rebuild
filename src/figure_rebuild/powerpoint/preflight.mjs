@@ -4,6 +4,7 @@ import path from 'node:path';
 import {createRequire} from 'node:module';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {runPythonModule} from './runtime.mjs';
+import {configureCpuRenderer,verifyCpuRenderer} from './cpu_renderer.mjs';
 
 export async function checkRuntime(runtime, packageRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')) {
   if (!runtime || typeof runtime !== 'object') throw Error('Runtime configuration is required');
@@ -13,7 +14,9 @@ export async function checkRuntime(runtime, packageRoot = path.resolve(path.dirn
   }
   const req = createRequire(path.join(runtime.node_modules, 'figure-rebuild-loader.cjs'));
   const modules = Object.fromEntries(['@oai/artifact-tool', '@napi-rs/canvas', 'sharp'].map(name => [name, req.resolve(name)]));
+  const cpuAdapter = configureCpuRenderer(modules['@oai/artifact-tool']);
   const artifact = await import(pathToFileURL(modules['@oai/artifact-tool']).href);
+  const cpuRenderer = await verifyCpuRenderer(cpuAdapter);
   const metrics = artifact.defaultFontMetricsProvider;
   if (!metrics || typeof metrics.getMetricsForSize !== 'function' || typeof metrics.reset !== 'function' ||
       typeof artifact.skiaPaintBaselineCompensationPx !== 'function') {
@@ -26,6 +29,7 @@ export async function checkRuntime(runtime, packageRoot = path.resolve(path.dirn
   const python = JSON.parse(runPythonModule(runtime, packageRoot, 'runtime_probe',
     ['--fonts', JSON.stringify(runtime.fonts)], {encoding: 'utf8'}));
   return {status: 'PASS', backend: 'user-provided Codex Artifact Tool', modules, python,
+    renderer_backend: 'CPU', cpu_renderer: cpuRenderer,
     baseline_metrics_api_available: true, renderer_behavior_requires_regression: true,
     font_family: runtime.fonts.family, bundled_dependency_redistributed: false};
 }

@@ -217,7 +217,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     has_formulas = any(o.get('source_kind') == 'formula' for o in objects)
     rels_document = XmlDocument.parse(payloads['ppt/slides/_rels/slide1.xml.rels'], 'slide1.xml.rels') if has_formulas else None
     types_document = XmlDocument.parse(payloads['[Content_Types].xml'], '[Content_Types].xml') if has_formulas else None
-    formula_records, text_layout_records = [], []
+    formula_records, text_layout_records, gradient_records = [], [], []
     page = page_document.root
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
@@ -241,6 +241,13 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
             text_layout_records.append(apply_text_layout(element, obj, entry, entry['scale']))
         if obj['kind'] == 'path' and element.find('p:spPr/a:custGeom', NS) is None: raise ValueError('Vector path was flattened')
         if obj['kind'] == 'path':
+            from .linear_gradient import verify_native_gradient, apply_gradient_angle_precision
+            angle_correction = apply_gradient_angle_precision(element, obj)
+            gradient_record = verify_native_gradient(element, obj)
+            if gradient_record is not None:
+                if angle_correction is not None:
+                    gradient_record['angle_serialization_correction'] = angle_correction
+                gradient_records.append(gradient_record)
             from .stroke_style import apply_stroke_style
             stroke_record = apply_stroke_style(element, obj)
             if stroke_record is not None:
@@ -331,6 +338,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
         for name in payloads.keys() - {info.filename for info in infos}: z.writestr(name, payloads[name])
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
     data['stroke_styles'] = stroke_styles
+    data['native_gradients'] = gradient_records
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),
                 native_connectors=connectors, text_layout=text_layout_records)

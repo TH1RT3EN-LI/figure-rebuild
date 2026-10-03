@@ -181,9 +181,59 @@ class PdfSourceTests(unittest.TestCase):
                 self.assertEqual(style.get("stroke_miterlimit"),limit if join=="miter" else None)
                 self.assertTrue(result.provenance[0]["stroke_visual_verification_required"])
                 self.assertEqual(result.provenance[0]["stroke_preview_renderer_support"],"not_verified_or_unsupported")
-        doc=source('<path d="M0 0L10 10" stroke="#000" stroke-dasharray="2,2"/>')
-        with self.assertRaisesRegex(UnsupportedPdfPaintError,"stroke-dasharray"):
+        doc=source('<path d="M0 0L10 10" stroke="#000" stroke-dasharray="0,2"/>')
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"strictly positive"):
             outline_paths(doc,glyph_mode="outline")
+
+    def test_evenodd_proof_keeps_disjoint_polygon_geometry_but_not_holes(self):
+        doc=source('<path d="M0 0H5V5H0Z M10 0H15V5H10Z" fill-rule="evenodd"/>')
+        result=outline_paths(doc,glyph_mode="outline")
+        proof=result.provenance[0]["fill_rule_equivalence"]
+        self.assertEqual(proof["contour_count"],2)
+        self.assertFalse(proof["source_commands_changed"])
+        self.assertEqual(sum("close" in c for c in result.objects[0]["commands"]),2)
+        hole=source('<path d="M0 0H10V10H0Z M2 2H8V8H2Z" fill-rule="evenodd"/>')
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"Evenodd"):
+            outline_paths(hole,glyph_mode="outline")
+
+    def test_dash_split_preserves_opaque_fill_then_stroke_and_paint_identity(self):
+        doc=source('<path id="before" d="M0 0L1 1"/><path d="M10 10H30V30H10Z" fill="#123456" stroke="#abcdef" stroke-dasharray="3,2"/><path id="after" d="M0 0L1 1"/>')
+        result=outline_paths(doc,glyph_mode="outline")
+        self.assertEqual([o["z_index"] for o in result.objects],[0,1,1,2])
+        fill,stroke=result.objects[1:3]
+        self.assertEqual((fill["style"]["fill"],fill["style"]["stroke"]),("#123456","none"))
+        self.assertEqual((stroke["style"]["fill"],stroke["style"]["stroke"]),("none","#abcdef"))
+        self.assertIn("close",fill["commands"][-1])
+        self.assertNotEqual(fill["id"],stroke["id"])
+        fp,sp=result.provenance[1:3]
+        self.assertEqual(fp["source_paint_id"],sp["source_paint_id"])
+        self.assertEqual((fp["source_paint_suborder"],sp["source_paint_suborder"]),(0,1))
+        self.assertFalse(sp["dash_lowering"]["geometry_flattened"])
+
+    def test_dash_phase_before_crop_and_original_transform(self):
+        doc=source('<path d="M0 0H20" transform="matrix(2,0,0,2,10,20)" fill="none" stroke="#000" stroke-dasharray="4,2" stroke-dashoffset="1"/>')
+        result=outline_paths(doc,glyph_mode="outline")
+        commands=result.objects[0]["commands"]
+        self.assertEqual(point(commands[0],"moveTo"),(10,20))
+        self.assertEqual(point(commands[1],"lineTo"),(16,20))
+        self.assertEqual(point(commands[2],"moveTo"),(20,20))
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
+            outline_paths(doc,glyph_mode="outline",region=(15,15,60,25))
+
+    def test_rectangular_clip_allowance_is_explicit_bounded_and_narrow(self):
+        prefix='<defs><clipPath id="c"><rect x="9.00002" y="9" width="22" height="22"/></clipPath></defs>'
+        doc=source(prefix+'<path d="M10 10H30V30H10Z" stroke="#000" stroke-width="2" clip-path="url(#c)"/>')
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
+            outline_paths(doc,glyph_mode="outline")
+        r=outline_paths(doc,glyph_mode="outline",max_clip_overhang=1e-4,transform=(2,0,0,2,0,0))
+        receipt=r.provenance[0]["clip_boundary_rounding"][0]
+        self.assertEqual(receipt["classification"],"bounded_source_rounding")
+        self.assertFalse(receipt["exact_noop_clip"])
+        self.assertAlmostEqual(receipt["overhang_left_top_right_bottom_source_units"][0],.00002)
+        self.assertAlmostEqual(receipt["maximum_overhang_target_units"],.00004)
+        diagonal=source(prefix+'<path d="M10 10L30 30" stroke="#000" stroke-width="2" clip-path="url(#c)"/>')
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
+            outline_paths(diagonal,glyph_mode="outline",max_clip_overhang=.01)
 
     def test_equal_component_alpha_is_not_replaced_by_whole_object_alpha(self):
         doc=source('<path d="M0 0H10V10H0Z" fill="#fff" stroke="#000" fill-opacity=".5" stroke-opacity=".5"/>')

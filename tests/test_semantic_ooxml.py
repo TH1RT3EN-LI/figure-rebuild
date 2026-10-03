@@ -163,6 +163,28 @@ class FormulaSVGTests(unittest.TestCase):
 
 
 class NativeTextLayoutTests(unittest.TestCase):
+    def test_percentage_spacing_preserves_paragraph_editability_and_reports_fractional_precision(self):
+        element = textbox()
+        original_text = [node.text for node in element.findall('.//a:t', NS)]
+        mapped = {'text_layout': {'native_baseline_ascent': 20, 'baseline_adjustment_px': 4, 'line_count': 50,
+            'renderer_baseline': {'model': 'artifact_presentation_v1', 'first_baseline_px': 16, 'scale': 1,
+                'spacing': 'percent_of_natural_line', 'spacing_thousandths_percent': 83333,
+                'natural_line_height_px': 24, 'line_height_px': 24 * 83333 / 100000}}}
+        audit = apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20}, mapped, 1)
+        properties = element.findall('p:txBody/a:p/a:pPr', NS)
+        self.assertTrue(all(node.find('a:lnSpc/a:spcPct', NS).get('val') == '83333' for node in properties))
+        self.assertTrue(all(node.find('a:lnSpc/a:spcPts', NS) is None for node in properties))
+        self.assertEqual([node.text for node in element.findall('.//a:t', NS)], original_text)
+        self.assertTrue(audit['fractional_native_percent'])
+        self.assertTrue(audit['native_precision_review_required'])
+        self.assertAlmostEqual(audit['whole_percent_fallback_accumulated_loss_px'], 49 * 24 * .00333)
+        self.assertNotIn('spacing_hundredths_pt', audit)
+        before = ET.tostring(element)
+        mapped['text_layout']['renderer_baseline']['line_height_px'] = 21
+        with self.assertRaisesRegex(ValueError, 'percentage line height is inconsistent'):
+            apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20}, mapped, 1)
+        self.assertEqual(ET.tostring(element), before)
+
     def test_renderer_baseline_correction_preserves_content_height_and_all_vertical_alignments(self):
         for anchor in ('t', 'ctr', 'b'):
             for adjustment in (-2.25, 3.75):

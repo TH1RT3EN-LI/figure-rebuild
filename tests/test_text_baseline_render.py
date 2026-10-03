@@ -2,6 +2,9 @@
 
 Uses the configured, caller-owned Artifact runtime and at least two real font
 families. Set FIGURE_REBUILD_RENDER_EVIDENCE_ROOT to retain all jobs and logs.
+An optional FIGURE_REBUILD_NATIVE_PDF_COMMAND JSON argv prefix can invoke an
+isolated LibreOffice runtime and verify the 1.2em native baseline regression.
+The caller owns native-runtime environment and profile isolation.
 Default test discovery skips it and does not load a presentation renderer.
 """
 import datetime
@@ -91,6 +94,43 @@ class RenderedTextBaselineTests(unittest.TestCase):
                         failures.append(f"{sample['id']} scale={scale}: {delta}")
             (root / 'measurements.json').write_text(json.dumps(measurements, indent=2))
             self.assertEqual(failures, [], '\n'.join(failures))
+            native_command = os.environ.get('FIGURE_REBUILD_NATIVE_PDF_COMMAND')
+            if scale == 1 and native_command:
+                import pymupdf
+                prefix = json.loads(native_command)
+                self.assertIsInstance(prefix, list)
+                self.assertTrue(prefix and all(isinstance(value, str) for value in prefix))
+                native_dir = root / 'native-pdf'
+                native_dir.mkdir()
+                command('native-pdf', [*prefix, '--convert-to', 'pdf:impress_pdf_Export',
+                    '--outdir', native_dir, root / 'rendered-1.pptx'])
+                with pymupdf.open(native_dir / 'rendered-1.pdf') as document:
+                    spans = [span for block in document[0].get_text('dict')['blocks']
+                        if block['type'] == 0 for line in block['lines'] for span in line['spans']
+                        if span['text'] == 'Hgx09']
+                objects = {obj['id']: obj for obj in fixture['objects']}
+                native_rows, comparisons = [], {}
+                for sample in fixture['samples']:
+                    if sample['lines'] != 1 or sample['rotation']:
+                        continue
+                    span = min(spans, key=lambda value: (value['origin'][0] / .75 - sample['x']) ** 2
+                        + (value['origin'][1] / .75 - sample['baseline']) ** 2)
+                    error = span['origin'][1] / .75 - sample['baseline']
+                    obj = objects[sample['id']]
+                    native_rows.append(dict(id=sample['id'], baseline_error_source_px=error,
+                        font=span['font'], font_size_pdf_pt=span['size'], origin_pdf_pt=span['origin']))
+                    height = obj.get('line_height')
+                    kind = 'default' if height is None else '1.2em' if height == obj['font_size'] * 1.2 else None
+                    if kind:
+                        comparisons.setdefault((sample['family'], sample['size'], sample['mode']), {})[kind] = error
+                (root / 'native-baseline-measurements.json').write_text(json.dumps(native_rows, indent=2))
+                self.assertEqual(len(comparisons), 12)
+                for key, pair in comparisons.items():
+                    self.assertEqual(set(pair), {'default', '1.2em'})
+                    # These have the same requested first baseline and natural
+                    # line pitch. Allow native 1/100mm coordinate quantization;
+                    # do not conflate it with the former ~3px exact-point shift.
+                    self.assertLessEqual(abs(pair['1.2em'] - pair['default']), .1, str(key))
 
 
 if __name__ == '__main__':

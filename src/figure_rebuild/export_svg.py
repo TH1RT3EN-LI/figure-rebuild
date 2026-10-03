@@ -58,6 +58,8 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
             raise ValueError('No configured SVG font face for ' + requested + '/' + role)
         return requested, faces[(requested, role)]
     c=m['canvas']; root=ET.Element('{'+SVG+'}svg',{'width':str(c['width']),'height':str(c['height']),'viewBox':f"0 0 {c['width']} {c['height']}"})
+    gradient_defs = ET.SubElement(root, '{'+SVG+'}defs') if any('fill_gradient' in o.get('style', {}) for o in m['objects']) else None
+    reserved_svg_ids = {'canvas-background'} | {o['id'] for o in m['objects']}
     ET.SubElement(root,'{'+SVG+'}rect',{'id':'canvas-background','width':str(c['width']),'height':str(c['height']),'fill':c.get('background','#FFFFFF')})
     rows=sorted(enumerate(m['objects']),key=lambda row:(row[1].get('z_index',row[0]),row[0]))
     for _,o in rows:
@@ -73,6 +75,12 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
                     key='moveTo' if 'moveTo' in command else 'lineTo'; p=command[key]
                     parts.append(('M' if key=='moveTo' else 'L')+f" {p['x']} {p['y']}")
             attrs.update(d=' '.join(parts),fill=s.get('fill','none'),stroke=s.get('stroke','none'))
+            if 'fill_gradient' in s:
+                from .linear_gradient import svg_linear_gradient, native_path_frame
+                gradient_id = 'fr-gradient-' + str(_)
+                while gradient_id in reserved_svg_ids: gradient_id += '-fill'
+                reserved_svg_ids.add(gradient_id)
+                attrs['fill'] = svg_linear_gradient(gradient_defs, gradient_id, s, native_path_frame(o['commands']))
             from .stroke_style import svg_stroke_attributes
             attrs.update(svg_stroke_attributes(s))
             attrs['stroke-width']=str(s.get('stroke_width',0)); ET.SubElement(root,'{'+SVG+'}path',attrs)

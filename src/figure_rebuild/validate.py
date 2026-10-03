@@ -151,9 +151,11 @@ def validate(manifest, root, require_review=True, _materialized=False):
             if finite(confidence) and confidence < .8: warnings.append(f'Approximate recognition: {label}')
         style = record(obj.get('style', {}), 'Style for ' + label)
         from .stroke_style import STROKE_PROPERTIES, validate_stroke_style
-        check(not set(style).difference({'fill', 'stroke', 'stroke_width', 'opacity'} | STROKE_PROPERTIES), 'Unsupported style property: ' + label)
+        check(not set(style).difference({'fill', 'fill_gradient', 'stroke', 'stroke_width', 'opacity'} | STROKE_PROPERTIES), 'Unsupported style property: ' + label)
         try:
             validate_stroke_style(style, kind, label)
+            from .linear_gradient import validate_linear_gradient
+            validate_linear_gradient(style, kind, label)
         except ValueError as exc:
             errors.append(str(exc))
         for channel in ('fill', 'stroke'):
@@ -206,7 +208,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     if active:
                         previous = subpath_start
             check(bool(points) and drawable, 'Path needs a drawable segment: ' + label)
-            if opacity == 0 or (style.get('fill', 'none') == 'none' and (style.get('stroke', 'none') == 'none' or stroke_width == 0)):
+            if opacity == 0 or (style.get('fill', 'none') == 'none' and 'fill_gradient' not in style and (style.get('stroke', 'none') == 'none' or stroke_width == 0)):
                 warnings.append('Path has no visible paint: ' + label)
         elif kind == 'text':
             if 'font_family' in obj:

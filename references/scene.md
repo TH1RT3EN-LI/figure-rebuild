@@ -52,6 +52,8 @@
 - `text`：原文、`font_size` 为像素，`font_family/bold/italic/rotation` 可选；family 必须在 runtime 显式配置，缺失字形或未配置字体报错，不回退。使用 `box`，或未旋转 SVG 文本的基线 `anchor:{x,y}`。`wrap` 用 `none` 或 `square`；不以空格模拟居中，不为排版插入硬换行。
 - `image`：`path/sha256/editable:false/box`。路径相对 job 且不得逃逸；`crop:{left,top,right,bottom}` 为 0–1 裁剪比例，保留原图字节。`fit:"contain"` 为缺省值，裁后内容等比居中；显式 `fit:"stretch"` 将裁后内容准确映射整个框，适用于已核实的源图非等比变换。裁剪比例始终相对于完整原素材；stretch 不会推断或修复缺失的源裁切。
 - `style`：实心六位 hex 或 `none`，非负 `stroke_width`，可选 `opacity`。路径可显式指定 `stroke_linecap:butt/round/square`、`stroke_linejoin:miter/round/bevel`；`stroke_miterlimit` 为正比值且需要显式 miter，省略时 miter 上限为 4。不声明这些字段时保持已有描边行为。图片的效果不由此 style 修改。
+- 路径可用 `style.fill_gradient` 表达连续线性渐变，例如 `{"type":"linear","angle":90,"stops":[{"offset":0,"color":"#E4CA07"},{"offset":1,"color":"#FEFEF8"}]}`。此时 `fill` 省略或为 `none`。角度为物理画布中顺时针 `[0,360)` 度（0 向右、90 向下），按原生 1/60000 度量化。渐变覆盖原生路径框沿此方向的完整投影；路径框包括 cubic 控制点，不是曲线实际极值框。Python `linear_gradient.native_path_frame(commands)` 和 `gradient_axis(frame, angle)` 可取相同框和轴端点，SVG 也使用此轴。
+- 渐变支持 2–64 个色标，从 0 到 1 严格递增，每个可附 `opacity`，再乘全局 `style.opacity`。色标位置按原生 1/100000 精度量化；量化后重合的色标拒绝。原生路径和颜色/透明度均核验，不用色带或位图代替；径向和独立全局坐标渐变尚不支持。Artifact Tool 2.8.59 对不同色标透明度的插值有已确认差异，`render-audit.json` 会标记需应用复查；原生 XML 正确不等于预览颜色正确。
 - `group_id` 记录逻辑组。只有在 z 顺序中连续且有多个成员的组会生成原生 PPT 组；不连续组保留逻辑映射，以免分组改变遮挡关系。
 
 PNG 识别时先列可见文字，再确定各图形轮廓与连线端点，最后核对所有分支和遮挡。透明像素不是黑色背景。不要借论文知识增加图中没有的连接或标签。数值图表需要更精确的作者矢量源或原数据；肉眼描线不得声称恢复了实验数据。

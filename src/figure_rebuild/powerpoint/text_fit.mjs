@@ -45,9 +45,11 @@ function metricWidth(metrics) {
  * measurer. The two Canvas implementations do not include font line gaps in
  * the same way. Values are returned in source pixels after PPT point rounding.
  *
- * Artifact presentation layout uses a 1.2-em natural line box. Its exact-point
- * and default-line-spacing branches have different first baselines. The paint
- * adjustment is also part of that renderer's exported metrics API;
+ * Artifact presentation layout uses a 1.2-em natural line box. Encode explicit
+ * pitches as percentages of that box: the exact-point first-baseline branch
+ * differs substantially from native Impress. Percentage spacing preserves the
+ * editable paragraph and uses the renderer's percentage-baseline branch.
+ * The paint adjustment is also part of that renderer's exported metrics API;
  * do not substitute a fitted constant or the visible ink height for it.
  */
 export function measurePresentationBaseline(object, {context, fontMetricsProvider,
@@ -69,14 +71,20 @@ export function measurePresentationBaseline(object, {context, fontMetricsProvide
   const metrics = fontMetricsProvider.getMetricsForSize(font, px);
   const ascent = finiteMetric(metrics.ascentPx, 'renderer font ascent');
   const naturalHeight = px * 1.2;
-  const lineHeight = object.line_height === undefined ? naturalHeight
-    : Math.round(finiteMetric(object.line_height, 'line_height') * scale * 75) / 75;
+  const requestedHeight = object.line_height === undefined ? naturalHeight
+    : finiteMetric(object.line_height, 'line_height') * scale;
+  const spacingPercent = object.line_height === undefined ? undefined
+    : Math.round(requestedHeight / naturalHeight * 100000);
+  if (spacingPercent !== undefined && (!Number.isSafeInteger(spacingPercent) || spacingPercent <= 0)) {
+    throw Error('Rendered line height cannot be represented as positive DrawingML percentage spacing');
+  }
+  const multiple = spacingPercent === undefined ? 1 : spacingPercent / 100000;
+  const lineHeight = naturalHeight * multiple;
   finiteMetric(lineHeight, 'rendered line height');
-  let baseline = px;
-  if (object.line_height !== undefined) baseline = ascent + (lineHeight - naturalHeight) / 2;
-  else if (Number.isFinite(metrics.officeAscentPx) && metrics.officeAscentPx > 0
+  let baseline = multiple < 1 ? lineHeight * .8 : px + lineHeight - naturalHeight;
+  if (Number.isFinite(metrics.officeAscentPx) && metrics.officeAscentPx > 0
       && Number.isFinite(metrics.officeDescentPx) && metrics.officeDescentPx > 0) {
-    baseline = naturalHeight * metrics.officeAscentPx / (metrics.officeAscentPx + metrics.officeDescentPx);
+    baseline = lineHeight * metrics.officeAscentPx / (metrics.officeAscentPx + metrics.officeDescentPx);
   }
   const ink = context.measureText(object.text.split(/\r\n?|\n/u)[0] || 'Mg');
   // Artifact applies this correction only for a single resolved font face.
@@ -89,7 +97,9 @@ export function measurePresentationBaseline(object, {context, fontMetricsProvide
     line_height_px: lineHeight / scale, natural_line_height_px: naturalHeight / scale,
     font_ascent_px: ascent / scale, paint_baseline_correction_px: correction / scale,
     rendered_font_size_px: px / scale, scale,
-    spacing: object.line_height === undefined ? 'default' : 'exact_points'};
+    requested_line_height_px: object.line_height ?? requestedHeight / scale,
+    ...(spacingPercent === undefined ? {} : {spacing_thousandths_percent: spacingPercent}),
+    spacing: object.line_height === undefined ? 'default' : 'percent_of_natural_line'};
 }
 
 export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lineHeight: explicitLineHeight,

@@ -142,13 +142,14 @@ function rendererOptions(scale = 1) {
     paintBaselineCompensation: value => value - Math.round(value)};
 }
 
-test('renderer metrics distinguish exact 1.2em from native default paragraph spacing', () => {
+test('explicit 1.2em uses the same percentage baseline as native default spacing', () => {
   const object = {text: 'Hgx09', font_size: 40};
   const natural = measurePresentationBaseline(object, rendererOptions());
   const exact = measurePresentationBaseline({...object, line_height: 48}, rendererOptions());
   assert.equal(natural.line_height_px, exact.line_height_px);
-  assert.notEqual(natural.first_baseline_px, exact.first_baseline_px);
-  assert.ok(natural.first_baseline_px - exact.first_baseline_px > 3);
+  assert.equal(natural.first_baseline_px, exact.first_baseline_px);
+  assert.equal(exact.spacing, 'percent_of_natural_line');
+  assert.equal(exact.spacing_thousandths_percent, 100000);
 });
 
 test('source anchor and calibrated box retain first baseline independently of line pitch', () => {
@@ -163,7 +164,7 @@ test('source anchor and calibrated box retain first baseline independently of li
       + rendererBaseline.first_baseline_px, 80);
     assert.equal(result.layout.native_baseline_ascent, 23);
     assert.equal(result.layout.line_count, 2);
-    assert.equal(result.layout.line_height, height ?? 24);
+    assert.ok(Math.abs(result.layout.line_height - (height ?? 24)) <= 24 * .000005);
     const box = fittedTextBox({...object, anchor: undefined, box: {x: 50, y: 30, width: 100, height: 90}},
       sourceMeasure, canvas, {rendererBaseline});
     assert.equal(box.box.y, 30);
@@ -176,7 +177,11 @@ test('renderer uses physical PPT rounding then returns placement-scaled source c
   const scale = 0.637;
   const rendered = measurePresentationBaseline(object, rendererOptions(scale));
   assert.equal(rendered.rendered_font_size_px, Math.round(object.font_size * scale * 75) / 75 / scale);
-  assert.equal(rendered.line_height_px, Math.round(object.line_height * scale * 75) / 75 / scale);
+  assert.equal(rendered.requested_line_height_px, object.line_height);
+  assert.ok(Math.abs(rendered.line_height_px
+    - rendered.natural_line_height_px * rendered.spacing_thousandths_percent / 100000) < 1e-12);
+  assert.ok(Math.abs(rendered.line_height_px - rendered.requested_line_height_px)
+    <= rendered.natural_line_height_px * .000005);
   assert.equal(rendered.scale, scale);
 });
 

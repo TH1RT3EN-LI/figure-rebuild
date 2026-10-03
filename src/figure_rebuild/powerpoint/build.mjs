@@ -9,13 +9,14 @@ import {fittedTextBox,fontFaceForText,measurePresentationBaseline} from './text_
 import {flattenPath,pathBounds} from './curves.mjs';
 import {fitPlacement} from './placement.mjs';
 import {fitImagePlacement} from './image_placement.mjs';
+import {linearGradientFill} from './linear_gradient.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
 const assetRoot=config.asset_root??job;
-await checkRuntime(runtime,packageRoot);
+const runtimeCheck=await checkRuntime(runtime,packageRoot);
 process.env.RUNTIME_NODE_MODULES=runtime.node_modules;
 process.env.RUNTIME_NODE=runtime.node;
 process.env.RUNTIME_PYTHON=runtime.python;
@@ -79,7 +80,7 @@ for(const o of ordered){
   const width=Math.max(.01,right-left),height=Math.max(.01,bottom-top);
   const commands=flattenPath(o.commands).map(c=>c.close?{close:{}}:{[c.moveTo?'moveTo':'lineTo']:{x:(c.moveTo??c.lineTo).x-left,y:(c.moveTo??c.lineTo).y-top}});
   const box={x:left,y:top,width,height};
-  slide.shapes.add({name:o.id,geometry:'custom',position:position(box),fill:paint(s.fill,s.opacity),line:{fill:paint(s.stroke,s.opacity),width:(s.stroke_width??0)*scale,style:'solid'},customPaths:[{width,height,commands}]});
+  slide.shapes.add({name:o.id,geometry:'custom',position:position(box),fill:linearGradientFill(s)??paint(s.fill,s.opacity),line:{fill:paint(s.stroke,s.opacity),width:(s.stroke_width??0)*scale,style:'solid'},customPaths:[{width,height,commands}]});
   objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,box,editable:true});
  }else if(o.kind==='text'){
   const fontSize=o.font_size;
@@ -102,7 +103,9 @@ for(const o of ordered){
   objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,...imagePlacement,editable:false});
  }else throw Error('Unsupported object kind');
 }
-slide.speakerNotes.textFrame.setText(`Source: ${manifest.source.uri||manifest.source.path}\nClassification: ${manifest.source.kind}. Original SHA256: ${manifest.source.sha256}. Recognition: ${manifest.recognition.provider}. ${manifest.recognition.notes||''}\nReconstruction with editable geometry and separate text; raster panels remain raster. Font adapted to configured ${fontFamily}. This reconstruction does not add new experimental evidence. Visual acceptance pending.`);
+const liveTextObjects=ordered.filter(o=>o.kind==='text');
+const liveTextFamilies=[...new Set(liveTextObjects.map(o=>o.font_family??fontFamily))];
+slide.speakerNotes.textFrame.setText(`Source: ${manifest.source.uri||manifest.source.path}\nClassification: ${manifest.source.kind}. Original SHA256: ${manifest.source.sha256}. Recognition: ${manifest.recognition.provider}. ${manifest.recognition.notes||''}\nNative paths: ${ordered.filter(o=>o.kind==='path').length}; live text boxes: ${liveTextObjects.length}; embedded image assets: ${ordered.filter(o=>o.kind==='image').length}. Glyph outlines, when present, are paths and are not live text. Original raster panels remain raster.${liveTextFamilies.length?` Live text uses configured families: ${liveTextFamilies.join(', ')}.`:''} This reconstruction does not add new experimental evidence. Visual acceptance pending.`);
 await fs.writeFile(path.join(run,'text-manifest.json'),JSON.stringify({schema_version:1,source_canvas:sourceCanvas,text_elements:textManifest},null,2));
 await fs.writeFile(path.join(run,'object-map.json'),JSON.stringify({...placementAudit,objects:objectMap},null,2));
 const raw=path.join(run,'artifact-authored.pptx');await (await PresentationFile.exportPptx(p)).save(raw);
@@ -122,7 +125,12 @@ const checkedOutput=path.join(run,'validated-output','reconstruction.pptx');awai
 globalThis.devicePixelRatio=8;
 const explicitStrokeObjects=ordered.filter(o=>o.kind==='path'&&['stroke_linecap','stroke_linejoin','stroke_miterlimit'].some(key=>key in (o.style??{}))).map(o=>o.id);
 const previewLimitations=explicitStrokeObjects.length?[{code:'native_stroke_geometry_requires_application_verification',object_ids:explicitStrokeObjects,detail:'Native cap/join/miter values are written to the final PPTX. Artifact Tool 2.8.59 ignores them on preview import; preview alone cannot verify these details.'}]:[];
-await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations},null,2));
+const nativeLayoutAudit=JSON.parse(await fs.readFile(path.join(run,'editability.json'),'utf8'));
+const fractionalSpacingObjects=(nativeLayoutAudit.text_layout??[]).filter(record=>record.native_precision_review_required);
+if(fractionalSpacingObjects.length)previewLimitations.push({code:'fractional_percent_multiline_spacing_requires_application_verification',status:'needs_review',object_ids:fractionalSpacingObjects.map(record=>record.id),objects:fractionalSpacingObjects.map(record=>({id:record.id,line_count:record.line_count,spacing_thousandths_percent:record.spacing_thousandths_percent,whole_percent_fallback_accumulated_loss_px:record.whole_percent_fallback_accumulated_loss_px})),detail:'Some native applications reduce percentage line spacing to whole percent. Multiline text can accumulate pitch error; inspect the intended application. The recorded loss is a whole-percent fallback model, not a universal measured error bound.'});
+const varyingGradientAlpha=ordered.filter(o=>o.style?.fill_gradient&&new Set(o.style.fill_gradient.stops.map(stop=>stop.opacity??1)).size>1).map(o=>o.id);
+if(varyingGradientAlpha.length)previewLimitations.push({code:'gradient_stop_opacity_interpolation_requires_application_verification',status:'needs_review',object_ids:varyingGradientAlpha,detail:'Native stop RGB and alpha are verified in the final PPT. Artifact Tool 2.8.59 previews interpolate varying stop alpha differently from the SVG reference and LibreOffice. Inspect native application output; preview color alone cannot verify this fill.'});
+await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations},null,2));
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
 let targetSlide=rendered.slides.items[0];
