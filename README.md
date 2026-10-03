@@ -6,10 +6,10 @@
 
 ## 安装
 
-当前版本已在本地验证；配置的 GitHub 远端尚未完成发布，下面的 clone 命令在远端建仓后可用。已有本地 checkout 可以直接运行后续安装步骤。
+源码仓库：[TH1RT3EN-LI/figure-rebuild](https://github.com/TH1RT3EN-LI/figure-rebuild)。克隆后执行以下安装步骤；已有本地 checkout 可以直接运行后续步骤。
 
 ```bash
-git clone git@github.com:TH1RT3EN-LI/figure-rebuild.git
+git clone https://github.com/TH1RT3EN-LI/figure-rebuild.git
 cd figure-rebuild
 python3 -m venv .venv
 .venv/bin/python -m pip install -r requirements.txt
