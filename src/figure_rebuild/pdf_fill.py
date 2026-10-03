@@ -3,7 +3,9 @@
 DrawingML does not expose SVG's evenodd switch. Simple, mutually disjoint
 polygon interiors have the same fill under either rule, regardless of contour
 orientation. Prove that restricted case without moving any source coordinates;
-curves, intersections, touching contours and nesting remain unsupported.
+Curved contours additionally require an ordered convex control polygon. The
+Bezier convex-hull property then proves that its successive arcs cannot cross.
+Intersections, touching contours and nesting remain unsupported.
 """
 from fractions import Fraction
 import math
@@ -52,11 +54,15 @@ def _inside(point, polygon):
 def prove_evenodd_nonzero_equivalent(commands):
     """Return a proof receipt for disjoint simple polygons, otherwise ``None``.
 
-    This does not normalize arbitrary evenodd paths. The original M/L/Z
+    This does not normalize arbitrary evenodd paths. The original M/L/C/Z
     commands are unchanged. Closed contours may be concave and use either
     orientation; contained, intersecting or touching contours are rejected.
     Resource bounds also fail closed. ``None`` is not permission to omit paint.
     """
+    if not isinstance(commands, (list, tuple)) or len(commands) > 8192:
+        return None
+    if any(isinstance(c, (list, tuple)) and c and c[0] == "C" for c in commands):
+        return _prove_convex_curve_contours(commands)
     polygons, current = [], None
     try:
         for command in commands:
@@ -85,6 +91,9 @@ def prove_evenodd_nonzero_equivalent(commands):
     except (ValueError, TypeError, OverflowError):
         return None
     if current is not None or not polygons:
+        return None
+    vertices = sum(len(p) for p in polygons)
+    if vertices*(vertices-1)//2 > 250000:
         return None
 
     all_edges = []
@@ -119,3 +128,89 @@ def prove_evenodd_nonzero_equivalent(commands):
             "contour_count": len(polygons),
             "vertex_count": sum(len(p) for p in polygons),
             "source_commands_changed": False}
+
+
+def _prove_convex_curve_contours(commands):
+    """Prove simplicity using *control polygons*, never sampled curve points.
+
+    Each cubic is injective under a proved monotone linear projection, and
+    lies in the hull of its consecutive control vertices. For a
+    simple convex polygon, hulls of disjoint boundary intervals have disjoint
+    interiors. Their curves can therefore meet only at their common endpoint.
+    Collinear continuation is allowed; backtracking and repeated nonadjacent
+    control vertices are rejected by the polygon proof below. No output curve
+    is flattened or changed. Disjointness is checked on the enclosing control
+    polygons, a deliberately stricter condition than curve disjointness.
+    """
+    polygon_commands, contours = [], []
+    current, curved, curve_count = None, False, 0
+    try:
+        for command in commands:
+            if not isinstance(command, (list, tuple)) or not command:
+                return None
+            op = command[0]
+            if op == "M" and len(command) == 2 and current is None:
+                current, curved = [_point(command[1])], False
+                polygon_commands.append(command)
+            elif op == "L" and len(command) == 2 and current is not None:
+                point = _point(command[1])
+                if point != current[-1]:
+                    current.append(point)
+                polygon_commands.append(command)
+            elif op == "C" and len(command) == 4 and current is not None:
+                points = [_point(p) for p in command[1:]]
+                if points[-1] == current[-1]:
+                    return None  # Closed single-segment loops need another proof.
+                if not _monotone_projection([current[-1], *points]):
+                    return None
+                for raw, point in zip(command[1:], points):
+                    if point != current[-1]:
+                        current.append(point)
+                    polygon_commands.append(("L", raw))
+                curved, curve_count = True, curve_count + 1
+            elif op == "Z" and len(command) == 1 and current is not None:
+                if len(current) > 1 and current[-1] == current[0]:
+                    current.pop()
+                contours.append((current, curved))
+                polygon_commands.append(command)
+                current = None
+                if len(contours) > 16:
+                    return None
+            else:
+                return None
+            if current is not None and len(current) > 512:
+                return None
+    except (ValueError, TypeError, OverflowError):
+        return None
+    if current is not None or not contours:
+        return None
+    for polygon, curved in contours:
+        if not curved:
+            continue
+        signs = {_orientation(polygon[i-1], polygon[i], polygon[(i+1) % len(polygon)]) > 0
+                 for i in range(len(polygon))
+                 if _orientation(polygon[i-1], polygon[i], polygon[(i+1) % len(polygon)]) != 0}
+        if len(signs) != 1:
+            return None
+    proof = prove_evenodd_nonzero_equivalent(polygon_commands)
+    if proof is None:
+        return None
+    return {**proof, "proof": "ordered_convex_bezier_control_polygons_with_disjoint_interiors",
+            "curved_contour_count": sum(curved for _, curved in contours),
+            "cubic_count": curve_count, "curve_approximation": False,
+            "individual_curve_simplicity": "strictly_monotone_linear_projection"}
+
+
+def _monotone_projection(points):
+    # A weakly ordered, nonconstant sequence of projected control values gives
+    # a strictly monotone Bezier coordinate: its derivative is a nonnegative
+    # Bernstein combination, strictly positive for every t in (0,1).
+    edges = [(b[0]-a[0], b[1]-a[1]) for a, b in zip(points, points[1:]) if a != b]
+    axes = [(1, 0), (0, 1), (points[-1][0]-points[0][0], points[-1][1]-points[0][1])]
+    axes += [(-y, x) for x, y in edges]
+    for x, y in axes:
+        products = [x*a+y*b for a, b in edges]
+        if products and (min(products) >= 0 and max(products) > 0
+                         or max(products) <= 0 and min(products) < 0):
+            return True
+    return False

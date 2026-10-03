@@ -28,6 +28,18 @@ class PdfDashTests(unittest.TestCase):
         self.assertEqual(corner.commands[:3],(('M',(0,0)),('L',(3,0)),('L',(3,2))))
         self.assertEqual(len(corner.provenance['subpaths'][0]['dash_runs'][0]['source_intervals']),2)
 
+    def test_single_moveto_subpaths_do_not_paint_or_change_other_dash_phases(self):
+        clean=(('M',(0,0)),('L',(10,0)),('M',(0,10)),('L',(10,10)))
+        padded=(('M',(-5,0)),*clean[:2],('M',(90,90)),*clean[2:],('M',(0,10)))
+        baseline=lower_dashes(clean,[4,2],1)
+        result=lower_dashes(padded,[4,2],1)
+        self.assertEqual(result.commands,baseline.commands)
+        self.assertEqual([p['source_subpath_index'] for p in result.provenance['subpaths']],[1,3])
+        self.assertEqual([p['source_subpath_index'] for p in result.provenance['skipped_nonpainting_subpaths']],[0,2,4])
+        for tail in [(('M',(0,10)),('Z',)),(('M',(0,10)),('L',(0,10)))]:
+            with self.assertRaisesRegex(PdfDashError,'Zero-length'):
+                lower_dashes((*clean,*tail),[4,2],1)
+
     def test_closed_seam_is_joined_without_extra_caps(self):
         rectangle=(('M',(10,10)),('L',(30,10)),('L',(30,30)),('L',(10,30)),('Z',))
         r=lower_dashes(rectangle,[35,10])

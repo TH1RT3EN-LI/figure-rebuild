@@ -62,13 +62,41 @@ class PdfFillEquivalenceTests(unittest.TestCase):
         second = polygon((base+1, base-1), (base+3, base-1), (base+3, base+1), (base+1, base+1))
         self.assertIsNone(prove_evenodd_nonzero_equivalent(first+second))
 
-    def test_curves_open_degenerate_and_invalid_inputs_fail_closed(self):
-        for commands in ([], [("M", (0, 0)), ("C", (1, 0), (1, 1), (0, 1)), ("Z",)],
+    def test_open_degenerate_and_invalid_inputs_fail_closed(self):
+        for commands in ([],
                          polygon((0, 0), (1, 0), (2, 0)),
                          [("M", (0, 0)), ("L", (1, 1))],
                          polygon((0, 0), (1, 0), (float("nan"), 1)),
                          polygon((False, 0), (1, 0), (1, 1)), [("Q",)]):
             self.assertIsNone(prove_evenodd_nonzero_equivalent(commands))
+
+    def test_convex_cubic_contour_preserves_controls(self):
+        commands = [("M", (0, 0)), ("C", (1, 0), (1, 1), (0, 1)), ("Z",)]
+        original = list(commands)
+        proof = prove_evenodd_nonzero_equivalent(commands)
+        self.assertEqual(proof["cubic_count"], 1)
+        self.assertFalse(proof["curve_approximation"])
+        self.assertEqual(commands, original)
+
+    def test_round_rectangle_and_reversed_curve(self):
+        commands = [("M", (1, 0)), ("L", (3, 0)), ("C", (4, 0), (4, 0), (4, 1)),
+                    ("L", (4, 3)), ("C", (4, 4), (4, 4), (3, 4)), ("L", (1, 4)),
+                    ("C", (0, 4), (0, 4), (0, 3)), ("L", (0, 1)),
+                    ("C", (0, 0), (0, 0), (1, 0)), ("Z",)]
+        self.assertEqual(prove_evenodd_nonzero_equivalent(commands)["cubic_count"], 4)
+        reflected = [(c[0], *[(-p[0], p[1]) for p in c[1:]]) for c in commands]
+        self.assertIsNotNone(prove_evenodd_nonzero_equivalent(reflected))
+
+    def test_curved_loops_backtracking_nonconvex_and_overlapping_hulls_fail_closed(self):
+        for commands in (
+            [("M", (0, 0)), ("C", (2, 2), (-2, 2), (0, 0)), ("Z",)],
+            [("M", (0, 0)), ("C", (2, 0), (1, 0), (2, 1)), ("L", (0, 1)), ("Z",)],
+            [("M", (0, 0)), ("C", (1, 1), (2, -1), (3, 0)), ("L", (3, 3)), ("L", (0, 3)), ("Z",)],
+        ):
+            self.assertIsNone(prove_evenodd_nonzero_equivalent(commands))
+        curve = [("M", (0, 0)), ("C", (4, 0), (4, 4), (0, 4)), ("Z",)]
+        self.assertIsNone(prove_evenodd_nonzero_equivalent(curve + polygon((1, 1), (2, 1), (2, 2), (1, 2))))
+        self.assertIsNotNone(prove_evenodd_nonzero_equivalent(curve + polygon((5, 1), (6, 1), (6, 2), (5, 2))))
 
     def test_resource_limit_fails_closed(self):
         commands = []

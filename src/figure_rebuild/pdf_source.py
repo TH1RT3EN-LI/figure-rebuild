@@ -22,6 +22,7 @@ from fontTools.svgLib.path import parse_path
 
 from .pdf_dash import PdfDashError, lower_dashes
 from .pdf_fill import prove_evenodd_nonzero_equivalent
+from .pdf_clip import prove_clip_box_relation
 
 
 class PdfSourceError(ValueError):
@@ -225,6 +226,7 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
     nodes = list(root.iter())
     if len(nodes) > _MAX_NODES: raise PdfSourceError("Source SVG exceeds node budget")
     definitions = {}
+    parents = {child: parent for parent in root.iter() for child in parent}
     if any(_tag(node) == "style" for node in nodes):
         raise PdfSourceError("Stylesheets are unsupported; computed styles must be explicit")
     for node in nodes:
@@ -258,7 +260,8 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
             resource = definitions.get(match[1]) if match else None
             clips = (*clips, {"id": match[1] if match else None, "transform": list(matrix),
                               "element": ET.tostring(resource, encoding="unicode") if resource is not None else None,
-                              "reference": clip})
+                              "reference": clip,
+                              "unsupported_resource_ancestors": _clip_ancestor_context(resource, parents, root)})
         identity = location
         if tag in ("svg", "g", "use"):
             context = {key: style.get(key, default) for key, default in (("opacity", "1"), ("mix-blend-mode", "normal"), ("isolation", "auto"), ("mask", "none"), ("filter", "none"), ("display", "inline"))}
@@ -349,8 +352,12 @@ def _axis_rectangle(commands):
 
 
 def _rect_clip(context):
+    if context.get("unsupported_resource_ancestors"):
+        raise UnsupportedPdfPaintError("Clip resource ancestor presentation/inheritance is unsupported")
     if not context["element"]: raise UnsupportedPdfPaintError("Missing or external clip resource")
     root = ET.fromstring(context["element"])
+    if "}" in root.tag and not root.tag.startswith("{"+_NS+"}"):
+        raise UnsupportedPdfPaintError("Unsupported clip resource namespace")
     if _tag(root) != "clipPath" or root.get("clipPathUnits", "userSpaceOnUse") != "userSpaceOnUse":
         raise UnsupportedPdfPaintError("Only userSpaceOnUse rectangular clips can be proved no-op")
     if set(root.attrib) - {"id", "clipPathUnits", "transform"}:
@@ -358,6 +365,8 @@ def _rect_clip(context):
     children = list(root)
     if len(children) != 1: raise UnsupportedPdfPaintError("Complex clip has multiple children")
     child = children[0]
+    if list(child) or ("}" in child.tag and not child.tag.startswith("{"+_NS+"}")):
+        raise UnsupportedPdfPaintError("Unsupported clip child content/namespace")
     matrix = _mul(_mul(context["transform"], _matrix(root.get("transform"))), _matrix(child.get("transform")))
     if _tag(child) == "rect" and not (set(child.attrib)-{"x", "y", "width", "height", "id", "transform"}):
         x, y = _number(child.get("x", "0")), _number(child.get("y", "0"))
@@ -378,6 +387,73 @@ def _rect_clip(context):
     return min(xs), min(ys), max(xs), max(ys)
 
 
+def _complex_clip_relation(context, bounds):
+    """Prove a clip's union of explicit path/rect children contains a box."""
+    if context.get("unsupported_resource_ancestors"):
+        raise UnsupportedPdfPaintError("Clip resource ancestor presentation/inheritance is unsupported")
+    if not context["element"]:
+        raise UnsupportedPdfPaintError("Missing or external clip resource")
+    root = ET.fromstring(context["element"])
+    if (_tag(root) != "clipPath" or root.get("clipPathUnits", "userSpaceOnUse") != "userSpaceOnUse"
+            or set(root.attrib) - {"id", "clipPathUnits", "transform", "clip-rule"}
+            or ("}" in root.tag and not root.tag.startswith("{"+_NS+"}"))):
+        raise UnsupportedPdfPaintError("Unsupported complex clip resource/attributes")
+    children = list(root)
+    if not children or len(children) > 64:
+        raise UnsupportedPdfPaintError("Complex clip child budget/empty geometry")
+    matrix = _mul(context["transform"], _matrix(root.get("transform")))
+    proofs = []
+    for child in children:
+        if list(child) or ("}" in child.tag and not child.tag.startswith("{"+_NS+"}")):
+            raise UnsupportedPdfPaintError("Unsupported complex clip child content/namespace")
+        child_matrix = _mul(matrix, _matrix(child.get("transform")))
+        if _tag(child) == "path" and not (set(child.attrib)-{"d", "id", "transform", "clip-rule"}):
+            commands = _commands(child.get("d", ""), child_matrix)
+        elif _tag(child) == "rect" and not (set(child.attrib)-{"x", "y", "width", "height", "id", "transform", "clip-rule"}):
+            x, y = _number(child.get("x", "0")), _number(child.get("y", "0"))
+            w, h = _number(child.get("width", "0")), _number(child.get("height", "0"))
+            if w <= 0 or h <= 0:
+                raise UnsupportedPdfPaintError("Degenerate complex clip rectangle")
+            points = [_point(child_matrix, p) for p in ((x,y), (x+w,y), (x+w,y+h), (x,y+h))]
+            commands = (("M", points[0]), *(("L", p) for p in points[1:]), ("Z",))
+        else:
+            raise UnsupportedPdfPaintError("Unsupported complex clip child shape/attributes")
+        rule = child.get("clip-rule", root.get("clip-rule", "nonzero"))
+        if rule not in ("nonzero", "evenodd"):
+            raise UnsupportedPdfPaintError("Unsupported complex clip winding rule")
+        proofs.append(prove_clip_box_relation(commands, bounds, fill_rule=rule))
+    if any(p and p["relation"] == "inside" for p in proofs):
+        relation = "inside"
+    elif all(p and p["relation"] == "outside" for p in proofs):
+        relation = "outside"
+    else:
+        raise UnsupportedPdfPaintError("Complex clip boundary overlaps paint bounds or proof budget exhausted")
+    return {"relation": relation, "proof": "union_of_clip_child_fill_regions",
+            "source_clip_id": context["id"], "paint_bounds": list(bounds),
+            "children": proofs, "source_commands_changed": False}
+
+
+def _clip_ancestor_context(resource, parents, root):
+    """Do not lose inherited definition styles when serializing a clip alone.
+
+    MuPDF emits self-contained definitions. Other SVGs may inherit clip-rule
+    through defs/groups; until those computed styles are supported, retain and
+    reject that context instead of silently substituting nonzero. Even a
+    recognized fill/color ancestor is conservatively rejected here.
+    """
+    result = []
+    parent = parents.get(resource)
+    while parent is not None:
+        allowed = {"id"}
+        if parent is root:
+            allowed |= {"width", "height", "viewBox", "version", "preserveAspectRatio"}
+        attributes = {k: v for k, v in parent.attrib.items() if k not in allowed}
+        if attributes or ("}" in parent.tag and not parent.tag.startswith("{"+_NS+"}")):
+            result.append({"tag": parent.tag, "attributes": attributes})
+        parent = parents.get(parent)
+    return result
+
+
 def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                   paint_ids: Sequence[str] | None = None, region: Sequence[float] | None = None,
                   transform: Sequence[float] = _IDENTITY, dash_tolerance: float = 1e-4,
@@ -386,8 +462,10 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
 
     ``glyph_mode='outline'`` is required, including for ordinary labels. It
     produces editable geometry, never editable text or recovered semantics.
-    Rectangular clips/ROI are accepted only when proven disjoint or no-op;
-    crossing or complex clips, images and group compositing remain unsupported.
+    Clips/ROI are accepted only when proven disjoint or no-op. Cubic clip
+    boundaries use exact rational hull separation and constant winding; no
+    output path is flattened. Crossing clips, images and group compositing
+    remain unsupported.
     ``paint_ids`` is an explicit subset, reported as such in the result.
     ``transform`` maps source PDF coordinates into the target canvas. Positive
     dash arrays are lowered before any clipping, with ``dash_tolerance`` in
@@ -471,10 +549,16 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             # tighter proof than the general conservative miter envelope.
             edge = (width*source_scale/2 if rectangle_stroke else width*source_scale*max(2, miter_limit/2)) if stroke != "none" else 0
             bounds = (bounds[0]-edge, bounds[1]-edge, bounds[2]+edge, bounds[3]+edge)
-            rectangles = [_rect_clip(c) for c in paint.clips]
+            rectangles, clip_proofs = [], []
+            for context in paint.clips:
+                try:
+                    rectangles.append(_rect_clip(context))
+                except UnsupportedPdfPaintError:
+                    clip_proofs.append(_complex_clip_relation(context, bounds))
             if region is not None: rectangles.append(region)
-            if any(_disjoint(r, bounds) for r in rectangles):
-                skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region"})
+            if any(_disjoint(r, bounds) for r in rectangles) or any(p["relation"] == "outside" for p in clip_proofs):
+                skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
+                                "clip_geometry_proofs": clip_proofs})
                 continue
             clip_rounding = []
             for clip_index, rectangle in enumerate(rectangles):
@@ -537,6 +621,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "source_transform": list(paint.transform), "target_transform": list(transform),
                           "clip_context": list(paint.clips), "group_context": list(paint.groups),
                           "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
+                          "clip_geometry_proofs": clip_proofs,
                           "stroke_native_fields": part_stroke_fields,
                           "stroke_visual_verification_required": bool(part_stroke_fields),
                           "stroke_preview_renderer_support": "not_verified_or_unsupported" if part_stroke_fields else "not_applicable",

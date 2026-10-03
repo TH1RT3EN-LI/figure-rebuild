@@ -185,14 +185,17 @@ class PdfImageTests(unittest.TestCase):
         self.assertEqual(record['asset_size'], [2, 1])
         self.assert_sample_matches_page(record, page, 12.5, 12.5)
 
-    def test_nonrectangular_clip_and_rotated_image_fail_closed(self):
+    def test_nonrectangular_clip_has_alpha_and_rotated_image_fails_closed(self):
         document, page = self.document()
         self.paint(document, page, Image.new('RGB', (10, 10), 'red'), (20, 20, 80, 80))
         stream = page.get_contents()[-1]
         document.update_stream(stream, b'q 20 240 m 80 240 l 20 180 l h W n\n'
                                +document.xref_stream(stream)+b'\nQ')
-        with self.assertRaisesRegex(UnsupportedPdfImageError, 'rectangle'):
-            extract_pdf_images(self.save(document))
+        clipped, = extract_pdf_images(self.save(document))
+        asset = Image.open(io.BytesIO(clipped['asset_bytes']))
+        self.assertEqual(asset.getpixel((asset.width-2, asset.height-2))[3], 0)
+        self.assertEqual(asset.getpixel((2, 2))[3], 255)
+        self.assertFalse(clipped['provenance']['clip_rasterization']['clip_geometry_approximated'])
         rotated, sheet = self.document()
         sheet.insert_image(pymupdf.Rect(20, 20, 80, 80), stream=png(Image.new('RGB', (10, 10), 'red')), rotate=90)
         path = Path(self.temporary.name)/'rotated.pdf'

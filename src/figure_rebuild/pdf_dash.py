@@ -139,20 +139,31 @@ class _ArcTable:
 
 
 def _subpaths(commands):
-    result,segments=[],[]
+    result,segments,skipped,source_indices=[],[],[],[]
     current=first=None
+    source_index=-1
+    start_command=None
     def finish(closed):
         nonlocal segments,current,first
         if first is not None:
-            if not segments: raise PdfDashError("Empty/degenerate dashed subpath is unsupported")
-            result.append((tuple(segments),closed))
+            if not segments:
+                if closed:
+                    raise PdfDashError("Zero-length closed subpath is unsupported (cap semantics may differ)")
+                # SVG stroke semantics exclude a *single moveto* subpath.
+                # M...Z and zero-length L/C can paint caps and stay rejected.
+                skipped.append({'source_subpath_index':source_index,'source_command_index':start_command,
+                                'moveto':list(first),'reason':'single_moveto_has_no_stroked_segment'})
+            else:
+                result.append((tuple(segments),closed))
+                source_indices.append(source_index)
         segments=[];current=first=None
-    for command in commands:
+    for command_index,command in enumerate(commands):
         if not isinstance(command,(tuple,list)) or not command: raise PdfDashError("Invalid source path command")
         op,*raw=command
         points=tuple(_point(point) for point in raw)
         if op=='M' and len(points)==1:
             finish(False);current=first=points[0]
+            source_index+=1;start_command=command_index
         elif op in ('L','C') and len(points)==(1 if op=='L' else 3) and current is not None:
             segment=(current,*points)
             if all(point==current for point in segment): raise PdfDashError("Zero-length source segment is unsupported")
@@ -163,7 +174,7 @@ def _subpaths(commands):
         else: raise PdfDashError("Dashing accepts normalized M/L/C/Z subpaths only")
     finish(False)
     if not result: raise PdfDashError("No drawable dashed subpaths")
-    return result
+    return result,skipped,source_indices
 
 
 def _run_commands(pieces,closed=False):
@@ -183,7 +194,9 @@ def lower_dashes(commands: Sequence, pattern: Sequence[float], phase: float = 0.
     Lengths and ``tolerance`` use the command coordinate system. Positive phase
     consumes that distance into the repeated pattern at each subpath start;
     negative phase is reduced modulo the cycle. Odd arrays repeat twice.
-    Zero/negative entries and degenerate segments fail closed. Clips must be
+    Zero/negative entries and degenerate drawn segments fail closed. Single
+    moveto-only subpaths among drawable paths are recorded as nonpainting.
+    Clips must be
     applied only after this operation; this function does not clip geometry.
     Contiguous on-pieces remain one subpath, including a closed path's seam.
     """
@@ -197,7 +210,9 @@ def lower_dashes(commands: Sequence, pattern: Sequence[float], phase: float = 0.
     cycle=math.fsum(normalized)
     if not math.isfinite(cycle): raise PdfDashError("Nonfinite dash cycle")
     phase=phase%cycle
-    subpaths=_subpaths(commands)
+    if not isinstance(commands,(list,tuple)) or len(commands)>max_output_commands:
+        raise PdfDashError("Source path exceeds dash command budget or is not a command sequence")
+    subpaths,skipped_subpaths,source_indices=_subpaths(commands)
     total_segments=sum(len(segments) for segments,_ in subpaths)
     if total_segments>max_output_commands: raise PdfDashError("Source path exceeds dash command budget")
     budget=tolerance/(8*total_segments)
@@ -303,7 +318,8 @@ def lower_dashes(commands: Sequence, pattern: Sequence[float], phase: float = 0.
             run_reports.append({'closed':run['closed'],'joins_closed_seam':run.get('seam_join',False),
                                 'source_intervals':run['intervals']})
         global_inverse_error=max(global_inverse_error,max_inverse_error)
-        subpath_reports.append({'subpath_index':subpath_index,'closed_source':closed,'length_estimate':length,
+        subpath_reports.append({'subpath_index':subpath_index,'source_subpath_index':source_indices[subpath_index],
+                                'closed_source':closed,'length_estimate':length,
                                 'length_lower':low,'length_upper':high,'length_error_upper':prefix_error,
                                 'dash_runs':run_reports})
     # This explicit conservative allowance covers binary64 arithmetic in the
@@ -320,7 +336,8 @@ def lower_dashes(commands: Sequence, pattern: Sequence[float], phase: float = 0.
         'maximum_arc_position_error_upper':error,'floating_point_allowance':float_allowance,
         'arc_length_bound_note':'Chord/polygon bounds hold in real arithmetic; conservative binary64 allowance included separately, not formal interval arithmetic.',
         'phase_application':'original source subpath before any clipping; reset at every moveto',
-        'subpaths':subpath_reports,'arc_subdivision_leaves':total_leaves,
+        'subpaths':subpath_reports,'skipped_nonpainting_subpaths':skipped_subpaths,
+        'arc_subdivision_leaves':total_leaves,
         'output_command_count':len(all_commands),'floating_boundary_snap_count':len(floating_snaps),
         'maximum_floating_boundary_snap':max(floating_snaps,default=0.),
     })
