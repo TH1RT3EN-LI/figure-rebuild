@@ -6,4 +6,6 @@ The workflow was inspired by image-to-editable-slide tools, including cell_su7. 
 
 The PPT backend uses user-supplied `@oai/artifact-tool` and Codex Presentations validation tools. Those packages are not redistributed and a public npm installation is not assumed. `@napi-rs/canvas` and `sharp` are also loaded from the supplied runtime. Python dependencies are installed separately from their package registries.
 
+Optional vision dependencies are NumPy and opencv-python-headless, installed separately through requirements-vision.txt. OpenCV's algorithms propose geometry within caller-selected regions; they do not perform scientific interpretation or call an external recognition service.
+
 Font files must be provided by the user under suitable permissions. Microsoft YaHei and research-paper images used in local integration checks are excluded from Git. Generated local receipts may contain filesystem paths and should be reviewed before sharing.

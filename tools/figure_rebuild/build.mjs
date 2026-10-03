@@ -104,7 +104,16 @@ if(config.base){
  const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
 }
 for(const s of [1,2]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
-const compareArgs=[path.join(repo,'tools/figure_rebuild/compare.py'),'--reference',path.join(assetRoot,manifest.source.path),'--rebuilt',path.join(run,'preview-1x.png'),'--output',path.join(run,'comparison.png'),'--metrics',path.join(run,'comparison-metrics.json'),'--font',fontAudit[0].renderer];
+// Use resolved source-coordinate frames: SVG text may only have a baseline
+// anchor, and image contain fitting can differ from its requested box.
+const comparisonScene=path.join(run,'comparison-scene.json');
+const byId=new Map(ordered.map(object=>[object.id,object]));
+await fs.writeFile(comparisonScene,JSON.stringify({canvas:sourceCanvas,derived_from:config.manifest,diagnostic_only:true,objects:objectMap.map(object=>{
+ const original=byId.get(object.id),pad=object.kind==='path'?(original.style?.stroke_width??0)/2:0;
+ const box={x:object.box.x-pad,y:object.box.y-pad,width:object.box.width+2*pad,height:object.box.height+2*pad};
+ return {id:object.id,kind:object.kind,box,rotation:original.rotation??0};
+})},null,2));
+const compareArgs=[path.join(repo,'tools/figure_rebuild/compare.py'),'--reference',path.join(assetRoot,manifest.source.path),'--rebuilt',path.join(run,'preview-1x.png'),'--output',path.join(run,'comparison.png'),'--metrics',path.join(run,'comparison-metrics.json'),'--font',fontAudit[0].renderer,'--manifest',comparisonScene];
 if(path.extname(manifest.source.path).toLowerCase()==='.svg'){
  const sharp=(await import(pathToFileURL(req.resolve('sharp')).href)).default;
  const raster=path.join(run,'svg-reference.png');await sharp(path.join(assetRoot,manifest.source.path)).png().toFile(raster);compareArgs[compareArgs.indexOf('--reference')+1]=raster;

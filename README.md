@@ -1,10 +1,12 @@
-# Figure Rebuild
+# Figure Rebuild · 0.3.0
 
 把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片和公式可保留为带来源审计的图片区域。支持单页导出，或按稳定 slide ID 插入已有模板。
 
 这是可独立安装的 Codex skill 和本地工具。位图由调用方模型看图后填写清单；工具不包含付费识图服务，也不将整页截图冒充可编辑图。SVG 的受支持几何可自动导入。
 
 ## 安装
+
+当前版本已在本地验证；配置的 GitHub 远端尚未完成发布，下面的 clone 命令在远端建仓后可用。已有本地 checkout 可以直接运行后续安装步骤。
 
 ```bash
 git clone git@github.com:TH1RT3EN-LI/figure-rebuild.git
@@ -17,6 +19,14 @@ python3 -m venv .venv
 安装器将整个 checkout 链接到 `${CODEX_HOME:-~/.codex}/skills/figure-rebuild`，不会覆盖已有技能。也可复制整个仓库目录到 skills 目录；入口和实现保持在同一个目录内。无需 AutoSlides。Codex 中使用 `$figure-rebuild`。
 
 Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。后端包不随本项目分发；没有这些包仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
+
+可选视觉升级提供裁剪框精修、平移估计和对象局部边缘诊断。安装到实际调用 CLI / build 的 Python 环境：
+
+```bash
+.venv/bin/python -m pip install -r requirements-vision.txt
+```
+
+未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。原生曲线、连接线、PDF 导入未包含在本版本。
 
 ## 配置和检查
 
@@ -65,6 +75,18 @@ python scripts/run.py build --manifest .local/jobs/curves/manifest.json
 
 输出包括 PPT、实际导出的 1x/2x 预览、并排比较图、文字测量、原生对象/图片审计、内容快照和交付摘要。文字溢出、XML 禁用字符、失效裁剪和来源字节变动会阻止交付。输出独占发布，不覆盖已存在文件；完整 PPT 是交付提交点。若进程在提交前被终止，残留回执只有在 PPT 存在且哈希一致时才算有效。
 
+## 裁剪精修与位置诊断
+
+```bash
+python scripts/run.py refine-crop --input /path/to/reference.png \
+  --region 100 50 250 180 --output /path/to/crop-proposal.json \
+  --preview /path/to/crop-preview.png
+python scripts/run.py diagnose --reference /path/to/reference.png \
+  --rebuilt /path/to/same-size-render.png --output /path/to/geometry.json
+```
+
+refine-crop 在人或调用模型选定的区域内定位内容边界，保留不相连的小字和点；结果只是绑定原图哈希的提案，不自动改素材或清单。build 对照报告自动增加几何诊断和按稳定对象 ID 的局部边缘误差，始终保留未经配准的比较结果。参数、采纳时保持 frame 的坐标换算及诊断限制见 [视觉模块](references/vision.md)。
+
 ## 插入现有模板
 
 ```bash
@@ -94,5 +116,7 @@ node --test tests/figure_rebuild/test_*.mjs
 ```
 
 GitHub Actions 跑便携核心检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试只附带自建素材，论文原图、模板、字体和本地配置不入库。贡献时提供最小可分发复现，说明输入、预期关系和失败证据；改稿记录稳定对象 ID、基础版本和影响范围。
+
+CI 分别安装核心依赖和视觉依赖执行 Python 检查；核心环境跳过需要 OpenCV 的效果测试，视觉环境验证裁剪内容保护、已知平移和局部错误诊断。
 
 代码采用 MIT；第三方运行时与素材权利见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。发布变更见 [CHANGELOG.md](CHANGELOG.md)。

@@ -8,6 +8,8 @@ import subprocess
 import sys
 import re
 import tempfile
+import io
+import hashlib
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -143,11 +145,91 @@ def doctor(a):
     try:
         data = runtime(check_dependencies=False)
         report = preflight(data)
+        report['vision'] = vision_capabilities(data['python'])
         print(json.dumps(report, ensure_ascii=False, indent=2))
         return 0
     except (ValueError, OSError, subprocess.CalledProcessError) as exc:
         print(json.dumps({'status': 'FAIL', 'errors': [str(exc)]}, ensure_ascii=False, indent=2))
         return 1
+
+
+def vision_capabilities(python):
+    """Probe the configured Python, which may differ from this CLI's interpreter."""
+    probe = """import json
+try:
+    import cv2, numpy
+    print(json.dumps({'status':'available','opencv':cv2.__version__,'numpy':numpy.__version__}))
+except Exception as exc:
+    print(json.dumps({'status':'unavailable','reason':str(exc),'install_hint':'Install requirements-vision.txt into the configured Python environment'}))
+"""
+    try:
+        result = subprocess.run([python, '-B', '-c', probe], capture_output=True, text=True, timeout=15)
+        if result.returncode: raise ValueError('Vision dependency probe failed')
+        return json.loads(result.stdout)
+    except (OSError, ValueError, subprocess.TimeoutExpired) as exc:
+        return {'status': 'unavailable', 'reason': str(exc)}
+
+
+def publish_diagnostic(report, output, preview_source=None, preview_output=None):
+    """Publish complete diagnostic files without replacing any existing input/output."""
+    from publish import stage
+    output = Path(output).resolve()
+    destinations = [output]
+    contents = [(json.dumps(report, ensure_ascii=False, indent=2, allow_nan=False)+'\n').encode('utf-8')]
+    if preview_output is not None:
+        destinations.append(Path(preview_output).resolve())
+        contents.append(Path(preview_source).read_bytes())
+    if len(set(destinations)) != len(destinations):
+        raise ValueError('Diagnostic report and preview must use different paths')
+    staged, owned = [], []
+    try:
+        for destination, content in zip(destinations, contents):
+            staged.append(stage(destination, content))
+        for temporary, destination in zip(staged, destinations):
+            os.link(temporary, destination)
+            owned.append((temporary, destination))
+    except BaseException:
+        for temporary, destination in reversed(owned):
+            if destination.exists() and os.path.samestat(temporary.stat(), destination.stat()):
+                destination.unlink()
+        raise
+    finally:
+        for temporary in staged: temporary.unlink(missing_ok=True)
+
+
+def refine_crop_command(a):
+    from crop_refine import refine_crop, save_crop_preview
+    source, output = Path(a.input).resolve(), Path(a.output).resolve()
+    preview = Path(a.preview).resolve() if a.preview else None
+    if output == source or preview == source:
+        raise ValueError('Diagnostic output must not replace the source image')
+    for destination in (output, preview):
+        if destination is not None and destination.exists():
+            raise ValueError('Diagnostic output already exists: '+str(destination))
+    report = refine_crop(source, a.region, background=a.background,
+                         tolerance=a.tolerance, padding=a.padding, min_area=a.min_area)
+    with tempfile.TemporaryDirectory(prefix='figure-rebuild-crop-') as directory:
+        temporary = Path(directory)/'preview.png'
+        if preview is not None: save_crop_preview(source, report, temporary)
+        publish_diagnostic(report, output, temporary if preview else None, preview)
+    print(json.dumps({'report': str(output), 'preview': str(preview) if preview else None,
+                      'status': report['status'], 'manifest_changed': False}, ensure_ascii=False))
+
+
+def diagnose_command(a):
+    from PIL import Image
+    from registration import diagnose_registration
+    reference, rebuilt, output = map(lambda p: Path(p).resolve(), (a.reference, a.rebuilt, a.output))
+    if output in (reference, rebuilt): raise ValueError('Report must not replace an input image')
+    if output.exists(): raise ValueError('Diagnostic output already exists: '+str(output))
+    source_bytes, target_bytes = reference.read_bytes(), rebuilt.read_bytes()
+    with Image.open(io.BytesIO(source_bytes)) as source, Image.open(io.BytesIO(target_bytes)) as target:
+        report = diagnose_registration(source, target, max_shift_px=a.max_shift)
+    report['inputs'] = {'reference': {'path': str(reference), 'sha256': hashlib.sha256(source_bytes).hexdigest()},
+                        'rebuilt': {'path': str(rebuilt), 'sha256': hashlib.sha256(target_bytes).hexdigest()}}
+    publish_diagnostic(report, output)
+    print(json.dumps({'report': str(output), 'status': report['status'], 'images_changed': False}))
+    return 1 if report['status'] in ('unavailable', 'failure') else 0
 
 
 def freeze_assets(job, run, manifest):
@@ -268,13 +350,23 @@ def build(a):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--version', action='version', version='figure-rebuild 0.2.0')
+    p.add_argument('--version', action='version', version='figure-rebuild 0.3.0')
     sub = p.add_subparsers(dest='command', required=True)
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)
     c.add_argument('--font-profile', required=True)
     c.set_defaults(func=configure)
     c = sub.add_parser('doctor'); c.set_defaults(func=doctor)
+    c = sub.add_parser('refine-crop', help='Propose a source-pixel crop inside a selected region; never edits the manifest')
+    c.add_argument('--input', required=True); c.add_argument('--region', type=float, nargs=4, required=True)
+    c.add_argument('--output', required=True); c.add_argument('--preview')
+    c.add_argument('--background', type=int, nargs=3); c.add_argument('--tolerance', type=float, default=18)
+    c.add_argument('--padding', type=int, default=1); c.add_argument('--min-area', type=int, default=1)
+    c.set_defaults(func=refine_crop_command)
+    c = sub.add_parser('diagnose', help='Measure translation and unaligned edge error without changing images')
+    c.add_argument('--reference', required=True); c.add_argument('--rebuilt', required=True)
+    c.add_argument('--output', required=True); c.add_argument('--max-shift', type=float, default=32)
+    c.set_defaults(func=diagnose_command)
     c = sub.add_parser('prepare')
     c.add_argument('--input', required=True); c.add_argument('--job', required=True); c.add_argument('--id')
     c.add_argument('--kind', required=True, choices=['research_original', 'user_original', 'retrieved_original', 'generated_diagram'])
