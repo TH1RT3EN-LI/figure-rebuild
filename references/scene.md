@@ -66,3 +66,20 @@ SVG 支持基本几何、变换、普通文字及路径 M/L/H/V/C/S/Q/T/A/Z；�
 - 文本 `line_height/baseline_offset/insets` 使用像素，四字面必须分别配置真实文件。详见 [fonts.md](fonts.md)。
 
 原始清单接受审阅，构建输出 `resolved-scene.json` 与 `semantic-audit.json` 供检查；临时解析清单不取代源清单。
+
+## 径向指针
+
+仪表盘等径向部件可用 `figure_rebuild.geometry.radial_pointer_commands` 生成原生路径：
+
+```python
+from figure_rebuild.geometry import radial_pointer_commands
+
+pivot = (60.0, 80.0)  # 从参考图确认的轴心；hub 也复用这对坐标
+needle = {
+    'id': 'score-gauge-needle', 'kind': 'path',
+    'commands': radial_pointer_commands(pivot, (87.0, 49.0), half_width=3.5),
+    'style': {'fill': '#3A444C', 'stroke': 'none', 'stroke_width': 0},
+}
+```
+
+函数用轴心到尖端的方向推导两个对称底角，使底边垂直于指针轴，底边中点与轴心一致；不独立估计三个顶点。默认尖三角；原图为钝头时，可显式传 `tip_half_width=0.6`，生成末端中点为 `tip` 的共轴梯形，不把可见钝头延长为虚构尖端。坐标和宽度必须为有限数值，轴长和底部半宽为正，末端半宽非负，输出不能退化。轴心不必等于表盘弧线的几何中心。尖端、宽度、刻度数量和角度仍须来自原图，工具不自动调整示意值或均匀化刻度。编辑后重新生成路径，并检查真实导出中的 hub、尖端、刻度及遮挡关系。
