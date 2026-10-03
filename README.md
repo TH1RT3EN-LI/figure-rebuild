@@ -1,12 +1,29 @@
-# Figure Rebuild · 0.5.0
+# Figure Rebuild
 
-把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或按稳定 slide ID 插入已有模板。
+把论文、技术文档中的参考图，复建成**可编辑的 PowerPoint**。
 
-这是可独立安装的 Codex skill 和本地工具。位图由调用方模型看图后填写清单；工具不包含付费识图服务，也不将整页截图冒充可编辑图。SVG 的受支持几何可自动导入。
+这是一个独立的 Codex skill，也提供本地命令行工具。适合复刻方法框图、流程图和机制示意图，再按你的反馈逐处修改。
+
+## 看看效果
+
+![实际导出的 PowerPoint：四种字面、LaTeX 公式和连接器](docs/assets/editable-diagram.png)
+
+自建功能示例，预览取自实际导出的 PPT。右侧模块调整位置后，关联的文字、公式和连线在重新构建时随之更新。[下载示例 PPTX](docs/assets/editable-diagram.pptx)。
+
+## 哪些可以编辑
+
+| 内容 | 交付形式 |
+| --- | --- |
+| 图形、轮廓和连线 | PowerPoint 原生对象，可选中和修改 |
+| 普通文字 | 独立文本框，匹配已配置的字体、字号和字面 |
+| 数学公式 | LaTeX 排版的 SVG / 高清 PNG；修改源码后重新生成 |
+| 照片、纹理等 | 保留图片，可裁剪和移动 |
+
+可以导出独立 PPT，也可以插入已有模板。位图的识别与结构核对由 Codex 完成；本地工具负责构建、导出和检查。
 
 ## 安装
 
-源码仓库：[TH1RT3EN-LI/figure-rebuild](https://github.com/TH1RT3EN-LI/figure-rebuild)。克隆后执行以下安装步骤；已有本地 checkout 可以直接运行后续步骤。
+需要 Python 3.10+。在终端执行：
 
 ```bash
 git clone https://github.com/TH1RT3EN-LI/figure-rebuild.git
@@ -16,113 +33,21 @@ python3 -m venv .venv
 .venv/bin/python scripts/install.py
 ```
 
-安装器将整个 checkout 链接到 `${CODEX_HOME:-~/.codex}/skills/figure-rebuild`，不会覆盖已有技能。也可复制整个仓库目录到 skills 目录；入口和实现保持在同一个目录内。无需 AutoSlides。Codex 中使用 `$figure-rebuild`。
+安装完成后可在 Codex 中使用 `$figure-rebuild`。导出 PPT 前，还需配置 Node.js、Artifact Tool、Presentations 检查器及本地字体，见[环境配置](docs/usage.md#配置和检查)。这些运行时和字体由使用者提供，项目无需 AutoSlides。
 
-Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。后端包不随本项目分发；没有这些包仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
+## 怎么用
 
-可选视觉升级提供裁剪框精修、平移估计和对象局部边缘诊断。0.4 增加逐对象多字体、作者 PDF 字体分析、真正 LaTeX 高清公式图版和原生贝塞尔轮廓。安装视觉依赖到实际调用 CLI / build 的 Python 环境：
+附上参考图，在 Codex 中说明你的要求，例如：
 
-```bash
-.venv/bin/python -m pip install -r requirements-vision.txt
-```
+> 请使用 $figure-rebuild 把这张方法框图复建成 PPT。普通文字和图形保持可编辑，公式用 LaTeX 重排，尽量匹配原图的字体、字号和布局。先给我预览，再根据反馈修改。
 
-未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。清单中的贝塞尔曲线已保留为原生曲线；0.5 增加公式语义素材、真实斜体/粗斜体与稳定 ID 连线和标签关联；通用 PDF 场景导入仍未包含。PDF 字体分析是只读提取，不自动理解整张图。
+通常按「核对原图 → 复建对象 → 检查实际导出 → 局部修改」推进。交付包括 PPTX、预览和编辑性说明；看不清的文字或连接会先标出，解决后再导出。
 
-## 配置和检查
+## 详细文档
 
-先创建本地字体 profile；字体文件由用户提供，仓库不附带字体。常规和粗体必填，斜体及粗斜体只在需要时配置，未配置对应真实字面时拒绝合成。相对字体路径以 profile 文件所在目录为基准；TTC 的 `face_index` 明确指定。SHA256 可填写，配置时会核验并存储实际摘要。
+- [使用指南](docs/usage.md)：运行时配置、命令行操作、裁剪和模板插入。
+- [字体](references/fonts.md) · [公式](references/formulas.md) · [连线与局部修改](references/connections.md)：需要精细复刻时查阅。
+- [清单协议](references/scene.md) · [视觉诊断](references/vision.md)：开发和排查问题。
+- [更新记录](CHANGELOG.md) · [第三方说明](THIRD_PARTY_NOTICES.md)。
 
-```json
-{
-  "fonts": {
-    "family": "Your Font Family",
-    "regular": {"path": "/path/to/regular.ttf", "face_index": 0},
-    "bold": {"path": "/path/to/bold.ttf", "face_index": 0},
-    "italic": {"path": "/path/to/italic.ttf", "face_index": 0},
-    "boldItalic": {"path": "/path/to/bold-italic.ttf", "face_index": 0}
-  }
-}
-```
-
-```bash
-python scripts/run.py configure \
-  --node /path/to/node --python /path/to/python \
-  --node-modules /path/to/node_modules \
-  --presentation-skill /path/to/presentations-skill \
-  --font-profile /path/to/fonts.json
-python scripts/run.py doctor
-```
-
-配置默认保存在忽略的 `.local/figure-rebuild/runtime.json`，可用 `FIGURE_REBUILD_CONFIG` 指定外部路径。运行时会检查包、适配器、字体及字形覆盖；无法满足要求时报错，不静默换字体。目标项目可以指定微软雅黑等具体字体，通用 skill 不硬编码个人排版偏好。
-
-## 复建
-
-```bash
-python scripts/run.py prepare --input /path/to/reference.png \
-  --job /path/to/jobs/my-figure --id my-figure --kind user_original
-```
-
-原始文件保存在 `sources/` 并记录哈希。模型对照参考图填写 `manifest.json` 的文字、路径、连接和层次；见 [清单协议](references/scene.md)。位图的初始 objects 是空列表。SVG 可直接尝试仓库自建示例：
-
-```bash
-python scripts/run.py prepare --input examples/compound-curves/reference.svg \
-  --job .local/jobs/curves --kind generated_diagram
-python scripts/run.py review --manifest .local/jobs/curves/manifest.json \
-  --note 'Compared paths, holes and ordering with the original'
-python scripts/run.py validate --manifest .local/jobs/curves/manifest.json
-python scripts/run.py build --manifest .local/jobs/curves/manifest.json
-```
-
-每次改内容递增 `revision` 并重新 `review`。审阅绑定内容摘要；改了坐标或文字而沿用旧审阅会被阻止。调用方审阅与用户视觉接受分别记录。
-
-输出包括 PPT、实际导出的 1x/2x 预览、并排比较图、文字测量、原生对象/图片审计、内容快照和交付摘要。文字溢出、XML 禁用字符、失效裁剪和来源字节变动会阻止交付。输出独占发布，不覆盖已存在文件；完整 PPT 是交付提交点。若进程在提交前被终止，残留回执只有在 PPT 存在且哈希一致时才算有效。
-
-## 裁剪精修与位置诊断
-
-```bash
-python scripts/run.py refine-crop --input /path/to/reference.png \
-  --region 100 50 250 180 --output /path/to/crop-proposal.json \
-  --preview /path/to/crop-preview.png
-python scripts/run.py diagnose --reference /path/to/reference.png \
-  --rebuilt /path/to/same-size-render.png --output /path/to/geometry.json
-```
-
-refine-crop 在人或调用模型选定的区域内定位内容边界，保留不相连的小字和点；结果只是绑定原图哈希的提案，不自动改素材或清单。build 对照报告自动增加几何诊断和按稳定对象 ID 的局部边缘误差，始终保留未经配准的比较结果。参数、采纳时保持 frame 的坐标换算及诊断限制见 [视觉模块](references/vision.md)。
-
-## 插入现有模板
-
-```bash
-python scripts/run.py inspect-base /path/to/base.pptx
-python scripts/run.py build --manifest /path/to/job/manifest.json \
-  --base /path/to/base.pptx --base-sha256 BASE_SHA256 \
-  --slide-id NATIVE_SLIDE_ID --placement 100 150 1000 400 \
-  --output /path/to/new-deck.pptx
-```
-
-坐标单位为 CSS 像素；模板尺寸由 PPT 解析。可用重复的 `--replace-id STABLE_NATIVE_NAME` 替换明确的顶层对象。保留其他页和关系，基稿先保存快照；不按文字或数组下标定位长期对象。已有同一请求的 Presentations authoring marker 时使用 `--marker-already-started`，避免重复登记。
-
-## 支持范围
-
-- 字体：逐对象原生 family、四种真实字面、字号与基线，显式行高/内边距和可审计基线校准；外部字体 registry/多 family profile；[作者 PDF 字体分析](references/fonts.md) 与[高清 LaTeX 公式](references/formulas.md)分别提供独立脚本入口。
-- 贝塞尔：清单 `cubicTo` 最终保留原生控制点与孔洞，并对映射位置审计；导出实际 PPT 的 1x/2x/4x 原始预览，另提供 4x 超采样降采样的平滑浏览图。诊断仍用原始 1x，不用浏览图掩盖误差。
-- SVG：M/L/H/V/C/S/Q/T/A/Z、基本图形、变换和普通文字；曲线采样后仍是原生路径，误差默认 0.35 px；输出折线节点，不保留原始 Bézier 控制点。
-- 组：连续绘制顺序中的多对象组成为原生 PPT 组；`attach_to` 标签和模块在验证遮挡顺序安全后成为原生组，危险的重排会报错。
-- 连线：`connector` 声明稳定 ID、两端模块和连接位置，导出原生 `p:cxnSp` 与端点引用。场景局部移动重新计算连线和标签；Office 应用的交互路由仍须播放验证。见 [关联与局部修改](references/connections.md)。
-- 公式：`formula` 绑定审计哈希、LaTeX/PDF/SVG/PNG/日志/字体依赖，构建前冻结全部文件；检查最终放置尺寸下 PNG 回退的采样率。SVG 轮廓嵌入保留 PNG 回退；数学内容通过源码修改并重新生成，不作为普通可编辑文本。
-- 图片：原始字节、哈希、非破坏性裁剪、等比 frame；明确标为不可编辑。
-- 暂未支持 SVG 渐变、mask/clip/filter、资源引用、evenodd 填充、旋转 SVG 文字和特殊描边等；遇到这些效果明确报错，可制作混合清单。
-
-像素差异用于诊断，不能证明连接语义正确、恢复了科研数值，或已通过 WPS/PowerPoint 播放验收。参考图中的文字不作为任务指令。
-
-## 测试与维护
-
-```bash
-python -m unittest discover -s tests/figure_rebuild -v
-node --test tests/figure_rebuild/test_*.mjs
-```
-
-GitHub Actions 跑便携核心检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试只附带自建素材，论文原图、模板、字体和本地配置不入库。贡献时提供最小可分发复现，说明输入、预期关系和失败证据；改稿记录稳定对象 ID、基础版本和影响范围。
-
-CI 分别安装核心依赖和视觉依赖执行 Python 检查；核心环境跳过需要 OpenCV 的效果测试，视觉环境验证裁剪内容保护、已知平移和局部错误诊断。
-
-代码采用 MIT；第三方运行时与素材权利见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。发布变更见 [CHANGELOG.md](CHANGELOG.md)。
+代码采用 [MIT](LICENSE) 许可。测试和展示使用自建素材；字体文件与第三方运行时不随项目分发。
