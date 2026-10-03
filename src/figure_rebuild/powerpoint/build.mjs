@@ -7,6 +7,7 @@ import {runPythonModule} from './runtime.mjs';
 import {checkRuntime} from './preflight.mjs';
 import {fittedTextBox,fontFaceForText} from './text_fit.mjs';
 import {flattenPath,pathBounds} from './curves.mjs';
+import {fitPlacement} from './placement.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -36,10 +37,8 @@ const ctx=createCanvas(2,2).getContext('2d');
 const sourceCanvas=manifest.canvas;
 const slideCanvas=config.base?.canvas??sourceCanvas;
 const requested=config.base?.placement??[0,0,sourceCanvas.width,sourceCanvas.height];
-if(requested.some(x=>!Number.isFinite(x))||requested[2]<=0||requested[3]<=0)throw Error('Invalid placement');
-const scale=Math.min(requested[2]/sourceCanvas.width,requested[3]/sourceCanvas.height);
-const placement=[requested[0]+(requested[2]-sourceCanvas.width*scale)/2,requested[1]+(requested[3]-sourceCanvas.height*scale)/2,sourceCanvas.width*scale,sourceCanvas.height*scale];
-if(placement[0]<0||placement[1]<0||placement[0]+placement[2]>slideCanvas.width+.001||placement[1]+placement[3]>slideCanvas.height+.001)throw Error('Placement outside page');
+const placementAudit=fitPlacement(sourceCanvas,slideCanvas,requested);
+const {scale,placement}=placementAudit;
 for(const object of manifest.objects.filter(o=>o.source_kind==='formula')){
  const formula=object.formula_asset.placement;
  const actualSampling=formula.sampling_scale/scale;
@@ -97,7 +96,7 @@ for(const o of ordered){
 }
 slide.speakerNotes.textFrame.setText(`Source: ${manifest.source.uri||manifest.source.path}\nClassification: ${manifest.source.kind}. Original SHA256: ${manifest.source.sha256}. Recognition: ${manifest.recognition.provider}. ${manifest.recognition.notes||''}\nReconstruction with editable geometry and separate text; raster panels remain raster. Font adapted to configured ${fontFamily}. This reconstruction does not add new experimental evidence. Visual acceptance pending.`);
 await fs.writeFile(path.join(run,'text-manifest.json'),JSON.stringify({schema_version:1,source_canvas:sourceCanvas,text_elements:textManifest},null,2));
-await fs.writeFile(path.join(run,'object-map.json'),JSON.stringify({placement,objects:objectMap},null,2));
+await fs.writeFile(path.join(run,'object-map.json'),JSON.stringify({...placementAudit,objects:objectMap},null,2));
 const raw=path.join(run,'artifact-authored.pptx');await (await PresentationFile.exportPptx(p)).save(raw);
 const grouped=path.join(run,'grouped-overlay.pptx');
 runPython('postprocess',['--input',raw,'--output',grouped,'--manifest',resolvedManifest,'--asset-root',assetRoot,'--object-map',path.join(run,'object-map.json'),'--receipt',path.join(run,'editability.json')],{stdio:'pipe'});

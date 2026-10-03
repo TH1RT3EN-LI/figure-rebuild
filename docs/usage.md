@@ -2,11 +2,11 @@
 
 以下命令均在仓库根目录执行。项目介绍和最短开始方式见 [README](../README.md)。
 
-把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或按稳定 slide ID 插入已有模板。
+把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或在生成时、生成后按稳定 slide ID 等比插入已有模板的指定区域。
 
 位图由使用者或调用方智能体对照参考图填写清单，SVG 的受支持几何可自动导入。运行时、审阅与交付之间的关系见 [架构说明](architecture.md)。
 
-项目以 Codex 开发和测试。本地命令行工具可独立调用，其他智能体或使用者可按相同的清单协议与命令流程接入；Codex skill 是其中一种使用方式。PPT 导出仍需下述外部运行时和字体。
+项目以 Codex 开发和测试。本地命令行工具可独立调用，其他智能体或使用者可按相同的清单协议与命令流程接入；Codex skill 是其中一种使用方式。`build` 生成 PPT 需下述外部运行时和字体；`insert` 插入已生成的 PPTX 只处理 OOXML 包，不依赖这套导出运行时。
 
 ## 安装
 
@@ -40,7 +40,7 @@ python -m venv .venv
 
 Python 包提供 `figure-rebuild` 命令，也可用 `.venv/bin/python -m figure_rebuild`。下方命令显式使用虚拟环境内的入口；激活虚拟环境后可直接运行 `figure-rebuild`。`scripts/run.py` 保留为源码兼容入口。
 
-Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。这些外部包不随本项目分发；没有它们仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
+Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。这些外部包不随本项目分发；没有它们仍能准备素材、导入 SVG、审阅和验证清单，并通过 `insert` 插入已生成的 PPTX，不能通过 `build` 生成 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
 
 可选视觉模块提供裁剪框精修、平移估计和对象局部边缘诊断。安装视觉依赖到实际调用 CLI / build 的 Python 环境：
 
@@ -115,15 +115,58 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 
 ## 插入现有模板
 
+两种方式均先检查目标 PPT，获取其 SHA256、页面尺寸、原生 slide ID 和对象名：
+
 ```bash
 .venv/bin/figure-rebuild inspect-base /path/to/base.pptx
+```
+
+下面的 `NATIVE_SLIDE_ID` 来自输出的 `slides[].slide_id`，是 PPT 内部稳定 ID，**不是第几页的页码**；`BASE_SHA256` 来自输出的 `sha256`。为防止检查后模板发生变化，建议传入 `--base-sha256`，哈希不匹配时拒绝插入。
+
+### 生成时插入
+
+保留 `manifest.json` 时，直接生成并插入指定区域。此方式仍需完成 `review` 并配置 `build` 的导出运行时和字体：
+
+```bash
 .venv/bin/figure-rebuild build --manifest /path/to/job/manifest.json \
   --base /path/to/base.pptx --base-sha256 BASE_SHA256 \
   --slide-id NATIVE_SLIDE_ID --placement 100 150 1000 400 \
   --output /path/to/new-deck.pptx
 ```
 
-坐标单位为 CSS 像素；模板尺寸由 PPT 解析。可用重复的 `--replace-id STABLE_NATIVE_NAME` 替换明确的顶层对象。保留其他页和关系，基稿先保存快照；不按文字或数组下标定位长期对象。已有同一请求的 Presentations authoring marker 时使用 `--marker-already-started`，避免重复登记。
+生成时按最终尺寸检查文字与公式图片采样率，保存基稿与清单快照，并生成实际导出预览。已有同一请求的 Presentations authoring marker 时使用 `--marker-already-started`，避免重复登记。
+
+### 生成后插入
+
+已有本项目生成的受支持单页 PPTX 时，可直接插入，无需重新填写清单或配置 Node、Artifact Tool、Presentations 检查器和字体：
+
+```bash
+.venv/bin/figure-rebuild insert --input /path/to/figure.pptx \
+  --base /path/to/base.pptx --base-sha256 BASE_SHA256 \
+  --slide-id NATIVE_SLIDE_ID --placement 100 150 1000 400 \
+  --output /path/to/new-deck.pptx
+```
+
+`insert` 使用整个源页的尺寸作为缩放基准，包括源页中的留白；源 PPTX 必须只有一页。源页与目标模板的页面尺寸可以不同。内容通过原生 OOXML 对象插入，图形、文字、图片、组与连线保持原有编辑形式，不将内容转换成整页截图。公式仍按原先的 SVG / PNG 图版形式保留。
+
+必填参数为 `--input`、`--base`、`--slide-id`、`--placement` 和 `--output`。可选参数：
+
+| 参数 | 用途 |
+| --- | --- |
+| `--base-sha256 SHA256` | 校验已检查的目标 PPT；省略时使用本次读取到的摘要 |
+| `--replace-id STABLE_NATIVE_NAME` | 替换明确的顶层对象，可重复；替换组时指定整个顶层组的名称 |
+| `--prefix figure-01` | 给导入对象名加稳定前缀，避免与保留对象重名 |
+| `--receipt /path/to/receipt.json` | 指定插入回执；默认写入输出文件同目录的 `new-deck.merge-receipt.json` |
+
+回执记录源文件与基稿摘要、目标页、缩放映射、导入与替换对象以及输出摘要。`insert` 不重新执行清单审阅、文字溢出或公式采样率检查，也不生成新的渲染预览；放大含位图的内容后需核对其清晰度，最终 PPT 应在目标应用中检查布局。
+
+### 放置规则与保留范围
+
+`--placement x y width height` 分别指定目标区域左上角与宽高，单位为 CSS 像素（96 px = 1 英寸），模板尺寸由 PPT 解析。区域必须位于目标页内，宽高必须为正。两种方式均按 `min(区域宽 / 源画布宽, 区域高 / 源画布高)` 等比缩放并居中；区域比例不同时留空，不拉伸、不裁切。位置、图形尺寸、文字字号和线宽同步缩放。
+
+两种方式都支持重复的 `--replace-id`，保留目标页中未替换的模板对象、其他页及原有关系，输出必须是新文件；已有输出或回执会拒绝覆盖。不按文字或数组下标定位长期对象。底层 `python -m figure_rebuild.package merge` 也可指定 `--placement` 对单页 overlay 做同样的等比映射；不指定时仍要求源页与目标页尺寸一致。
+
+来源限受支持的单页原生对象与图片；不承诺任意 PPTX 的完整保真导入。源页动画、图表、OLE 和未支持的资源关系会被拒绝；源页主题、母版、布局与背景不迁入目标模板。需要源主题解析的字号、字体、颜色、线宽和复杂效果会被拒绝，应先改成显式样式，或使用本项目生成的对象。
 
 ## 支持范围
 

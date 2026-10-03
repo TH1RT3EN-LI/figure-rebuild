@@ -314,6 +314,17 @@ def review(a):
     save(p, data)
     print(json.dumps({'status': 'reviewed', 'counts': report['object_counts']}))
 
+def insert(a):
+    """Place an already generated native slide without an authoring runtime."""
+    from .package import merge_overlay
+    base = Path(a.base).expanduser().resolve()
+    checksum = a.base_sha256 or digest(base)
+    receipt = merge_overlay(base=base, overlay=a.input, output=a.output,
+                            slide_id=a.slide_id, base_sha256=checksum,
+                            placement=a.placement, replace_ids=a.replace_id or [],
+                            prefix=a.prefix, receipt_path=a.receipt)
+    print(json.dumps(receipt, ensure_ascii=False, indent=2))
+
 def build(a):
     m = Path(a.manifest).resolve()
     data, report = load_and_validate(m)
@@ -339,10 +350,12 @@ def build(a):
         if not any(str(s.get('slide_id', s.get('id'))) == str(a.slide_id) for s in info['slides']): raise ValueError('Stable slide-id is absent from the base deck')
         page_canvas = {'width': size[0] / 9525, 'height': size[1] / 9525}
         validate_placement(a.placement, page_canvas)
-        base_config = {'sha256': original_sha, 'slide_id': str(a.slide_id), 'replace_ids': a.replace_id or [], 'canvas': page_canvas, 'placement': a.placement}
+        from .placement import fit_placement
+        placement_audit = fit_placement(data['canvas'], page_canvas, a.placement)
+        base_config = {'sha256': original_sha, 'slide_id': str(a.slide_id), 'replace_ids': a.replace_id or [], 'canvas': page_canvas, 'placement': a.placement, 'placement_audit': placement_audit}
     from .scene_compile import compile_scene, validate_delivery_sampling
     _, semantic = compile_scene(data, job)
-    placement_scale = min(a.placement[2]/data['canvas']['width'], a.placement[3]/data['canvas']['height']) if base_config else 1
+    placement_scale = base_config['placement_audit']['scale'] if base_config else 1
     validate_delivery_sampling(semantic, placement_scale)
     # Serialize only history validation and complete snapshot reservation.
     # Rendering runs independently after releasing the OS lock.
@@ -398,8 +411,19 @@ def main():
         verify_review(data)
         print(json.dumps(report, ensure_ascii=False))
     c.set_defaults(func=validate_reviewed)
-    c = sub.add_parser('build')
-    c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
+    c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
+    c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
+    c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')
+    c.add_argument('--input', required=True, help='Generated single-slide PPTX')
+    c.add_argument('--base', required=True, help='Existing target PPTX')
+    c.add_argument('--base-sha256', help='Expected base checksum from inspect-base')
+    c.add_argument('--slide-id', type=int, required=True, help='Stable native slide ID from inspect-base, not a page number')
+    c.add_argument('--placement', type=float, nargs=4, required=True, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center')
+    c.add_argument('--output', required=True, help='New PPTX path; existing files are never overwritten')
+    c.add_argument('--replace-id', action='append', help='Replace a top-level object by its unique native name')
+    c.add_argument('--prefix', help='Prefix imported object names to avoid collisions')
+    c.add_argument('--receipt', help='Optional merge audit JSON path')
+    c.set_defaults(func=insert)
     c = sub.add_parser('inspect-base')
     c.add_argument('base')
     def inspect(a):

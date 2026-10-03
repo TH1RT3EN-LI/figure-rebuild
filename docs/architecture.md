@@ -50,6 +50,8 @@ flowchart LR
 
 `build.mjs` 使用外部 Codex Artifact Tool 生成 PPT。`postprocess.py`、`semantic_ooxml.py` 和 `native_connections.py` 处理原生路径、组、公式素材及连接端点；`package.py` 按原生 slide ID 将结果插入已有 PPT，并检查保留关系。
 
+生成时指定 `--base` 与 `--placement`，`powerpoint/placement.mjs` 将源画布等比居中映射到目标区域。生成后使用 `insert`，由 `placement.py` 对已生成的单页原生对象应用相同的映射，再交给 `package.py` 合并。后者同时缩放坐标、字号、线宽和绝对间距，保留组的坐标比例、连接端点以及媒体原始字节，并将实际放置区域写入合并回执。
+
 字体配置、字面与字形覆盖在预检中核对；`text_fit.mjs` 测量文字放置。最终候选文件经过 Presentations 检查器和 Artifact Tool 导入检查，再从实际文件生成预览。`compare.py` 提供原图对照；可选视觉模块补充裁剪和位置诊断。
 
 ### 本地交付
@@ -58,7 +60,7 @@ flowchart LR
 
 ## 运行时与素材边界
 
-Python 核心安装、SVG 导入和清单审阅可独立执行。导出 PPT 另需用户提供 Node.js、Artifact Tool、相关 Node 包、Presentations 检查器及字体。可选 Python 依赖用于视觉诊断和 PDF 字体分析；LaTeX 公式生成还需要可用的外部引擎与转换工具。
+Python 核心安装、SVG 导入、清单审阅和生成后的 `insert` 可独立执行。使用 `build` 导出 PPT 另需用户提供 Node.js、Artifact Tool、相关 Node 包、Presentations 检查器及字体。`insert` 仅处理 OOXML 与保留性检查，不重新渲染或验证公式采样率。可选 Python 依赖用于视觉诊断和 PDF 字体分析；LaTeX 公式生成还需要可用的外部引擎与转换工具。
 
 CLI 和构建所配置的 Python 可以属于不同环境。包内 `_bootstrap.py` 只登记 Figure Rebuild 自身的模块位置，第三方依赖仍由配置的 Python 加载；不会把 CLI 所在的整个 `site-packages` 加入子进程导入路径。`runtime_probe.py` 在实际构建解释器中核对字体依赖，`powerpoint/runtime.mjs` 统一调用这一入口。
 

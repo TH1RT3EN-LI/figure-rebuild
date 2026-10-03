@@ -47,7 +47,7 @@ class DistributionTests(unittest.TestCase):
 
     def test_backend_resources_are_in_the_installed_package(self):
         resources = importlib.resources.files("figure_rebuild").joinpath("powerpoint")
-        for name in ("build.mjs", "preflight.mjs", "text_fit.mjs", "curves.mjs", "runtime.mjs"):
+        for name in ("build.mjs", "preflight.mjs", "text_fit.mjs", "curves.mjs", "runtime.mjs", "placement.mjs"):
             with self.subTest(resource=name):
                 self.assertTrue(resources.joinpath(name).is_file())
                 self.assertTrue(resources.joinpath(name).read_text(encoding="utf-8").strip())

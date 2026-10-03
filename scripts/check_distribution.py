@@ -7,7 +7,7 @@ import zipfile
 
 
 BACKENDS = {
-    "build.mjs", "preflight.mjs", "curves.mjs", "text_fit.mjs", "runtime.mjs",
+    "build.mjs", "preflight.mjs", "curves.mjs", "text_fit.mjs", "runtime.mjs", "placement.mjs",
 }
 PRIVATE_DIRECTORIES = {
     ".git", ".local", ".venv", "venv", "jobs", "exports", "node_modules",
@@ -34,6 +34,7 @@ def check_wheel(path):
         required = {
             "figure_rebuild/__init__.py", "figure_rebuild/__main__.py",
             "figure_rebuild/cli.py", "figure_rebuild/paths.py",
+            "figure_rebuild/placement.py",
             "figure_rebuild/_bootstrap.py", "figure_rebuild/runtime_probe.py",
             *{"figure_rebuild/powerpoint/" + name for name in BACKENDS},
         }
@@ -78,6 +79,7 @@ def check_sdist(path):
             "agents/openai.yaml", "references/scene.md",
             "scripts/run.py", "scripts/install.py", "src/figure_rebuild/cli.py",
             "src/figure_rebuild/_bootstrap.py", "src/figure_rebuild/runtime_probe.py",
+            "src/figure_rebuild/placement.py",
             "tests/fixtures/connector-presets.xml",
             "tests/fixtures/connector-presets.LICENSE",
             "tests/fixtures/connector-presets.NOTICE",

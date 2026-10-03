@@ -23,6 +23,9 @@ import xml.etree.ElementTree as ET
 from dataclasses import dataclass
 from pathlib import Path, PurePosixPath
 
+from .placement import (EMU_PER_PX, PlacementError, fit_placement,
+                        place_native_objects, require_identity_shape_tree)
+
 P = "http://schemas.openxmlformats.org/presentationml/2006/main"
 A = "http://schemas.openxmlformats.org/drawingml/2006/main"
 R = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
@@ -326,7 +329,7 @@ def validate_overlay_object(element: ET.Element) -> None:
 
 def merge_overlay(*, base: str | Path, overlay: str | Path, output: str | Path,
                   slide_id: int, base_sha256: str, replace_ids=(), prefix: str | None = None,
-                  receipt_path: str | Path | None = None) -> dict:
+                  receipt_path: str | Path | None = None, placement=None) -> dict:
     """Validate, append/remap native objects, then write a fresh PPTX and receipt."""
     base_path, overlay_path, output_path = (Path(value).resolve() for value in (base, overlay, output))
     receipt_path = Path(receipt_path).resolve() if receipt_path else output_path.with_suffix(".merge-receipt.json")
@@ -344,7 +347,22 @@ def merge_overlay(*, base: str | Path, overlay: str | Path, output: str | Path,
     require(base_package.source_hash == base_sha256.lower(), "base SHA256 mismatch; re-inspect the current base")
     dimensions, catalog = slide_catalog(base_package)
     overlay_dimensions, overlay_catalog = slide_catalog(overlay_package)
-    require(dimensions == overlay_dimensions, "base and overlay slide dimensions differ")
+    placement_audit = None
+    if placement is None:
+        require(dimensions == overlay_dimensions, "base and overlay slide dimensions differ")
+    else:
+        source_canvas = {axis: overlay_dimensions[key] / EMU_PER_PX
+                         for axis, key in (("width", "cx"), ("height", "cy"))}
+        target_canvas = {axis: dimensions[key] / EMU_PER_PX
+                         for axis, key in (("width", "cx"), ("height", "cy"))}
+        try:
+            fitted = fit_placement(source_canvas, target_canvas, placement)
+        except PlacementError as error:
+            raise PackageError(str(error)) from error
+        placement_audit = {"fit": "contain", "units": "css_px", **fitted,
+                           "source_canvas": source_canvas, "target_canvas": target_canvas,
+                           "source_slide_size_emu": overlay_dimensions,
+                           "target_slide_size_emu": dimensions}
     require(len(overlay_catalog) == 1, "overlay must contain exactly one slide")
     targets = [slide for slide in catalog if slide["slide_id"] == slide_id]
     require(len(targets) == 1, f"native slide ID not found: {slide_id}")
@@ -362,6 +380,13 @@ def merge_overlay(*, base: str | Path, overlay: str | Path, output: str | Path,
         validate_overlay_object(child)
         objects.append(copy.deepcopy(child))
     require(bool(objects), "overlay contains no native objects")
+    if placement_audit is not None:
+        try:
+            require_identity_shape_tree(overlay_tree, "overlay slide")
+            require_identity_shape_tree(tree, "target slide")
+            placement_audit.update(place_native_objects(objects, fitted))
+        except PlacementError as error:
+            raise PackageError(str(error)) from error
     removed = []
     for name in replacements:
         matches = [child for child in tree if native_properties(child) is not None
@@ -517,6 +542,8 @@ def merge_overlay(*, base: str | Path, overlay: str | Path, output: str | Path,
             change["before_sha256"] is not None for change in changed),
         "preservation": "Untouched ZIP member payloads and ZipInfo metadata retained; base archive not rebuilt semantically.",
     }
+    if placement_audit is not None:
+        receipt["placement"] = placement_audit
     try:
         with receipt_path.open("x", encoding="utf-8") as stream:
             json.dump(receipt, stream, ensure_ascii=False, indent=2)
@@ -540,6 +567,8 @@ def main(argv=None) -> int:
     merging.add_argument("--replace-id", action="append", default=[])
     merging.add_argument("--prefix")
     merging.add_argument("--receipt", type=Path)
+    merging.add_argument("--placement", type=float, nargs=4, metavar=("X", "Y", "WIDTH", "HEIGHT"),
+                         help="contain-fit the overlay's entire slide into this target box (CSS pixels)")
     arguments = parser.parse_args(argv)
     try:
         if arguments.command == "inspect":
@@ -548,7 +577,7 @@ def main(argv=None) -> int:
             result = merge_overlay(base=arguments.base, overlay=arguments.overlay, output=arguments.output,
                                    slide_id=arguments.slide_id, base_sha256=arguments.base_sha256,
                                    replace_ids=arguments.replace_id, prefix=arguments.prefix,
-                                   receipt_path=arguments.receipt)
+                                   receipt_path=arguments.receipt, placement=arguments.placement)
     except (PackageError, OSError) as error:
         parser.exit(2, f"figure_rebuild package: {error}\n")
     print(json.dumps(result, ensure_ascii=False, indent=2))

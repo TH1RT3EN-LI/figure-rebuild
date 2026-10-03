@@ -22,6 +22,18 @@ Figure Rebuild 将论文方法图、流程图和机制示意图重绘为可编�
 
 项目以 Codex 开发和测试，提供本地命令行工具与 Codex skill。命令行接口也可用于接入其他智能体。
 
+## 功能
+
+| 功能 | 用法 |
+| --- | --- |
+| 导出独立 PPTX | `build --manifest manifest.json`，从审阅后的清单生成可编辑单页 |
+| 生成时插入指定位置 | `build --manifest manifest.json --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx` |
+| 生成后插入指定位置 | `insert --input figure.pptx --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx`，直接复用已生成的单页 PPTX |
+
+两种插入方式都将整个源画布等比缩放并居中放入指定区域，文字、线宽同步缩放，保留原生对象的可编辑性、目标模板及其他页。区域比例不同时居中留空，不裁切内容。坐标使用 CSS 像素（96 px = 1 英寸）；目标页使用 `inspect-base` 查出的原生 slide ID。输出写入新文件，不覆盖原稿。
+
+生成后的 `insert` 直接修改 PPTX 的 OOXML 包，无需配置 PPT 导出运行时。来源限本项目生成的受支持单页 PPTX，任意演示文稿、动画、图表和 OLE 等不在完整支持范围内。命令示例与边界见[插入使用指南](docs/usage.md#插入现有模板)。
+
 ## 效果预览
 
 以 [MambaVO（CVPR 2025）](https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MambaVO_Deep_Visual_Odometry_Based_on_Sequential_Matching_Refinement_and_CVPR_2025_paper.html) 的 Figure 1 为例。
@@ -62,7 +74,7 @@ python3 -m venv .venv
 .venv/bin/python scripts/install.py
 ```
 
-导出 PPTX 前，还需[配置导出环境](docs/usage.md#配置和检查)：Node.js 20.9+、Codex Artifact Tool、Presentations 检查器及本地字体。
+使用 `build` 生成 PPTX 前，还需[配置导出环境](docs/usage.md#配置和检查)：Node.js 20.9+、Codex Artifact Tool、Presentations 检查器及本地字体。对已生成的单页 PPTX 使用 `insert` 无需这套导出环境。
 
 ## 使用
 
