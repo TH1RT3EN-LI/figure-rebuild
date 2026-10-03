@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T21:50:39.797132+00:00",
+  "updated_at": "2026-10-03T22:20:00.222562+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 156,
-    "open": 139,
+    "closed_model_visual_review": 158,
+    "open": 137,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -2407,6 +2407,60 @@
       ]
     },
     {
+      "figure_id": "ccf-2025-01-f11",
+      "issue_id": "ccf-2025-01-f11-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual source/native 1x and 4x Time arrow examined: narrow tail fades and tip remains visible without an opaque square. The actual author raster index647/nativepaint725/xref2466, source matrix and two original native clips are preserved in native occurrence rendering. This is an original raster-derived arrow, not a claimed native PowerPoint gradient. Internal tile joins and zero-live-text editability remain open as D03/D04; additional arrow-joint and sampling issues remain open. User acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
+          "sha256": "66276e134d94027ba0a8a58039a339a9a8524b4d458e98e10445d947780a1241"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/closure-proposals.json",
+          "sha256": "052517892550d0aebe21ed28968cad38eac4ff3d0ee1c21e068b3e7c2b6b0274"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001/output-review.json",
+          "sha256": "a59a2070b7ccb2b905635983ba8908aa8c70ac09a49d69060a5a6b76ef049679"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/root-verification-001.json",
+          "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-01-f11",
+      "issue_id": "ccf-2025-01-f11-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source and native whole1x/2x and 4x card/stack details were inspected. Subdued source bell colors and red/yellow overlays are retained through original native image resources and colorspace/Decode receipts; all647 original-source-derived assets match the prior fully source-derived assets byte for byte. Fine raster sampling differences remain explicitly recorded as R02 and do not imply exact pixel color equality. Internal tile joins and zero-live-text editability remain open as D03/D04; additional arrow-joint and sampling issues remain open. User acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
+          "sha256": "66276e134d94027ba0a8a58039a339a9a8524b4d458e98e10445d947780a1241"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/closure-proposals.json",
+          "sha256": "052517892550d0aebe21ed28968cad38eac4ff3d0ee1c21e068b3e7c2b6b0274"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001/output-review.json",
+          "sha256": "a59a2070b7ccb2b905635983ba8908aa8c70ac09a49d69060a5a6b76ef049679"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/root-verification-001.json",
+          "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2025-05-f06",
       "issue_id": "ccf-2025-05-f06-D01",
       "severity": "minor",
@@ -3761,8 +3815,6 @@
     "ccf-2025-01-f07-D02",
     "ccf-2025-01-f08-D01",
     "ccf-2025-01-f08-D02",
-    "ccf-2025-01-f11-D01",
-    "ccf-2025-01-f11-D02",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
     "ccf-2025-03-f02-D01",
@@ -5345,6 +5397,60 @@
         {
           "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
           "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Step2 two yellow V joints and Step3 three dark Repeat arrow joints",
+      "description": "Newly observed small background-colored triangular gaps occur at five shaft/head intersections; source fills are continuous. They are present in both old and new direct native PNG, so this is not a new002 regression. Exact source contours, source and target coordinates, PPT shape XML and1x/2x/4x crops are frozen. A fill-winding mismatch is a candidate mechanism awaiting independent proof; no geometry repair applied.",
+      "figure_id": "ccf-2025-01-f11",
+      "issue_id": "ccf-2025-01-f11-SAM-ARROW-JOINT-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
+          "sha256": "66276e134d94027ba0a8a58039a339a9a8524b4d458e98e10445d947780a1241"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/closure-proposals.json",
+          "sha256": "052517892550d0aebe21ed28968cad38eac4ff3d0ee1c21e068b3e7c2b6b0274"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001/output-review.json",
+          "sha256": "a59a2070b7ccb2b905635983ba8908aa8c70ac09a49d69060a5a6b76ef049679"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/root-verification-001.json",
+          "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Photographic detail and alpha/compositing boundaries in all card stacks",
+      "description": "Whole-source and individually sampled native images differ slightly in filtering/sharpness and fine texture at1x/2x/4x. Pristine resource rendering and unchanged647 assets are verified, but exact whole-page/group decomposition and a universal RGB/alpha error bound are not established. Sampling density is not claimed as a pixel-error bound.",
+      "figure_id": "ccf-2025-01-f11",
+      "issue_id": "ccf-2025-01-f11-SAM-IMAGE-SAMPLING-002",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
+          "sha256": "66276e134d94027ba0a8a58039a339a9a8524b4d458e98e10445d947780a1241"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/closure-proposals.json",
+          "sha256": "052517892550d0aebe21ed28968cad38eac4ff3d0ee1c21e068b3e7c2b6b0274"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/jobs/ccf-2025-01-f11/build/run-001/output-review.json",
+          "sha256": "a59a2070b7ccb2b905635983ba8908aa8c70ac09a49d69060a5a6b76ef049679"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-complete-source-002/root-verification-001.json",
+          "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
         }
       ],
       "user_acceptance": "pending"
