@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T21:05:23.763786+00:00",
+  "updated_at": "2026-10-03T21:50:39.797132+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 148,
-    "open": 147,
+    "closed_model_visual_review": 156,
+    "open": 139,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -3183,6 +3183,222 @@
       ]
     },
     {
+      "figure_id": "ccf-2026-04-f01",
+      "issue_id": "ccf-2026-04-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual source and new native 4x keys crop inspected: nine actual source darts and eight actual source arrows retained, with no invented ninth arrow. Distinct source occurrences and unchanged source-vector identity independently verified. Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/completion-summary.json",
+          "sha256": "41c63b8677ad0926c4c1c25d30922162e3f76eb81122400358c0a1038f6fd0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001/output-review.json",
+          "sha256": "b7cc63d061c661ea34fb59e7c6dc675007dad12ad51a1c869f112560f314e9f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f01",
+      "issue_id": "ccf-2026-04-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "One original lower scene image and its original perspective cameras remain; repeated manual overlays are absent. Three return arrows preserve the source topology. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/completion-summary.json",
+          "sha256": "41c63b8677ad0926c4c1c25d30922162e3f76eb81122400358c0a1038f6fd0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001/output-review.json",
+          "sha256": "b7cc63d061c661ea34fb59e7c6dc675007dad12ad51a1c869f112560f314e9f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f01",
+      "issue_id": "ccf-2026-04-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original rounded modules, overlapping video frames, dashed Global Scene Representation connection and single forward arrowhead are restored from source Beziers. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/completion-summary.json",
+          "sha256": "41c63b8677ad0926c4c1c25d30922162e3f76eb81122400358c0a1038f6fd0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001/output-review.json",
+          "sha256": "b7cc63d061c661ea34fb59e7c6dc675007dad12ad51a1c869f112560f314e9f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f01",
+      "issue_id": "ccf-2026-04-f01-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Video, Independent Queries, Encoder, Decoder and two-line Global Scene Representation use actual original glyph outlines with matching source placement. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/completion-summary.json",
+          "sha256": "41c63b8677ad0926c4c1c25d30922162e3f76eb81122400358c0a1038f6fd0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001/output-review.json",
+          "sha256": "b7cc63d061c661ea34fb59e7c6dc675007dad12ad51a1c869f112560f314e9f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f02",
+      "issue_id": "ccf-2026-04-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original gray query dart/key, patch point and continuous Fourier wave are present. Source-to-embedding downward arrows retain the V wings in direct native PNG. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/completion-summary.json",
+          "sha256": "7283e3568d2285694db4d6a2792234b9fe92ceb6e6f5ed8c5310bed0c92b39a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001/output-review.json",
+          "sha256": "d05ac5150c3fbcf5d3a3db5245453e8d8b24ce52db26045b7b58dfe1f22f97e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f02",
+      "issue_id": "ccf-2026-04-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Full sentence is restored; 2D/source/target/camera retain yellow/blue/orange/pink highlight boxes and original text placement. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/completion-summary.json",
+          "sha256": "7283e3568d2285694db4d6a2792234b9fe92ceb6e6f5ed8c5310bed0c92b39a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001/output-review.json",
+          "sha256": "d05ac5150c3fbcf5d3a3db5245453e8d8b24ce52db26045b7b58dfe1f22f97e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f02",
+      "issue_id": "ccf-2026-04-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original camera perspective edges/diagonals, variable opacity, pink trajectory, and original soft halo are present. Structural omission is closed; raster sampling and group decomposition uncertainty remain separately open. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/completion-summary.json",
+          "sha256": "7283e3568d2285694db4d6a2792234b9fe92ceb6e6f5ed8c5310bed0c92b39a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001/output-review.json",
+          "sha256": "d05ac5150c3fbcf5d3a3db5245453e8d8b24ce52db26045b7b58dfe1f22f97e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-04-f02",
+      "issue_id": "ccf-2026-04-f02-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual glyph paths restore (u, v), t_src, t_tgt and t_cam with original italic forms, subscripts and baselines. Re-inspected on this new e2556c2 candidate using pristine source, old native direct PNG and new maintained native direct PNG; bound crops: /home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/visual-comparison-001/metrics-and-bindings.json Glyphs are source outline paths, not live text. Raster sampling/shared ICC group uncertainty remains separately open; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/completion-summary.json",
+          "sha256": "7283e3568d2285694db4d6a2792234b9fe92ceb6e6f5ed8c5310bed0c92b39a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001/output-review.json",
+          "sha256": "d05ac5150c3fbcf5d3a3db5245453e8d8b24ce52db26045b7b58dfe1f22f97e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2026-06-f01",
       "issue_id": "ccf-2026-06-f01-D01",
       "severity": "major",
@@ -3564,14 +3780,6 @@
     "ccf-2026-03-f02-D03",
     "ccf-2026-03-f02-D04",
     "ccf-2026-03-f02-D05",
-    "ccf-2026-04-f01-D01",
-    "ccf-2026-04-f01-D02",
-    "ccf-2026-04-f01-D03",
-    "ccf-2026-04-f01-D04",
-    "ccf-2026-04-f02-D01",
-    "ccf-2026-04-f02-D02",
-    "ccf-2026-04-f02-D03",
-    "ccf-2026-04-f02-D04",
     "ccf-2026-05-f01-D01",
     "ccf-2026-05-f01-D02"
   ],
@@ -5085,6 +5293,60 @@
       ],
       "figure_id": "ccf-2020-19-f01",
       "issue_id": "ccf-2020-19-f01-R03-DIRECT-NATIVE-TILE-SEAMS",
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Video photographs, query sprites, lower scene/camera imagery and butterfly panel",
+      "description": "At 1x, photographic panels and raster symbols have visibly different sharpness from the pristine source PDF; at higher scales some fine pixel texture differs. Individually sampled images separate the original shared ICC group into native paths and raster assets. Native occurrence state is now isolated, but exact group decomposition and RGB/alpha error bounds remain unproved.",
+      "figure_id": "ccf-2026-04-f01",
+      "issue_id": "ccf-2026-04-f01-R02-NATIVE-SAMPLING-GROUP-COMPOSITION",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/completion-summary.json",
+          "sha256": "41c63b8677ad0926c4c1c25d30922162e3f76eb81122400358c0a1038f6fd0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f01/job/build/run-001/output-review.json",
+          "sha256": "b7cc63d061c661ea34fb59e7c6dc675007dad12ad51a1c869f112560f314e9f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Video photographs, query sprites, lower scene/camera imagery and butterfly panel",
+      "description": "At 1x, photographic panels and raster symbols have visibly different sharpness from the pristine source PDF; at higher scales some fine pixel texture differs. Individually sampled images separate the original shared ICC group into native paths and raster assets. Native occurrence state is now isolated, but exact group decomposition and RGB/alpha error bounds remain unproved.",
+      "figure_id": "ccf-2026-04-f02",
+      "issue_id": "ccf-2026-04-f02-R02-NATIVE-SAMPLING-GROUP-COMPOSITION",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/handoff.json",
+          "sha256": "6fc14f32a0e45dbc706c9352d6d5fdd071d7a4b2d2f8fb70eb92647e4268fc74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/completion-summary.json",
+          "sha256": "7283e3568d2285694db4d6a2792234b9fe92ceb6e6f5ed8c5310bed0c92b39a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/ccf-2026-04-f02/job/build/run-001/output-review.json",
+          "sha256": "d05ac5150c3fbcf5d3a3db5245453e8d8b24ce52db26045b7b58dfe1f22f97e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/d4rt-complete-source-002/root-verification-001.json",
+          "sha256": "a5f2b3215037b01aff67d1e14af6489d989399d9da196140b9f21906406b752b"
+        }
+      ],
       "user_acceptance": "pending"
     }
   ]
