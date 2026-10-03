@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Render host-confirmed formulas without depending on the caller's directory."""
+"""Render host-confirmed math as outlined SVG with a transparent PNG fallback."""
 import argparse
 import json
 from pathlib import Path
@@ -25,7 +25,8 @@ def main():
                               overwrite=args.overwrite)
     except (ValueError, OSError, json.JSONDecodeError) as error:
         parser.exit(2, f'Formula rendering error: {error}\n')
-    print(json.dumps({'manifest': result['manifest'], 'count': result['count']}, ensure_ascii=False))
+    print(json.dumps({'manifest': result['manifest'], 'count': result['count'],
+                      'representations': ['svg', 'png'], 'audit_schema': '2'}, ensure_ascii=False))
 
 
 if __name__ == '__main__':

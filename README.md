@@ -1,6 +1,6 @@
-# Figure Rebuild · 0.4.0
+# Figure Rebuild · 0.5.0
 
-把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片和公式可保留为带来源审计的图片区域。支持单页导出，或按稳定 slide ID 插入已有模板。
+把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或按稳定 slide ID 插入已有模板。
 
 这是可独立安装的 Codex skill 和本地工具。位图由调用方模型看图后填写清单；工具不包含付费识图服务，也不将整页截图冒充可编辑图。SVG 的受支持几何可自动导入。
 
@@ -26,18 +26,20 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 .venv/bin/python -m pip install -r requirements-vision.txt
 ```
 
-未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。清单中的贝塞尔曲线已保留为原生曲线；通用 PDF 场景导入和原生连接器仍未包含。PDF 字体分析是只读提取，不自动理解整张图。
+未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。清单中的贝塞尔曲线已保留为原生曲线；0.5 增加公式语义素材、真实斜体/粗斜体与稳定 ID 连线和标签关联；通用 PDF 场景导入仍未包含。PDF 字体分析是只读提取，不自动理解整张图。
 
 ## 配置和检查
 
-先创建本地字体 profile；字体文件由用户提供，仓库不附带字体。相对字体路径以 profile 文件所在目录为基准；TTC 的 `face_index` 明确指定。SHA256 可填写，配置时会核验并存储实际摘要。
+先创建本地字体 profile；字体文件由用户提供，仓库不附带字体。常规和粗体必填，斜体及粗斜体只在需要时配置，未配置对应真实字面时拒绝合成。相对字体路径以 profile 文件所在目录为基准；TTC 的 `face_index` 明确指定。SHA256 可填写，配置时会核验并存储实际摘要。
 
 ```json
 {
   "fonts": {
     "family": "Your Font Family",
     "regular": {"path": "/path/to/regular.ttf", "face_index": 0},
-    "bold": {"path": "/path/to/bold.ttf", "face_index": 0}
+    "bold": {"path": "/path/to/bold.ttf", "face_index": 0},
+    "italic": {"path": "/path/to/italic.ttf", "face_index": 0},
+    "boldItalic": {"path": "/path/to/bold-italic.ttf", "face_index": 0}
   }
 }
 ```
@@ -101,10 +103,12 @@ python scripts/run.py build --manifest /path/to/job/manifest.json \
 
 ## 支持范围
 
-- 字体：逐对象原生 family、字号与基线，外部字体 registry/多 family profile；[作者 PDF 字体分析](references/fonts.md) 与[高清 LaTeX 公式](references/formulas.md)分别提供独立脚本入口。
+- 字体：逐对象原生 family、四种真实字面、字号与基线，显式行高/内边距和可审计基线校准；外部字体 registry/多 family profile；[作者 PDF 字体分析](references/fonts.md) 与[高清 LaTeX 公式](references/formulas.md)分别提供独立脚本入口。
 - 贝塞尔：清单 `cubicTo` 最终保留原生控制点与孔洞，并对映射位置审计；导出实际 PPT 的 1x/2x/4x 原始预览，另提供 4x 超采样降采样的平滑浏览图。诊断仍用原始 1x，不用浏览图掩盖误差。
 - SVG：M/L/H/V/C/S/Q/T/A/Z、基本图形、变换和普通文字；曲线采样后仍是原生路径，误差默认 0.35 px；输出折线节点，不保留原始 Bézier 控制点。
-- 组：连续绘制顺序中的多对象组成为原生 PPT 组；不连续组只保留逻辑组，避免改变遮挡关系。
+- 组：连续绘制顺序中的多对象组成为原生 PPT 组；`attach_to` 标签和模块在验证遮挡顺序安全后成为原生组，危险的重排会报错。
+- 连线：`connector` 声明稳定 ID、两端模块和连接位置，导出原生 `p:cxnSp` 与端点引用。场景局部移动重新计算连线和标签；Office 应用的交互路由仍须播放验证。见 [关联与局部修改](references/connections.md)。
+- 公式：`formula` 绑定审计哈希、LaTeX/PDF/SVG/PNG/日志/字体依赖，构建前冻结全部文件；检查最终放置尺寸下 PNG 回退的采样率。SVG 轮廓嵌入保留 PNG 回退；数学内容通过源码修改并重新生成，不作为普通可编辑文本。
 - 图片：原始字节、哈希、非破坏性裁剪、等比 frame；明确标为不可编辑。
 - 暂未支持 SVG 渐变、mask/clip/filter、资源引用、evenodd 填充、旋转 SVG 文字和特殊描边等；遇到这些效果明确报错，可制作混合清单。
 

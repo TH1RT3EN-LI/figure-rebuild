@@ -46,7 +46,9 @@ def font_profile(value, base):
     if any(ord(character) < 32 or character in ('"', '\\') for character in value['family']):
         raise ValueError('Font family contains unsupported quote/control characters')
     fonts = {'family': value['family'].strip()}
-    for role in ('regular', 'bold'):
+    for role in ('regular', 'bold', 'italic', 'boldItalic'):
+        if role in ('italic', 'boldItalic') and role not in value:
+            continue
         face = value.get(role)
         if not isinstance(face, dict) or not isinstance(face.get('path'), str) or not face['path']:
             raise ValueError('Font profile needs ' + role + '.path')
@@ -252,6 +254,10 @@ def freeze_assets(job, run, manifest):
     asset_root.mkdir()
     source = manifest['source']
     assets = {source['path']: source['sha256']}
+    from scene_compile import compile_scene
+    _, semantic = compile_scene(manifest, job)
+    for record in semantic['hash_files']:
+        assets[record['path']] = record['sha256']
     for item in manifest['objects']:
         if item['kind'] == 'image':
             previous = assets.get(item['path'])
@@ -340,6 +346,10 @@ def build(a):
         page_canvas = {'width': size[0] / 9525, 'height': size[1] / 9525}
         validate_placement(a.placement, page_canvas)
         base_config = {'sha256': original_sha, 'slide_id': str(a.slide_id), 'replace_ids': a.replace_id or [], 'canvas': page_canvas, 'placement': a.placement}
+    from scene_compile import compile_scene, validate_delivery_sampling
+    _, semantic = compile_scene(data, job)
+    placement_scale = min(a.placement[2]/data['canvas']['width'], a.placement[3]/data['canvas']['height']) if base_config else 1
+    validate_delivery_sampling(semantic, placement_scale)
     # Serialize only history validation and complete snapshot reservation.
     # Rendering runs independently after releasing the OS lock.
     with allocation_lock(job / 'build'):
@@ -364,7 +374,7 @@ def build(a):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--version', action='version', version='figure-rebuild 0.4.0')
+    p.add_argument('--version', action='version', version='figure-rebuild 0.5.0')
     sub = p.add_subparsers(dest='command', required=True)
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)

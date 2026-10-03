@@ -3,11 +3,49 @@
 ## Per-object native fonts
 
 The existing runtime font profile remains the default. Add explicitly supplied
-profiles in `fonts.additional:[{family,regular,bold}, ...]`; every face uses its
+profiles in `fonts.additional:[{family,regular,bold,italic?,boldItalic?}, ...]`; every face uses its
 absolute file path, SHA256 and registered `face_index`. A text object may set
 `font_family` to one of those exact families. Family identity and weight are
 verified from the file, and glyph coverage is checked only against the objects
 that use that face. Unknown families fail before output, without system fallback.
+`regular` and `bold` remain required. Register actual static `italic` and
+`boldItalic` files whenever the scene requests those styles. The face-selection
+table is exact:
+
+| Text flags | Required profile role |
+| --- | --- |
+| neither | `regular` |
+| `bold:true` | `bold` |
+| `italic:true` | `italic` |
+| both true | `boldItalic` |
+
+A two-face profile still works for upright text. An italic request without the
+matching real file fails before export; Canvas, SVG and PPT authoring must not
+synthesize a slant or weight or silently use a system face. Each role is checked
+against the binary's family names, OS/2 weight, slant flags/italic angle, hash,
+collection face index and the glyphs used by that role's objects. A genuine
+registered oblique face is classified as `oblique` in the audit. Audit entries
+retain style and PostScript names, units/em, hhea/OS/2 ascent, descent and leading,
+and checked object IDs. These font metrics are evidence, not automatic guarantees
+of identical application rendering.
+
+For example, within a runtime `fonts` record:
+
+```json
+{
+  "family": "Times New Roman",
+  "regular": {"path": "/caller/fonts/times-regular.ttf", "face_index": 0},
+  "bold": {"path": "/caller/fonts/times-bold.ttf", "face_index": 0},
+  "italic": {"path": "/caller/fonts/times-italic.ttf", "face_index": 0},
+  "boldItalic": {"path": "/caller/fonts/times-bold-italic.ttf", "face_index": 0}
+}
+```
+
+These are illustrative paths; supply caller-owned registered files. The runtime
+profile resolver records SHA256 hashes and rejects a provided mismatch. TTC/OTC
+members require their explicit registered `face_index` rather than choosing the
+first member implicitly.
+
 To use a job-specific profile without changing the installed default, set
 `FIGURE_REBUILD_FONT_PROFILE=/absolute/path/profile.json` for that build.
 
@@ -15,6 +53,24 @@ Preserve a matched font's em and baseline as source measurements. Native text
 baseline placement accounts for the font ascent and PPT leading; it does not
 use the glyph ink ascent as the text-frame baseline. Check the actual reimport
 preview because font hinting and application rendering can still differ.
+
+## Explicit native text calibration
+
+Text may set `line_height` (positive pixels), `baseline_offset` (nonnegative
+pixels from the content frame's top to its first baseline), and
+`insets:{left,right,top,bottom}` (nonnegative pixels, omitted sides default to
+zero). These values are measured source/calibration inputs, not new defaults.
+Without them, existing baseline and leading behavior remains unchanged.
+Wrapping and overflow checks use the frame after subtracting all insets.
+For `anchor` text, the anchor is the first content baseline; asymmetric insets
+do not move that baseline or horizontal alignment. The build report retains
+the content frame, insets, resolved baseline and whether leading/baseline came
+from explicit measurements. Explicit leading is saved as native DrawingML point
+spacing; first-baseline calibration adjusts the top inset from the registered
+font's native ascent/leading estimate. Unsupported negative top insets or missing
+mapped font metrics fail rather than silently treating calibration as exact.
+Verify actual exported PPT rendering before treating
+the calibrated values as an accepted source match.
 
 ## Read author metadata
 
@@ -51,8 +107,11 @@ The font registry has a `fonts` list with `id`, `path`, `family`, `style`,
 directory. TTC/OTC fonts require the registered face index. The helper verifies
 the file hash when given, opens that exact face with fontTools, and matches
 actual PostScript names or full names to the PDF. Similar fonts, family aliases,
-and unverified entries never become a confident match. Missing or ambiguous
-matches remain explicit. Font binaries are supplied by the caller and are not
+and unverified entries never become a confident match. Exact verified names are
+reported as `verified_match`; multiple candidates are `ambiguous` with their
+stable registry IDs, and absent candidates remain `unresolved`. These are
+metadata-match categories, not a guessed percentage confidence or image-glyph
+recognition. Font binaries are supplied by the caller and are not
 redistributed by this skill.
 
 Each text span retains `pdf_fontname`, size, baseline origin, line direction,

@@ -92,7 +92,7 @@ def _mapped_frames(object_map, manifest):
                  box['height'] * scale * _EMU_PER_PX)
         if not all(math.isfinite(value) for value in frame):
             raise ValueError('Mapped frame exceeds numeric range: ' + entry['id'])
-        frames[entry['id']] = {'kind': entry.get('kind'), 'frame': frame, 'source_box': box}
+        frames[entry['id']] = {**entry, 'frame': frame, 'source_box': box, 'scale': scale}
     return frames
 
 
@@ -201,7 +201,7 @@ def _visual_bounds(element, label):
             math.ceil(max(p[0] for p in corners)), math.ceil(max(p[1] for p in corners)))
 
 
-def process(source, output, manifest_path, receipt, object_map=None):
+def process(source, output, manifest_path, receipt, object_map=None, asset_root=None):
     source, output = Path(source), Path(output)
     if output.exists(): raise ValueError('Refusing to overwrite a PPTX')
     if Path(receipt).exists(): raise ValueError('Refusing to overwrite an editability receipt')
@@ -214,6 +214,10 @@ def process(source, output, manifest_path, receipt, object_map=None):
         infos = z.infolist()
     from package import XmlDocument
     page_document = XmlDocument.parse(payloads['ppt/slides/slide1.xml'], 'ppt/slides/slide1.xml')
+    has_formulas = any(o.get('source_kind') == 'formula' for o in objects)
+    rels_document = XmlDocument.parse(payloads['ppt/slides/_rels/slide1.xml.rels'], 'slide1.xml.rels') if has_formulas else None
+    types_document = XmlDocument.parse(payloads['[Content_Types].xml'], '[Content_Types].xml') if has_formulas else None
+    formula_records, text_layout_records = [], []
     page = page_document.root
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
@@ -227,6 +231,11 @@ def process(source, output, manifest_path, receipt, object_map=None):
         pr.set('name', obj['id'])
         pr.set('descr', 'source_id=' + obj['id'] + ('; semantic_group=' + obj['group_id'] if obj.get('group_id') else ''))
         if obj['kind'] == 'text' and element.find('p:txBody', NS) is None: raise ValueError('Text was flattened')
+        if obj['kind'] == 'text' and (obj.get('line_height') is not None or obj.get('baseline_offset') is not None):
+            from semantic_ooxml import apply_text_layout
+            entry = mapped_frames.get(obj['id']) if mapped_frames else None
+            if not entry: raise ValueError('Text layout requires a mapped frame: ' + obj['id'])
+            text_layout_records.append(apply_text_layout(element, obj, entry, entry['scale']))
         if obj['kind'] == 'path' and element.find('p:spPr/a:custGeom', NS) is None: raise ValueError('Vector path was flattened')
         if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
@@ -269,12 +278,20 @@ def process(source, output, manifest_path, receipt, object_map=None):
             if actual_sha != obj['sha256']:
                 raise ValueError('Exporter changed original raster bytes: ' + obj['id'])
             raster_crops.append({'id': obj['id'], 'crop': actual, 'requested_crop': expected, 'crop_units': actual_units, 'original_sha256': actual_sha, 'embedded_member': member, 'source_bytes_preserved': True, 'frame_audit': frame_audit})
+            if obj.get('source_kind') == 'formula':
+                from semantic_ooxml import add_formula_svg
+                formula_records.append(add_formula_svg(element, obj, payloads, rels_document, types_document, asset_root or Path(manifest_path).parent))
+                if mapped_frames:
+                    formula_records[-1]['delivery_sampling_scale'] = obj['formula_asset']['placement']['sampling_scale'] / mapped_frames[obj['id']]['scale']
         mapping.append({'id': obj['id'], 'kind': obj['kind'], 'native_id': pr.get('id'), 'group_id': obj.get('group_id')})
     max_id = max(int(e.get('id')) for e in page.findall('.//p:cNvPr', NS))
+    from native_connections import connect_objects, attachment_groups
+    connectors = connect_objects(tree, elements, objects, mapped_frames) if any(o.get('source_kind') == 'connector' for o in objects) else []
+    attached, taken, max_id = attachment_groups(tree, elements, objects, max_id, _visual_bounds)
     group_members = {}
     for i, obj in enumerate(objects):
-        if obj.get('group_id'): group_members.setdefault(obj['group_id'], []).append(i)
-    grouped, warnings = [], []
+        if obj.get('group_id') and i not in taken: group_members.setdefault(obj['group_id'], []).append(i)
+    grouped, warnings = attached, []
     for group, slots in group_members.items():
         if slots != list(range(slots[0], slots[-1] + 1)):
             warnings.append('Logical-only group retained to preserve paint order: ' + group)
@@ -298,12 +315,20 @@ def process(source, output, manifest_path, receipt, object_map=None):
         tree.insert(at, g)
         grouped.append({'id': group, 'members': [objects[i]['id'] for i in slots], 'visual_bounds_emu': [left, top, right, bottom], 'identity_transform': True, 'bounds_policy': 'conservative_rotation_and_stroke_envelope'})
     payloads['ppt/slides/slide1.xml'] = page_document.bytes()
+    if has_formulas:
+        payloads['ppt/slides/_rels/slide1.xml.rels'] = rels_document.bytes()
+        payloads['[Content_Types].xml'] = types_document.bytes()
     with zipfile.ZipFile(output, 'w') as z:
         for info in infos: z.writestr(info, payloads[info.filename])
+        for name in payloads.keys() - {info.filename for info in infos}: z.writestr(name, payloads[name])
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
+    data.update(formula_assets=formula_records, formula_count=len(formula_records),
+                svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),
+                native_connectors=connectors, text_layout=text_layout_records)
     Path(receipt).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     return data
 
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('--input', required=True); p.add_argument('--output', required=True); p.add_argument('--manifest', required=True); p.add_argument('--receipt', required=True); p.add_argument('--object-map')
-    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map), ensure_ascii=False))
+    p.add_argument('--asset-root')
+    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map, asset_root=a.asset_root), ensure_ascii=False))

@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<!--
+  Extracted from Apache POI presetShapeDefinitions.xml, Apache-2.0.
+  Changes: selected four connector definitions, wrapped them in a local
+  presetDefinitions root with source/digest/license metadata, and normalized
+  namespace prefixes and XML serialization using Python ElementTree.
+  Preset equations and path commands are unchanged.
+  Copyright and attribution: connector-presets.NOTICE.
+  License: connector-presets.LICENSE. The repository MIT license does not
+  replace these third-party terms.
+-->
+<presetDefinitions xmlns:ns0="http://schemas.openxmlformats.org/drawingml/2006/main" source="https://raw.githubusercontent.com/apache/poi/trunk/poi/src/main/resources/org/apache/poi/sl/draw/geom/presetShapeDefinitions.xml" source_sha256="4a762444d8d85876881c02a5b1dedf6f73006fcd8acb7b4e393435615b37c780" license="Apache-2.0"><straightConnector1>
+    <ns0:rect l="l" t="t" r="r" b="b" />
+    <ns0:pathLst>
+      <ns0:path fill="none">
+        <ns0:moveTo>
+          <ns0:pt x="l" y="t" />
+        </ns0:moveTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="b" />
+        </ns0:lnTo>
+      </ns0:path>
+    </ns0:pathLst>
+  </straightConnector1>
+  <bentConnector2>
+    <ns0:rect l="l" t="t" r="r" b="b" />
+    <ns0:pathLst>
+      <ns0:path fill="none">
+        <ns0:moveTo>
+          <ns0:pt x="l" y="t" />
+        </ns0:moveTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="t" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="b" />
+        </ns0:lnTo>
+      </ns0:path>
+    </ns0:pathLst>
+  </bentConnector2>
+  <bentConnector3>
+    <ns0:avLst>
+      <ns0:gd name="adj1" fmla="val 50000" />
+    </ns0:avLst>
+    <ns0:gdLst>
+      <ns0:gd name="x1" fmla="*/ w adj1 100000" />
+    </ns0:gdLst>
+    <ns0:ahLst>
+      <ns0:ahXY gdRefX="adj1" minX="-2147483647" maxX="2147483647">
+        <ns0:pos x="x1" y="vc" />
+      </ns0:ahXY>
+    </ns0:ahLst>
+    <ns0:rect l="l" t="t" r="r" b="b" />
+    <ns0:pathLst>
+      <ns0:path fill="none">
+        <ns0:moveTo>
+          <ns0:pt x="l" y="t" />
+        </ns0:moveTo>
+        <ns0:lnTo>
+          <ns0:pt x="x1" y="t" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="x1" y="b" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="b" />
+        </ns0:lnTo>
+      </ns0:path>
+    </ns0:pathLst>
+  </bentConnector3>
+  <bentConnector4>
+    <ns0:avLst>
+      <ns0:gd name="adj1" fmla="val 50000" />
+      <ns0:gd name="adj2" fmla="val 50000" />
+    </ns0:avLst>
+    <ns0:gdLst>
+      <ns0:gd name="x1" fmla="*/ w adj1 100000" />
+      <ns0:gd name="x2" fmla="+/ x1 r 2" />
+      <ns0:gd name="y2" fmla="*/ h adj2 100000" />
+      <ns0:gd name="y1" fmla="+/ t y2 2" />
+    </ns0:gdLst>
+    <ns0:ahLst>
+      <ns0:ahXY gdRefX="adj1" minX="-2147483647" maxX="2147483647">
+        <ns0:pos x="x1" y="y1" />
+      </ns0:ahXY>
+      <ns0:ahXY gdRefY="adj2" minY="-2147483647" maxY="2147483647">
+        <ns0:pos x="x2" y="y2" />
+      </ns0:ahXY>
+    </ns0:ahLst>
+    <ns0:rect l="l" t="t" r="r" b="b" />
+    <ns0:pathLst>
+      <ns0:path fill="none">
+        <ns0:moveTo>
+          <ns0:pt x="l" y="t" />
+        </ns0:moveTo>
+        <ns0:lnTo>
+          <ns0:pt x="x1" y="t" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="x1" y="y2" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="y2" />
+        </ns0:lnTo>
+        <ns0:lnTo>
+          <ns0:pt x="r" y="b" />
+        </ns0:lnTo>
+      </ns0:path>
+    </ns0:pathLst>
+  </bentConnector4>
+  </presetDefinitions>

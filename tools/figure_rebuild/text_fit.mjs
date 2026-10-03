@@ -1,5 +1,37 @@
 /** Registered-font measurement before PPT authoring; no backend dependency. */
 
+/** Select a registered real face, never a synthetic italic/bold substitute. */
+export function fontRoleForText(object) {
+  for (const flag of ['bold', 'italic']) {
+    if (flag in object && typeof object[flag] !== 'boolean') throw Error(`Text ${flag} must be boolean: ${object.id}`);
+  }
+  return object.italic ? (object.bold ? 'boldItalic' : 'italic') : (object.bold ? 'bold' : 'regular');
+}
+
+export function fontFaceForText(object, fontAudit, defaultFamily) {
+  const family = object.font_family ?? defaultFamily;
+  const role = fontRoleForText(object);
+  const matches = fontAudit.filter(face => face.family === family && face.role === role);
+  if (matches.length !== 1) throw Error(`Missing or ambiguous real font face ${family} ${role} for ${object.id}; no synthetic style or fallback permitted`);
+  return matches[0];
+}
+
+function finiteMetric(value, name, allowZero = false) {
+  if (typeof value !== 'number' || !Number.isFinite(value) || (allowZero ? value < 0 : value <= 0)) {
+    throw Error(`Text ${name} must be finite and ${allowZero ? 'nonnegative' : 'positive'}`);
+  }
+  return value;
+}
+
+function textInsets(value = {}) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)
+      || Object.keys(value).some(key => !['left', 'right', 'top', 'bottom'].includes(key))) {
+    throw Error('Text insets needs only left/right/top/bottom pixel values');
+  }
+  return Object.fromEntries(['left', 'right', 'top', 'bottom'].map(key =>
+    [key, finiteMetric(value[key] ?? 0, 'insets.' + key, true)]));
+}
+
 function metricWidth(metrics) {
   const advance = metrics.width;
   if (!Number.isFinite(advance) || advance < 0) throw Error('Text measurer returned an invalid width');
@@ -8,7 +40,8 @@ function metricWidth(metrics) {
   return Math.max(advance, right) + left;
 }
 
-export function layoutText(text, {fontSize, width = Infinity, wrap = 'none'}, measure) {
+export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lineHeight: explicitLineHeight,
+  baselineOffset: explicitBaselineOffset}, measure) {
   if (typeof text !== 'string' || !Number.isFinite(fontSize) || fontSize <= 0) throw Error('Invalid text measurement input');
   if (!(width > 0) || !['none', 'square'].includes(wrap)) throw Error('Invalid text wrapping bounds');
   const paragraphs = text.replace(/\r\n?/g, '\n').split('\n');
@@ -48,30 +81,46 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none'}, me
                          ...measurements.map(item => item.actualBoundingBoxAscent ?? 0));
   const descent = Math.max(0, sample.actualBoundingBoxDescent ?? fontSize * 0.2,
                           ...measurements.map(item => item.actualBoundingBoxDescent ?? 0));
-  const lineHeight = Math.max(fontSize * 1.2, ascent + descent);
+  const lineHeight = explicitLineHeight === undefined ? Math.max(fontSize * 1.2, ascent + descent)
+    : finiteMetric(explicitLineHeight, 'line_height');
   // Native PPT's single-line baseline uses the font ascent plus half of its
   // default 20% leading, rather than the visible ink ascent of this string.
-  const nativeBaselineAscent = Number.isFinite(sample.fontBoundingBoxAscent)
+  const defaultNativeBaselineAscent = Number.isFinite(sample.fontBoundingBoxAscent)
     ? sample.fontBoundingBoxAscent + fontSize * .1 : ascent + fontSize * .04;
+  const nativeBaselineAscent = explicitBaselineOffset === undefined
+    ? defaultNativeBaselineAscent
+    : finiteMetric(explicitBaselineOffset, 'baseline_offset', true);
+  const requiredHeight = explicitBaselineOffset === undefined ? lineHeight * lines.length
+    : Math.max(lineHeight * lines.length, nativeBaselineAscent + descent + (lines.length - 1) * lineHeight);
   return {lines, line_count: lines.length, required_width: Math.max(0, ...measurements.map(metricWidth)),
-          required_height: lineHeight * lines.length, line_height: lineHeight, ascent, descent,
+          required_height: requiredHeight, line_height: lineHeight, ascent, descent,
           native_baseline_ascent: nativeBaselineAscent,
+          default_native_baseline_ascent: defaultNativeBaselineAscent,
+          baseline_basis: explicitBaselineOffset === undefined ? 'font_metrics_and_native_leading' : 'explicit_calibrated_offset',
+          line_height_basis: explicitLineHeight === undefined ? 'default_measured_leading' : 'explicit_pixel_value',
           measurement_basis: 'registered font; approximate PPT line layout; actual preview still required'};
 }
 
 export function fittedTextBox(object, measure, canvas) {
+  const insets = textInsets(object.insets);
+  const contentWidth = object.box ? object.box.width - insets.left - insets.right : Infinity;
+  if (!(contentWidth > 0)) throw Error('Text insets leave no content width: ' + object.id);
   const layout = layoutText(object.text, {fontSize: object.font_size,
-    width: object.box?.width ?? Infinity, wrap: object.box ? object.wrap ?? 'none' : 'none'}, measure);
+    width: contentWidth, wrap: object.box ? object.wrap ?? 'none' : 'none',
+    lineHeight: object.line_height, baselineOffset: object.baseline_offset}, measure);
   let box = object.box;
   if (!box) {
     const width = Math.max(1, layout.required_width + object.font_size * 0.12);
     const height = layout.required_height + object.font_size * 0.16;
     const alignment = object.alignment ?? 'left';
-    box = {x: object.anchor.x - (alignment === 'center' ? width / 2 : alignment === 'right' ? width : 0),
-      y: object.anchor.y - layout.native_baseline_ascent, width, height};
+    box = {x: object.anchor.x - insets.left - (alignment === 'center' ? width / 2 : alignment === 'right' ? width : 0),
+      y: object.anchor.y - insets.top - layout.native_baseline_ascent,
+      width: width + insets.left + insets.right, height: height + insets.top + insets.bottom};
   }
-  if (layout.required_width > box.width + 0.001 || layout.required_height > box.height + 0.001) {
-    throw Error(`Text overflow: ${object.id}; requires ${layout.required_width.toFixed(2)}×${layout.required_height.toFixed(2)} px, box ${box.width}×${box.height} px (${layout.line_count} lines)`);
+  const contentBox = {x: box.x + insets.left, y: box.y + insets.top,
+    width: box.width - insets.left - insets.right, height: box.height - insets.top - insets.bottom};
+  if (layout.required_width > contentBox.width + 0.001 || layout.required_height > contentBox.height + 0.001) {
+    throw Error(`Text overflow: ${object.id}; requires ${layout.required_width.toFixed(2)}×${layout.required_height.toFixed(2)} px, content box ${contentBox.width}×${contentBox.height} px (${layout.line_count} lines)`);
   }
   const radians = (object.rotation ?? 0) * Math.PI / 180;
   const co = Math.cos(radians), si = Math.sin(radians);
@@ -83,5 +132,5 @@ export function fittedTextBox(object, measure, canvas) {
       throw Error('Measured text lies outside the source canvas: ' + object.id);
     }
   }
-  return {box, layout};
+  return {box, layout: {...layout, content_box: contentBox, insets}};
 }

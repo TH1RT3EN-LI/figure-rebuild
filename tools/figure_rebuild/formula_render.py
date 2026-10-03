@@ -13,6 +13,7 @@ import re
 import shutil
 import subprocess
 import tempfile
+import xml.etree.ElementTree as ET
 
 from PIL import Image
 
@@ -289,6 +290,120 @@ def _tight_rgba(image, rotation):
     return tight, box
 
 
+SVG_NS = 'http://www.w3.org/2000/svg'
+XLINK_NS = 'http://www.w3.org/1999/xlink'
+ET.register_namespace('', SVG_NS)
+ET.register_namespace('xlink', XLINK_NS)
+
+
+def validate_outlined_svg(data):
+    """Accept a bounded, self-contained SVG of paths, never live font text."""
+    if isinstance(data, str):
+        data = data.encode('utf-8')
+    if not isinstance(data, bytes) or len(data) > 20 * 1024 * 1024:
+        raise ValueError('Formula SVG exceeds the supported byte limit')
+    if re.search(br'<!\s*(?:DOCTYPE|ENTITY)', data, re.IGNORECASE):
+        raise ValueError('Formula SVG may not contain XML entities or a DTD')
+    try:
+        root = ET.fromstring(data)
+    except ET.ParseError as error:
+        raise ValueError('Formula SVG is malformed') from error
+    if root.tag != '{' + SVG_NS + '}svg':
+        raise ValueError('Formula SVG root must use the SVG namespace')
+    allowed = {'svg', 'g', 'defs', 'symbol', 'path', 'use', 'clipPath', 'rect'}
+    ids, references, path_count = set(), [], 0
+    for node in root.iter():
+        if not isinstance(node.tag, str) or not node.tag.startswith('{' + SVG_NS + '}'):
+            raise ValueError('Formula SVG contains an unsupported namespace')
+        tag = node.tag.split('}')[-1]
+        if tag not in allowed:
+            raise ValueError('Formula SVG must contain outlined geometry only: ' + tag)
+        path_count += tag == 'path'
+        identity = node.get('id')
+        if identity:
+            if identity in ids:
+                raise ValueError('Formula SVG contains duplicate IDs')
+            ids.add(identity)
+        for name, value in node.attrib.items():
+            local = name.split('}')[-1]
+            if local.lower().startswith('on') or local in ('font-family', 'font-size', 'font-style', 'font-weight'):
+                raise ValueError('Formula SVG contains active content or live font styling')
+            if local == 'href':
+                if not value.startswith('#') or len(value) == 1:
+                    raise ValueError('Formula SVG external references are forbidden')
+                references.append(value[1:])
+            if 'url' in value.lower():
+                urls = re.findall(r'url\(\s*[\"\']?([^\)\"\']+)[\"\']?\s*\)', value, re.IGNORECASE)
+                if not urls or any(not url.startswith('#') or len(url) == 1 for url in urls):
+                    raise ValueError('Formula SVG external URL styles are forbidden')
+                references.extend(url[1:] for url in urls)
+            if local == 'style' and ('@' in value or 'font' in value.lower() or 'expression' in value.lower()):
+                raise ValueError('Formula SVG style must contain geometry paint only')
+    if not path_count or any(reference not in ids for reference in references):
+        raise ValueError('Formula SVG needs outlined paths and valid internal references')
+    try:
+        viewbox = [float(value) for value in root.attrib['viewBox'].replace(',', ' ').split()]
+    except (KeyError, ValueError) as error:
+        raise ValueError('Formula SVG needs a numeric viewBox') from error
+    if len(viewbox) != 4 or not all(math.isfinite(value) for value in viewbox) or viewbox[2] <= 0 or viewbox[3] <= 0:
+        raise ValueError('Formula SVG viewBox is invalid')
+    intrinsic = None
+    if 'width' in root.attrib or 'height' in root.attrib:
+        intrinsic = []
+        for axis in ('width', 'height'):
+            declared = root.get(axis, '')
+            match = re.fullmatch(r'([+]?\d+(?:\.\d*)?(?:[eE][+-]?\d+)?|[+]?\.\d+(?:[eE][+-]?\d+)?)(px|pt)?', declared)
+            if not match:
+                raise ValueError('Formula SVG intrinsic dimensions must be finite px or pt')
+            value = float(match[1]) * (96 / 72 if match[2] == 'pt' else 1)
+            if not math.isfinite(value) or value <= 0:
+                raise ValueError('Formula SVG intrinsic dimensions must be positive')
+            intrinsic.append(value)
+    return {'viewbox': viewbox, 'path_count': path_count, 'internal_reference_count': len(references),
+            'embeddedfont_outlines': True, 'external_references': False,
+            'intrinsic_pixels': intrinsic,
+            'intrinsic_rasterization_scale': min(intrinsic[0] / viewbox[2], intrinsic[1] / viewbox[3]) if intrinsic else None}
+
+
+def _outlined_svg(pdf, destination, cairo, work, bbox, dpi, rotation, timeout=30):
+    """Use Cairo's PDF font outlines, cropped to the same generated PNG ink box."""
+    raw = work / 'outlined-page.svg'
+    _run([cairo, '-svg', str(pdf), str(raw)], work, timeout=timeout)
+    original_bytes = raw.read_bytes()
+    validate_outlined_svg(original_bytes)
+    original = ET.fromstring(original_bytes)
+    width = (bbox[2] - bbox[0]) * 96 / dpi
+    height = (bbox[3] - bbox[1]) * 96 / dpi
+    final_width, final_height = (height, width) if rotation in (90, 270) else (width, height)
+    pixel_width, pixel_height = (bbox[3] - bbox[1], bbox[2] - bbox[0]) if rotation in (90, 270) else (bbox[2] - bbox[0], bbox[3] - bbox[1])
+    # Importers can rasterize SVG at its intrinsic size before placing it.
+    # Keep a high intrinsic sampling density while retaining the exact natural
+    # viewBox and vector geometry. Explicit PPT frames still determine size.
+    svg = ET.Element('{' + SVG_NS + '}svg', {'version': '1.1',
+        'width': f'{pixel_width}px', 'height': f'{pixel_height}px',
+        'viewBox': f'0 0 {final_width:.12g} {final_height:.12g}'})
+    matrices = {0: (1, 0, 0, 1, 0, 0), 90: (0, 1, -1, 0, height, 0),
+                180: (-1, 0, 0, -1, width, height), 270: (0, -1, 1, 0, 0, width)}
+    outer = ET.SubElement(svg, '{' + SVG_NS + '}g', {
+        'transform': 'matrix(' + ' '.join(f'{v:.12g}' for v in matrices[rotation]) + ')'})
+    inner = ET.SubElement(outer, '{' + SVG_NS + '}g', {'transform':
+        f'matrix({96/72:.12g} 0 0 {96/72:.12g} {-bbox[0]*96/dpi:.12g} {-bbox[1]*96/dpi:.12g})'})
+    for child in original:
+        inner.append(child)
+    data = ET.tostring(svg, encoding='utf-8', xml_declaration=True)
+    report = validate_outlined_svg(data)
+    destination.write_bytes(data)
+    report.update({'coordinate_system': '96px_per_inch', 'rotation_deg': rotation,
+                   'source': 'real_tex_pdf_font_outlines', 'png_ink_box_matched': True,
+                   'intrinsic_pixel_policy': 'match_png_fallback'})
+    return report
+
+
+def _font_metadata_digest(fonts, alphabets):
+    data = json.dumps({'font_registry': fonts, 'alphabet_font_registry': alphabets},
+                      sort_keys=True, separators=(',', ':'), ensure_ascii=False).encode('utf-8')
+    return hashlib.sha256(data).hexdigest()
+
 def _embedded_base(name):
     return name.split('+')[-1].removesuffix('-Identity-H')
 
@@ -311,7 +426,7 @@ def render_formula(expression, *, asset_id, output_dir, font_manifest, engine=No
                    confirmed=False, font_size_px=24, color='#000000', rotation_deg=0,
                    min_scale=8, display_size_px=None, dpi=768, padding_pt=1,
                    design_size=None, stroke_width_px=0, alphabet_font_manifest=None, overwrite=False, timeout=180):
-    """Produce transparent ink-tight PNG, vector PDF, TeX and an audit record.
+    """Produce outlined SVG, transparent PNG fallback, vector PDF and an audit.
 
     Rotation is clockwise. PNG sampling is at least ``min_scale`` pixels per
     intended display pixel; it is raised automatically for explicit display
@@ -348,10 +463,10 @@ def render_formula(expression, *, asset_id, output_dir, font_manifest, engine=No
         raise ValueError('Formula rendering needs Poppler pdftocairo and pdffonts')
     output = Path(output_dir).expanduser().resolve()
     output.mkdir(parents=True, exist_ok=True)
-    extensions = ('tex', 'pdf', 'png', 'json')
+    extensions = ('tex', 'pdf', 'png', 'svg', 'json', 'log', 'dependencies.txt')
     if not overwrite and any((output / f'{asset_id}.{ext}').exists() for ext in extensions):
         raise ValueError('Formula output exists; use a new asset ID or explicit overwrite')
-    source = _source(expression, font_size_px, color, padding_pt, design_size, stroke_width_px, name, alphabet_fonts is not None)
+    source = _source(expression, font_size_px, color.upper(), padding_pt, design_size, stroke_width_px, name, alphabet_fonts is not None)
     engine_version = _run([str(engine_path), '--version'], output, timeout=10).splitlines()[0]
     with tempfile.TemporaryDirectory(prefix='figure-formula-') as temporary:
         work = Path(temporary)
@@ -410,6 +525,7 @@ def render_formula(expression, *, asset_id, output_dir, font_manifest, engine=No
                 raise ValueError('Requested display size requires more than maximum 4096 DPI')
         else:
             raise ValueError('Could not meet formula sampling requirement')
+        vector = _outlined_svg(pdf, output / f'{asset_id}.svg', cairo, work, bbox, render_dpi, rotation_deg)
         final_png = output / f'{asset_id}.png'
         ink.save(final_png)
         shutil.copyfile(tex, output / f'{asset_id}.tex')
@@ -420,7 +536,7 @@ def render_formula(expression, *, asset_id, output_dir, font_manifest, engine=No
         pixels_per_tex_pt = render_dpi / 72.27
         baseline_full_px = (padding_pt + metrics['height_pt']) * pixels_per_tex_pt
         baseline_ink_px = baseline_full_px - bbox[1]
-        audit = {'schema_version': '1', 'asset_id': asset_id, 'kind': 'generated_latex',
+        audit = {'schema_version': '2', 'asset_id': asset_id, 'kind': 'generated_latex',
                  'latex': expression, 'transcription_confirmed': True, 'engine': name,
                  'engine_path': str(engine_path), 'engine_version': engine_version,
                  'engine_sha256': _sha(engine_path), 'shell_escape': False,
@@ -434,13 +550,20 @@ def render_formula(expression, *, asset_id, output_dir, font_manifest, engine=No
                  'display_size_px': target, 'natural_display_size_px': natural,
                  'png_pixels': [ink.width, ink.height], 'rendered_page_pixels': list(page.size),
                  'alpha_bbox_px': list(bbox), 'baseline_ink_unrotated_px': baseline_ink_px,
+                 'baseline_origin_ink_unrotated_px': [padding_pt * pixels_per_tex_pt - bbox[0], baseline_ink_px],
+                 'padding_pt': padding_pt, 'vector_effective_viewbox': vector['viewbox'],
+                 'vector_geometry': vector,
+                 'svg_intrinsic_pixels': vector['intrinsic_pixels'],
+                 'svg_intrinsic_rasterization_scale': vector['intrinsic_rasterization_scale'],
+                 'font_metadata_sha256': _font_metadata_digest(fonts, alphabet_fonts),
+                 'asset_path_base': 'audit_directory',
                  'tex_box': metrics, 'font_registry': fonts,
                  'alphabet_font_registry': alphabet_fonts,
                  'registered_font_dependencies': [item['name'] for item in local_used],
                  'registered_alphabet_font_dependencies': [item['name'] for item in local_alphabet_used],
                  'embedded_fonts': embedded, 'reference_crop_used': False,
-                 'assets': {ext: {'path': str(output / f'{asset_id}.{ext}'), 'sha256': _sha(output / f'{asset_id}.{ext}')}
-                            for ext in ('tex', 'pdf', 'png')}}
+                 'assets': {ext: {'path': f'{asset_id}.{ext}', 'sha256': _sha(output / f'{asset_id}.{ext}')}
+                            for ext in ('tex', 'pdf', 'png', 'svg', 'log', 'dependencies.txt')}}
         (output / f'{asset_id}.json').write_text(json.dumps(audit, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
         return audit
 

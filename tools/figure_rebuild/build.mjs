@@ -5,7 +5,7 @@ import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';
 import {checkRuntime} from './preflight.mjs';
-import {fittedTextBox} from './text_fit.mjs';
+import {fittedTextBox,fontFaceForText} from './text_fit.mjs';
 import {flattenPath,pathBounds} from './curves.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
@@ -15,7 +15,9 @@ await checkRuntime(runtime);
 process.env.RUNTIME_NODE_MODULES=runtime.node_modules;
 process.env.RUNTIME_NODE=runtime.node;
 process.env.RUNTIME_PYTHON=runtime.python;
-const manifest=JSON.parse(await fs.readFile(config.manifest,'utf8'));
+const resolvedManifest=path.join(run,'resolved-scene.json');
+execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/scene_compile.py'),'--manifest',config.manifest,'--job',job,'--asset-root',assetRoot,'--output',resolvedManifest,'--audit',path.join(run,'semantic-audit.json')],{stdio:'pipe'});
+const manifest=JSON.parse(await fs.readFile(resolvedManifest,'utf8'));
 const originalSource=path.join(assetRoot,manifest.source.path);
 if(createHash('sha256').update(await fs.readFile(originalSource)).digest('hex')!==manifest.source.sha256)throw Error('Original source changed before authoring');
 const req=createRequire(path.join(runtime.node_modules,'figure-rebuild-loader.cjs'));
@@ -36,16 +38,22 @@ if(requested.some(x=>!Number.isFinite(x))||requested[2]<=0||requested[3]<=0)thro
 const scale=Math.min(requested[2]/sourceCanvas.width,requested[3]/sourceCanvas.height);
 const placement=[requested[0]+(requested[2]-sourceCanvas.width*scale)/2,requested[1]+(requested[3]-sourceCanvas.height*scale)/2,sourceCanvas.width*scale,sourceCanvas.height*scale];
 if(placement[0]<0||placement[1]<0||placement[0]+placement[2]>slideCanvas.width+.001||placement[1]+placement[3]>slideCanvas.height+.001)throw Error('Placement outside page');
+for(const object of manifest.objects.filter(o=>o.source_kind==='formula')){
+ const formula=object.formula_asset.placement;
+ const actualSampling=formula.sampling_scale/scale;
+ if(actualSampling+1e-8<formula.min_sampling_scale)throw Error(`Formula PNG fallback sampling below ${formula.min_sampling_scale}x after slide placement: ${object.id} (${actualSampling.toFixed(4)}x)`);
+ object.formula_asset.delivery_sampling_scale=actualSampling;
+}
 const ordered=manifest.objects.map((o,i)=>({...o,_order:i})).sort((a,b)=>(a.z_index??a._order)-(b.z_index??b._order)||a._order-b._order);
 const measuredText=new Map();
 for(const object of ordered.filter(object=>object.kind==='text')){
  const family=object.font_family??fontFamily;
- if(!fontFamilies.includes(family))throw Error('Unconfigured font family: '+family);
+ fontFaceForText(object,fontAudit,fontFamily);
  ctx.font=`${object.italic?'italic ':''}${object.bold?'bold ':''}${object.font_size}px "${family}"`;
  measuredText.set(object.id,fittedTextBox(object,text=>ctx.measureText(text),sourceCanvas));
 }
 await fs.writeFile(path.join(run,'text-fit.json'),JSON.stringify({status:'PASS',font_family:fontFamily,visual_verification_required:true,objects:[...measuredText].map(([id,result])=>({id,...result}))},null,2));
-execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/export_svg.py'),'--manifest',config.manifest,'--asset-root',assetRoot,'--output',path.join(run,'reconstructed.svg'),'--font',fontAudit[0].renderer,'--bold-font',fontAudit[1].renderer,'--family',fontFamily,'--font-audit',path.join(run,'font-audit.json')],{stdio:'pipe'});
+execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/export_svg.py'),'--manifest',resolvedManifest,'--asset-root',assetRoot,'--output',path.join(run,'reconstructed.svg'),'--font',fontAudit[0].renderer,'--bold-font',fontAudit[1].renderer,'--family',fontFamily,'--font-audit',path.join(run,'font-audit.json')],{stdio:'pipe'});
 const p=Presentation.create({slideSize:{width:slideCanvas.width,height:slideCanvas.height}});
 const slide=p.slides.add();slide.background.fill=sourceCanvas.background??'#FFFFFF';
 const textManifest=[],objectMap=[];
@@ -67,9 +75,9 @@ for(const o of ordered){
   const shape=slide.shapes.add({name:o.id,geometry:'textbox',position:position(box,o.rotation??0),fill:'none',line:{fill:'none',width:0}});
   shape.text=o.text;
   const family=o.font_family??fontFamily;
-  shape.text.style={typeface:family,fontSize:fontSize*scale,bold:o.bold??false,italic:o.italic??false,color:paint(s.fill??'#000000',s.opacity),alignment:o.alignment??'left',verticalAlignment:o.vertical_alignment??'top',autoFit:'none',wrap:o.wrap??'none',insets:{left:0,right:0,top:0,bottom:0}};
+  shape.text.style={typeface:family,fontSize:fontSize*scale,bold:o.bold??false,italic:o.italic??false,color:paint(s.fill??'#000000',s.opacity),alignment:o.alignment??'left',verticalAlignment:o.vertical_alignment??'top',autoFit:'none',wrap:o.wrap??'none',insets:Object.fromEntries(Object.entries(layout.insets??{left:0,right:0,top:0,bottom:0}).map(([k,v])=>[k,v*scale]))};
   textManifest.push({id:o.id,content:o.text,source_bbox:box,font_family:family,font_size:fontSize,rotation:o.rotation??0,alignment:o.alignment??'left',paint_order:o.z_index??o._order,measured_line_count:layout.line_count});
-  objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,box,editable:true});
+  objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,box,editable:true,text_layout:layout});
  }else if(o.kind==='image'){
   const bytes=await fs.readFile(path.join(assetRoot,o.path));
   if(createHash('sha256').update(bytes).digest('hex')!==o.sha256)throw Error('Raster asset changed');
@@ -90,7 +98,7 @@ await fs.writeFile(path.join(run,'text-manifest.json'),JSON.stringify({schema_ve
 await fs.writeFile(path.join(run,'object-map.json'),JSON.stringify({placement,objects:objectMap},null,2));
 const raw=path.join(run,'artifact-authored.pptx');await (await PresentationFile.exportPptx(p)).save(raw);
 const grouped=path.join(run,'grouped-overlay.pptx');
-execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/postprocess.py'),'--input',raw,'--output',grouped,'--manifest',config.manifest,'--object-map',path.join(run,'object-map.json'),'--receipt',path.join(run,'editability.json')],{stdio:'pipe'});
+execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/postprocess.py'),'--input',raw,'--output',grouped,'--manifest',resolvedManifest,'--asset-root',assetRoot,'--object-map',path.join(run,'object-map.json'),'--receipt',path.join(run,'editability.json')],{stdio:'pipe'});
 const candidate=path.join(run,'candidate.pptx');
 if(config.base){
  const args=[path.join(repo,'tools/figure_rebuild/package.py'),'merge','--base',config.base.path,'--overlay',grouped,'--output',candidate,'--slide-id',config.base.slide_id,'--base-sha256',config.base.sha256,'--receipt',path.join(run,'preservation.json')];
@@ -100,6 +108,10 @@ if(config.base){
 const {finalizePresentation}=await import(pathToFileURL(path.join(runtime.presentation_skill,'container_tools/artifact_tool_utils.mjs')).href);
 const expectedSize=[Math.round(slideCanvas.width*9525),Math.round(slideCanvas.height*9525)].join(',');
 const checkedOutput=path.join(run,'validated-output','reconstruction.pptx');await fs.mkdir(path.dirname(checkedOutput),{recursive:true});
+// This renderer decodes SVG at frame size times devicePixelRatio. Preserve
+// vector source bytes and increase real decode sampling before PPT import.
+globalThis.devicePixelRatio=8;
+await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false},null,2));
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
 let targetSlide=rendered.slides.items[0];
@@ -128,11 +140,11 @@ if(path.extname(manifest.source.path).toLowerCase()==='.svg'){
 }
 if(config.base)compareArgs.push('--region',...placement.map(String));
 execFileSync(runtime.python,compareArgs,{stdio:'pipe'});
-for(const asset of [{path:manifest.source.path,sha256:manifest.source.sha256},...manifest.objects.filter(o=>o.kind==='image')]){
+for(const asset of JSON.parse(await fs.readFile(path.join(run,'asset-snapshot.json'),'utf8')).assets){
  for(const root of new Set([assetRoot,job]))if(createHash('sha256').update(await fs.readFile(path.join(root,asset.path))).digest('hex')!==asset.sha256)throw Error('Asset changed during the build; output not published: '+asset.path);
 }
 const editability=JSON.parse(await fs.readFile(path.join(run,'editability.json'),'utf8'));
-const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
+const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,formula_count:editability.formula_count??0,svg_formula_count:editability.svg_formula_count??0,native_connector_count:editability.native_connectors?.length??0,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
 const deliveryCandidate=path.join(run,'delivery-candidate.json');await fs.writeFile(deliveryCandidate,JSON.stringify(delivery,null,2));
 execFileSync(runtime.python,[path.join(repo,'tools/figure_rebuild/publish.py'),'--source',checkedOutput,'--output',output,'--receipt',path.join(run,'delivery.json'),'--data',deliveryCandidate],{stdio:'pipe'});
 console.log(JSON.stringify({output,objects:objectMap.length,nativeGroups:editability.native_groups.length,preview:path.join(run,'preview-1x.png')}));

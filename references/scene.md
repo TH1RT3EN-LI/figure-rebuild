@@ -57,3 +57,12 @@
 PNG 识别时先列可见文字，再确定各图形轮廓与连线端点，最后核对所有分支和遮挡。透明像素不是黑色背景。不要借论文知识增加图中没有的连接或标签。数值图表需要更精确的作者矢量源或原数据；肉眼描线不得声称恢复了实验数据。
 
 SVG 支持基本几何、变换、普通文字及路径 M/L/H/V/C/S/Q/T/A/Z；曲线输出为可编辑采样路径。渐变、遮罩、裁切、资源引用、evenodd 填充、旋转/倾斜 SVG 文字、非均匀描边变换和特殊端点/虚线效果等未实现；导入器拒绝这些输入。对不支持的效果，可先制作受控的混合清单，原始素材始终保留。
+
+0.5 语义对象：
+
+- `formula`：`audit/audit_sha256/representation`（`svg` 默认，或 `png`），`box:{x,y,width,height}` 或 `baseline_anchor:{x,y}` 二选一。可选真实 em `font_size`；最终放置和 PNG 回退采样受校验。详见 [formulas.md](formulas.md)。
+- `connector`：`from/to:{id,site}`，`route` 为 `straight/elbow`，`arrow:{start,end}` 与描边。目标为已确认模块，导出原生连接器；连接器之间不连接。详见 [connections.md](connections.md)。
+- 标签 `attach_to:{id,site,offset:{x,y}}`：关联模块的中心或四边；框文本按框中心，基线文本按 anchor。构建保留原生分组并检验绘制顺序。
+- 文本 `line_height/baseline_offset/insets` 使用像素，四字面必须分别配置真实文件。详见 [fonts.md](fonts.md)。
+
+原始清单接受审阅，构建输出 `resolved-scene.json` 与 `semantic-audit.json` 供检查；临时解析清单不取代源清单。

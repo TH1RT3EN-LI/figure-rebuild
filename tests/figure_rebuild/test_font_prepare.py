@@ -4,7 +4,7 @@ import tempfile
 import unittest
 from pathlib import Path
 
-from tools.figure_rebuild.font_prepare import prepare_fonts, validate_profile
+from tools.figure_rebuild.font_prepare import prepare_fonts, validate_profile, font_role_for_text
 
 try:
     from fontTools.fontBuilder import FontBuilder
@@ -15,6 +15,7 @@ except ImportError:
 
 
 def make_font(path, style='Regular'):
+    bold, italic = 'Bold' in style, 'Italic' in style
     builder = FontBuilder(1000, isTTF=True)
     cmap = {code: 'char' + str(code) for code in range(32, 127)}
     names = ['.notdef', *cmap.values()]
@@ -34,10 +35,10 @@ def make_font(path, style='Regular'):
                            'uniqueFontIdentifier': 'unit-test-' + style,
                            'psName': 'UnitTestSans-' + style})
     builder.setupOS2(sTypoAscender=800, sTypoDescender=-200, usWinAscent=800, usWinDescent=200,
-                     usWeightClass=700 if style == 'Bold' else 400,
-                     fsSelection=32 if style == 'Bold' else 64)
-    builder.font['head'].macStyle = 1 if style == 'Bold' else 0
-    builder.setupPost()
+                     usWeightClass=700 if bold else 400,
+                     fsSelection=(32 if bold else 0) | (1 if italic else 0) | (64 if not bold and not italic else 0))
+    builder.font['head'].macStyle = (1 if bold else 0) | (2 if italic else 0)
+    builder.setupPost(italicAngle=-12 if italic else 0)
     builder.save(path)
 
 
@@ -79,6 +80,9 @@ class FontPreparationTests(unittest.TestCase):
         self.assertEqual(audit[1]['face_index'], 1)
         with TTFont(audit[1]['renderer']) as font:
             self.assertTrue(any(name.nameID == 2 and name.toUnicode() == 'Bold' for name in font['name'].names))
+        self.profile['bold'].pop('face_index')
+        with self.assertRaisesRegex(ValueError, 'explicit registered face_index: bold'):
+            validate_profile(self.profile)
 
     def test_missing_glyph_has_object_id_and_no_output_directory(self):
         destination = self.root / 'missing-render'
@@ -113,6 +117,86 @@ class FontPreparationTests(unittest.TestCase):
         self.profile['bold']['path'] = str(self.regular)
         with self.assertRaisesRegex(ValueError, 'weight does not match bold role: 400'):
             prepare_fonts(self.profile, self.root / 'wrong-bold')
+
+    def add_slanted_faces(self):
+        for role, style in (('italic', 'Italic'), ('boldItalic', 'Bold Italic')):
+            path = self.root / (role + '.ttf')
+            make_font(path, style)
+            self.profile[role] = {'path': str(path), 'face_index': 0,
+                                  'sha256': hashlib.sha256(path.read_bytes()).hexdigest()}
+
+    def test_real_four_faces_are_audited_and_selected_per_object(self):
+        self.add_slanted_faces()
+        objects = [{'id': 'plain', 'kind': 'text', 'text': 'Plain'},
+                   {'id': 'weight', 'kind': 'text', 'text': 'Bold', 'bold': True},
+                   {'id': 'slope', 'kind': 'text', 'text': 'Italic', 'italic': True},
+                   {'id': 'both', 'kind': 'text', 'text': 'Both', 'bold': True, 'italic': True}]
+        self.assertEqual([font_role_for_text(item) for item in objects],
+                         ['regular', 'bold', 'italic', 'boldItalic'])
+        audit = prepare_fonts(self.profile, self.root / 'four', objects)
+        self.assertEqual([entry['role'] for entry in audit], ['regular', 'bold', 'italic', 'boldItalic'])
+        for face in audit:
+            self.assertEqual(face['bold'], face['role'] in ('bold', 'boldItalic'))
+            self.assertEqual(face['italic'], face['role'] in ('italic', 'boldItalic'))
+            self.assertTrue(face['style_names'])
+            self.assertTrue(face['postscript_names'])
+            self.assertEqual(face['font_metrics']['units_per_em'], 1000)
+            self.assertEqual(face['renderer_sha256'], hashlib.sha256(Path(face['renderer']).read_bytes()).hexdigest())
+        self.assertEqual(audit[2]['checked_object_ids'], ['slope'])
+        self.assertEqual(audit[3]['checked_object_ids'], ['both'])
+
+    def test_italic_requests_without_registered_real_faces_fail_atomically(self):
+        for flags, role in (({'italic': True}, 'italic'), ({'italic': True, 'bold': True}, 'boldItalic')):
+            destination = self.root / ('missing-' + role)
+            with self.assertRaisesRegex(ValueError, 'Missing real font face Unit Test Sans ' + role + ' for math-label'):
+                prepare_fonts(self.profile, destination,
+                              [{'id': 'math-label', 'kind': 'text', 'text': 'A', **flags}])
+            self.assertFalse(destination.exists())
+        self.assertFalse(list(self.root.glob('.fonts-*')))
+
+    def test_italic_role_rejects_upright_and_bold_italic_rejects_wrong_weight(self):
+        self.profile['italic'] = self.profile['regular'].copy()
+        with self.assertRaisesRegex(ValueError, 'style does not match italic role'):
+            prepare_fonts(self.profile, self.root / 'synthesized')
+        self.add_slanted_faces()
+        self.profile['boldItalic'] = self.profile['italic'].copy()
+        with self.assertRaisesRegex(ValueError, 'weight does not match boldItalic role: 400'):
+            prepare_fonts(self.profile, self.root / 'wrong-bold-italic')
+        self.assertFalse((self.root / 'wrong-bold-italic').exists())
+
+    def test_upright_role_rejects_a_real_italic_face(self):
+        self.add_slanted_faces()
+        self.profile['regular'] = self.profile['italic'].copy()
+        with self.assertRaisesRegex(ValueError, 'style does not match regular role'):
+            prepare_fonts(self.profile, self.root / 'wrong-upright')
+
+    def test_italic_glyph_coverage_uses_italic_face_not_upright(self):
+        self.add_slanted_faces()
+        italic_path = Path(self.profile['italic']['path'])
+        with TTFont(italic_path) as font:
+            for subtable in font['cmap'].tables:
+                if subtable.isUnicode():
+                    subtable.cmap.pop(ord('A'), None)
+            font.save(italic_path)
+        self.profile['italic']['sha256'] = hashlib.sha256(italic_path.read_bytes()).hexdigest()
+        with self.assertRaisesRegex(ValueError, 'italic-only: U\\+0041'):
+            prepare_fonts(self.profile, self.root / 'italic-coverage',
+                          [{'id': 'italic-only', 'kind': 'text', 'text': 'A', 'italic': True}])
+        # Absence of an unused italic glyph does not force fallback or reject
+        # the regular object's existing full coverage.
+        audit = prepare_fonts(self.profile, self.root / 'regular-coverage',
+                              [{'id': 'regular-only', 'kind': 'text', 'text': 'A'}])
+        self.assertEqual(len(audit), 4)
+
+    def test_style_flags_cannot_be_truthy_nonbooleans(self):
+        with self.assertRaisesRegex(ValueError, 'italic must be boolean: invalid-style'):
+            prepare_fonts(self.profile, self.root / 'invalid-style',
+                          [{'id': 'invalid-style', 'kind': 'text', 'text': 'A', 'italic': 'true'}])
+
+    def test_a_text_generator_retains_face_selection_and_glyph_checks(self):
+        with self.assertRaisesRegex(ValueError, 'generated-label: U\\+4E2D'):
+            prepare_fonts(self.profile, self.root / 'from-generator',
+                          iter([{'id': 'generated-label', 'kind': 'text', 'text': '中'}]))
 
     def test_multiple_families_are_selected_and_unknown_family_rejected(self):
         extra_faces = []

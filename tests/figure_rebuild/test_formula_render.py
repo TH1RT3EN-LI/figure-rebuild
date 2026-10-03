@@ -11,6 +11,11 @@ spec = importlib.util.spec_from_file_location('figure_formula_render', MODULE)
 f = importlib.util.module_from_spec(spec); spec.loader.exec_module(f)
 
 
+def asset_path(report, extension, output_dir):
+    declared = Path(report['assets'][extension]['path'])
+    return declared if declared.is_absolute() else Path(output_dir) / declared
+
+
 class FormulaSafety(unittest.TestCase):
     def test_valid_nested_math_and_literal_escape(self):
         expression = r'\Pi_c(\mathbf G_{ij}\circ\Pi_c^{-1}(\mathbf p_i,\mathbf d_i))'
@@ -128,6 +133,33 @@ class FormulaSafety(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'hash mismatch'):
                 f.resolve_alphabet_fonts(root / 'registry.json')
 
+    def test_svg_rejects_live_text_external_links_and_active_content(self):
+        prefix = '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 10 5">'
+        valid_path = '<path d="M0 0H10V5H0Z"/>'
+        bad = ['<text>x</text>', '<script>bad()</script>', '<foreignObject/>', '<image href="data:image/png;base64,x"/>',
+               '<use href="https://example.test/glyph.svg#x"/>', '<path onload="bad()" d="M0 0H10V5H0Z"/>',
+               '<path fill="url(https://example.test/paint)" d="M0 0H10V5H0Z"/>', '<use href="#missing"/>',
+               '<path style="font-family:Arial" d="M0 0H10V5H0Z"/>']
+        for content in bad:
+            with self.subTest(content=content), self.assertRaises(ValueError):
+                f.validate_outlined_svg(prefix + valid_path + content + '</svg>')
+        with self.assertRaises(ValueError):
+            f.validate_outlined_svg('<!DOCTYPE svg [<!ENTITY x "bad">]>' + prefix + valid_path + '</svg>')
+        proof = f.validate_outlined_svg(prefix + '<defs><path id="x" d="M0 0H10V5H0Z"/></defs><use xlink:href="#x"/></svg>')
+        self.assertTrue(proof['embeddedfont_outlines'])
+        self.assertEqual(proof['internal_reference_count'], 1)
+
+    def test_svg_intrinsic_resolution_is_independent_of_natural_viewbox(self):
+        body = '<path d="M0 0H10V5H0Z"/>'
+        for dimensions in ('width="80px" height="40px"', 'width="60pt" height="30pt"'):
+            proof = f.validate_outlined_svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5" ' + dimensions + '>' + body + '</svg>')
+            self.assertEqual(proof['viewbox'], [0, 0, 10, 5])
+            self.assertEqual(proof['intrinsic_pixels'], [80, 40])
+            self.assertEqual(proof['intrinsic_rasterization_scale'], 8)
+        for dimensions in ('width="-1px" height="5px"', 'width="NaN" height="5px"', 'width="1px"'):
+            with self.assertRaises(ValueError):
+                f.validate_outlined_svg('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 5" ' + dimensions + '>' + body + '</svg>')
+
 
 @unittest.skipUnless(os.environ.get('FIGURE_REBUILD_TEX_ENGINE') and os.environ.get('FIGURE_REBUILD_MATH_FONTS')
                      and os.environ.get('FIGURE_REBUILD_ALPHABET_FONTS'),
@@ -148,12 +180,38 @@ class RealOpenTypeMathRendering(unittest.TestCase):
             self.assertGreaterEqual(report['actual_sampling_scale'], 8)
             self.assertIn('MathJax_Main-Bold.otf', report['registered_alphabet_font_dependencies'])
             self.assertIn('MathJax_Math-Italic.otf', report['registered_alphabet_font_dependencies'])
-            self.assertTrue(Path(report['assets']['pdf']['path']).read_bytes().startswith(b'%PDF'))
+            self.assertTrue(asset_path(report, 'pdf', temp).read_bytes().startswith(b'%PDF'))
 
 
 @unittest.skipUnless(os.environ.get('FIGURE_REBUILD_TEX_ENGINE') and os.environ.get('FIGURE_REBUILD_MATH_FONTS'),
                      'Configure a real TeX engine and audited Computer Modern registry for integration tests')
 class RealFormulaRendering(unittest.TestCase):
+    def test_all_rotations_keep_svg_and_png_ink_frames_identical(self):
+        import xml.etree.ElementTree as ET
+        with tempfile.TemporaryDirectory() as temp:
+            frames = {}
+            for rotation in (0, 90, 180, 270):
+                report = f.render_formula(r'\mathbf p_{ij}', asset_id=f'rotated-{rotation}', output_dir=temp,
+                                          engine=os.environ['FIGURE_REBUILD_TEX_ENGINE'],
+                                          font_manifest=os.environ['FIGURE_REBUILD_MATH_FONTS'], confirmed=True,
+                                          font_size_px=24, rotation_deg=rotation)
+                svg_path = asset_path(report, 'svg', temp)
+                svg = svg_path.read_bytes()
+                proof = f.validate_outlined_svg(svg)
+                frames[rotation] = proof['viewbox'][2:]
+                for actual, expected in zip(frames[rotation], report['natural_display_size_px']):
+                    self.assertAlmostEqual(actual, expected, places=8)
+                self.assertEqual(report['vector_geometry']['rotation_deg'], rotation)
+                self.assertEqual(proof['intrinsic_pixels'], report['png_pixels'])
+                self.assertGreaterEqual(proof['intrinsic_rasterization_scale'] + 1e-7, 8)
+                self.assertEqual(report['vector_geometry']['intrinsic_pixel_policy'], 'match_png_fallback')
+                self.assertFalse(any(node.tag.endswith('}text') for node in ET.fromstring(svg).iter()))
+                self.assertEqual(report['schema_version'], '2')
+                self.assertEqual(set(report['assets']), {'tex', 'pdf', 'png', 'svg', 'log', 'dependencies.txt'})
+            self.assertEqual(frames[0], frames[180])
+            self.assertEqual(frames[90], frames[270])
+            self.assertEqual(frames[90], list(reversed(frames[0])))
+
     def test_pdf_fillstroke_changes_rendered_ink_and_retains_real_font(self):
         with tempfile.TemporaryDirectory() as temp:
             arguments = dict(output_dir=temp, engine=os.environ['FIGURE_REBUILD_TEX_ENGINE'],
@@ -161,14 +219,14 @@ class RealFormulaRendering(unittest.TestCase):
                              font_size_px=35.2)
             plain = f.render_formula(r'\mathbf G', asset_id='plain', **arguments)
             stroked = f.render_formula(r'\mathbf G', asset_id='stroked', stroke_width_px=.35, **arguments)
-            with Image.open(plain['assets']['png']['path']) as image:
+            with Image.open(asset_path(plain, 'png', temp)) as image:
                 plain_area = sum(index * count for index, count in enumerate(image.getchannel('A').histogram()))
-            with Image.open(stroked['assets']['png']['path']) as image:
+            with Image.open(asset_path(stroked, 'png', temp)) as image:
                 stroke_area = sum(index * count for index, count in enumerate(image.getchannel('A').histogram()))
             self.assertGreater(stroke_area, plain_area * 1.03)
             self.assertEqual(stroked['stroke_width_px'], .35)
             self.assertEqual(stroked['embedded_fonts'], plain['embedded_fonts'])
-            self.assertIn('2 Tr', Path(stroked['assets']['tex']['path']).read_text())
+            self.assertIn('2 Tr', asset_path(stroked, 'tex', temp).read_text())
 
     def test_fixed_design_uses_only_the_registered_10pt_programs(self):
         with tempfile.TemporaryDirectory() as temp:
@@ -190,14 +248,14 @@ class RealFormulaRendering(unittest.TestCase):
             self.assertEqual(report['rotation_deg'], 90)
             self.assertTrue(report['registered_font_dependencies'])
             for record in report['assets'].values():
-                self.assertEqual(f._sha(record['path']), record['sha256'])
-            with Image.open(report['assets']['png']['path']) as image:
+                self.assertEqual(f._sha(Path(temp) / record['path']), record['sha256'])
+            with Image.open(asset_path(report, 'png', temp)) as image:
                 self.assertEqual(image.mode, 'RGBA')
                 alpha = image.getchannel('A')
                 self.assertEqual(alpha.getbbox(), (0, 0, image.width, image.height))
                 self.assertLess(alpha.getextrema()[0], 255)
-            self.assertIn(r'\mathbf p^{*}_{ij}', Path(report['assets']['tex']['path']).read_text())
-            self.assertTrue(Path(report['assets']['pdf']['path']).read_bytes().startswith(b'%PDF'))
+            self.assertIn(r'\mathbf p^{*}_{ij}', asset_path(report, 'tex', temp).read_text())
+            self.assertTrue(asset_path(report, 'pdf', temp).read_bytes().startswith(b'%PDF'))
 
 
 if __name__ == '__main__':

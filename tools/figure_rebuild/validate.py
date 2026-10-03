@@ -47,7 +47,24 @@ def validate_placement(placement, canvas):
     return placement
 
 
-def validate(manifest, root, require_review=True):
+def validate(manifest, root, require_review=True, _materialized=False):
+    if not _materialized and isinstance(manifest, dict) and isinstance(manifest.get('objects'), list) and any(
+            isinstance(o, dict) and (o.get('kind') in ('formula', 'connector') or 'attach_to' in o or
+                                    o.get('source_kind') in ('formula', 'connector') or
+                                    any(k in o for k in ('formula_asset', 'connection_record', 'source_attachment')))
+            for o in manifest['objects']):
+        try:
+            try:
+                from .scene_compile import compile_scene
+            except ImportError:
+                from scene_compile import compile_scene
+            scene, audit = compile_scene(manifest, root)
+            result = validate(scene, root, require_review, _materialized=True)
+            result['semantic_counts'] = {'formula': len(audit['formulas']), 'connector': len(audit['connections'])}
+            return result
+        except (ValueError, OSError, KeyError, TypeError, ImportError) as exc:
+            return {'status': 'FAIL', 'errors': [str(exc)], 'warnings': [], 'object_counts': {},
+                    'native_editable_count': 0, 'raster_count': 0, 'fully_native': False}
     errors, warnings = [], []
     def check(ok, message):
         if not ok:
@@ -204,6 +221,12 @@ def validate(manifest, root, require_review=True):
             check(enum(obj.get('wrap', 'none'), {'none', 'square'}), 'Invalid text wrap: ' + label)
             for flag in ('bold', 'italic'):
                 if flag in obj: check(isinstance(obj[flag], bool), 'Invalid text ' + flag + ': ' + label)
+            for key in ('line_height', 'baseline_offset'):
+                if key in obj: check(finite(obj[key]) and (obj[key] >= 0 if key == 'baseline_offset' else obj[key] > 0), 'Invalid text ' + key + ': ' + label)
+            if 'insets' in obj:
+                inset = obj['insets']
+                check(isinstance(inset, dict) and not set(inset).difference({'left', 'right', 'top', 'bottom'}) and
+                      all(finite(v) and v >= 0 for v in inset.values()), 'Invalid text insets: ' + label)
             check(finite(obj.get('rotation', 0)), 'Invalid text rotation: ' + label)
             check(solid(style.get('fill', '#000000'), allow_none=False) and finite(opacity) and opacity > 0,
                   'Text must have visible solid fill and positive opacity: ' + label)

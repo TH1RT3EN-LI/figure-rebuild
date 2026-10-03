@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.5.0
+
+- Bind semantic formula objects to verified TeX/PDF/SVG/PNG/log/dependency assets and frozen hashes, with final-placement sampling checks and portable relative audit paths.
+- Embed outlined SVG formulas with the unchanged PNG fallback; keep mathematical editing in retained LaTeX source.
+- Require true registered regular/bold/italic/boldItalic faces; support explicit line height, insets and audited baseline calibration without synthetic substitutions.
+- Resolve stable-ID module connections and label attachments; export native connector endpoint references and safe attachment groups.
+- Apply revision/digest-bound local movement or box patches with preserved snapshots, lock checks and mandatory re-review.
+- Retain existing complex reference paths. General PDF/SVG import expansion and OCR are outside this release.
+
 ## 0.4.0
 
 - Support per-object native text families with explicitly supplied, hash-bound font profiles; validate family identity, face index and selected glyph coverage without silent substitution.

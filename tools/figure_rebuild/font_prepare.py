@@ -10,7 +10,20 @@ import re
 import unicodedata
 import shutil
 import tempfile
+from contextlib import ExitStack
 from pathlib import Path
+
+FONT_ROLES = ('regular', 'bold', 'italic', 'boldItalic')
+
+
+def font_role_for_text(item):
+    """Select a real face; style flags must never synthesize missing glyphs."""
+    for flag in ('bold', 'italic'):
+        if flag in item and not isinstance(item[flag], bool):
+            raise ValueError('Text ' + flag + ' must be boolean: ' + str(item.get('id', '(unknown)')))
+    if item.get('italic'):
+        return 'boldItalic' if item.get('bold') else 'italic'
+    return 'bold' if item.get('bold') else 'regular'
 
 
 def _hash(path):
@@ -23,13 +36,17 @@ def validate_profile(profile):
     family = profile['family']
     if any(character in family for character in ('"', '\\', '\n', '\r', '\x00')):
         raise ValueError('Font family contains unsupported quote/control characters')
-    for role in ('regular', 'bold'):
+    for role in FONT_ROLES:
+        if role not in profile and role not in ('regular', 'bold'):
+            continue
         face = profile.get(role)
         if not isinstance(face, dict) or not isinstance(face.get('path'), str):
             raise ValueError('Runtime fonts requires ' + role + '.path')
         source = Path(face['path'])
         if not source.is_absolute() or not source.is_file():
             raise ValueError('Font path must be an existing absolute file: ' + role)
+        if source.read_bytes()[:4] == b'ttcf' and 'face_index' not in face:
+            raise ValueError('TTC/OTC font requires an explicit registered face_index: ' + role)
         index = face.get('face_index', 0)
         if not isinstance(index, int) or isinstance(index, bool) or index < 0:
             raise ValueError('Font face_index must be a nonnegative integer: ' + role)
@@ -52,15 +69,21 @@ def validate_profile(profile):
     return profile
 
 
-def _families(font):
+def _names(font, name_ids):
     result = set()
     for item in font['name'].names:
-        if item.nameID in (1, 16):
+        if item.nameID in name_ids:
             try:
-                result.add(item.toUnicode().strip())
+                value = item.toUnicode().strip()
+                if value:
+                    result.add(value)
             except (UnicodeError, LookupError):
                 continue
     return result
+
+
+def _families(font):
+    return _names(font, (1, 16))
 
 
 def _visible_codepoints(text):
@@ -71,7 +94,7 @@ def _visible_codepoints(text):
 
 
 def _prepare_family(profile, output_dir, objects=()):
-    """Return an audit after saving explicit, static regular/bold render faces."""
+    """Audit and save explicitly registered static faces, without synthesis."""
     validate_profile(profile)
     try:
         from fontTools.ttLib import TTFont
@@ -82,19 +105,25 @@ def _prepare_family(profile, output_dir, objects=()):
         raise ValueError('Font output directory already exists; use a fresh build run')
     pending, audit = [], []
     family = profile['family']
-    for role in ('regular', 'bold'):
-        definition = profile[role]
-        source = Path(definition['path']).resolve()
-        index = definition.get('face_index', 0)
-        try:
-            # fontNumber identifies a TTC/OTC member.  Noncollections require 0.
-            is_collection = source.read_bytes()[:4] == b'ttcf'
-            if not is_collection and index != 0:
-                raise ValueError('Noncollection font face_index must be zero: ' + role)
-            font = TTFont(str(source), fontNumber=index if is_collection else -1, lazy=False)
-        except Exception as error:
-            raise ValueError('Cannot open configured font face ' + role + ': ' + str(error)) from error
-        try:
+    for item in objects:
+        role = font_role_for_text(item)
+        if role not in profile:
+            raise ValueError('Missing real font face ' + family + ' ' + role + ' for ' + item['id'] + '; no synthetic style or fallback permitted')
+    with ExitStack() as opened_fonts:
+        for role in FONT_ROLES:
+            if role not in profile:
+                continue
+            definition = profile[role]
+            source = Path(definition['path']).resolve()
+            index = definition.get('face_index', 0)
+            try:
+                # fontNumber identifies a TTC/OTC member. Noncollections require 0.
+                is_collection = source.read_bytes()[:4] == b'ttcf'
+                if not is_collection and index != 0:
+                    raise ValueError('Noncollection font face_index must be zero: ' + role)
+                font = opened_fonts.enter_context(TTFont(str(source), fontNumber=index if is_collection else -1, lazy=False))
+            except Exception as error:
+                raise ValueError('Cannot open configured font face ' + role + ': ' + str(error)) from error
             families = _families(font)
             if family.casefold() not in {name.casefold() for name in families}:
                 raise ValueError('Configured font family does not match ' + role + ' face: ' + ', '.join(sorted(families)))
@@ -103,13 +132,20 @@ def _prepare_family(profile, output_dir, objects=()):
             if 'OS/2' not in font:
                 raise ValueError('Font face needs OS/2 weight metadata: ' + role)
             weight = font['OS/2'].usWeightClass
-            if not 1 <= weight <= 1000 or (role == 'bold') != (weight >= 600):
+            bold = role in ('bold', 'boldItalic')
+            italic = role in ('italic', 'boldItalic')
+            if not 1 <= weight <= 1000 or bold != (weight >= 600):
                 raise ValueError('Configured font weight does not match ' + role + ' role: ' + str(weight))
-            if font['OS/2'].fsSelection & 1 or font['head'].macStyle & 2:
-                raise ValueError('Configure upright font faces; italic text uses its native style flag: ' + role)
+            # Read all real-face indicators. Some legitimate fonts use one
+            # style bit only, so absence of one flag alone is not synthesis.
+            selection, mac_style = font['OS/2'].fsSelection, font['head'].macStyle
+            angle = font['post'].italicAngle if 'post' in font else 0
+            slanted = bool(selection & (1 | 512) or mac_style & 2 or angle)
+            if italic != slanted:
+                raise ValueError('Configured font style does not match ' + role + ' role; expected ' + ('italic' if italic else 'upright') + ' face')
             cmap = font.getBestCmap() or {}
             text_objects = [item for item in objects if item.get('kind') == 'text'
-                            and ('bold' if item.get('bold') else 'regular') == role]
+                            and font_role_for_text(item) == role]
             # Comparison labels must render without falling back to a system font.
             if role == 'regular':
                 text_objects.append({'id': 'comparison-labels', 'text': 'Reference Editable PPT render Pixel difference'})
@@ -123,29 +159,33 @@ def _prepare_family(profile, output_dir, objects=()):
             pending.append((font, renderer))
             audit.append({'role': role, 'family': family, 'path': str(source),
                           'face_index': index, 'sha256': _hash(source),
-                          'weight_class': weight,
+                          'weight_class': weight, 'bold': bold, 'italic': italic,
+                          'style_class': 'oblique' if selection & 512 else ('italic' if slanted else 'upright'),
+                          'style_names': sorted(_names(font, (2, 17))),
+                          'postscript_names': sorted(_names(font, (6,))),
+                          'italic_angle': float(angle),
+                          'style_metadata': {'fs_selection': selection, 'mac_style': mac_style},
+                          'font_metrics': {'units_per_em': font['head'].unitsPerEm,
+                              'hhea_ascent': font['hhea'].ascent, 'hhea_descent': font['hhea'].descent,
+                              'hhea_line_gap': font['hhea'].lineGap,
+                              'typo_ascent': font['OS/2'].sTypoAscender,
+                              'typo_descent': font['OS/2'].sTypoDescender,
+                              'typo_line_gap': font['OS/2'].sTypoLineGap},
                           'family_names': sorted(families), 'renderer': str(renderer),
-                          'glyph_coverage_checked': True, 'binary_source': 'user_provided'})
-        except Exception:
-            font.close()
-            for prepared_font, _ in pending:
-                if prepared_font is not font:
-                    prepared_font.close()
-            raise
-    output_dir.mkdir(parents=True)
-    try:
+                          'glyph_coverage_checked': True,
+                          'checked_object_ids': [item['id'] for item in text_objects],
+                          'binary_source': 'user_provided'})
+        output_dir.mkdir(parents=True)
         for font, renderer in pending:
             font.save(str(renderer))
             next(item for item in audit if item['renderer'] == str(renderer))['renderer_sha256'] = _hash(renderer)
-    finally:
-        for font, _ in pending:
-            font.close()
     return audit
 
 
 def prepare_fonts(profile, output_dir, objects=()):
     """Prepare explicit families atomically, without silently substituting one."""
     validate_profile(profile)
+    objects = list(objects)
     output_dir = Path(output_dir)
     if output_dir.exists():
         raise ValueError('Font output directory already exists; use a fresh build run')

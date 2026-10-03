@@ -38,7 +38,7 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
         raise ValueError('Font audit must contain an array of configured faces')
     faces = {}
     for face in audit or []:
-        if not isinstance(face, dict) or face.get('role') not in ('regular', 'bold') or not isinstance(face.get('renderer'), str):
+        if not isinstance(face, dict) or face.get('role') not in ('regular', 'bold', 'italic', 'boldItalic') or not isinstance(face.get('renderer'), str):
             raise ValueError('Invalid configured font audit face')
         face_family = face.get('family', family)
         if not isinstance(face_family, str) or not face_family.strip():
@@ -49,7 +49,9 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
         faces[key] = face['renderer']
     def selected_face(obj):
         requested = obj.get('font_family', family)
-        role = 'bold' if obj.get('bold') else 'regular'
+        role = ('boldItalic' if obj.get('bold') else 'italic') if obj.get('italic') else ('bold' if obj.get('bold') else 'regular')
+        if obj.get('italic') and not faces:
+            raise ValueError('True italic requires an explicit audited font face')
         if requested == family and not faces:
             return requested, bold_font_path if obj.get('bold') and bold_font_path else font_path
         if (requested, role) not in faces:
@@ -75,13 +77,15 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
         elif o['kind']=='text':
             size=o['font_size'];text_family,face=selected_face(o)
             font=ImageFont.truetype(str(face),max(1,round(size)));ascent,descent=font.getmetrics()
-            lines=text_lines(o['text'],font,o['box']['width'] if o.get('wrap')=='square' and 'box' in o else None)
-            line_height=size*1.2;block_height=ascent+descent+(len(lines)-1)*line_height
+            inset={**dict(left=0,right=0,top=0,bottom=0),**o.get('insets',{})}
+            lines=text_lines(o['text'],font,o['box']['width']-inset['left']-inset['right'] if o.get('wrap')=='square' and 'box' in o else None)
+            line_height=o.get('line_height',size*1.2);block_height=ascent+descent+(len(lines)-1)*line_height
             if 'anchor' in o: x,y=o['anchor']['x'],o['anchor']['y']
             else:
-                b=o['box'];align=o.get('alignment','left');x=b['x']+(b['width']/2 if align=='center' else b['width'] if align=='right' else 0)
-                va=o.get('vertical_alignment','top');offset=(b['height']-block_height)/2 if va=='middle' else b['height']-block_height if va=='bottom' else 0
-                y=b['y']+offset+ascent
+                b=o['box'];align=o.get('alignment','left');w=b['width']-inset['left']-inset['right'];h=b['height']-inset['top']-inset['bottom']
+                x=b['x']+inset['left']+(w/2 if align=='center' else w if align=='right' else 0)
+                va=o.get('vertical_alignment','top');offset=(h-block_height)/2 if va=='middle' else h-block_height if va=='bottom' else 0
+                y=b['y']+inset['top']+offset+o.get('baseline_offset',ascent)
             attrs.update(x=str(x),y=str(y),fill=s.get('fill','#000000'))
             attrs['font-family']=text_family;attrs['font-size']=str(size);attrs['font-weight']='bold' if o.get('bold') else 'normal';attrs['font-style']='italic' if o.get('italic') else 'normal';attrs['text-anchor']={'left':'start','center':'middle','right':'end'}[o.get('alignment','left')]
             if o.get('rotation'):
