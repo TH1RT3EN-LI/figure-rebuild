@@ -10,7 +10,10 @@ from unittest.mock import patch
 
 from PIL import Image
 from figure_rebuild import native_preview as native
-from tests.test_package import fixture, slide, write_archive
+if __package__:
+    from .test_package import fixture, slide, write_archive
+else:
+    from test_package import fixture, slide, write_archive
 
 try:
     import pymupdf

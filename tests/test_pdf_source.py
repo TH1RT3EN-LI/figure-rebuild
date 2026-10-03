@@ -239,7 +239,7 @@ class PdfSourceTests(unittest.TestCase):
 
     def test_clip_crossing_rejected_and_wholly_outside_skipped(self):
         prefix='<defs><clipPath id="c"><rect x="0" y="0" width="10" height="10"/></clipPath></defs>'
-        crossed=source(prefix+'<path clip-path="url(#c)" d="M2 2L12 3"/>')
+        crossed=source(prefix+'<path clip-path="url(#c)" fill="none" stroke="#000000" d="M2 2L12 3"/>')
         with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
             outline_paths(crossed,glyph_mode="outline")
         outside=source(prefix+'<path clip-path="url(#c)" d="M20 20L25 25"/>')
@@ -420,9 +420,9 @@ class PdfSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
             outline_paths(doc,glyph_mode="outline",region=(-1,20,80,80))
 
-    def test_partial_stroke_or_nonrectangle_fill_still_requires_geometry_clipping(self):
+    def test_partial_stroke_concave_or_curved_fill_still_requires_geometry_clipping(self):
         for path in ('<path stroke="black" d="M0 0H10V10H0Z"/>',
-                     '<path d="M0 0L10 0L5 10Z"/>',
+                     '<path d="M0 0L10 0L3 4L5 10Z"/>',
                      '<path d="M0 0C10 0 10 10 0 10Z"/>'):
             with self.subTest(path=path),self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
                 outline_paths(source(path),glyph_mode="outline",region=(2,2,8,8))

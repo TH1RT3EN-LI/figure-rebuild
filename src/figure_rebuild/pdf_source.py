@@ -24,6 +24,7 @@ from fontTools.svgLib.path import parse_path
 from .pdf_dash import PdfDashError, lower_dashes
 from .pdf_fill import prove_evenodd_nonzero_equivalent
 from .pdf_fill_clip import clip_nonzero_annular_fill
+from .pdf_rect_clip import clip_convex_fill_to_rect
 from .pdf_clip import prove_clip_box_relation
 from .pdf_stroke_bounds import PdfStrokeBoundsError, stroke_envelope
 
@@ -548,7 +549,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
     ``glyph_mode='outline'`` is required, including for ordinary labels. It
     produces editable geometry, never editable text or recovered semantics.
     Clips/ROI require disjoint/no-op proofs or an explicit supported geometric
-    intersection. Filled rectangles and a single nonzero annular fill clipped
+    intersection. Convex filled polygon contours and a single nonzero annular fill clipped
     by a strictly nested contour have bounded exact intersection support.
     Cubic boundaries use exact rational hull separation and constant winding;
     no output path is flattened. Other crossing clips, images and group
@@ -666,6 +667,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             if region is not None: rectangles.append(region)
             geometry_commands = paint.commands
             rectangle_intersection = None
+            polygon_intersection = None
             annular_intersection = None
             if rectangles:
                 effective = (max(r[0] for r in rectangles), max(r[1] for r in rectangles),
@@ -704,6 +706,22 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                         x0, y0, x1, y1 = clipped
                         geometry_commands = (("M", (x0,y0)), ("L", (x1,y0)), ("L", (x1,y1)), ("L", (x0,y1)), ("Z",))
                         bounds = clipped
+                if (fill != "none" and stroke == "none" and
+                        (bounds[0] < effective[0] or bounds[1] < effective[1] or
+                         bounds[2] > effective[2] or bounds[3] > effective[3])):
+                    intersection = clip_convex_fill_to_rect(geometry_commands, effective)
+                    if intersection is not None:
+                        polygon_intersection = {**intersection["proof"],
+                                                "original_source_fill_rule": style["fill-rule"]}
+                        geometry_commands = intersection["commands"]
+                        if not geometry_commands:
+                            skipped.append({"source_id": paint.source_id,
+                                            "reason": "zero-area convex fill rectangle intersection",
+                                            "polygon_fill_intersection": polygon_intersection})
+                            continue
+                        controls = [p for command in geometry_commands for p in command[1:]]
+                        bounds = (min(p[0] for p in controls), min(p[1] for p in controls),
+                                  max(p[0] for p in controls), max(p[1] for p in controls))
             for context in complex_contexts:
                 try:
                     clip_proofs.append(_complex_clip_relation(context, bounds))
@@ -806,6 +824,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
                           "clip_geometry_proofs": clip_proofs,
                           "rectangle_fill_intersection": rectangle_intersection,
+                          "polygon_fill_intersection": polygon_intersection,
                           "annular_fill_intersection": annular_intersection,
                           "stroke_native_fields": part_stroke_fields,
                           "stroke_bounds_proof": ({
