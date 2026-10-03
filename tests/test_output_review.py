@@ -101,6 +101,136 @@ class OutputReviewChecks(unittest.TestCase):
         self.write_json(self.run / 'delivery.json', delivery)
         return audit
 
+    def add_diagnostic_provenance(self, objects=None, *, declared_literal=False):
+        from figure_rebuild.scene_compile import compile_scene
+        manifest = json.loads((self.run / 'manifest-snapshot.json').read_text())
+        manifest['canvas'] = {'width': 200, 'height': 100}
+        manifest['objects'] = objects or []
+        if declared_literal:
+            manifest['source_evidence'] = {'schema_version': 1, 'source_sha256': manifest['source']['sha256'],
+                'literals': [{'id': 'source-reading', 'status': 'confirmed', 'object_ids': ['label'], 'text': 'ABC',
+                              'source_region': {'x': 10, 'y': 10, 'width': 40, 'height': 20}}], 'connections': []}
+        resolved, semantic = compile_scene(manifest, self.run)
+        self.write_json(self.run / 'manifest-snapshot.json', manifest)
+        self.write_json(self.run / 'resolved-scene.json', resolved)
+        source = semantic['source_content']
+        measured = [{'id': obj['id']} for obj in resolved['objects'] if obj['kind'] == 'text']
+        counts = {'resolved_objects': len(resolved['objects']), 'live_text_objects': len(measured),
+                  'measured_live_text_objects': len(measured),
+                  'unmeasured_path_objects': sum(obj['kind'] == 'path' for obj in resolved['objects']),
+                  'unmeasured_image_objects': sum(obj['kind'] == 'image' for obj in resolved['objects'])}
+        text_fit = {'schema_version': 1, 'status': 'PASS' if measured else 'NOT_APPLICABLE',
+                    'scope': 'measured_live_text_only', 'counts': counts, 'objects': measured,
+                    'visual_verification_required': True}
+        for filename, data in [('source-content-audit.json', source), ('semantic-audit.json', semantic), ('text-fit.json', text_fit)]:
+            self.write_json(self.run / filename, data)
+        audit = self.add_preview_provenance()
+        config = json.loads((self.run / 'build-config.json').read_text())
+        config['diagnostic_provenance_version'] = 1
+        self.write_json(self.run / 'build-config.json', config)
+        coverage = {'schema_version': 1, 'inputs': {
+            role: review._binding(self.run / filename) for role, filename in [
+                ('source', 'assets/source/original.png'), ('manifest', 'manifest-snapshot.json'),
+                ('resolved_scene', 'resolved-scene.json'), ('pptx', 'validated-output/reconstruction.pptx')]},
+            'reports': {
+                'source_content_audit': {'artifact': review._binding(self.run / 'source-content-audit.json'),
+                    'status': source['status'], 'scope': 'declared_invariants_only', 'counts': source['coverage'] | {}},
+                'semantic_audit': {'artifact': review._binding(self.run / 'semantic-audit.json'),
+                    'status': 'RECORDED' if semantic['formulas'] or semantic['connections'] else 'NOT_PROVIDED',
+                    'scope': 'declared_formula_connection_records_only',
+                    'counts': {'formula_records': len(semantic['formulas']), 'connection_records': len(semantic['connections'])}},
+                'text_fit': {'artifact': review._binding(self.run / 'text-fit.json'), 'status': text_fit['status'],
+                             'scope': text_fit['scope'], 'counts': counts}},
+            'semantic_recognition_performed': False, 'source_fidelity_evaluated': False, 'visual_acceptance': 'pending'}
+        coverage['reports']['source_content_audit']['counts'].pop('scope')
+        audit['diagnostic_coverage'] = coverage
+        self.save_diagnostic_audit(audit)
+        return audit
+
+    def save_diagnostic_audit(self, audit):
+        self.write_json(self.run / 'render-audit.json', audit)
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        delivery['render_audit_sha256'] = review._binding(self.run / 'render-audit.json')['sha256']
+        delivery['diagnostic_coverage'] = audit['diagnostic_coverage']
+        self.write_json(self.run / 'delivery.json', delivery)
+
+    def test_zero_live_text_is_not_applicable_and_not_semantic_approval(self):
+        self.add_diagnostic_provenance([{'id': 'outline', 'kind': 'path',
+            'commands': [{'moveTo': {'x': 1, 'y': 1}}, {'lineTo': {'x': 10, 'y': 10}}]}])
+        record = self.observed()
+        coverage = record['diagnostic_coverage']
+        self.assertEqual(coverage['reports']['text_fit']['status'], 'NOT_APPLICABLE')
+        self.assertEqual(coverage['reports']['text_fit']['counts']['unmeasured_path_objects'], 1)
+        self.assertEqual(coverage['reports']['source_content_audit']['status'], 'NOT_PROVIDED')
+        self.assertEqual(coverage['reports']['semantic_audit']['status'], 'NOT_PROVIDED')
+        self.assertFalse(coverage['semantic_recognition_performed'])
+        self.assertTrue({'source_content_audit', 'semantic_audit', 'text_fit'} <= set(record['bindings']))
+        review.verify_output_review(self.run, record)
+
+    def test_live_text_and_declared_source_constraint_retain_limited_scope(self):
+        self.add_diagnostic_provenance([{'id': 'label', 'kind': 'text', 'text': 'ABC', 'font_size': 12,
+            'box': {'x': 10, 'y': 10, 'width': 40, 'height': 20}}], declared_literal=True)
+        record = self.observed()
+        reports = record['diagnostic_coverage']['reports']
+        self.assertEqual(reports['text_fit']['status'], 'PASS')
+        self.assertEqual(reports['text_fit']['counts']['measured_live_text_objects'], 1)
+        self.assertEqual(reports['source_content_audit']['status'], 'PASS')
+        self.assertEqual(reports['source_content_audit']['counts']['literals_checked'], 1)
+        self.assertEqual(reports['source_content_audit']['scope'], 'declared_invariants_only')
+        review.verify_output_review(self.run, record)
+
+    def test_diagnostic_sidecar_changes_missing_files_and_review_scope_fail(self):
+        self.add_diagnostic_provenance()
+        record = self.observed()
+        for role in ('source_content_audit', 'semantic_audit', 'text_fit'):
+            path = Path(record['bindings'][role]['path']); original = path.read_bytes()
+            for data in (b'{}', None):
+                if data is None: path.unlink()
+                else: path.write_bytes(data)
+                with self.subTest(role=role, data=data), self.assertRaises(ValueError):
+                    review.verify_output_review(self.run, record)
+                path.write_bytes(original)
+        for field, value in [('semantic_recognition_performed', True), ('source_fidelity_evaluated', True), ('visual_acceptance', 'accepted')]:
+            altered = copy.deepcopy(record); altered['diagnostic_coverage'][field] = value
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'coverage'):
+                review.verify_output_review(self.run, altered)
+        del record['diagnostic_coverage']
+        with self.assertRaisesRegex(ValueError, 'coverage'): review.verify_output_review(self.run, record)
+
+    def test_rebound_diagnostics_must_still_match_scene_and_measured_ids(self):
+        original = self.add_diagnostic_provenance()
+        original_text = json.loads((self.run / 'text-fit.json').read_text())
+        for kind in ('zero_pass', 'measured_id', 'integer_type', 'scope'):
+            audit = copy.deepcopy(original); text_fit = copy.deepcopy(original_text)
+            if kind == 'zero_pass': text_fit['status'] = 'PASS'
+            elif kind == 'measured_id': text_fit['objects'] = [{'id': 'invented-label'}]
+            elif kind == 'integer_type': text_fit['counts']['resolved_objects'] = False
+            else: text_fit['scope'] = 'all_visible_text'
+            self.write_json(self.run / 'text-fit.json', text_fit)
+            report = audit['diagnostic_coverage']['reports']['text_fit']
+            report.update(artifact=review._binding(self.run / 'text-fit.json'), status=text_fit['status'], scope=text_fit['scope'], counts=text_fit['counts'])
+            self.save_diagnostic_audit(audit)
+            with self.subTest(kind=kind), self.assertRaises(ValueError): review.prepare_output_review(self.run)
+        self.write_json(self.run / 'text-fit.json', original_text)
+        audit = copy.deepcopy(original)
+        source = json.loads((self.run / 'source-content-audit.json').read_text()); source['status'] = 'PASS'
+        self.write_json(self.run / 'source-content-audit.json', source)
+        semantic = json.loads((self.run / 'semantic-audit.json').read_text()); semantic['source_content'] = source
+        self.write_json(self.run / 'semantic-audit.json', semantic)
+        for role, filename in [('source_content_audit', 'source-content-audit.json'), ('semantic_audit', 'semantic-audit.json')]:
+            audit['diagnostic_coverage']['reports'][role]['artifact'] = review._binding(self.run / filename)
+        audit['diagnostic_coverage']['reports']['source_content_audit']['status'] = 'PASS'
+        self.save_diagnostic_audit(audit)
+        with self.assertRaisesRegex(ValueError, 'declared constraints'): review.prepare_output_review(self.run)
+
+    def test_legacy_runs_keep_their_original_binding_contract(self):
+        before = review.prepare_output_review(self.run)
+        for filename in ('source-content-audit.json', 'semantic-audit.json', 'text-fit.json'):
+            self.write_json(self.run / filename, {'legacy': 'not automatically rebound'})
+        after = review.prepare_output_review(self.run)
+        self.assertEqual(before, after)
+        self.assertNotIn('diagnostic_coverage', after)
+
     def test_new_build_review_binds_renderer_without_granting_playback_verification(self):
         self.add_preview_provenance()
         record = self.observed()

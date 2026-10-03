@@ -58,6 +58,7 @@ class BuildInputChecks(unittest.TestCase):
             self.assertEqual(Path(config['job']),self.job.resolve())
             self.assertEqual(config['preview_backend'], 'artifact')
             self.assertEqual(config['preview_provenance_version'], 1)
+            self.assertEqual(config['diagnostic_provenance_version'], 1)
             frozen=Path(config['asset_root'])/'original.png'
             self.assertEqual(cli.digest(frozen),self.m['source']['sha256'])
             (self.job/'original.png').write_bytes(b'changed after reservation')

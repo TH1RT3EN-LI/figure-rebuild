@@ -411,7 +411,8 @@ def build(a):
         save(snapshot, data)
         save(run / 'manifest-validation.json', report)
         config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
-                  'preview_backend': preview_backend, 'preview_provenance_version': 1}
+                  'preview_backend': preview_backend, 'preview_provenance_version': 1,
+                  'diagnostic_provenance_version': 1}
         if base_config:
             snap = run / 'base-snapshot.pptx'
             shutil.copy2(base, snap)

@@ -16,6 +16,7 @@ const {job,run,runtime,output}=config;
 const previewBackend=config.preview_backend??'artifact';
 if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
+if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
@@ -69,7 +70,8 @@ for(const object of ordered.filter(object=>object.kind==='text')){
  const rendererBaseline=measurePresentationBaseline(object,{context:rendererContext,fontMetricsProvider:defaultFontMetricsProvider,paintBaselineCompensation:skiaPaintBaselineCompensationPx,scale,defaultFamily:fontFamily});
  measuredText.set(object.id,fittedTextBox(object,text=>ctx.measureText(text),sourceCanvas,{rendererBaseline}));
 }
-await fs.writeFile(path.join(run,'text-fit.json'),JSON.stringify({status:'PASS',font_family:fontFamily,visual_verification_required:true,objects:[...measuredText].map(([id,result])=>({id,...result}))},null,2));
+const textFitReport={schema_version:1,status:measuredText.size?'PASS':'NOT_APPLICABLE',scope:'measured_live_text_only',counts:{resolved_objects:ordered.length,live_text_objects:ordered.filter(o=>o.kind==='text').length,measured_live_text_objects:measuredText.size,unmeasured_path_objects:ordered.filter(o=>o.kind==='path').length,unmeasured_image_objects:ordered.filter(o=>o.kind==='image').length},font_family:fontFamily,visual_verification_required:true,limitations:['Measures declared live text layout only; glyph outlines and text inside images are not measured.','Font metrics and layout checks do not establish source-content correctness or native application appearance.'],objects:[...measuredText].map(([id,result])=>({id,...result}))};
+await fs.writeFile(path.join(run,'text-fit.json'),JSON.stringify(textFitReport,null,2));
 runPython('export_svg',['--manifest',resolvedManifest,'--asset-root',assetRoot,'--output',path.join(run,'reconstructed.svg'),'--font',fontAudit[0].renderer,'--bold-font',fontAudit[1].renderer,'--family',fontFamily,'--font-audit',path.join(run,'font-audit.json')],{stdio:'pipe'});
 const p=Presentation.create({slideSize:{width:slideCanvas.width,height:slideCanvas.height}});
 const slide=p.slides.add();slide.background.fill=sourceCanvas.background??'#FFFFFF';
@@ -137,6 +139,16 @@ if(varyingGradientAlpha.length)previewLimitations.push({code:'gradient_stop_opac
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const bindFile=async file=>({path:path.resolve(file),sha256:createHash('sha256').update(await fs.readFile(file)).digest('hex')});
 const finalPptBinding=await bindFile(checkedOutput);
+let diagnosticCoverage;
+if(config.diagnostic_provenance_version===1){
+ const sourceAudit=JSON.parse(await fs.readFile(path.join(run,'source-content-audit.json'),'utf8'));
+ const semanticAudit=JSON.parse(await fs.readFile(path.join(run,'semantic-audit.json'),'utf8'));
+ diagnosticCoverage={schema_version:1,inputs:{source:await bindFile(originalSource),manifest:await bindFile(config.manifest),resolved_scene:await bindFile(resolvedManifest),pptx:finalPptBinding},reports:{
+  source_content_audit:{artifact:await bindFile(path.join(run,'source-content-audit.json')),status:sourceAudit.status,scope:'declared_invariants_only',counts:{literals_checked:sourceAudit.coverage.literals_checked,connections_checked:sourceAudit.coverage.connections_checked}},
+  semantic_audit:{artifact:await bindFile(path.join(run,'semantic-audit.json')),status:semanticAudit.formulas.length+semanticAudit.connections.length?'RECORDED':'NOT_PROVIDED',scope:'declared_formula_connection_records_only',counts:{formula_records:semanticAudit.formulas.length,connection_records:semanticAudit.connections.length}},
+  text_fit:{artifact:await bindFile(path.join(run,'text-fit.json')),status:textFitReport.status,scope:textFitReport.scope,counts:textFitReport.counts}
+ },semantic_recognition_performed:false,source_fidelity_evaluated:false,visual_acceptance:'pending'};
+}
 let previewAudit;
 if(previewBackend==='libreoffice'){
  previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
@@ -163,7 +175,7 @@ for(const [role,filename,scale] of [['preview_1x','preview-1x.png',1],['preview_
 }
 previewBindings.preview_smooth_1x.derivation={source_role:'preview_4x',source_sha256:previewBindings.preview_4x.sha256,kernel:'lanczos3',target_size:[previewBindings.preview_smooth_1x.width,previewBindings.preview_smooth_1x.height],is_raw_preview:false};
 const renderAuditPath=path.join(run,'render-audit.json');
-await fs.writeFile(renderAuditPath,JSON.stringify({...previewAudit,schema_version:1,preview_backend:previewBackend,input_pptx:finalPptBinding,previews:previewBindings},null,2));
+await fs.writeFile(renderAuditPath,JSON.stringify({...previewAudit,schema_version:1,preview_backend:previewBackend,input_pptx:finalPptBinding,previews:previewBindings,...(diagnosticCoverage?{diagnostic_coverage:diagnosticCoverage}:{})},null,2));
 // Use resolved source-coordinate frames: SVG text may only have a baseline
 // anchor, and image contain fitting can differ from its requested box.
 const comparisonScene=path.join(run,'comparison-scene.json');
@@ -188,6 +200,7 @@ const editability=JSON.parse(await fs.readFile(path.join(run,'editability.json')
 const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,formula_count:editability.formula_count??0,svg_formula_count:editability.svg_formula_count??0,native_connector_count:editability.native_connectors?.length??0,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
 delivery.preview_backend=previewBackend;
 delivery.render_audit_sha256=(await bindFile(renderAuditPath)).sha256;
+if(diagnosticCoverage)delivery.diagnostic_coverage=diagnosticCoverage;
 const deliveryCandidate=path.join(run,'delivery-candidate.json');await fs.writeFile(deliveryCandidate,JSON.stringify(delivery,null,2));
 runPython('publish',['--source',checkedOutput,'--output',output,'--receipt',path.join(run,'delivery.json'),'--data',deliveryCandidate],{stdio:'pipe'});
 console.log(JSON.stringify({output,objects:objectMap.length,nativeGroups:editability.native_groups.length,preview:path.join(run,'preview-1x.png')}));

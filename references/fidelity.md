@@ -61,3 +61,5 @@ figure-rebuild review-output --run JOB/build/run-001 --verify JOB/build/run-001/
 记录时不会刷新旧哈希：源图、清单、解析场景、PPT 或预览发生变化会拒绝套用旧审查。开放问题可以保存，严格核验选项会阻断尚未解决的问题。后续审阅使用新文件名，保留旧记录。用户验收与原生 PowerPoint/WPS 验证独立记录；构建预览不证明原生应用播放或编辑通过。
 
 对照诊断同时检查整张源画布的网格和对象局部。`coverage` 明确记录分析缩放、预算和遗漏，网格覆盖不等于每处细节已经人工确认；未经配准的原始误差和实际内容核对始终保留。
+
+新版构建的 `diagnostic_coverage` 绑定本次 source-content、semantic 和 text-fit 三份回执，以及源图、清单、解析场景和最终 PPT。文字度量没有 live text 时为 `NOT_APPLICABLE`；有 live text 时也只覆盖列出的实际测量对象。字形路径与图片中的文字不因此通过文字检查。semantic 的 `RECORDED` 仅表示已记录声明的公式/连接数据，未声明时为 `NOT_PROVIDED`，两者都不是独立语义识别。审查核对回执内容、对象数和身份；旧版本没有这项证据时不补造覆盖声明。

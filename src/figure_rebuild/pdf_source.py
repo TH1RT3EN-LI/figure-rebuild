@@ -25,6 +25,7 @@ from .pdf_dash import PdfDashError, lower_dashes
 from .pdf_fill import prove_evenodd_nonzero_equivalent
 from .pdf_fill_clip import clip_nonzero_annular_fill
 from .pdf_rect_clip import clip_convex_fill_to_rect
+from .pdf_line_clip import clip_axis_butt_stroke_to_rect
 from .pdf_clip import prove_clip_box_relation
 from .pdf_stroke_bounds import PdfStrokeBoundsError, stroke_envelope
 
@@ -668,6 +669,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             geometry_commands = paint.commands
             rectangle_intersection = None
             polygon_intersection = None
+            axis_stroke_intersection = None
             annular_intersection = None
             if rectangles:
                 effective = (max(r[0] for r in rectangles), max(r[1] for r in rectangles),
@@ -690,6 +692,36 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                         "source_side_envelopes": [list(side) for side in side_bounds],
                                         "rectangular_clip_intersection": list(effective)})
                         continue
+                if (fill == "none" and stroke != "none" and
+                        (bounds[0] < effective[0] or bounds[1] < effective[1] or
+                         bounds[2] > effective[2] or bounds[3] > effective[3])):
+                    intersection = clip_axis_butt_stroke_to_rect(
+                        geometry_commands, effective, source_transform=paint.transform,
+                        stroke_width=width, fill=fill, linecap=cap,
+                        dasharray=style["stroke-dasharray"], linejoin=join)
+                    if intersection is not None:
+                        relation = intersection["relation"]
+                        axis_stroke_intersection = {**intersection["proof"], "relation": relation}
+                        if relation == "outside":
+                            skipped.append({"source_id": paint.source_id,
+                                            "reason": "zero-area finite butt stroke rectangle intersection",
+                                            "axis_butt_stroke_intersection": axis_stroke_intersection})
+                            continue
+                        if relation == "inside":
+                            boxes = [tuple(Fraction(v) for v in row["complete_butt_stroke_bounds_exact"])
+                                     for row in intersection["proof"]["subpaths"]]
+                            bounds = tuple(_outward_float(
+                                (max if index >= 2 else min)(box[index] for box in boxes), index >= 2)
+                                for index in range(4))
+                        else:
+                            geometry_commands = intersection["commands"]
+                            # Keep all derived contours in one paint. Original
+                            # stroke alpha applies once, including compound
+                            # subpaths; fill-opacity was irrelevant upstream.
+                            fill, stroke, fa = stroke, "none", sa
+                            controls = [p for command in geometry_commands for p in command[1:]]
+                            bounds = (min(p[0] for p in controls), min(p[1] for p in controls),
+                                      max(p[0] for p in controls), max(p[1] for p in controls))
                 if fill != "none" and stroke == "none" and _axis_rectangle(paint.commands):
                     clipped = (max(bounds[0], effective[0]), max(bounds[1], effective[1]),
                                min(bounds[2], effective[2]), min(bounds[3], effective[3]))
@@ -789,7 +821,9 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                               tolerance=dash_tolerance/source_scale)
                 except PdfDashError as exc:
                     raise UnsupportedPdfPaintError(str(exc)) from exc
-            variants = [(paint.source_id, geometry_commands, fill, stroke, 0, "original")]
+            variants = [(paint.source_id, geometry_commands, fill, stroke, 0,
+                         "clipped-stroke-fill" if axis_stroke_intersection and
+                         axis_stroke_intersection["relation"] == "intersection" else "original")]
             if dash_result is not None:
                 variants = []
                 if fill != "none":
@@ -818,16 +852,23 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "source_element_id": paint.source_element_id, "resource_id": paint.resource_id,
                           "reference_chain": list(paint.reference_chain), "source_kind": paint.kind,
                           "source_text_unverified": paint.source_text, "text_editable": False,
-                          "geometry_method": "source Bezier controls; exact affine and quadratic degree elevation",
+                          "geometry_method": ("finite source butt stroke lowered to one rectangular compound fill"
+                                              if part == "clipped-stroke-fill" else
+                                              "source Bezier controls; exact affine and quadratic degree elevation"),
                           "source_transform": list(paint.transform), "target_transform": list(transform),
                           "clip_context": list(paint.clips), "group_context": list(paint.groups),
                           "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
                           "clip_geometry_proofs": clip_proofs,
                           "rectangle_fill_intersection": rectangle_intersection,
                           "polygon_fill_intersection": polygon_intersection,
+                          "axis_butt_stroke_intersection": axis_stroke_intersection,
                           "annular_fill_intersection": annular_intersection,
                           "stroke_native_fields": part_stroke_fields,
                           "stroke_bounds_proof": ({
+                              "centerline": "independent_source_axis_segments",
+                              "support": "union_of_exact_finite_butt_stroke_rectangles",
+                              "source_bounds_outward": list(bounds),
+                          } if part_stroke_fields and axis_stroke_intersection else {
                               "centerline": "source_Bezier_control_hull",
                               "support": "style_aware_affine_support_rounded_outward",
                               "axis_support_exact_rationals": [str(v) for v in envelope],

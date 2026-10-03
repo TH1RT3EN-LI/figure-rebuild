@@ -226,6 +226,79 @@ def _preview_provenance(run, config, paths):
     return audit
 
 
+def _same_json(left, right):
+    # Preserve JSON value types: a boolean or 1.0 is not an integer count.
+    return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(right, sort_keys=True, allow_nan=False)
+
+
+def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
+    """Bind limited diagnostics, not source recognition or geometry replay."""
+    if 'diagnostic_provenance_version' not in config:
+        return None  # Existing run/review bindings remain unchanged.
+    _require(type(config['diagnostic_provenance_version']) is int and config['diagnostic_provenance_version'] == 1,
+             'Unsupported diagnostic provenance version')
+    _require(isinstance(preview_audit, dict), 'Diagnostic provenance requires the final-PPT render audit')
+    reports = {}
+    for role, filename in (('source_content_audit', 'source-content-audit.json'),
+                           ('semantic_audit', 'semantic-audit.json'), ('text_fit', 'text-fit.json')):
+        path = _inside(run, run / filename)
+        reports[role] = _json_record(path)
+        paths[role] = path
+    objects = resolved.get('objects')
+    _require(isinstance(objects, list) and all(isinstance(obj, dict) for obj in objects),
+             'Diagnostic coverage requires actual resolved objects')
+    source = reports['source_content_audit']
+    semantic = reports['semantic_audit']
+    text_fit = reports['text_fit']
+    from .content_audit import audit_source_content
+    # This rechecks the existing caller-declared constraints only. It does not
+    # read source pixels/PDF, infer literals, or replay source paint geometry.
+    _require(_same_json(source, audit_source_content(resolved)),
+             'Source-content diagnostic disagrees with the resolved declared constraints')
+    _require(_same_json(semantic.get('source_content'), source),
+             'Semantic diagnostic contains different source-content evidence')
+    expected_formulas = [obj.get('formula_asset') for obj in objects if obj.get('source_kind') == 'formula']
+    expected_connections = [obj.get('connection_record') for obj in objects if obj.get('source_kind') == 'connector']
+    _require(all(isinstance(item, dict) for item in expected_formulas + expected_connections) and
+             _same_json(semantic.get('formulas'), expected_formulas) and
+             _same_json(semantic.get('connections'), expected_connections),
+             'Semantic records disagree with the resolved declared formula/connector objects')
+    live_ids = [obj.get('id') for obj in objects if obj.get('kind') == 'text']
+    measured = text_fit.get('objects')
+    _require(isinstance(measured, list) and all(isinstance(item, dict) for item in measured),
+             'Text-fit diagnostic must list its measured live text')
+    measured_ids = [item.get('id') for item in measured]
+    _require(all(isinstance(item, str) and item for item in live_ids + measured_ids) and
+             len(set(measured_ids)) == len(measured_ids) and sorted(measured_ids) == sorted(live_ids),
+             'Text-fit measured identities disagree with the actual live text objects')
+    counts = {'resolved_objects': len(objects), 'live_text_objects': len(live_ids),
+              'measured_live_text_objects': len(measured),
+              'unmeasured_path_objects': sum(obj.get('kind') == 'path' for obj in objects),
+              'unmeasured_image_objects': sum(obj.get('kind') == 'image' for obj in objects)}
+    text_status = 'PASS' if live_ids else 'NOT_APPLICABLE'
+    _require(type(text_fit.get('schema_version')) is int and text_fit['schema_version'] == 1 and
+             text_fit.get('status') == text_status and text_fit.get('scope') == 'measured_live_text_only' and
+             _same_json(text_fit.get('counts'), counts) and text_fit.get('visual_verification_required') is True,
+             'Text-fit status, scope, or counts disagree with actual measured live text')
+    expected = {'schema_version': 1,
+                'inputs': {role: _binding(paths[role]) for role in ('source', 'manifest', 'resolved_scene', 'pptx')},
+                'reports': {
+                    'source_content_audit': {'artifact': _binding(paths['source_content_audit']),
+                        'status': source['status'], 'scope': 'declared_invariants_only',
+                        'counts': {key: source['coverage'][key] for key in ('literals_checked', 'connections_checked')}},
+                    'semantic_audit': {'artifact': _binding(paths['semantic_audit']),
+                        'status': 'RECORDED' if expected_formulas or expected_connections else 'NOT_PROVIDED',
+                        'scope': 'declared_formula_connection_records_only',
+                        'counts': {'formula_records': len(expected_formulas), 'connection_records': len(expected_connections)}},
+                    'text_fit': {'artifact': _binding(paths['text_fit']), 'status': text_status,
+                                 'scope': 'measured_live_text_only', 'counts': counts}},
+                'semantic_recognition_performed': False, 'source_fidelity_evaluated': False,
+                'visual_acceptance': 'pending'}
+    _require(_same_json(preview_audit.get('diagnostic_coverage'), expected),
+             'Diagnostic coverage is missing, stale, or exceeds the actual declared/measured scope')
+    return expected
+
+
 def _build_bindings(run_dir):
     run = Path(run_dir).resolve()
     _require(run.is_dir(), f'Build run does not exist: {run}')
@@ -267,6 +340,7 @@ def _build_bindings(run_dir):
         if path.exists() or path.is_symlink():
             paths[role] = _inside(run, path)
     preview_audit = _preview_provenance(run, config, paths)
+    diagnostic_coverage = _diagnostic_provenance(run, config, paths, resolved, preview_audit)
     _text(config.get('output'), 'Delivered PPTX path')
     _require(Path(config['output']).is_absolute(), 'Delivered PPTX path must be absolute')
     paths['delivered_pptx'] = Path(config['output']).resolve()
@@ -285,7 +359,10 @@ def _build_bindings(run_dir):
         _require(delivery.get('preview_backend') == preview_audit['preview_backend'] and
                  delivery.get('render_audit_sha256') == bindings['render_audit']['sha256'],
                  'Delivery receipt disagrees with preview renderer provenance')
-    return run, {'figure_id': manifest['id'], 'revision': manifest['revision']}, bindings
+    if diagnostic_coverage is not None:
+        _require(_same_json(delivery.get('diagnostic_coverage'), diagnostic_coverage),
+                 'Delivery receipt disagrees with limited diagnostic coverage')
+    return run, {'figure_id': manifest['id'], 'revision': manifest['revision']}, bindings, diagnostic_coverage
 
 
 def prepare_output_review(run_dir):
@@ -295,10 +372,11 @@ def prepare_output_review(run_dir):
     previews before filling it.  Snapshot identity includes any existing extra
     previews/comparison; their later removal, replacement or addition is stale.
     """
-    run, identity, bindings = _build_bindings(run_dir)
+    run, identity, bindings, diagnostic_coverage = _build_bindings(run_dir)
     return {
         'schema_version': 1, 'kind': 'postbuild_visual_review',
         'run': str(run), 'build': identity, 'bindings': bindings,
+        **({'diagnostic_coverage': diagnostic_coverage} if diagnostic_coverage is not None else {}),
         'model_review': {
             'performed': False, 'reviewer': '', 'method': '',
             'status': 'needs_further_review', 'inspected': [],
@@ -406,12 +484,14 @@ def verify_output_review(run_dir, record, *, require_no_observed_issues=False):
     _require(isinstance(record, dict), 'Output review must be a record')
     _require(set(record) <= {'schema_version', 'kind', 'run', 'build', 'bindings',
                              'model_review', 'user_acceptance',
-                             'native_application_verification', 'recorded_at'},
+                             'native_application_verification', 'recorded_at', 'diagnostic_coverage'},
              'Unknown output review fields; acceptance and verification must stay separate')
     _require(type(record.get('schema_version')) is int and record['schema_version'] == 1,
              'Unsupported output review schema')
     _require(record.get('kind') == 'postbuild_visual_review', 'Not a postbuild visual review')
-    run, identity, bindings = _build_bindings(run_dir)
+    run, identity, bindings, diagnostic_coverage = _build_bindings(run_dir)
+    _require((_same_json(record.get('diagnostic_coverage'), diagnostic_coverage) if diagnostic_coverage is not None
+              else 'diagnostic_coverage' not in record), 'Output review diagnostic coverage is missing or stale')
     _require(record.get('run') == str(run) and record.get('build') == identity,
              'Output review belongs to a different build')
     supplied = record.get('bindings')
