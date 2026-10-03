@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T22:20:00.222562+00:00",
+  "updated_at": "2026-10-03T23:11:20.784289+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 158,
-    "open": 137,
+    "closed_model_visual_review": 166,
+    "open": 129,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -1752,6 +1752,192 @@
       ]
     },
     {
+      "figure_id": "ccf-2023-06-f02",
+      "issue_id": "ccf-2023-06-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Feed Forward, Cross Attention and Self Attention retain the source baselines and visible insets in the colored modules. The central masking labels keep the source spacing; italic input and right-hand mask captions have the source widths and counters. No old upward displacement or changed italic shape was observed in 1x/2x full images and unresized 4x detail crops. Only the documented visual defect; string editability, universal renderer equivalence and user acceptance are not resolved. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f02/build/run-001/output-review.json",
+          "sha256": "5aaaebd185cf4f607062b58f2de122797b644a549bb82150b5821636740f2245"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-06-f03",
+      "issue_id": "ccf-2023-06-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All five frozen-module snowflakes are present and connected: upper Image Encoder, lower Image Encoder, upper LLM Decoder, lower LLM Encoder and lower LLM Decoder. The central crossing, full principal arms and end branches are visible in source and native 4x crops; the old isolated fragments and missing arms are no longer observed. These five symbols remain original raster assets. Only the documented visual defect; string editability, universal renderer equivalence and user acceptance are not resolved. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f03/build/run-001/output-review.json",
+          "sha256": "ed36d1210d284fce1ae72917c302e88eed2fae2331573c50d1bc1cd2253a91e5"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-06-f03",
+      "issue_id": "ccf-2023-06-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Both Image Encoder labels, Q-Former, Fully Connected, LLM Decoder/Encoder, query labels, and italic output/prefix/suffix text retain the source placement and widths. The old raised module text and substitution appearance are no longer observed. This is an outline-based visual resolution, not recovery of live Helvetica text. Only the documented visual defect; string editability, universal renderer equivalence and user acceptance are not resolved. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f03/build/run-001/output-review.json",
+          "sha256": "ed36d1210d284fce1ae72917c302e88eed2fae2331573c50d1bc1cd2253a91e5"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-06-f07",
+      "issue_id": "ccf-2023-06-f07-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fully/Connected and LLM retain source vertical placement; the two question strings, Answer/sunglasses, and top labels retain the source width and spacing. The old Arial-width expansion and systematic upward label shift are no longer observed in actual 1x/2x previews and 4x detail crops. Text remains source outlines. Only the documented visual defect; string editability, universal renderer equivalence and user acceptance are not resolved. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f07/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f07/build/run-001/output-review.json",
+          "sha256": "dc35087283d7de288234818b6d601dfc0f31067a016a01cdb0714d01c1b9a1a3"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-08-f02",
+      "issue_id": "ccf-2023-08-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Both source merge-circle plus signs are centered and readable in actual1x/2x and4x; the historical rim-displaced operators are absent. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-08-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-08-f02/build/run-001/output-review.json",
+          "sha256": "75c7b106ca73c8885c0b3a6e714bbf97354ee12bd1d9d92dc4a61afb752a0607"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-08-f02",
+      "issue_id": "ccf-2023-08-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Both zero convolution labels have source insets within the pills; neural-block labels and caption use exact source glyph outlines at the original placement. No upward border crossing was observed. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-08-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-08-f02/build/run-001/output-review.json",
+          "sha256": "75c7b106ca73c8885c0b3a6e714bbf97354ee12bd1d9d92dc4a61afb752a0607"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2023-13-f01",
       "issue_id": "ccf-2023-13-f01-D01",
       "severity": "major",
@@ -2289,6 +2475,33 @@
     },
     {
       "figure_id": "ccf-2024-01-f02",
+      "issue_id": "ccf-2024-01-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "This fresh actual CLI candidate uses the reusable nonzero polygon normalization, one compound native path per paint, without manual scene changes. Six affected arrows and the elbow are continuously filled in the final native 1x/2x/4x previews. All six final native grids preserve proved loop topology and stay within the separately recorded binary64 and integer precision budgets. Resolution applies to this bound candidate; old PPT/review/ledger records remain immutable. Root independently viewed all six arrowhead joints and resize elbow in original/source/fresh CLI 4x comparisons. The source scene is unchanged and the generic native polygon winding normalizer performs the fix. Scope: headless LibreOffice final PPT; no live-text or cross-renderer perfection claim. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "probes/native-winding-integration-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/native-winding-integration-001/completion-summary.json",
+          "sha256": "716751038bb8ceea3db27203cf5aca1c6fc871fcfa6fc068c9fe9747a0e59560"
+        },
+        {
+          "audit_relative_path": "probes/native-winding-integration-001/root-verification-001.json",
+          "sha256": "e7f5d3339e9943bad47544377e90d5fa4026f6d18093e0aefe6fcefdd97afdaf"
+        },
+        {
+          "audit_relative_path": "probes/native-winding-integration-001/job/build/run-001/output-review.json",
+          "sha256": "03ddd88bbeb85b12bf7c5ab6384c4199a190c4592f7e32d388451420f214741e"
+        },
+        {
+          "audit_relative_path": "probes/native-winding-integration-001/source-replay-bindings.json",
+          "sha256": "3b9402aab6247b775af9afc4c706ddc7a55751c0c1ede86cf89abd53f2551f51"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2024-01-f02",
       "issue_id": "ccf-2024-01-f02-D02",
       "severity": "minor",
       "status": "closed_model_visual_review",
@@ -2403,6 +2616,37 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
           "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-01-f01",
+      "issue_id": "ccf-2025-01-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual1x/2x and4x data-paper-stack detail shows both offset sheet interiors white and their dark borders retained. Historical solid dark interiors are absent. Small separate frame-corner and arrow-joint holes remain as new residuals; this closes only the original large interior-fill loss. Source/native detail crops were independently viewed by root and the full formal evidence bindings reverified; this closes only the documented visual defect in this candidate. User acceptance remains pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2025-01-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
         }
       ]
     },
@@ -3786,15 +4030,8 @@
     "ccf-2023-05-f04-D01",
     "ccf-2023-06-f01-D01",
     "ccf-2023-06-f01-D02",
-    "ccf-2023-06-f02-D01",
-    "ccf-2023-06-f03-D01",
-    "ccf-2023-06-f03-D02",
-    "ccf-2023-06-f07-D01",
-    "ccf-2023-08-f02-D01",
-    "ccf-2023-08-f02-D02",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
-    "ccf-2024-01-f02-D01",
     "ccf-2024-03-f01-D01",
     "ccf-2024-03-f01-D02",
     "ccf-2024-03-f02-D01",
@@ -3805,7 +4042,6 @@
     "ccf-2024-07-f02-D01",
     "ccf-2024-08-f02-D01",
     "ccf-2024-08-f02-D02",
-    "ccf-2025-01-f01-D01",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f02-D01",
     "ccf-2025-01-f02-D02",
@@ -5426,7 +5662,30 @@
           "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "follow_up_observations": [
+        {
+          "recorded_at": "2026-10-03T23:11:20.784289+00:00",
+          "candidate": "sam2-complete-source-003",
+          "observed_site_count": 9,
+          "newly_localized_site_count": 4,
+          "description": "The original five yellow/Repeat joints remain open. Four downward dotted arrow V joints are additionally localized in actual source/002/0034x comparison: all four contain background holes in both old and new native output. Complete actual p:spPr geometry/style/transform matches002. This extends the observation scope to9 sites without retroactively altering old evidence or describing four new003 regressions. All contain original cubic commands outside the committed polygon-only normalizer.",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/sam2-complete-source-003/root-verification-001.json",
+              "sha256": "2dddc0c62adc919874b162fc3491e1603ae19764bc7e159fa7655a69557dff42"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-complete-source-003/SAM-ARROW-JOINT-001-ADDENDUM.json",
+              "sha256": "7d2fa6ab45d85764c1b1d5b32dbdb491d5eea189d676d8316ef8dc1ec74869ff"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-complete-source-003/handoff.json",
+              "sha256": "a72721c58b52b6e5a1a378fb5c4c202511f04aae3ab0be83fbff4f0b89f09359"
+            }
+          ]
+        }
+      ]
     },
     {
       "severity": "minor",
@@ -5451,6 +5710,254 @@
         {
           "audit_relative_path": "source-regeneration/sam2-complete-source-002/root-verification-001.json",
           "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "[[8, 77, 81, 81]]",
+      "description": "Small source/native differences remain in cat-fur and eyeglass-rim texture and in fine raster/vector edge sampling at 4x. The source photograph and original white grid are intact; no added opaque patch, missing photograph area or false internal seam was observed. This is not a pixel-identical or universal renderer-fidelity claim.",
+      "figure_id": "ccf-2023-06-f02",
+      "issue_id": "ccf-2023-06-f02-NATIVE-SAMPLING-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f02/build/run-001/output-review.json",
+          "sha256": "5aaaebd185cf4f607062b58f2de122797b644a549bb82150b5821636740f2245"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "[[236, 11, 92, 91], [236, 151, 93, 92]]",
+      "description": "Small source/native differences remain in cat-fur and eyeglass-rim texture and in fine raster/vector edge sampling at 4x. The source photograph and original white grid are intact; no added opaque patch, missing photograph area or false internal seam was observed. This is not a pixel-identical or universal renderer-fidelity claim.",
+      "figure_id": "ccf-2023-06-f03",
+      "issue_id": "ccf-2023-06-f03-NATIVE-SAMPLING-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f03/build/run-001/output-review.json",
+          "sha256": "ed36d1210d284fce1ae72917c302e88eed2fae2331573c50d1bc1cd2253a91e5"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "[[8, 26, 92, 91]]",
+      "description": "Small source/native differences remain in cat-fur and eyeglass-rim texture and in fine raster/vector edge sampling at 4x. The source photograph and original white grid are intact; no added opaque patch, missing photograph area or false internal seam was observed. This is not a pixel-identical or universal renderer-fidelity claim.",
+      "figure_id": "ccf-2023-06-f07",
+      "issue_id": "ccf-2023-06-f07-NATIVE-SAMPLING-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2023-06-f07/build/run-001/output-review.json",
+          "sha256": "dc35087283d7de288234818b6d601dfc0f31067a016a01cdb0714d01c1b9a1a3"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Image encoder and prompt encoder input arrowheads; canvas [489,43,502,54] and [396,109,408,121]",
+      "description": "Two black input arrows have a small background-colored gap at the shaft/head overlap in actual native4x; source is solid. Exact source commands and PPT shape XML are frozen. Both contain only M/L/Z; winding is a candidate mechanism, not a confirmed cause.",
+      "figure_id": "ccf-2025-01-f01",
+      "issue_id": "ccf-2025-01-f01-NATIVE-JUNCTION-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Dataset lower-right stack corner; canvas [908,242,930,259], with other similar card corners visible",
+      "description": "Dataset card dark borders have tiny square corner notches in native4x while the source L corners are continuous. Example exact original four-bar polygon paths and PPT XML are frozen; the large white interiors are correct. No repair applied.",
+      "figure_id": "ccf-2025-01-f01",
+      "issue_id": "ccf-2025-01-f01-NATIVE-CORNER-002",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Both filmstrips, data photo and dataset cards",
+      "description": "Fine cat texture, mask edges and small dataset photographs differ in raster filtering/sharpness from direct source PDF rendering, especially at4x. Original colors/content remain; no universal RGB/alpha error bound or pixel identity is claimed.",
+      "figure_id": "ccf-2025-01-f01",
+      "issue_id": "ccf-2025-01-f01-NATIVE-SAMPLING-003",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "major",
+      "region": "Entire illustrated body and caption",
+      "description": "The source-derived body is one actual author raster, occupying about81.84% of the ROI; the87 other shapes are caption glyph outlines. It has no editable body words, modules or connectors and no live text anywhere. This fidelity-reference candidate must not silently replace the prior89-live-text/32path/19icon reconstruction.",
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-RASTER-BODY-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2026-02-f01/build/run-001/output-review.json",
+          "sha256": "3dbdb0939c2e1620e22f92efc0fb929e400e657593573206e18e880b57bfd78c"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Code, reward criteria, icons and rollout body",
+      "description": "The original body raster has different smoothing/sharpness from direct source at4x, visible on code letters, medal/check edges and icon contours. Source content is retained, but whole-image pixel equality and RGB/alpha bounds are not proved.",
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-NATIVE-SAMPLING-002",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
+          "sha256": "7e480dcfd62b7b969a450ce8baea5b2e9cbd3089a0bb49ef9023257d8b4b9322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-independent-verification-001/handoff.json",
+          "sha256": "49091ebcc6d95c2cf19e8546cc8baa04c77c83985c4ab1f5beb94225f9d88672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/completion-summary.json",
+          "sha256": "6c04618467a7bdb3a1fbdbf2734f3abdac3b2ce402b347ef0dae038bf8e555a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/closure-proposals.json",
+          "sha256": "20cd6b6151980d8a5bdf654bbbc907dc8501abf91ab0f8b7eaa6ff5bbf001e72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2026-02-f01/build/run-001/output-review.json",
+          "sha256": "3dbdb0939c2e1620e22f92efc0fb929e400e657593573206e18e880b57bfd78c"
         }
       ],
       "user_acceptance": "pending"
