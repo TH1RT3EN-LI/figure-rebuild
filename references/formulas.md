@@ -55,7 +55,7 @@ Artifact Tool 按 PPT 显示 frame × `globalThis.devicePixelRatio` 先解码 SV
 `formula_asset.resolve_formula_asset(element, job_dir, asset_root=None)` 是只读集成入口；返回 `placement`、SVG/PNG 的 job 相对路径、审计及 `hash_files`。`asset_root` 可传冻结 job 镜像，所有声明绝对路径先对原 job 归一化，再从冻结镜像读取。越出 job、审计哈希变化、输出哈希变化、损坏的 PNG/PDF/SVG、TeX 内容与审计不一致、无字体依赖来源、PNG/SVG 边界不同或最终采样不足均拒绝。
 
 ```sh
-python /absolute/path/figure-rebuild/tools/figure_rebuild/formula_asset.py \
+python -m figure_rebuild.formula_asset \
   --job /absolute/path/job --asset-root /absolute/path/frozen-job \
   --input /absolute/path/formula-elements.json
 ```

@@ -1,0 +1,39 @@
+{
+  "asset": "docs/assets/mambavo-figure1-rebuild.gif",
+  "sha256": "3aae12a5973819c7bdf20db9e566b923120ca365fc6e151e91d36875c05ad2d1",
+  "source_paper": "MambaVO: Deep Visual Odometry Based on Sequential Matching Refinement and Training Smoothing",
+  "source_uri": "https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MambaVO_Deep_Visual_Odometry_Based_on_Sequential_Matching_Refinement_and_CVPR_2025_paper.html",
+  "source_figure": 1,
+  "playback_speed": 2,
+  "source_video_trim_seconds": [
+    5.3,
+    37
+  ],
+  "dimensions": [
+    1040,
+    240
+  ],
+  "fps_target": 12,
+  "frames": 190,
+  "duration_seconds": 15.83,
+  "loop": 0,
+  "native_powerpoint_objects": {
+    "paths": 113,
+    "text": 25
+  },
+  "retained_raster_assets": 18,
+  "latex_formula_assets": 8,
+  "copyright_notice": "See THIRD_PARTY_NOTICES.md; repository MIT license does not grant rights to retained paper imagery.",
+  "original_figure": {
+    "asset": "docs/assets/mambavo-figure1-original.png",
+    "sha256": "45d3922ce20a11632908ce03825512dbe297744468fb46d98e2d07353db78305",
+    "source_pdf_sha256": "1a8797cc86a58dfd80e61583da6a70dd2c8215413ff6be18a91e96e937540999",
+    "pdf_page": 3,
+    "crop_pdf_pt": [
+      64.25,
+      71.5,
+      548.375,
+      181.75
+    ]
+  }
+}

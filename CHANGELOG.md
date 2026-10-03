@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.6.0
+
+- 将实现整理为 `src/figure_rebuild` Python 包，增加 `pyproject.toml`、模块入口和主 CLI；字体分析、公式生成与局部修改提供独立命令。
+- JavaScript PPT 后端位于包内 `powerpoint/`，随 wheel 分发；Codex skill 通过完整源码 checkout 安装，保留原有脚本入口。
+- 外部 Python 通过包内 bootstrap 加载本项目，保留自身依赖环境；增加跨环境导入、分发内容和仓库外运行验证。
+- 以 `vision`、`source` 和 `dev` 分组声明可选依赖，保留 requirements 安装兼容文件；测试统一放在 `tests/`。
+- 默认使用用户配置目录，保留 `FIGURE_REBUILD_CONFIG` 和已有 checkout 本地配置；skill 安装增加复制方式并拒绝覆盖已有目标。
+- 增加架构与贡献说明，明确识别、审阅、构建、交付及外部运行时的边界。
+- 删除旧的 SVG 和可编辑对象演示素材，使用指南改为用户自备输入。
+
 ## 0.5.0
 
 - Bind semantic formula objects to verified TeX/PDF/SVG/PNG/log/dependency assets and frozen hashes, with final-placement sampling checks and portable relative audit paths.
@@ -27,7 +37,7 @@
 
 ## 0.2.0
 
-- Split the host-recognition and native-PPT workflow into a self-contained skill with no AutoSlides checkout dependency.
+- Package the host-recognition and native-PPT workflow as a Codex skill with explicit local runtime configuration.
 - Configure fonts explicitly, check runtime capabilities before authoring, and reject measured text overflow.
 - Bind review to content and revision; preserve validated snapshots and allocate build runs safely.
 - Publish validated output exclusively using staged files; strengthen XML text, crop quantization, image-frame and rotated-group checks.

@@ -1,53 +1,79 @@
-# Figure Rebuild
+<p align="center">
+  <img src="docs/assets/logo.png" alt="Figure Rebuild logo" width="128" height="128">
+</p>
 
-把论文、技术文档中的参考图，复建成**可编辑的 PowerPoint**。
+<h1 align="center">Figure Rebuild</h1>
 
-这是一个独立的 Codex skill，也提供本地命令行工具。适合复刻方法框图、流程图和机制示意图，再按你的反馈逐处修改。
+<p align="center">
+  从参考图到可编辑的 PowerPoint。
+</p>
 
-## 看看效果
+<p align="center">
+  <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Core checks"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
+  <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
+</p>
 
-![实际导出的 PowerPoint：四种字面、LaTeX 公式和连接器](docs/assets/editable-diagram.png)
+<p align="center">
+  <strong>简体中文</strong> · <a href="README.en.md">English</a> · <a href="README.ko.md">한국어</a> · <a href="README.es.md">Español</a>
+</p>
 
-自建功能示例，预览取自实际导出的 PPT。右侧模块调整位置后，关联的文字、公式和连线在重新构建时随之更新。[下载示例 PPTX](docs/assets/editable-diagram.pptx)。
+Figure Rebuild 将论文方法图、流程图和机制示意图重绘为可编辑的 PowerPoint，保留参考图的文字、布局与连接关系。
 
-## 哪些可以编辑
+项目以 Codex 开发和测试，提供本地命令行工具与 Codex skill。命令行接口也可用于接入其他智能体。
+
+## 效果预览
+
+以 [MambaVO（CVPR 2025）](https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MambaVO_Deep_Visual_Odometry_Based_on_Sequential_Matching_Refinement_and_CVPR_2025_paper.html) 的 Figure 1 为例。
+
+**原图**
+
+![MambaVO 论文 Figure 1 原图](docs/assets/mambavo-figure1-original.png)
+
+**重绘过程**
+
+![Figure 1 的画布逐步重绘过程](docs/assets/mambavo-figure1-rebuild.gif)
+
+## 可编辑内容
 
 | 内容 | 交付形式 |
 | --- | --- |
-| 图形、轮廓和连线 | PowerPoint 原生对象，可选中和修改 |
-| 普通文字 | 独立文本框，匹配已配置的字体、字号和字面 |
-| 数学公式 | LaTeX 排版的 SVG / 高清 PNG；修改源码后重新生成 |
-| 照片、纹理等 | 保留图片，可裁剪和移动 |
+| 图形与连线 | PowerPoint 原生对象 |
+| 普通文字 | 独立文本框，可修改字体、字号和内容 |
+| 数学公式 | LaTeX 生成的 SVG / 高清 PNG，修改源码后重新排版 |
+| 照片与热图 | 保留图片，可移动和裁剪 |
 
-可以导出独立 PPT，也可以插入已有模板。位图的识别与结构核对由 Codex 完成；本地工具负责构建、导出和检查。
+支持导出独立 PPTX，也可将重绘结果插入现有演示文稿。
 
-## 安装
+## 快速开始
 
-需要 Python 3.10+。在终端执行：
+需要 Python 3.10+。
 
 ```bash
 git clone https://github.com/TH1RT3EN-LI/figure-rebuild.git
 cd figure-rebuild
 python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -e .
+```
+
+在 Codex 中使用时，再安装 skill：
+
+```bash
 .venv/bin/python scripts/install.py
 ```
 
-安装完成后可在 Codex 中使用 `$figure-rebuild`。导出 PPT 前，还需配置 Node.js、Artifact Tool、Presentations 检查器及本地字体，见[环境配置](docs/usage.md#配置和检查)。这些运行时和字体由使用者提供，项目无需 AutoSlides。
+导出 PPTX 前，还需[配置导出环境](docs/usage.md#配置和检查)：Node.js 20.9+、Codex Artifact Tool、Presentations 检查器及本地字体。
 
-## 怎么用
+## 使用
 
-附上参考图，在 Codex 中说明你的要求，例如：
+`figure-rebuild` 命令提供素材准备、场景审阅和 PPTX 导出。图像理解与场景清单由使用者或调用方智能体完成，完整步骤见[使用指南](docs/usage.md)。
 
-> 请使用 $figure-rebuild 把这张方法框图复建成 PPT。普通文字和图形保持可编辑，公式用 LaTeX 重排，尽量匹配原图的字体、字号和布局。先给我预览，再根据反馈修改。
+在 Codex 中，可附上参考图并调用 `$figure-rebuild`：
 
-通常按「核对原图 → 复建对象 → 检查实际导出 → 局部修改」推进。交付包括 PPTX、预览和编辑性说明；看不清的文字或连接会先标出，解决后再导出。
+> 请用 $figure-rebuild 将这张图重绘成可编辑的 PPT。保留原图文字、布局和连线，公式用 LaTeX 重排，并提供预览供我核对。
 
-## 详细文档
+输出包括 PPTX、导出预览和原图对照，也可继续调整局部内容。
 
-- [使用指南](docs/usage.md)：运行时配置、命令行操作、裁剪和模板插入。
-- [字体](references/fonts.md) · [公式](references/formulas.md) · [连线与局部修改](references/connections.md)：需要精细复刻时查阅。
-- [清单协议](references/scene.md) · [视觉诊断](references/vision.md)：开发和排查问题。
-- [更新记录](CHANGELOG.md) · [第三方说明](THIRD_PARTY_NOTICES.md)。
+## 许可
 
-代码采用 [MIT](LICENSE) 许可。测试和展示使用自建素材；字体文件与第三方运行时不随项目分发。
+代码采用 [MIT](LICENSE) 许可。论文图示与其他素材的来源、许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。

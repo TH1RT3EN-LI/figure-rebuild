@@ -1,6 +1,6 @@
 # 参考图识别清单 v1
 
-`manifest.json` 的坐标是参考图的像素坐标，原点左上；不是页面的 0–1 内容协议。实际 validator 在 `tools/figure_rebuild/validate.py`。`review` 写入内容摘要，修改清单需增加 revision 并重新审阅。自建 SVG 示例见 `examples/compound-curves/reference.svg`。
+`manifest.json` 的坐标是参考图的像素坐标，原点左上；不是页面的 0–1 内容协议。实际 validator 在 `src/figure_rebuild/validate.py`。`review` 写入内容摘要，修改清单需增加 revision 并重新审阅。
 
 ```json
 {

@@ -1,3 +1,2 @@
--r requirements.txt
-numpy>=1.26,<3
-opencv-python-headless>=4.9,<5
+# Core package and optional geometry diagnostics.
+-e .[vision]

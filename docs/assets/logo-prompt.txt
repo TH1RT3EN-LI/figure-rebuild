@@ -1,0 +1,12 @@
+Generated with the built-in imagegen tool.
+transparent_background: true
+
+Use case: logo-brand.
+Create one completely new, finished PNG logo icon for Figure Rebuild, an open-source tool that rebuilds scientific reference diagrams as editable PowerPoint objects.
+Design direction: an elegant, compact, custom FR monogram using a single coherent geometric system. Interlock the F and R into one balanced near-square mark; unify their upper horizontal structure and let the R's rounded rectangular counter subtly evoke a diagram block. The R's diagonal leg should balance the F's upright stem. Prioritize an instantly pleasing silhouette and refined negative space over literal storytelling.
+Art direction: understated professional scientific software identity. Equal stroke widths, one family of modest rounded corners, clean precise alignment, deliberate evenly spaced openings. Bold but refined, flat vector-style appearance. Use one solid medium-deep blue for the entire symbol, with completely transparent negative spaces. No decorative elements or separate UI objects.
+Composition: exactly one centered standalone mark on a square canvas, approximately 72 percent of the canvas width, even optical margins, no clipping. It should still read clearly at 64 and 128 pixels wide.
+Text: only the integrated abstract F and R shapes, no name, tagline, or other text.
+Background: actual transparent alpha, no panel, no checkerboard artwork.
+Avoid: detached fragments, scattered pixels, selection handles, dots, sparkles, arrows around the logo, frames around the entire logo, multi-icon grids, literal screenshots, gradients, shadows, 3D, texture, fuzzy outlines, watermark, existing company logos.
+Deliver one production-ready original logo, not a design presentation.

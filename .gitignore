@@ -1,13 +1,67 @@
-.local/
-jobs/
-build/
-exports/
+# Machine-specific runtime configuration, jobs, and generated deliverables.
+# Keep curated demonstration media under docs/assets/.
+/.local/
+/jobs/
+/exports/
+/build/
+/dist/
+/.cache/
+
+# Environment variables and secrets; sanitized configuration examples are public.
+.env
+.env.*
+!.env.example
+!.env.template
+!.env.*.example
+!.env.*.template
+
+# Python environments, bytecode, packaging, and tool caches.
 .venv/
+venv/
 __pycache__/
 *.py[cod]
-.DS_Store
+*.egg-info/
+.eggs/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.nox/
+.hypothesis/
+.coverage
+.coverage.*
+/coverage.xml
+/htmlcov/
+
+# JavaScript dependencies and package-manager caches; lockfiles stay tracked.
 node_modules/
+.npm/
+.pnpm-store/
+.yarn/cache/
+.yarn/unplugged/
+
+# Generated decks and local font copies can be large or have separate licenses.
 *.pptx
 *.ttf
 *.otf
 *.ttc
+# Curated demonstrations and fixtures are intentional repository assets. Include any
+# required source attribution and license alongside third-party fonts or decks.
+!/docs/assets/**/*.pptx
+!/tests/**/fixtures/**/*.pptx
+!/docs/assets/**/*.ttf
+!/docs/assets/**/*.otf
+!/docs/assets/**/*.ttc
+!/tests/**/fixtures/**/*.ttf
+!/tests/**/fixtures/**/*.otf
+!/tests/**/fixtures/**/*.ttc
+
+# OS metadata, editor backups, and per-user workspace files.
+.DS_Store
+Thumbs.db
+Desktop.ini
+*.swp
+*.swo
+*~
+/.idea/
+*.code-workspace

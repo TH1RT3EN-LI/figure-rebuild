@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools>=77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "figure-rebuild"
+dynamic = ["version"]
+description = "Rebuild reference diagrams as editable PowerPoint objects with audited assets."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+authors = [{name = "TH1RT3EN-LI"}]
+keywords = ["powerpoint", "diagrams", "figure-reconstruction", "codex-skill"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Multimedia :: Graphics",
+]
+dependencies = ["Pillow>=10.0,<13", "fonttools>=4.50,<5"]
+
+[project.optional-dependencies]
+vision = ["numpy>=1.26,<3", "opencv-python-headless>=4.9,<5"]
+source = ["PyMuPDF>=1.24,<2"]
+dev = ["build>=1.2,<2"]
+
+[project.scripts]
+figure-rebuild = "figure_rebuild.cli:main"
+figure-rebuild-fonts = "figure_rebuild.font_analysis:main"
+figure-rebuild-formulas = "figure_rebuild.formula_render:main"
+figure-rebuild-patch = "figure_rebuild.connections:main"
+
+[project.urls]
+Repository = "https://github.com/TH1RT3EN-LI/figure-rebuild"
+Issues = "https://github.com/TH1RT3EN-LI/figure-rebuild/issues"
+Documentation = "https://github.com/TH1RT3EN-LI/figure-rebuild/blob/main/docs/usage.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["figure_rebuild*"]
+namespaces = false
+
+[tool.setuptools.package-data]
+"figure_rebuild.powerpoint" = ["*.mjs"]
+
+[tool.setuptools.dynamic]
+version = {attr = "figure_rebuild.__version__"}

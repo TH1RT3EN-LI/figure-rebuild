@@ -4,7 +4,9 @@
 
 把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或按稳定 slide ID 插入已有模板。
 
-这是可独立安装的 Codex skill 和本地工具。位图由调用方模型看图后填写清单；工具不包含付费识图服务，也不将整页截图冒充可编辑图。SVG 的受支持几何可自动导入。
+位图由使用者或调用方智能体对照参考图填写清单，SVG 的受支持几何可自动导入。运行时、审阅与交付之间的关系见 [架构说明](architecture.md)。
+
+项目以 Codex 开发和测试。本地命令行工具可独立调用，其他智能体或使用者可按相同的清单协议与命令流程接入；Codex skill 是其中一种使用方式。PPT 导出仍需下述外部运行时和字体。
 
 ## 安装
 
@@ -14,21 +16,39 @@
 git clone https://github.com/TH1RT3EN-LI/figure-rebuild.git
 cd figure-rebuild
 python3 -m venv .venv
-.venv/bin/python -m pip install -r requirements.txt
+.venv/bin/python -m pip install -e .
+```
+
+如需在 Codex 中使用 skill，再运行：
+
+```bash
 .venv/bin/python scripts/install.py
 ```
 
-安装器将整个 checkout 链接到 `${CODEX_HOME:-~/.codex}/skills/figure-rebuild`，不会覆盖已有技能。也可复制整个仓库目录到 skills 目录；入口和实现保持在同一个目录内。无需 AutoSlides。Codex 中使用 `$figure-rebuild`。
+安装器默认将 checkout 链接到 `${CODEX_HOME:-~/.codex}/skills/figure-rebuild`，不会覆盖已有技能。使用 `scripts/install.py --copy` 可安装不依赖原 checkout 位置的副本。Codex 中使用 `$figure-rebuild`；技能安装需要源码、`SKILL.md`、`references/` 和入口脚本，不能只安装 Python wheel。
 
-Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。后端包不随本项目分发；没有这些包仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
+在 Windows PowerShell 中安装 Codex skill 时，可使用复制方式，避免符号链接权限要求：
 
-可选视觉升级提供裁剪框精修、平移估计和对象局部边缘诊断。0.4 增加逐对象多字体、作者 PDF 字体分析、真正 LaTeX 高清公式图版和原生贝塞尔轮廓。安装视觉依赖到实际调用 CLI / build 的 Python 环境：
-
-```bash
-.venv/bin/python -m pip install -r requirements-vision.txt
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -e .
+.\.venv\Scripts\python.exe scripts/install.py --copy
+.\.venv\Scripts\figure-rebuild.exe --help
 ```
 
-未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。清单中的贝塞尔曲线已保留为原生曲线；0.5 增加公式语义素材、真实斜体/粗斜体与稳定 ID 连线和标签关联；通用 PDF 场景导入仍未包含。PDF 字体分析是只读提取，不自动理解整张图。
+下方使用 Linux / macOS 路径；Windows 将 `.venv/bin/` 替换为 `.venv\Scripts\`。
+
+Python 包提供 `figure-rebuild` 命令，也可用 `.venv/bin/python -m figure_rebuild`。下方命令显式使用虚拟环境内的入口；激活虚拟环境后可直接运行 `figure-rebuild`。`scripts/run.py` 保留为源码兼容入口。
+
+Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。这些外部包不随本项目分发；没有它们仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
+
+可选视觉模块提供裁剪框精修、平移估计和对象局部边缘诊断。安装视觉依赖到实际调用 CLI / build 的 Python 环境：
+
+```bash
+.venv/bin/python -m pip install -e '.[vision]'
+```
+
+未安装时，核心流程保持可用，报告明确标记几何诊断不可用。作者 PDF 字体分析需安装 `.[source]`；它只读提取字体与位置，不自动理解整张图。LaTeX 公式生成另需外部引擎和转换工具，见 [公式说明](../references/formulas.md)。原有 `requirements.txt`、`requirements-vision.txt`、`requirements-source.txt` 保留为对应包安装方式的兼容文件。
 
 ## 配置和检查
 
@@ -47,32 +67,34 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 ```
 
 ```bash
-.venv/bin/python scripts/run.py configure \
+.venv/bin/figure-rebuild configure \
   --node /path/to/node --python /path/to/python \
   --node-modules /path/to/node_modules \
   --presentation-skill /path/to/presentations-skill \
   --font-profile /path/to/fonts.json
-.venv/bin/python scripts/run.py doctor
+.venv/bin/figure-rebuild doctor
 ```
 
-配置默认保存在忽略的 `.local/figure-rebuild/runtime.json`，可用 `FIGURE_REBUILD_CONFIG` 指定外部路径。运行时会检查包、适配器、字体及字形覆盖；无法满足要求时报错，不静默换字体。目标项目可以指定微软雅黑等具体字体，通用 skill 不硬编码个人排版偏好。
+`FIGURE_REBUILD_CONFIG` 可指定配置文件。未指定时，Linux / macOS 使用 `${XDG_CONFIG_HOME:-~/.config}/figure-rebuild/runtime.json`，Windows 使用 `%APPDATA%/figure-rebuild/runtime.json`。源码 checkout 中已有的 `.local/figure-rebuild/runtime.json` 继续兼容读取，用户文件不会自动迁移。
+
+运行时会检查包、适配器、字体及字形覆盖；无法满足要求时报错，不静默换字体。目标项目可以指定微软雅黑等具体字体，通用 skill 不硬编码个人排版偏好。
 
 ## 复建
 
 ```bash
-.venv/bin/python scripts/run.py prepare --input /path/to/reference.png \
+.venv/bin/figure-rebuild prepare --input /path/to/reference.png \
   --job /path/to/jobs/my-figure --id my-figure --kind user_original
 ```
 
-原始文件保存在 `sources/` 并记录哈希。模型对照参考图填写 `manifest.json` 的文字、路径、连接和层次；见 [清单协议](../references/scene.md)。位图的初始 objects 是空列表。SVG 可直接尝试仓库自建示例：
+原始文件保存在 `sources/` 并记录哈希。模型对照参考图填写 `manifest.json` 的文字、路径、连接和层次；见 [清单协议](../references/scene.md)。位图的初始 objects 是空列表。使用自己的 SVG 输入时：
 
 ```bash
-.venv/bin/python scripts/run.py prepare --input examples/compound-curves/reference.svg \
-  --job .local/jobs/curves --kind generated_diagram
-.venv/bin/python scripts/run.py review --manifest .local/jobs/curves/manifest.json \
-  --note 'Compared paths, holes and ordering with the original'
-.venv/bin/python scripts/run.py validate --manifest .local/jobs/curves/manifest.json
-.venv/bin/python scripts/run.py build --manifest .local/jobs/curves/manifest.json
+.venv/bin/figure-rebuild prepare --input /path/to/reference.svg \
+  --job .local/jobs/my-figure --kind user_original
+.venv/bin/figure-rebuild review --manifest .local/jobs/my-figure/manifest.json \
+  --note 'Compared objects and text with the reference'
+.venv/bin/figure-rebuild validate --manifest .local/jobs/my-figure/manifest.json
+.venv/bin/figure-rebuild build --manifest .local/jobs/my-figure/manifest.json
 ```
 
 每次改内容递增 `revision` 并重新 `review`。审阅绑定内容摘要；改了坐标或文字而沿用旧审阅会被阻止。调用方审阅与用户视觉接受分别记录。
@@ -82,10 +104,10 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 ## 裁剪精修与位置诊断
 
 ```bash
-.venv/bin/python scripts/run.py refine-crop --input /path/to/reference.png \
+.venv/bin/figure-rebuild refine-crop --input /path/to/reference.png \
   --region 100 50 250 180 --output /path/to/crop-proposal.json \
   --preview /path/to/crop-preview.png
-.venv/bin/python scripts/run.py diagnose --reference /path/to/reference.png \
+.venv/bin/figure-rebuild diagnose --reference /path/to/reference.png \
   --rebuilt /path/to/same-size-render.png --output /path/to/geometry.json
 ```
 
@@ -94,8 +116,8 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 ## 插入现有模板
 
 ```bash
-.venv/bin/python scripts/run.py inspect-base /path/to/base.pptx
-.venv/bin/python scripts/run.py build --manifest /path/to/job/manifest.json \
+.venv/bin/figure-rebuild inspect-base /path/to/base.pptx
+.venv/bin/figure-rebuild build --manifest /path/to/job/manifest.json \
   --base /path/to/base.pptx --base-sha256 BASE_SHA256 \
   --slide-id NATIVE_SLIDE_ID --placement 100 150 1000 400 \
   --output /path/to/new-deck.pptx
@@ -119,12 +141,13 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 ## 测试与维护
 
 ```bash
-.venv/bin/python -m unittest discover -s tests/figure_rebuild -v
-node --test tests/figure_rebuild/test_*.mjs
+.venv/bin/python -m pip install -e '.[vision,source,dev]'
+.venv/bin/python -m unittest discover -s tests -v
+node --test tests/test_*.mjs
 ```
 
-GitHub Actions 跑便携核心检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试只附带自建素材，论文原图、模板、字体和本地配置不入库。贡献时提供最小可分发复现，说明输入、预期关系和失败证据；改稿记录稳定对象 ID、基础版本和影响范围。
+GitHub Actions 跑便携检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试使用自建素材和注明来源、许可的测试定义；README 的论文对照图单独注明来源。用户原图、原始论文 PDF、模板、字体和本地配置不入库。复现与贡献要求见 [CONTRIBUTING](../CONTRIBUTING.md)。
 
-CI 分别安装核心依赖和视觉依赖执行 Python 检查；核心环境跳过需要 OpenCV 的效果测试，视觉环境验证裁剪内容保护、已知平移和局部错误诊断。
+CI 分别安装核心、视觉与来源分析依赖执行 Python 检查；核心环境跳过需要 OpenCV 的效果测试，视觉环境验证裁剪内容保护、已知平移和局部错误诊断。
 
 代码采用 MIT；第三方运行时与素材权利见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。发布变更见 [CHANGELOG.md](../CHANGELOG.md)。

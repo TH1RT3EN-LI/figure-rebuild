@@ -1,8 +1,12 @@
 #!/usr/bin/env python3
-"""Read-only author-PDF font evidence entrypoint, independent of caller cwd."""
-import runpy
+"""Inspect author-PDF fonts from this checkout or an installed package."""
 from pathlib import Path
+import sys
+
+source = Path(__file__).resolve().parents[1] / 'src'
+if source.is_dir():
+    sys.path.insert(0, str(source))
+from figure_rebuild.font_analysis import main
 
 if __name__ == '__main__':
-    runpy.run_path(str(Path(__file__).resolve().parents[1] /
-                      'tools/figure_rebuild/font_analysis.py'), run_name='__main__')
+    raise SystemExit(main())

@@ -1,0 +1,15 @@
+include SKILL.md CONTRIBUTING.md CHANGELOG.md
+include README*.md
+include .gitignore .gitattributes .editorconfig
+include requirements*.txt
+recursive-include agents *.yaml
+recursive-include references *.md
+recursive-include scripts *.py
+recursive-include docs *.md *.png *.gif *.json
+recursive-include tests *.py *.mjs *.xml *.LICENSE *.NOTICE
+global-exclude __pycache__ *.py[cod]
+prune .local
+prune .venv
+prune jobs
+prune exports
+prune node_modules

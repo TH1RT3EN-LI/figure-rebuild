@@ -1,2 +1,2 @@
-Pillow>=10.0,<13
-fonttools>=4.50,<5
+# Compatibility entrypoint; dependencies are declared in pyproject.toml.
+-e .

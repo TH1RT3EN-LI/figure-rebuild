@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
-"""Self-contained skill entrypoint; works from any current directory."""
-import runpy
+"""Run the Figure Rebuild CLI from this checkout or an installed package."""
 from pathlib import Path
+import sys
+
+source = Path(__file__).resolve().parents[1] / 'src'
+if source.is_dir():
+    sys.path.insert(0, str(source))
+from figure_rebuild.cli import main
 
 if __name__ == '__main__':
-    runpy.run_path(str(Path(__file__).resolve().parents[1] / 'tools/figure_rebuild/cli.py'), run_name='__main__')
+    raise SystemExit(main())

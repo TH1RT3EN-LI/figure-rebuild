@@ -8,9 +8,27 @@ The PPT backend uses user-supplied `@oai/artifact-tool` and Codex Presentations 
 
 Optional vision dependencies are NumPy and opencv-python-headless, installed separately through requirements-vision.txt. OpenCV's algorithms propose geometry within caller-selected regions; they do not perform scientific interpretation or call an external recognition service.
 
-Font files must be provided by the user under suitable permissions. Microsoft YaHei and research-paper images used in local integration checks are excluded from Git. Generated local receipts may contain filesystem paths and should be reviewed before sharing.
+Font files must be provided by the user under suitable permissions. Font files and original paper PDFs used in integration checks are excluded from Git. README demonstration assets are listed below. Generated local receipts may contain filesystem paths and should be reviewed before sharing.
 
-`tests/figure_rebuild/fixtures/connector-presets.xml` is an extracted subset of
+## MambaVO reconstruction demonstration
+
+`docs/assets/mambavo-figure1-original.png` is a crop of the original Figure 1.
+`docs/assets/mambavo-figure1-rebuild.gif` shows its progressive reconstruction.
+Both refer to
+Figure 1 from **MambaVO: Deep Visual Odometry Based on Sequential Matching
+Refinement and Training Smoothing**, Shuo Wang et al., CVPR 2025.
+Source: [official CVPR paper](https://openaccess.thecvf.com/content/CVPR2025/html/Wang_MambaVO_Deep_Visual_Odometry_Based_on_Sequential_Matching_Refinement_and_CVPR_2025_paper.html).
+
+Geometry and ordinary text were reconstructed as native PowerPoint objects;
+mathematical labels were re-typeset with LaTeX. The demonstration retains the
+paper's photographs, feature/depth images, and gradient image assets. It is a
+canvas-only recording at twice the original drawing speed. The repository's
+MIT license does not grant rights to the original paper figure or retained
+third-party imagery.
+
+## Apache POI connector preset fixture
+
+`tests/fixtures/connector-presets.xml` is an extracted subset of
 Apache POI's `presetShapeDefinitions.xml`, licensed under Apache License 2.0.
 The repository's MIT license does not replace the XML's third-party terms.
 The original [Apache POI license](https://raw.githubusercontent.com/apache/poi/trunk/legal/LICENSE)
