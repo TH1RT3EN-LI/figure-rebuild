@@ -516,6 +516,10 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     remains in its receipt. ``box``, ``visible_frame`` and ``asset_source_box``
     consistently describe the derived frame, with zero crop. Unsupported group
     effects fail closed. Affine placement still requires its separate opt-in.
+    Metadata extraction uses a separate PDF document. Each native occurrence
+    starts from the original source bytes in a fresh document, so decoding for
+    SVG, image hashes, or a preceding occurrence cannot prime its image cache.
+    Pixel-based receipts are captured only after the native PNG is complete.
     ``allow_native_rgb_group_sampling=True`` requires native occurrence rendering
     and additionally admits one actual RGB child transparency group (including
     ICC / isolated groups) under the neutral page root. Original colorspaces and
@@ -590,8 +594,13 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
             raise UnsupportedPdfImageError('Image-info and SVG occurrence counts disagree')
         paint_order = _paint_order(infos, paints, selection)
         try:
-            native_images = ({} if native_occurrence_rendering else
-                             capture_native_pdf_images(sheet, bboxlog, {paint[0] for paint in paint_order.values()}))
+            native_images = {}
+            if not native_occurrence_rendering:
+                # SVG/image-info/text extraction decodes and caches images.
+                # Keep original pixel decoding independent of those APIs too.
+                with pymupdf.open(stream=source_bytes, filetype='pdf') as pixel_document:
+                    native_images = capture_native_pdf_images(
+                        pixel_document[page-1], bboxlog, {paint[0] for paint in paint_order.values()})
         except PdfImageNativeError as error:
             raise UnsupportedPdfImageError(str(error)) from error
         blocks = {block['number']: block for block in sheet.get_text('dict')['blocks'] if block['type'] == 1}
@@ -623,9 +632,18 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                 if user_clip[2] <= user_clip[0] or user_clip[3] <= user_clip[1]:
                     user_clip = list(sheet.rect)
                 try:
-                    native = render_native_pdf_image(sheet, bboxlog, paint[0], source_transform=mapping,
-                                                     source_bounds=frame, user_clip_pdf=user_clip,
-                                                     allow_native_rgb_group_sampling=allow_native_rgb_group_sampling)
+                    # A separate document per occurrence prevents metadata,
+                    # earlier renders and receipt decoding from seeding this
+                    # draw's image/mask cache. Reuse the same immutable bytes;
+                    # native paint order/bounds and resource identity are still
+                    # checked against the independently extracted metadata.
+                    with pymupdf.open(stream=source_bytes, filetype='pdf') as render_document:
+                        native = render_native_pdf_image(
+                            render_document[page-1], bboxlog, paint[0], source_transform=mapping,
+                            source_bounds=frame, user_clip_pdf=user_clip,
+                            allow_native_rgb_group_sampling=allow_native_rgb_group_sampling)
+                    native['receipt']['render_document_state'] = 'fresh_source_bytes_per_occurrence'
+                    native['receipt']['metadata_and_render_documents_separated'] = True
                     if allow_native_rgb_group_sampling:
                         native['receipt'].update({'source_pdf_sha256': source_sha, 'source_pdf_page': page})
                 except PdfImageNativeError as error:

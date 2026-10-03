@@ -13,6 +13,10 @@ import {linearGradientFill} from './linear_gradient.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
+const previewBackend=config.preview_backend??'artifact';
+if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
+if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
+if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
 const assetRoot=config.asset_root??job;
@@ -130,19 +134,36 @@ const fractionalSpacingObjects=(nativeLayoutAudit.text_layout??[]).filter(record
 if(fractionalSpacingObjects.length)previewLimitations.push({code:'fractional_percent_multiline_spacing_requires_application_verification',status:'needs_review',object_ids:fractionalSpacingObjects.map(record=>record.id),objects:fractionalSpacingObjects.map(record=>({id:record.id,line_count:record.line_count,spacing_thousandths_percent:record.spacing_thousandths_percent,whole_percent_fallback_accumulated_loss_px:record.whole_percent_fallback_accumulated_loss_px})),detail:'Some native applications reduce percentage line spacing to whole percent. Multiline text can accumulate pitch error; inspect the intended application. The recorded loss is a whole-percent fallback model, not a universal measured error bound.'});
 const varyingGradientAlpha=ordered.filter(o=>o.style?.fill_gradient&&new Set(o.style.fill_gradient.stops.map(stop=>stop.opacity??1)).size>1).map(o=>o.id);
 if(varyingGradientAlpha.length)previewLimitations.push({code:'gradient_stop_opacity_interpolation_requires_application_verification',status:'needs_review',object_ids:varyingGradientAlpha,detail:'Native stop RGB and alpha are verified in the final PPT. Artifact Tool 2.8.59 previews interpolate varying stop alpha differently from the SVG reference and LibreOffice. Inspect native application output; preview color alone cannot verify this fill.'});
-await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations},null,2));
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
-const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
-let targetSlide=rendered.slides.items[0];
-if(config.base){
- const info=JSON.parse(runPython('package',['inspect',checkedOutput],{encoding:'utf8'}));
- const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
+const bindFile=async file=>({path:path.resolve(file),sha256:createHash('sha256').update(await fs.readFile(file)).digest('hex')});
+const finalPptBinding=await bindFile(checkedOutput);
+let previewAudit;
+if(previewBackend==='libreoffice'){
+ previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
+ previewAudit.preview_limitations.push(...previewLimitations.filter(item=>item.code==='fractional_percent_multiline_spacing_requires_application_verification'));
+}else{
+ const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
+ let targetSlide=rendered.slides.items[0];
+ if(config.base){
+  const info=JSON.parse(runPython('package',['inspect',checkedOutput],{encoding:'utf8'}));
+  const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
+ }
+ for(const s of [1,2,4]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
+ previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
 }
-for(const s of [1,2,4]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
 // Keep the raw 1x preview for comparison diagnostics. The viewing aide uses
 // supersampling so thin mathematical strokes are filtered rather than dropped.
 const sharp=(await import(pathToFileURL(req.resolve('sharp')).href)).default;
 await sharp(path.join(run,'preview-4x.png')).resize(Math.round(slideCanvas.width),Math.round(slideCanvas.height),{kernel:'lanczos3'}).png().toFile(path.join(run,'preview-smooth-1x.png'));
+if(JSON.stringify(await bindFile(checkedOutput))!==JSON.stringify(finalPptBinding))throw Error('Final PPTX changed during preview rendering');
+const previewBindings={};
+for(const [role,filename,scale] of [['preview_1x','preview-1x.png',1],['preview_2x','preview-2x.png',2],['preview_4x','preview-4x.png',4],['preview_smooth_1x','preview-smooth-1x.png',1]]){
+ const file=path.join(run,filename),size=await sharp(file).metadata();
+ previewBindings[role]={...await bindFile(file),width:size.width,height:size.height,scale};
+}
+previewBindings.preview_smooth_1x.derivation={source_role:'preview_4x',source_sha256:previewBindings.preview_4x.sha256,kernel:'lanczos3',target_size:[previewBindings.preview_smooth_1x.width,previewBindings.preview_smooth_1x.height],is_raw_preview:false};
+const renderAuditPath=path.join(run,'render-audit.json');
+await fs.writeFile(renderAuditPath,JSON.stringify({...previewAudit,schema_version:1,preview_backend:previewBackend,input_pptx:finalPptBinding,previews:previewBindings},null,2));
 // Use resolved source-coordinate frames: SVG text may only have a baseline
 // anchor, and image contain fitting can differ from its requested box.
 const comparisonScene=path.join(run,'comparison-scene.json');
@@ -165,6 +186,8 @@ for(const asset of JSON.parse(await fs.readFile(path.join(run,'asset-snapshot.js
 }
 const editability=JSON.parse(await fs.readFile(path.join(run,'editability.json'),'utf8'));
 const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,formula_count:editability.formula_count??0,svg_formula_count:editability.svg_formula_count??0,native_connector_count:editability.native_connectors?.length??0,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
+delivery.preview_backend=previewBackend;
+delivery.render_audit_sha256=(await bindFile(renderAuditPath)).sha256;
 const deliveryCandidate=path.join(run,'delivery-candidate.json');await fs.writeFile(deliveryCandidate,JSON.stringify(delivery,null,2));
 runPython('publish',['--source',checkedOutput,'--output',output,'--receipt',path.join(run,'delivery.json'),'--data',deliveryCandidate],{stdio:'pipe'});
 console.log(JSON.stringify({output,objects:objectMap.length,nativeGroups:editability.native_groups.length,preview:path.join(run,'preview-1x.png')}));

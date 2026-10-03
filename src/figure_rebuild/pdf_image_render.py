@@ -26,6 +26,12 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
     RGB child (including ICC and isolated groups) below that neutral page root.
     Splitting a shared group into per-image assets is unverified compositing,
     even though every forwarded callback retains its original colorspace.
+
+    The caller must provide a fresh PDF document for this render. In particular,
+    SVG, text-dictionary and hashed-image extraction can alter MuPDF's cached
+    image sampling state. The public extraction helper opens a fresh document
+    per occurrence; this low-level function cannot undo prior use of ``sheet``.
+    Image/mask receipt decoding is deferred until the PNG has been encoded.
     """
     if not isinstance(allow_native_rgb_group_sampling, bool):
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
@@ -39,6 +45,7 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
              'fz_new_draw_device', 'fz_new_path', 'fz_rectto', 'fz_clip_path',
              'fz_pop_clip', 'fz_run_page', 'fz_close_device', 'fz_device_rgb',
              'fz_default_rgb', 'll_fz_keep_default_colorspaces',
+             'FzImage', 'll_fz_keep_image',
              'll_fz_get_unscaled_pixmap_from_image', 'll_fz_fill_image',
              'll_fz_clip_path', 'll_fz_clip_stroke_path', 'll_fz_clip_text',
              'll_fz_clip_stroke_text', 'll_fz_clip_image_mask', 'll_fz_pop_clip',
@@ -109,6 +116,7 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
             self.default_rgb_identity = (int(m.fz_default_rgb(self.default_colorspaces).m_internal.this)
                                          == int(m.fz_device_rgb().m_internal.this))
             self.selected = None
+            self.selected_image = None
             for name in ('clip_path', 'clip_stroke_path', 'clip_text', 'clip_stroke_text',
                          'clip_image_mask', 'pop_clip', 'begin_group', 'end_group',
                          'set_default_colorspaces', 'begin_mask', 'end_mask',
@@ -280,19 +288,17 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                 raise PdfImageNativeError('Image-mask clip is not the bound occurrence mask')
             if image.mask and not matched:
                 raise PdfImageNativeError('Attached image mask lacks its verified native clip callback')
-            native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
-            attached = None
             if image.mask:
                 if image.mask.mask or (image.mask.w, image.mask.h) != (image.w, image.h):
                     raise PdfImageNativeError('Nested or differently sampled attached masks are unsupported')
-                mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
-                attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
-                            'actual_handle_and_matrix_and_sequence_bound': True}
-            self.selected = {'native_digest': native.digest.hex(), 'width': image.w, 'height': image.h,
+            # Decoding merely for a digest changes MuPDF's cached image state
+            # and can change subsequent sampling. Keep the actual handle, but
+            # do not request its unscaled pixels until every draw scope closes.
+            self.selected_image = m.FzImage(m.ll_fz_keep_image(image))
+            self.selected = {'width': image.w, 'height': image.h,
                              'transform': transform, 'groups': list(self.groups),
                              'clip_chain': [{k: v for k, v in c.items() if k != 'image_pointer'}
                                             for c in self.clips],
-                             'attached_mask': attached, 'native_colorspace': native.colorspace.name,
                              'native_interpolate': bool(image.interpolate),
                              'native_use_decode': bool(image.use_decode),
                              'native_use_colorkey': bool(image.use_colorkey),
@@ -333,6 +339,25 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         raise PdfImageNativeError('Selected native image was not forwarded')
     encoded = fitz.Pixmap('raw', pix).tobytes('png')
     selected = device.selected
+    try:
+        image = device.selected_image.m_internal
+        native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
+        if (native.width, native.height) != (selected['width'], selected['height']):
+            raise PdfImageNativeError('Native receipt decoder unexpectedly changed dimensions')
+        attached = None
+        if image.mask:
+            mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
+            if (mask.width, mask.height, mask.n) != (image.w, image.h, 1):
+                raise PdfImageNativeError('Native receipt mask dimensions or channels disagree')
+            attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
+                        'actual_handle_and_matrix_and_sequence_bound': True}
+        selected.update({'native_digest': native.digest.hex(),
+                         'native_colorspace': native.colorspace.name if native.colorspace else None,
+                         'attached_mask': attached})
+    except Exception as error:
+        raise PdfImageNativeError('Native post-render receipt capture failed: '+str(error)) from error
+    finally:
+        device.selected_image = None
     if allow_native_rgb_group_sampling:
         for group in selected['groups']:
             start, end = group['begin_paint_seqno'], group['end_paint_seqno_exclusive']
@@ -359,7 +384,8 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                                                  frame[2]-source_bounds[2], frame[3]-source_bounds[3]],
                'sampling_scale': sampling, 'sampling_pitch_source_px': 1/sampling,
                'sampling_bound_scope': 'grid spacing only; not a bound on RGB, alpha, filtering or numerical error',
-               'raster_size': [width, height], 'native_png_sha256': hashlib.sha256(encoded).hexdigest()}
+               'raster_size': [width, height], 'native_png_sha256': hashlib.sha256(encoded).hexdigest(),
+               'pixel_metadata_capture_phase': 'after_all_native_draw_devices_closed_and_png_encoded'}
     if allow_native_rgb_group_sampling:
         receipt.update({'allow_native_rgb_group_sampling': True,
                         'sampled_group_extension_used': any(g['sampled_group_extension_used'] for g in selected['groups']),

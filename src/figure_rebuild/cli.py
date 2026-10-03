@@ -103,6 +103,9 @@ def validate_runtime(data, base):
         elif not path.is_dir(): raise ValueError('Runtime directory is missing: ' + key)
         data[key] = str(path)
     data['fonts'] = font_profile(data.get('fonts'), base)
+    if 'native_preview' in data:
+        from .native_preview import validate_profile
+        data['native_preview'] = validate_profile(data['native_preview'], base, check_executables=False)
     return data
 
 
@@ -146,6 +149,10 @@ def configure(a):
             for key in ('node', 'python', 'node_modules', 'presentation_skill')}
     profile = Path(a.font_profile).expanduser().resolve()
     data.update(font_profile=str(profile), fonts=read_font_profile(profile))
+    if getattr(a, 'native_preview_profile', None):
+        from .native_preview import validate_profile
+        native_profile = Path(a.native_preview_profile).expanduser().resolve()
+        data['native_preview'] = validate_profile(json.loads(native_profile.read_text(encoding='utf-8')), native_profile.parent)
     data = validate_runtime(data, config_path().parent)
     save(config_path(), data)
     print(json.dumps({'configured': True, 'profile': str(config_path()), 'font_family': data['fonts']['family']}))
@@ -353,7 +360,23 @@ def build(a):
     job = m.parent
     out = Path(a.output).resolve() if a.output else job / 'exports' / f"{data['id']}-r{data['revision']}.pptx"
     if out.exists(): raise ValueError('Output already exists; use a new revision or output name')
+    from .native_preview import validate_backend
+    preview_backend = validate_backend(getattr(a, 'preview_backend', 'artifact'))
+    if preview_backend == 'libreoffice' and a.base:
+        raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     rt = runtime()
+    if preview_backend == 'libreoffice':
+        # Probe the configured interpreter, not the interpreter running this CLI.
+        with tempfile.TemporaryDirectory(prefix='figure-rebuild-native-check-') as temp:
+            native_config = Path(temp) / 'runtime.json'; save(native_config, rt)
+            try:
+                subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'native_preview',
+                                '--config', str(native_config), '--preflight'], check=True,
+                               capture_output=True, text=True, timeout=45, env=python_environment())
+            except subprocess.TimeoutExpired as exc:
+                raise ValueError('Native preview dependency check timed out') from exc
+            except subprocess.CalledProcessError as exc:
+                raise ValueError('Native preview dependency check failed: ' + (exc.stderr or '').strip()) from exc
     base_config = None
     if a.placement and not a.base: raise ValueError('placement requires an existing base deck')
     if (a.slide_id or a.base_sha256 or a.replace_id) and not a.base: raise ValueError('Base-specific arguments require --base')
@@ -387,7 +410,8 @@ def build(a):
         snapshot = run / 'manifest-snapshot.json'
         save(snapshot, data)
         save(run / 'manifest-validation.json', report)
-        config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt}
+        config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
+                  'preview_backend': preview_backend, 'preview_provenance_version': 1}
         if base_config:
             snap = run / 'base-snapshot.pptx'
             shutil.copy2(base, snap)
@@ -407,6 +431,7 @@ def main():
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)
     c.add_argument('--font-profile', required=True)
+    c.add_argument('--native-preview-profile', help='Optional external LibreOffice/Fontconfig command profile JSON')
     c.set_defaults(func=configure)
     c = sub.add_parser('doctor'); c.set_defaults(func=doctor)
     c = sub.add_parser('refine-crop', help='Propose a source-pixel crop inside a selected region; never edits the manifest')
@@ -442,6 +467,7 @@ def main():
         print(json.dumps(report, ensure_ascii=False))
     c.set_defaults(func=validate_reviewed)
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
+    c.add_argument('--preview-backend', choices=['artifact', 'libreoffice'], default='artifact', help='Renderer for the exact finalized PPTX; LibreOffice currently supports single-slide builds only')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')
     c.add_argument('--input', required=True, help='Generated single-slide PPTX')

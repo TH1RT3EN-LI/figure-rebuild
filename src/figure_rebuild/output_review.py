@@ -72,6 +72,160 @@ def _inside(root, path):
     return path
 
 
+def _preview_provenance(run, config, paths):
+    """New runs bind renderer identity and its actual input/output evidence."""
+    if 'preview_provenance_version' not in config and 'preview_backend' not in config:
+        return None  # Keep immutable legacy v1 review bindings unchanged.
+    from .native_preview import validate_backend
+    _require(type(config.get('preview_provenance_version')) is int and
+             config['preview_provenance_version'] == 1, 'Unsupported preview provenance version')
+    backend = validate_backend(config.get('preview_backend'))
+    audit_path = _inside(run, run / 'render-audit.json')
+    audit = _json_record(audit_path)
+    _require(type(audit.get('schema_version')) is int and audit['schema_version'] == 1 and
+             audit.get('preview_backend') == backend, 'Render audit backend/schema disagrees with build config')
+    _require(audit.get('input_pptx') == _binding(paths['pptx']), 'Render audit identifies a different final PPTX')
+    _require(audit.get('application_playback_verified') is False,
+             'Preview generation cannot grant native application playback verification')
+    previews = audit.get('previews')
+    expected = {'preview_1x': ('preview-1x.png', 1), 'preview_2x': ('preview-2x.png', 2),
+                'preview_4x': ('preview-4x.png', 4), 'preview_smooth_1x': ('preview-smooth-1x.png', 1)}
+    _require(isinstance(previews, dict) and set(previews) == set(expected), 'Render audit must bind all preview scales')
+    from PIL import Image
+    for role, (filename, scale) in expected.items():
+        path = _inside(run, run / filename)
+        record = previews[role]
+        fields = {'path', 'sha256', 'width', 'height', 'scale'} | ({'derivation'} if role == 'preview_smooth_1x' else set())
+        _require(isinstance(record, dict) and set(record) == fields,
+                 'Invalid preview binding: ' + role)
+        _require({k: record[k] for k in ('path', 'sha256')} == _binding(path), 'Preview bytes disagree with render audit: ' + role)
+        _require(all(type(record[k]) is int and record[k] > 0 for k in ('width', 'height', 'scale')),
+                 'Preview dimensions and scale must be positive integers')
+        with Image.open(path) as png:
+            _require(png.format == 'PNG' and list(png.size) == [record['width'], record['height']] and record['scale'] == scale,
+                     'Preview dimensions or scale disagree with render audit: ' + role)
+            png.verify()
+        paths[role] = path
+    smooth = previews['preview_smooth_1x']
+    _require(smooth['derivation'] == {'source_role': 'preview_4x', 'source_sha256': previews['preview_4x']['sha256'],
+                                     'kernel': 'lanczos3', 'target_size': [smooth['width'], smooth['height']], 'is_raw_preview': False}
+             and smooth['derivation'].get('is_raw_preview') is False,
+             'Smooth preview derivation is missing, stale, or falsely identifies a raw preview')
+    paths['render_audit'] = audit_path
+    evidence = audit.get('evidence')
+    _require(isinstance(evidence, dict) and 'font_audit' in evidence, 'Renderer evidence must include audited fonts')
+    for role, item in evidence.items():
+        _require(isinstance(role, str) and re.fullmatch(r'[a-z][a-z0-9_]*', role) and role not in paths and role != 'delivered_pptx',
+                 'Invalid or colliding renderer evidence role')
+        _require(isinstance(item, dict) and set(item) == {'path', 'sha256'} and isinstance(item.get('path'), str),
+                 'Invalid renderer evidence binding')
+        path = _inside(run, Path(item['path']))
+        _require(item == _binding(path), 'Renderer evidence changed: ' + role)
+        paths[role] = path
+    if backend == 'artifact':
+        _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
+    else:
+        _require(not config.get('base') and audit.get('renderer') == 'LibreOffice Impress' and
+                 audit.get('renderer_backend') == 'headless_direct_png' and audit.get('raw_preview_format') == 'impress_png_Export' and
+                 audit.get('pdf_inspector') == 'PyMuPDF' and audit.get('pdf_role') == 'font_and_image_evidence_only' and
+                 'rasterizer' not in audit, 'Invalid native preview renderer identity')
+        _require({'native_pdf', 'native_commands', 'native_fontconfig', 'native_command_executable', 'native_png_1x', 'native_png_2x', 'native_png_4x'} <= set(evidence), 'Native preview evidence is incomplete')
+        _text(audit.get('libreoffice_version'), 'LibreOffice version')
+        _text(audit.get('pdf_inspector_version'), 'PDF inspector version')
+        native = audit.get('native_render')
+        _require(isinstance(native, dict) and native.get('input_before') == audit['input_pptx'] == native.get('input_after'),
+                 'Native preview input PPTX binding changed')
+        _require(native.get('page_count') == 1 and native.get('page_index') == 0,
+                 'Native preview must identify the single supported page')
+        _require(audit.get('libreoffice_command') == config.get('runtime', {}).get('native_preview', {}).get('command'),
+                 'Native command disagrees with the frozen runtime configuration')
+        _require(audit.get('command_executable') == {'path': audit['libreoffice_command'][0],
+                                                   'sha256': evidence['native_command_executable']['sha256']},
+                 'Native executable declaration disagrees with the frozen command snapshot')
+        _require(audit.get('pixel_density_dpi') == [96, 192, 384], 'Native pixel density must be 96/192/384')
+        from .native_preview import pdf_export_options, png_export_options, conversion_command
+        options = audit.get('pdf_export_options', {})
+        _require(json.dumps(options, sort_keys=True) == json.dumps(pdf_export_options(), sort_keys=True), 'Native preview requires lossless PDF evidence without image downsampling or notes')
+        commands = json.loads(paths['native_commands'].read_text(encoding='utf-8'))
+        _require(isinstance(commands, list) and bool(commands) and all(isinstance(c, dict) and
+                 c.get('returncode') == 0 and not c.get('timed_out') and isinstance(c.get('argv'), list) and
+                 all(isinstance(arg, str) for arg in c['argv']) for c in commands), 'Native rendering commands did not all succeed')
+        directory = run / 'native-preview'
+        profile = config['runtime']['native_preview']
+        environment = {**profile.get('environment', {}), 'FONTCONFIG_FILE': str(paths['native_fontconfig']),
+                       'FONTCONFIG_PATH': str(directory), 'SAL_USE_VCLPLUGIN': 'svp'}
+        _require(all(c.get('environment_overrides') == environment and c.get('environment_unset') == ['FONTCONFIG_SYSROOT']
+                     for c in commands), 'Native commands must share the isolated registered font environment')
+        version_argv = [*profile['command'], '-env:UserInstallation=' + (directory / 'profile-version').as_uri(), '--headless', '--version']
+        _require(any(c['argv'] == version_argv and c.get('stdout', '').strip() == audit['libreoffice_version'] for c in commands),
+                 'Native renderer version is not bound to the executed command')
+        converts = [(i, c) for i, c in enumerate(commands) if '--convert-to' in c['argv']]
+        pdf_argv = conversion_command(profile, directory, 'pdf', 'pdf:impress_pdf_Export', options, paths['pptx'])
+        _require(len(converts) == 4 and sum(c['argv'] == pdf_argv for _, c in converts) == 1 and
+                 paths['native_pdf'] == directory / 'pdf/reconstruction.pdf',
+                 'Native exports must identify one PDF evidence export and three direct PNG exports of the final PPTX')
+        exports = native.get('png_exports')
+        _require(isinstance(exports, dict) and set(exports) == {'1', '2', '4'}, 'Direct PNG export evidence is incomplete')
+        for scale in (1, 2, 4):
+            item = exports[str(scale)]
+            role = f'native_png_{scale}x'
+            preview = previews[f'preview_{scale}x']
+            expected_options = png_export_options(preview['width'], preview['height'])
+            _require(isinstance(item, dict) and set(item) == {'evidence_role', 'input_pptx', 'fontconfig_sha256', 'options', 'command_index'} and
+                     item['evidence_role'] == role and item['input_pptx'] == audit['input_pptx'] and
+                     item['fontconfig_sha256'] == evidence['native_fontconfig']['sha256'] and
+                     json.dumps(item['options'], sort_keys=True) == json.dumps(expected_options, sort_keys=True),
+                     'Direct PNG export identity or size options disagree with the actual preview')
+            index = item['command_index']
+            _require(type(index) is int and 0 <= index < len(commands) and commands[index]['argv'] ==
+                     conversion_command(profile, directory, f'png-{scale}x', 'png:impress_png_Export', expected_options, paths['pptx']),
+                     'Direct PNG command disagrees with the final PPTX, scale, filter, or output directory')
+            _require(paths[role] == directory / f'png-{scale}x/reconstruction.png' and
+                     evidence[role]['sha256'] == preview['sha256'], 'Raw preview must retain the exact direct-export PNG bytes')
+        from .package import inspect_pptx
+        deck = inspect_pptx(paths['pptx'])
+        _require(len(deck['slides']) == 1 and native.get('slide_id') == deck['slides'][0]['slide_id'] and
+                 native.get('slide_size_emu') == deck['slide_size_emu'], 'Native page identity disagrees with final PPTX')
+        try:
+            import pymupdf
+        except ImportError as exc:
+            raise ValueError('Verifying a native preview requires PyMuPDF') from exc
+        from .native_preview import _image_evidence, _pdf_font_name
+        with pymupdf.open(paths['native_pdf']) as pdf:
+            _require(pdf.is_pdf and not pdf.is_encrypted and len(pdf) == 1 and
+                     not pdf[0].rotation and list(pdf[0].rect) == native.get('page_rect_points') and
+                     abs(pdf[0].rect.width - deck['slide_size_emu']['cx'] / 12700) <= .02 and
+                     abs(pdf[0].rect.height - deck['slide_size_emu']['cy'] / 12700) <= .02,
+                     'Native PDF geometry disagrees with render audit or final PPTX')
+            _require(audit.get('image_audit') == _image_evidence(paths['pptx'], pdf, pdf[0]),
+                     'Native PDF image encodings or resolutions disagree with render audit')
+            actual_fonts = sorted({item[3] for item in pdf[0].get_fonts(full=True)})
+            _require(native.get('pdf_fonts') == actual_fonts, 'Native PDF font declarations disagree with actual resources')
+        dimensions = native.get('pixel_dimensions')
+        _require(isinstance(dimensions, dict) and dimensions == {str(s): [previews[f'preview_{s}x']['width'], previews[f'preview_{s}x']['height']] for s in (1, 2, 4)},
+                 'Native preview sizes disagree with direct export evidence')
+        font_resolutions = native.get('font_resolutions')
+        registered = json.loads(paths['font_audit'].read_text(encoding='utf-8'))
+        font_keys = {role for role in evidence if re.fullmatch(r'native_font_[0-9]+', role)}
+        _require(isinstance(registered, list) and bool(registered) and isinstance(font_resolutions, list) and
+                 len(font_resolutions) == len(registered) and font_keys == {f'native_font_{i}' for i in range(len(registered))},
+                 'Native font resolution evidence is incomplete')
+        allowed_names = set()
+        for i, (resolution, face) in enumerate(zip(font_resolutions, registered)):
+            expected_font = evidence[f'native_font_{i}']
+            _require(isinstance(face, dict) and isinstance(resolution, dict) and
+                     resolution.get('selected') == expected_font and expected_font['sha256'] == face.get('renderer_sha256') and
+                     resolution.get('family') == face.get('family') and resolution.get('role') == face.get('role') and
+                     resolution.get('postscript_names') == face.get('postscript_names') and type(resolution.get('face_index')) is int and resolution['face_index'] == 0,
+                     'Native font resolution does not uniquely match its registered face')
+            allowed_names.update(_pdf_font_name(name) for name in face.get('postscript_names', []))
+        _require(all(_pdf_font_name(name) in allowed_names for name in actual_fonts), 'Native PDF contains an unregistered font')
+        emu = deck['slide_size_emu']
+        _require(all(dimensions[str(s)] == [round(emu['cx'] / 9525 * s), round(emu['cy'] / 9525 * s)] for s in (1, 2, 4)),
+                 'Native pixel dimensions do not correspond to final PPTX and declared DPI')
+    return audit
+
+
 def _build_bindings(run_dir):
     run = Path(run_dir).resolve()
     _require(run.is_dir(), f'Build run does not exist: {run}')
@@ -112,6 +266,7 @@ def _build_bindings(run_dir):
         path = run / filename
         if path.exists() or path.is_symlink():
             paths[role] = _inside(run, path)
+    preview_audit = _preview_provenance(run, config, paths)
     _text(config.get('output'), 'Delivered PPTX path')
     _require(Path(config['output']).is_absolute(), 'Delivered PPTX path must be absolute')
     paths['delivered_pptx'] = Path(config['output']).resolve()
@@ -126,6 +281,10 @@ def _build_bindings(run_dir):
              'Delivered PPTX, immutable validated PPTX and receipt do not match')
     _require(delivery.get('source_sha256') == source['sha256'],
              'Delivery receipt identifies a different source')
+    if preview_audit is not None:
+        _require(delivery.get('preview_backend') == preview_audit['preview_backend'] and
+                 delivery.get('render_audit_sha256') == bindings['render_audit']['sha256'],
+                 'Delivery receipt disagrees with preview renderer provenance')
     return run, {'figure_id': manifest['id'], 'revision': manifest['revision']}, bindings
 
 

@@ -77,6 +77,68 @@ class OutputReviewChecks(unittest.TestCase):
                 'region': 'Top-right feedback edge',
                 'artifacts': ['source', 'preview_2x']}
 
+    def add_preview_provenance(self):
+        from PIL import Image
+        config = json.loads((self.run / 'build-config.json').read_text())
+        config.update(preview_backend='artifact', preview_provenance_version=1)
+        self.write_json(self.run / 'build-config.json', config)
+        previews = {}
+        for role, filename, scale in [('preview_1x', 'preview-1x.png', 1), ('preview_2x', 'preview-2x.png', 2),
+                                      ('preview_4x', 'preview-4x.png', 4), ('preview_smooth_1x', 'preview-smooth-1x.png', 1)]:
+            path = self.run / filename
+            Image.new('RGB', (20*scale, 10*scale), 'white').save(path)
+            previews[role] = {**review._binding(path), 'width': 20*scale, 'height': 10*scale, 'scale': scale}
+        previews['preview_smooth_1x']['derivation'] = {'source_role': 'preview_4x', 'source_sha256': previews['preview_4x']['sha256'],
+                                                     'kernel': 'lanczos3', 'target_size': [20, 10], 'is_raw_preview': False}
+        self.write_json(self.run / 'font-audit.json', {'test': 'registered font fixture'})
+        audit = {'schema_version': 1, 'preview_backend': 'artifact', 'renderer': 'Codex Artifact Tool',
+                 'input_pptx': review._binding(self.run / 'validated-output/reconstruction.pptx'),
+                 'application_playback_verified': False, 'previews': previews,
+                 'evidence': {'font_audit': review._binding(self.run / 'font-audit.json')}}
+        self.write_json(self.run / 'render-audit.json', audit)
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        delivery.update(preview_backend='artifact', render_audit_sha256=review._binding(self.run / 'render-audit.json')['sha256'])
+        self.write_json(self.run / 'delivery.json', delivery)
+        return audit
+
+    def test_new_build_review_binds_renderer_without_granting_playback_verification(self):
+        self.add_preview_provenance()
+        record = self.observed()
+        self.assertIn('render_audit', record['bindings'])
+        self.assertIn('font_audit', record['bindings'])
+        result = review.verify_output_review(self.run, record)
+        self.assertEqual(result['native_application_verification'], 'not_verified')
+
+    def test_renderer_provenance_swaps_and_missing_scale_fail_even_before_review(self):
+        audit = self.add_preview_provenance()
+        original = copy.deepcopy(audit)
+        for change in ('backend', 'pptx', 'scale', 'acceptance'):
+            audit = copy.deepcopy(original)
+            if change == 'backend': audit['preview_backend'] = 'libreoffice'
+            elif change == 'pptx': audit['input_pptx']['sha256'] = '0'*64
+            elif change == 'scale': del audit['previews']['preview_4x']
+            else: audit['application_playback_verified'] = True
+            self.write_json(self.run / 'render-audit.json', audit)
+            with self.subTest(change=change), self.assertRaises(ValueError): review.prepare_output_review(self.run)
+        (self.run / 'render-audit.json').unlink()
+        with self.assertRaises(ValueError): review.prepare_output_review(self.run)
+
+    def test_registered_font_evidence_change_invalidates_new_review(self):
+        self.add_preview_provenance()
+        record = self.observed()
+        (self.run / 'font-audit.json').write_text('{}')
+        with self.assertRaisesRegex(ValueError, 'evidence changed'): review.verify_output_review(self.run, record)
+
+    def test_smooth_preview_derivation_cannot_be_relabelled_or_rebound(self):
+        original = self.add_preview_provenance()
+        for field, value in [('source_role', 'preview_1x'), ('source_sha256', '0'*64), ('kernel', 'nearest'),
+                             ('target_size', [40, 20]), ('is_raw_preview', True)]:
+            audit = copy.deepcopy(original)
+            audit['previews']['preview_smooth_1x']['derivation'][field] = value
+            self.write_json(self.run / 'render-audit.json', audit)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'derivation'):
+                review.prepare_output_review(self.run)
+
     def test_preparation_is_not_an_inspection_or_acceptance(self):
         template = review.prepare_output_review(self.run)
         self.assertFalse(template['model_review']['performed'])

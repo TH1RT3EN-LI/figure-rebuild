@@ -28,6 +28,26 @@ class BuildInputChecks(unittest.TestCase):
         with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run') as run:
             with self.assertRaisesRegex(ValueError,'placement requires'):cli.build(self.args)
             run.assert_not_called();self.assertFalse((self.job/'build').exists())
+
+    def test_explicit_native_base_and_unknown_backend_fail_before_runtime(self):
+        for backend, base in [('libreoffice', 'missing.pptx'), ('auto', None)]:
+            self.args.preview_backend = backend; self.args.base = base
+            with patch.object(cli, 'runtime') as runtime:
+                with self.assertRaises(ValueError): cli.build(self.args)
+                runtime.assert_not_called()
+            self.assertFalse((self.job/'build').exists())
+
+    def test_missing_native_dependency_fails_before_allocating_run(self):
+        self.args.preview_backend = 'libreoffice'
+        failure = cli.subprocess.CalledProcessError(2, ['python'], stderr='PyMuPDF is missing')
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run', side_effect=failure):
+            with self.assertRaisesRegex(ValueError, 'PyMuPDF'): cli.build(self.args)
+        self.assertFalse((self.job/'build').exists())
+
+    def test_parser_rejects_unknown_preview_backend(self):
+        with patch.object(sys, 'argv', ['figure-rebuild', 'build', '--manifest', str(self.manifest), '--preview-backend', 'auto']), patch('sys.stderr', io.StringIO()):
+            with self.assertRaises(SystemExit) as caught: cli.main()
+        self.assertEqual(caught.exception.code, 2)
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())
@@ -36,6 +56,8 @@ class BuildInputChecks(unittest.TestCase):
             self.assertNotEqual(snapshot,self.manifest)
             self.assertEqual(json.loads(snapshot.read_text())['revision'],1)
             self.assertEqual(Path(config['job']),self.job.resolve())
+            self.assertEqual(config['preview_backend'], 'artifact')
+            self.assertEqual(config['preview_provenance_version'], 1)
             frozen=Path(config['asset_root'])/'original.png'
             self.assertEqual(cli.digest(frozen),self.m['source']['sha256'])
             (self.job/'original.png').write_bytes(b'changed after reservation')
@@ -141,6 +163,17 @@ class RuntimeChecks(unittest.TestCase):
         with patch.dict(cli.os.environ,{'FIGURE_REBUILD_CONFIG':str(self.config)},clear=True),patch.object(cli,'preflight') as check:
             loaded=cli.runtime()
             check.assert_called_once_with(loaded)
+
+    def test_unselected_missing_native_executable_does_not_block_artifact_runtime(self):
+        data = self.configure()
+        data['native_preview'] = {'command': ['/missing/soffice'], 'fc_match': '/missing/fc-match'}
+        cli.save(self.config, data)
+        with patch.dict(cli.os.environ, {'FIGURE_REBUILD_CONFIG': str(self.config)}, clear=True):
+            loaded = cli.runtime(check_dependencies=False)
+        self.assertEqual(loaded['native_preview']['command'], ['/missing/soffice'])
+        from figure_rebuild.native_preview import preflight
+        with self.assertRaisesRegex(ValueError, 'executable is missing'):
+            preflight(loaded)
 
     def test_virtualenv_executable_symlink_path_is_not_dereferenced(self):
         invoked=self.root/'.venv/bin/python';invoked.parent.mkdir(parents=True)
