@@ -83,6 +83,8 @@ def check_sdist(path):
             "tests/fixtures/connector-presets.xml",
             "tests/fixtures/connector-presets.LICENSE",
             "tests/fixtures/connector-presets.NOTICE",
+            "tests/fixtures/sam2-fill-ring.json",
+            "tests/fixtures/d4rt-stroke248.json",
             *{"src/figure_rebuild/powerpoint/" + name for name in BACKENDS},
         }
         if required - relative:

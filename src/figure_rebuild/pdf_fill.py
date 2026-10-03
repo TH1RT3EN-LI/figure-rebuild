@@ -82,22 +82,30 @@ def _normalize_fill_for_proof(commands):
     Z resets the current point to its subpath start: any subsequent L/C starts
     a new subpath there. Repeated Z adds no fill edge. Only an L whose endpoint
     exactly equals the current point can be omitted; curves are never erased.
-    Degenerate contours still reach the topology proof and fail closed.
+    A moveto subpath with no drawing command contributes no fill boundary and
+    may be excluded from this proof copy. Degenerate L/C contours still reach
+    the topology proof and fail closed, even if a zero-length L was omitted.
     """
     normalized = []
     receipt = {"proof_only": True, "source_commands_changed": False,
                "implicit_closures": [], "skipped_zero_length_line_indices": [],
                "ignored_repeated_close_indices": [],
-               "post_close_subpath_starts": []}
+               "post_close_subpath_starts": [], "skipped_empty_subpaths": []}
     start = cursor = raw_start = raw_cursor = None
     active = False
     subpath_count = 0
+    subpaths, subpath = [], None
+
+    def finish_subpath(after_index):
+        subpath["proof_end"] = len(normalized)
+        subpath["source_end"] = after_index
 
     def close_implicitly(reason, after_index):
         normalized.append(("Z",))
         receipt["implicit_closures"].append(
             {"reason": reason, "after_source_command_index": after_index,
              "from": list(raw_cursor), "to": list(raw_start)})
+        finish_subpath(after_index)
 
     try:
         for index, command in enumerate(commands):
@@ -112,6 +120,9 @@ def _normalize_fill_for_proof(commands):
                 raw_start = raw_cursor = command[1]
                 active = True
                 subpath_count += 1
+                subpath = {"proof_start": len(normalized), "source_start": index,
+                           "has_drawing_command": False}
+                subpaths.append(subpath)
                 normalized.append(command)
             elif op in ("L", "C") and len(command) == (2 if op == "L" else 4):
                 points = [_point(p) for p in command[1:]]
@@ -120,11 +131,15 @@ def _normalize_fill_for_proof(commands):
                 if not active:
                     # A close resets cursor to start, not the last explicit
                     # vertex. Preserve that distinction in the proof copy.
+                    subpath = {"proof_start": len(normalized), "source_start": index,
+                               "has_drawing_command": False}
+                    subpaths.append(subpath)
                     normalized.append(("M", raw_start))
                     active = True
                     subpath_count += 1
                     receipt["post_close_subpath_starts"].append(
                         {"before_source_command_index": index, "point": list(raw_start)})
+                subpath["has_drawing_command"] = True
                 if op == "L" and points[-1] == cursor:
                     receipt["skipped_zero_length_line_indices"].append(index)
                 else:
@@ -133,6 +148,7 @@ def _normalize_fill_for_proof(commands):
             elif op == "Z" and len(command) == 1 and start is not None:
                 if active:
                     normalized.append(command)
+                    finish_subpath(index)
                     active = False
                 else:
                     receipt["ignored_repeated_close_indices"].append(index)
@@ -145,6 +161,20 @@ def _normalize_fill_for_proof(commands):
             close_implicitly("end_of_path", len(commands)-1)
     except (ValueError, TypeError, OverflowError):
         return None
+    # Filter only after the entire input has passed validation. A malformed or
+    # nonfinite command in an apparently empty subpath must never be hidden.
+    excluded = set()
+    for subpath in subpaths:
+        if not subpath["has_drawing_command"]:
+            indices = list(range(subpath["proof_start"], subpath["proof_end"]))
+            excluded.update(indices)
+            receipt["skipped_empty_subpaths"].append({
+                "reason": "moveto_subpath_has_no_drawing_commands",
+                "moveto_source_command_index": subpath["source_start"],
+                "source_command_indices": list(range(subpath["source_start"], subpath["source_end"]+1)),
+                "proof_command_indices_before_filter": indices,
+                "source_commands_changed": False})
+    normalized = [command for index, command in enumerate(normalized) if index not in excluded]
     return normalized, receipt
 
 

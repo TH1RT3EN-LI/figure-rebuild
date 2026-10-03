@@ -1,6 +1,9 @@
 """Source identity and analytic geometry tests, independent of a PDF corpus."""
 import math
+import json
+from pathlib import Path
 import unittest
+from unittest import mock
 
 from figure_rebuild.pdf_source import (
     PdfSourceError, UnsupportedPdfPaintError, extract_outlined_svg, outline_paths,
@@ -16,6 +19,50 @@ def point(command, key):
 
 
 class PdfSourceTests(unittest.TestCase):
+    def test_expanded_command_budget_is_explicit_and_recorded(self):
+        svg = '<svg width="10" height="10"><defs><path id="p" d="M0 0L1 1"/></defs><use href="#p"/><use href="#p"/></svg>'
+        with self.assertRaisesRegex(PdfSourceError, "total command budget"):
+            extract_outlined_svg(svg, max_total_commands=3)
+        result = extract_outlined_svg(svg, max_total_commands=4)
+        self.assertEqual(result.parser_limits['expanded_commands'], 4)
+        self.assertEqual(result.parser_limits['parsed_commands_including_failed_paths'], 4)
+        self.assertEqual(result.parser_limits['max_total_commands'], 4)
+        for value in (True, 0, -1, 2_000_001, 4.0, '4', None):
+            with self.subTest(value=value), self.assertRaises(PdfSourceError):
+                extract_outlined_svg(svg, max_total_commands=value)
+
+    def test_empty_references_cannot_expand_without_a_node_budget(self):
+        # No path commands: a command-only guard cannot stop this use graph.
+        definitions = '<g id="g0"/>' + ''.join(
+            f'<g id="g{i}"><use href="#g{i-1}"/><use href="#g{i-1}"/></g>'
+            for i in range(1, 18))
+        with self.assertRaisesRegex(PdfSourceError, "expanded node budget"):
+            extract_outlined_svg(f'<svg width="10" height="10"><defs>{definitions}</defs><use href="#g17"/></svg>')
+
+    def test_failed_referenced_paths_still_consume_the_shared_command_budget(self):
+        svg = ('<svg width="10" height="10"><defs><path id="p" '
+               'd="M0 0L1 1L2 2L1e999 0"/></defs><use href="#p"/><use href="#p"/></svg>')
+        with self.assertRaisesRegex(PdfSourceError, "total command budget"):
+            extract_outlined_svg(svg, max_total_commands=7)
+        result = extract_outlined_svg(svg, max_total_commands=8)
+        self.assertEqual(len(result.paints), 2)
+        self.assertTrue(all(p.unsupported and not p.commands for p in result.paints))
+        self.assertEqual(result.parser_limits['expanded_commands'], 0)
+        self.assertEqual(result.parser_limits['parsed_commands_including_failed_paths'], 8)
+
+    def test_per_path_resource_budget_is_fatal_even_with_larger_total_budget(self):
+        with mock.patch('figure_rebuild.pdf_source._MAX_COMMANDS', 3):
+            with self.assertRaisesRegex(PdfSourceError, "path exceeds command budget"):
+                extract_outlined_svg('<svg width="10" height="10"><path d="M0 0L1 1L2 2Z"/></svg>',
+                                     max_total_commands=100)
+
+    def test_expanded_group_depth_raises_a_declared_source_error(self):
+        with self.assertRaisesRegex(PdfSourceError, "hierarchy depth budget"):
+            source('<g>' * 1100 + '<path d="M0 0L1 1"/>' + '</g>' * 1100)
+        for body in ('<defs><g id="unused">{}</g></defs>', '<metadata id="unused">{}</metadata>'):
+            with self.subTest(body=body), self.assertRaisesRegex(PdfSourceError, "input hierarchy depth budget"):
+                source(body.format('<g>' * 1100 + '</g>' * 1100))
+
     def test_tolerated_anisotropy_cannot_prove_a_visible_stroke_strip_empty(self):
         sy = 1 + 2**-35
         doc = source(f'<path transform="matrix(1 0 0 {sy} 0 0)" fill="none" stroke="black" stroke-width="10" d="M20 20H100V100H20Z"/>')
@@ -23,6 +70,23 @@ class PdfSourceTests(unittest.TestCase):
                        (30, 14, 80, (20*sy-5+15*sy)/2)):
             with self.subTest(region=region), self.assertRaisesRegex(UnsupportedPdfPaintError, "crosses"):
                 outline_paths(doc, glyph_mode="outline", region=region)
+
+    def test_round_join_curve_inside_clip_is_not_rejected_as_a_miter(self):
+        fixture = json.loads((Path(__file__).parent / 'fixtures/d4rt-stroke248.json').read_text())
+        data = ' '.join(c[0] + ' '.join(repr(v) for p in c[1:] for v in p)
+                        for c in fixture['local_commands'])
+        matrix = 'matrix(' + ' '.join(map(str, fixture['matrix'])) + ')'
+        doc = source(f'<path d="{data}" transform="{matrix}" fill="none" stroke="black" '
+                     f'stroke-width="{fixture["width"]}" stroke-linecap="butt" stroke-linejoin="round"/>')
+        original = doc.paints[0].commands
+        result = outline_paths(doc, glyph_mode='outline', region=fixture['effective_clip'])
+        self.assertEqual(len(result.objects), 1)
+        self.assertEqual(doc.paints[0].commands, original)
+        proof = result.provenance[0]['stroke_bounds_proof']
+        self.assertEqual(proof['centerline'], 'source_Bezier_control_hull')
+        self.assertGreater(proof['source_bounds_outward'][1], fixture['effective_clip'][1])
+        self.assertEqual(result.objects[0]['style']['stroke_linejoin'], 'round')
+        self.assertFalse(result.provenance[0]['clip_boundary_rounding'])
 
     def test_invisible_evenodd_path_retains_an_explicit_skip_receipt(self):
         # A nested contour would require a fill-rule proof if it were visible.

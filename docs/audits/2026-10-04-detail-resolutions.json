@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T19:33:11.037670+00:00",
+  "updated_at": "2026-10-03T20:29:22.194819+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 52,
-    "open": 243,
+    "closed_model_visual_review": 71,
+    "open": 224,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -45,6 +45,52 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
           "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-05-f01",
+      "issue_id": "ccf-2020-05-f01-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/RESULT.json",
+          "sha256": "ac90b8fe6b04869d1aa72831ef2f0011f1b8c8279b8a2550c159717b7ea271e6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/job/build/run-001/output-review.json",
+          "sha256": "ba132cf70bfc7543d71f8dddd1ac69f36175efc01cae80308e9196f1d3f97219"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-05-f02",
+      "issue_id": "ccf-2020-05-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/RESULT.json",
+          "sha256": "da829488dd4fdb806bf8ad3c7bb4d0a16b1e5fb59cd8892dae4e9fd7cd569942"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/job/build/run-001/output-review.json",
+          "sha256": "89641a1cd39fe609acd2f01a993e356129f5545977b7e3a1ff520a6ae4d30a65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
         }
       ]
     },
@@ -106,6 +152,29 @@
       ]
     },
     {
+      "figure_id": "ccf-2020-15-f01",
+      "issue_id": "ccf-2020-15-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-15-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f01/RESULT.json",
+          "sha256": "5672a44356b010bd5ce8a01cc61ee2af38d5e62294d5f9d694b8d173189fc4ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f01/job/build/run-001/output-review.json",
+          "sha256": "0ac5d5bcb34220d87faf07b02d9fd85f41db431a611632e9b03a3d524f66903d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2020-15-f02",
       "issue_id": "ccf-2020-15-f02-D01",
       "severity": "major",
@@ -121,6 +190,144 @@
         {
           "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-15-f02/output-review.json",
           "sha256": "e89f1c7a75fa4e59e675a6ce770250c24d2a047c0eb5c6b4bccba0c6beac7022"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-15-f04",
+      "issue_id": "ccf-2020-15-f04-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/RESULT.json",
+          "sha256": "c3889e067cb2a24ef1d2d287898125a1280f643167883221cdd5d2359aebb916"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/job/build/run-001/output-review.json",
+          "sha256": "1e7770dd42b658a585352598a159a38f29bc428e5d9d9416657178921ee5ac50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-15-f04",
+      "issue_id": "ccf-2020-15-f04-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/RESULT.json",
+          "sha256": "c3889e067cb2a24ef1d2d287898125a1280f643167883221cdd5d2359aebb916"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f04/job/build/run-001/output-review.json",
+          "sha256": "1e7770dd42b658a585352598a159a38f29bc428e5d9d9416657178921ee5ac50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-15-f05",
+      "issue_id": "ccf-2020-15-f05-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/RESULT.json",
+          "sha256": "b89aa85d8d5a00c2d6fbc0126490dedc02c66d786b45c39a8751b98492820bd3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/job/build/run-001/output-review.json",
+          "sha256": "6fb9345048f0e2ea9f4de58e1b2e6b46f4f9e63c33482dfb58cee05865cf8192"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-15-f05",
+      "issue_id": "ccf-2020-15-f05-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/RESULT.json",
+          "sha256": "b89aa85d8d5a00c2d6fbc0126490dedc02c66d786b45c39a8751b98492820bd3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-15-f05/job/build/run-001/output-review.json",
+          "sha256": "6fb9345048f0e2ea9f4de58e1b2e6b46f4f9e63c33482dfb58cee05865cf8192"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-16-f03",
+      "issue_id": "ccf-2020-16-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/RESULT.json",
+          "sha256": "59633b6aee554cb3340466ffd905ff003edfe5cf8a970a98363195643bae58d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001/output-review.json",
+          "sha256": "08eed32b8df7bc0ea146723b620d3b5c1d4c6a3c507a143abdc5a2cfefea109b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-16-f03",
+      "issue_id": "ccf-2020-16-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/RESULT.json",
+          "sha256": "59633b6aee554cb3340466ffd905ff003edfe5cf8a970a98363195643bae58d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001/output-review.json",
+          "sha256": "08eed32b8df7bc0ea146723b620d3b5c1d4c6a3c507a143abdc5a2cfefea109b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
         }
       ]
     },
@@ -159,6 +366,29 @@
         {
           "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/output-review.json",
           "sha256": "3cc2cd77baccace44924c68f83bbb3a0b5092834b59b0f0df271db5f7d0fd46c"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-17-f23",
+      "issue_id": "ccf-2020-17-f23-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-17-f23/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-17-f23/RESULT.json",
+          "sha256": "0ac7ed70ba17b9954a0f140ed34dd8b9adfcfa61398c977b7a772c46442aea9f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-17-f23/job/build/run-001/output-review.json",
+          "sha256": "a1628aec43b72238c33fd49b992c9eec50c13c55c0af42188dd0a5b16e3c0b60"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
         }
       ]
     },
@@ -220,6 +450,52 @@
       ]
     },
     {
+      "figure_id": "ccf-2020-19-f02",
+      "issue_id": "ccf-2020-19-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-19-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-19-f02/completion-summary.json",
+          "sha256": "652733ba6e5a1d0a5a3a48bc0907aea274ccbfb4ce25e220bbb9f750c6aba7db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-19-f02/job/output-review-r1.json",
+          "sha256": "2bb813aec4bd75fa08b71c7621eb352fac15403cacfba562eb85ed8d699442da"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-19-f09",
+      "issue_id": "ccf-2020-19-f09-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2020-19-f09/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-19-f09/completion-summary.json",
+          "sha256": "9c2b051bd25cd4577c68d516c4f33c54b6cbb25160ed8961b98c0547ee693484"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-19-f09/job/output-review-r1.json",
+          "sha256": "5e9b3fbc01f91ea2128f4bcd2318b617ff447c81662450a192b0dab258dc190a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2020-20-f02",
       "issue_id": "ccf-2020-20-f02-D01",
       "severity": "minor",
@@ -254,6 +530,48 @@
         {
           "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-20-f03/output-review.json",
           "sha256": "c2f13838bedf52c22d2b0237111b74f312e6b7f613367eb50b99a6f76a956f76"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-09-f02",
+      "issue_id": "ccf-2021-09-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "V3 checkmark has visibly round caps and smooth round join at actual 4x and 2x, without the frozen polygonal/beveled appearance. Source reference has corresponding rounded shape. Recommend local closure for this bound v3 output; v2 already shows the improvement.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2021-09-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-02/ccf-2021-09-f02/output-review.json",
+          "sha256": "5758c901abd243c5298e76c70034fedef659302ac1a5a45bce0558379b606cb1"
+        },
+        {
+          "audit_relative_path": "renderer-regression/v3-full-review-summary-001/report-with-addendum.json",
+          "sha256": "b0975a0e6cde53928177c2954116cf7af4f33cb48a5398dfaed063c36802862b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-10-f02",
+      "issue_id": "ccf-2021-10-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2021-10-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2021-10-f02/completion-summary.json",
+          "sha256": "c5bb5b5a79c4618e495907e897fbfe735d11cfb4f0812ce9f8fd698cd476f721"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2021-10-f02/job/output-review-r1.json",
+          "sha256": "f5ee09bdfa0d1aa11a7b5b29d2db330053dd46fca84c2aad7cdc834d1c7be1d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
         }
       ]
     },
@@ -433,6 +751,29 @@
       ]
     },
     {
+      "figure_id": "ccf-2021-12-f03",
+      "issue_id": "ccf-2021-12-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2021-12-f03/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2021-12-f03/completion-summary.json",
+          "sha256": "69a29817d36749bd295b38955472a5381d18a9cb4358f29c4bdd583f423beced"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2021-12-f03/job/output-review-r1.json",
+          "sha256": "b2a07f96ef47f5fee8c60e315883796bb7fcdb3aa09e1a96eee7f5143dbd9692"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2021-16-f04",
       "issue_id": "ccf-2021-16-f04-D01",
       "severity": "critical",
@@ -600,6 +941,52 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
           "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-03-f01",
+      "issue_id": "ccf-2022-03-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/completion-summary.json",
+          "sha256": "bf856a407c4ca2a5984c562ac2c36d09e54ddcf6f25f44e45b1b0b38a42c994b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/job/output-review-r1.json",
+          "sha256": "56dff87d825f96966374ab919995a9cd50c7276506d43321a694050897c0ff88"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-03-f01",
+      "issue_id": "ccf-2022-03-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "First fresh source-only build at fixed 7e81f9c; complete paint accounting, actual source/PPT full 1x/2x/4x and issue details reviewed. Original visible finding resolved in this bound output. Source glyphs remain outlines; semantic diagnostics are NOT_PROVIDED. Native application verification and any separate preview issue are documented in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/completion-summary.json",
+          "sha256": "bf856a407c4ca2a5984c562ac2c36d09e54ddcf6f25f44e45b1b0b38a42c994b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2022-03-f01/job/output-review-r1.json",
+          "sha256": "56dff87d825f96966374ab919995a9cd50c7276506d43321a694050897c0ff88"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-next-five-verification.json",
+          "sha256": "52e4dc2857022a683236bd20822d1b1165b4e21f2b1f3d7602f672ceb8280678"
         }
       ]
     },
@@ -889,6 +1276,29 @@
       ]
     },
     {
+      "figure_id": "ccf-2024-09-f06",
+      "issue_id": "ccf-2024-09-f06-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Fresh source-only conversion at fixed 7e81f9c; complete paint accounting and matching actual PPT full 1x/2x/4x plus issue details reviewed. Original visible finding resolved in this output. Glyphs are outlines, automatic semantic audit remains NOT_PROVIDED; native application scope and preview limitations remain in the bound result.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-build-001/ccf-2024-09-f06/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2024-09-f06/completion-summary.json",
+          "sha256": "4856f28ad3cc49b9186a6003da75452ae03e7121510728f90bf56a59a5867322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2024-09-f06/job/output-review-r1.json",
+          "sha256": "5f36e57b06714afe4606d8bdbca4cd5e9f066df68d398dba861e9f9f25e002a2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/root-first-eight-verification.json",
+          "sha256": "ca615acf955e8e5ce62a9b7af94951821a1004c2f3d6c03fad85d8059cf3ea4d"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2025-05-f06",
       "issue_id": "ccf-2025-05-f06-D01",
       "severity": "minor",
@@ -896,9 +1306,25 @@
       "scope": "Source/PPT ellipsis ink box within 1 source pixel; not whole-figure acceptance",
       "attempt": "renderer-regression/corefix-renderer-v1",
       "evidence": [
+        "renderer-regression/corefix-renderer-v1/pilot-visual-review.json"
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f03",
+      "issue_id": "ccf-2025-07-f03-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "The prior several-pixel upward displacement is no longer visible. Fresh source/actual 1x and matching actual 2x crops show cache labels centered within both rows and Layer-wise Load and Store returned to the source's two-line placement. Closure is limited to the frozen baseline-displacement issue, without an exact glyph-raster match claim.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2025-07-f03/build/run-001",
+      "evidence": [
         {
-          "audit_relative_path": "renderer-regression/corefix-renderer-v1/pilot-visual-review.json",
-          "sha256": "ade7e2b84e6e16fc02642ee36a49a7aaa3bd813cc73833a92c6a8b1fd30f4a36"
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-03/ccf-2025-07-f03/output-review.json",
+          "sha256": "825eb5c4baebf7850727e913efb0a60374cabf7d97bf55a59c9e66dc1178e89e"
+        },
+        {
+          "audit_relative_path": "renderer-regression/v3-full-review-summary-001/report-with-addendum.json",
+          "sha256": "b0975a0e6cde53928177c2954116cf7af4f33cb48a5398dfaed063c36802862b"
         }
       ]
     },
@@ -1030,8 +1456,6 @@
     "ccf-2020-03-f04-D04",
     "ccf-2020-04-f01-D01",
     "ccf-2020-04-f01-D02",
-    "ccf-2020-05-f01-D01",
-    "ccf-2020-05-f02-D01",
     "ccf-2020-06-f01-D01",
     "ccf-2020-06-f01-D02",
     "ccf-2020-06-f03-D01",
@@ -1057,23 +1481,15 @@
     "ccf-2020-14-f02-D01",
     "ccf-2020-14-f03-D01",
     "ccf-2020-14-f03-D02",
-    "ccf-2020-15-f01-D01",
     "ccf-2020-15-f02-D02",
     "ccf-2020-15-f02-D03",
     "ccf-2020-15-f02-D04",
-    "ccf-2020-15-f04-D01",
-    "ccf-2020-15-f04-D02",
-    "ccf-2020-15-f05-D01",
-    "ccf-2020-15-f05-D02",
     "ccf-2020-15-f05-D03",
     "ccf-2020-16-f02-D01",
     "ccf-2020-16-f02-D02",
     "ccf-2020-16-f02-D03",
-    "ccf-2020-16-f03-D01",
-    "ccf-2020-16-f03-D02",
     "ccf-2020-17-f01-D01",
     "ccf-2020-17-f02-D01",
-    "ccf-2020-17-f23-D01",
     "ccf-2020-18-f01-D01",
     "ccf-2020-18-f01-D02",
     "ccf-2020-18-f01-D03",
@@ -1081,8 +1497,6 @@
     "ccf-2020-18-f03-D01",
     "ccf-2020-18-f03-D02",
     "ccf-2020-19-f01-D01",
-    "ccf-2020-19-f02-D01",
-    "ccf-2020-19-f09-D01",
     "ccf-2020-20-f03-D01",
     "ccf-2021-01-f01-D01",
     "ccf-2021-02-f01-D01",
@@ -1094,15 +1508,12 @@
     "ccf-2021-03-f03-D01",
     "ccf-2021-03-f04-D01",
     "ccf-2021-09-f02-D01",
-    "ccf-2021-09-f02-D02",
     "ccf-2021-10-f01-D01",
     "ccf-2021-10-f01-D02",
-    "ccf-2021-10-f02-D01",
     "ccf-2021-11-f01-D06",
     "ccf-2021-12-f02-D01",
     "ccf-2021-12-f02-D02",
     "ccf-2021-12-f02-D03",
-    "ccf-2021-12-f03-D01",
     "ccf-2021-12-f04-D01",
     "ccf-2021-12-f04-D02",
     "ccf-2021-13-f01-D01",
@@ -1126,8 +1537,6 @@
     "ccf-2022-02-f02-D01",
     "ccf-2022-02-f02-D02",
     "ccf-2022-02-f02-D03",
-    "ccf-2022-03-f01-D01",
-    "ccf-2022-03-f01-D02",
     "ccf-2022-05-f01-D01",
     "ccf-2022-07-f01-D01",
     "ccf-2022-07-f01-D02",
@@ -1187,7 +1596,6 @@
     "ccf-2024-07-f02-D01",
     "ccf-2024-08-f02-D01",
     "ccf-2024-08-f02-D02",
-    "ccf-2024-09-f06-D01",
     "ccf-2025-01-f01-D01",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f02-D01",
@@ -1222,7 +1630,6 @@
     "ccf-2025-06-f06-D02",
     "ccf-2025-06-f06-D03",
     "ccf-2025-06-f06-D04",
-    "ccf-2025-07-f03-D01",
     "ccf-2025-07-f03-D02",
     "ccf-2025-07-f04-D01",
     "ccf-2025-07-f04-D02",
@@ -1411,6 +1818,79 @@
         {
           "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/output-review.json",
           "sha256": "3cc2cd77baccace44924c68f83bbb3a0b5092834b59b0f0df271db5f7d0fd46c"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-05-f01",
+      "issue_id": "ccf-2020-05-f01-R01-PREVIEW-STROKE",
+      "status": "open",
+      "severity": "minor",
+      "description": "Actual Artifact PPT preview renders original round line caps as flat endpoints. Source and final native PPT specify round caps/joins; actual LibreOffice rendering preserves them. This known preview-backend limitation remains open.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/RESULT.json",
+          "sha256": "ac90b8fe6b04869d1aa72831ef2f0011f1b8c8279b8a2550c159717b7ea271e6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/job/build/run-001/output-review.json",
+          "sha256": "ba132cf70bfc7543d71f8dddd1ac69f36175efc01cae80308e9196f1d3f97219"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-05-f02",
+      "issue_id": "ccf-2020-05-f02-R01-PREVIEW-STROKE",
+      "status": "open",
+      "severity": "minor",
+      "description": "Actual Artifact PPT preview renders original round line caps as flat endpoints. Source and final native PPT specify round caps/joins; actual LibreOffice rendering preserves them. This known preview-backend limitation remains open.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/RESULT.json",
+          "sha256": "da829488dd4fdb806bf8ad3c7bb4d0a16b1e5fb59cd8892dae4e9fd7cd569942"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/job/build/run-001/output-review.json",
+          "sha256": "89641a1cd39fe609acd2f01a993e356129f5545977b7e3a1ff520a6ae4d30a65"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-16-f03",
+      "issue_id": "ccf-2020-16-f03-R01-PREVIEW-JOIN",
+      "status": "open",
+      "severity": "minor",
+      "description": "Artifact preview sharpens source round stroke joins to miter corners on fine convolution polygons and rectangular path boundaries. Effect is subtle at4x; source styles and finalPPT native fields retain round joins, and actualLibreOffice native rendering preserves them. Known preview-backend limitation remains open.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/RESULT.json",
+          "sha256": "59633b6aee554cb3340466ffd905ff003edfe5cf8a970a98363195643bae58d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001/output-review.json",
+          "sha256": "08eed32b8df7bc0ea146723b620d3b5c1d4c6a3c507a143abdc5a2cfefea109b"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2022-02-f02",
+      "issue_id": "ccf-2022-02-f02-V3-R01",
+      "severity": "minor",
+      "status": "open",
+      "description": "A light-gray rectangle encloses Step 3 (approximately x529..787, y102..461) in the v3 actual preview; source and v2 have no enclosing top/right/bottom frame. Confirmed in full 1x and focused native 2x; 4x top boundary is much fainter/not continuously visible, indicating scale-dependent rasterization. Cause not yet established.",
+      "diagnosis_followup": "Later original-native context inspection localized legacy adapter mask-definition leakage. Guarded drafts exclude definitions but retain masked paints as unsupported; no complete replacement PPT accepted.",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-02/new-regressions.json",
+          "sha256": "38f2947001accbd0dc4cdc681a8ed8ed85e07f31e179a634cd6947534992199d"
+        },
+        {
+          "audit_relative_path": "renderer-regression/v3-full-review-summary-001/report-with-addendum.json",
+          "sha256": "b0975a0e6cde53928177c2954116cf7af4f33cb48a5398dfaed063c36802862b"
         }
       ],
       "user_acceptance": "pending"

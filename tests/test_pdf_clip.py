@@ -91,6 +91,21 @@ class PdfClipProofTests(unittest.TestCase):
         self.assertFalse(result.objects)
         self.assertEqual(result.skipped[0]["clip_geometry_proofs"][0]["relation"], "outside")
 
+    def test_close_then_continue_is_not_a_rectangular_clip(self):
+        # The first line closes with zero area; the remaining triangle must
+        # not be promoted to its four-corner rectangular envelope.
+        clip = '<path d="M0 0H10ZL10 10L0 10Z"/>'
+        result = outline_paths(svg(clip, '<path clip-path="url(#clip)" d="M7 1H8V2H7Z"/>'),
+                               glyph_mode="outline")
+        self.assertFalse(result.objects)
+        self.assertEqual(result.skipped[0]["clip_geometry_proofs"][0]["relation"], "outside")
+
+    def test_rectangular_path_clip_requires_a_known_winding_rule(self):
+        clip = '<path d="M0 0H10V10H0Z" clip-rule="unexpected"/>'
+        with self.assertRaisesRegex(UnsupportedPdfPaintError, "winding rule"):
+            outline_paths(svg(clip, '<path clip-path="url(#clip)" d="M1 1H2V2H1Z"/>'),
+                          glyph_mode="outline")
+
     def test_sibling_clip_paths_union_and_clip_stack_intersection(self):
         clip = '<path d="M0 0H10V10H0Z"/><path d="M30 30H40V40H30Z"/>'
         paint = '<path clip-path="url(#clip)" d="M1 1H2V2H1Z"/>'

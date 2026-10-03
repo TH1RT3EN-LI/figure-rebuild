@@ -78,8 +78,7 @@ class PdfFillImplicitClosureTests(unittest.TestCase):
     def test_zero_area_and_empty_subpaths_remain_unknown(self):
         for commands in ([("M", (0, 0))], [("M", (0, 0)), ("Z",), ("Z",)],
                          [("M", (0, 0)), ("L", (0, 0)), ("L", (0, 0))],
-                         [("M", (0, 0)), ("L", (2, 0)), ("L", (4, 0))],
-                         [("M", (0, 0))]+triangle(4)):
+                         [("M", (0, 0)), ("L", (2, 0)), ("L", (4, 0))]):
             self.assertIsNone(prove_evenodd_nonzero_equivalent(commands))
 
     def test_duplicate_does_not_erase_backtracking(self):

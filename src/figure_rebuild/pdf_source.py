@@ -8,7 +8,7 @@ Images remain separate occurrence records for the image extraction pipeline.
 """
 from __future__ import annotations
 
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from fractions import Fraction
 import hashlib
 import math
@@ -23,7 +23,9 @@ from fontTools.svgLib.path import parse_path
 
 from .pdf_dash import PdfDashError, lower_dashes
 from .pdf_fill import prove_evenodd_nonzero_equivalent
+from .pdf_fill_clip import clip_nonzero_annular_fill
 from .pdf_clip import prove_clip_box_relation
+from .pdf_stroke_bounds import PdfStrokeBoundsError, stroke_envelope
 
 
 class PdfSourceError(ValueError):
@@ -32,6 +34,10 @@ class PdfSourceError(ValueError):
 
 class UnsupportedPdfPaintError(PdfSourceError):
     """A source paint cannot be represented faithfully by this converter."""
+
+
+class _PdfSourceBudgetError(PdfSourceError):
+    """A resource limit aborts extraction, never becomes a partial paint."""
 
 
 def _outward_float(value, upper):
@@ -44,25 +50,13 @@ def _outward_float(value, upper):
     return result
 
 
-def _stroke_envelope(matrix, width, miter_limit, rectangle):
-    """Exact input predicates and outward bounds, including tolerated skew.
-
-    The drawing transform check accepts near-similar matrices. That tolerance
-    cannot justify a half-width *proof* on both axes: even tiny anisotropy can
-    make an incorrectly skipped visible strip. Only exact rational similarity
-    uses the tight rectangle envelope. Otherwise row L1 norms conservatively
-    bound transformed offsets, caps and miter joins.
-    """
-    a, b, c, d = (Fraction(v) for v in matrix[:4])
-    width, miter = Fraction(width), Fraction(miter_limit)
-    squared = a*a+b*b
-    if rectangle and squared > 0 and squared == c*c+d*d and a*c+b*d == 0:
-        scale = math.hypot(float(a), float(b))
-        while Fraction(scale)**2 < squared:
-            scale = math.nextafter(scale, math.inf)
-        return (width*Fraction(scale)/2,)*2
-    factor = width*max(Fraction(2), miter/2)
-    return factor*(abs(a)+abs(c)), factor*(abs(b)+abs(d))
+def _stroke_envelope(matrix, width, miter_limit, rectangle, *, linecap="butt", linejoin="miter"):
+    """Keep source-error semantics around the strict style-aware support API."""
+    try:
+        return stroke_envelope(matrix, width, miter_limit, rectangle,
+                               linecap=linecap, linejoin=linejoin)
+    except PdfStrokeBoundsError as error:
+        raise UnsupportedPdfPaintError(str(error)) from error
 
 
 def _expand_bounds(bounds, envelope):
@@ -130,13 +124,16 @@ def _point(matrix, point):
 
 
 class _ExactPen(BasePen):
-    def __init__(self):
+    def __init__(self, consume_command=None):
         super().__init__(None)
         self.commands = []
+        self.consume_command = consume_command
 
     def _append(self, command):
         if len(self.commands) >= _MAX_COMMANDS:
-            raise PdfSourceError("Source path exceeds command budget")
+            raise _PdfSourceBudgetError("Source path exceeds command budget")
+        if self.consume_command is not None:
+            self.consume_command()
         for point in command[1:]:
             for value in point:
                 _number(value)
@@ -153,7 +150,7 @@ class _ExactPen(BasePen):
     def _endPath(self): pass
 
 
-def _commands(data, matrix):
+def _commands(data, matrix, *, consume_command=None):
     # fontTools approximates arcs. Reject them before parsing: this API promises
     # exact Bezier conversion, including exact quadratic-to-cubic elevation.
     if data.strip() and not re.match(r"\s*[Mm]", data):
@@ -161,9 +158,11 @@ def _commands(data, matrix):
     rest = _TOKEN.sub("", data)
     if rest.strip(" ,\t\r\n"):
         raise PdfSourceError("Unsupported path syntax (including elliptical arcs); no flattening performed")
-    pen = _ExactPen()
+    pen = _ExactPen(consume_command)
     try:
         parse_path(data, TransformPen(pen, matrix))
+    except _PdfSourceBudgetError:
+        raise
     except (ValueError, IndexError, TypeError, AssertionError) as exc:
         raise PdfSourceError(f"Invalid source path: {exc}") from exc
     return tuple(pen.commands)
@@ -234,6 +233,7 @@ class PdfSourceDocument:
     view_box: tuple[float, ...]
     paints: tuple[SourcePaint, ...]
     resource_xml: dict[str, str]
+    parser_limits: dict = field(default_factory=dict)
 
 
 @dataclass(frozen=True)
@@ -245,7 +245,7 @@ class PdfOutlineResult:
     source_paint_count: int
 
 
-def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
+def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_COMMANDS) -> PdfSourceDocument:
     """Extract source records without guessing text or writing files.
 
     Coordinates remain in the root viewBox's user space (PDF points for MuPDF).
@@ -254,7 +254,14 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
     Local ``use`` chains may reference path/image/group resources, never external
     content. XML paths address the expanded use-instance tree, so repeated group
     resources produce distinct identities for every child paint.
+    The default expanded command budget is 200,000. Large known inputs may
+    explicitly request up to 2,000,000; all other guards remain active and the
+    selected budget and actual counts are recorded. No automatic retry raises
+    a budget after a failure.
     """
+    if (isinstance(max_total_commands, bool) or not isinstance(max_total_commands, int)
+            or not 1 <= max_total_commands <= 2_000_000):
+        raise PdfSourceError("Total command budget must be an integer in [1, 2000000]")
     raw = data.encode("utf-8") if isinstance(data, str) else data
     if not isinstance(raw, bytes) or len(raw) > _MAX_BYTES:
         raise PdfSourceError("Expected SVG bytes/text within the 16 MiB limit")
@@ -265,6 +272,14 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
     if _tag(root) != "svg": raise PdfSourceError("Expected SVG root")
     nodes = list(root.iter())
     if len(nodes) > _MAX_NODES: raise PdfSourceError("Source SVG exceeds node budget")
+    # Unused definitions and metadata are still serialized into source
+    # evidence. Bound their hierarchy too, before any recursive serializer.
+    pending = [(root, 1)]
+    while pending:
+        node, depth = pending.pop()
+        if depth > 256:
+            raise _PdfSourceBudgetError("Source SVG exceeds input hierarchy depth budget")
+        pending.extend((child, depth + 1) for child in node)
     definitions = {}
     parents = {child: parent for parent in root.iter() for child in parent}
     if any(_tag(node) == "style" for node in nodes):
@@ -279,9 +294,22 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
         raise PdfSourceError("Positive source viewBox dimensions are required")
     paints = []
     command_count = 0
+    parsed_commands = 0
+    expanded_nodes = 0
+
+    def consume_command():
+        nonlocal parsed_commands
+        if parsed_commands >= max_total_commands:
+            raise _PdfSourceBudgetError("Source SVG exceeds total command budget")
+        parsed_commands += 1
 
     def walk(node, matrix, inherited, clips, groups, errors, location, references=(), source_text=None):
-        nonlocal command_count
+        nonlocal command_count, expanded_nodes
+        if len(location) + len(references) > 256:
+            raise _PdfSourceBudgetError("Source SVG exceeds expanded hierarchy depth budget")
+        expanded_nodes += 1
+        if expanded_nodes > 200_000:
+            raise PdfSourceError("Source SVG exceeds expanded node budget")
         tag = _tag(node)
         if tag in ("defs", "clipPath", "mask", "linearGradient", "radialGradient", "pattern", "marker", "filter", "symbol", "title", "desc", "metadata"): return
         style, own_errors = _attributes(node, inherited)
@@ -340,19 +368,27 @@ def extract_outlined_svg(data: str | bytes) -> PdfSourceDocument:
         kind = "glyph" if tag == "path" and source_text is not None else tag if tag in ("path", "image") else "unsupported"
         commands = ()
         if tag == "path":
-            try: commands = _commands(node.get("d", ""), matrix)
+            try: commands = _commands(node.get("d", ""), matrix, consume_command=consume_command)
+            except _PdfSourceBudgetError: raise
             except PdfSourceError as exc: errors += (str(exc),)
         elif tag != "image":
             errors += (f"unsupported paint element {tag!r}",)
         command_count += len(commands)
-        if command_count > _MAX_COMMANDS: raise PdfSourceError("Source SVG exceeds total command budget")
         source_id = "svg-paint-" + "-".join(str(v) for v in identity)
         paints.append(SourcePaint(source_id, len(paints), identity, node.get("id"), references[-1] if references else None,
                                   references, kind, commands, matrix, style, clips, groups, source_text,
                                   ET.tostring(node, encoding="unicode"), tuple(errors)))
     walk(root, _IDENTITY, _DEFAULT_STYLE, (), (), (), (0,))
     return PdfSourceDocument(hashlib.sha256(raw).hexdigest(), view_box, tuple(paints),
-                             {key: ET.tostring(value, encoding="unicode") for key, value in definitions.items()})
+                             {key: ET.tostring(value, encoding="unicode") for key, value in definitions.items()},
+                             {"max_total_commands": max_total_commands,
+                              "expanded_commands": command_count,
+                              "parsed_commands_including_failed_paths": parsed_commands,
+                              "max_expanded_hierarchy_depth": 256,
+                              "max_input_hierarchy_depth": 256,
+                              "max_expanded_nodes": 200_000, "expanded_nodes": expanded_nodes,
+                              "max_commands_per_path": _MAX_COMMANDS,
+                              "max_input_bytes": _MAX_BYTES, "max_input_nodes": _MAX_NODES})
 
 
 def _alpha(value):
@@ -414,8 +450,10 @@ def _rect_clip(context):
         if w <= 0 or h <= 0: raise UnsupportedPdfPaintError("Degenerate clip rectangle")
         points = [_point(matrix, p) for p in ((x,y), (x+w,y), (x+w,y+h), (x,y+h))]
     elif _tag(child) == "path" and not (set(child.attrib)-{"d", "id", "transform", "clip-rule"}):
+        if child.get("clip-rule", "nonzero") not in ("nonzero", "evenodd"):
+            raise UnsupportedPdfPaintError("Unsupported clip winding rule")
         commands = _commands(child.get("d", ""), matrix)
-        if not commands or commands[-1][0] != "Z" or sum(c[0] == "M" for c in commands) != 1 or any(c[0] not in ("M", "L", "Z") for c in commands):
+        if not _axis_rectangle(commands):
             raise UnsupportedPdfPaintError("Complex clip curve/contour requires explicit geometry support")
         points = [c[1] for c in commands if c[0] != "Z"]
         if len(points) > 1 and points[-1] == points[0]: points.pop()
@@ -427,8 +465,8 @@ def _rect_clip(context):
     return min(xs), min(ys), max(xs), max(ys)
 
 
-def _complex_clip_relation(context, bounds):
-    """Prove a clip's union of explicit path/rect children contains a box."""
+def _complex_clip_shapes(context):
+    """Read clip geometry only after checking its complete supported context."""
     if context.get("unsupported_resource_ancestors"):
         raise UnsupportedPdfPaintError("Clip resource ancestor presentation/inheritance is unsupported")
     if not context["element"]:
@@ -442,7 +480,7 @@ def _complex_clip_relation(context, bounds):
     if not children or len(children) > 64:
         raise UnsupportedPdfPaintError("Complex clip child budget/empty geometry")
     matrix = _mul(context["transform"], _matrix(root.get("transform")))
-    proofs = []
+    shapes = []
     for child in children:
         if list(child) or ("}" in child.tag and not child.tag.startswith("{"+_NS+"}")):
             raise UnsupportedPdfPaintError("Unsupported complex clip child content/namespace")
@@ -461,7 +499,14 @@ def _complex_clip_relation(context, bounds):
         rule = child.get("clip-rule", root.get("clip-rule", "nonzero"))
         if rule not in ("nonzero", "evenodd"):
             raise UnsupportedPdfPaintError("Unsupported complex clip winding rule")
-        proofs.append(prove_clip_box_relation(commands, bounds, fill_rule=rule))
+        shapes.append((commands, rule))
+    return shapes
+
+
+def _complex_clip_relation(context, bounds):
+    """Prove a clip's union of explicit path/rect children contains a box."""
+    proofs = [prove_clip_box_relation(commands, bounds, fill_rule=rule)
+              for commands, rule in _complex_clip_shapes(context)]
     if any(p and p["relation"] == "inside" for p in proofs):
         relation = "inside"
     elif all(p and p["relation"] == "outside" for p in proofs):
@@ -502,10 +547,12 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
 
     ``glyph_mode='outline'`` is required, including for ordinary labels. It
     produces editable geometry, never editable text or recovered semantics.
-    Clips/ROI are accepted only when proven disjoint or no-op. Cubic clip
-    boundaries use exact rational hull separation and constant winding; no
-    output path is flattened. Crossing clips, images and group compositing
-    remain unsupported.
+    Clips/ROI require disjoint/no-op proofs or an explicit supported geometric
+    intersection. Filled rectangles and a single nonzero annular fill clipped
+    by a strictly nested contour have bounded exact intersection support.
+    Cubic boundaries use exact rational hull separation and constant winding;
+    no output path is flattened. Other crossing clips, images and group
+    compositing remain unsupported.
     ``paint_ids`` is an explicit subset, reported as such in the result.
     ``transform`` maps source PDF coordinates into the target canvas. Positive
     dash arrays are lowered before any clipping, with ``dash_tolerance`` in
@@ -597,8 +644,17 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             if bounds is None:
                 skipped.append({"source_id": paint.source_id, "reason": "source outline has no drawable segment"})
                 continue
+            if stroke != "none":
+                # A control hull encloses every Bezier centerline point.
+                # Floating cubic-extremum roots cannot certify an outward
+                # bound at a clip boundary, especially after a tight support
+                # replaces the old overly generous miter envelope.
+                controls = [p for command in paint.commands for p in command[1:]]
+                bounds = (min(p[0] for p in controls), min(p[1] for p in controls),
+                          max(p[0] for p in controls), max(p[1] for p in controls))
             rectangle_stroke = stroke != "none" and _axis_rectangle(paint.commands)
-            envelope = (_stroke_envelope(paint.transform, width, miter_limit, rectangle_stroke)
+            envelope = (_stroke_envelope(paint.transform, width, miter_limit, rectangle_stroke,
+                                         linecap=cap, linejoin=join)
                         if stroke != "none" else (Fraction(0), Fraction(0)))
             bounds = _expand_bounds(bounds, envelope)
             rectangles, complex_contexts, clip_proofs = [], [], []
@@ -610,6 +666,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             if region is not None: rectangles.append(region)
             geometry_commands = paint.commands
             rectangle_intersection = None
+            annular_intersection = None
             if rectangles:
                 effective = (max(r[0] for r in rectangles), max(r[1] for r in rectangles),
                              min(r[2] for r in rectangles), min(r[3] for r in rectangles))
@@ -648,7 +705,40 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                         geometry_commands = (("M", (x0,y0)), ("L", (x1,y0)), ("L", (x1,y1)), ("L", (x0,y1)), ("Z",))
                         bounds = clipped
             for context in complex_contexts:
-                clip_proofs.append(_complex_clip_relation(context, bounds))
+                try:
+                    clip_proofs.append(_complex_clip_relation(context, bounds))
+                except UnsupportedPdfPaintError:
+                    # Keep this fallback narrowly scoped to one filled paint
+                    # and one complex clip. The shared parser rechecks every
+                    # resource attribute and inherited context, so an unknown
+                    # effect cannot be laundered into a geometry-only proof.
+                    if (len(complex_contexts) != 1 or fill == "none" or stroke != "none"
+                            or style["fill-rule"] != "nonzero"):
+                        raise
+                    shapes = _complex_clip_shapes(context)
+                    if len(shapes) != 1:
+                        raise
+                    clip_commands, clip_rule = shapes[0]
+                    intersection = clip_nonzero_annular_fill(
+                        geometry_commands, clip_commands,
+                        source_fill_rule=style["fill-rule"], clip_fill_rule=clip_rule)
+                    if intersection is None:
+                        raise
+                    geometry_commands = intersection["commands"]
+                    # Every remaining rectangle and ROI must contain the
+                    # complete derived control hull, without a tolerance.
+                    # This is conservative even when cubic extrema would
+                    # have tighter bounds, and needs no floating root solve.
+                    controls = [p for command in geometry_commands for p in command[1:]]
+                    bounds = (min(p[0] for p in controls), min(p[1] for p in controls),
+                              max(p[0] for p in controls), max(p[1] for p in controls))
+                    annular_intersection = {**intersection["proof"],
+                                            "source_clip_id": context["id"],
+                                            "output_control_hull_bounds": list(bounds)}
+                    clip_proofs.append({"relation": "exact_intersection",
+                                        "proof": "nonzero_annular_fill_with_strictly_nested_clip",
+                                        "source_clip_id": context["id"],
+                                        "source_commands_changed": True})
             if any(p["relation"] == "outside" for p in clip_proofs):
                 skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
                                 "clip_geometry_proofs": clip_proofs})
@@ -665,7 +755,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                       "overhang_left_top_right_bottom_source_units": overhang,
                                       "max_clip_overhang_source_units": max_clip_overhang,
                                       "maximum_overhang_target_units": max(overhang)*math.hypot(transform[0], transform[1]),
-                                      "proof": "axis_aligned_closed_rectangle_stroke; half-width axis support",
+                                      "proof": "axis_aligned_closed_rectangle_stroke; outward conservative transformed axis support",
                                       "exact_noop_clip": False})
             dash_result = None
             if dash_pattern is not None:
@@ -716,7 +806,14 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
                           "clip_geometry_proofs": clip_proofs,
                           "rectangle_fill_intersection": rectangle_intersection,
+                          "annular_fill_intersection": annular_intersection,
                           "stroke_native_fields": part_stroke_fields,
+                          "stroke_bounds_proof": ({
+                              "centerline": "source_Bezier_control_hull",
+                              "support": "style_aware_affine_support_rounded_outward",
+                              "axis_support_exact_rationals": [str(v) for v in envelope],
+                              "source_bounds_outward": list(bounds),
+                          } if part_stroke_fields else None),
                           "stroke_visual_verification_required": bool(part_stroke_fields),
                           "stroke_preview_renderer_support": "not_verified_or_unsupported" if part_stroke_fields else "not_applicable",
                           "stroke_miterlimit_native_quantization": 1e-5 if "stroke_miterlimit" in part_stroke_fields else None}
