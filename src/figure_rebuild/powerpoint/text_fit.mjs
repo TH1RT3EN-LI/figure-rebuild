@@ -40,8 +40,60 @@ function metricWidth(metrics) {
   return Math.max(advance, right) + left;
 }
 
+/**
+ * Read the presentation renderer's metrics, separately from the source-font
+ * measurer. The two Canvas implementations do not include font line gaps in
+ * the same way. Values are returned in source pixels after PPT point rounding.
+ *
+ * Artifact presentation layout uses a 1.2-em natural line box. Its exact-point
+ * and default-line-spacing branches have different first baselines. The paint
+ * adjustment is also part of that renderer's exported metrics API;
+ * do not substitute a fitted constant or the visible ink height for it.
+ */
+export function measurePresentationBaseline(object, {context, fontMetricsProvider,
+  paintBaselineCompensation, scale = 1, defaultFamily}) {
+  if (typeof context?.measureText !== 'function'
+      || typeof fontMetricsProvider?.getMetricsForSize !== 'function'
+      || typeof paintBaselineCompensation !== 'function') {
+    throw Error('Configured Artifact Tool lacks the presentation font metrics/baseline API required for faithful text placement');
+  }
+  finiteMetric(scale, 'render scale');
+  const px = Math.round(object.font_size * scale * 75) / 75;
+  finiteMetric(px, 'rendered font size');
+  const family = object.font_family ?? defaultFamily;
+  if (typeof family !== 'string' || !family) throw Error('Renderer text requires a registered font family');
+  const font = {family: JSON.stringify(family), style: object.italic ? 'italic' : 'normal',
+    weight: object.bold ? '700' : '400'};
+  context.font = `${font.style} ${font.weight} ${px}px ${font.family}`;
+  context.textBaseline = 'alphabetic';
+  const metrics = fontMetricsProvider.getMetricsForSize(font, px);
+  const ascent = finiteMetric(metrics.ascentPx, 'renderer font ascent');
+  const naturalHeight = px * 1.2;
+  const lineHeight = object.line_height === undefined ? naturalHeight
+    : Math.round(finiteMetric(object.line_height, 'line_height') * scale * 75) / 75;
+  finiteMetric(lineHeight, 'rendered line height');
+  let baseline = px;
+  if (object.line_height !== undefined) baseline = ascent + (lineHeight - naturalHeight) / 2;
+  else if (Number.isFinite(metrics.officeAscentPx) && metrics.officeAscentPx > 0
+      && Number.isFinite(metrics.officeDescentPx) && metrics.officeDescentPx > 0) {
+    baseline = naturalHeight * metrics.officeAscentPx / (metrics.officeAscentPx + metrics.officeDescentPx);
+  }
+  const ink = context.measureText(object.text.split(/\r\n?|\n/u)[0] || 'Mg');
+  // Artifact applies this correction only for a single resolved font face.
+  const runs = (ink.lines ?? []).flatMap(line => line.runs ?? []);
+  const families = new Set(runs.map(run => run.family?.trim().toLocaleLowerCase()).filter(Boolean));
+  const correction = families.size === 1 && Number.isFinite(ink.fontBoundingBoxAscent)
+    ? paintBaselineCompensation(ink.fontBoundingBoxAscent) : 0;
+  if (!Number.isFinite(correction)) throw Error('Renderer returned an invalid paint baseline correction');
+  return {model: 'artifact_presentation_v1', first_baseline_px: (baseline + correction) / scale,
+    line_height_px: lineHeight / scale, natural_line_height_px: naturalHeight / scale,
+    font_ascent_px: ascent / scale, paint_baseline_correction_px: correction / scale,
+    rendered_font_size_px: px / scale, scale,
+    spacing: object.line_height === undefined ? 'default' : 'exact_points'};
+}
+
 export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lineHeight: explicitLineHeight,
-  baselineOffset: explicitBaselineOffset}, measure) {
+  baselineOffset: explicitBaselineOffset, rendererBaseline}, measure) {
   if (typeof text !== 'string' || !Number.isFinite(fontSize) || fontSize <= 0) throw Error('Invalid text measurement input');
   if (!(width > 0) || !['none', 'square'].includes(wrap)) throw Error('Invalid text wrapping bounds');
   const paragraphs = text.replace(/\r\n?/g, '\n').split('\n');
@@ -81,15 +133,26 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lin
                          ...measurements.map(item => item.actualBoundingBoxAscent ?? 0));
   const descent = Math.max(0, sample.actualBoundingBoxDescent ?? fontSize * 0.2,
                           ...measurements.map(item => item.actualBoundingBoxDescent ?? 0));
-  const lineHeight = explicitLineHeight === undefined ? Math.max(fontSize * 1.2, ascent + descent)
+  let lineHeight = explicitLineHeight === undefined ? Math.max(fontSize * 1.2, ascent + descent)
     : finiteMetric(explicitLineHeight, 'line_height');
-  // Native PPT's single-line baseline uses the font ascent plus half of its
-  // default 20% leading, rather than the visible ink ascent of this string.
+  // This is the source frame's default baseline contract, not the renderer's
+  // baseline. Keep it independent of explicit line pitch and preserve it with
+  // the measured native inset correction below.
   const defaultNativeBaselineAscent = Number.isFinite(sample.fontBoundingBoxAscent)
     ? sample.fontBoundingBoxAscent + fontSize * .1 : ascent + fontSize * .04;
   const nativeBaselineAscent = explicitBaselineOffset === undefined
     ? defaultNativeBaselineAscent
     : finiteMetric(explicitBaselineOffset, 'baseline_offset', true);
+  let rendererLayout = {};
+  if (rendererBaseline !== undefined) {
+    if (!rendererBaseline || rendererBaseline.model !== 'artifact_presentation_v1') {
+      throw Error('Text needs supported renderer baseline metrics');
+    }
+    const actualBaseline = finiteMetric(rendererBaseline.first_baseline_px, 'renderer first baseline', true);
+    lineHeight = finiteMetric(rendererBaseline.line_height_px, 'renderer line height');
+    rendererLayout = {renderer_baseline: rendererBaseline,
+      baseline_adjustment_px: nativeBaselineAscent - actualBaseline};
+  }
   const requiredHeight = explicitBaselineOffset === undefined ? lineHeight * lines.length
     : Math.max(lineHeight * lines.length, nativeBaselineAscent + descent + (lines.length - 1) * lineHeight);
   return {lines, line_count: lines.length, required_width: Math.max(0, ...measurements.map(metricWidth)),
@@ -98,16 +161,17 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lin
           default_native_baseline_ascent: defaultNativeBaselineAscent,
           baseline_basis: explicitBaselineOffset === undefined ? 'font_metrics_and_native_leading' : 'explicit_calibrated_offset',
           line_height_basis: explicitLineHeight === undefined ? 'default_measured_leading' : 'explicit_pixel_value',
+          ...rendererLayout,
           measurement_basis: 'registered font; approximate PPT line layout; actual preview still required'};
 }
 
-export function fittedTextBox(object, measure, canvas) {
+export function fittedTextBox(object, measure, canvas, {rendererBaseline} = {}) {
   const insets = textInsets(object.insets);
   const contentWidth = object.box ? object.box.width - insets.left - insets.right : Infinity;
   if (!(contentWidth > 0)) throw Error('Text insets leave no content width: ' + object.id);
   const layout = layoutText(object.text, {fontSize: object.font_size,
     width: contentWidth, wrap: object.box ? object.wrap ?? 'none' : 'none',
-    lineHeight: object.line_height, baselineOffset: object.baseline_offset}, measure);
+    lineHeight: object.line_height, baselineOffset: object.baseline_offset, rendererBaseline}, measure);
   let box = object.box;
   if (!box) {
     const width = Math.max(1, layout.required_width + object.font_size * 0.12);

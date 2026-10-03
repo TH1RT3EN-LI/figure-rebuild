@@ -71,7 +71,9 @@ def compile_scene(manifest, job_dir, asset_root=None):
                 anchor['x'] += final['x'] - initial['x']
                 anchor['y'] += final['y'] - initial['y']
             obj['formula_asset'] = copy.deepcopy(record)
+    from .content_audit import audit_source_content
     return scene, {'formulas': formulas, 'connections': connections,
+                   'source_content': audit_source_content(scene),
                    'hash_files': [{'path': p, 'sha256': h} for p, h in assets.items()]}
 
 
@@ -84,5 +86,9 @@ if __name__ == '__main__':
     parser.add_argument('--audit', required=True)
     args = parser.parse_args()
     scene, audit = compile_scene(json.loads(Path(args.manifest).read_text()), args.job, args.asset_root)
+    Path(args.audit).with_name('source-content-audit.json').write_text(
+        json.dumps(audit['source_content'], ensure_ascii=False, indent=2) + '\n')
+    if audit['source_content']['status'] == 'FAIL':
+        raise ValueError('Source content has mismatches or unresolved evidence; inspect source-content-audit.json')
     Path(args.output).write_text(json.dumps(scene, ensure_ascii=False, indent=2) + '\n')
     Path(args.audit).write_text(json.dumps(audit, ensure_ascii=False, indent=2) + '\n')

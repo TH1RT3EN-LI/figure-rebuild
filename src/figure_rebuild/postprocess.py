@@ -222,7 +222,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
     if len(elements) != len(objects): raise ValueError(f'Exported object count mismatch: {len(elements)} != {len(objects)}')
-    mapping, raster_crops, cubic_paths = [], [], []
+    mapping, raster_crops, cubic_paths, stroke_styles = [], [], [], []
     for element, obj in zip(elements, objects):
         pr = native(element)
         if pr is None: raise ValueError('Missing native identity')
@@ -231,12 +231,20 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
         pr.set('name', obj['id'])
         pr.set('descr', 'source_id=' + obj['id'] + ('; semantic_group=' + obj['group_id'] if obj.get('group_id') else ''))
         if obj['kind'] == 'text' and element.find('p:txBody', NS) is None: raise ValueError('Text was flattened')
-        if obj['kind'] == 'text' and (obj.get('line_height') is not None or obj.get('baseline_offset') is not None):
+        text_entry = mapped_frames.get(obj['id']) if mapped_frames and obj['kind'] == 'text' else None
+        has_renderer_baseline = isinstance(text_entry, dict) and isinstance(text_entry.get('text_layout'), dict) and \
+            text_entry['text_layout'].get('renderer_baseline') is not None
+        if obj['kind'] == 'text' and (obj.get('line_height') is not None or obj.get('baseline_offset') is not None or has_renderer_baseline):
             from .semantic_ooxml import apply_text_layout
-            entry = mapped_frames.get(obj['id']) if mapped_frames else None
+            entry = text_entry
             if not entry: raise ValueError('Text layout requires a mapped frame: ' + obj['id'])
             text_layout_records.append(apply_text_layout(element, obj, entry, entry['scale']))
         if obj['kind'] == 'path' and element.find('p:spPr/a:custGeom', NS) is None: raise ValueError('Vector path was flattened')
+        if obj['kind'] == 'path':
+            from .stroke_style import apply_stroke_style
+            stroke_record = apply_stroke_style(element, obj)
+            if stroke_record is not None:
+                stroke_styles.append(stroke_record)
         if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
         if obj['kind'] == 'image' and element.tag != f"{{{NS['p']}}}pic": raise ValueError('Raster asset classification mismatch')
@@ -322,6 +330,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
         for info in infos: z.writestr(info, payloads[info.filename])
         for name in payloads.keys() - {info.filename for info in infos}: z.writestr(name, payloads[name])
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
+    data['stroke_styles'] = stroke_styles
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),
                 native_connectors=connectors, text_layout=text_layout_records)

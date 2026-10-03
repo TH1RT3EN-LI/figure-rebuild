@@ -5,9 +5,10 @@ import {createRequire} from 'node:module';
 import {pathToFileURL} from 'node:url';
 import {runPythonModule} from './runtime.mjs';
 import {checkRuntime} from './preflight.mjs';
-import {fittedTextBox,fontFaceForText} from './text_fit.mjs';
+import {fittedTextBox,fontFaceForText,measurePresentationBaseline} from './text_fit.mjs';
 import {flattenPath,pathBounds} from './curves.mjs';
 import {fitPlacement} from './placement.mjs';
+import {fitImagePlacement} from './image_placement.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -24,16 +25,25 @@ const manifest=JSON.parse(await fs.readFile(resolvedManifest,'utf8'));
 const originalSource=path.join(assetRoot,manifest.source.path);
 if(createHash('sha256').update(await fs.readFile(originalSource)).digest('hex')!==manifest.source.sha256)throw Error('Original source changed before authoring');
 const req=createRequire(path.join(runtime.node_modules,'figure-rebuild-loader.cjs'));
-const {Presentation,PresentationFile,FileBlob}=await import(pathToFileURL(req.resolve('@oai/artifact-tool')).href);
+const {Presentation,PresentationFile,FileBlob,defaultFontMetricsProvider,skiaPaintBaselineCompensationPx}=await import(pathToFileURL(req.resolve('@oai/artifact-tool')).href);
+if(!defaultFontMetricsProvider||typeof defaultFontMetricsProvider.getMetricsForSize!=='function'||typeof defaultFontMetricsProvider.reset!=='function'||typeof skiaPaintBaselineCompensationPx!=='function')throw Error('Configured Artifact Tool lacks required presentation baseline metrics API');
+const artifactRequire=createRequire(req.resolve('@oai/artifact-tool'));
+const {FontLibrary}=await import(pathToFileURL(artifactRequire.resolve('skia-canvas')).href);
 const {GlobalFonts,createCanvas,loadImage}=await import(pathToFileURL(req.resolve('@napi-rs/canvas')).href);
 const fontFamily=runtime.fonts.family;
 const fontsDir=path.join(run,'fonts');
 const fontAudit=JSON.parse(runPython('font_prepare',['--config',process.argv[2],'--manifest',config.manifest,'--output-dir',fontsDir],{encoding:'utf8'}));
 for(const face of fontAudit)if(!GlobalFonts.registerFromPath(face.renderer,face.family))throw Error('Could not load configured '+face.family+' '+face.role+' font face');
 const fontFamilies=[...new Set(fontAudit.map(face=>face.family))];
-for(const family of fontFamilies)if(!GlobalFonts.has(family))throw Error('Configured font family was not registered: '+family);
+for(const family of fontFamilies){
+ if(!GlobalFonts.has(family))throw Error('Configured font family was not registered: '+family);
+ // Register the identical audited bytes with the actual presentation renderer.
+ FontLibrary.use(family,fontAudit.filter(face=>face.family===family).map(face=>face.renderer));
+}
+defaultFontMetricsProvider.reset();
 await fs.writeFile(path.join(run,'font-audit.json'),JSON.stringify(fontAudit,null,2));
 const ctx=createCanvas(2,2).getContext('2d');
+const rendererContext=new OffscreenCanvas(2,2).getContext('2d');
 const sourceCanvas=manifest.canvas;
 const slideCanvas=config.base?.canvas??sourceCanvas;
 const requested=config.base?.placement??[0,0,sourceCanvas.width,sourceCanvas.height];
@@ -51,7 +61,8 @@ for(const object of ordered.filter(object=>object.kind==='text')){
  const family=object.font_family??fontFamily;
  fontFaceForText(object,fontAudit,fontFamily);
  ctx.font=`${object.italic?'italic ':''}${object.bold?'bold ':''}${object.font_size}px "${family}"`;
- measuredText.set(object.id,fittedTextBox(object,text=>ctx.measureText(text),sourceCanvas));
+ const rendererBaseline=measurePresentationBaseline(object,{context:rendererContext,fontMetricsProvider:defaultFontMetricsProvider,paintBaselineCompensation:skiaPaintBaselineCompensationPx,scale,defaultFamily:fontFamily});
+ measuredText.set(object.id,fittedTextBox(object,text=>ctx.measureText(text),sourceCanvas,{rendererBaseline}));
 }
 await fs.writeFile(path.join(run,'text-fit.json'),JSON.stringify({status:'PASS',font_family:fontFamily,visual_verification_required:true,objects:[...measuredText].map(([id,result])=>({id,...result}))},null,2));
 runPython('export_svg',['--manifest',resolvedManifest,'--asset-root',assetRoot,'--output',path.join(run,'reconstructed.svg'),'--font',fontAudit[0].renderer,'--bold-font',fontAudit[1].renderer,'--family',fontFamily,'--font-audit',path.join(run,'font-audit.json')],{stdio:'pipe'});
@@ -83,15 +94,12 @@ for(const o of ordered){
   const bytes=await fs.readFile(path.join(assetRoot,o.path));
   if(createHash('sha256').update(bytes).digest('hex')!==o.sha256)throw Error('Raster asset changed');
   const ext=path.extname(o.path).slice(1).toLowerCase(),type=ext==='jpg'?'jpeg':ext;
-  const crop=o.crop??{left:0,right:0,top:0,bottom:0},decoded=await loadImage(bytes);
-  const croppedWidth=decoded.width*(1-crop.left-crop.right),croppedHeight=decoded.height*(1-crop.top-crop.bottom);
-  const containScale=Math.min(o.box.width/croppedWidth,o.box.height/croppedHeight);
-  const fitted={x:o.box.x+(o.box.width-croppedWidth*containScale)/2,y:o.box.y+(o.box.height-croppedHeight*containScale)/2,width:croppedWidth*containScale,height:croppedHeight*containScale};
-  // Artifact Tool's automatic contain fit clears source crop. Freeze the
-  // aspect-correct frame ourselves so the original bytes and crop survive.
-  const image=slide.images.add({blob:new Uint8Array(bytes),contentType:`image/${type}`,alt:o.id,position:position(fitted),fit:'contain',crop,geometry:'rect'});
+  const decoded=await loadImage(bytes),imagePlacement=fitImagePlacement(o,decoded);
+  const {box:fitted,crop}=imagePlacement;
+  // Resolve fit ourselves; the authoring tool's automatic fit can clear crop.
+  const image=slide.images.add({blob:new Uint8Array(bytes),contentType:`image/${type}`,alt:o.id,position:position(fitted),crop,geometry:'rect'});
   image.lockAspectRatio=false;
-  objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,box:fitted,requested_box:o.box,crop,editable:false});
+  objectMap.push({id:o.id,kind:o.kind,group_id:o.group_id,...imagePlacement,editable:false});
  }else throw Error('Unsupported object kind');
 }
 slide.speakerNotes.textFrame.setText(`Source: ${manifest.source.uri||manifest.source.path}\nClassification: ${manifest.source.kind}. Original SHA256: ${manifest.source.sha256}. Recognition: ${manifest.recognition.provider}. ${manifest.recognition.notes||''}\nReconstruction with editable geometry and separate text; raster panels remain raster. Font adapted to configured ${fontFamily}. This reconstruction does not add new experimental evidence. Visual acceptance pending.`);
@@ -112,7 +120,9 @@ const checkedOutput=path.join(run,'validated-output','reconstruction.pptx');awai
 // This renderer decodes SVG at frame size times devicePixelRatio. Preserve
 // vector source bytes and increase real decode sampling before PPT import.
 globalThis.devicePixelRatio=8;
-await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false},null,2));
+const explicitStrokeObjects=ordered.filter(o=>o.kind==='path'&&['stroke_linecap','stroke_linejoin','stroke_miterlimit'].some(key=>key in (o.style??{}))).map(o=>o.id);
+const previewLimitations=explicitStrokeObjects.length?[{code:'native_stroke_geometry_requires_application_verification',object_ids:explicitStrokeObjects,detail:'Native cap/join/miter values are written to the final PPTX. Artifact Tool 2.8.59 ignores them on preview import; preview alone cannot verify these details.'}]:[];
+await fs.writeFile(path.join(run,'render-audit.json'),JSON.stringify({renderer:'Codex Artifact Tool',svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations},null,2));
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
 let targetSlide=rendered.slides.items[0];
@@ -132,7 +142,8 @@ const byId=new Map(ordered.map(object=>[object.id,object]));
 await fs.writeFile(comparisonScene,JSON.stringify({canvas:sourceCanvas,derived_from:config.manifest,diagnostic_only:true,objects:objectMap.map(object=>{
  const original=byId.get(object.id),pad=object.kind==='path'?(original.style?.stroke_width??0)/2:0;
  const box={x:object.box.x-pad,y:object.box.y-pad,width:object.box.width+2*pad,height:object.box.height+2*pad};
- return {id:object.id,kind:object.kind,box,rotation:original.rotation??0};
+ const expected=original.box??box;
+ return {id:object.id,kind:object.kind,box,expected_source_box:expected,actual_frame:object.box,rotation:original.rotation??0};
 })},null,2));
 const compareArgs=['--reference',path.join(assetRoot,manifest.source.path),'--rebuilt',path.join(run,'preview-1x.png'),'--output',path.join(run,'comparison.png'),'--metrics',path.join(run,'comparison-metrics.json'),'--font',fontAudit[0].renderer,'--manifest',comparisonScene];
 if(path.extname(manifest.source.path).toLowerCase()==='.svg'){

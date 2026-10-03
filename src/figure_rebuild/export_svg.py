@@ -73,6 +73,8 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
                     key='moveTo' if 'moveTo' in command else 'lineTo'; p=command[key]
                     parts.append(('M' if key=='moveTo' else 'L')+f" {p['x']} {p['y']}")
             attrs.update(d=' '.join(parts),fill=s.get('fill','none'),stroke=s.get('stroke','none'))
+            from .stroke_style import svg_stroke_attributes
+            attrs.update(svg_stroke_attributes(s))
             attrs['stroke-width']=str(s.get('stroke_width',0)); ET.SubElement(root,'{'+SVG+'}path',attrs)
         elif o['kind']=='text':
             size=o['font_size'];text_family,face=selected_face(o)
@@ -97,11 +99,20 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
                 for index,line in enumerate(lines):
                     ET.SubElement(node,'{'+SVG+'}tspan',{'x':str(x),'y':str(y+index*line_height)}).text=line
         elif o['kind']=='image':
-            file=Path(asset_root or manifest_path.parent)/o['path'];b=o['box'];ext=file.suffix.lower()[1:];ext='jpeg' if ext=='jpg' else ext
+            file=Path(asset_root or manifest_path.parent)/o['path'];b=dict(o['box']);ext=file.suffix.lower()[1:];ext='jpeg' if ext=='jpg' else ext
             uri=f"data:image/{ext};base64,"+base64.b64encode(file.read_bytes()).decode()
             with Image.open(file) as image: iw,ih=image.size
             crop=o.get('crop',{'left':0,'top':0,'right':0,'bottom':0})
-            attrs.update(x=str(b['x']),y=str(b['y']),width=str(b['width']),height=str(b['height']),viewBox=f"{iw*crop['left']} {ih*crop['top']} {iw*(1-crop['left']-crop['right'])} {ih*(1-crop['top']-crop['bottom'])}",preserveAspectRatio='xMidYMid meet')
+            fit=o.get('fit','contain')
+            if fit not in ('contain','stretch'): raise ValueError('Invalid image fit: '+o['id'])
+            cw,ch=iw*(1-crop['left']-crop['right']),ih*(1-crop['top']-crop['bottom'])
+            if cw<=0 or ch<=0: raise ValueError('Image crop has no source area: '+o['id'])
+            if fit=='contain':
+                scale=min(b['width']/cw,b['height']/ch);width,height=cw*scale,ch*scale
+                b.update(x=b['x']+(b['width']-width)/2,y=b['y']+(b['height']-height)/2,width=width,height=height)
+            # Clip to the actual fitted frame, not the larger requested box:
+            # otherwise cropped source pixels leak into contain's empty margins.
+            attrs.update(x=str(b['x']),y=str(b['y']),width=str(b['width']),height=str(b['height']),viewBox=f"{iw*crop['left']} {ih*crop['top']} {cw} {ch}",preserveAspectRatio='none',overflow='hidden')
             panel=ET.SubElement(root,'{'+SVG+'}svg',attrs)
             ET.SubElement(panel,'{'+SVG+'}image',{'width':str(iw),'height':str(ih),'href':uri})
     ET.ElementTree(root).write(output,encoding='utf-8',xml_declaration=True)

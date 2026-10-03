@@ -68,6 +68,24 @@ class ManifestChecks(unittest.TestCase):
                              'anchor': {'x': 20, 'y': 35}, 'style': {'fill': '#000000'}})
         return m
 
+    def test_source_literal_mismatch_blocks_review_without_changing_the_text(self):
+        m = self.text_manifest()
+        m['source_evidence'] = {'schema_version': 1, 'source_sha256': m['source']['sha256'],
+            'literals': [{'id': 'label-reading', 'status': 'confirmed', 'object_ids': ['label'],
+                          'text': 'Source text',
+                          'source_region': {'x': 10, 'y': 10, 'width': 150, 'height': 40}}]}
+        result = v.validate(m, self.root, require_review=False)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['source_content']['mismatches'][0]['code'], 'literal_mismatch')
+        self.assertEqual(m['objects'][-1]['text'], 'Visible text')
+        m['objects'][-1]['text'] = 'Source text'
+        self.assertEqual(v.validate(m, self.root)['source_content']['status'], 'PASS')
+
+    def test_absent_source_evidence_does_not_claim_content_verification(self):
+        result = v.validate(self.text_manifest(), self.root)
+        self.assertEqual(result['status'], 'PASS')
+        self.assertEqual(result['source_content']['status'], 'NOT_PROVIDED')
+
     def test_invisible_text_and_unsupported_text_stroke_fail(self):
         for style in ({'fill': 'none'}, {'fill': '#333333', 'opacity': 0}, {'fill': '#333333', 'stroke': '#FF0000', 'stroke_width': 2}):
             bad = self.text_manifest(); bad['objects'][-1]['style'] = style

@@ -59,18 +59,34 @@ preview because font hinting and application rendering can still differ.
 Text may set `line_height` (positive pixels), `baseline_offset` (nonnegative
 pixels from the content frame's top to its first baseline), and
 `insets:{left,right,top,bottom}` (nonnegative pixels, omitted sides default to
-zero). These values are measured source/calibration inputs, not new defaults.
-Without them, existing baseline and leading behavior remains unchanged.
+zero). These values are measured source/calibration inputs. Without them, the
+source frame retains its registered-font default baseline and leading contract.
 Wrapping and overflow checks use the frame after subtracting all insets.
 For `anchor` text, the anchor is the first content baseline; asymmetric insets
 do not move that baseline or horizontal alignment. The build report retains
 the content frame, insets, resolved baseline and whether leading/baseline came
 from explicit measurements. Explicit leading is saved as native DrawingML point
-spacing; first-baseline calibration adjusts the top inset from the registered
-font's native ascent/leading estimate. Unsupported negative top insets or missing
-mapped font metrics fail rather than silently treating calibration as exact.
+spacing. The same audited font bytes are registered with the measurer and the
+presentation renderer. The first-baseline correction uses the renderer's actual
+metrics, its default/exact-spacing branch, paint adjustment and physical PPT
+point rounding. It increases the native top inset and decreases the bottom
+inset by the same amount, preserving content height, vertical alignment and
+the rotation center. Derived native insets may be signed; source insets remain
+nonnegative. Missing renderer metrics or inconsistent mapped scale fail clearly.
+This renderer model is verified with Artifact Tool 2.8.59; other backend versions
+need the actual rendering regression, not just API-name compatibility.
 Verify actual exported PPT rendering before treating
 the calibrated values as an accepted source match.
+
+The opt-in regression covers 160 exported cases, including explicit/default
+spacing, multiline text, placement scaling, rotation and vertical alignment:
+
+```bash
+FIGURE_REBUILD_RENDER_TESTS=1 python -m unittest discover -s tests -p test_text_baseline_render.py
+```
+
+Set `FIGURE_REBUILD_RENDER_EVIDENCE_ROOT` to a fresh directory to retain all
+references, PPTs, previews and measurements. Default test discovery skips it.
 
 ## Read author metadata
 

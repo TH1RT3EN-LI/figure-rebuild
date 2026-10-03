@@ -150,7 +150,12 @@ def validate(manifest, root, require_review=True, _materialized=False):
             check(finite(confidence) and 0 <= confidence <= 1, f'Invalid confidence: {label}')
             if finite(confidence) and confidence < .8: warnings.append(f'Approximate recognition: {label}')
         style = record(obj.get('style', {}), 'Style for ' + label)
-        check(not set(style).difference({'fill', 'stroke', 'stroke_width', 'opacity'}), 'Unsupported style property: ' + label)
+        from .stroke_style import STROKE_PROPERTIES, validate_stroke_style
+        check(not set(style).difference({'fill', 'stroke', 'stroke_width', 'opacity'} | STROKE_PROPERTIES), 'Unsupported style property: ' + label)
+        try:
+            validate_stroke_style(style, kind, label)
+        except ValueError as exc:
+            errors.append(str(exc))
         for channel in ('fill', 'stroke'):
             color = style.get(channel, '#000000' if kind == 'text' and channel == 'fill' else 'none')
             check(solid(color), f'Use a solid hex color or none: {label}.{channel}')
@@ -237,6 +242,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                 check(obj.get('rotation', 0) == 0, 'Rotated text requires an explicit box: ' + label)
                 check(obj.get('vertical_alignment', 'top') == 'top', 'Baseline text requires top vertical alignment: ' + label)
         elif kind == 'image':
+            check(enum(obj.get('fit', 'contain'), {'contain', 'stretch'}), 'Invalid image fit: ' + label)
             check(obj.get('editable') is False, 'Raster assets must be marked editable=false')
             check(opacity == 1, 'Raster opacity is unsupported; preserve it in the raster asset: ' + label)
             check(style.get('fill', 'none') == 'none' and style.get('stroke', 'none') == 'none' and stroke_width == 0,
@@ -279,7 +285,18 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     for dx, dy in ((-box['width']/2, -box['height']/2), (-box['width']/2, box['height']/2), (box['width']/2, -box['height']/2), (box['width']/2, box['height']/2)):
                         in_canvas(cx+co*dx-si*dy, cy+si*dx+co*dy, 'Object box ' + label)
     check(not ids.intersection(groups), 'Group ids must differ from member ids')
-    return report()
+    result = report()
+    if not errors:
+        from .content_audit import audit_source_content
+        content = audit_source_content(manifest)
+        result['source_content'] = content
+        if content['status'] == 'FAIL':
+            errors.extend('Source content: ' + item.get('code', 'unresolved')
+                          for item in content['mismatches'] + content['unresolved'])
+            result['status'] = 'FAIL'
+        if content['diagnostics']:
+            warnings.append('Possible duplicate live text requires source review; see source_content diagnostics')
+    return result
 
 def load_and_validate(path, require_review=True):
     path = Path(path)

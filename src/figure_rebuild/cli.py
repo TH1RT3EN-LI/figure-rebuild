@@ -314,6 +314,27 @@ def review(a):
     save(p, data)
     print(json.dumps({'status': 'reviewed', 'counts': report['object_counts']}))
 
+def review_output(a):
+    """Record observations only after their original artifact bindings match."""
+    from .output_review import prepare_output_review, record_output_review, verify_output_review
+    if a.output and not a.record:
+        raise ValueError('--output is only used with --record')
+    if a.require_no_observed_issues and not a.verify:
+        raise ValueError('--require-no-observed-issues is only used with --verify')
+    if a.template:
+        result = prepare_output_review(a.run)
+        destination = Path(a.template).resolve()
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with destination.open('x', encoding='utf-8') as stream:
+            json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False)
+            stream.write('\n')
+        print(json.dumps({'template': str(destination), 'review_performed': False}))
+    else:
+        record = json.loads(Path(a.record or a.verify).read_text(encoding='utf-8'))
+        result = (record_output_review(a.run, record, output=a.output) if a.record else
+                  verify_output_review(a.run, record, require_no_observed_issues=a.require_no_observed_issues))
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
 def insert(a):
     """Place an already generated native slide without an authoring runtime."""
     from .package import merge_overlay
@@ -404,6 +425,15 @@ def main():
     c.add_argument('--source-uri'); c.add_argument('--tolerance', type=float, default=.35); c.set_defaults(func=prepare)
     c = sub.add_parser('review')
     c.add_argument('--manifest', required=True); c.add_argument('--note', required=True); c.set_defaults(func=review)
+    c = sub.add_parser('review-output', help='Bind supplied visual observations to exact built artifacts')
+    c.add_argument('--run', required=True)
+    action = c.add_mutually_exclusive_group(required=True)
+    action.add_argument('--template', help='Write an unperformed review template to a new JSON file')
+    action.add_argument('--record', help='Record a filled template without refreshing its artifact bindings')
+    action.add_argument('--verify', help='Verify a recorded review against the current artifact bytes')
+    c.add_argument('--output', help='New JSON destination for --record')
+    c.add_argument('--require-no-observed-issues', action='store_true')
+    c.set_defaults(func=review_output)
     c = sub.add_parser('validate')
     c.add_argument('--manifest', required=True)
     def validate_reviewed(a):

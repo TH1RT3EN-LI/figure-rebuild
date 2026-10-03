@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {layoutText, fittedTextBox, fontRoleForText, fontFaceForText} from '../src/figure_rebuild/powerpoint/text_fit.mjs';
+import {layoutText, fittedTextBox, fontRoleForText, fontFaceForText, measurePresentationBaseline} from '../src/figure_rebuild/powerpoint/text_fit.mjs';
 
 const measure = text => ({width: [...text].length * 10, actualBoundingBoxLeft: 0,
   actualBoundingBoxRight: [...text].length * 10, actualBoundingBoxAscent: 8,
@@ -129,4 +129,61 @@ test('invalid calibrated metrics and insets fail without silently clamping', () 
     {insets: {top: '4'}}, {insets: {unrecognized: 2}}, {insets: []}, {insets: null}]) {
     assert.throws(() => fittedTextBox({...object, ...values}, measure, canvas));
   }
+});
+
+function rendererOptions(scale = 1) {
+  const ascentEm = 0.921630859375; // Audited Arial hhea ascent plus half line gap.
+  const context = {font: '', measureText() {
+    const size = Number(this.font.match(/([\d.]+)px/u)[1]);
+    return {fontBoundingBoxAscent: size * ascentEm, lines: [{runs: [{family: 'Arial'}]}]};
+  }};
+  return {scale, defaultFamily: 'Arial', context,
+    fontMetricsProvider: {getMetricsForSize(_font, size) { return {ascentPx: size * ascentEm}; }},
+    paintBaselineCompensation: value => value - Math.round(value)};
+}
+
+test('renderer metrics distinguish exact 1.2em from native default paragraph spacing', () => {
+  const object = {text: 'Hgx09', font_size: 40};
+  const natural = measurePresentationBaseline(object, rendererOptions());
+  const exact = measurePresentationBaseline({...object, line_height: 48}, rendererOptions());
+  assert.equal(natural.line_height_px, exact.line_height_px);
+  assert.notEqual(natural.first_baseline_px, exact.first_baseline_px);
+  assert.ok(natural.first_baseline_px - exact.first_baseline_px > 3);
+});
+
+test('source anchor and calibrated box retain first baseline independently of line pitch', () => {
+  const sourceMeasure = text => ({...measure(text), fontBoundingBoxAscent: 18.10546875});
+  for (const height of [undefined, 20, 24]) {
+    const object = {id: 'rendered', text: 'Hgx09\nHgx09', font_size: 20,
+      anchor: {x: 50, y: 80}, baseline_offset: 23, insets: {top: 3, bottom: 7},
+      ...(height === undefined ? {} : {line_height: height})};
+    const rendererBaseline = measurePresentationBaseline(object, rendererOptions());
+    const result = fittedTextBox(object, sourceMeasure, canvas, {rendererBaseline});
+    assert.equal(result.box.y + 3 + result.layout.baseline_adjustment_px
+      + rendererBaseline.first_baseline_px, 80);
+    assert.equal(result.layout.native_baseline_ascent, 23);
+    assert.equal(result.layout.line_count, 2);
+    assert.equal(result.layout.line_height, height ?? 24);
+    const box = fittedTextBox({...object, anchor: undefined, box: {x: 50, y: 30, width: 100, height: 90}},
+      sourceMeasure, canvas, {rendererBaseline});
+    assert.equal(box.box.y, 30);
+    assert.equal(box.layout.baseline_adjustment_px + rendererBaseline.first_baseline_px, 23);
+  }
+});
+
+test('renderer uses physical PPT rounding then returns placement-scaled source coordinates', () => {
+  const object = {text: 'Hgx09', font_size: 13.137, line_height: 15.741};
+  const scale = 0.637;
+  const rendered = measurePresentationBaseline(object, rendererOptions(scale));
+  assert.equal(rendered.rendered_font_size_px, Math.round(object.font_size * scale * 75) / 75 / scale);
+  assert.equal(rendered.line_height_px, Math.round(object.line_height * scale * 75) / 75 / scale);
+  assert.equal(rendered.scale, scale);
+});
+
+test('native default baseline respects supplied Office metrics and missing APIs fail clearly', () => {
+  const options = rendererOptions();
+  options.fontMetricsProvider.getMetricsForSize = () => ({ascentPx: 18, officeAscentPx: 18, officeDescentPx: 6});
+  const result = measurePresentationBaseline({text: 'AB', font_size: 20}, options);
+  assert.equal(result.first_baseline_px, 24 * 18 / 24 + result.paint_baseline_correction_px);
+  assert.throws(() => measurePresentationBaseline({text: 'AB', font_size: 20}, {}), /lacks.*baseline API/u);
 });

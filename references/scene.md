@@ -50,8 +50,8 @@
 
 - `path`：`moveTo/lineTo/cubicTo/close`，支持同一对象中的多个子路径；`cubicTo:{x1,y1,x2,y2,x,y}` 使用原画布的两个控制点和终点。最终 PPT 保留真正的 `a:cubicBezTo`，SVG 保留 `C`；Artifact Tool 中间体采样不作为最终几何。非零环绕孔洞保留。坐标是整个参考画布坐标。箭头头部也用稳定路径对象表示。SVG 自动导入目前仍采样，误差默认 0.35 px。
 - `text`：原文、`font_size` 为像素，`font_family/bold/italic/rotation` 可选；family 必须在 runtime 显式配置，缺失字形或未配置字体报错，不回退。使用 `box`，或未旋转 SVG 文本的基线 `anchor:{x,y}`。`wrap` 用 `none` 或 `square`；不以空格模拟居中，不为排版插入硬换行。
-- `image`：`path/sha256/editable:false/box`。路径相对 job 且不得逃逸；`crop:{left,top,right,bottom}` 为 0–1 裁剪比例，保留原图字节。框内等比放置；不支持任意自由变形。
-- `style`：实心六位 hex 或 `none`，非负 `stroke_width`，可选 `opacity`。图片的效果不由此 style 修改。
+- `image`：`path/sha256/editable:false/box`。路径相对 job 且不得逃逸；`crop:{left,top,right,bottom}` 为 0–1 裁剪比例，保留原图字节。`fit:"contain"` 为缺省值，裁后内容等比居中；显式 `fit:"stretch"` 将裁后内容准确映射整个框，适用于已核实的源图非等比变换。裁剪比例始终相对于完整原素材；stretch 不会推断或修复缺失的源裁切。
+- `style`：实心六位 hex 或 `none`，非负 `stroke_width`，可选 `opacity`。路径可显式指定 `stroke_linecap:butt/round/square`、`stroke_linejoin:miter/round/bevel`；`stroke_miterlimit` 为正比值且需要显式 miter，省略时 miter 上限为 4。不声明这些字段时保持已有描边行为。图片的效果不由此 style 修改。
 - `group_id` 记录逻辑组。只有在 z 顺序中连续且有多个成员的组会生成原生 PPT 组；不连续组保留逻辑映射，以免分组改变遮挡关系。
 
 PNG 识别时先列可见文字，再确定各图形轮廓与连线端点，最后核对所有分支和遮挡。透明像素不是黑色背景。不要借论文知识增加图中没有的连接或标签。数值图表需要更精确的作者矢量源或原数据；肉眼描线不得声称恢复了实验数据。
