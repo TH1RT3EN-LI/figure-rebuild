@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/logo.png" alt="Figure Rebuild logo" width="128" height="128">
+  <img src="../assets/logo.png" alt="Figure Rebuild logo" width="128" height="128">
 </p>
 
 <h1 align="center">Figure Rebuild</h1>
@@ -10,12 +10,12 @@
 
 <p align="center">
   <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Core checks"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
 </p>
 
 <p align="center">
-  <a href="README.md">简体中文</a> · <a href="README.en.md">English</a> · <strong>한국어</strong> · <a href="README.es.md">Español</a>
+  <a href="../../README.md">简体中文</a> · <a href="README.en.md">English</a> · <strong>한국어</strong> · <a href="README.es.md">Español</a>
 </p>
 
 Figure Rebuild는 논문의 방법론 도식, 흐름도, 작동 원리 도식을 편집 가능한 PowerPoint로 다시 그리는 도구입니다. 참고 그림의 텍스트, 레이아웃, 연결 관계를 유지합니다.
@@ -28,11 +28,11 @@ Codex를 사용해 개발하고 테스트했으며, 로컬 명령줄 도구와 C
 
 **원본**
 
-![MambaVO 논문의 Figure 1 원본](docs/assets/mambavo-figure1-original.png)
+![MambaVO 논문의 Figure 1 원본](../assets/mambavo-figure1-original.png)
 
 **재구성 과정**
 
-![Figure 1의 캔버스를 단계적으로 재구성하는 과정](docs/assets/mambavo-figure1-rebuild.gif)
+![Figure 1의 캔버스를 단계적으로 재구성하는 과정](../assets/mambavo-figure1-rebuild.gif)
 
 ## 편집 가능한 요소
 
@@ -62,11 +62,11 @@ Codex에서 사용할 경우 스킬을 추가로 설치합니다:
 .venv/bin/python scripts/install.py
 ```
 
-PPTX를 내보내려면 [내보내기 환경을 설정](docs/usage.md#配置和检查)해야 합니다. Node.js 20.9 이상, Codex Artifact Tool, Presentations 검사 도구와 로컬 글꼴이 필요합니다.
+PPTX를 내보내려면 [내보내기 환경을 설정](../usage.md#配置和检查)해야 합니다. Node.js 20.9 이상, Codex Artifact Tool, Presentations 검사 도구와 로컬 글꼴이 필요합니다.
 
 ## 사용법
 
-`figure-rebuild` 명령은 입력 자료 준비, 장면 검토, PPTX 내보내기를 제공합니다. 이미지 해석과 장면 명세 작성은 사용자 또는 도구를 호출하는 에이전트가 담당합니다. 전체 절차는 [사용 가이드](docs/usage.md)를 참고하세요.
+`figure-rebuild` 명령은 입력 자료 준비, 장면 검토, PPTX 내보내기를 제공합니다. 이미지 해석과 장면 명세 작성은 사용자 또는 도구를 호출하는 에이전트가 담당합니다. 전체 절차는 [사용 가이드](../usage.md)를 참고하세요.
 
 Codex에서는 참고 그림을 첨부하고 `$figure-rebuild`를 호출할 수 있습니다:
 
@@ -76,4 +76,4 @@ Codex에서는 참고 그림을 첨부하고 `$figure-rebuild`를 호출할 수 
 
 ## 라이선스
 
-코드는 [MIT](LICENSE) 라이선스로 배포됩니다. 논문 그림과 기타 자료의 출처 및 라이선스는 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)를 참고하세요.
+코드는 [MIT](../../LICENSE) 라이선스로 배포됩니다. 논문 그림과 기타 자료의 출처 및 라이선스는 [THIRD_PARTY_NOTICES](../THIRD_PARTY_NOTICES.md)를 참고하세요.

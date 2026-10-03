@@ -103,7 +103,7 @@ def diagnose_registration(source, target, *, regions=None, max_shift_px=32.0):
         cv2, np = _load_vision()
     except (ImportError, OSError) as exc:
         return dict(base, reason='optional_vision_dependency_unavailable', missing_module=getattr(exc, 'name', None),
-                    dependency_error=type(exc).__name__, hint='Install the compatible requirements-vision.txt extra for geometry diagnostics.')
+                    dependency_error=type(exc).__name__, hint='Install the compatible requirements/vision.txt extra for geometry diagnostics.')
     width, height = source.size
     if min(width, height) < 8:
         return dict(base, status='low_confidence', reason='canvas_too_small')

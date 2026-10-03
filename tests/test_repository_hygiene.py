@@ -20,7 +20,8 @@ class RepositoryHygieneTests(unittest.TestCase):
         )
         public = (
             'src/figure_rebuild/powerpoint/build.mjs', 'pyproject.toml', 'LICENSE',
-            'THIRD_PARTY_NOTICES.md', '.env.example', 'docs/.env.production.template',
+            'docs/THIRD_PARTY_NOTICES.md', '.github/CONTRIBUTING.md',
+            'requirements/base.txt', '.env.example', 'docs/.env.production.template',
             'docs/assets/demo.pptx', 'docs/assets/demo.gif', 'docs/assets/demo-audit.json',
             'tests/fixtures/demo.pptx',
             'tests/fixtures/connector.LICENSE', 'tests/fixtures/connector.NOTICE',

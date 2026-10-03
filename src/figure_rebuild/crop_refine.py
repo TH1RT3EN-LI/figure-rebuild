@@ -20,7 +20,7 @@ def _vision():
         import numpy as np
     except (ImportError, OSError) as exc:
         raise ValueError('Crop refinement needs optional OpenCV and NumPy; install '
-                         'requirements-vision.txt with python -m pip install -r requirements-vision.txt') from exc
+                         'requirements/vision.txt with python -m pip install -r requirements/vision.txt') from exc
     return cv2, np
 
 

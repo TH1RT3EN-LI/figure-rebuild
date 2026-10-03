@@ -155,7 +155,7 @@ def analyze_pdf(pdf_path, *, page=1, region=None, source_transform=None, font_re
     try:
         import pymupdf
     except ImportError as error:
-        raise ValueError('PDF font analysis requires optional requirements-source.txt') from error
+        raise ValueError('PDF font analysis requires optional requirements/source.txt') from error
     if isinstance(page, bool) or not isinstance(page, int) or page < 1:
         raise ValueError('page must be a positive one-based integer')
     transform = _matrix(source_transform)

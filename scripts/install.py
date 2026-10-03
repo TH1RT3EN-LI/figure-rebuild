@@ -6,13 +6,10 @@ import shutil
 from pathlib import Path
 
 
-PUBLIC_DIRECTORIES = ('src', 'scripts', 'agents', 'references', 'docs', 'tests')
+PUBLIC_DIRECTORIES = ('src', 'scripts', 'agents', 'references', 'docs', 'requirements', 'tests')
 PUBLIC_FILES = (
-    'SKILL.md', 'README.md', 'README.en.md', 'README.ko.md', 'README.es.md',
-    'LICENSE', 'THIRD_PARTY_NOTICES.md', 'CHANGELOG.md',
-    'CONTRIBUTING.md', 'pyproject.toml', 'MANIFEST.in', 'requirements.txt',
-    'requirements-source.txt', 'requirements-vision.txt', '.gitignore',
-    '.gitattributes', '.editorconfig',
+    'SKILL.md', 'README.md', 'LICENSE', 'pyproject.toml', 'MANIFEST.in',
+    '.github/CONTRIBUTING.md', '.gitignore', '.gitattributes', '.editorconfig',
 )
 REQUIRED_FILES = ('SKILL.md', 'src/figure_rebuild/cli.py', 'scripts/run.py')
 LOCAL_DIRECTORIES = {
@@ -80,6 +77,7 @@ def install(root, skills_dir, *, copy=False):
     target.mkdir()
     try:
         for name in (*PUBLIC_FILES, *PUBLIC_DIRECTORIES):
+            (target / name).parent.mkdir(parents=True, exist_ok=True)
             copy_public(root / name, target / name)
     except BaseException:
         shutil.rmtree(target)

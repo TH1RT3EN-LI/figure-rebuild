@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/logo.png" alt="Logo de Figure Rebuild" width="128" height="128">
+  <img src="../assets/logo.png" alt="Logo de Figure Rebuild" width="128" height="128">
 </p>
 
 <h1 align="center">Figure Rebuild</h1>
@@ -10,12 +10,12 @@
 
 <p align="center">
   <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Comprobaciones principales"></a>
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="Licencia: MIT"></a>
+  <a href="../../LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="Licencia: MIT"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
 </p>
 
 <p align="center">
-  <a href="README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="README.ko.md">한국어</a> · <strong>Español</strong>
+  <a href="../../README.md">简体中文</a> · <a href="README.en.md">English</a> · <a href="README.ko.md">한국어</a> · <strong>Español</strong>
 </p>
 
 Figure Rebuild reconstruye diagramas metodológicos de artículos científicos, diagramas de flujo y esquemas de mecanismos en PowerPoint editable, conservando el texto, la disposición y las conexiones de la figura de referencia.
@@ -28,11 +28,11 @@ Ejemplo basado en la figura 1 de [MambaVO (CVPR 2025)](https://openaccess.thecvf
 
 **Figura original**
 
-![Figura 1 original del artículo MambaVO](docs/assets/mambavo-figure1-original.png)
+![Figura 1 original del artículo MambaVO](../assets/mambavo-figure1-original.png)
 
 **Proceso de reconstrucción**
 
-![Reconstrucción paso a paso de la figura 1 en el lienzo](docs/assets/mambavo-figure1-rebuild.gif)
+![Reconstrucción paso a paso de la figura 1 en el lienzo](../assets/mambavo-figure1-rebuild.gif)
 
 ## Contenido editable
 
@@ -62,11 +62,11 @@ Para usarlo en Codex, instala también la habilidad:
 .venv/bin/python scripts/install.py
 ```
 
-Antes de exportar un PPTX, hay que [configurar el entorno de exportación](docs/usage.md#配置和检查): Node.js 20.9+, Codex Artifact Tool, el verificador de Presentations y fuentes locales.
+Antes de exportar un PPTX, hay que [configurar el entorno de exportación](../usage.md#配置和检查): Node.js 20.9+, Codex Artifact Tool, el verificador de Presentations y fuentes locales.
 
 ## Uso
 
-El comando `figure-rebuild` permite preparar los recursos, revisar la escena y exportar a PPTX. La interpretación de las imágenes y la creación del manifiesto de escena corresponden al usuario o al agente que invoca la herramienta. Los pasos completos se describen en la [guía de uso](docs/usage.md).
+El comando `figure-rebuild` permite preparar los recursos, revisar la escena y exportar a PPTX. La interpretación de las imágenes y la creación del manifiesto de escena corresponden al usuario o al agente que invoca la herramienta. Los pasos completos se describen en la [guía de uso](../usage.md).
 
 En Codex, adjunta la figura de referencia e invoca `$figure-rebuild`:
 
@@ -76,4 +76,4 @@ La entrega incluye el PPTX, una vista previa de la exportación y una comparaci�
 
 ## Licencia
 
-El código se distribuye bajo la licencia [MIT](LICENSE). Las fuentes y licencias de las figuras de artículos científicos y otros recursos figuran en [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md).
+El código se distribuye bajo la licencia [MIT](../../LICENSE). Las fuentes y licencias de las figuras de artículos científicos y otros recursos figuran en [THIRD_PARTY_NOTICES](../THIRD_PARTY_NOTICES.md).

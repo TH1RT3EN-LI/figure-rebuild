@@ -82,7 +82,7 @@ from visible ink bounds.
 Install the optional source dependency with the same configured Python runtime:
 
 ```sh
-python -m pip install -r requirements-source.txt
+python -m pip install -r requirements/source.txt
 ```
 
 Run the read-only helper from any current directory:

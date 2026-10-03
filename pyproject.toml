@@ -9,7 +9,7 @@ description = "Rebuild reference diagrams as editable PowerPoint objects with au
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
-license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+license-files = ["LICENSE", "docs/THIRD_PARTY_NOTICES.md"]
 authors = [{name = "TH1RT3EN-LI"}]
 keywords = ["powerpoint", "diagrams", "figure-reconstruction", "codex-skill"]
 classifiers = [

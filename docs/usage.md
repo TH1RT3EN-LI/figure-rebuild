@@ -48,7 +48,7 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 .venv/bin/python -m pip install -e '.[vision]'
 ```
 
-未安装时，核心流程保持可用，报告明确标记几何诊断不可用。作者 PDF 字体分析需安装 `.[source]`；它只读提取字体与位置，不自动理解整张图。LaTeX 公式生成另需外部引擎和转换工具，见 [公式说明](../references/formulas.md)。原有 `requirements.txt`、`requirements-vision.txt`、`requirements-source.txt` 保留为对应包安装方式的兼容文件。
+未安装时，核心流程保持可用，报告明确标记几何诊断不可用。作者 PDF 字体分析需安装 `.[source]`；它只读提取字体与位置，不自动理解整张图。LaTeX 公式生成另需外部引擎和转换工具，见 [公式说明](../references/formulas.md)。依赖清单集中在 `requirements/`：`base.txt`、`vision.txt`、`source.txt` 分别对应核心、视觉和来源分析安装方式，也可在仓库根目录执行 `python -m pip install -r requirements/vision.txt` 等命令。
 
 ## 配置和检查
 
@@ -146,8 +146,8 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 node --test tests/test_*.mjs
 ```
 
-GitHub Actions 跑便携检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试使用自建素材和注明来源、许可的测试定义；README 的论文对照图单独注明来源。用户原图、原始论文 PDF、模板、字体和本地配置不入库。复现与贡献要求见 [CONTRIBUTING](../CONTRIBUTING.md)。
+GitHub Actions 跑便携检查。实际 PPT 后端集成需要本地运行时和字体，另行运行；不把 CI 核心通过描述为 PPT 导出已通过。测试使用自建素材和注明来源、许可的测试定义；README 的论文对照图单独注明来源。用户原图、原始论文 PDF、模板、字体和本地配置不入库。复现与贡献要求见 [CONTRIBUTING](../.github/CONTRIBUTING.md)。
 
 CI 分别安装核心、视觉与来源分析依赖执行 Python 检查；核心环境跳过需要 OpenCV 的效果测试，视觉环境验证裁剪内容保护、已知平移和局部错误诊断。
 
-代码采用 MIT；第三方运行时与素材权利见 [THIRD_PARTY_NOTICES.md](../THIRD_PARTY_NOTICES.md)。发布变更见 [CHANGELOG.md](../CHANGELOG.md)。
+代码采用 MIT；第三方运行时与素材权利见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。发布变更见 [CHANGELOG.md](CHANGELOG.md)。

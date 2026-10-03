@@ -39,7 +39,7 @@ def _synthetic_font(path):
     builder.save(path)
 
 
-@unittest.skipUnless(pymupdf is not None, 'optional requirements-source.txt is not installed')
+@unittest.skipUnless(pymupdf is not None, 'optional requirements/source.txt is not installed')
 class FontAnalysisTests(unittest.TestCase):
     def setUp(self):
         temporary = tempfile.TemporaryDirectory()

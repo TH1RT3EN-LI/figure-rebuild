@@ -15,7 +15,7 @@
 </p>
 
 <p align="center">
-  <strong>简体中文</strong> · <a href="README.en.md">English</a> · <a href="README.ko.md">한국어</a> · <a href="README.es.md">Español</a>
+  <strong>简体中文</strong> · <a href="docs/i18n/README.en.md">English</a> · <a href="docs/i18n/README.ko.md">한국어</a> · <a href="docs/i18n/README.es.md">Español</a>
 </p>
 
 Figure Rebuild 将论文方法图、流程图和机制示意图重绘为可编辑的 PowerPoint，保留参考图的文字、布局与连接关系。
@@ -74,6 +74,10 @@ python3 -m venv .venv
 
 输出包括 PPTX、导出预览和原图对照，也可继续调整局部内容。
 
+## 项目文档
+
+[使用指南](docs/usage.md) · [架构与目录](docs/architecture.md) · [贡献指南](.github/CONTRIBUTING.md) · [更新记录](docs/CHANGELOG.md)
+
 ## 许可
 
-代码采用 [MIT](LICENSE) 许可。论文图示与其他素材的来源、许可见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)。
+代码采用 [MIT](LICENSE) 许可。论文图示与其他素材的来源、许可见 [THIRD_PARTY_NOTICES](docs/THIRD_PARTY_NOTICES.md)。

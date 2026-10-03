@@ -2,6 +2,8 @@
 
 ## 0.6.0
 
+- 精简仓库根目录：译文集中到 `docs/i18n/`，更新记录与第三方说明归入 `docs/`，贡献指南归入 `.github/`，依赖清单归入 `requirements/`；同步安装、分发和文档链接。
+
 - 将实现整理为 `src/figure_rebuild` Python 包，增加 `pyproject.toml`、模块入口和主 CLI；字体分析、公式生成与局部修改提供独立命令。
 - JavaScript PPT 后端位于包内 `powerpoint/`，随 wheel 分发；Codex skill 通过完整源码 checkout 安装，保留原有脚本入口。
 - 外部 Python 通过包内 bootstrap 加载本项目，保留自身依赖环境；增加跨环境导入、分发内容和仓库外运行验证。

@@ -126,7 +126,7 @@ class CropRefinement(unittest.TestCase):
             if name == 'cv2':
                 raise ImportError('missing test dependency')
             return original_import(name, *args, **kwargs)
-        with patch('builtins.__import__', side_effect=no_opencv), self.assertRaisesRegex(ValueError, 'requirements-vision.txt'):
+        with patch('builtins.__import__', side_effect=no_opencv), self.assertRaisesRegex(ValueError, 'requirements/vision.txt'):
             c._vision()
 
     def test_broken_binary_dependency_gives_actionable_message(self):
@@ -136,7 +136,7 @@ class CropRefinement(unittest.TestCase):
             if name == 'cv2':
                 raise OSError('binary could not load')
             return original_import(name, *args, **kwargs)
-        with patch('builtins.__import__', side_effect=broken_opencv), self.assertRaisesRegex(ValueError, 'requirements-vision.txt'):
+        with patch('builtins.__import__', side_effect=broken_opencv), self.assertRaisesRegex(ValueError, 'requirements/vision.txt'):
             c._vision()
 
     @needs_vision

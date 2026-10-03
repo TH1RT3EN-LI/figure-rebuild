@@ -170,7 +170,7 @@ try:
     import cv2, numpy
     print(json.dumps({'status':'available','opencv':cv2.__version__,'numpy':numpy.__version__}))
 except Exception as exc:
-    print(json.dumps({'status':'unavailable','reason':str(exc),'install_hint':'Install requirements-vision.txt into the configured Python environment'}))
+    print(json.dumps({'status':'unavailable','reason':str(exc),'install_hint':'Install requirements/vision.txt into the configured Python environment'}))
 """
     try:
         result = subprocess.run([python, '-B', '-c', probe], capture_output=True, text=True, timeout=15)

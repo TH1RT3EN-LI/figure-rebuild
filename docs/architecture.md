@@ -12,7 +12,11 @@ Figure Rebuild 用可审阅的场景清单连接参考图和 PowerPoint 导出�
 | `SKILL.md`、`agents/` | 调用方模型的复建流程与 Codex 技能元数据 |
 | `references/` | 场景协议、字体、公式、连线、视觉诊断与录制说明 |
 | `tests/` | 便携 Python / Node 测试和附带许可说明的测试素材 |
-| `docs/` | 使用与维护文档，以及有来源记录的展示素材 |
+| `docs/` | 使用、架构、更新记录和第三方说明 |
+| `docs/i18n/` | 英语、韩语和西班牙语 README |
+| `docs/assets/` | 有来源记录的展示图片、录像与审计材料 |
+| `requirements/` | 核心、视觉和来源分析的 pip 安装清单 |
+| `.github/` | CI 工作流和贡献指南 |
 | `pyproject.toml` | 包元数据、依赖分组和命令行入口 |
 | `.local/` | 被 Git 忽略的本地配置、任务与集成输出 |
 
@@ -62,4 +66,4 @@ Python wheel 包含 Python 模块和 `powerpoint/` 后端，不包含完整 Code
 
 CI 的便携测试不等于实际 PPT 导出或 Office 播放验证。像素诊断不证明科研关系正确；普通文字、原生图形、公式图版与保留图片应按实际对象类型描述编辑性。
 
-来源与许可记录见 [第三方说明](../THIRD_PARTY_NOTICES.md) 和 [LICENSE](../LICENSE)。贡献与复现要求见 [CONTRIBUTING](../CONTRIBUTING.md)，命令示例见 [使用指南](usage.md)。
+来源与许可记录见 [第三方说明](THIRD_PARTY_NOTICES.md) 和 [LICENSE](../LICENSE)。贡献与复现要求见 [CONTRIBUTING](../.github/CONTRIBUTING.md)，命令示例见 [使用指南](usage.md)。

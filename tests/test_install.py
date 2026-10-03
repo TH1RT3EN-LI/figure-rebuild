@@ -99,8 +99,10 @@ class SkillInstallationTests(unittest.TestCase):
 
     def test_copy_keeps_public_assets_and_licenses_but_excludes_local_state(self):
         public = (
-            'README.md', 'README.en.md', 'README.ko.md', 'README.es.md',
-            'LICENSE', 'THIRD_PARTY_NOTICES.md', '.gitignore',
+            'README.md', 'docs/i18n/README.en.md', 'docs/i18n/README.ko.md',
+            'docs/i18n/README.es.md', 'docs/CHANGELOG.md', '.github/CONTRIBUTING.md',
+            'LICENSE', 'docs/THIRD_PARTY_NOTICES.md', '.gitignore',
+            'requirements/base.txt', 'requirements/source.txt', 'requirements/vision.txt',
             'src/figure_rebuild/powerpoint/build.mjs', 'docs/assets/demo.pptx',
             'docs/assets/demo.gif', 'docs/assets/demo-audit.json',
             'docs/demonstration/manifest.json', 'docs/.env.example',

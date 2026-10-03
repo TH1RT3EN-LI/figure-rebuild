@@ -1,6 +1,6 @@
 # 裁剪精修和位置诊断 · 0.3.0
 
-视觉模块使用可选 OpenCV / NumPy；在运行 CLI 的 Python 和配置用于 build 的 Python 中安装 `requirements-vision.txt`。两者可以是同一个虚拟环境。`doctor` 报告配置环境中的视觉能力；没有这些包时，原有生成流程仍运行，几何报告标记 unavailable。
+视觉模块使用可选 OpenCV / NumPy；在运行 CLI 的 Python 和配置用于 build 的 Python 中安装 `requirements/vision.txt`。两者可以是同一个虚拟环境。`doctor` 报告配置环境中的视觉能力；没有这些包时，原有生成流程仍运行，几何报告标记 unavailable。
 
 ## 精修已选区域
 

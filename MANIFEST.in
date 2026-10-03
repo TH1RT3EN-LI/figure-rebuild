@@ -1,7 +1,7 @@
-include SKILL.md CONTRIBUTING.md CHANGELOG.md
-include README*.md
+include SKILL.md README.md
 include .gitignore .gitattributes .editorconfig
-include requirements*.txt
+recursive-include requirements *.txt
+include .github/CONTRIBUTING.md
 recursive-include agents *.yaml
 recursive-include references *.md
 recursive-include scripts *.py

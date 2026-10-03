@@ -44,7 +44,7 @@ def check_wheel(path):
         entrypoints = [name for name in names if name.endswith(".dist-info/entry_points.txt")]
         if len(metadata) != 1 or len(entrypoints) != 1:
             raise ValueError("Wheel needs one package metadata and entrypoint manifest")
-        for filename in ("LICENSE", "THIRD_PARTY_NOTICES.md"):
+        for filename in ("LICENSE", "docs/THIRD_PARTY_NOTICES.md"):
             if not any(name.endswith(".dist-info/licenses/" + filename) for name in names):
                 raise ValueError("Wheel missing license record: " + filename)
         if "figure-rebuild = figure_rebuild.cli:main" not in archive.read(entrypoints[0]).decode():
@@ -72,7 +72,10 @@ def check_sdist(path):
         check_private(relative)
         required = {
             "pyproject.toml", "MANIFEST.in", "SKILL.md", "README.md", "LICENSE",
-            "THIRD_PARTY_NOTICES.md", "agents/openai.yaml", "references/scene.md",
+            "docs/THIRD_PARTY_NOTICES.md", "docs/CHANGELOG.md", ".github/CONTRIBUTING.md",
+            "docs/i18n/README.en.md", "docs/i18n/README.es.md", "docs/i18n/README.ko.md",
+            "requirements/base.txt", "requirements/source.txt", "requirements/vision.txt",
+            "agents/openai.yaml", "references/scene.md",
             "scripts/run.py", "scripts/install.py", "src/figure_rebuild/cli.py",
             "src/figure_rebuild/_bootstrap.py", "src/figure_rebuild/runtime_probe.py",
             "tests/fixtures/connector-presets.xml",
