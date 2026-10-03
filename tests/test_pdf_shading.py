@@ -171,14 +171,13 @@ class PdfShadingTests(unittest.TestCase):
         with self.assertRaises(UnsupportedPdfShadingError): self.extract(shade)
 
     def test_shade_to_path_real_pdf_render_matches_curved_clip(self):
-        import numpy as np
         shade, _, _ = fixture(self.pdf, colorspace='/DeviceRGB', samples=bytes([0,0,255])*4,
                               decode='[0 1 0 1 0 1]',
                               clip='20 20 m 20 90 100 90 120 20 c h W n')
         result = self.extract(shade)
         with fitz.open(self.pdf) as doc:
             expected = doc[0].get_pixmap(matrix=fitz.Matrix(4,4), alpha=True)
-            a = np.frombuffer(expected.samples, dtype=np.uint8).astype(int)
+            expected_samples = expected.samples
         commands = ['0 0 1 rg']
         for cmd in result['object']['commands']:
             if 'moveTo' in cmd:
@@ -193,9 +192,11 @@ class PdfShadingTests(unittest.TestCase):
             page=doc.new_page(width=200,height=120)
             page.set_contents(_obj(doc,'<< >>',' '.join(commands).encode()))
             actual=page.get_pixmap(matrix=fitz.Matrix(4,4),alpha=True)
-            b=np.frombuffer(actual.samples,dtype=np.uint8).astype(int)
-        self.assertLessEqual(abs(a-b).max(), 1)
-        self.assertLess(abs(a-b).mean(), .01)
+            actual_samples = actual.samples
+        self.assertEqual(len(expected_samples), len(actual_samples))
+        differences = [abs(a-b) for a, b in zip(expected_samples, actual_samples)]
+        self.assertLessEqual(max(differences), 1)
+        self.assertLess(sum(differences)/len(differences), .01)
 
     def test_midpath_close_not_misidentified_as_rectangle(self):
         shade, _, _ = fixture(self.pdf, clip='20 20 m 100 20 l h 100 80 l 20 80 l h W n')
