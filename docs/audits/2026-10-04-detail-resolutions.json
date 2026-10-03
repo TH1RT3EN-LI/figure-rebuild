@@ -1,0 +1,1279 @@
+{
+  "schema_version": 1,
+  "updated_at": "2026-10-03T19:16:12.000542+00:00",
+  "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
+  "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
+  "issue_count": 296,
+  "status_counts": {
+    "closed_model_visual_review": 45,
+    "open": 250,
+    "closed_renderer_localization": 1
+  },
+  "closed_findings": [
+    {
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original high-resolution embedded raster independently reads fsih => fish at sequence2,row4; original output fihs => fish corrected. No global normalization; six spelling positions separately preserved in source ledger.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
+          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
+          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original source rounded panels/pale index strips measured independently, including middle-panel4embedded-pixel vertical offset. Inner/outer braces use measured smooth source centerlines; final inner endpoints and cusp use actual source pixel extrema. Finalactual previews show no remaining observed geometric discrepancy.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
+          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
+          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-12-f02",
+      "issue_id": "ccf-2020-12-f02-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Source math visible glyphs/exponents/tensor dimensions and hat restored as exact PDF glyph paths; actual output source comparison and run002 pixel/geometry identity verified.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/diagnostics/run-002-verification/closure-recommendations.json",
+          "sha256": "e0b291304640eef5f02251dfd4f65fc02911214238ada1cfc0b72c76a8663f81"
+        },
+        {
+          "audit_relative_path": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/build/run-002/output-review.json",
+          "sha256": "9fd1159f2008f5b44ff699093ebf49a8fa9a942f3b6383245c264715f3660a56"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-12-f02",
+      "issue_id": "ccf-2020-12-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Graph Learning Layer and TC Module source glyph spacing and margins restored; actual output reviewed and run002 identical previews verified.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/diagnostics/run-002-verification/closure-recommendations.json",
+          "sha256": "e0b291304640eef5f02251dfd4f65fc02911214238ada1cfc0b72c76a8663f81"
+        },
+        {
+          "audit_relative_path": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/build/run-002/output-review.json",
+          "sha256": "9fd1159f2008f5b44ff699093ebf49a8fa9a942f3b6383245c264715f3660a56"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-18-f02",
+      "issue_id": "ccf-2020-18-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored original source paths and glyphs; duplicate caption removed and source label/bracket/font spacing preserved in actual reviewed 1x/2x/4x output.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2020-18-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-18-f02/RESULT.json",
+          "sha256": "9b610fe6e436e86d1c16015eba53d3016669f1c77ca9d7381ddd1253aab6e8f2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-18-f02/job/build/run-001/output-review.json",
+          "sha256": "360ccc9f96cdd5292f12bfc5b081dfadf7d9bf09c1c8f2e350a6d51574a05754"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-18-f02",
+      "issue_id": "ccf-2020-18-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored original source paths and glyphs; duplicate caption removed and source label/bracket/font spacing preserved in actual reviewed 1x/2x/4x output.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2020-18-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-18-f02/RESULT.json",
+          "sha256": "9b610fe6e436e86d1c16015eba53d3016669f1c77ca9d7381ddd1253aab6e8f2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-18-f02/job/build/run-001/output-review.json",
+          "sha256": "360ccc9f96cdd5292f12bfc5b081dfadf7d9bf09c1c8f2e350a6d51574a05754"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "All source bipartite instances and independent ED/ND/RW solid/deleted edges restored and inspected against embedded high-resolution source.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f01/job/build/run-011",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/RESULT.json",
+          "sha256": "38b4ba8f84f639e66e94e4349477ffa9c8792e0a64bf424d2e090e5143181fb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/job/build/run-011/output-review.json",
+          "sha256": "d1524ad43f66f29d6de1f461ce1cdc5a8c394e5891b9afd7cc7fe2ba561d9c67"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D02",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Three distinct source GCN hierarchies, fans, holes and directed arrows restored; actual final previews inspected.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f01/job/build/run-011",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/RESULT.json",
+          "sha256": "38b4ba8f84f639e66e94e4349477ffa9c8792e0a64bf424d2e090e5143181fb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/job/build/run-011/output-review.json",
+          "sha256": "d1524ad43f66f29d6de1f461ce1cdc5a8c394e5891b9afd7cc7fe2ba561d9c67"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All 84 matrix cells and 92 node color fields independently measured and verified as native gradients; source differences preserved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f01/job/build/run-011",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/RESULT.json",
+          "sha256": "38b4ba8f84f639e66e94e4349477ffa9c8792e0a64bf424d2e090e5143181fb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/job/build/run-011/output-review.json",
+          "sha256": "d1524ad43f66f29d6de1f461ce1cdc5a8c394e5891b9afd7cc7fe2ba561d9c67"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Numeric augmentation subscripts and calligraphic loss glyphs preserved as editable source-shaped outlines, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f01/job/build/run-011",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/RESULT.json",
+          "sha256": "38b4ba8f84f639e66e94e4349477ffa9c8792e0a64bf424d2e090e5143181fb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/job/build/run-011/output-review.json",
+          "sha256": "d1524ad43f66f29d6de1f461ce1cdc5a8c394e5891b9afd7cc7fe2ba561d9c67"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Two shared three-part strips with source dotted internal separators and nonoverlapping labels restored.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f01/job/build/run-011",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/RESULT.json",
+          "sha256": "38b4ba8f84f639e66e94e4349477ffa9c8792e0a64bf424d2e090e5143181fb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f01/job/build/run-011/output-review.json",
+          "sha256": "d1524ad43f66f29d6de1f461ce1cdc5a8c394e5891b9afd7cc7fe2ba561d9c67"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f02",
+      "issue_id": "ccf-2021-11-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source panel titles and caption each retained once using source glyph outlines.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f02/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/RESULT-initial-bytes-reconstructed-a74d3380.json",
+          "sha256": "a74d3380f45610674353704f8ebc80e7c24db1a2ebf53fcd59c28375be3ea507",
+          "history_note": "Exact prior aggregate bytes reconstructed by removing the later-added baseline-check field; original SHA matched. Actual output-review/PPT bindings did not change."
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/job/build/run-003/output-review.json",
+          "sha256": "2127991ba7df264e537325c7913d1c571122eff9db11e78a1771e1ff7b9a3224"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f02",
+      "issue_id": "ccf-2021-11-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source u/i/L subscripts and thin mathematical strokes individually inspected in actual 4x output.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f02/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/RESULT-initial-bytes-reconstructed-a74d3380.json",
+          "sha256": "a74d3380f45610674353704f8ebc80e7c24db1a2ebf53fcd59c28375be3ea507",
+          "history_note": "Exact prior aggregate bytes reconstructed by removing the later-added baseline-check field; original SHA matched. Actual output-review/PPT bindings did not change."
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/job/build/run-003/output-review.json",
+          "sha256": "2127991ba7df264e537325c7913d1c571122eff9db11e78a1771e1ff7b9a3224"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f02",
+      "issue_id": "ccf-2021-11-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All 12 double-ended dimension heads and source label gaps restored and inspected.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f02/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/RESULT-initial-bytes-reconstructed-a74d3380.json",
+          "sha256": "a74d3380f45610674353704f8ebc80e7c24db1a2ebf53fcd59c28375be3ea507",
+          "history_note": "Exact prior aggregate bytes reconstructed by removing the later-added baseline-check field; original SHA matched. Actual output-review/PPT bindings did not change."
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/job/build/run-003/output-review.json",
+          "sha256": "2127991ba7df264e537325c7913d1c571122eff9db11e78a1771e1ff7b9a3224"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f02",
+      "issue_id": "ccf-2021-11-f02-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source topology, dash patterns, ring geometry and 24 measured continuous gradient node fills restored; format sampling limits disclosed.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-11-f02/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/RESULT-initial-bytes-reconstructed-a74d3380.json",
+          "sha256": "a74d3380f45610674353704f8ebc80e7c24db1a2ebf53fcd59c28375be3ea507",
+          "history_note": "Exact prior aggregate bytes reconstructed by removing the later-added baseline-check field; original SHA matched. Actual output-review/PPT bindings did not change."
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-11-f02/job/build/run-003/output-review.json",
+          "sha256": "2127991ba7df264e537325c7913d1c571122eff9db11e78a1771e1ff7b9a3224"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f04",
+      "issue_id": "ccf-2021-16-f04-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored both residual loops and two sum nodes, separate top and bottom token collectors into embedding, all inter-layer routes and original upward output marker. Native cubic paths reproduce visible round bends.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f04/job/build/run-009",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/completion-summary.json",
+          "sha256": "2bd12c909307f0f9ddaf036b67664ec99b2c84ad4281caddb4c8d044061fe73d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/job/build/run-009/output-review.json",
+          "sha256": "c1af1eeb5b5e7bedf8e1e6b86473a8a8b0659caaed5e8de25e505d419bc177ce"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f04",
+      "issue_id": "ccf-2021-16-f04-D02",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored two yellow, five purple, and four decoder-input vectors with grouping braces and vertical ellipses; all three decoder output boxes; two decoder-to-attention and two attention-to-generator streams; Context Encoder output, e_out/d_out labels and visible clipped return.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f04/job/build/run-009",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/completion-summary.json",
+          "sha256": "2bd12c909307f0f9ddaf036b67664ec99b2c84ad4281caddb4c8d044061fe73d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/job/build/run-009/output-review.json",
+          "sha256": "c1af1eeb5b5e7bedf8e1e6b86473a8a8b0659caaed5e8de25e505d419bc177ce"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f04",
+      "issue_id": "ccf-2021-16-f04-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Independently transcribed 2a, 2b and 11 from author raster; final visible live-text labels and strict source invariant agree.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f04/job/build/run-009",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/completion-summary.json",
+          "sha256": "2bd12c909307f0f9ddaf036b67664ec99b2c84ad4281caddb4c8d044061fe73d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/job/build/run-009/output-review.json",
+          "sha256": "c1af1eeb5b5e7bedf8e1e6b86473a8a8b0659caaed5e8de25e505d419bc177ce"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f04",
+      "issue_id": "ccf-2021-16-f04-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored borderless input token rectangles, diagonal purple/yellow fills for int and semicolon, source grouping braces and live monospace sans token labels. Registered Consolas is a visual font match; original raster font identity is unavailable.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f04/job/build/run-009",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/completion-summary.json",
+          "sha256": "2bd12c909307f0f9ddaf036b67664ec99b2c84ad4281caddb4c8d044061fe73d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f04/job/build/run-009/output-review.json",
+          "sha256": "c1af1eeb5b5e7bedf8e1e6b86473a8a8b0659caaed5e8de25e505d419bc177ce"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Both lower rightmost step-1 token readings are source-literal } and retain -7.85. Source braces and underscores are displayed in registered Consolas.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f06/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/completion-summary.json",
+          "sha256": "7c1d007c4cd8aee988efbe514c347324e880231ca4c6b1f9fd379c49e08601b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+          "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Both lower trees use if→{ and }→<EOS>/} (not max→{ and if→EOS/}). Native from/to connector IDs and actual visible route are checked.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f06/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/completion-summary.json",
+          "sha256": "7c1d007c4cd8aee988efbe514c347324e880231ca4c6b1f9fd379c49e08601b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+          "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Both annotation arrows start at EOS bottom and descend leftward to their prose labels; direction and actual native arrowheads checked in final PPT preview.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f06/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/completion-summary.json",
+          "sha256": "7c1d007c4cd8aee988efbe514c347324e880231ca4c6b1f9fd379c49e08601b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+          "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Upper-left CaMeL is gray; both lower } leaves are white; lower-right red -5.45 EOS is white. Other source gray/white node states independently checked.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f06/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/completion-summary.json",
+          "sha256": "7c1d007c4cd8aee988efbe514c347324e880231ca4c6b1f9fd379c49e08601b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+          "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-D05",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Rebuilt compact source oval geometry and spacing, registered Consolas live node/code labels, source green paths and explicit source-sized arrow silhouettes. No overlap between lower EOS and } siblings observed.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2021-16-f06/job/build/run-003",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/completion-summary.json",
+          "sha256": "7c1d007c4cd8aee988efbe514c347324e880231ca4c6b1f9fd379c49e08601b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+          "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Both source preference symbols are curved arms meeting at right-facing cusp, no horizontal shaft. Native original-raster silhouette preserves source relation. Exact Unicode is not recoverable from raster and was not guessed as plain > or arrow.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-04-f01/job/build/run-005",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
+          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
+          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All4 response labels preserve y with visibly lowered w/l glyph positions; no literal baseline underscore. Inspected actualPPT1x/2x preference crops. These are native glyph silhouettes, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-04-f01/job/build/run-005",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
+          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
+          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Caption405 actual author PDF glyph paths preserve exact original punctuation and visible space at learning. Existing, line breaks and remaining caption text. No regenerated text spacing guess.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-04-f01/job/build/run-005",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
+          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
+          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Preserved two distinct positional node IDs with identical visible source-literal 231; all 37 node readings independently checked.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f01/job/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/completion-summary.json",
+          "sha256": "c04c8af6cdb08cf00e59414d5ff7f046fa55eb38799c090c4d93973c1064eafc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
+          "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored one continuous cubic/vertical/cubic blue path from Y OCS top to cube underside; no bottom return gap.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f01/job/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/completion-summary.json",
+          "sha256": "c04c8af6cdb08cf00e59414d5ff7f046fa55eb38799c090c4d93973c1064eafc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
+          "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All 48 ports begin at circle boundaries and are painted below filled node circles and live labels; no colored stroke over a digit was observed in final 1x/2x previews.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f01/job/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/completion-summary.json",
+          "sha256": "c04c8af6cdb08cf00e59414d5ff7f046fa55eb38799c090c4d93973c1064eafc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
+          "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored all three physical rectangle levels per stack and twelve individual thin fan branches across four fan-outs. Direct/return cable ends remain source bare strokes without filled arrowheads.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f01/job/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/completion-summary.json",
+          "sha256": "c04c8af6cdb08cf00e59414d5ff7f046fa55eb38799c090c4d93973c1064eafc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
+          "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored three oblique curly braces, six colored diagonal cable ticks and all nine separate ×16 labels in observed source positions.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f01/job/build/run-002",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/completion-summary.json",
+          "sha256": "c04c8af6cdb08cf00e59414d5ff7f046fa55eb38799c090c4d93973c1064eafc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
+          "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f05",
+      "issue_id": "ccf-2023-13-f05-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored exact original twisted-panel bitmap occurrence with alpha/crop/transform. Actual1x/2x and4x detail confirms top0,1→bottom2,0; top1,1→bottom3,0; top2,1→bottom0,0; top3,1→bottom1,0. No +1 reconstruction or generic torus template remains.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/completion-summary.json",
+          "sha256": "7360a2ed451a242d70d494ab39a81b451a860caf5a98a1130ab2919608949fc7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/job/build/run-001/output-review.json",
+          "sha256": "396a21ef78e6b730d1addc8b46694fd2ebc16cc1600d5dfd6cf82ea97814a586"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f05",
+      "issue_id": "ccf-2023-13-f05-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original blue row segments meet the original nodes and return arcs lie outside the rows. Both source occurrences replace old closed-ellipse manual paths, eliminating invented inner arcs.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/completion-summary.json",
+          "sha256": "7360a2ed451a242d70d494ab39a81b451a860caf5a98a1130ab2919608949fc7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/job/build/run-001/output-review.json",
+          "sha256": "396a21ef78e6b730d1addc8b46694fd2ebc16cc1600d5dfd6cf82ea97814a586"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f05",
+      "issue_id": "ccf-2023-13-f05-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original source raster preserves regular rightmost dark gray/black vertical dash, other red dashes, blue optical lines, exact original node outlines/colors and dash spacing.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/completion-summary.json",
+          "sha256": "7360a2ed451a242d70d494ab39a81b451a860caf5a98a1130ab2919608949fc7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/job/build/run-001/output-review.json",
+          "sha256": "396a21ef78e6b730d1addc8b46694fd2ebc16cc1600d5dfd6cf82ea97814a586"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f05",
+      "issue_id": "ccf-2023-13-f05-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "All16 coordinate labels are original author raster samples with correct size/placement. Caption534 glyphs are exact PDF source outlines with original transforms/paint order; independent caption reading matches glyph metadata, and actual output preserves bold prefix, normal following text, ten lines, punctuation and multiplication symbols.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-13-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/completion-summary.json",
+          "sha256": "7360a2ed451a242d70d494ab39a81b451a860caf5a98a1130ab2919608949fc7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-13-f05/job/build/run-001/output-review.json",
+          "sha256": "396a21ef78e6b730d1addc8b46694fd2ebc16cc1600d5dfd6cf82ea97814a586"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-15-f02",
+      "issue_id": "ccf-2023-15-f02-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Original source paths, math glyphs, distinct remask cells and four actual source image placements restored. Native PPT independently rendered in LibreOffice 26.2.5.2 and visually reviewed; Artifact preview cap/join limitation remains a separate open finding. Glyphs are editable outlines, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-15-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/RESULT.json",
+          "sha256": "50e749afbff3f8b3140f622fcd4aa933009e5167b1df27f77a2d69be8382cd22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
+          "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-15-f02",
+      "issue_id": "ccf-2023-15-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original source paths, math glyphs, distinct remask cells and four actual source image placements restored. Native PPT independently rendered in LibreOffice 26.2.5.2 and visually reviewed; Artifact preview cap/join limitation remains a separate open finding. Glyphs are editable outlines, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-15-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/RESULT.json",
+          "sha256": "50e749afbff3f8b3140f622fcd4aa933009e5167b1df27f77a2d69be8382cd22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
+          "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-15-f02",
+      "issue_id": "ccf-2023-15-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original source paths, math glyphs, distinct remask cells and four actual source image placements restored. Native PPT independently rendered in LibreOffice 26.2.5.2 and visually reviewed; Artifact preview cap/join limitation remains a separate open finding. Glyphs are editable outlines, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2023-15-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/RESULT.json",
+          "sha256": "50e749afbff3f8b3140f622fcd4aa933009e5167b1df27f77a2d69be8382cd22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
+          "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-05-f06",
+      "issue_id": "ccf-2025-05-f06-D01",
+      "severity": "minor",
+      "status": "closed_renderer_localization",
+      "scope": "Source/PPT ellipsis ink box within 1 source pixel; not whole-figure acceptance",
+      "attempt": "renderer-regression/corefix-renderer-v1",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v1/pilot-visual-review.json",
+          "sha256": "ade7e2b84e6e16fc02642ee36a49a7aaa3bd813cc73833a92c6a8b1fd30f4a36"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored source-literal playlist_page = apis.spotify. followed by separately wrapped show_playlist_library(access_token, page_index), with complete surrounding source code. All 13 visual code-line invariants are checked against live text; mutation to the prior replacement triggers FAIL.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D02",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Upper generation criterion now reads Used by q2 only. Independently checked both full condition boxes, including upper q1,q2 success and lower q2 success / Use Skill Generated by q1. Mutation adding q1 fails source-content audit.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restored lower Task Success Reward box below the use-skill/library lane at the original lower bracket endpoint. No collision or dangling endpoint observed in actual 1x/2x/4x output; source bracket and library spine are visible.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Each of the thirteen directional thick arrows is a single native silhouette with exposed pointed tip, head wider than shaft, and source direction. Code points right and Execution Output points left. No extra heads on the source-unheaded bracket paths.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Used three separately verified original-author regions that contain only teal cycle symbols and clean background; all crop endpoints were inspected against the actual final enlarged PPT. No gray strip or white/gray patch on neighboring arrows remains.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-02-f01",
+      "issue_id": "ccf-2026-02-f01-D06",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Retained the complete original BONUS medal, including both green ribbons and inner decoration, and the two original rounded/tinted check icons as explicit source raster assets. BONUS lettering remains bitmap, not live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/ccf-2026-02-f01/job/build/run-004",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/completion-summary.json",
+          "sha256": "5d76e68a057695ec981c5105d226c2e9d4ca9feb591e584dbd060f4cb6e971af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2026-02-f01/job/build/run-004/output-review.json",
+          "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
+        }
+      ]
+    }
+  ],
+  "open_issue_ids": [
+    "ccf-2020-01-f1-1-D02",
+    "ccf-2020-02-f02-D01",
+    "ccf-2020-02-f02-D02",
+    "ccf-2020-03-f02-D01",
+    "ccf-2020-03-f02-D02",
+    "ccf-2020-03-f03-D01",
+    "ccf-2020-03-f04-D01",
+    "ccf-2020-03-f04-D02",
+    "ccf-2020-03-f04-D03",
+    "ccf-2020-03-f04-D04",
+    "ccf-2020-04-f01-D01",
+    "ccf-2020-04-f01-D02",
+    "ccf-2020-05-f01-D01",
+    "ccf-2020-05-f02-D01",
+    "ccf-2020-06-f01-D01",
+    "ccf-2020-06-f01-D02",
+    "ccf-2020-06-f02-D01",
+    "ccf-2020-06-f03-D01",
+    "ccf-2020-07-f02-D01",
+    "ccf-2020-07-f02-D02",
+    "ccf-2020-08-f02-D01",
+    "ccf-2020-08-f02-D02",
+    "ccf-2020-08-f02-D03",
+    "ccf-2020-09-f02-D01",
+    "ccf-2020-09-f02-D02",
+    "ccf-2020-09-f02-D03",
+    "ccf-2020-11-f02-D01",
+    "ccf-2020-11-f02-D02",
+    "ccf-2020-11-f02-D03",
+    "ccf-2020-11-f03-D01",
+    "ccf-2020-11-f03-D02",
+    "ccf-2020-12-f02-D03",
+    "ccf-2020-12-f03-D01",
+    "ccf-2020-13-f01-D01",
+    "ccf-2020-13-f01-D02",
+    "ccf-2020-13-f01-D03",
+    "ccf-2020-14-f01-D01",
+    "ccf-2020-14-f02-D01",
+    "ccf-2020-14-f03-D01",
+    "ccf-2020-14-f03-D02",
+    "ccf-2020-15-f01-D01",
+    "ccf-2020-15-f02-D01",
+    "ccf-2020-15-f02-D02",
+    "ccf-2020-15-f02-D03",
+    "ccf-2020-15-f02-D04",
+    "ccf-2020-15-f04-D01",
+    "ccf-2020-15-f04-D02",
+    "ccf-2020-15-f05-D01",
+    "ccf-2020-15-f05-D02",
+    "ccf-2020-15-f05-D03",
+    "ccf-2020-16-f02-D01",
+    "ccf-2020-16-f02-D02",
+    "ccf-2020-16-f02-D03",
+    "ccf-2020-16-f03-D01",
+    "ccf-2020-16-f03-D02",
+    "ccf-2020-17-f01-D01",
+    "ccf-2020-17-f02-D01",
+    "ccf-2020-17-f03-D01",
+    "ccf-2020-17-f03-D02",
+    "ccf-2020-17-f23-D01",
+    "ccf-2020-18-f01-D01",
+    "ccf-2020-18-f01-D02",
+    "ccf-2020-18-f01-D03",
+    "ccf-2020-18-f01-XC01",
+    "ccf-2020-18-f03-D01",
+    "ccf-2020-18-f03-D02",
+    "ccf-2020-19-f01-D01",
+    "ccf-2020-19-f01-D02",
+    "ccf-2020-19-f02-D01",
+    "ccf-2020-19-f09-D01",
+    "ccf-2020-20-f02-D01",
+    "ccf-2020-20-f03-D01",
+    "ccf-2020-20-f03-D02",
+    "ccf-2021-01-f01-D01",
+    "ccf-2021-02-f01-D01",
+    "ccf-2021-02-f01-D02",
+    "ccf-2021-03-f01-D01",
+    "ccf-2021-03-f01-D02",
+    "ccf-2021-03-f02-D01",
+    "ccf-2021-03-f02-D02",
+    "ccf-2021-03-f03-D01",
+    "ccf-2021-03-f04-D01",
+    "ccf-2021-09-f02-D01",
+    "ccf-2021-09-f02-D02",
+    "ccf-2021-10-f01-D01",
+    "ccf-2021-10-f01-D02",
+    "ccf-2021-10-f02-D01",
+    "ccf-2021-11-f01-D06",
+    "ccf-2021-12-f02-D01",
+    "ccf-2021-12-f02-D02",
+    "ccf-2021-12-f02-D03",
+    "ccf-2021-12-f03-D01",
+    "ccf-2021-12-f04-D01",
+    "ccf-2021-12-f04-D02",
+    "ccf-2021-13-f01-D01",
+    "ccf-2021-13-f01-D02",
+    "ccf-2021-13-f08-D01",
+    "ccf-2021-13-f08-D02",
+    "ccf-2021-14-f04-D01",
+    "ccf-2021-14-f04-D02",
+    "ccf-2021-14-f04-D03",
+    "ccf-2021-14-f04-D04",
+    "ccf-2021-14-f04-D05",
+    "ccf-2021-16-f02-D01",
+    "ccf-2021-16-f02-D02",
+    "ccf-2021-17-f02-D01",
+    "ccf-2021-17-f05-D01",
+    "ccf-2021-17-f05-D02",
+    "ccf-2021-18-f18-D01",
+    "ccf-2021-18-f18-D02",
+    "ccf-2022-01-f03-D01",
+    "ccf-2022-01-f03-D02",
+    "ccf-2022-02-f02-D01",
+    "ccf-2022-02-f02-D02",
+    "ccf-2022-02-f02-D03",
+    "ccf-2022-03-f01-D01",
+    "ccf-2022-03-f01-D02",
+    "ccf-2022-05-f01-D01",
+    "ccf-2022-07-f01-D01",
+    "ccf-2022-07-f01-D02",
+    "ccf-2022-07-f01-D03",
+    "ccf-2022-09-f01-D01",
+    "ccf-2022-10-f02-D01",
+    "ccf-2022-12-f01-D01",
+    "ccf-2022-12-f01-D02",
+    "ccf-2022-12-f04-D01",
+    "ccf-2022-13-f01-D01",
+    "ccf-2022-13-f01-D02",
+    "ccf-2022-14-f01-D01",
+    "ccf-2022-14-f01-D02",
+    "ccf-2022-14-f02-D01",
+    "ccf-2023-01-f01-D01",
+    "ccf-2023-01-f01-D02",
+    "ccf-2023-01-f04-D01",
+    "ccf-2023-03-f01-D01",
+    "ccf-2023-04-f01-D03",
+    "ccf-2023-05-f02-D01",
+    "ccf-2023-05-f02-D02",
+    "ccf-2023-05-f04-D01",
+    "ccf-2023-06-f01-D01",
+    "ccf-2023-06-f01-D02",
+    "ccf-2023-06-f02-D01",
+    "ccf-2023-06-f03-D01",
+    "ccf-2023-06-f03-D02",
+    "ccf-2023-06-f07-D01",
+    "ccf-2023-08-f02-D01",
+    "ccf-2023-08-f02-D02",
+    "ccf-2023-08-f02-D03",
+    "ccf-2023-13-f01-D06",
+    "ccf-2023-13-f07-D01",
+    "ccf-2023-13-f07-D02",
+    "ccf-2023-13-f07-D03",
+    "ccf-2023-13-f07-D04",
+    "ccf-2023-13-f07-D05",
+    "ccf-2023-14-f01-D01",
+    "ccf-2023-14-f01-D02",
+    "ccf-2023-14-f01-D03",
+    "ccf-2023-14-funnumbered-p5-D01",
+    "ccf-2023-14-funnumbered-p5-D02",
+    "ccf-2023-14-funnumbered-p5-D03",
+    "ccf-2023-14-funnumbered-p5-D04",
+    "ccf-2024-01-f02-D01",
+    "ccf-2024-01-f02-D02",
+    "ccf-2024-02-f01-D01",
+    "ccf-2024-02-f01-D02",
+    "ccf-2024-02-f01-D03",
+    "ccf-2024-03-f01-D01",
+    "ccf-2024-03-f01-D02",
+    "ccf-2024-03-f02-D01",
+    "ccf-2024-03-f02-D02",
+    "ccf-2024-03-f12-D01",
+    "ccf-2024-06-f02-D01",
+    "ccf-2024-06-f02-D02",
+    "ccf-2024-07-f02-D01",
+    "ccf-2024-08-f02-D01",
+    "ccf-2024-08-f02-D02",
+    "ccf-2024-09-f06-D01",
+    "ccf-2025-01-f01-D01",
+    "ccf-2025-01-f01-D02",
+    "ccf-2025-01-f02-D01",
+    "ccf-2025-01-f02-D02",
+    "ccf-2025-01-f02-D03",
+    "ccf-2025-01-f03-D01",
+    "ccf-2025-01-f07-D01",
+    "ccf-2025-01-f07-D02",
+    "ccf-2025-01-f08-D01",
+    "ccf-2025-01-f08-D02",
+    "ccf-2025-01-f11-D01",
+    "ccf-2025-01-f11-D02",
+    "ccf-2025-01-f11-D03",
+    "ccf-2025-01-f11-D04",
+    "ccf-2025-03-f02-D01",
+    "ccf-2025-03-f02-D02",
+    "ccf-2025-05-f13-D01",
+    "ccf-2025-06-f01-D01",
+    "ccf-2025-06-f01-D02",
+    "ccf-2025-06-f01-D03",
+    "ccf-2025-06-f02-D01",
+    "ccf-2025-06-f02-D02",
+    "ccf-2025-06-f02-D03",
+    "ccf-2025-06-f02-D04",
+    "ccf-2025-06-f02-D05",
+    "ccf-2025-06-f05-D01",
+    "ccf-2025-06-f05-D02",
+    "ccf-2025-06-f05-D03",
+    "ccf-2025-06-f05-D04",
+    "ccf-2025-06-f05-D05",
+    "ccf-2025-06-f06-D01",
+    "ccf-2025-06-f06-D02",
+    "ccf-2025-06-f06-D03",
+    "ccf-2025-06-f06-D04",
+    "ccf-2025-07-f03-D01",
+    "ccf-2025-07-f03-D02",
+    "ccf-2025-07-f04-D01",
+    "ccf-2025-07-f04-D02",
+    "ccf-2025-07-f04-D03",
+    "ccf-2025-07-f04-D04",
+    "ccf-2026-01-f02-D01",
+    "ccf-2026-01-f02-D02",
+    "ccf-2026-01-f02-D03",
+    "ccf-2026-01-f02-D04",
+    "ccf-2026-01-f02-D05",
+    "ccf-2026-01-f05-D01",
+    "ccf-2026-01-f05-D02",
+    "ccf-2026-02-f01-D07",
+    "ccf-2026-02-f01-D08",
+    "ccf-2026-03-f02-D01",
+    "ccf-2026-03-f02-D02",
+    "ccf-2026-03-f02-D03",
+    "ccf-2026-03-f02-D04",
+    "ccf-2026-03-f02-D05",
+    "ccf-2026-04-f01-D01",
+    "ccf-2026-04-f01-D02",
+    "ccf-2026-04-f01-D03",
+    "ccf-2026-04-f01-D04",
+    "ccf-2026-04-f02-D01",
+    "ccf-2026-04-f02-D02",
+    "ccf-2026-04-f02-D03",
+    "ccf-2026-04-f02-D04",
+    "ccf-2026-05-f01-D01",
+    "ccf-2026-05-f01-D02",
+    "ccf-2026-06-f01-D01",
+    "ccf-2026-06-f01-D02",
+    "ccf-2026-06-f01-D03",
+    "ccf-2026-06-f01-D04",
+    "ccf-2026-06-f01-D05",
+    "ccf-2026-06-f01-D06",
+    "ccf-2026-06-f01-D07",
+    "ccf-2026-06-f02-D01",
+    "ccf-2026-06-f02-D02"
+  ],
+  "external_evidence_root": "figure-build-data/work/detail-audit-20261003",
+  "source_assets_and_full_outputs_in_git": false,
+  "user_acceptance": "pending",
+  "partial_resolutions": [
+    {
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-D02",
+      "severity": "major",
+      "status": "open",
+      "latest_verified_attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
+      "closure_evidence": [],
+      "partial_resolution": "Monospace geometry and rotated labels restored; root visual review still sees lighter/thinner native body glyph appearance against the raster source. Remains open pending follow-up.",
+      "partial_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
+          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
+          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/source-evidence/r6-sequences-source-above-output-below.png",
+          "sha256": "436988195e5615bc316e26a5a4b80270a8a8c939c6305cb1a623bd42721fe5fd"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-D03",
+      "severity": "minor",
+      "status": "open",
+      "latest_verified_attempt": "source-regeneration/ccf-2023-04-f01/job/build/run-005",
+      "closure_evidence": [],
+      "partial_resolution": "Both trophy white stars/glints and asymmetric gold/bright-yellow fields restored; source rounded chat tails retained; each network independently preserves colors, including source policy terminal RGB186,145,177 and final terminal RGB168,159,190. Remaining issue is narrowed to slight2x native/source-raster edge sampling appearance, not omitted icon content or incorrect palette.",
+      "partial_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
+          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
+          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ]
+    }
+  ],
+  "additional_findings": [
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-E01",
+      "status": "resolved_in_model_review",
+      "resolution": "Upper Math child is a literal dot, max child a literal underscore. Replaced the baseline hyphens and added explicit source invariants for both upper and lower underscore nodes.",
+      "object_ids": [
+        "vanilla-dot-token",
+        "identifier-dot-token",
+        "vanilla-underscore-token",
+        "identifier-underscore-token",
+        "short-underscore-token",
+        "length-underscore-token"
+      ],
+      "evidence": {
+        "name": "upper-parent-literals",
+        "source_region": [
+          60,
+          105,
+          520,
+          286
+        ],
+        "file": "source-regeneration/ccf-2021-16-f06/evidence/r3-upper-parent-literals-pair.png",
+        "sha256": "e9fd8fbed85543de0b7beac40b4a995b3eaa87462f7624245e91dd8296104050"
+      },
+      "output_review": {
+        "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+        "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+      },
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2021-16-f06",
+      "issue_id": "ccf-2021-16-f06-E02",
+      "status": "resolved_in_model_review",
+      "resolution": "Source ending/-0.75 is a child of CaMeL. Native vanilla-last-parent now binds vanilla-camel-shape bottom to vanilla-last-shape top and is visible as this arrow in final PPT.",
+      "object_ids": [
+        "vanilla-last-parent"
+      ],
+      "evidence": {
+        "name": "upper-parent-literals",
+        "source_region": [
+          60,
+          105,
+          520,
+          286
+        ],
+        "file": "source-regeneration/ccf-2021-16-f06/evidence/r3-upper-parent-literals-pair.png",
+        "sha256": "e9fd8fbed85543de0b7beac40b4a995b3eaa87462f7624245e91dd8296104050"
+      },
+      "output_review": {
+        "audit_relative_path": "source-regeneration/ccf-2021-16-f06/job/build/run-003/output-review.json",
+        "sha256": "8addf1b50357d308f8a5a650ea6fd60e581c1dafed2e4a935f88b3fb6459e543"
+      },
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "dpo-native-sampling-residual",
+      "status": "open",
+      "severity": "minor",
+      "description": "At2x the native path preview retains slightly crisper/irregular small edges and thin halo-like boundaries on some card/network details versus original embedded-raster filtered edges. Source content,glyph ordering,subscripts,relation shapes,trophy star/glints,and distinct node colors are restored.64-layer source prompt coverage improved small text; current schema rejects source-antialias/blur controls. Keep residual visible, not a no-observed-issue PASS.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
+          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
+          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2023-15-f02",
+      "issue_id": "ccf-2023-15-f02-R01-PREVIEW-STROKE",
+      "status": "open",
+      "severity": "minor",
+      "description": "Actual Artifact PPT previews render source/native round caps and joins as flat/miter: visible at MLP/decoder/latent dashed frames, arrow shafts, double-headed comparisons and card edges. Final native PPT fields and actual LibreOffice import/export retain correct round geometry; preview backend limitation remains.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/RESULT.json",
+          "sha256": "50e749afbff3f8b3140f622fcd4aa933009e5167b1df27f77a2d69be8382cd22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
+          "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ],
+      "user_acceptance": "pending"
+    }
+  ]
+}
