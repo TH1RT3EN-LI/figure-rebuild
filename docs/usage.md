@@ -10,6 +10,35 @@
 
 ## 安装
 
+### 通过 skills CLI 安装
+
+在目标项目中运行，按提示选择 Codex：
+
+```bash
+npx skills add TH1RT3EN-LI/figure-rebuild
+```
+
+仅为 Codex 安装到用户目录、供所有项目使用时：
+
+```bash
+npx skills add TH1RT3EN-LI/figure-rebuild --agent codex --global
+```
+
+CLI 会安装根目录的 `SKILL.md` 及配套源码、脚本、参考文档。进入 CLI 输出的 skill 安装目录；若该路径是符号链接，使用其真实目录。然后安装 Python 环境：
+
+```bash
+cd /path/to/installed/figure-rebuild
+python3 -m venv .venv
+.venv/bin/python -m pip install -e .
+.venv/bin/figure-rebuild --help
+```
+
+Debian / Ubuntu 上若创建环境时报 `ensurepip` 不可用，先安装与所选 Python 版本匹配的 `python3-venv` 包，或选择支持 `venv` / pip 的已有 Python 3.10+ 环境。
+
+Skill 安装不自动安装 Python 依赖或配置 PPT 导出环境。调用方智能体应先解析 skill 的真实路径，再使用已有 Python 环境或按以上步骤安装；`build` 的外部运行时仍需按[配置和检查](#配置和检查)设置。更新 skill 后，重新安装 Python 包以匹配当前源码。skills CLI 的安装范围和选项见[官方文档](https://github.com/vercel-labs/skills#installation-scope)。
+
+### 从源码安装 CLI
+
 源码仓库：[TH1RT3EN-LI/figure-rebuild](https://github.com/TH1RT3EN-LI/figure-rebuild)。克隆后执行以下安装步骤；已有本地 checkout 可以直接运行后续步骤。
 
 ```bash
@@ -19,7 +48,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-如需在 Codex 中使用 skill，再运行：
+已有 checkout 且未通过 skills CLI 安装时，可将其注册为 Codex skill：
 
 ```bash
 .venv/bin/python scripts/install.py

@@ -10,6 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Core checks"></a>
+  <!-- Official count badge when install statistics become available: https://skills.sh/b/TH1RT3EN-LI/figure-rebuild -->
+  <a href="https://skills.sh/th1rt3en-li/figure-rebuild"><img src="https://img.shields.io/badge/skills.sh-install-111111" alt="Install with skills.sh"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
 </p>
@@ -21,6 +23,16 @@
 Figure Rebuild는 논문의 방법론 도식, 흐름도, 작동 원리 도식을 편집 가능한 PowerPoint로 다시 그리는 도구입니다. 참고 그림의 텍스트, 레이아웃, 연결 관계를 유지합니다.
 
 Codex를 사용해 개발하고 테스트했으며, 로컬 명령줄 도구와 Codex 스킬을 제공합니다. 명령줄 인터페이스는 다른 에이전트와 연동하는 데도 사용할 수 있습니다.
+
+## 스킬 설치
+
+사용할 프로젝트에서 실행합니다:
+
+```bash
+npx skills add TH1RT3EN-LI/figure-rebuild
+```
+
+안내에 따라 Codex를 선택하세요. 모든 프로젝트에서 사용하려면 `npx skills add TH1RT3EN-LI/figure-rebuild --agent codex --global`을 실행합니다. 스킬, 스크립트, 참고 문서를 설치하며, Python 의존성과 PPT 내보내기 환경은 [사용 가이드](../usage.md#安装)에 따라 설정해야 합니다.
 
 ## 결과 미리 보기
 
@@ -56,7 +68,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-Codex에서 사용할 경우 스킬을 추가로 설치합니다:
+이미 소스 체크아웃이 있다면 로컬 설치기로 Codex 스킬을 등록할 수도 있습니다:
 
 ```bash
 .venv/bin/python scripts/install.py

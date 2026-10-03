@@ -10,6 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Core checks"></a>
+  <!-- Official count badge when install statistics become available: https://skills.sh/b/TH1RT3EN-LI/figure-rebuild -->
+  <a href="https://skills.sh/th1rt3en-li/figure-rebuild"><img src="https://img.shields.io/badge/skills.sh-install-111111" alt="Install with skills.sh"></a>
   <a href="../../LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
 </p>
@@ -21,6 +23,16 @@
 Figure Rebuild recreates method diagrams, flowcharts, and scientific schematics from research papers as editable PowerPoint slides, preserving the reference figure's text, layout, and connections.
 
 Developed and tested with Codex, the project provides a local CLI and a Codex skill. The CLI also supports integration with other agents.
+
+## Install the skill
+
+Run in your target project:
+
+```bash
+npx skills add TH1RT3EN-LI/figure-rebuild
+```
+
+Choose Codex when prompted. To use it across projects, run `npx skills add TH1RT3EN-LI/figure-rebuild --agent codex --global`. This installs the skill, scripts, and references; configure Python dependencies and the PPT export environment using the [usage guide](../usage.md#安装).
 
 ## Preview
 
@@ -56,7 +68,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-To use it in Codex, also install the skill:
+For an existing source checkout, you can also register it as a Codex skill with the local installer:
 
 ```bash
 .venv/bin/python scripts/install.py

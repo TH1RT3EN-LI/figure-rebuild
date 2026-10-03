@@ -10,6 +10,8 @@
 
 <p align="center">
   <a href="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml"><img src="https://github.com/TH1RT3EN-LI/figure-rebuild/actions/workflows/core-tests.yml/badge.svg?branch=main" alt="Core checks"></a>
+  <!-- Official count badge when install statistics become available: https://skills.sh/b/TH1RT3EN-LI/figure-rebuild -->
+  <a href="https://skills.sh/th1rt3en-li/figure-rebuild"><img src="https://img.shields.io/badge/skills.sh-install-111111" alt="Install with skills.sh"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-0B6CC2?style=flat" alt="License: MIT"></a>
   <img src="https://img.shields.io/badge/Python-3.10%2B-0B6CC2?style=flat" alt="Python 3.10+">
 </p>
@@ -21,6 +23,16 @@
 Figure Rebuild 将论文方法图、流程图和机制示意图重绘为可编辑的 PowerPoint，保留参考图的文字、布局与连接关系。
 
 项目以 Codex 开发和测试，提供本地命令行工具与 Codex skill。命令行接口也可用于接入其他智能体。
+
+## 安装 Skill
+
+在目标项目中运行：
+
+```bash
+npx skills add TH1RT3EN-LI/figure-rebuild
+```
+
+按提示选择 Codex；如需在所有项目中使用，可运行 `npx skills add TH1RT3EN-LI/figure-rebuild --agent codex --global`。安装命令下载 Skill、脚本和参考文档；Python 依赖及 PPT 导出环境仍需按[使用指南](docs/usage.md#安装)配置。
 
 ## 功能
 
@@ -68,7 +80,7 @@ python3 -m venv .venv
 .venv/bin/python -m pip install -e .
 ```
 
-在 Codex 中使用时，再安装 skill：
+已有源码 checkout 时，也可用本地安装器将其注册为 Codex skill：
 
 ```bash
 .venv/bin/python scripts/install.py
