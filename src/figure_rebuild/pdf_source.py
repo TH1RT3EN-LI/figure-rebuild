@@ -9,6 +9,7 @@ Images remain separate occurrence records for the image extraction pipeline.
 from __future__ import annotations
 
 from dataclasses import dataclass
+from fractions import Fraction
 import hashlib
 import math
 import re
@@ -31,6 +32,45 @@ class PdfSourceError(ValueError):
 
 class UnsupportedPdfPaintError(PdfSourceError):
     """A source paint cannot be represented faithfully by this converter."""
+
+
+def _outward_float(value, upper):
+    """Round an exact rational toward the outside of a geometric envelope."""
+    result = float(value)
+    if not math.isfinite(result):
+        raise UnsupportedPdfPaintError("Stroke bounds exceed finite geometry")
+    if (Fraction(result) < value if upper else Fraction(result) > value):
+        result = math.nextafter(result, math.inf if upper else -math.inf)
+    return result
+
+
+def _stroke_envelope(matrix, width, miter_limit, rectangle):
+    """Exact input predicates and outward bounds, including tolerated skew.
+
+    The drawing transform check accepts near-similar matrices. That tolerance
+    cannot justify a half-width *proof* on both axes: even tiny anisotropy can
+    make an incorrectly skipped visible strip. Only exact rational similarity
+    uses the tight rectangle envelope. Otherwise row L1 norms conservatively
+    bound transformed offsets, caps and miter joins.
+    """
+    a, b, c, d = (Fraction(v) for v in matrix[:4])
+    width, miter = Fraction(width), Fraction(miter_limit)
+    squared = a*a+b*b
+    if rectangle and squared > 0 and squared == c*c+d*d and a*c+b*d == 0:
+        scale = math.hypot(float(a), float(b))
+        while Fraction(scale)**2 < squared:
+            scale = math.nextafter(scale, math.inf)
+        return (width*Fraction(scale)/2,)*2
+    factor = width*max(Fraction(2), miter/2)
+    return factor*(abs(a)+abs(c)), factor*(abs(b)+abs(d))
+
+
+def _expand_bounds(bounds, envelope):
+    ex, ey = envelope
+    return (_outward_float(Fraction(bounds[0])-ex, False),
+            _outward_float(Fraction(bounds[1])-ey, False),
+            _outward_float(Fraction(bounds[2])+ex, True),
+            _outward_float(Fraction(bounds[3])+ey, True))
 
 
 _IDENTITY = (1., 0., 0., 1., 0., 0.)
@@ -504,13 +544,28 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                 if group["display"] != "inline": raise UnsupportedPdfPaintError("Group display override is unsupported")
             for key, default in (("mask", "none"), ("filter", "none"), ("mix-blend-mode", "normal"), ("isolation", "auto"), ("display", "inline"), ("visibility", "visible"), ("vector-effect", "none"), ("paint-order", "normal")):
                 if style.get(key, default) != default: raise UnsupportedPdfPaintError(f"Unsupported {key}={style[key]!r}")
+            fill, stroke = (_color(style[k], style["color"]) for k in ("fill", "stroke"))
+            opacity, fa, sa = (_alpha(style.get(k, "1")) for k in ("opacity", "fill-opacity", "stroke-opacity"))
+            if opacity == 0 or ((fill == "none" or fa == 0) and (stroke == "none" or sa == 0)):
+                skipped.append({"source_id": paint.source_id, "reason": "no visible source paint",
+                                "proof": "zero_alpha_or_absent_fill_and_stroke_with_supported_effect_context",
+                                "source_fill": fill, "source_stroke": stroke,
+                                "source_opacity": opacity, "source_fill_opacity": fa,
+                                "source_stroke_opacity": sa})
+                continue
+            points = [p for command in paint.commands for p in command[1:]]
+            if stroke == "none" and points and all(p == points[0] for p in points):
+                skipped.append({"source_id": paint.source_id, "reason": "point-only fill has zero area",
+                                "proof": "all_path_controls_equal_and_no_stroke",
+                                "source_point": list(points[0]),
+                                "source_text_unverified": paint.source_text})
+                continue
             fill_rule_proof = None
             if style["fill-rule"] == "evenodd":
                 fill_rule_proof = prove_evenodd_nonzero_equivalent(paint.commands)
                 if fill_rule_proof is None: raise UnsupportedPdfPaintError("Evenodd fill requires explicit winding normalization")
             elif style["fill-rule"] != "nonzero":
                 raise UnsupportedPdfPaintError("Unsupported source fill-rule")
-            fill, stroke = (_color(style[k], style["color"]) for k in ("fill", "stroke"))
             width = _number(style["stroke-width"])
             if width < 0: raise UnsupportedPdfPaintError("Negative stroke width")
             source_scale = math.hypot(paint.transform[0], paint.transform[1])
@@ -537,26 +592,64 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                     if not re.fullmatch(_NUMBER + r"(?:(?:\s*,\s*|\s+)" + _NUMBER + r")*", raw_pattern):
                         raise UnsupportedPdfPaintError("Only explicit unitless positive dash arrays are supported")
                     dash_pattern = tuple(_number(v) for v in re.split(r"[\s,]+", raw_pattern))
-            opacity, fa, sa = (_alpha(style.get(k, "1")) for k in ("opacity", "fill-opacity", "stroke-opacity"))
             if fill != "none" and stroke != "none" and (fa != 1 or sa != 1 or opacity != 1): raise UnsupportedPdfPaintError("Combined fill/stroke alpha requires separate verified compositing")
             bounds = _bounds(paint.commands)
             if bounds is None:
                 skipped.append({"source_id": paint.source_id, "reason": "source outline has no drawable segment"})
                 continue
             rectangle_stroke = stroke != "none" and _axis_rectangle(paint.commands)
-            # Every side/corner of an axis-aligned rectangle stays within half
-            # a stroke width on each axis, for supported caps/joins. This is a
-            # tighter proof than the general conservative miter envelope.
-            edge = (width*source_scale/2 if rectangle_stroke else width*source_scale*max(2, miter_limit/2)) if stroke != "none" else 0
-            bounds = (bounds[0]-edge, bounds[1]-edge, bounds[2]+edge, bounds[3]+edge)
-            rectangles, clip_proofs = [], []
+            envelope = (_stroke_envelope(paint.transform, width, miter_limit, rectangle_stroke)
+                        if stroke != "none" else (Fraction(0), Fraction(0)))
+            bounds = _expand_bounds(bounds, envelope)
+            rectangles, complex_contexts, clip_proofs = [], [], []
             for context in paint.clips:
                 try:
                     rectangles.append(_rect_clip(context))
                 except UnsupportedPdfPaintError:
-                    clip_proofs.append(_complex_clip_relation(context, bounds))
+                    complex_contexts.append(context)
             if region is not None: rectangles.append(region)
-            if any(_disjoint(r, bounds) for r in rectangles) or any(p["relation"] == "outside" for p in clip_proofs):
+            geometry_commands = paint.commands
+            rectangle_intersection = None
+            if rectangles:
+                effective = (max(r[0] for r in rectangles), max(r[1] for r in rectangles),
+                             min(r[2] for r in rectangles), min(r[3] for r in rectangles))
+                if effective[2] <= effective[0] or effective[3] <= effective[1] or _disjoint(effective, bounds):
+                    skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
+                                    "proof": "empty_rectangular_clip_intersection_or_disjoint_paint_bounds",
+                                    "rectangular_clip_intersection": list(effective)})
+                    continue
+                if rectangle_stroke and fill == "none":
+                    points = [c[1] for c in paint.commands if c[0] != "Z"]
+                    if points[-1] == points[0]: points.pop()
+                    side_bounds = [_expand_bounds((min(a[0], b[0]), min(a[1], b[1]),
+                                                   max(a[0], b[0]), max(a[1], b[1])), envelope)
+                                   for a, b in zip(points, points[1:]+points[:1])]
+                    if all(_disjoint(side, effective) for side in side_bounds):
+                        skipped.append({"source_id": paint.source_id,
+                                        "reason": "rectangle stroke lies entirely outside source clip/region",
+                                        "proof": "all_four_conservative_side_envelopes_disjoint_from_rectangular_clip_intersection",
+                                        "source_side_envelopes": [list(side) for side in side_bounds],
+                                        "rectangular_clip_intersection": list(effective)})
+                        continue
+                if fill != "none" and stroke == "none" and _axis_rectangle(paint.commands):
+                    clipped = (max(bounds[0], effective[0]), max(bounds[1], effective[1]),
+                               min(bounds[2], effective[2]), min(bounds[3], effective[3]))
+                    if clipped[2] <= clipped[0] or clipped[3] <= clipped[1]:
+                        skipped.append({"source_id": paint.source_id, "reason": "zero-area filled rectangle clip intersection"})
+                        continue
+                    if clipped != bounds:
+                        rectangle_intersection = {"method": "exact_axis_aligned_rectangle_intersection",
+                                                  "source_rectangle_bounds": list(bounds),
+                                                  "rectangular_clip_intersection": list(effective),
+                                                  "output_rectangle_bounds": list(clipped),
+                                                  "source_commands_changed": True,
+                                                  "curve_or_stroke_clipping": False}
+                        x0, y0, x1, y1 = clipped
+                        geometry_commands = (("M", (x0,y0)), ("L", (x1,y0)), ("L", (x1,y1)), ("L", (x0,y1)), ("Z",))
+                        bounds = clipped
+            for context in complex_contexts:
+                clip_proofs.append(_complex_clip_relation(context, bounds))
+            if any(p["relation"] == "outside" for p in clip_proofs):
                 skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
                                 "clip_geometry_proofs": clip_proofs})
                 continue
@@ -588,11 +681,11 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                               tolerance=dash_tolerance/source_scale)
                 except PdfDashError as exc:
                     raise UnsupportedPdfPaintError(str(exc)) from exc
-            variants = [(paint.source_id, paint.commands, fill, stroke, 0, "original")]
+            variants = [(paint.source_id, geometry_commands, fill, stroke, 0, "original")]
             if dash_result is not None:
                 variants = []
                 if fill != "none":
-                    variants.append((paint.source_id+"-fill", paint.commands, fill, "none", 0, "fill"))
+                    variants.append((paint.source_id+"-fill", geometry_commands, fill, "none", 0, "fill"))
                 if dash_result.commands:
                     variants.append((paint.source_id if fill == "none" else paint.source_id+"-dash-stroke",
                                      tuple((op, *(_point(paint.transform, point) for point in points)) for op, *points in dash_result.commands),
@@ -622,6 +715,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "clip_context": list(paint.clips), "group_context": list(paint.groups),
                           "fill_rule_equivalence": fill_rule_proof, "clip_boundary_rounding": clip_rounding,
                           "clip_geometry_proofs": clip_proofs,
+                          "rectangle_fill_intersection": rectangle_intersection,
                           "stroke_native_fields": part_stroke_fields,
                           "stroke_visual_verification_required": bool(part_stroke_fields),
                           "stroke_preview_renderer_support": "not_verified_or_unsupported" if part_stroke_fields else "not_applicable",

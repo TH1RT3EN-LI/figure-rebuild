@@ -16,6 +16,42 @@ def point(command, key):
 
 
 class PdfSourceTests(unittest.TestCase):
+    def test_tolerated_anisotropy_cannot_prove_a_visible_stroke_strip_empty(self):
+        sy = 1 + 2**-35
+        doc = source(f'<path transform="matrix(1 0 0 {sy} 0 0)" fill="none" stroke="black" stroke-width="10" d="M20 20H100V100H20Z"/>')
+        for region in ((30, (20*sy+5+25*sy)/2, 80, 70),
+                       (30, 14, 80, (20*sy-5+15*sy)/2)):
+            with self.subTest(region=region), self.assertRaisesRegex(UnsupportedPdfPaintError, "crosses"):
+                outline_paths(doc, glyph_mode="outline", region=region)
+
+    def test_invisible_evenodd_path_retains_an_explicit_skip_receipt(self):
+        # A nested contour would require a fill-rule proof if it were visible.
+        shape = 'M0 0H20V20H0Z M5 5H15V15H5Z'
+        for attrs in ('fill-opacity="0"', 'opacity="0" stroke="#ff0000"',
+                      'fill="none" stroke="#ff0000" stroke-opacity="0"'):
+            doc = source(f'<path d="{shape}" fill-rule="evenodd" {attrs}/>')
+            result = outline_paths(doc, glyph_mode="outline")
+            self.assertFalse(result.objects)
+            self.assertEqual(result.skipped[0]['reason'], 'no visible source paint')
+        with self.assertRaises(UnsupportedPdfPaintError):
+            outline_paths(source(f'<path d="{shape}" fill-rule="evenodd" fill-opacity="0.000001"/>'), glyph_mode="outline")
+
+    def test_zero_alpha_does_not_bypass_unknown_effects_or_visible_stroke(self):
+        for attrs in ('filter="url(#unknown)"', 'mask="url(#unknown)"',
+                      'stroke="#ff0000" stroke-opacity="1"'):
+            doc = source(f'<path d="M0 0H20V20H0Z M5 5H15V15H5Z" fill-rule="evenodd" fill-opacity="0" {attrs}/>')
+            with self.subTest(attrs=attrs), self.assertRaises(UnsupportedPdfPaintError):
+                outline_paths(doc, glyph_mode="outline")
+
+    def test_point_only_space_glyph_is_accounted_for_without_a_drawable_object(self):
+        doc = source('<defs><path id="space" d="M0 0V0Z"/></defs><use href="#space" data-text=" " x="10" y="20"/>')
+        result = outline_paths(doc, glyph_mode="outline")
+        self.assertFalse(result.objects)
+        self.assertEqual(result.skipped[0]['source_text_unverified'], ' ')
+        self.assertEqual(result.skipped[0]['source_point'], [10, 20])
+        stroked = source('<path d="M10 20L10 20Z" fill="none" stroke="#ff0000" stroke-linecap="round"/>')
+        self.assertFalse(outline_paths(stroked, glyph_mode="outline").skipped)
+
     def test_cubic_control_points_and_affine_are_not_sampled(self):
         document = source('<path id="p" transform="matrix(2,1,.5,3,7,11)" d="M1 2 C3 5 9 7 12 13"/>')
         result = outline_paths(document, glyph_mode="outline", transform=(1,0,0,1,10,20))
@@ -288,6 +324,51 @@ class PdfSourceTests(unittest.TestCase):
         result=outline_paths(doc,glyph_mode="outline",region=(10,20,30,40),transform=(2,0,0,2,-20,-40))
         self.assertEqual(point(result.objects[0]["commands"][0],"moveTo"),(0,0))
         self.assertEqual(point(result.objects[0]["commands"][1],"lineTo"),(10,10))
+        self.assertEqual(len(result.skipped),1)
+
+    def test_filled_axis_rectangle_intersects_all_rectangular_clips_exactly(self):
+        doc=source('''<defs><clipPath id="a"><rect x="10" y="15" width="50" height="55"/></clipPath>
+            <clipPath id="b"><rect x="20" y="10" width="60" height="70"/></clipPath></defs>
+            <g clip-path="url(#a)"><path clip-path="url(#b)" fill="#abc" d="M0 0H90V90H0Z"/></g>''')
+        result=outline_paths(doc,glyph_mode="outline",region=(0,0,100,50),transform=(2,0,0,3,-40,-45))
+        receipt=result.provenance[0]["rectangle_fill_intersection"]
+        self.assertEqual(receipt["output_rectangle_bounds"],[20,15,60,50])
+        self.assertTrue(receipt["source_commands_changed"])
+        self.assertEqual(result.objects[0]["commands"], [
+            {"moveTo":{"x":0,"y":0}}, {"lineTo":{"x":80,"y":0}},
+            {"lineTo":{"x":80,"y":105}}, {"lineTo":{"x":0,"y":105}}, {"close":{}}])
+        self.assertEqual(doc.paints[0].commands[0],("M",(0,0)))
+
+    def test_filled_rectangle_clipping_is_not_a_tolerance_snap(self):
+        doc=source('<path fill="white" d="M0 0H10V10H0Z"/>')
+        lo=math.nextafter(0.,1.)
+        result=outline_paths(doc,glyph_mode="outline",region=(lo,0,9,10))
+        self.assertEqual(result.objects[0]["commands"][0]["moveTo"]["x"],lo)
+        self.assertEqual(result.provenance[0]["rectangle_fill_intersection"]["output_rectangle_bounds"],[lo,0,9,10])
+
+    def test_rectangle_stroke_enclosing_clip_has_no_visible_sides(self):
+        doc=source('<path fill="none" stroke="black" stroke-width="2" stroke-linejoin="miter" d="M0 0H100V100H0Z"/>')
+        result=outline_paths(doc,glyph_mode="outline",region=(20,20,80,80))
+        self.assertFalse(result.objects)
+        self.assertEqual(len(result.skipped),1)
+        self.assertEqual(len(result.skipped[0]["source_side_envelopes"]),4)
+        # A genuinely clipped source side must not disappear by this shortcut.
+        with self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
+            outline_paths(doc,glyph_mode="outline",region=(-1,20,80,80))
+
+    def test_partial_stroke_or_nonrectangle_fill_still_requires_geometry_clipping(self):
+        for path in ('<path stroke="black" d="M0 0H10V10H0Z"/>',
+                     '<path d="M0 0L10 0L5 10Z"/>',
+                     '<path d="M0 0C10 0 10 10 0 10Z"/>'):
+            with self.subTest(path=path),self.assertRaisesRegex(UnsupportedPdfPaintError,"crosses clip"):
+                outline_paths(source(path),glyph_mode="outline",region=(2,2,8,8))
+
+    def test_disjoint_clip_stack_is_auditable_empty_paint(self):
+        doc=source('''<defs><clipPath id="a"><rect width="10" height="10"/></clipPath>
+            <clipPath id="b"><rect x="20" y="20" width="10" height="10"/></clipPath></defs>
+            <g clip-path="url(#a)"><path clip-path="url(#b)" fill="white" d="M0 0H50V50H0Z"/></g>''')
+        result=outline_paths(doc,glyph_mode="outline")
+        self.assertFalse(result.objects)
         self.assertEqual(len(result.skipped),1)
 
 

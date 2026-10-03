@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T19:16:12.000542+00:00",
+  "updated_at": "2026-10-03T19:33:11.037670+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 45,
-    "open": 250,
+    "closed_model_visual_review": 52,
+    "open": 243,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -20,12 +20,12 @@
       "attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
-          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/root-review-followup-result.json",
+          "sha256": "6175d2cba80ec0234f51df437ebab09e0bd8b7a48e562a89b2b253513339fc61"
         },
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
-          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
+          "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
         }
       ]
     },
@@ -39,12 +39,31 @@
       "attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
-          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/root-review-followup-result.json",
+          "sha256": "6175d2cba80ec0234f51df437ebab09e0bd8b7a48e562a89b2b253513339fc61"
         },
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
-          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
+          "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-06-f02",
+      "issue_id": "ccf-2020-06-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Token Masking and Token Deletion still have a visible gap below their pink outlines in newly inspected v3 1x/2x; token rows, Sentence Permutation, Document Rotation and Text Infilling remain clear. The original text/outline overlap is absent in this bound v3 output.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2020-06-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/closure-proposals-v1/ccf-2020-06-f02-D01.json",
+          "sha256": "3b41a891d018f6644359bf5095a538a000777de754cc4337a18b30e1dd26ac5c"
+        },
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-06-f02/output-review.json",
+          "sha256": "05b7476ec69ec6cfdd28655dff631e538a3d74f3def094e8ea65c074e9595243"
         }
       ]
     },
@@ -87,6 +106,63 @@
       ]
     },
     {
+      "figure_id": "ccf-2020-15-f02",
+      "issue_id": "ccf-2020-15-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All four Candidate labels in the bound v3 preview remain fully inside orange boxes with visible top clearance. The frozen top-border crossing is absent at1x and2x.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2020-15-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/closure-proposals-v1/ccf-2020-15-f02-D01.json",
+          "sha256": "9265a29700961a7a49d8516e0f99c1728c1e283afccde675273c2bc560cbd8b2"
+        },
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-15-f02/output-review.json",
+          "sha256": "e89f1c7a75fa4e59e675a6ce770250c24d2a047c0eb5c6b4bccba0c6beac7022"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-17-f03",
+      "issue_id": "ccf-2020-17-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source bitmap with exact affine, original clip chain, original transparency groups and attached mask; no hand-drawn replacement. Local geometry/appearance defect closed for this bound candidate, with documented sampling/antialiasing limits.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/swift-source-fidelity-v2/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/report.json",
+          "sha256": "8bf52a38ff974d25e2b0395ade7c3ac9efa79d289598c23794f7576adf49091e"
+        },
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/output-review.json",
+          "sha256": "3cc2cd77baccace44924c68f83bbb3a0b5092834b59b0f0df271db5f7d0fd46c"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-17-f03",
+      "issue_id": "ccf-2020-17-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "141 visible source glyph instances are native outlined paths; four exact zero-area space glyphs retain semantic/anchor evidence while painting nothing. No replacement font or guessed glyph was used.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/swift-source-fidelity-v2/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/report.json",
+          "sha256": "8bf52a38ff974d25e2b0395ade7c3ac9efa79d289598c23794f7576adf49091e"
+        },
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/output-review.json",
+          "sha256": "3cc2cd77baccace44924c68f83bbb3a0b5092834b59b0f0df271db5f7d0fd46c"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2020-18-f02",
       "issue_id": "ccf-2020-18-f02-D01",
       "severity": "major",
@@ -121,6 +197,63 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2020-18-f02/job/build/run-001/output-review.json",
           "sha256": "360ccc9f96cdd5292f12bfc5b081dfadf7d9bf09c1c8f2e350a6d51574a05754"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-19-f01",
+      "issue_id": "ccf-2020-19-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Model Training, Testing Data and upper labels retain source-aligned vertical baselines relative to photos and networks. Fresh enlarged label comparison confirms the old upward shift is absent in bound v3.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2020-19-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/closure-proposals-v1/ccf-2020-19-f01-D02.json",
+          "sha256": "0ad154ed90e34fe7303b465201db958c4c3a1e657442a789a7ce0635a7dee9ad"
+        },
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-19-f01/output-review.json",
+          "sha256": "3758799b4e15f67c371cf75379dfc124f86ed77ea1b966b3e878513dd688245e"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-20-f02",
+      "issue_id": "ccf-2020-20-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Clients remains vertically centered; NetLock, ToR Switch, Server, Lock Table and Database Servers remain at source-like baselines. All-labels2x evidence confirms the upward shift is absent.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2020-20-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/closure-proposals-v1/ccf-2020-20-f02-D01.json",
+          "sha256": "53b0452aaa11b45acb575bb3f17e3c31b0c7ab923fd26eafecafada2e47e1103"
+        },
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-20-f02/output-review.json",
+          "sha256": "5cc614040bd28e497299f3bca17c3c52a2be3f301e1ba4eec605a81075c459ff"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-20-f03",
+      "issue_id": "ccf-2020-20-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "TXN, Client and Switch retain source-aligned baseline distances from their boxes and arrows. Fresh text-labels2x comparison confirms the old upward offset is absent.",
+      "user_acceptance": "pending",
+      "attempt": "renderer-regression/corefix-renderer-v3/jobs/ccf-2020-20-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/closure-proposals-v1/ccf-2020-20-f03-D02.json",
+          "sha256": "2c70b0841401d9742517f4b277b2f81123f7ef69b2ccd600b6d73dae302a58d5"
+        },
+        {
+          "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-20-f03/output-review.json",
+          "sha256": "c2f13838bedf52c22d2b0237111b74f312e6b7f613367eb50b99a6f76a956f76"
         }
       ]
     },
@@ -901,7 +1034,6 @@
     "ccf-2020-05-f02-D01",
     "ccf-2020-06-f01-D01",
     "ccf-2020-06-f01-D02",
-    "ccf-2020-06-f02-D01",
     "ccf-2020-06-f03-D01",
     "ccf-2020-07-f02-D01",
     "ccf-2020-07-f02-D02",
@@ -926,7 +1058,6 @@
     "ccf-2020-14-f03-D01",
     "ccf-2020-14-f03-D02",
     "ccf-2020-15-f01-D01",
-    "ccf-2020-15-f02-D01",
     "ccf-2020-15-f02-D02",
     "ccf-2020-15-f02-D03",
     "ccf-2020-15-f02-D04",
@@ -942,8 +1073,6 @@
     "ccf-2020-16-f03-D02",
     "ccf-2020-17-f01-D01",
     "ccf-2020-17-f02-D01",
-    "ccf-2020-17-f03-D01",
-    "ccf-2020-17-f03-D02",
     "ccf-2020-17-f23-D01",
     "ccf-2020-18-f01-D01",
     "ccf-2020-18-f01-D02",
@@ -952,12 +1081,9 @@
     "ccf-2020-18-f03-D01",
     "ccf-2020-18-f03-D02",
     "ccf-2020-19-f01-D01",
-    "ccf-2020-19-f01-D02",
     "ccf-2020-19-f02-D01",
     "ccf-2020-19-f09-D01",
-    "ccf-2020-20-f02-D01",
     "ccf-2020-20-f03-D01",
-    "ccf-2020-20-f03-D02",
     "ccf-2021-01-f01-D01",
     "ccf-2021-02-f01-D01",
     "ccf-2021-02-f01-D02",
@@ -1150,16 +1276,12 @@
       "partial_resolution": "Monospace geometry and rotated labels restored; root visual review still sees lighter/thinner native body glyph appearance against the raster source. Remains open pending follow-up.",
       "partial_evidence": [
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/result.json",
-          "sha256": "3e35435586007523dec1ff493082365b721cd119b43c32bfeb4e9b4970c87090"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/root-review-followup-result.json",
+          "sha256": "6175d2cba80ec0234f51df437ebab09e0bd8b7a48e562a89b2b253513339fc61"
         },
         {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/output-review.json",
-          "sha256": "f8e489eaef74dbeb0ffd9d547e82c72dbeaad1a2dfdf705223b10e1fac74ac88"
-        },
-        {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/source-evidence/r6-sequences-source-above-output-below.png",
-          "sha256": "436988195e5615bc316e26a5a4b80270a8a8c939c6305cb1a623bd42721fe5fd"
+          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
+          "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
         }
       ]
     },
@@ -1271,6 +1393,24 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
           "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-17-f03",
+      "issue_id": "ccf-2020-17-f03-R01",
+      "status": "resolved_in_model_review",
+      "severity": "major",
+      "resolution": "Restored actual source arrow occurrence and exact source glyph geometry/painter order; no label anchor moved to conceal collision.",
+      "evidence": [
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/report.json",
+          "sha256": "8bf52a38ff974d25e2b0395ade7c3ac9efa79d289598c23794f7576adf49091e"
+        },
+        {
+          "audit_relative_path": "renderer-regression/swift-source-fidelity-v2/output-review.json",
+          "sha256": "3cc2cd77baccace44924c68f83bbb3a0b5092834b59b0f0df271db5f7d0fd46c"
         }
       ],
       "user_acceptance": "pending"

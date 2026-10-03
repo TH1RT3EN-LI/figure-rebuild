@@ -25,6 +25,7 @@ from PIL import Image, ImageChops
 
 from .pdf_image_clips import PdfImageClipError, parse_image_clip
 from .pdf_image_native import PdfImageNativeError, capture_native_pdf_images
+from .pdf_image_render import render_native_pdf_image
 
 
 class UnsupportedPdfImageError(ValueError):
@@ -482,7 +483,7 @@ def _svg_images(svg, selection=None):
 
 
 def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, image_indices=None,
-                       allow_affine_rasterization=False):
+                       allow_affine_rasterization=False, native_occurrence_rendering=False):
     """Return visible image occurrences with PNG bytes and explicit placement.
 
     ``page`` is one-based; ``region`` is x0/y0/x1/y1 in unrotated top-left PDF
@@ -504,6 +505,16 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     are not rasterized. The default rejects these transforms. The derived PNG
     uses its visible axis-aligned frame and zero crop; provenance retains the
     exact source matrix and sampling limits.
+    ``native_occurrence_rendering=True`` explicitly renders each selected real
+    image through its original MuPDF image handle, clips, attached mask, default
+    colorspaces and supported Normal RGB group callbacks. All independent
+    text/path/shading/other-image paints are omitted. This preserves native image
+    filtering rather than first reconstructing a decoded RGBA image. The derived
+    frame is rounded outward to integer source pixels (less than one transparent
+    pixel of padding per edge) and sampled at 8x. The original tight visible box
+    remains in its receipt. ``box``, ``visible_frame`` and ``asset_source_box``
+    consistently describe the derived frame, with zero crop. Unsupported group
+    effects fail closed. Affine placement still requires its separate opt-in.
     ``paint_seqno`` is the actual bboxlog index, including intervening non-image
     paints. Repeated xrefs are separate occurrences in painting order.
     ``xref`` is explicitly a content-digest candidate from get_image_info, not
@@ -521,6 +532,8 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
         import pymupdf
     except ImportError as error:
         raise ValueError('PDF image extraction requires the optional source dependencies') from error
+    if not isinstance(native_occurrence_rendering, bool):
+        raise ValueError('native_occurrence_rendering must be a boolean')
     if not isinstance(allow_affine_rasterization, bool):
         raise ValueError('allow_affine_rasterization must be a boolean')
     if isinstance(page, bool) or not isinstance(page, int) or page < 1:
@@ -566,7 +579,8 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
             raise UnsupportedPdfImageError('Image-info and SVG occurrence counts disagree')
         paint_order = _paint_order(infos, paints, selection)
         try:
-            native_images = capture_native_pdf_images(sheet, bboxlog, {paint[0] for paint in paint_order.values()})
+            native_images = ({} if native_occurrence_rendering else
+                             capture_native_pdf_images(sheet, bboxlog, {paint[0] for paint in paint_order.values()}))
         except PdfImageNativeError as error:
             raise UnsupportedPdfImageError(str(error)) from error
         blocks = {block['number']: block for block in sheet.get_text('dict')['blocks'] if block['type'] == 1}
@@ -575,49 +589,72 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
             if selection is not None and index not in selection:
                 continue
             paint = paint_order[index]
-            native = native_images[paint[0]]
-            if native['native_digest'] != info['digest'].hex():
-                raise UnsupportedPdfImageError(f'Image occurrence {index}: native image digest disagrees with image-info')
-            if not _close(native['transform'], info['transform']):
-                raise UnsupportedPdfImageError(f'Image occurrence {index}: native image transform disagrees with image-info')
             transform = tuple(info['transform'])
             full = _image_bounds(transform, allow_affine_rasterization)
             affine_rasterization = allow_affine_rasterization and bool(transform[1] or transform[2])
             if not _close(transform, occurrence['transform']) or not _close(full, info['bbox']) or not _close(full, paint[1]):
                 raise UnsupportedPdfImageError(f'Image occurrence {index}: transform/paint identity mismatch')
-            if (occurrence['pixels'].size != (info['width'], info['height']) or
-                    native['pixels'].size != (info['width'], info['height'])):
+            if occurrence['pixels'].size != (info['width'], info['height']):
                 raise UnsupportedPdfImageError(f'Image occurrence {index}: intrinsic dimensions disagree')
             visible = _intersection(full, list(sheet.rect))
             if region is not None:
                 visible = _intersection(visible, region)
             for clip in occurrence['clips']:
                 visible = _intersection(visible, clip['rect'])
-            if visible[2] <= visible[0] or visible[3] <= visible[1]:
-                continue
+            outside = visible[2] <= visible[0] or visible[3] <= visible[1]
             normalized = _mapped_rect(full, mapping)
-            frame = _mapped_rect(visible, mapping)
+            frame = [0, 0, 1, 1] if outside else _mapped_rect(visible, mapping)
+            if native_occurrence_rendering:
+                # Even selected occurrences outside the ROI must pass identity
+                # and compositing validation. Their temporary 1px frame is
+                # discarded, never returned as a source asset.
+                user_clip = _intersection(list(sheet.rect), region) if region is not None else list(sheet.rect)
+                if user_clip[2] <= user_clip[0] or user_clip[3] <= user_clip[1]:
+                    user_clip = list(sheet.rect)
+                try:
+                    native = render_native_pdf_image(sheet, bboxlog, paint[0], source_transform=mapping,
+                                                     source_bounds=frame, user_clip_pdf=user_clip)
+                except PdfImageNativeError as error:
+                    raise UnsupportedPdfImageError(str(error)) from error
+            else:
+                native = native_images[paint[0]]
+            if native['native_digest'] != info['digest'].hex():
+                raise UnsupportedPdfImageError(f'Image occurrence {index}: native image digest disagrees with image-info')
+            if not _close(native['transform'], transform):
+                raise UnsupportedPdfImageError(f'Image occurrence {index}: native image transform disagrees with image-info')
+            if (native['width'], native['height']) != (info['width'], info['height']):
+                raise UnsupportedPdfImageError(f'Image occurrence {index}: native intrinsic dimensions disagree')
+            if outside:
+                continue
             combined = _multiply(mapping, transform)
-            pixels = native['pixels']
             flips = None if affine_rasterization else {'horizontal': combined[0] < 0, 'vertical': combined[3] < 0}
             complex_clip = any(not clip['rectangular'] for clip in occurrence['clips'])
+            derived_raster = complex_clip or affine_rasterization or native_occurrence_rendering
             clip_rasterization = None
-            derived_raster = complex_clip or affine_rasterization
-            if derived_raster:
-                pixels, clip_rasterization = _clipped_image_pixels(
-                    pixels, transform, full, visible, mapping, occurrence['clips'])
-                # Native image orientation was already painted into the local
-                # PDF. Only point-to-source axis reflection remains.
-                pixel_flips = {'horizontal': mapping[0] < 0, 'vertical': mapping[3] < 0}
+            if native_occurrence_rendering:
+                asset_bytes = native['asset_bytes']
+                frame = native['frame']
+                asset_size = native['receipt']['raster_size']
+                clip_rasterization = native['receipt']
+                # All source and image transforms are already in the native
+                # draw-device matrix. Never apply an additional image flip.
+                pixel_flips = {'horizontal': False, 'vertical': False}
             else:
-                pixel_flips = flips
-            if pixel_flips['horizontal']:
-                pixels = pixels.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
-            if pixel_flips['vertical']:
-                pixels = pixels.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
-            encoded = io.BytesIO()
-            pixels.save(encoded, format='PNG')
-            asset_bytes = encoded.getvalue()
+                pixels = native['pixels']
+                if derived_raster:
+                    pixels, clip_rasterization = _clipped_image_pixels(
+                        pixels, transform, full, visible, mapping, occurrence['clips'])
+                    pixel_flips = {'horizontal': mapping[0] < 0, 'vertical': mapping[3] < 0}
+                else:
+                    pixel_flips = flips
+                if pixel_flips['horizontal']:
+                    pixels = pixels.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+                if pixel_flips['vertical']:
+                    pixels = pixels.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
+                encoded = io.BytesIO()
+                pixels.save(encoded, format='PNG')
+                asset_bytes = encoded.getvalue()
+                asset_size = list(pixels.size)
             crop = dict(left=(frame[0]-normalized[0])/(normalized[2]-normalized[0]),
                         top=(frame[1]-normalized[1])/(normalized[3]-normalized[1]),
                         right=(normalized[2]-frame[2])/(normalized[2]-normalized[0]),
@@ -632,7 +669,7 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                             'xref_identity': 'image_info_content_digest_candidate_not_occurrence_identity',
                             'paint_seqno': paint[0],
                             'asset_bytes': asset_bytes, 'asset_sha256': hashlib.sha256(asset_bytes).hexdigest(),
-                            'asset_size': list(pixels.size), 'full_bbox_pdf_pt': full,
+                            'asset_size': asset_size, 'full_bbox_pdf_pt': full,
                             'full_source_box': _box(normalized), 'visible_frame': _box(frame), 'box': _box(frame),
                             'asset_source_box': _box(frame if derived_raster else normalized),
                             'crop': crop, 'fit': 'stretch', 'editable': False,
@@ -643,7 +680,9 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                                            'encoded_image_sha256': occurrence['encoded_sha256'],
                                            'encoded_image_sha256_basis': 'MuPDF exported SVG payload, not original PDF resource bytes',
                                            'original_resource_retained_in_source_pdf': True,
-                                           'pixel_decode_basis': 'actual_native_pdf_fill_image_with_bound_colorspace_decode_and_mask',
+                                           'pixel_decode_basis': ('native_source_image_context_forwarding' if native_occurrence_rendering else
+                                                                 'actual_native_pdf_fill_image_with_bound_colorspace_decode_and_mask'),
+                                           'native_occurrence_rendering': native_occurrence_rendering,
                                            'native_image': native['receipt'],
                                            'svg_encoded_image_used_for_pixels': False,
                                            'text_dict_bbox_pdf_pt': list(block['bbox']) if block else None,
@@ -656,6 +695,8 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                                            'native_image_and_mask_occurrence_binding_verified': True,
                                            'svg_soft_mask_ids': [mask['id'] for mask in occurrence['masks']],
                                            'asset_flips': flips, 'derived_asset_final_axis_flips': pixel_flips,
-                                           'asset_basis': ('derived isolated embedded-image PDF affine/clip raster' if derived_raster else 'MuPDF native fill-image occurrence raster with bound soft mask'),
+                                           'asset_basis': ('sampled native image occurrence with original clip/group/mask context' if native_occurrence_rendering else
+                                                           'derived isolated embedded-image PDF affine/clip raster' if derived_raster else
+                                                           'MuPDF native fill-image occurrence raster with bound soft mask'),
                                            'paint_order_basis': 'ordered native device paints + image-info + SVG painting-tree + fill-image bboxlog cross-check'}})
     return results

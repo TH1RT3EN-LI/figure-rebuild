@@ -87,13 +87,22 @@ class PdfFillEquivalenceTests(unittest.TestCase):
         reflected = [(c[0], *[(-p[0], p[1]) for p in c[1:]]) for c in commands]
         self.assertIsNotNone(prove_evenodd_nonzero_equivalent(reflected))
 
-    def test_curved_loops_backtracking_nonconvex_and_overlapping_hulls_fail_closed(self):
+    def test_curved_loops_and_overlapping_hulls_fail_closed(self):
         for commands in (
             [("M", (0, 0)), ("C", (2, 2), (-2, 2), (0, 0)), ("Z",)],
-            [("M", (0, 0)), ("C", (2, 0), (1, 0), (2, 1)), ("L", (0, 1)), ("Z",)],
-            [("M", (0, 0)), ("C", (1, 1), (2, -1), (3, 0)), ("L", (3, 3)), ("L", (0, 3)), ("Z",)],
         ):
             self.assertIsNone(prove_evenodd_nonzero_equivalent(commands))
+        # The wavy edge is injective in x and its control hull meets the
+        # vertical edges only at endpoints, remaining strictly below the top.
+        wavy = [("M", (0, 0)), ("C", (1, 1), (2, -1), (3, 0)),
+                ("L", (3, 3)), ("L", (0, 3)), ("Z",)]
+        self.assertEqual(prove_evenodd_nonzero_equivalent(wavy)["proof"],
+                         "single_jordan_contour_with_pairwise_disjoint_segment_control_hulls")
+        # Reversing x control values alone does not imply self-intersection:
+        # y(t)=t^3 is strictly monotone, and both straight edges remain clear.
+        concave = [("M", (0, 0)), ("C", (2, 0), (1, 0), (2, 1)), ("L", (0, 1)), ("Z",)]
+        self.assertEqual(prove_evenodd_nonzero_equivalent(concave)["proof"],
+                         "single_cubic_two_lines_strict_halfplanes_and_monotone_projection")
         curve = [("M", (0, 0)), ("C", (4, 0), (4, 4), (0, 4)), ("Z",)]
         self.assertIsNone(prove_evenodd_nonzero_equivalent(curve + polygon((1, 1), (2, 1), (2, 2), (1, 2))))
         self.assertIsNotNone(prove_evenodd_nonzero_equivalent(curve + polygon((5, 1), (6, 1), (6, 2), (5, 2))))
