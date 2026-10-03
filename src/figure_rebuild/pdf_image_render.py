@@ -5,12 +5,13 @@ This module imports the optional MuPDF runtime only when explicitly called.
 """
 import hashlib
 import math
+from collections import Counter
 
 from .pdf_image_native import PdfImageNativeError
 
 
 def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
-                            source_bounds, user_clip_pdf):
+                            source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
     ``source_bounds`` is the tight visible x0/y0/x1/y1 in source pixels.
@@ -21,7 +22,13 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
     Only Normal, unit-alpha, non-knockout RGB transparency groups are supported:
     an isolated full-page root and nonisolated children. Their actual callbacks
     are preserved, never eliminated. External masks and patterns fail closed.
+    The separate ``allow_native_rgb_group_sampling`` opt-in admits one actual
+    RGB child (including ICC and isolated groups) below that neutral page root.
+    Splitting a shared group into per-image assets is unverified compositing,
+    even though every forwarded callback retains its original colorspace.
     """
+    if not isinstance(allow_native_rgb_group_sampling, bool):
+        raise ValueError('allow_native_rgb_group_sampling must be a boolean')
     try:
         import pymupdf as fitz
     except ImportError as error:
@@ -36,6 +43,9 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
              'll_fz_clip_path', 'll_fz_clip_stroke_path', 'll_fz_clip_text',
              'll_fz_clip_stroke_text', 'll_fz_clip_image_mask', 'll_fz_pop_clip',
              'll_fz_begin_group', 'll_fz_end_group', 'll_fz_set_default_colorspaces')
+    if allow_native_rgb_group_sampling:
+        names += ('ll_fz_colorspace_is_rgb', 'll_fz_colorspace_n', 'll_fz_colorspace_name',
+                  'll_fz_colorspace_digest', 'python_mutable_buffer_data')
     if (m is None or not hasattr(fitz, 'JM_new_bbox_device_Device') or
             not hasattr(fitz, 'jm_bbox_fill_image') or any(not hasattr(m, name) for name in names)):
         raise PdfImageNativeError('Installed PyMuPDF lacks required native image forwarding APIs')
@@ -70,6 +80,20 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
     expected = [(row[0], tuple(row[1])) for row in bboxlog]
     if any(len(box) != 4 or not all(math.isfinite(v) for v in box) for _, box in expected):
         raise PdfImageNativeError('Non-finite native bboxlog geometry')
+
+    def colorspace_record(cs):
+        # Native type, not its display name or component count alone, excludes
+        # Lab / DeviceN with three components. Digest is the native profile MD5;
+        # it does not assert equivalence to a different ICC / DeviceRGB profile.
+        if not cs:
+            return None
+        digest = bytearray(16)
+        m.ll_fz_colorspace_digest(cs, m.python_mutable_buffer_data(digest))
+        return {'name': m.ll_fz_colorspace_name(cs),
+                'components': int(m.ll_fz_colorspace_n(cs)),
+                'actual_rgb_type': bool(m.ll_fz_colorspace_is_rgb(cs)),
+                'native_profile_md5': digest.hex(),
+                'actual_device_rgb_identity': int(cs.this) == int(m.fz_device_rgb().m_internal.this)}
 
     class ForwardImage(fitz.JM_new_bbox_device_Device):
         def __init__(self, target):
@@ -120,6 +144,27 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
             valid = (alpha == 1 and knockout == 0 and blendmode == 0
                      and (not cs or rgb) and self.default_rgb_identity
                      and (root or isolated == 0) and all(math.isfinite(v) for v in bounds))
+            profile = default_profile = None
+            sampled = False
+            if allow_native_rgb_group_sampling:
+                try:
+                    profile = colorspace_record(cs)
+                    default_profile = colorspace_record(m.fz_default_rgb(self.default_colorspaces).m_internal)
+                    neutral_root = root and valid
+                    child = (len(self.groups) == 1 and self.groups[0]['full_page_root']
+                             and self.groups[0]['supported'] and profile is not None
+                             and profile['actual_rgb_type'] and profile['components'] == 3
+                             and alpha == 1 and knockout == 0 and blendmode == 0
+                             and isolated in (0, 1) and self.default_rgb_identity
+                             and all(math.isfinite(v) for v in bounds))
+                    sampled = child and not valid
+                    # Deliberately bounded to the neutral root + one child.
+                    # Existing deeper strict-mode support is unchanged when
+                    # this opt-in is absent.
+                    valid = neutral_root or child
+                except Exception as error:
+                    self.error('Native group colorspace inspection failed: '+str(error))
+                    valid = False
             self.group_count += 1
             self.groups.append({'group_id': self.group_count,
                                 'parent_group_id': self.groups[-1]['group_id'] if self.groups else None,
@@ -132,6 +177,12 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                                 'full_page_root': root, 'supported': valid,
                                 'forwarded': self.selected is None,
                                 'handling': 'original_native_callback_forwarded_unchanged'})
+            if allow_native_rgb_group_sampling:
+                self.groups[-1].update({'colorspace': profile['name'] if profile else None,
+                                        'native_colorspace': profile,
+                                        'native_default_rgb': default_profile,
+                                        'sampled_group_extension_used': sampled,
+                                        'colorspace_aliased_or_replaced': False})
             if self.groups[-1]['forwarded']:
                 self.forward('begin_group', area, cs, isolated, knockout, blendmode, alpha)
 
@@ -205,6 +256,10 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         def capture_and_forward(self, image, ctm, alpha, params, seqno):
             if any(not group['supported'] for group in self.groups):
                 raise PdfImageNativeError('Unsupported PDF group: requires Normal alpha1 RGB with no knockout')
+            # A nested Form need not start a group to change default spaces.
+            # Group-entry checks alone do not bind the selected image context.
+            if not self.default_rgb_identity:
+                raise PdfImageNativeError('Selected image has a non-DeviceRGB default RGB colorspace')
             if self.mask_depth or self.tile_depth or any(c['kind'] == 'external_mask' for c in self.clips):
                 raise PdfImageNativeError('External masks and pattern compositing are unsupported')
             if alpha != 1 or params.op:
@@ -242,7 +297,11 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                              'native_use_decode': bool(image.use_decode),
                              'native_use_colorkey': bool(image.use_colorkey),
                              'color_params': {key: getattr(params, key) for key in ('ri', 'bp', 'op', 'opm')},
+                             'default_rgb_is_device_rgb_at_paint': self.default_rgb_identity,
                              'default_colorspace_events_before_paint': self.default_count}
+            if allow_native_rgb_group_sampling:
+                self.selected['native_default_rgb_at_paint'] = colorspace_record(
+                    m.fz_default_rgb(self.default_colorspaces).m_internal)
             self.forward('fill_image', image, ctm, alpha, params)
 
     try:
@@ -274,6 +333,17 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         raise PdfImageNativeError('Selected native image was not forwarded')
     encoded = fitz.Pixmap('raw', pix).tobytes('png')
     selected = device.selected
+    if allow_native_rgb_group_sampling:
+        for group in selected['groups']:
+            start, end = group['begin_paint_seqno'], group['end_paint_seqno_exclusive']
+            counts = Counter(kind for kind, _ in expected[start:end])
+            independent = counts.copy()
+            independent['fill-image'] -= 1
+            group.update({'source_paint_count': end-start, 'source_paint_counts': dict(counts),
+                          'independent_paint_count': end-start-1,
+                          'independent_paint_counts': {k: v for k, v in independent.items() if v},
+                          'paint_count_scope': 'complete native group interval, including descendant paints',
+                          'shared_group_split_unverified': end-start > 1})
     receipt = {**selected, 'method': 'native_fill_image_and_original_context_forwarding',
                'paint_seqno': paint_seqno, 'pymupdf_version': fitz.VersionBind,
                'verified_total_source_paints': len(expected), 'image_paints_forwarded': 1,
@@ -290,6 +360,15 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                'sampling_scale': sampling, 'sampling_pitch_source_px': 1/sampling,
                'sampling_bound_scope': 'grid spacing only; not a bound on RGB, alpha, filtering or numerical error',
                'raster_size': [width, height], 'native_png_sha256': hashlib.sha256(encoded).hexdigest()}
+    if allow_native_rgb_group_sampling:
+        receipt.update({'allow_native_rgb_group_sampling': True,
+                        'sampled_group_extension_used': any(g['sampled_group_extension_used'] for g in selected['groups']),
+                        'required_full_figure_visual_review': True,
+                        'shared_group_split_unverified': any(g['shared_group_split_unverified'] for g in selected['groups']),
+                        'rgb_alpha_error_bound': None,
+                        'exact_group_decomposition_claimed': False,
+                        'group_sampling_scope': 'original native callbacks; neutral page root plus at most one RGB child',
+                        'mupdf_version': fitz.VersionFitz})
     return {'asset_bytes': encoded, 'frame': frame, 'width': selected['width'],
             'height': selected['height'], 'transform': selected['transform'],
             'native_digest': selected['native_digest'], 'receipt': receipt}

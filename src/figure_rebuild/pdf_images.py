@@ -483,7 +483,8 @@ def _svg_images(svg, selection=None):
 
 
 def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, image_indices=None,
-                       allow_affine_rasterization=False, native_occurrence_rendering=False):
+                       allow_affine_rasterization=False, native_occurrence_rendering=False,
+                       allow_native_rgb_group_sampling=False):
     """Return visible image occurrences with PNG bytes and explicit placement.
 
     ``page`` is one-based; ``region`` is x0/y0/x1/y1 in unrotated top-left PDF
@@ -515,6 +516,12 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     remains in its receipt. ``box``, ``visible_frame`` and ``asset_source_box``
     consistently describe the derived frame, with zero crop. Unsupported group
     effects fail closed. Affine placement still requires its separate opt-in.
+    ``allow_native_rgb_group_sampling=True`` requires native occurrence rendering
+    and additionally admits one actual RGB child transparency group (including
+    ICC / isolated groups) under the neutral page root. Original colorspaces and
+    callbacks remain unchanged. Shared-group splitting has no RGB/alpha error
+    bound; every such opt-in result requires full-figure visual review and is
+    explicitly sampled, never a claim of exact compositing equivalence.
     ``paint_seqno`` is the actual bboxlog index, including intervening non-image
     paints. Repeated xrefs are separate occurrences in painting order.
     ``xref`` is explicitly a content-digest candidate from get_image_info, not
@@ -534,6 +541,10 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
         raise ValueError('PDF image extraction requires the optional source dependencies') from error
     if not isinstance(native_occurrence_rendering, bool):
         raise ValueError('native_occurrence_rendering must be a boolean')
+    if not isinstance(allow_native_rgb_group_sampling, bool):
+        raise ValueError('allow_native_rgb_group_sampling must be a boolean')
+    if allow_native_rgb_group_sampling and not native_occurrence_rendering:
+        raise ValueError('allow_native_rgb_group_sampling requires native_occurrence_rendering=True')
     if not isinstance(allow_affine_rasterization, bool):
         raise ValueError('allow_affine_rasterization must be a boolean')
     if isinstance(page, bool) or not isinstance(page, int) or page < 1:
@@ -613,7 +624,10 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                     user_clip = list(sheet.rect)
                 try:
                     native = render_native_pdf_image(sheet, bboxlog, paint[0], source_transform=mapping,
-                                                     source_bounds=frame, user_clip_pdf=user_clip)
+                                                     source_bounds=frame, user_clip_pdf=user_clip,
+                                                     allow_native_rgb_group_sampling=allow_native_rgb_group_sampling)
+                    if allow_native_rgb_group_sampling:
+                        native['receipt'].update({'source_pdf_sha256': source_sha, 'source_pdf_page': page})
                 except PdfImageNativeError as error:
                     raise UnsupportedPdfImageError(str(error)) from error
             else:
