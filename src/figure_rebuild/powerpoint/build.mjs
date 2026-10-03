@@ -28,6 +28,12 @@ process.env.RUNTIME_PYTHON=runtime.python;
 const resolvedManifest=path.join(run,'resolved-scene.json');
 runPython('scene_compile',['--manifest',config.manifest,'--job',job,'--asset-root',assetRoot,'--output',resolvedManifest,'--audit',path.join(run,'semantic-audit.json')],{stdio:'pipe'});
 const manifest=JSON.parse(await fs.readFile(resolvedManifest,'utf8'));
+const hasCanvasClip=Object.hasOwn(manifest,'source_canvas_clip');
+if(hasCanvasClip&&(config.base||config.source_canvas_clip_provenance_version!==1))throw Error('Source canvas clipping requires standalone version-1 provenance');
+if(!hasCanvasClip&&config.source_canvas_clip_provenance_version!==undefined)throw Error('Canvas clipping provenance has no source declaration');
+const canvasClipSourcePath=path.join(run,'source-canvas-clip.json');
+const canvasClipNativePath=path.join(run,'native-canvas-clip.json');
+if(hasCanvasClip)runPython('source_canvas_clip',['--manifest',resolvedManifest,'--root',assetRoot,'--output',canvasClipSourcePath],{stdio:'pipe'});
 const originalSource=path.join(assetRoot,manifest.source.path);
 if(createHash('sha256').update(await fs.readFile(originalSource)).digest('hex')!==manifest.source.sha256)throw Error('Original source changed before authoring');
 const req=createRequire(path.join(runtime.node_modules,'figure-rebuild-loader.cjs'));
@@ -139,6 +145,11 @@ if(varyingGradientAlpha.length)previewLimitations.push({code:'gradient_stop_opac
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const bindFile=async file=>({path:path.resolve(file),sha256:createHash('sha256').update(await fs.readFile(file)).digest('hex')});
 const finalPptBinding=await bindFile(checkedOutput);
+let canvasClipProvenance;
+if(hasCanvasClip){
+ runPython('source_canvas_clip',['--manifest',resolvedManifest,'--root',assetRoot,'--pptx',checkedOutput,'--source-receipt',canvasClipSourcePath,'--output',canvasClipNativePath],{stdio:'pipe'});
+ canvasClipProvenance={schema_version:1,source_receipt:await bindFile(canvasClipSourcePath),native_receipt:await bindFile(canvasClipNativePath),resolved_scene:await bindFile(resolvedManifest),pptx:finalPptBinding};
+}
 let diagnosticCoverage;
 if(config.diagnostic_provenance_version===1){
  const sourceAudit=JSON.parse(await fs.readFile(path.join(run,'source-content-audit.json'),'utf8'));
@@ -175,7 +186,7 @@ for(const [role,filename,scale] of [['preview_1x','preview-1x.png',1],['preview_
 }
 previewBindings.preview_smooth_1x.derivation={source_role:'preview_4x',source_sha256:previewBindings.preview_4x.sha256,kernel:'lanczos3',target_size:[previewBindings.preview_smooth_1x.width,previewBindings.preview_smooth_1x.height],is_raw_preview:false};
 const renderAuditPath=path.join(run,'render-audit.json');
-await fs.writeFile(renderAuditPath,JSON.stringify({...previewAudit,schema_version:1,preview_backend:previewBackend,input_pptx:finalPptBinding,previews:previewBindings,...(diagnosticCoverage?{diagnostic_coverage:diagnosticCoverage}:{})},null,2));
+await fs.writeFile(renderAuditPath,JSON.stringify({...previewAudit,schema_version:1,preview_backend:previewBackend,input_pptx:finalPptBinding,previews:previewBindings,...(diagnosticCoverage?{diagnostic_coverage:diagnosticCoverage}:{}),...(canvasClipProvenance?{source_canvas_clip:canvasClipProvenance}:{})},null,2));
 // Use resolved source-coordinate frames: SVG text may only have a baseline
 // anchor, and image contain fitting can differ from its requested box.
 const comparisonScene=path.join(run,'comparison-scene.json');
@@ -201,6 +212,7 @@ const delivery={output,sha256:createHash('sha256').update(await fs.readFile(chec
 delivery.preview_backend=previewBackend;
 delivery.render_audit_sha256=(await bindFile(renderAuditPath)).sha256;
 if(diagnosticCoverage)delivery.diagnostic_coverage=diagnosticCoverage;
+if(canvasClipProvenance)delivery.source_canvas_clip=canvasClipProvenance;
 const deliveryCandidate=path.join(run,'delivery-candidate.json');await fs.writeFile(deliveryCandidate,JSON.stringify(delivery,null,2));
 runPython('publish',['--source',checkedOutput,'--output',output,'--receipt',path.join(run,'delivery.json'),'--data',deliveryCandidate],{stdio:'pipe'});
 console.log(JSON.stringify({output,objects:objectMap.length,nativeGroups:editability.native_groups.length,preview:path.join(run,'preview-1x.png')}));

@@ -209,6 +209,20 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     if Path(receipt).exists(): raise ValueError('Refusing to overwrite an editability receipt')
     manifest = json.loads(Path(manifest_path).read_text())
     mapped_frames = _mapped_frames(object_map, manifest)
+    canvas_clip_receipt = None
+    canvas_clip_ids = set()
+    if 'source_canvas_clip' in manifest:
+        if asset_root is None or mapped_frames is None:
+            raise ValueError('Source canvas clipping needs frozen assets and mapped standalone frames')
+        from .source_canvas_clip import verify_source_canvas_clip
+        canvas_clip_receipt = verify_source_canvas_clip(manifest, asset_root)
+        canvas_clip_ids = set(canvas_clip_receipt['object_ids'])
+        for label in canvas_clip_ids:
+            entry = mapped_frames.get(label, {})
+            placement = entry.get('source_to_slide', {})
+            if (placement.get('translate_x') != 0 or placement.get('translate_y') != 0 or
+                    placement.get('scale_numerator') != placement.get('scale_denominator')):
+                raise ValueError('Source canvas clipping requires identity placement: ' + label)
     objects = sorted(enumerate(manifest['objects']), key=lambda row: (row[1].get('z_index', row[0]), row[0]))
     objects = [o for _, o in objects]
     with zipfile.ZipFile(source) as z:
@@ -234,6 +248,8 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
             raise ValueError('Exporter reordered named objects: ' + obj['id'])
         pr.set('name', obj['id'])
         pr.set('descr', 'source_id=' + obj['id'] + ('; semantic_group=' + obj['group_id'] if obj.get('group_id') else ''))
+        if obj['id'] in canvas_clip_ids:
+            pr.set('descr', pr.get('descr') + '; source_canvas_clip_required=true')
         if obj['kind'] == 'text' and element.find('p:txBody', NS) is None: raise ValueError('Text was flattened')
         text_entry = mapped_frames.get(obj['id']) if mapped_frames and obj['kind'] == 'text' else None
         has_renderer_baseline = isinstance(text_entry, dict) and isinstance(text_entry.get('text_layout'), dict) and \
@@ -256,9 +272,15 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
             stroke_record = apply_stroke_style(element, obj)
             if stroke_record is not None:
                 stroke_styles.append(stroke_record)
-        if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
+        if obj['kind'] == 'path' and (obj['id'] in canvas_clip_ids or any('cubicTo' in command for command in obj.get('commands', []))):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
-        if obj['kind'] == 'path':
+        if obj['kind'] == 'path' and obj['id'] in canvas_clip_ids:
+            winding_fills.append({'id': obj['id'], 'status': 'not_applicable',
+                                  'reason_code': 'keep_original_canvas_clip_geometry',
+                                  'reason': 'Verified source viewport glyph retains complete original commands',
+                                  'geometry_preserved': True, 'manifest_modified': False,
+                                  'visual_review_required': True})
+        elif obj['kind'] == 'path':
             winding_fills.append(normalize_native_polygon_fill(
                 element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,
                 parent_identity=parent_identity))
@@ -347,6 +369,8 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
     data['stroke_styles'] = stroke_styles
     data['native_winding_fills'] = winding_fills
+    if canvas_clip_receipt is not None:
+        data['source_canvas_clip'] = canvas_clip_receipt
     data['native_gradients'] = gradient_records
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),

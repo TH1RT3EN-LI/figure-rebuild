@@ -255,6 +255,18 @@ def freeze_assets(job, run, manifest):
     asset_root.mkdir()
     source = manifest['source']
     assets = {source['path']: source['sha256']}
+    if 'source_canvas_clip' in manifest:
+        declaration = manifest['source_canvas_clip']
+        if not isinstance(declaration, dict):
+            raise ValueError('Source canvas clipping needs an explicit declaration')
+        for role in ('source_pdf', 'source_svg'):
+            record = declaration.get(role)
+            if not isinstance(record, dict) or not isinstance(record.get('path'), str) or not isinstance(record.get('sha256'), str):
+                raise ValueError('Source canvas clipping needs a bound ' + role)
+            previous = assets.get(record['path'])
+            if previous is not None and previous != record['sha256']:
+                raise ValueError('Conflicting checksums for canvas evidence: ' + record['path'])
+            assets[record['path']] = record['sha256']
     from .scene_compile import compile_scene
     _, semantic = compile_scene(manifest, job)
     for record in semantic['hash_files']:
@@ -342,6 +354,92 @@ def review_output(a):
                   verify_output_review(a.run, record, require_no_observed_issues=a.require_no_observed_issues))
         print(json.dumps(result, ensure_ascii=False, indent=2))
 
+def _source_fidelity_json(path, record_type):
+    """Read one bounded, unambiguous JSON record for the typed replay API."""
+    from dataclasses import fields, MISSING
+    import math
+    if not isinstance(path, str) or not path.strip():
+        raise ValueError('Source-fidelity JSON path must be nonempty')
+    path = Path(path).expanduser().resolve()
+    with path.open('rb') as stream:
+        raw = stream.read(1048577)
+    if len(raw) > 1048576:
+        raise ValueError('Source-fidelity JSON exceeds 1 MiB: ' + str(path))
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError('Duplicate JSON field: ' + key)
+            result[key] = value
+        return result
+    def constant(value):
+        raise ValueError('Non-finite JSON number is unsupported: ' + value)
+    def number(value):
+        parsed = float(value)
+        if not math.isfinite(parsed):
+            constant(value)
+        return parsed
+    def integer(value):
+        parsed = int(value)
+        try:
+            finite = math.isfinite(parsed)
+        except OverflowError:
+            finite = False
+        if not finite:
+            raise ValueError('JSON integer exceeds finite numeric range')
+        return parsed
+    try:
+        data = json.loads(raw.decode('utf-8'), object_pairs_hook=pairs, parse_constant=constant,
+                          parse_float=number, parse_int=integer)
+    except RecursionError as exc:
+        raise ValueError('Source-fidelity JSON nesting is too deep') from exc
+    if not isinstance(data, dict):
+        raise ValueError('Source-fidelity JSON must be an object: ' + str(path))
+    schema = {field.name: field for field in fields(record_type)}
+    unknown = sorted(set(data) - set(schema))
+    if unknown:
+        raise ValueError('Unknown ' + record_type.__name__ + ' fields: ' + ', '.join(unknown))
+    missing = [name for name, field in schema.items()
+               if name not in data and field.default is MISSING and field.default_factory is MISSING]
+    if missing:
+        raise ValueError('Missing ' + record_type.__name__ + ' fields: ' + ', '.join(missing))
+    return data, path
+
+
+def verify_source_fidelity(a):
+    """Expose the bounded source replay without changing semantic/visual review."""
+    from .source_fidelity import (PdfSourceDescriptor, SourceReplayPolicy,
+                                  ReplayLimits, audit_source_fidelity)
+    data, descriptor = _source_fidelity_json(a.source_descriptor, PdfSourceDescriptor)
+    for key in ('pdf_path', 'reference_png_path'):
+        value = data.get(key)
+        if key == 'reference_png_path' and value is None:
+            continue
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(key + ' must be a nonempty filesystem path')
+        path = Path(value).expanduser()
+        data[key] = str((descriptor.parent / path).resolve() if not path.is_absolute() else path.resolve())
+    policy = SourceReplayPolicy(**_source_fidelity_json(a.policy, SourceReplayPolicy)[0]) if a.policy is not None else SourceReplayPolicy()
+    limits = ReplayLimits(**_source_fidelity_json(a.limits, ReplayLimits)[0]) if a.limits is not None else ReplayLimits()
+    paths = {}
+    for name in ('manifest', 'resolved_scene', 'asset_root', 'pptx', 'evidence_dir'):
+        value = getattr(a, name)
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError('--' + name.replace('_', '-') + ' must be a nonempty filesystem path')
+        paths[name] = Path(value).expanduser().resolve()
+    try:
+        result = audit_source_fidelity(
+            PdfSourceDescriptor(**data), manifest_path=paths['manifest'],
+            resolved_scene_path=paths['resolved_scene'], asset_root=paths['asset_root'],
+            pptx_path=paths['pptx'], evidence_dir=paths['evidence_dir'],
+            policy=policy, limits=limits,
+        )
+    except OverflowError as exc:
+        raise ValueError('Source-fidelity numeric input exceeds the supported range') from exc
+    print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+    return 0 if result.get('status') == 'VERIFIED_IN_DECLARED_SCOPE' else 1
+
+
 def insert(a):
     """Place an already generated native slide without an authoring runtime."""
     from .package import merge_overlay
@@ -357,6 +455,8 @@ def build(a):
     m = Path(a.manifest).resolve()
     data, report = load_and_validate(m)
     verify_review(data)
+    if 'source_canvas_clip' in data and (a.base or a.placement):
+        raise ValueError('Source canvas clipping requires a standalone slide; base decks and placement are unsupported')
     job = m.parent
     out = Path(a.output).resolve() if a.output else job / 'exports' / f"{data['id']}-r{data['revision']}.pptx"
     if out.exists(): raise ValueError('Output already exists; use a new revision or output name')
@@ -413,6 +513,8 @@ def build(a):
         config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
                   'preview_backend': preview_backend, 'preview_provenance_version': 1,
                   'diagnostic_provenance_version': 1}
+        if 'source_canvas_clip' in data:
+            config['source_canvas_clip_provenance_version'] = 1
         if base_config:
             snap = run / 'base-snapshot.pptx'
             shutil.copy2(base, snap)
@@ -460,6 +562,13 @@ def main():
     c.add_argument('--output', help='New JSON destination for --record')
     c.add_argument('--require-no-observed-issues', action='store_true')
     c.set_defaults(func=review_output)
+    c = sub.add_parser('verify-source-fidelity', help='Replay source geometry and bind the actual PPTX; does not recognize semantics or perform visual acceptance')
+    c.add_argument('--source-descriptor', required=True, help='Strict PDF descriptor JSON; embedded relative paths resolve against its directory')
+    for name in ('manifest', 'resolved-scene', 'asset-root', 'pptx', 'evidence-dir'):
+        c.add_argument('--' + name, required=True, help='Filesystem path relative to the current directory; evidence directory must be new' if name == 'evidence-dir' else 'Filesystem path relative to the current directory')
+    c.add_argument('--policy', help='Optional strict SourceReplayPolicy JSON file; omitted fields use API defaults')
+    c.add_argument('--limits', help='Optional strict ReplayLimits JSON file; omitted fields use API defaults')
+    c.set_defaults(func=verify_source_fidelity)
     c = sub.add_parser('validate')
     c.add_argument('--manifest', required=True)
     def validate_reviewed(a):

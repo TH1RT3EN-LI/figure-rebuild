@@ -371,6 +371,9 @@ def merge_overlay(*, base: str | Path, overlay: str | Path, output: str | Path,
     tree, overlay_tree = shape_tree(target_document.root, target_part), shape_tree(overlay_document.root, overlay_part)
     original_base_ids = validate_native_ids(target_document.root, "base target slide")
     overlay_ids = validate_native_ids(overlay_document.root, "overlay slide")
+    require(not any('source_canvas_clip_required=true' in {token.strip() for token in node.get('descr', '').split(';')}
+                    for node in overlay_document.root.findall('.//p:cNvPr', NS)),
+            'overlay requires its original slide canvas clipping; insertion into another slide is unsupported')
     require(overlay_document.root.find("p:timing", NS) is None,
             "overlay animation is unsupported; use a separately reviewed animation workflow")
     objects = []

@@ -63,6 +63,8 @@ def validate(manifest, root, require_review=True, _materialized=False):
             return {'status': 'FAIL', 'errors': [str(exc)], 'warnings': [], 'object_counts': {},
                     'native_editable_count': 0, 'raster_count': 0, 'fully_native': False}
     errors, warnings = [], []
+    canvas_clip_proof = None
+    canvas_clip_ids = set()
     def check(ok, message):
         if not ok:
             errors.append(message)
@@ -79,9 +81,12 @@ def validate(manifest, root, require_review=True, _materialized=False):
         return isinstance(value, str) and ((allow_none and value == 'none') or bool(re.fullmatch(r'#[0-9A-Fa-f]{6}', value)))
     count = {k: 0 for k in KINDS}
     def report():
-        return {'status': 'PASS' if not errors else 'FAIL', 'errors': errors, 'warnings': warnings,
+        result = {'status': 'PASS' if not errors else 'FAIL', 'errors': errors, 'warnings': warnings,
                 'object_counts': count, 'native_editable_count': count['path'] + count['text'],
                 'raster_count': count['image'], 'fully_native': count['image'] == 0}
+        if canvas_clip_proof is not None:
+            result['source_canvas_clip'] = canvas_clip_proof
+        return result
     if not isinstance(manifest, dict):
         errors.append('Manifest must be a record')
         return report()
@@ -94,8 +99,8 @@ def validate(manifest, root, require_review=True, _materialized=False):
         check(finite(canvas.get(key)) and 0 < canvas[key] <= 20000, 'Invalid canvas ' + key)
     if 'background' in canvas:
         check(solid(canvas['background']), 'Canvas background must be a solid hex color or none')
-    def in_canvas(x, y, label):
-        if canvas_ok:
+    def in_canvas(x, y, label, object_id=None):
+        if canvas_ok and (not isinstance(object_id, str) or object_id not in canvas_clip_ids):
             check(-.001 <= x <= canvas['width'] + .001 and -.001 <= y <= canvas['height'] + .001,
                   label + ' is outside the canvas; clipping is unsupported')
     source = record(manifest.get('source'), 'Source')
@@ -127,6 +132,14 @@ def validate(manifest, root, require_review=True, _materialized=False):
     check(isinstance(objects, list) and 0 < len(objects) <= 10000, 'Objects must be a nonempty list, capped at 10000')
     if not isinstance(objects, list) or len(objects) > 10000:
         return report()
+    if 'source_canvas_clip' in manifest:
+        try:
+            from .source_canvas_clip import verify_source_canvas_clip
+            canvas_clip_proof = verify_source_canvas_clip(manifest, root)
+            canvas_clip_ids = set(canvas_clip_proof['object_ids'])
+            warnings.append('Explicit source canvas clipping: verified glyph outlines require standalone slide bounds and visual review')
+        except (ValueError, OSError, ImportError, RuntimeError, KeyError, TypeError, OverflowError) as exc:
+            errors.append(str(exc))
     ids, groups, total_vertices = set(), set(), 0
     for index, raw in enumerate(objects):
         if not isinstance(raw, dict):
@@ -183,7 +196,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     good = isinstance(point, dict) and set(point) == {'x', 'y'} and finite(point.get('x')) and finite(point.get('y'))
                     check(good, 'Invalid path point: ' + label)
                     if good:
-                        in_canvas(point['x'], point['y'], 'Path geometry ' + label)
+                        in_canvas(point['x'], point['y'], 'Path geometry ' + label, oid)
                         points.append(point)
                         if op == 'lineTo' and previous is not None and point != previous: drawable = True
                         previous = point
@@ -197,7 +210,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     check(active and previous is not None, 'cubicTo before moveTo: ' + label)
                     if good:
                         for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]:
-                            in_canvas(point[xkey], point[ykey], 'Cubic control hull ' + label)
+                            in_canvas(point[xkey], point[ykey], 'Cubic control hull ' + label, oid)
                         points.append({'x': point['x'], 'y': point['y']})
                         if previous is not None and any({'x': point[xkey], 'y': point[ykey]} != previous for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]):
                             drawable = True

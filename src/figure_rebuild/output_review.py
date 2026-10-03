@@ -299,6 +299,51 @@ def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
     return expected
 
 
+def _canvas_clip_provenance(run, config, paths, manifest, resolved, preview_audit):
+    """Recompute the narrow source/slide clipping proof from frozen inputs."""
+    declared = 'source_canvas_clip' in manifest
+    if not declared:
+        _require('source_canvas_clip' not in resolved and
+                 'source_canvas_clip_provenance_version' not in config and
+                 (preview_audit is None or 'source_canvas_clip' not in preview_audit),
+                 'Canvas clipping provenance has no source declaration')
+        return None
+    _require(type(config.get('source_canvas_clip_provenance_version')) is int and
+             config['source_canvas_clip_provenance_version'] == 1 and not config.get('base'),
+             'Canvas clipping requires standalone version-1 provenance')
+    _require(_same_json(manifest['source_canvas_clip'], resolved.get('source_canvas_clip')),
+             'Resolved canvas clipping declaration differs from the source manifest')
+    _require(isinstance(preview_audit, dict), 'Canvas clipping requires final render provenance')
+    source_report = _inside(run, run / 'source-canvas-clip.json')
+    native_report = _inside(run, run / 'native-canvas-clip.json')
+    asset_root = _inside(run, run / 'assets')
+    try:
+        from .source_canvas_clip import verify_source_canvas_clip, verify_native_canvas_clip
+        replay = verify_source_canvas_clip(resolved, asset_root)
+        _require(isinstance(replay, dict) and _same_json(_json_record(source_report), replay),
+                 'Canvas clipping source proof is stale or disagrees with fresh replay')
+        actual = verify_native_canvas_clip(paths['pptx'], resolved, replay)
+        _require(isinstance(actual, dict) and _same_json(_json_record(native_report), actual),
+                 'Canvas clipping native proof is stale or disagrees with the actual PPTX')
+    except ImportError as error:
+        raise ValueError('Canvas clipping verification requires its optional source dependencies') from error
+    paths['source_canvas_clip'] = source_report
+    paths['native_canvas_clip'] = native_report
+    for role in ('source_pdf', 'source_svg'):
+        record = manifest['source_canvas_clip'].get(role)
+        _require(isinstance(record, dict) and isinstance(record.get('path'), str) and
+                 not Path(record['path']).is_absolute(), 'Invalid canvas source evidence path')
+        path = _inside(asset_root, asset_root / record['path'])
+        _require(_binding(path)['sha256'] == record.get('sha256'), 'Canvas source evidence changed')
+        paths['canvas_' + role] = path
+    expected = {'schema_version': 1, 'source_receipt': _binding(source_report),
+                'native_receipt': _binding(native_report),
+                'resolved_scene': _binding(paths['resolved_scene']), 'pptx': _binding(paths['pptx'])}
+    _require(_same_json(preview_audit.get('source_canvas_clip'), expected),
+             'Render audit disagrees with verified canvas clipping evidence')
+    return expected
+
+
 def _build_bindings(run_dir):
     run = Path(run_dir).resolve()
     _require(run.is_dir(), f'Build run does not exist: {run}')
@@ -341,6 +386,7 @@ def _build_bindings(run_dir):
             paths[role] = _inside(run, path)
     preview_audit = _preview_provenance(run, config, paths)
     diagnostic_coverage = _diagnostic_provenance(run, config, paths, resolved, preview_audit)
+    canvas_clip = _canvas_clip_provenance(run, config, paths, manifest, resolved, preview_audit)
     _text(config.get('output'), 'Delivered PPTX path')
     _require(Path(config['output']).is_absolute(), 'Delivered PPTX path must be absolute')
     paths['delivered_pptx'] = Path(config['output']).resolve()
@@ -362,6 +408,9 @@ def _build_bindings(run_dir):
     if diagnostic_coverage is not None:
         _require(_same_json(delivery.get('diagnostic_coverage'), diagnostic_coverage),
                  'Delivery receipt disagrees with limited diagnostic coverage')
+    _require((_same_json(delivery.get('source_canvas_clip'), canvas_clip) if canvas_clip is not None
+              else 'source_canvas_clip' not in delivery),
+             'Delivery receipt disagrees with verified canvas clipping evidence')
     return run, {'figure_id': manifest['id'], 'revision': manifest['revision']}, bindings, diagnostic_coverage
 
 
