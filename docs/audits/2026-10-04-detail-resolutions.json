@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T20:49:52.424561+00:00",
+  "updated_at": "2026-10-03T21:05:23.763786+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 107,
-    "open": 188,
+    "closed_model_visual_review": 148,
+    "open": 147,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -26,6 +26,33 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
           "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All intentional spelling input strings (including fsih => fish), arithmetic and translation rows retain source raster content. Rounded panels, thin gray inner/outer braces, monospaced body and vertical label size/spacing restored. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
+          "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     },
@@ -114,6 +141,87 @@
       ]
     },
     {
+      "figure_id": "ccf-2020-08-f02",
+      "issue_id": "ccf-2020-08-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All circle-side markers retained (left4negative/right3negative and two positive). Source-tight spaniel red/green photo frames, directional gradient and dot pitch preserved. Photo contents/crops are original authorbitmap. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
+          "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
+          "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-08-f02",
+      "issue_id": "ccf-2020-08-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "All circle-side markers retained (left4negative/right3negative and two positive). Source-tight spaniel red/green photo frames, directional gradient and dot pitch preserved. Photo contents/crops are original authorbitmap. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
+          "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
+          "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-08-f02",
+      "issue_id": "ccf-2020-08-f02-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "All circle-side markers retained (left4negative/right3negative and two positive). Source-tight spaniel red/green photo frames, directional gradient and dot pitch preserved. Photo contents/crops are original authorbitmap. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
+          "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
+          "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2020-12-f02",
       "issue_id": "ccf-2020-12-f02-D01",
       "severity": "critical",
@@ -148,6 +256,87 @@
         {
           "audit_relative_path": "source-regeneration/v4-outline-pilot-002/jobs/ccf-2020-12-f02/build/run-002/output-review.json",
           "sha256": "9fd1159f2008f5b44ff699093ebf49a8fa9a942f3b6383245c264715f3660a56"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-13-f01",
+      "issue_id": "ccf-2020-13-f01-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Source GPU-positioned green/orange/blue partitions retained across all four memory stages, including progressively coincident component shards. Original N_d=64, Ψ, source asterisk operators and four formulas/numeric memory values are retained, with original label metrics and outlined serif italic ZeRO-DP caption. Inspected 4x confirms these old content errors are absent; new bitmap gray frame is separate. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-13-f01",
+      "issue_id": "ccf-2020-13-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source GPU-positioned green/orange/blue partitions retained across all four memory stages, including progressively coincident component shards. Original N_d=64, Ψ, source asterisk operators and four formulas/numeric memory values are retained, with original label metrics and outlined serif italic ZeRO-DP caption. Inspected 4x confirms these old content errors are absent; new bitmap gray frame is separate. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-13-f01",
+      "issue_id": "ccf-2020-13-f01-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source GPU-positioned green/orange/blue partitions retained across all four memory stages, including progressively coincident component shards. Original N_d=64, Ψ, source asterisk operators and four formulas/numeric memory values are retained, with original label metrics and outlined serif italic ZeRO-DP caption. Inspected 4x confirms these old content errors are absent; new bitmap gray frame is separate. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     },
@@ -1398,6 +1587,87 @@
       ]
     },
     {
+      "figure_id": "ccf-2022-05-f01",
+      "issue_id": "ccf-2022-05-f01-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "encoder/decoder glyph ink is source centered with matching margins; input/target labels below photo grids preserve source baseline and gap. Source image patches and token colors/arrows preserved. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
+          "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-10-f02",
+      "issue_id": "ccf-2022-10-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Caption whitespace after [MASK]. and after [DMASK], is clearly restored in actual Artifact and nativePPT; source glyph paths preserve word advances. Node features/masks, gray GAEs lane and reconstruction terms retain visible content. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/RESULT.json",
+          "sha256": "6558e7245c6f683a179bf97b0069cc08c2d347094a9fdd0354feadb377b8a425"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/job/build/run-001/output-review.json",
+          "sha256": "64ebffc702da4780157133cbd86670c4d7e3786bc0c097a6adf690b1c8c633ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-01-f04",
+      "issue_id": "ccf-2023-01-f04-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "conv, prompt encoder, mask decoder and input/score labels restore source glyph baseline, in-box positioning and relative sizes. Actual caption source serif advances preserved. Four realphoto occurrences preserve original scissors and three different blue mask outputs. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/RESULT.json",
+          "sha256": "36e8d30fdf1c2d2aa2d5b86e53a6bd8f1f7a56fd7537fe5027a421c3b54b0bf0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/job/build/run-001/output-review.json",
+          "sha256": "323500d172f3c9ded5388db4ee535aff549b594a6ea49545897f32fc932a695d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2023-04-f01",
       "issue_id": "ccf-2023-04-f01-D01",
       "severity": "critical",
@@ -1432,6 +1702,33 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
           "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source greater-than preference signs, lowered w/l labels, trophy highlights, rounded chat tails and final-LM palette retained in original body image. Outlined source caption preserves the space after learning. before Existing. These are fresh actual-content verification results, not proof of editable native diagram interiors. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-04-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-04-f01/RESULT.json",
+          "sha256": "92c246f979cedf8e36fa690beb17aa8daaa83f0a4cf7011558b3fb346bcd480e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-04-f01/job/build/run-001/output-review.json",
+          "sha256": "e9711db003072c73f456d157fbe4f6df45301e071b4503596270209c0ad551b2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     },
@@ -1546,6 +1843,33 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2023-13-f01/job/build/run-002/output-review-followup.json",
           "sha256": "809d8dd75140f73cf230e4a564e405f9e5bd944b6ea8bb6adcf369dd149e3493"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-D06",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "The unusual source node reads231 and is retained unchanged. Source blue loop is continuous, colored stubs avoid node digits, OCS branches fan into stacked levels, braces/diagonal ticks and ×16 labels are present. Original small digits and caption retained. Default native JPEG color ringing disappears with lossless export; no PPT bytes changed. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/RESULT.json",
+          "sha256": "8b097cc7614ce97d7c9839ef80eac2d89fe41ecd703e300b9944aecafaae63b2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/job/build/run-001/output-review.json",
+          "sha256": "c4cc39a82113b3aa962f13b80eabfc908d4064fa48b798722be86162085902b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     },
@@ -1734,6 +2058,87 @@
       ]
     },
     {
+      "figure_id": "ccf-2023-14-f01",
+      "issue_id": "ccf-2023-14-f01-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Source code preserves pos_min = -3, _build_version_info(version), and literal 'a\\t!sUo~AU'. Source dashed enclosures, -1/-2687 highlights, eight-point orange stars and outline arrows retained. Italic purple omitted markers, selective italic function names, and green capital Turn comment are visible. Original body image bytes are retained; caption glyphs are outlined native paths. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-14-f01",
+      "issue_id": "ccf-2023-14-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source code preserves pos_min = -3, _build_version_info(version), and literal 'a\\t!sUo~AU'. Source dashed enclosures, -1/-2687 highlights, eight-point orange stars and outline arrows retained. Italic purple omitted markers, selective italic function names, and green capital Turn comment are visible. Original body image bytes are retained; caption glyphs are outlined native paths. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-14-f01",
+      "issue_id": "ccf-2023-14-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source code preserves pos_min = -3, _build_version_info(version), and literal 'a\\t!sUo~AU'. Source dashed enclosures, -1/-2687 highlights, eight-point orange stars and outline arrows retained. Italic purple omitted markers, selective italic function names, and green capital Turn comment are visible. Original body image bytes are retained; caption glyphs are outlined native paths. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2023-14-funnumbered-p5",
       "issue_id": "ccf-2023-14-funnumbered-p5-D01",
       "severity": "major",
@@ -1883,6 +2288,33 @@
       ]
     },
     {
+      "figure_id": "ccf-2024-01-f02",
+      "issue_id": "ccf-2024-01-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Native source glyph paths restore split/encode/flatten/resize and LLM label baseline, glyph width and positioning; caption source glyphs match. All6 realphoto occurrences preserve crops. D01 retained separately because actual LO arrows fail although Artifact is correct. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/RESULT.json",
+          "sha256": "fba5799a1270d74be49fb1603fe419f19629826ca43af8d7b712e7b1a2ce56ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2024-02-f01",
       "issue_id": "ccf-2024-02-f01-D01",
       "severity": "major",
@@ -1983,6 +2415,87 @@
       "attempt": "renderer-regression/corefix-renderer-v1",
       "evidence": [
         "renderer-regression/corefix-renderer-v1/pilot-visual-review.json"
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f01",
+      "issue_id": "ccf-2025-06-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Gold and red loop heads, curved dottedgreen fan paths/heads and curved decay arrow retain source geometry. Rounded panels, source cell heights and italic math with subscripts/superscript T preserved; actual caption ends monospace matmuls. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
+          "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
+          "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f01",
+      "issue_id": "ccf-2025-06-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Gold and red loop heads, curved dottedgreen fan paths/heads and curved decay arrow retain source geometry. Rounded panels, source cell heights and italic math with subscripts/superscript T preserved; actual caption ends monospace matmuls. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
+          "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
+          "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f01",
+      "issue_id": "ccf-2025-06-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Gold and red loop heads, curved dottedgreen fan paths/heads and curved decay arrow retain source geometry. Rounded panels, source cell heights and italic math with subscripts/superscript T preserved; actual caption ends monospace matmuls. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
+          "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
+          "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
       ]
     },
     {
@@ -2094,6 +2607,141 @@
       ]
     },
     {
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original shaded 3D Neural Memory cuboid, rounded bands/Attention,5 fine dashed prefix arrows and continuous context/core junction retained. Red snowflake and white Attention label with original metrics visible in source/native4x. Original author bitmap retained, with outlined source caption. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original shaded 3D Neural Memory cuboid, rounded bands/Attention,5 fine dashed prefix arrows and continuous context/core junction retained. Red snowflake and white Attention label with original metrics visible in source/native4x. Original author bitmap retained, with outlined source caption. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original shaded 3D Neural Memory cuboid, rounded bands/Attention,5 fine dashed prefix arrows and continuous context/core junction retained. Red snowflake and white Attention label with original metrics visible in source/native4x. Original author bitmap retained, with outlined source caption. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original shaded 3D Neural Memory cuboid, rounded bands/Attention,5 fine dashed prefix arrows and continuous context/core junction retained. Red snowflake and white Attention label with original metrics visible in source/native4x. Original author bitmap retained, with outlined source caption. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original shaded 3D Neural Memory cuboid, rounded bands/Attention,5 fine dashed prefix arrows and continuous context/core junction retained. Red snowflake and white Attention label with original metrics visible in source/native4x. Original author bitmap retained, with outlined source caption. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2025-06-f06",
       "issue_id": "ccf-2025-06-f06-D01",
       "severity": "major",
@@ -2201,6 +2849,222 @@
         {
           "audit_relative_path": "renderer-regression/v3-full-review-summary-001/report-with-addendum.json",
           "sha256": "b0975a0e6cde53928177c2954116cf7af4f33cb48a5398dfaed063c36802862b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Original NIC circuitry remains visibly distinct from GPU cards; DRAM pin/hole details retained as 20 source image occurrences. The original monospaced topology matrix, colors, brackets and commas remain native outlined glyph geometry. Inspected lossless native hardware/matrix 4x confirms original D01-D03 visible targets. Artifact image sampling is a separate open finding. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
+          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original NIC circuitry remains visibly distinct from GPU cards; DRAM pin/hole details retained as 20 source image occurrences. The original monospaced topology matrix, colors, brackets and commas remain native outlined glyph geometry. Inspected lossless native hardware/matrix 4x confirms original D01-D03 visible targets. Artifact image sampling is a separate open finding. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
+          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original NIC circuitry remains visibly distinct from GPU cards; DRAM pin/hole details retained as 20 source image occurrences. The original monospaced topology matrix, colors, brackets and commas remain native outlined glyph geometry. Inspected lossless native hardware/matrix 4x confirms original D01-D03 visible targets. Artifact image sampling is a separate open finding. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
+          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original whole-body image preserves italic (Optional), rotated Query and row token labels, pale bands, outlined Stop Grad block/white badge, rounded routes/open heads/plain stubs, original decoder label metrics and rounded dotted panel borders. All are retained as author pixels, not separately editable geometry or live text. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original whole-body image preserves italic (Optional), rotated Query and row token labels, pale bands, outlined Stop Grad block/white badge, rounded routes/open heads/plain stubs, original decoder label metrics and rounded dotted panel borders. All are retained as author pixels, not separately editable geometry or live text. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original whole-body image preserves italic (Optional), rotated Query and row token labels, pale bands, outlined Stop Grad block/white badge, rounded routes/open heads/plain stubs, original decoder label metrics and rounded dotted panel borders. All are retained as author pixels, not separately editable geometry or live text. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original whole-body image preserves italic (Optional), rotated Query and row token labels, pale bands, outlined Stop Grad block/white badge, rounded routes/open heads/plain stubs, original decoder label metrics and rounded dotted panel borders. All are retained as author pixels, not separately editable geometry or live text. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-D05",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original whole-body image preserves italic (Optional), rotated Query and row token labels, pale bands, outlined Stop Grad block/white badge, rounded routes/open heads/plain stubs, original decoder label metrics and rounded dotted panel borders. All are retained as author pixels, not separately editable geometry or live text. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     },
@@ -2317,10 +3181,252 @@
           "sha256": "bdba7c2306f326fb891de6f880222023737dfeee3c4d11204fdc1b60c6175092"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D06",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-D07",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source round blue/red/yellow headers and cyan/green modules retained; original body has 8-node dense 3-3-2 icon, mountain/sun picture and complete controller silhouettes, short gallery link, continuous cover crops and complete controllers. Cylinder lid stays above the9 screenshot stacks. Caption glyphs preserve original typography/spacing. Original author body asset is retained, not regenerated game imagery. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f02",
+      "issue_id": "ccf-2026-06-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Four wide open-chevron gray pipeline arrows and original source shaft/head ratios are retained. Gamepad action labels, pipeline/subfigure headings and caption word spacing/Latin-Modern source glyphs match. Eight screenshot overlays and template crop guides are source author pixels. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/RESULT.json",
+          "sha256": "5c1664e2eab8b897c0bd1e2b4a840c2c39735d1b65d440907f9a7ab647b0391f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001/output-review.json",
+          "sha256": "ee93731870f92681fe202f0caf29cee33e17557eeff753b8179530f2c708c026"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-06-f02",
+      "issue_id": "ccf-2026-06-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Four wide open-chevron gray pipeline arrows and original source shaft/head ratios are retained. Gamepad action labels, pipeline/subfigure headings and caption word spacing/Latin-Modern source glyphs match. Eight screenshot overlays and template crop guides are source author pixels. Original author bitmap and source glyph paths remain explicitly identified; preview/native residuals remain separately open. No automatic semantic or user acceptance claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/RESULT.json",
+          "sha256": "5c1664e2eab8b897c0bd1e2b4a840c2c39735d1b65d440907f9a7ab647b0391f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001/output-review.json",
+          "sha256": "ee93731870f92681fe202f0caf29cee33e17557eeff753b8179530f2c708c026"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
-    "ccf-2020-01-f1-1-D02",
     "ccf-2020-02-f02-D01",
     "ccf-2020-02-f02-D02",
     "ccf-2020-03-f02-D01",
@@ -2337,9 +3443,6 @@
     "ccf-2020-06-f03-D01",
     "ccf-2020-07-f02-D01",
     "ccf-2020-07-f02-D02",
-    "ccf-2020-08-f02-D01",
-    "ccf-2020-08-f02-D02",
-    "ccf-2020-08-f02-D03",
     "ccf-2020-09-f02-D01",
     "ccf-2020-09-f02-D02",
     "ccf-2020-09-f02-D03",
@@ -2350,9 +3453,6 @@
     "ccf-2020-11-f03-D02",
     "ccf-2020-12-f02-D03",
     "ccf-2020-12-f03-D01",
-    "ccf-2020-13-f01-D01",
-    "ccf-2020-13-f01-D02",
-    "ccf-2020-13-f01-D03",
     "ccf-2020-14-f01-D01",
     "ccf-2020-14-f02-D01",
     "ccf-2020-14-f03-D01",
@@ -2396,12 +3496,10 @@
     "ccf-2022-02-f02-D01",
     "ccf-2022-02-f02-D02",
     "ccf-2022-02-f02-D03",
-    "ccf-2022-05-f01-D01",
     "ccf-2022-07-f01-D01",
     "ccf-2022-07-f01-D02",
     "ccf-2022-07-f01-D03",
     "ccf-2022-09-f01-D01",
-    "ccf-2022-10-f02-D01",
     "ccf-2022-12-f01-D01",
     "ccf-2022-12-f01-D02",
     "ccf-2022-12-f04-D01",
@@ -2412,9 +3510,7 @@
     "ccf-2022-14-f02-D01",
     "ccf-2023-01-f01-D01",
     "ccf-2023-01-f01-D02",
-    "ccf-2023-01-f04-D01",
     "ccf-2023-03-f01-D01",
-    "ccf-2023-04-f01-D03",
     "ccf-2023-05-f02-D01",
     "ccf-2023-05-f02-D02",
     "ccf-2023-05-f04-D01",
@@ -2427,13 +3523,8 @@
     "ccf-2023-08-f02-D01",
     "ccf-2023-08-f02-D02",
     "ccf-2023-08-f02-D03",
-    "ccf-2023-13-f01-D06",
     "ccf-2023-13-f07-D05",
-    "ccf-2023-14-f01-D01",
-    "ccf-2023-14-f01-D02",
-    "ccf-2023-14-f01-D03",
     "ccf-2024-01-f02-D01",
-    "ccf-2024-01-f02-D02",
     "ccf-2024-03-f01-D01",
     "ccf-2024-03-f01-D02",
     "ccf-2024-03-f02-D01",
@@ -2461,25 +3552,9 @@
     "ccf-2025-03-f02-D01",
     "ccf-2025-03-f02-D02",
     "ccf-2025-05-f13-D01",
-    "ccf-2025-06-f01-D01",
-    "ccf-2025-06-f01-D02",
-    "ccf-2025-06-f01-D03",
     "ccf-2025-06-f02-D05",
-    "ccf-2025-06-f05-D01",
-    "ccf-2025-06-f05-D02",
-    "ccf-2025-06-f05-D03",
-    "ccf-2025-06-f05-D04",
-    "ccf-2025-06-f05-D05",
     "ccf-2025-07-f03-D02",
-    "ccf-2025-07-f04-D01",
-    "ccf-2025-07-f04-D02",
-    "ccf-2025-07-f04-D03",
     "ccf-2025-07-f04-D04",
-    "ccf-2026-01-f02-D01",
-    "ccf-2026-01-f02-D02",
-    "ccf-2026-01-f02-D03",
-    "ccf-2026-01-f02-D04",
-    "ccf-2026-01-f02-D05",
     "ccf-2026-01-f05-D01",
     "ccf-2026-01-f05-D02",
     "ccf-2026-02-f01-D07",
@@ -2498,40 +3573,12 @@
     "ccf-2026-04-f02-D03",
     "ccf-2026-04-f02-D04",
     "ccf-2026-05-f01-D01",
-    "ccf-2026-05-f01-D02",
-    "ccf-2026-06-f01-D01",
-    "ccf-2026-06-f01-D02",
-    "ccf-2026-06-f01-D03",
-    "ccf-2026-06-f01-D04",
-    "ccf-2026-06-f01-D05",
-    "ccf-2026-06-f01-D06",
-    "ccf-2026-06-f01-D07",
-    "ccf-2026-06-f02-D01",
-    "ccf-2026-06-f02-D02"
+    "ccf-2026-05-f01-D02"
   ],
   "external_evidence_root": "figure-build-data/work/detail-audit-20261003",
   "source_assets_and_full_outputs_in_git": false,
   "user_acceptance": "pending",
   "partial_resolutions": [
-    {
-      "figure_id": "ccf-2020-01-f1-1",
-      "issue_id": "ccf-2020-01-f1-1-D02",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006",
-      "closure_evidence": [],
-      "partial_resolution": "Monospace geometry and rotated labels restored; root visual review still sees lighter/thinner native body glyph appearance against the raster source. Remains open pending follow-up.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/root-review-followup-result.json",
-          "sha256": "6175d2cba80ec0234f51df437ebab09e0bd8b7a48e562a89b2b253513339fc61"
-        },
-        {
-          "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
-          "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
-        }
-      ]
-    },
     {
       "figure_id": "ccf-2020-15-f02",
       "issue_id": "ccf-2020-15-f02-D04",
@@ -2702,25 +3749,6 @@
       ]
     },
     {
-      "figure_id": "ccf-2023-04-f01",
-      "issue_id": "ccf-2023-04-f01-D03",
-      "severity": "minor",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/ccf-2023-04-f01/job/build/run-005",
-      "closure_evidence": [],
-      "partial_resolution": "Both trophy white stars/glints and asymmetric gold/bright-yellow fields restored; source rounded chat tails retained; each network independently preserves colors, including source policy terminal RGB186,145,177 and final terminal RGB168,159,190. Remaining issue is narrowed to slight2x native/source-raster edge sampling appearance, not omitted icon content or incorrect palette.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/result.json",
-          "sha256": "82c6c712f65f0f3384ee19723dba395ff246fecb67a138a1258b3358e1a95f41"
-        },
-        {
-          "audit_relative_path": "source-regeneration/ccf-2023-04-f01/job/build/run-005/output-review.json",
-          "sha256": "a360dce10a29e9ba36a2c55ff7337c47e352fd8a09cc02a0a82331e738703432"
-        }
-      ]
-    },
-    {
       "figure_id": "ccf-2023-13-f07",
       "issue_id": "ccf-2023-13-f07-D05",
       "severity": "major",
@@ -2748,6 +3776,33 @@
       ]
     },
     {
+      "figure_id": "ccf-2024-01-f02",
+      "issue_id": "ccf-2024-01-f02-D01",
+      "severity": "minor",
+      "status": "open",
+      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001",
+      "closure_evidence": [],
+      "partial_resolution": "Remains open after source-fresh generation: actual LibreOffice lossless1x/2x/4x displays white wedge/slit at gray split/encode/flatten arrowhead bases and resize elbow; source/Artifact4x are solid. Thus source outlines/Artifact success do not establish native PPT fidelity.",
+      "partial_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/RESULT.json",
+          "sha256": "fba5799a1270d74be49fb1603fe419f19629826ca43af8d7b712e7b1a2ce56ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2025-06-f02",
       "issue_id": "ccf-2025-06-f02-D05",
       "severity": "major",
@@ -2771,6 +3826,33 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/LOSSLESS-ADDENDUM-r2.json",
           "sha256": "3222b5ddf997002441daea461ab08137bda78fb9a7dbbc22e21e783ecee8df8d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-D04",
+      "severity": "major",
+      "status": "open",
+      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001",
+      "closure_evidence": [],
+      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED. Visual/manual source inspection does not establish automatic diagnostic coverage.",
+      "partial_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
+          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
     }
@@ -3048,7 +4130,15 @@
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+      "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+      "followup_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
+          "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+        }
+      ]
     },
     {
       "description": "Artifact previews at 1x/2x/4x have hard stair-stepped circle/hourglass and document edges. Source and lossless LibreOffice have smooth sampled contours.",
@@ -3186,7 +4276,15 @@
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+      "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+      "followup_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/NATIVE-DIRECT-PNG-ADDENDUM.json",
+          "sha256": "880a765a5e6f855b978e8199da19d4a320f6285ac8161fd5d143e47f2de39cc1"
+        }
+      ]
     },
     {
       "severity": "major",
@@ -3428,6 +4526,565 @@
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
       ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Blue body text and fine gray braces are harder or partially dotted at Artifact1x versus source and LO;2x/4x preserve full terms.",
+      "region": "author bitmap at1x",
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
+          "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Actual LibreOffice lossless export shows extra thin gray exterior image-frame top/right/bottom lines absent from source/Artifact, including at1x/2x.",
+      "region": "author image frame edges",
+      "figure_id": "ccf-2020-01-f1-1",
+      "issue_id": "ccf-2020-01-f1-1-R02-NATIVE-IMAGE-FRAME",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
+          "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Artifact1x photos, dotted circle edge and small serif labels have harder sampling than source/LO. This is a finite-resolution preview difference; 2x/4x preserve marker/content structure.",
+      "region": "author bitmap at1x",
+      "figure_id": "ccf-2020-08-f02",
+      "issue_id": "ccf-2020-08-f02-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
+          "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
+          "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact1x/2x bitmap formula strokes and thin blue grid are brittle/over-sharp relative to source; formula4x shows changed raster sampling. This is separate from correctly retained formula symbols and partitions.",
+      "figure_id": "ccf-2020-13-f01",
+      "issue_id": "ccf-2020-13-f01-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image exterior boundary; actual source/default/lossless diagnostic crops",
+      "description": "A thin gray rectangular outline is visible at the author-image outer frame (canvas x11..833, y51..433), absent from source, and survives actual lossless LO export. This is not explained by default JPEG compression. No explicit picture line was observed in prior XML inspection; alpha-edge rendering cause remains unconfirmed.",
+      "figure_id": "ccf-2020-13-f01",
+      "issue_id": "ccf-2020-13-f01-R02-NATIVE-ALPHA-EDGE",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Artifact1x flamingo photo/grid detail is more sharply aliased than source/LO; native text/path labels retain metrics.",
+      "region": "author photo/image detail at1x",
+      "figure_id": "ccf-2022-05-f01",
+      "issue_id": "ccf-2022-05-f01-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
+          "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Actual LibreOffice lossless1/2/4x adds fine gray rectangular edges around input and target photo-grid image extents, absent from source/Artifact; PNGdimensions/FlateDecode verified.",
+      "region": "input/target original photo image extent",
+      "figure_id": "ccf-2022-05-f01",
+      "issue_id": "ccf-2022-05-f01-R02-NATIVE-IMAGE-FRAME",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
+          "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Artifact4x displays square-ended encoder/decoder enclosure dashes and pointed outlined-arrow corners where source uses rounded caps/joins; actual LibreOffice lossless4x retains the source rounding. This is renderer stroke-style support, not bitmap sampling.",
+      "region": "Encoder/decoder dashed boxes and outlined pipeline arrows",
+      "figure_id": "ccf-2022-10-f02",
+      "issue_id": "ccf-2022-10-f02-R01-PREVIEW-STROKE-STYLE",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/RESULT.json",
+          "sha256": "6558e7245c6f683a179bf97b0069cc08c2d347094a9fdd0354feadb377b8a425"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/job/build/run-001/output-review.json",
+          "sha256": "64ebffc702da4780157133cbd86670c4d7e3786bc0c097a6adf690b1c8c633ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "At Artifact1x scissors/photo texture is more sharply aliased than source/LO, including fine writing on scissors and output mask photos. Native labels and glyph outlines remain positioned correctly.",
+      "region": "author photo/image detail at1x",
+      "figure_id": "ccf-2023-01-f04",
+      "issue_id": "ccf-2023-01-f04-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/RESULT.json",
+          "sha256": "36e8d30fdf1c2d2aa2d5b86e53a6bd8f1f7a56fd7537fe5027a421c3b54b0bf0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/job/build/run-001/output-review.json",
+          "sha256": "323500d172f3c9ded5388db4ee535aff549b594a6ea49545897f32fc932a695d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact1x small labels and curved chat/trophy edges become too sharp, thin or jagged compared with source; higher scale retains visible content. Original embedded author asset is unchanged.",
+      "figure_id": "ccf-2023-04-f01",
+      "issue_id": "ccf-2023-04-f01-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-04-f01/RESULT.json",
+          "sha256": "92c246f979cedf8e36fa690beb17aa8daaa83f0a4cf7011558b3fb346bcd480e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-04-f01/job/build/run-001/output-review.json",
+          "sha256": "e9711db003072c73f456d157fbe4f6df45301e071b4503596270209c0ad551b2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact2x/4x smooths the original low-resolution bitmap edges differently, visible at circle digits/cube outlines/OCS loops, while source and lossless native retain the original jagged pixel structure. This is minor interpolation mismatch, not a connectivity or digit-content error.",
+      "figure_id": "ccf-2023-13-f01",
+      "issue_id": "ccf-2023-13-f01-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/RESULT.json",
+          "sha256": "8b097cc7614ce97d7c9839ef80eac2d89fe41ecd703e300b9944aecafaae63b2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/job/build/run-001/output-review.json",
+          "sha256": "c4cc39a82113b3aa962f13b80eabfc908d4064fa48b798722be86162085902b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact 1x code glyphs are abnormally thin, broken or pixelated relative to source, with improved legibility at2x/4x but changed raster interpolation. Native lossless preserves code content.",
+      "figure_id": "ccf-2023-14-f01",
+      "issue_id": "ccf-2023-14-f01-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image exterior boundary; actual source/default/lossless diagnostic crops",
+      "description": "A thin gray horizontal line appears along the author bitmap bottom (canvas y≈850, x≈33..485) in both default and lossless LibreOffice exports, absent from source. No source-content repair or alpha pixel editing was performed; cause remains under investigation.",
+      "figure_id": "ccf-2023-14-f01",
+      "issue_id": "ccf-2023-14-f01-R02-NATIVE-ALPHA-EDGE",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Artifact1x photo detail is sharply aliased compared with source and LO, most clearly the small resized street photo. Labels/native paths themselves are not the cause.",
+      "region": "author bitmap at1x",
+      "figure_id": "ccf-2024-01-f02",
+      "issue_id": "ccf-2024-01-f02-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/RESULT.json",
+          "sha256": "fba5799a1270d74be49fb1603fe419f19629826ca43af8d7b712e7b1a2ce56ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "At Artifact1x small formulas/serif text, gold/red loop edges and gray block outlines appear harder and thinner than source/LO;2x/4x retain terms and arrowheads.",
+      "region": "author bitmap at1x",
+      "figure_id": "ccf-2025-06-f01",
+      "issue_id": "ccf-2025-06-f01-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
+          "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
+          "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact1x small vertical labels, white Attention glyphs and fine dashed persistent-memory arrows are heavily aliased versus source;4x retains their content but uses different raster interpolation.",
+      "figure_id": "ccf-2025-06-f05",
+      "issue_id": "ccf-2025-06-f05-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/RESULT.json",
+          "sha256": "13409cf1ec89a477757e9a29e6446c3b7024359ed2ac8af273c8c4cc41664da8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f05/job/build/run-001/output-review.json",
+          "sha256": "96320383dd982c5bef3c41c1510cc9f152ef9de6e81440652f09d92573b873cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "The actual Artifact 1x preview aliases small NIC/GPU/DRAM pin and chip details more sharply than source; hardware4x also uses different raster interpolation. Lossless native retains the source hardware detail. This is a preview sampling mismatch, not a replacement of the four NICs with GPUs.",
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
+          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact1x small labels and dotted rounded panel borders become pixelated/sharper than source.2x/4x retain visible content; no automatic semantic recognition or native internal-object reconstruction is implied.",
+      "figure_id": "ccf-2026-01-f02",
+      "issue_id": "ccf-2026-01-f02-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/RESULT.json",
+          "sha256": "462a665ff21f88d4bf6506eb3f69e371f56894e2575ecc66bcbc623807fa4222"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-01-f02/job/build/run-001/output-review.json",
+          "sha256": "f0c8c851489ebfa83ad9c2ea7904f4bd97283b5291e0a0c56a90febae8832343"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
+      "description": "Actual Artifact1x icon/controller contours, hollow NN nodes, token edges and imagery sample more abruptly than source; enlarged gallery/dataset views show changed interpolation without changed source asset bytes.",
+      "figure_id": "ccf-2026-06-f01",
+      "issue_id": "ccf-2026-06-f01-R01-PREVIEW-SAMPLING",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/RESULT.json",
+          "sha256": "a691fb5d352a9aff8ea69209929b899e90540e0da6a4800a63807919ad0d255e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f01/job/build/run-001/output-review.json",
+          "sha256": "6186c8911e722b8b89c968037e52b9ee6127d5d977274ac31b90bdaf371d32db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "status": "open",
+      "description": "Artifact1x game screenshots/controller detail and fine green crop guides are harder/sparser than source and LO, whereas2x/4x preserve visible content.",
+      "region": "author photo/image detail at1x",
+      "figure_id": "ccf-2026-06-f02",
+      "issue_id": "ccf-2026-06-f02-R01-PREVIEW-IMAGE-MINIFICATION",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/RESULT.json",
+          "sha256": "5c1664e2eab8b897c0bd1e2b4a840c2c39735d1b65d440907f9a7ab647b0391f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001/output-review.json",
+          "sha256": "ee93731870f92681fe202f0caf29cee33e17557eeff753b8179530f2c708c026"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "status": "open",
+      "severity": "minor",
+      "region": "User overbrace dark ink; fine vertical seams at image-tile boundaries",
+      "description": "Direct native PNG removes the external rectangle grid but retains slight light vertical seams within the dark brace itself, visible in 4x source comparison. No source asset/placement adjustment attempted.",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
+          "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+        },
+        {
+          "audit_relative_path": "probes/fawkes-ewe-direct-png-002/ccf-2020-19-f01/user-brace-4x.png",
+          "sha256": "88a5a5596b92ca47695702bde68962e1464dd31e443f33a83dbafa4bbd3e990c"
+        }
+      ],
+      "figure_id": "ccf-2020-19-f01",
+      "issue_id": "ccf-2020-19-f01-R03-DIRECT-NATIVE-TILE-SEAMS",
       "user_acceptance": "pending"
     }
   ]
