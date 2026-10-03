@@ -92,8 +92,75 @@ def _mapped_frames(object_map, manifest):
                  box['height'] * scale * _EMU_PER_PX)
         if not all(math.isfinite(value) for value in frame):
             raise ValueError('Mapped frame exceeds numeric range: ' + entry['id'])
-        frames[entry['id']] = {'kind': entry.get('kind'), 'frame': frame}
+        frames[entry['id']] = {'kind': entry.get('kind'), 'frame': frame, 'source_box': box}
     return frames
+
+
+def _restore_cubic_path(element, obj, mapped_frames):
+    """Restore exact editable cubics after the author's flattened intermediate.
+
+    Keep the native transform and paint unchanged. DrawingML path coordinates
+    use source-pixel EMU units; xfrm supplies the requested uniform placement.
+    Multiple moveTo/close subpaths retain their nonzero-winding fill topology.
+    """
+    label = obj['id']
+    if mapped_frames is None or label not in mapped_frames or mapped_frames[label]['kind'] != 'path':
+        raise ValueError('Native cubic restoration requires mapped path frame: ' + label)
+    entry = mapped_frames[label]
+    transform, actual_frame, rotation = _transform(element, label)
+    if rotation % 21600000 or transform.get('flipH', '0') in ('1', 'true') or transform.get('flipV', '0') in ('1', 'true'):
+        raise ValueError('Exporter changed cubic path orientation: ' + label)
+    if any(abs(actual - expected) > 2 for actual, expected in zip(actual_frame, entry['frame'])):
+        raise ValueError('Exporter changed cubic path frame: ' + label)
+    box = entry['source_box']
+    geometry = element.find('p:spPr/a:custGeom', NS)
+    paths = geometry.find('a:pathLst', NS)
+    if paths is None or len(paths) != 1:
+        raise ValueError('Cubic restoration expects one authored custom path: ' + label)
+    original_path = paths[0]
+    attrs = dict(original_path.attrib)
+    attrs.update(w=str(max(1, math.floor(box['width'] * _EMU_PER_PX + .5))),
+                 h=str(max(1, math.floor(box['height'] * _EMU_PER_PX + .5))))
+    restored = ET.Element(f"{{{NS['a']}}}path", attrs)
+    def point(node, x, y):
+        if not _number(x) or not _number(y):
+            raise ValueError('Nonfinite cubic path coordinate: ' + label)
+        if not box['x'] - .000001 <= x <= box['x'] + box['width'] + .000001 or not box['y'] - .000001 <= y <= box['y'] + box['height'] + .000001:
+            raise ValueError('Cubic path control hull exceeds mapped frame: ' + label)
+        ET.SubElement(node, f"{{{NS['a']}}}pt", {
+            'x': str(math.floor((x - box['x']) * _EMU_PER_PX + .5)),
+            'y': str(math.floor((y - box['y']) * _EMU_PER_PX + .5))})
+    cubic_count = 0
+    active = False
+    for command in obj['commands']:
+        if not isinstance(command, dict) or len(command) != 1:
+            raise ValueError('Invalid native path command: ' + label)
+        op, value = next(iter(command.items()))
+        if op in ('moveTo', 'lineTo'):
+            if not isinstance(value, dict) or set(value) != {'x', 'y'} or (op == 'lineTo' and not active):
+                raise ValueError('Invalid native path point: ' + label)
+            node = ET.SubElement(restored, f"{{{NS['a']}}}{'lnTo' if op == 'lineTo' else 'moveTo'}")
+            point(node, value['x'], value['y'])
+            active = True
+        elif op == 'cubicTo':
+            if not active or not isinstance(value, dict) or set(value) != {'x1', 'y1', 'x2', 'y2', 'x', 'y'}:
+                raise ValueError('Invalid native cubic control points: ' + label)
+            node = ET.SubElement(restored, f"{{{NS['a']}}}cubicBezTo")
+            for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]:
+                point(node, value[xkey], value[ykey])
+            cubic_count += 1
+        elif op == 'close':
+            if not active or value != {}:
+                raise ValueError('Invalid native path close: ' + label)
+            ET.SubElement(restored, f"{{{NS['a']}}}close")
+        else:
+            raise ValueError('Unsupported native path command: ' + label)
+    paths.remove(original_path)
+    paths.append(restored)
+    return {'id': label, 'native_cubic_segments': cubic_count,
+            'coordinate_unit': 'source_pixel_emu', 'path_dimensions': [int(attrs['w']), int(attrs['h'])],
+            'frame_verified': True, 'intermediate_flattening_only': True,
+            'subpath_count': sum('moveTo' in command for command in obj['commands'])}
 
 
 def _visual_bounds(element, label):
@@ -151,7 +218,7 @@ def process(source, output, manifest_path, receipt, object_map=None):
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
     if len(elements) != len(objects): raise ValueError(f'Exported object count mismatch: {len(elements)} != {len(objects)}')
-    mapping, raster_crops = [], []
+    mapping, raster_crops, cubic_paths = [], [], []
     for element, obj in zip(elements, objects):
         pr = native(element)
         if pr is None: raise ValueError('Missing native identity')
@@ -161,6 +228,8 @@ def process(source, output, manifest_path, receipt, object_map=None):
         pr.set('descr', 'source_id=' + obj['id'] + ('; semantic_group=' + obj['group_id'] if obj.get('group_id') else ''))
         if obj['kind'] == 'text' and element.find('p:txBody', NS) is None: raise ValueError('Text was flattened')
         if obj['kind'] == 'path' and element.find('p:spPr/a:custGeom', NS) is None: raise ValueError('Vector path was flattened')
+        if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
+            cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
         if obj['kind'] == 'image' and element.tag != f"{{{NS['p']}}}pic": raise ValueError('Raster asset classification mismatch')
         if obj['kind'] == 'image':
             rect = element.find('p:blipFill/a:srcRect', NS)
@@ -231,7 +300,7 @@ def process(source, output, manifest_path, receipt, object_map=None):
     payloads['ppt/slides/slide1.xml'] = page_document.bytes()
     with zipfile.ZipFile(output, 'w') as z:
         for info in infos: z.writestr(info, payloads[info.filename])
-    data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
+    data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
     Path(receipt).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     return data
 

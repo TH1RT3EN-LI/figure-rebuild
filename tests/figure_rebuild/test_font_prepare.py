@@ -114,6 +114,30 @@ class FontPreparationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, 'weight does not match bold role: 400'):
             prepare_fonts(self.profile, self.root / 'wrong-bold')
 
+    def test_multiple_families_are_selected_and_unknown_family_rejected(self):
+        extra_faces = []
+        for role in ('Regular', 'Bold'):
+            path = self.root / ('serif-' + role + '.ttf')
+            make_font(path, role)
+            with TTFont(path) as font:
+                for name in font['name'].names:
+                    if name.nameID in (1, 4, 6, 16):
+                        value = name.toUnicode().replace('Unit Test Sans', 'Unit Test Serif').replace('UnitTestSans', 'UnitTestSerif')
+                        name.string = value.encode(name.getEncoding())
+                font.save(path)
+            extra_faces.append(path)
+        self.profile['additional'] = [{'family': 'Unit Test Serif',
+            'regular': {'path': str(extra_faces[0]), 'face_index': 0},
+            'bold': {'path': str(extra_faces[1]), 'face_index': 0}}]
+        objects = [{'id': 'serif-label', 'kind': 'text', 'text': 'Serif', 'font_family': 'Unit Test Serif'}]
+        audit = prepare_fonts(self.profile, self.root / 'multi', objects)
+        self.assertEqual([face['family'] for face in audit], ['Unit Test Sans']*2+['Unit Test Serif']*2)
+        self.assertTrue(all(Path(face['renderer']).is_file() for face in audit))
+        objects[0]['font_family'] = 'Unconfigured'
+        with self.assertRaisesRegex(ValueError, 'serif-label: Unconfigured'):
+            prepare_fonts(self.profile, self.root / 'missing-family', objects)
+        self.assertFalse((self.root / 'missing-family').exists())
+
 
 if __name__ == '__main__':
     unittest.main()

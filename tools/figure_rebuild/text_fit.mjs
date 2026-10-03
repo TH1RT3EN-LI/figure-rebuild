@@ -49,8 +49,13 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none'}, me
   const descent = Math.max(0, sample.actualBoundingBoxDescent ?? fontSize * 0.2,
                           ...measurements.map(item => item.actualBoundingBoxDescent ?? 0));
   const lineHeight = Math.max(fontSize * 1.2, ascent + descent);
+  // Native PPT's single-line baseline uses the font ascent plus half of its
+  // default 20% leading, rather than the visible ink ascent of this string.
+  const nativeBaselineAscent = Number.isFinite(sample.fontBoundingBoxAscent)
+    ? sample.fontBoundingBoxAscent + fontSize * .1 : ascent + fontSize * .04;
   return {lines, line_count: lines.length, required_width: Math.max(0, ...measurements.map(metricWidth)),
           required_height: lineHeight * lines.length, line_height: lineHeight, ascent, descent,
+          native_baseline_ascent: nativeBaselineAscent,
           measurement_basis: 'registered font; approximate PPT line layout; actual preview still required'};
 }
 
@@ -63,7 +68,7 @@ export function fittedTextBox(object, measure, canvas) {
     const height = layout.required_height + object.font_size * 0.16;
     const alignment = object.alignment ?? 'left';
     box = {x: object.anchor.x - (alignment === 'center' ? width / 2 : alignment === 'right' ? width : 0),
-      y: object.anchor.y - layout.ascent - object.font_size * 0.04, width, height};
+      y: object.anchor.y - layout.native_baseline_ascent, width, height};
   }
   if (layout.required_width > box.width + 0.001 || layout.required_height > box.height + 0.001) {
     throw Error(`Text overflow: ${object.id}; requires ${layout.required_width.toFixed(2)}×${layout.required_height.toFixed(2)} px, box ${box.width}×${box.height} px (${layout.line_count} lines)`);

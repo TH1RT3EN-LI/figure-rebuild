@@ -8,7 +8,7 @@ jobs:
     strategy:
       matrix:
         python: ['3.10', '3.12']
-        dependencies: ['requirements.txt', 'requirements-vision.txt']
+        dependencies: ['requirements.txt', 'requirements-vision.txt', 'requirements-source.txt']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

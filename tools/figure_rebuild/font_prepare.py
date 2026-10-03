@@ -8,6 +8,8 @@ import hashlib
 import json
 import re
 import unicodedata
+import shutil
+import tempfile
 from pathlib import Path
 
 
@@ -36,6 +38,17 @@ def validate_profile(profile):
             raise ValueError('Font sha256 must be a 64-character hex digest: ' + role)
         if expected is not None and _hash(source) != expected.lower():
             raise ValueError('Configured font SHA256 mismatch: ' + role)
+    additional = profile.get('additional', [])
+    if not isinstance(additional, list):
+        raise ValueError('fonts.additional must be a list')
+    names = {family.casefold()}
+    for extra in additional:
+        if not isinstance(extra, dict) or extra.get('additional'):
+            raise ValueError('Additional font profiles cannot be nested')
+        validate_profile(extra)
+        if extra['family'].casefold() in names:
+            raise ValueError('Duplicate configured font family: ' + extra['family'])
+        names.add(extra['family'].casefold())
     return profile
 
 
@@ -57,7 +70,7 @@ def _visible_codepoints(text):
             and not 0xE0100 <= ord(character) <= 0xE01EF}
 
 
-def prepare_fonts(profile, output_dir, objects=()):
+def _prepare_family(profile, output_dir, objects=()):
     """Return an audit after saving explicit, static regular/bold render faces."""
     validate_profile(profile)
     try:
@@ -127,6 +140,34 @@ def prepare_fonts(profile, output_dir, objects=()):
     finally:
         for font, _ in pending:
             font.close()
+    return audit
+
+
+def prepare_fonts(profile, output_dir, objects=()):
+    """Prepare explicit families atomically, without silently substituting one."""
+    validate_profile(profile)
+    output_dir = Path(output_dir)
+    if output_dir.exists():
+        raise ValueError('Font output directory already exists; use a fresh build run')
+    profiles = [profile, *profile.get('additional', [])]
+    configured = {item['family'] for item in profiles}
+    for item in objects:
+        if item.get('kind') == 'text' and item.get('font_family', profile['family']) not in configured:
+            raise ValueError('Unconfigured font family for ' + item['id'] + ': ' + str(item.get('font_family')))
+    output_dir.parent.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix='.fonts-', dir=output_dir.parent) as temp:
+        prepared = Path(temp) / 'ready'
+        audit = []
+        for index, family_profile in enumerate(profiles):
+            destination = prepared if index == 0 else prepared / ('family-' + str(index))
+            selected = [item for item in objects if item.get('kind') == 'text'
+                        and item.get('font_family', profile['family']) == family_profile['family']]
+            entries = _prepare_family(family_profile, destination, selected)
+            for entry in entries:
+                relative = Path(entry['renderer']).relative_to(prepared)
+                entry['renderer'] = str(output_dir / relative)
+            audit.extend(entries)
+        shutil.move(str(prepared), str(output_dir))
     return audit
 
 

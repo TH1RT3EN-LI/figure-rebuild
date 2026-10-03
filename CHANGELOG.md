@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+- Support per-object native text families with explicitly supplied, hash-bound font profiles; validate family identity, face index and selected glyph coverage without silent substitution.
+- Correct native text baseline placement using registered font metrics rather than string-dependent ink bounds.
+- Read author PDF font names, sizes, metric boxes and baseline origins as source evidence; report outlined mathematical glyphs as unavailable to text extraction rather than guessing them.
+- Generate confirmed mathematical expressions with a real LaTeX engine into transparent high-density PNG, vector PDF and retained TeX/parameter/font/hash records. Source-image text crops are not formula reconstruction.
+- Preserve native cubic Bézier path segments in final PowerPoint and SVG, including compound-path holes and original mapped frames. Sampling remains an intermediate backend step and existing SVG auto-import behavior.
+- Export actual final PPT previews at 1x/2x/4x and a supersampled smooth viewer image; retain raw 1x for comparison diagnostics.
+
 ## 0.3.0
 
 - Add optional OpenCV crop refinement within an explicitly selected source-pixel ROI; proposals retain source hashes and disconnected small content, without modifying images or manifests.

@@ -1,4 +1,4 @@
-# Figure Rebuild · 0.3.0
+# Figure Rebuild · 0.4.0
 
 把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片和公式可保留为带来源审计的图片区域。支持单页导出，或按稳定 slide ID 插入已有模板。
 
@@ -20,13 +20,13 @@ python3 -m venv .venv
 
 Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 20.9+，以及用户提供的 `@oai/artifact-tool`、`@napi-rs/canvas`、`sharp` 和 Codex Presentations 检查器。后端包不随本项目分发；没有这些包仍能准备素材、导入 SVG、审阅和验证清单，不能导出 PPT。Codex Desktop 可通过 `load_workspace_dependencies` 查找已有运行时。
 
-可选视觉升级提供裁剪框精修、平移估计和对象局部边缘诊断。安装到实际调用 CLI / build 的 Python 环境：
+可选视觉升级提供裁剪框精修、平移估计和对象局部边缘诊断。0.4 增加逐对象多字体、作者 PDF 字体分析、真正 LaTeX 高清公式图版和原生贝塞尔轮廓。安装视觉依赖到实际调用 CLI / build 的 Python 环境：
 
 ```bash
 .venv/bin/python -m pip install -r requirements-vision.txt
 ```
 
-未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。原生曲线、连接线、PDF 导入未包含在本版本。
+未安装时，原有核心流程保持可用，报告明确标记几何诊断不可用。清单中的贝塞尔曲线已保留为原生曲线；通用 PDF 场景导入和原生连接器仍未包含。PDF 字体分析是只读提取，不自动理解整张图。
 
 ## 配置和检查
 
@@ -101,6 +101,8 @@ python scripts/run.py build --manifest /path/to/job/manifest.json \
 
 ## 支持范围
 
+- 字体：逐对象原生 family、字号与基线，外部字体 registry/多 family profile；[作者 PDF 字体分析](references/fonts.md) 与[高清 LaTeX 公式](references/formulas.md)分别提供独立脚本入口。
+- 贝塞尔：清单 `cubicTo` 最终保留原生控制点与孔洞，并对映射位置审计；导出实际 PPT 的 1x/2x/4x 原始预览，另提供 4x 超采样降采样的平滑浏览图。诊断仍用原始 1x，不用浏览图掩盖误差。
 - SVG：M/L/H/V/C/S/Q/T/A/Z、基本图形、变换和普通文字；曲线采样后仍是原生路径，误差默认 0.35 px；输出折线节点，不保留原始 Bézier 控制点。
 - 组：连续绘制顺序中的多对象组成为原生 PPT 组；不连续组只保留逻辑组，避免改变遮挡关系。
 - 图片：原始字节、哈希、非破坏性裁剪、等比 frame；明确标为不可编辑。

@@ -49,6 +49,16 @@ test('baseline anchors produce measured boxes with correct alignment', () => {
     anchor: {x: 0, y: 80}, alignment: 'center'}, measure, canvas), /outside the source canvas: outside/);
 });
 
+test('native baseline uses font ascent and leading rather than string ink', () => {
+  const nativeMeasure = text => ({...measure(text), fontBoundingBoxAscent: 11,
+    fontBoundingBoxDescent: 3});
+  const result = fittedTextBox({id:'source-baseline',text:'AB',font_size:10,
+    anchor:{x:50,y:80}},nativeMeasure,canvas);
+  assert.equal(result.layout.native_baseline_ascent,12);
+  assert.equal(result.box.y,68);
+  assert.equal(result.box.y+result.layout.native_baseline_ascent,80);
+});
+
 test('rotation is checked after measuring the full box', () => {
   assert.throws(() => fittedTextBox({id: 'rotated', text: 'A', font_size: 10,
     box: {x: 0, y: 0, width: 40, height: 20}, rotation: 45}, measure, canvas), /rotated/);

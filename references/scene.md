@@ -48,8 +48,8 @@
 
 对象与样式：
 
-- `path`：`moveTo/lineTo/close`，支持同一对象中的多个子路径；曲线先采样，非零环绕孔洞保留。坐标是整个参考画布坐标。箭头头部也用稳定路径对象表示。SVG 导入误差默认 0.35 px，在变换后的画布上衡量。
-- `text`：原文、`font_size` 为像素，`bold/italic/rotation` 可选。使用 `box`，或未旋转 SVG 文本的基线 `anchor:{x,y}`。`wrap` 用 `none` 或 `square`；不以空格模拟居中，不为排版插入硬换行。
+- `path`：`moveTo/lineTo/cubicTo/close`，支持同一对象中的多个子路径；`cubicTo:{x1,y1,x2,y2,x,y}` 使用原画布的两个控制点和终点。最终 PPT 保留真正的 `a:cubicBezTo`，SVG 保留 `C`；Artifact Tool 中间体采样不作为最终几何。非零环绕孔洞保留。坐标是整个参考画布坐标。箭头头部也用稳定路径对象表示。SVG 自动导入目前仍采样，误差默认 0.35 px。
+- `text`：原文、`font_size` 为像素，`font_family/bold/italic/rotation` 可选；family 必须在 runtime 显式配置，缺失字形或未配置字体报错，不回退。使用 `box`，或未旋转 SVG 文本的基线 `anchor:{x,y}`。`wrap` 用 `none` 或 `square`；不以空格模拟居中，不为排版插入硬换行。
 - `image`：`path/sha256/editable:false/box`。路径相对 job 且不得逃逸；`crop:{left,top,right,bottom}` 为 0–1 裁剪比例，保留原图字节。框内等比放置；不支持任意自由变形。
 - `style`：实心六位 hex 或 `none`，非负 `stroke_width`，可选 `opacity`。图片的效果不由此 style 修改。
 - `group_id` 记录逻辑组。只有在 z 顺序中连续且有多个成员的组会生成原生 PPT 组；不连续组保留逻辑映射，以免分组改变遮挡关系。

@@ -152,12 +152,12 @@ def validate(manifest, root, require_review=True):
             total_vertices += len(commands)
             check(total_vertices <= 200000, 'Total path command limit is 200000')
             if total_vertices > 200000: continue
-            active, points, drawable, previous = False, [], False, None
+            active, points, drawable, previous, subpath_start = False, [], False, None, None
             for command in commands:
                 check(isinstance(command, dict) and len(command) == 1, 'Invalid path command: ' + label)
                 if not isinstance(command, dict) or len(command) != 1: continue
                 op, point = next(iter(command.items()))
-                check(enum(op, {'moveTo', 'lineTo', 'close'}), 'Paths must be flattened before authoring: ' + label)
+                check(enum(op, {'moveTo', 'lineTo', 'cubicTo', 'close'}), 'Unsupported path command: ' + label)
                 if op in ('moveTo', 'lineTo'):
                     good = isinstance(point, dict) and set(point) == {'x', 'y'} and finite(point.get('x')) and finite(point.get('y'))
                     check(good, 'Invalid path point: ' + label)
@@ -166,13 +166,34 @@ def validate(manifest, root, require_review=True):
                         points.append(point)
                         if op == 'lineTo' and previous is not None and point != previous: drawable = True
                         previous = point
-                    if op == 'moveTo': active = True
+                    if op == 'moveTo':
+                        active = True
+                        subpath_start = point if good else None
                     else: check(active, 'lineTo before moveTo: ' + label)
-                elif op == 'close': check(active and point == {}, 'close without subpath: ' + label)
+                elif op == 'cubicTo':
+                    good = isinstance(point, dict) and set(point) == {'x1', 'y1', 'x2', 'y2', 'x', 'y'} and all(finite(point.get(key)) for key in ('x1', 'y1', 'x2', 'y2', 'x', 'y'))
+                    check(good, 'Invalid cubic control points: ' + label)
+                    check(active and previous is not None, 'cubicTo before moveTo: ' + label)
+                    if good:
+                        for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]:
+                            in_canvas(point[xkey], point[ykey], 'Cubic control hull ' + label)
+                        points.append({'x': point['x'], 'y': point['y']})
+                        if previous is not None and any({'x': point[xkey], 'y': point[ykey]} != previous for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]):
+                            drawable = True
+                        previous = {'x': point['x'], 'y': point['y']}
+                elif op == 'close':
+                    check(active and point == {}, 'close without subpath: ' + label)
+                    # A subsequent cubic begins at the closed subpath origin.
+                    if active:
+                        previous = subpath_start
             check(bool(points) and drawable, 'Path needs a drawable segment: ' + label)
             if opacity == 0 or (style.get('fill', 'none') == 'none' and (style.get('stroke', 'none') == 'none' or stroke_width == 0)):
                 warnings.append('Path has no visible paint: ' + label)
         elif kind == 'text':
+            if 'font_family' in obj:
+                family = obj['font_family']
+                check(isinstance(family, str) and bool(family.strip()) and all(ord(ch) >= 32 and ch not in {'\"', "'", '\\'} for ch in family),
+                      'Invalid text font_family: ' + label)
             check(isinstance(obj.get('text'), str) and bool(obj.get('text', '').strip()), 'Text is empty: ' + label)
             if isinstance(obj.get('text'), str):
                 check(all(ch in '\t\n\r' or 0x20 <= ord(ch) <= 0xD7FF or 0xE000 <= ord(ch) <= 0xFFFD or 0x10000 <= ord(ch) <= 0x10FFFF for ch in obj['text']),

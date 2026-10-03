@@ -1,0 +1,3 @@
+# Optional author-PDF inspection. Core image-to-PPT use does not require it.
+-r requirements.txt
+PyMuPDF>=1.24,<2

@@ -63,6 +63,20 @@ def font_profile(value, base):
         if expected is not None and actual != expected.lower():
             raise ValueError('Font hash mismatch: ' + role)
         fonts[role] = {'path': str(path), 'face_index': index, 'sha256': actual}
+    additional = value.get('additional', [])
+    if not isinstance(additional, list):
+        raise ValueError('fonts.additional must be a list of explicit font profiles')
+    if additional:
+        fonts['additional'] = []
+        names = {fonts['family'].casefold()}
+        for extra in additional:
+            if not isinstance(extra, dict) or extra.get('additional'):
+                raise ValueError('Additional font profiles cannot be nested')
+            normalized = font_profile(extra, base)
+            if normalized['family'].casefold() in names:
+                raise ValueError('Duplicate configured font family: ' + normalized['family'])
+            names.add(normalized['family'].casefold())
+            fonts['additional'].append(normalized)
     return fonts
 
 
@@ -350,7 +364,7 @@ def build(a):
 
 def main():
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument('--version', action='version', version='figure-rebuild 0.3.0')
+    p.add_argument('--version', action='version', version='figure-rebuild 0.4.0')
     sub = p.add_subparsers(dest='command', required=True)
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)
