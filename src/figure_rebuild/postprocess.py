@@ -92,7 +92,9 @@ def _mapped_frames(object_map, manifest):
                  box['height'] * scale * _EMU_PER_PX)
         if not all(math.isfinite(value) for value in frame):
             raise ValueError('Mapped frame exceeds numeric range: ' + entry['id'])
-        frames[entry['id']] = {**entry, 'frame': frame, 'source_box': box, 'scale': scale}
+        frames[entry['id']] = {**entry, 'frame': frame, 'source_box': box, 'scale': scale,
+                              'source_to_slide': {'translate_x': placement[0], 'translate_y': placement[1],
+                                                  'scale_numerator': placement[2], 'scale_denominator': canvas['width']}}
     return frames
 
 
@@ -222,7 +224,9 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
     if len(elements) != len(objects): raise ValueError(f'Exported object count mismatch: {len(elements)} != {len(objects)}')
-    mapping, raster_crops, cubic_paths, stroke_styles = [], [], [], []
+    mapping, raster_crops, cubic_paths, stroke_styles, winding_fills = [], [], [], [], []
+    from .native_winding import normalize_native_polygon_fill, root_group_is_identity
+    parent_identity = root_group_is_identity(tree)
     for element, obj in zip(elements, objects):
         pr = native(element)
         if pr is None: raise ValueError('Missing native identity')
@@ -254,6 +258,10 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
                 stroke_styles.append(stroke_record)
         if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
+        if obj['kind'] == 'path':
+            winding_fills.append(normalize_native_polygon_fill(
+                element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,
+                parent_identity=parent_identity))
         if obj['kind'] == 'image' and element.tag != f"{{{NS['p']}}}pic": raise ValueError('Raster asset classification mismatch')
         if obj['kind'] == 'image':
             rect = element.find('p:blipFill/a:srcRect', NS)
@@ -338,6 +346,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
         for name in payloads.keys() - {info.filename for info in infos}: z.writestr(name, payloads[name])
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
     data['stroke_styles'] = stroke_styles
+    data['native_winding_fills'] = winding_fills
     data['native_gradients'] = gradient_records
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),

@@ -11,13 +11,16 @@ from .pdf_image_native import PdfImageNativeError
 
 
 def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
-                            source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False):
+                            source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
+                            native_sampling_scale=8):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
     ``source_bounds`` is the tight visible x0/y0/x1/y1 in source pixels.
     Its outward integer rounding introduces less than one pixel of transparent
-    padding per edge. Eight samples per source pixel is a grid spacing, not a
-    bound on color/filtering error. ``user_clip_pdf`` remains a native clip.
+    padding per edge. ``native_sampling_scale`` is explicitly 4 or 8 (default)
+    samples per source pixel, a grid spacing rather than a color/filtering error
+    bound. A different sampling scale can change filtering at all output sizes;
+    it is not automatically more faithful. ``user_clip_pdf`` remains a native clip.
 
     Only Normal, unit-alpha, non-knockout RGB transparency groups are supported:
     an isolated full-page root and nonisolated children. Their actual callbacks
@@ -35,6 +38,9 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
     """
     if not isinstance(allow_native_rgb_group_sampling, bool):
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
+    if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
+            or native_sampling_scale not in (4, 8)):
+        raise ValueError('native_sampling_scale must be the integer 4 or 8')
     try:
         import pymupdf as fitz
     except ImportError as error:
@@ -75,10 +81,10 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         raise PdfImageNativeError('Native image rendering requires an unrotated PDF page')
     frame = [math.floor(source_bounds[0]), math.floor(source_bounds[1]),
              math.ceil(source_bounds[2]), math.ceil(source_bounds[3])]
-    sampling = 8
+    sampling = native_sampling_scale
     width, height = (frame[2]-frame[0])*sampling, (frame[3]-frame[1])*sampling
     if width*height > 64_000_000 or max(width, height) > 32768:
-        raise PdfImageNativeError('Native image occurrence exceeds the explicit 8x sampling budget')
+        raise PdfImageNativeError(f'Native image occurrence exceeds the explicit {sampling}x sampling budget')
     mapping = [source_transform[0]*sampling, 0, 0, source_transform[3]*sampling,
                (source_transform[4]-frame[0])*sampling,
                (source_transform[5]-frame[1])*sampling]
@@ -382,6 +388,8 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                'derived_aligned_frame_source_px': frame, 'user_clip_pdf_pt': list(user_clip_pdf),
                'transparent_padding_source_px': [source_bounds[0]-frame[0], source_bounds[1]-frame[1],
                                                  frame[2]-source_bounds[2], frame[3]-source_bounds[3]],
+               'native_sampling_scale_requested': native_sampling_scale,
+               'native_sampling_scale_effective': sampling,
                'sampling_scale': sampling, 'sampling_pitch_source_px': 1/sampling,
                'sampling_bound_scope': 'grid spacing only; not a bound on RGB, alpha, filtering or numerical error',
                'raster_size': [width, height], 'native_png_sha256': hashlib.sha256(encoded).hexdigest(),

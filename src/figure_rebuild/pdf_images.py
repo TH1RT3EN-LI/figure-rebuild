@@ -484,7 +484,7 @@ def _svg_images(svg, selection=None):
 
 def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, image_indices=None,
                        allow_affine_rasterization=False, native_occurrence_rendering=False,
-                       allow_native_rgb_group_sampling=False):
+                       allow_native_rgb_group_sampling=False, native_sampling_scale=8):
     """Return visible image occurrences with PNG bytes and explicit placement.
 
     ``page`` is one-based; ``region`` is x0/y0/x1/y1 in unrotated top-left PDF
@@ -512,7 +512,12 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     text/path/shading/other-image paints are omitted. This preserves native image
     filtering rather than first reconstructing a decoded RGBA image. The derived
     frame is rounded outward to integer source pixels (less than one transparent
-    pixel of padding per edge) and sampled at 8x. The original tight visible box
+    pixel of padding per edge) and sampled at ``native_sampling_scale`` (8 by
+    default; explicitly 4 is also supported). This option only affects native
+    occurrence rendering; 4 without that mode is rejected. The scale describes
+    grid spacing, not a bound on RGB/alpha error. Different scales can change
+    filtering at every output size and require source/output visual comparison.
+    The original tight visible box
     remains in its receipt. ``box``, ``visible_frame`` and ``asset_source_box``
     consistently describe the derived frame, with zero crop. Unsupported group
     effects fail closed. Affine placement still requires its separate opt-in.
@@ -545,6 +550,11 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
         raise ValueError('PDF image extraction requires the optional source dependencies') from error
     if not isinstance(native_occurrence_rendering, bool):
         raise ValueError('native_occurrence_rendering must be a boolean')
+    if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
+            or native_sampling_scale not in (4, 8)):
+        raise ValueError('native_sampling_scale must be the integer 4 or 8')
+    if native_sampling_scale != 8 and not native_occurrence_rendering:
+        raise ValueError('native_sampling_scale=4 requires native_occurrence_rendering=True')
     if not isinstance(allow_native_rgb_group_sampling, bool):
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
     if allow_native_rgb_group_sampling and not native_occurrence_rendering:
@@ -641,7 +651,8 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                         native = render_native_pdf_image(
                             render_document[page-1], bboxlog, paint[0], source_transform=mapping,
                             source_bounds=frame, user_clip_pdf=user_clip,
-                            allow_native_rgb_group_sampling=allow_native_rgb_group_sampling)
+                            allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
+                            native_sampling_scale=native_sampling_scale)
                     native['receipt']['render_document_state'] = 'fresh_source_bytes_per_occurrence'
                     native['receipt']['metadata_and_render_documents_separated'] = True
                     if allow_native_rgb_group_sampling:

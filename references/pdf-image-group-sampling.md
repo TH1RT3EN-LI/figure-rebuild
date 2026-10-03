@@ -48,7 +48,7 @@ bytes are bound by SHA-256. No reference profile allowlist is used.
 
 ## Accuracy and review
 
-Eight samples per source pixel describe grid spacing only. The outward integer
+By default, eight samples per source pixel describe grid spacing only. The outward integer
 frame can add less than one source pixel of transparent padding per edge; the
 actual native ROI clip remains applied. Neither statement bounds RGB or alpha
 error.
@@ -78,4 +78,31 @@ Metadata extraction and native pixel rendering use separate PDF documents. Nativ
 
 `provenance.native_image.render_document_state` is `fresh_source_bytes_per_occurrence`; `metadata_and_render_documents_separated` is true; `pixel_metadata_capture_phase` is `after_all_native_draw_devices_closed_and_png_encoded`. These describe the public `extract_pdf_images` native path. Direct low-level callers of `render_native_pdf_image` must provide a fresh PDF document themselves.
 
-This addresses a reproduced clipped/interpolated-image state effect in PyMuPDF 1.28.2. It does not change source content or native colorspace/group/attached-mask policies. Eight samples per source pixel remains a sampling pitch, not a color or alpha error bound. Shared-group decomposition still needs full-figure source/PPT review.
+This addresses a reproduced clipped/interpolated-image state effect in PyMuPDF 1.28.2. It does not change source content or native colorspace/group/attached-mask policies. The sampling pitch is not a color or alpha error bound. Shared-group decomposition still needs full-figure source/PPT review.
+
+## Explicit native sampling scale
+
+`extract_pdf_images(..., native_occurrence_rendering=True, native_sampling_scale=4)`
+selects four samples per source pixel. The default remains `8`, preserving the
+existing native image bytes. Only the integers `4` and `8` are accepted; booleans
+and floats are rejected. Selecting `4` without native occurrence rendering is
+an error. Decoded-image and separate affine-only rasterization policies are
+unchanged. The low-level `render_native_pdf_image` accepts the same option.
+
+The integer source frame, exact image/clip/mask geometry and zero crop do not
+change. The native draw matrix, pixel dimensions and grid pitch use the selected
+scale together. The existing limits remain 64,000,000 output pixels and 32,768
+pixels per dimension. Receipts record `native_sampling_scale_requested`,
+`native_sampling_scale_effective`, `sampling_scale`, `sampling_pitch_source_px`,
+the actual matrix, dimensions and PNG hash. No automatic scale selection occurs.
+
+More samples do not ensure closer agreement with a source rendered directly at
+a different resolution. A real three-image SAM2 crop reproduced an internal
+filtering discontinuity even when the complete original PDF was rendered at
+8× and then reduced to 4×; native 4× occurrence sampling improved that crop.
+The discontinuity was inside an opaque image, with exact PPT placement and no
+group or attached mask. Combining the three images at 8× did not resolve it and
+worsened some boundary comparisons at lower scales. This local observation
+does not establish that 4× improves other images. Every policy change requires
+fresh full-figure source/PPT comparison at the intended output sizes; it neither
+closes a fidelity finding nor proves exact color, alpha or compositing behavior.
