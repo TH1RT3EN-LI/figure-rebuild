@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T19:28:47.075138+00:00",
+  "updated_at": "2026-10-04T20:38:06.919087+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 231,
-    "open": 64,
+    "closed_model_visual_review": 234,
+    "open": 61,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -7133,6 +7133,211 @@
           "sha256": "3360fe2b489007b9199676bd76f4c1d08a895cd00b057b967155be4005a13130"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2021-13-f08",
+      "issue_id": "ccf-2021-13-f08-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore five independent source arrow fill polygons in the t7/t8/t9/t10/t11 crossing from actual native shading resources and complete original clip chains. Fifteen contiguous native shade occurrences, their sampled RGB input tables, actual ICC profile/colorspace handles, matrices and paint order are bound and replayed. The green t8 foreground fill now covers the independent blue arrows correctly; the original white gaps and arrow endpoints are restored. Five legacy color-contour paths are replaced by separate editable native gradient paths. Original strokes, all 139 live labels and every other object remain byte-identical and in order. Whole source 1x, final native PPT whole 1x/2x and matched source/old/new 4x crossing crops were actually viewed. A source-component proxy field bound of 2/255 covers complete input-table approximation, stop encoding and axis phase over the original control hull; it is explicitly NOT an ICC-to-sRGB or renderer RGB error bound. The first four-arrow attempt remained partial because a short blue fallback still contaminated a gap; its output and review are preserved. Default automatic shading policy is unchanged.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-13-f08-geometry-010v2/output-review.json",
+          "sha256": "591426f4ac397d7254ca47fb61e310e6e19eb22360bb9f915a45fbf35bf3ea58"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-13-f08-geometry-010v2/native-readback.json",
+          "sha256": "d4950d3ad5878d5f93d018d42bcf6c8e409a35b80bb15cf5cfbf74b1d0343571"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-13-f08-geometry-010v2/arrow-gallery-bindings.json",
+          "sha256": "9e4956f2cd6151280f682294e66fef5e4f32270c0ffd9d20a1c3df04af709deb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-13-f08-geometry-010v2/visual-review-supplement.json",
+          "sha256": "4f8af81aa7405883204ca4180ac8d7b6603157046a1c404925757633d9bf459d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/build/run-001/output-review.json",
+          "sha256": "ff0a1a54dc683d00a371c187022f28ba180442a0f61f3b952fe41b13aa8a6228"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/build/run-001/render-audit.json",
+          "sha256": "9a5fdae27de63a7ecfd7dcb4dd2e73c241f61e43dce2d11a88026d56d6cbc6d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/build/run-001/editability.json",
+          "sha256": "d164d0ed7731c79abb846e3279fdcf264db7e6bfdedb651164f001a86b92cf92"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/build/run-001/manifest-snapshot.json",
+          "sha256": "65703b7ed27b1ff3009c3205b6f34f489ad3a1d47a1776c50e9ff12d282c0dea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-006/jobs/ccf-2021-13-f08/source-evidence/arrow-gradient-recovery.json",
+          "sha256": "ef616757a6823212414498a88e01c33231e372cc14a2e5693a1509c9612d48e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML-NATIVE-GRADIENT-PROOF-004.json",
+          "sha256": "d76d82f827d674abec9049ec5a6ffe5559eddf617415a7f01ef59c208d133827"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/full-tests-009.json",
+          "sha256": "3360fe2b489007b9199676bd76f4c1d08a895cd00b057b967155be4005a13130"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-tests-010-retry001.json",
+          "sha256": "fe374f8cceedaa318ad8cf22dee9a7844fc095921eb4477c0fa2f65e5ab983c9"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-11-f02",
+      "issue_id": "ccf-2020-11-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore the visible three-dot ellipses in all four ColBERT panels by reconstructing fourteen independently bound author bitmap primitive occurrences as 42 editable black cubic ellipses with local flat backgrounds. Fresh native image identities, actual complete occurrence context/clip callbacks and source sampling bytes are replayed; weighted centroid/ink-area/aspect proposals and explicit visible-frame constraints are retained. The former 71 quantized/retraced contour paths are replaced by 56 native primitive paths in fourteen identity groups. This is explicit reconstruction of source bitmap primitives, not original vector recovery or pixel-equivalence proof. Ordinary live labels, original vector border/network paths and every other object remain byte-identical and in relative paint order. Final OOXML curves, winding, native group identity and complete leaf order are independently checked. Source whole 1x, final native PPT whole 1x/2x and five matched source/old/new 4x horizontal/vertical crops were actually viewed; three filled dots remain clear at each inspected source position. Original border/stroke fidelity D03 remains open.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f02-dots-010v2/output-review.json",
+          "sha256": "238d070f7b0fc47f609bc084ffb818f6c6bfbba4db51d51d946f2bec8f303184"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f02-dots-010v2/native-readback.json",
+          "sha256": "96c3117cec99544d36e10e4abdc61ee9b6915a51d6f5b50cd83b6d88041ce51d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f02-dots-010v2/dot-gallery-bindings.json",
+          "sha256": "c585a4bdc4f0efd4779aaaf5553dc603c2fc7dafd083bb71ae484545b17469ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f02-dots-010v2/visual-review-supplement.json",
+          "sha256": "bc3c972dcd221b3d8d32e2eb7c9863f0c54f1bddec6d5f624c21c29d120dbe3d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/build/run-001/output-review.json",
+          "sha256": "6a65adf778e472e1cfebcc5a55eb2f14c7e8ae275cf7f8ab4d38a49ff72eed6d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/build/run-001/render-audit.json",
+          "sha256": "74e676e7b5a1c8ed5fdcb0e15cef0f1aa7816272c9ef26d496524e821feca322"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/build/run-001/editability.json",
+          "sha256": "d20dfb4d70f8dd8f05c02f8d7875ad56cfd49ac29c2daf744b41e36b5a881448"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "3a354c74a899ef26f44003dccf88785d57898332d850c082cbe2be6030fcbb40"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-009/jobs/ccf-2020-11-f02/source-evidence/dot-reconstruction.json",
+          "sha256": "df8cbc0ab786c20445150c93083021a9e74db95353532eb13f359f9eadfe3382"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-DOT-PROPOSALS-001.json",
+          "sha256": "afa1e63477bfde1a64a7ac980e3666b44571f20ecd5f22c8ff9d0de4070f4049"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-image-probe-001/native-image-receipts.json",
+          "sha256": "73c9794d6f513baa0086d388ac5d06ef8c49a851dee50fea09678754a4bbd0ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-DOT-BACKGROUND-FRAME-CORRECTION-001.json",
+          "sha256": "afa28e3ddb3a376addc4f03c4378325506f877c13fd273c8eb87a51ea1616a86"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/full-tests-009.json",
+          "sha256": "3360fe2b489007b9199676bd76f4c1d08a895cd00b057b967155be4005a13130"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-tests-010-retry001.json",
+          "sha256": "fe374f8cceedaa318ad8cf22dee9a7844fc095921eb4477c0fa2f65e5ab983c9"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-11-f03",
+      "issue_id": "ccf-2020-11-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore both visible document-row ellipses in ColBERT Figure 3 by reconstructing two independently bound author bitmap primitive occurrences as six editable black cubic ellipses with local flat backgrounds. Fresh native image identities, complete original occurrence context/clip callbacks and sampling bytes are replayed; weighted centroid/ink-area/aspect proposals and explicit actual-visible-frame constraints are retained. Eight former retraced fallback paths are replaced by eight native primitive paths in two identity groups. A third bitmap occurrence behind the Document Encoder remains outside this repair; its old zero-contour treatment is not promoted to a visibility proof. This is explicit reconstruction of source bitmap primitives, not original vector recovery or pixel equivalence. All 29 ordinary live labels and every other object remain byte-identical and in relative paint order. Final OOXML curves, winding, native group identity and complete leaf order are independently checked. Source whole 1x, final native PPT whole 1x/2x and two matched source/old/new 4x document-row crops were actually viewed; each row shows three separate filled dots in the original positions.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f03-dots-010v2/output-review.json",
+          "sha256": "eb09b18e242856978045c7f1c2083abe6c1d80d712656293c163bb5df364c72b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f03-dots-010v2/native-readback.json",
+          "sha256": "92aaa203546eb7cd8256366e080febda5aeada8c5d519e89351493cf3110545d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f03-dots-010v2/dot-gallery-bindings.json",
+          "sha256": "d352f2a15b53c791da1d8be7f7f6b58dd4d8c3b4dcaefac3debc5ed7dfa60df7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f03-dots-010v2/visual-review-supplement.json",
+          "sha256": "b3b6fb77407c9e4bdd3c43cba55bc30b58f27ab298b694e02289cfbaa7396cc1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/build/run-001/output-review.json",
+          "sha256": "2330340a1158e696596207aec69cff7604ffe5993eb73a2a2181162dc1049ffa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/build/run-001/render-audit.json",
+          "sha256": "052bab3362f350cda2a44fb864d5292ff8502de3a17267aee67cc9b079a56a7b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/build/run-001/editability.json",
+          "sha256": "239406750df8e968eeb897eda91ad2da6a5800f0e7d909bd123e7ab7e3271369"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "3b47ba1d0c05e4d89ae1a92e55b1e91e620cf781a0cf5607ef697eb4885af18f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-010/jobs/ccf-2020-11-f03/source-evidence/dot-reconstruction.json",
+          "sha256": "2ecca2be6e07a7a577891f4a074730ea72f9d53796fae0c50dfbab7231d03c61"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-F03-DOT-PROPOSALS-001.json",
+          "sha256": "9fb0f164191d32c2da3d50e10b9a13ec889391690a9d0d3c8b2e9b0b3dd4a38b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-f03-image-probe-001/native-image-receipts.json",
+          "sha256": "0e6c96e9166ebea5bbf1822e6e9a5616b2fa73d7aad9f208fb8f8a17dcae44f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-DOT-BACKGROUND-FRAME-CORRECTION-001.json",
+          "sha256": "afa28e3ddb3a376addc4f03c4378325506f877c13fd273c8eb87a51ea1616a86"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/full-tests-009.json",
+          "sha256": "3360fe2b489007b9199676bd76f4c1d08a895cd00b057b967155be4005a13130"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-tests-010-retry001.json",
+          "sha256": "fe374f8cceedaa318ad8cf22dee9a7844fc095921eb4477c0fa2f65e5ab983c9"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -7142,9 +7347,7 @@
     "ccf-2020-03-f04-D04",
     "ccf-2020-09-f02-D02",
     "ccf-2020-09-f02-D03",
-    "ccf-2020-11-f02-D02",
     "ccf-2020-11-f02-D03",
-    "ccf-2020-11-f03-D01",
     "ccf-2020-12-f02-D03",
     "ccf-2020-15-f05-D03",
     "ccf-2020-17-f02-D01",
@@ -7159,7 +7362,6 @@
     "ccf-2021-12-f02-D02",
     "ccf-2021-12-f02-D03",
     "ccf-2021-13-f01-D01",
-    "ccf-2021-13-f08-D01",
     "ccf-2021-14-f04-D05",
     "ccf-2021-17-f05-D01",
     "ccf-2022-01-f03-D02",
