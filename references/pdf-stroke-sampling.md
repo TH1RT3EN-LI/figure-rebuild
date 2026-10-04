@@ -17,6 +17,7 @@ row = sample_pdf_stroke(
     region=declared_roi_pdf_points,
     scale=2,
     native_sampling_scale=8,
+    allow_native_rgb_group_sampling=False, # explicit opt-in, never inferred
 )
 ```
 
@@ -42,6 +43,25 @@ Unsupported masks, patterns, non-neutral groups, non-unit alpha and overprint
 fail. Original clipping is applied by MuPDF, without stroke geometry rebuilding
 or dash lowering. Sampling pitch is a grid spacing, not an RGB, alpha or filtering
 error bound. Full ROI storage also gives each asset a full ROI selection frame.
+
+`allow_native_rgb_group_sampling=True` explicitly admits the existing native
+RGB-group sampling domain: a neutral full-page root plus at most one RGB child
+with Normal blend, unit alpha and no knockout. Isolated children and native RGB
+ICC profiles can participate; their original callbacks and colorspace profiles
+are forwarded. CMYK, extra nesting, masks, changed default RGB and other
+compositing remain unsupported. The flag must be a boolean; omitted or false
+retains strict group rejection.
+
+This mode verifies active group IDs, bounds, original paint intervals and group
+parameters against the independently inspected source context. Its receipt
+preserves the full group paint counts, native profile identities,
+`shared_group_split_unverified`, `required_full_figure_visual_review`, null
+`rgb_alpha_error_bound` and false `exact_group_decomposition_claimed`. These
+fields are required even for a source that needs no additional group admission.
+Separately sampling one stroke suppresses its siblings, so this mode does not
+establish compositing equivalence for the complete original group. Check the
+final complete figure; retain any observed group-compositing discrepancy as an
+open finding.
 
 Inspect the final whole figure and affected junctions at 1×, 2× and 4×. Retain
 the strict vector failure, sampling receipt, original context, stable core bytes,

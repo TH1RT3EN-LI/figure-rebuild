@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T10:18:54.844240+00:00",
+  "updated_at": "2026-10-04T11:18:16.846575+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 189,
-    "closed_renderer_localization": 1,
-    "open": 106
+    "closed_model_visual_review": 193,
+    "open": 102,
+    "closed_renderer_localization": 1
   },
   "closed_findings": [
     {
@@ -4799,6 +4799,286 @@
           "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-06-f03",
+      "issue_id": "ccf-2020-06-f03-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Original Helvetica-style labels, source baselines, widths and Greek input positions are restored. The yellow-capsule text sits in the source position. Both g descenders are complete after correcting the source ROI bottom205 to207; no glyph coordinates changed. Actual source/baseline/final whole1x2x and matched4x regional review plus complete final PPT source geometry/style/frame/order readback. Visible glyph fidelity is closed; live text and automatic semantics remain separate.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/output-review.json",
+          "sha256": "212bad710c0b03e1eff6155d9d57a198a1340305ee855e212ce94c5f335de3c8"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/RESULT.json",
+          "sha256": "89baf4876fccf662281a88a51bc7023ada01da0905fbccdd9e36c3adb8a0388b"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/paths.json",
+          "sha256": "35047c5d66cac3446b120b66db994f353ae30a89fddc13335f9cae8365b60722"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/images.json",
+          "sha256": "9730caf8755a69509bf2265c6348b5527feded4fbef39de37e5237a6b0c9db43"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/comparison/bindings.json",
+          "sha256": "ad683192521282e25e0961779d291254b6b74633a6061cdcdd69265f645457af"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/VISUAL-RESULT.json",
+          "sha256": "1293ef451d061fa10a29c0c16daf51b586d4a41cad2b2276eb3e6d0d04409bc6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/output-review.json",
+          "sha256": "de919d33598cfede6b4bd1adf515efe94385fdd31cdc0b2d6a2d2b9bd1f6d5cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/render-audit.json",
+          "sha256": "46ccb9ffbeeea3d36abf5f918bcbb9c2287f1b49e57af705239ed8a31f68afa1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "9dcbd95a0fa01fc1525280ad898ce94d822f058d395bea72208dfa2ddee5428e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/asset-snapshot.json",
+          "sha256": "b1474d7a6fa3d275d1508a52bfbdb7a3ca87ab4ba3593e6ca7dbacbf8b2aa281"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/BART-ROI-CORRECTION.json",
+          "sha256": "587a0977c7912c95049324e94690a4c35b1db0c774533538e27147683ae94bd2"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-14-f02",
+      "issue_id": "ccf-2020-14-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source serif glyphs, word spaces, text widths, line breaks and bold Pre-Training/Fine-Tuning headings are restored. Subgraph Instance Discrimination and GCC: Graph Contrastive Coding no longer collapse spaces or extend beyond their source boxes. Actual source/baseline/final whole1x2x and matched4x regional review plus complete final PPT source geometry/style/frame/order readback. Visible glyph fidelity is closed; live text and automatic semantics remain separate.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/output-review.json",
+          "sha256": "03784f7fe97d7228b04dcb95132841673e99d55ce824099f22614923f9b1158e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/RESULT.json",
+          "sha256": "79ac819f9436e7d1f005af537688a7709fb87ae2d2f34564b4d399c4d86129ba"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/paths.json",
+          "sha256": "22f0724a78506b9e26621594f185df9b581f218a89283a2a15ce3948c7e9c11a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/images.json",
+          "sha256": "380b68c94ec776a40fe4e34960f4eaca180adc0f08451db974f9833316a7b5d7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/comparison/bindings.json",
+          "sha256": "4c1fc87a9798d68703839be2f41b8063ede340df583a629ad8c84429d227fbf7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/VISUAL-RESULT.json",
+          "sha256": "ad3352ad615ff04095701b5ad1390670ef617574592074ef671694fc8ec4c9d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/output-review.json",
+          "sha256": "1056f5f68861fb27c2b7e4b51c660832620f68bc2fc97f55d0ebb85b1e79a820"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/render-audit.json",
+          "sha256": "09196148d7013aa650e2e5f9ff1cf008dbce5eee320756e70b27a1c57e7aee64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "d7f0823fd37d603d4ab648da4b832bcf4a26e6b0744d173bb3660e8c9f10e2b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/asset-snapshot.json",
+          "sha256": "41b56d33720abd6e8ba12438f1b3efa9182b7bea1e59bf38e537fa9fb26a2588"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-path-crosswalk.json",
+          "sha256": "80625a9b1ce3a33bd73599b44dfc13145a17de3749405326ed40cd4395d011ce"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-sampling-002.json",
+          "sha256": "1f4db75e33526eebf1a90d72ceb1661853c119374aa2c6080869c59ae1b2cc79"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-14-f01",
+      "issue_id": "ccf-2022-14-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original bold Delta, stars, e subscripts, italic p/T and the summation condition keep their source glyph outlines and relative placement. Thin triangle substitutions and baseline/collision drift from the old reconstruction are removed. Actual source/baseline/final whole1x2x and matched4x regional review plus complete final PPT source geometry/style/frame/order readback. Visible glyph fidelity is closed; live text and automatic semantics remain separate.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/output-review.json",
+          "sha256": "b9a9a5921911d40ed4b68040fd20a858e00ad731a0ade43398289d186c160e2d"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/RESULT.json",
+          "sha256": "e9aa93ea53883167611fd3df3de7b09ba462810f53bec2cfa370699bf1bc35c1"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/paths.json",
+          "sha256": "5f737db927016004a48a219cbb691a9bec5adc3b0390a69a37eb63e7c14a5b86"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/images.json",
+          "sha256": "a4bdf4eb835e440abff688796c3d37ff0441ae60cccf6ad3b312f67bd5ac9c40"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/comparison/bindings.json",
+          "sha256": "9a824922502e732495dd59e354e1efc34386d52be6ed1dad879aacbfbeb4580e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/VISUAL-RESULT.json",
+          "sha256": "79b842cf32078d150322ec98ec5a5e82b7fe48fcc86d9d5eb1e1a71836d5dc9e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/output-review.json",
+          "sha256": "b71f4df1668ce4046914badd85d3c86dde2373303b419a332cf4634c71a8b89d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/render-audit.json",
+          "sha256": "d3ace528a4ae3c3bb2685cd7a1be759919bec4b0b1d1e50976bb1a8b074a2866"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "d64ac60af79420a28ffa29edf34222f6aea13ee8008c88c23f118dc202ee5f8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/asset-snapshot.json",
+          "sha256": "e946cf256e6a4fa8b1e71eb11a634dcde466418b959841570059cb6744619223"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-path-crosswalk.json",
+          "sha256": "76e6fa7bf2f3d8f43c60405010363307a79f4976b13d1de7463fd1ae77c2188a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-sampling-003.json",
+          "sha256": "e9d7b2228cac849d01010624e3299f1eec71984727a18f1bac8a03f4ae2086c5"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-14-f01",
+      "issue_id": "ccf-2022-14-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source Latin Modern serif outlines, spacing, baseline, bold Figure1 lead and line breaks are restored; the stretched old caption is removed. Actual source/baseline/final whole1x2x and matched4x regional review plus complete final PPT source geometry/style/frame/order readback. Visible glyph fidelity is closed; live text and automatic semantics remain separate.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/output-review.json",
+          "sha256": "b9a9a5921911d40ed4b68040fd20a858e00ad731a0ade43398289d186c160e2d"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/RESULT.json",
+          "sha256": "e9aa93ea53883167611fd3df3de7b09ba462810f53bec2cfa370699bf1bc35c1"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/paths.json",
+          "sha256": "5f737db927016004a48a219cbb691a9bec5adc3b0390a69a37eb63e7c14a5b86"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/images.json",
+          "sha256": "a4bdf4eb835e440abff688796c3d37ff0441ae60cccf6ad3b312f67bd5ac9c40"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/comparison/bindings.json",
+          "sha256": "9a824922502e732495dd59e354e1efc34386d52be6ed1dad879aacbfbeb4580e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/VISUAL-RESULT.json",
+          "sha256": "79b842cf32078d150322ec98ec5a5e82b7fe48fcc86d9d5eb1e1a71836d5dc9e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/output-review.json",
+          "sha256": "b71f4df1668ce4046914badd85d3c86dde2373303b419a332cf4634c71a8b89d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/render-audit.json",
+          "sha256": "d3ace528a4ae3c3bb2685cd7a1be759919bec4b0b1d1e50976bb1a8b074a2866"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "d64ac60af79420a28ffa29edf34222f6aea13ee8008c88c23f118dc202ee5f8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/asset-snapshot.json",
+          "sha256": "e946cf256e6a4fa8b1e71eb11a634dcde466418b959841570059cb6744619223"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-path-crosswalk.json",
+          "sha256": "76e6fa7bf2f3d8f43c60405010363307a79f4976b13d1de7463fd1ae77c2188a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-sampling-003.json",
+          "sha256": "e9d7b2228cac849d01010624e3299f1eec71984727a18f1bac8a03f4ae2086c5"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -4812,7 +5092,6 @@
     "ccf-2020-04-f01-D02",
     "ccf-2020-06-f01-D01",
     "ccf-2020-06-f01-D02",
-    "ccf-2020-06-f03-D01",
     "ccf-2020-09-f02-D01",
     "ccf-2020-09-f02-D02",
     "ccf-2020-09-f02-D03",
@@ -4824,7 +5103,6 @@
     "ccf-2020-12-f02-D03",
     "ccf-2020-12-f03-D01",
     "ccf-2020-14-f01-D01",
-    "ccf-2020-14-f02-D01",
     "ccf-2020-15-f05-D03",
     "ccf-2020-17-f02-D01",
     "ccf-2020-18-f01-D01",
@@ -4861,8 +5139,6 @@
     "ccf-2022-12-f04-D01",
     "ccf-2022-13-f01-D01",
     "ccf-2022-13-f01-D02",
-    "ccf-2022-14-f01-D01",
-    "ccf-2022-14-f01-D02",
     "ccf-2022-14-f02-D01",
     "ccf-2023-01-f01-D01",
     "ccf-2023-01-f01-D02",
@@ -9887,6 +10163,367 @@
         "original_issue_remains_open": true
       },
       "partial_resolution": "Optional separately named PDF derivation only. Raw PDF CPU-strip tiles show fine gray subdivisions not present in the original or direct PNG. The separately named derived PDF removes the observed CPU tile grid at whole 1x/2x and the selected critical 4x CPU/legend regions. Source dot patterns, CPU strips, arrows and title remain visible; 4x sampling does not cover all 155 image occurrences. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure."
+    },
+    {
+      "figure_id": "ccf-2020-06-f03",
+      "issue_id": "ccf-2020-06-f03-SOURCE-OUTLINE-TEXT-001",
+      "severity": "major",
+      "status": "open",
+      "description": "440 source glyphs remain native paths. Final PPT contains zero live text; automatic literal, formula and connection recognition is NOT_PROVIDED.",
+      "region": "440 original source glyphs",
+      "resolution": "Preserve visible source content but keep recognition and editable text/math open.",
+      "latest_verified_attempt": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/output-review.json",
+          "sha256": "212bad710c0b03e1eff6155d9d57a198a1340305ee855e212ce94c5f335de3c8"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/RESULT.json",
+          "sha256": "89baf4876fccf662281a88a51bc7023ada01da0905fbccdd9e36c3adb8a0388b"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/paths.json",
+          "sha256": "35047c5d66cac3446b120b66db994f353ae30a89fddc13335f9cae8365b60722"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/native-readback-004/images.json",
+          "sha256": "9730caf8755a69509bf2265c6348b5527feded4fbef39de37e5237a6b0c9db43"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/comparison/bindings.json",
+          "sha256": "ad683192521282e25e0961779d291254b6b74633a6061cdcdd69265f645457af"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-06-f03-002/VISUAL-RESULT.json",
+          "sha256": "1293ef451d061fa10a29c0c16daf51b586d4a41cad2b2276eb3e6d0d04409bc6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/output-review.json",
+          "sha256": "de919d33598cfede6b4bd1adf515efe94385fdd31cdc0b2d6a2d2b9bd1f6d5cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/render-audit.json",
+          "sha256": "46ccb9ffbeeea3d36abf5f918bcbb9c2287f1b49e57af705239ed8a31f68afa1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "9dcbd95a0fa01fc1525280ad898ce94d822f058d395bea72208dfa2ddee5428e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-06-f03/build/run-001/asset-snapshot.json",
+          "sha256": "b1474d7a6fa3d275d1508a52bfbdb7a3ca87ab4ba3593e6ca7dbacbf8b2aa281"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/BART-ROI-CORRECTION.json",
+          "sha256": "587a0977c7912c95049324e94690a4c35b1db0c774533538e27147683ae94bd2"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-14-f02",
+      "issue_id": "ccf-2020-14-f02-SOURCE-OUTLINE-TEXT-001",
+      "severity": "major",
+      "status": "open",
+      "description": "186 source glyphs remain native paths. Final PPT contains zero live text; automatic literal, formula and connection recognition is NOT_PROVIDED.",
+      "region": "186 original source glyphs",
+      "resolution": "Preserve visible source content but keep recognition and editable text/math open.",
+      "latest_verified_attempt": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/output-review.json",
+          "sha256": "03784f7fe97d7228b04dcb95132841673e99d55ce824099f22614923f9b1158e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/RESULT.json",
+          "sha256": "79ac819f9436e7d1f005af537688a7709fb87ae2d2f34564b4d399c4d86129ba"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/paths.json",
+          "sha256": "22f0724a78506b9e26621594f185df9b581f218a89283a2a15ce3948c7e9c11a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/images.json",
+          "sha256": "380b68c94ec776a40fe4e34960f4eaca180adc0f08451db974f9833316a7b5d7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/comparison/bindings.json",
+          "sha256": "4c1fc87a9798d68703839be2f41b8063ede340df583a629ad8c84429d227fbf7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/VISUAL-RESULT.json",
+          "sha256": "ad3352ad615ff04095701b5ad1390670ef617574592074ef671694fc8ec4c9d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/output-review.json",
+          "sha256": "1056f5f68861fb27c2b7e4b51c660832620f68bc2fc97f55d0ebb85b1e79a820"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/render-audit.json",
+          "sha256": "09196148d7013aa650e2e5f9ff1cf008dbce5eee320756e70b27a1c57e7aee64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "d7f0823fd37d603d4ab648da4b832bcf4a26e6b0744d173bb3660e8c9f10e2b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/asset-snapshot.json",
+          "sha256": "41b56d33720abd6e8ba12438f1b3efa9182b7bea1e59bf38e537fa9fb26a2588"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-path-crosswalk.json",
+          "sha256": "80625a9b1ce3a33bd73599b44dfc13145a17de3749405326ed40cd4395d011ce"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-sampling-002.json",
+          "sha256": "1f4db75e33526eebf1a90d72ceb1661853c119374aa2c6080869c59ae1b2cc79"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-14-f02",
+      "issue_id": "ccf-2020-14-f02-SAMPLED-STROKES-001",
+      "severity": "major",
+      "status": "open",
+      "description": "1 source strokes are transparent sampled image occurrences with full ROI selection frames. They retain original clips and isolated RGB group callbacks, but are not editable native curves. Shared-group compositing equivalence is unverified.",
+      "region": "1 selected original clipped strokes",
+      "resolution": "Explicit raster representation and group uncertainty remain open. Sampling pitch is not a color/alpha/filtering bound; no automatic vector fallback was enabled.",
+      "latest_verified_attempt": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/output-review.json",
+          "sha256": "03784f7fe97d7228b04dcb95132841673e99d55ce824099f22614923f9b1158e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/RESULT.json",
+          "sha256": "79ac819f9436e7d1f005af537688a7709fb87ae2d2f34564b4d399c4d86129ba"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/paths.json",
+          "sha256": "22f0724a78506b9e26621594f185df9b581f218a89283a2a15ce3948c7e9c11a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/native-readback-004/images.json",
+          "sha256": "380b68c94ec776a40fe4e34960f4eaca180adc0f08451db974f9833316a7b5d7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/comparison/bindings.json",
+          "sha256": "4c1fc87a9798d68703839be2f41b8063ede340df583a629ad8c84429d227fbf7"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-002/VISUAL-RESULT.json",
+          "sha256": "ad3352ad615ff04095701b5ad1390670ef617574592074ef671694fc8ec4c9d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/output-review.json",
+          "sha256": "1056f5f68861fb27c2b7e4b51c660832620f68bc2fc97f55d0ebb85b1e79a820"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/render-audit.json",
+          "sha256": "09196148d7013aa650e2e5f9ff1cf008dbce5eee320756e70b27a1c57e7aee64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "d7f0823fd37d603d4ab648da4b832bcf4a26e6b0744d173bb3660e8c9f10e2b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-002/jobs/ccf-2020-14-f02/build/run-001/asset-snapshot.json",
+          "sha256": "41b56d33720abd6e8ba12438f1b3efa9182b7bea1e59bf38e537fa9fb26a2588"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-path-crosswalk.json",
+          "sha256": "80625a9b1ce3a33bd73599b44dfc13145a17de3749405326ed40cd4395d011ce"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2020-14-f02-sampling-002.json",
+          "sha256": "1f4db75e33526eebf1a90d72ceb1661853c119374aa2c6080869c59ae1b2cc79"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-14-f01",
+      "issue_id": "ccf-2022-14-f01-SOURCE-OUTLINE-TEXT-001",
+      "severity": "major",
+      "status": "open",
+      "description": "181 source glyphs remain native paths. Final PPT contains zero live text; automatic literal, formula and connection recognition is NOT_PROVIDED.",
+      "region": "181 original source glyphs",
+      "resolution": "Preserve visible source content but keep recognition and editable text/math open.",
+      "latest_verified_attempt": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/output-review.json",
+          "sha256": "b9a9a5921911d40ed4b68040fd20a858e00ad731a0ade43398289d186c160e2d"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/RESULT.json",
+          "sha256": "e9aa93ea53883167611fd3df3de7b09ba462810f53bec2cfa370699bf1bc35c1"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/paths.json",
+          "sha256": "5f737db927016004a48a219cbb691a9bec5adc3b0390a69a37eb63e7c14a5b86"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/images.json",
+          "sha256": "a4bdf4eb835e440abff688796c3d37ff0441ae60cccf6ad3b312f67bd5ac9c40"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/comparison/bindings.json",
+          "sha256": "9a824922502e732495dd59e354e1efc34386d52be6ed1dad879aacbfbeb4580e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/VISUAL-RESULT.json",
+          "sha256": "79b842cf32078d150322ec98ec5a5e82b7fe48fcc86d9d5eb1e1a71836d5dc9e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/output-review.json",
+          "sha256": "b71f4df1668ce4046914badd85d3c86dde2373303b419a332cf4634c71a8b89d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/render-audit.json",
+          "sha256": "d3ace528a4ae3c3bb2685cd7a1be759919bec4b0b1d1e50976bb1a8b074a2866"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "d64ac60af79420a28ffa29edf34222f6aea13ee8008c88c23f118dc202ee5f8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/asset-snapshot.json",
+          "sha256": "e946cf256e6a4fa8b1e71eb11a634dcde466418b959841570059cb6744619223"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-path-crosswalk.json",
+          "sha256": "76e6fa7bf2f3d8f43c60405010363307a79f4976b13d1de7463fd1ae77c2188a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-sampling-003.json",
+          "sha256": "e9d7b2228cac849d01010624e3299f1eec71984727a18f1bac8a03f4ae2086c5"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-14-f01",
+      "issue_id": "ccf-2022-14-f01-SAMPLED-STROKES-001",
+      "severity": "major",
+      "status": "open",
+      "description": "2 source strokes are transparent sampled image occurrences with full ROI selection frames. They retain original clips and isolated RGB group callbacks, but are not editable native curves. Shared-group compositing equivalence is unverified.",
+      "region": "2 selected original clipped strokes",
+      "resolution": "Explicit raster representation and group uncertainty remain open. Sampling pitch is not a color/alpha/filtering bound; no automatic vector fallback was enabled.",
+      "latest_verified_attempt": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/output-review.json",
+          "sha256": "b9a9a5921911d40ed4b68040fd20a858e00ad731a0ade43398289d186c160e2d"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/RESULT.json",
+          "sha256": "e9aa93ea53883167611fd3df3de7b09ba462810f53bec2cfa370699bf1bc35c1"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/paths.json",
+          "sha256": "5f737db927016004a48a219cbb691a9bec5adc3b0390a69a37eb63e7c14a5b86"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/native-readback-004/images.json",
+          "sha256": "a4bdf4eb835e440abff688796c3d37ff0441ae60cccf6ad3b312f67bd5ac9c40"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/comparison/bindings.json",
+          "sha256": "9a824922502e732495dd59e354e1efc34386d52be6ed1dad879aacbfbeb4580e"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-003/VISUAL-RESULT.json",
+          "sha256": "79b842cf32078d150322ec98ec5a5e82b7fe48fcc86d9d5eb1e1a71836d5dc9e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/output-review.json",
+          "sha256": "b71f4df1668ce4046914badd85d3c86dde2373303b419a332cf4634c71a8b89d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/render-audit.json",
+          "sha256": "d3ace528a4ae3c3bb2685cd7a1be759919bec4b0b1d1e50976bb1a8b074a2866"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "d64ac60af79420a28ffa29edf34222f6aea13ee8008c88c23f118dc202ee5f8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/source-typography-completion-003/jobs/ccf-2022-14-f01/build/run-001/asset-snapshot.json",
+          "sha256": "e946cf256e6a4fa8b1e71eb11a634dcde466418b959841570059cb6744619223"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/FREEZE-002.json",
+          "sha256": "7c1c4f134f9f5f1ee1c8aec7bf1d1a1bc37e5f319249e92f7a80af9f5fad5c37"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/OUTPUT-REVIEWS.json",
+          "sha256": "a00c3d8a19f5117ca1b38e641e0f86b56e5a5fb270c96810e23fcb3744b5f1a5"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/RAW-PDF-CHECKS.json",
+          "sha256": "1b827fdf7b05dee553e65292267d5cfcd8297854e317740318deb95cbde4af22"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-path-crosswalk.json",
+          "sha256": "76e6fa7bf2f3d8f43c60405010363307a79f4976b13d1de7463fd1ae77c2188a"
+        },
+        {
+          "audit_relative_path": "reports/source-typography-completion-001/ccf-2022-14-f01-sampling-003.json",
+          "sha256": "e9d7b2228cac849d01010624e3299f1eec71984727a18f1bac8a03f4ae2086c5"
+        }
+      ]
     }
   ]
 }

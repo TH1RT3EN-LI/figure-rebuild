@@ -14,7 +14,7 @@ from .pdf_paint_context import inspect_pdf_paint_context
 class PdfStrokeSamplingError(ValueError):
     """The source stroke or supported sampling contract was not verified."""
 
-def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, region, scale=2, native_sampling_scale=8):
+def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, region, scale=2, native_sampling_scale=8, allow_native_rgb_group_sampling=False):
     """Return a sampled original stroke on the complete transparent ROI frame.
 
     Selection is the actual one-based page and complete native paint sequence,
@@ -28,7 +28,12 @@ def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, r
     ROI storage avoids assuming a diagnostic paint bbox is a support proof.
     Native rendering retains the original clips. Sampling pitch is not an RGB,
     alpha or filtering error bound. Unsupported masks/patterns/groups fail.
+    Explicit RGB-group sampling admits the existing bounded native group
+    renderer, retaining its full-figure review and unverified group-split
+    receipts. The default remains strict; no vector or group equivalence follows.
     """
+    if type(allow_native_rgb_group_sampling) is not bool:
+        raise PdfStrokeSamplingError('RGB group sampling flag must be boolean')
     if type(source_pdf_sha256) is not str or not re.fullmatch('[0-9a-f]{64}', source_pdf_sha256):
         raise PdfStrokeSamplingError('Source PDF SHA256 must be declared')
     if type(page) is not int or page < 1 or type(native_sequence) is not int or (native_sequence < 0):
@@ -79,7 +84,7 @@ def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, r
             raise PdfStrokeSamplingError('Selected occurrence is not a supported ordinary native stroke')
         transform = [scale, 0, 0, scale, -scale * region[0], -scale * region[1]]
         with fitz.open(stream=data, filetype='pdf') as pristine:
-            result = _render_native_pdf_paint(pristine[page - 1], bboxlog, native_sequence, source_transform=transform, source_bounds=[0, 0, width, height], user_clip_pdf=list(region), native_sampling_scale=native_sampling_scale, _paint_kind='stroke-path')
+            result = _render_native_pdf_paint(pristine[page - 1], bboxlog, native_sequence, source_transform=transform, source_bounds=[0, 0, width, height], user_clip_pdf=list(region), native_sampling_scale=native_sampling_scale, allow_native_rgb_group_sampling=allow_native_rgb_group_sampling, _paint_kind='stroke-path')
         receipt = result['receipt']
         if receipt['stroke_paints_forwarded'] != 1 or receipt['independent_other_paints_forwarded'] != 0:
             raise PdfStrokeSamplingError('Stroke forwarding count is not exactly the selected occurrence')
@@ -87,6 +92,23 @@ def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, r
         forwarded = receipt['clip_chain']
         if len(original_clips) != len(forwarded) or any((a['kind'] != b['kind'] or a.get('matrix') != b.get('matrix') or a['begin_paint_seqno'] != b['paint_count'] or (not b['forwarded']) for a, b in zip(original_clips, forwarded))):
             raise PdfStrokeSamplingError('Original active clip identities were not preserved')
+        if allow_native_rgb_group_sampling:
+            if (receipt.get('allow_native_rgb_group_sampling') is not True or
+                    receipt.get('required_full_figure_visual_review') is not True or
+                    'rgb_alpha_error_bound' not in receipt or receipt['rgb_alpha_error_bound'] is not None or
+                    receipt.get('exact_group_decomposition_claimed') is not False or
+                    type(receipt.get('shared_group_split_unverified')) is not bool):
+                raise PdfStrokeSamplingError('RGB group sampling uncertainty receipt is incomplete')
+            original_groups = [context['groups'][gid - 1] for gid in selected['group_ids']]
+            groups = receipt['groups']
+            fields = ('group_id', 'begin_paint_seqno', 'bbox_pdf_pt', 'isolated', 'knockout', 'blendmode', 'alpha')
+            if len(original_groups) != len(groups) or any(
+                    any(a[key] != b[key] for key in fields) or
+                    a['end_paint_seqno'] != b['end_paint_seqno_exclusive'] or not b['forwarded']
+                    for a, b in zip(original_groups, groups)):
+                raise PdfStrokeSamplingError('Original active group identities were not preserved')
+            receipt.update(original_group_records=original_groups,
+                           original_active_group_identity_verified=True)
     except PdfStrokeSamplingError:
         raise
     except (OSError, ValueError, TypeError, KeyError, IndexError, RuntimeError, PdfImageNativeError) as error:

@@ -290,6 +290,9 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                     'color_params':{k:getattr(params,k) for k in ('ri','bp','op','opm')},
                     'default_rgb_is_device_rgb_at_paint':self.default_rgb_identity,
                     'default_colorspace_events_before_paint':self.default_count}
+                if allow_native_rgb_group_sampling:
+                    self.selected['native_default_rgb_at_paint'] = colorspace_record(
+                        m.fz_default_rgb(self.default_colorspaces).m_internal)
                 self.forward('stroke_path',path,stroke,ctm,cs,color,alpha,params)
             except Exception as error:
                 self.error(f'Paint {seqno}: {type(error).__name__}: {error}')
