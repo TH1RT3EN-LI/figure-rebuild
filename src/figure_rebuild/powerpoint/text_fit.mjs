@@ -190,6 +190,17 @@ export function fittedTextBox(object, measure, canvas, {rendererBaseline} = {}) 
     box = {x: object.anchor.x - insets.left - (alignment === 'center' ? width / 2 : alignment === 'right' ? width : 0),
       y: object.anchor.y - insets.top - layout.native_baseline_ascent,
       width: width + insets.left + insets.right, height: height + insets.top + insets.bottom};
+    // DrawingML rotates the complete frame around its center. An anchor is a
+    // source baseline point, so rotate the center's offset from that point;
+    // rotating an already positioned box would move the source baseline.
+    if (object.rotation) {
+      const angle = object.rotation * Math.PI / 180;
+      const dx = box.x + box.width / 2 - object.anchor.x;
+      const dy = box.y + box.height / 2 - object.anchor.y;
+      box = {...box,
+        x: object.anchor.x + Math.cos(angle) * dx - Math.sin(angle) * dy - box.width / 2,
+        y: object.anchor.y + Math.sin(angle) * dx + Math.cos(angle) * dy - box.height / 2};
+    }
   }
   const contentBox = {x: box.x + insets.left, y: box.y + insets.top,
     width: box.width - insets.left - insets.right, height: box.height - insets.top - insets.bottom};

@@ -30,14 +30,16 @@ def _hash(path):
     return hashlib.sha256(Path(path).read_bytes()).hexdigest()
 
 
-def validate_profile(profile):
+def validate_profile(profile, *, require_default_faces=True):
     if not isinstance(profile, dict) or not isinstance(profile.get('family'), str) or not profile['family'].strip():
         raise ValueError('Runtime fonts requires an explicit nonempty family')
     family = profile['family']
     if any(character in family for character in ('"', '\\', '\n', '\r', '\x00')):
         raise ValueError('Font family contains unsupported quote/control characters')
+    if not any(role in profile for role in FONT_ROLES):
+        raise ValueError('Font profile requires at least one real face: ' + family)
     for role in FONT_ROLES:
-        if role not in profile and role not in ('regular', 'bold'):
+        if role not in profile and (not require_default_faces or role not in ('regular', 'bold')):
             continue
         face = profile.get(role)
         if not isinstance(face, dict) or not isinstance(face.get('path'), str):
@@ -62,7 +64,7 @@ def validate_profile(profile):
     for extra in additional:
         if not isinstance(extra, dict) or extra.get('additional'):
             raise ValueError('Additional font profiles cannot be nested')
-        validate_profile(extra)
+        validate_profile(extra, require_default_faces=False)
         if extra['family'].casefold() in names:
             raise ValueError('Duplicate configured font family: ' + extra['family'])
         names.add(extra['family'].casefold())
@@ -93,9 +95,9 @@ def _visible_codepoints(text):
             and not 0xE0100 <= ord(character) <= 0xE01EF}
 
 
-def _prepare_family(profile, output_dir, objects=()):
+def _prepare_family(profile, output_dir, objects=(), *, comparison_labels=True):
     """Audit and save explicitly registered static faces, without synthesis."""
-    validate_profile(profile)
+    validate_profile(profile, require_default_faces=comparison_labels)
     try:
         from fontTools.ttLib import TTFont
     except ImportError as error:
@@ -147,7 +149,7 @@ def _prepare_family(profile, output_dir, objects=()):
             text_objects = [item for item in objects if item.get('kind') == 'text'
                             and font_role_for_text(item) == role]
             # Comparison labels must render without falling back to a system font.
-            if role == 'regular':
+            if role == 'regular' and comparison_labels:
                 text_objects.append({'id': 'comparison-labels', 'text': 'Reference Editable PPT render Pixel difference'})
             for item in text_objects:
                 missing = sorted(_visible_codepoints(item['text']) - set(cmap))
@@ -202,7 +204,8 @@ def prepare_fonts(profile, output_dir, objects=()):
             destination = prepared if index == 0 else prepared / ('family-' + str(index))
             selected = [item for item in objects if item.get('kind') == 'text'
                         and item.get('font_family', profile['family']) == family_profile['family']]
-            entries = _prepare_family(family_profile, destination, selected)
+            entries = _prepare_family(family_profile, destination, selected,
+                                      comparison_labels=index == 0)
             for entry in entries:
                 relative = Path(entry['renderer']).relative_to(prepared)
                 entry['renderer'] = str(output_dir / relative)

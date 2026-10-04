@@ -254,7 +254,6 @@ def validate(manifest, root, require_review=True, _materialized=False):
                 good = isinstance(anchor, dict) and set(anchor) == {'x', 'y'} and finite(anchor.get('x')) and finite(anchor.get('y'))
                 check(good, 'Invalid text baseline anchor: ' + label)
                 if good: in_canvas(anchor['x'], anchor['y'], 'Text baseline ' + label)
-                check(obj.get('rotation', 0) == 0, 'Rotated text requires an explicit box: ' + label)
                 check(obj.get('vertical_alignment', 'top') == 'top', 'Baseline text requires top vertical alignment: ' + label)
         elif kind == 'image':
             check(enum(obj.get('fit', 'contain'), {'contain', 'stretch'}), 'Invalid image fit: ' + label)

@@ -99,7 +99,10 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
             attrs.update(x=str(x),y=str(y),fill=s.get('fill','#000000'))
             attrs['font-family']=text_family;attrs['font-size']=str(size);attrs['font-weight']='bold' if o.get('bold') else 'normal';attrs['font-style']='italic' if o.get('italic') else 'normal';attrs['text-anchor']={'left':'start','center':'middle','right':'end'}[o.get('alignment','left')]
             if o.get('rotation'):
-                b=o['box'];attrs['transform']=f"rotate({o['rotation']} {b['x']+b['width']/2} {b['y']+b['height']/2})"
+                if 'anchor' in o:
+                    attrs['transform']=f"rotate({o['rotation']} {x} {y})"
+                else:
+                    b=o['box'];attrs['transform']=f"rotate({o['rotation']} {b['x']+b['width']/2} {b['y']+b['height']/2})"
             node=ET.SubElement(root,'{'+SVG+'}text',attrs)
             node.set('{http://www.w3.org/XML/1998/namespace}space','preserve')
             if len(lines)==1:node.text=lines[0]

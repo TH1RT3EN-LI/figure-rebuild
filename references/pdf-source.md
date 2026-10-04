@@ -97,4 +97,4 @@ images = extract_pdf_images(
 
 受支持的来源配置可另运行 [verify-source-fidelity](source-fidelity-cli.md)，从原 PDF 重新核验清单、resolved scene 和实际 PPT。退出码 0 仅表示声明范围内的来源保真；它不替代语义、视觉或用户验收。规范化路径、裁切及其他尚无完整重放证明的配置可能返回 `UNRESOLVED`，不能通过缩小报告内容改称整图通过。
 
-使用原生 PDF 绘制项时，还应先检查[蒙版绘制归属](pdf-paint-context.md)：用于定义蒙版的黑色形状不是页面上的黑框。需要降级恒定轴向渐变时，使用[独立渐变接口](pdf-constant-shading.md)，绑定真实资源与原生绘制序号；不能把 SVG 图片序号或原生 bboxlog 序号混用。
+使用原生 PDF 绘制项时，还应先检查[蒙版绘制归属](pdf-paint-context.md)：用于定义蒙版的黑色形状不是页面上的黑框。需要降级恒定轴向渐变时，使用[恒定渐变接口](pdf-constant-shading.md)；单位域、N=1 的 DeviceRGB 线性渐变可使用[线性渐变接口](pdf-linear-shading.md)，保留真实资源矩阵、裁剪曲线，并记录原生颜色编码误差。两者均绑定真实资源与原生绘制序号，不能把 SVG 图片序号或原生 bboxlog 序号混用。

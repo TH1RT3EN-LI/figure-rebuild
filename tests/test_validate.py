@@ -96,8 +96,12 @@ class ManifestChecks(unittest.TestCase):
     def test_invalid_text_position_or_box_rotation_fails_before_renderer(self):
         bad = self.text_manifest(); bad['objects'][-1]['anchor']['x'] = -1
         self.assertFails(bad, 'clipping is unsupported')
-        bad = self.text_manifest(); bad['objects'][-1]['rotation'] = 90
-        self.assertFails(bad, 'requires an explicit box')
+        for rotation in (90, -90, 37):
+            valid = self.text_manifest(); valid['objects'][-1]['rotation'] = rotation
+            self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
+        for rotation in (True, float('nan'), '90'):
+            bad = self.text_manifest(); bad['objects'][-1]['rotation'] = rotation
+            self.assertFails(bad, 'Invalid text rotation')
         for box in ({'x': 1, 'y': 1, 'width': 0, 'height': 10}, {'x': 1, 'y': 1, 'width': -2, 'height': 10}, {'x': 190, 'y': 30, 'width': 20, 'height': 80}):
             bad = self.text_manifest(); text = bad['objects'][-1]; text.pop('anchor'); text.update(box=box, rotation=90)
             with self.subTest(box=box): self.assertFails(bad)

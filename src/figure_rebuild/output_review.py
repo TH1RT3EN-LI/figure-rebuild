@@ -479,6 +479,17 @@ def _verify_text_fit_measurements(resolved, measured):
             expected_box = {'x': ax - insets['left'] - (width / 2 if alignment == 'center' else width if alignment == 'right' else 0),
                             'y': ay - insets['top'] - baseline, 'width': width + insets['left'] + insets['right'],
                             'height': height + insets['top'] + insets['bottom']}
+            rotation = _text_fit_number(obj.get('rotation', 0), label + '.rotation')
+            if rotation:
+                # Replay the writer's center adjustment before checking the
+                # receipt. DrawingML rotates the frame around its center, while
+                # source anchors identify the baseline in slide coordinates.
+                angle = rotation * math.pi / 180
+                _text_fit_number(angle, label + '.rotation_radians')
+                dx = expected_box['x'] + expected_box['width'] / 2 - ax
+                dy = expected_box['y'] + expected_box['height'] / 2 - ay
+                expected_box['x'] = ax + math.cos(angle) * dx - math.sin(angle) * dy - expected_box['width'] / 2
+                expected_box['y'] = ay + math.sin(angle) * dx + math.cos(angle) * dy - expected_box['height'] / 2
             for key in box:
                 _text_fit_same(box[key], expected_box[key], label + '.anchored_box.' + key)
         _require(values['required_width'] <= content['width'] + .001 and required_height <= content['height'] + .001,

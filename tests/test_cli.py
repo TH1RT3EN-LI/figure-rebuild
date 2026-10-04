@@ -182,6 +182,32 @@ class RuntimeChecks(unittest.TestCase):
             loaded=cli.runtime()
             check.assert_called_once_with(loaded)
 
+    def test_additional_single_faces_survive_profile_and_runtime_normalization(self):
+        data = json.loads(self.profile.read_text())
+        data['fonts']['additional'] = [
+            {'family': 'Source Regular', 'regular': {'path': 'test-font.ttf', 'face_index': 0}},
+            {'family': 'Source Bold', 'bold': {'path': 'test-font.ttf', 'face_index': 0}},
+            {'family': 'Source Italic', 'italic': {'path': 'test-font.ttf', 'face_index': 0}}]
+        self.profile.write_text(json.dumps(data))
+        configured = self.configure()
+        with patch.dict(cli.os.environ, {'FIGURE_REBUILD_CONFIG': str(self.config)}, clear=True):
+            loaded = cli.runtime(check_dependencies=False)
+        self.assertEqual(loaded['fonts'], configured['fonts'])
+        for profile, role in zip(loaded['fonts']['additional'], ('regular', 'bold', 'italic')):
+            self.assertEqual(set(profile), {'family', role})
+            self.assertEqual(profile[role]['path'], str(self.font.resolve()))
+            self.assertEqual(profile[role]['sha256'], cli.digest(self.font))
+
+    def test_primary_and_empty_additional_faces_still_reject(self):
+        face = {'path': 'test-font.ttf', 'face_index': 0}
+        with self.assertRaisesRegex(ValueError, 'regular.path'):
+            cli.font_profile({'family': 'Primary', 'bold': face}, self.root)
+        with self.assertRaisesRegex(ValueError, 'bold.path'):
+            cli.font_profile({'family': 'Primary', 'regular': face}, self.root)
+        with self.assertRaisesRegex(ValueError, 'at least one real face'):
+            cli.font_profile({'family': 'Primary', 'regular': face, 'bold': face,
+                              'additional': [{'family': 'Empty'}]}, self.root)
+
     def test_unselected_missing_native_executable_does_not_block_artifact_runtime(self):
         data = self.configure()
         data['native_preview'] = {'command': ['/missing/soffice'], 'fc_match': '/missing/fc-match'}

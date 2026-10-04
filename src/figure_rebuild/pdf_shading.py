@@ -1,7 +1,8 @@
-"""Narrow, occurrence-bound lowering of constant axial PDF shading to a path.
+"""Bounded, occurrence-bound axial PDF shading extraction.
 
-This is not gradient approximation or image extraction. Unsupported functions,
-composition, color quantization and clip intersections fail closed.
+Constant sampled functions retain exact solid colors. Linear DeviceRGB functions
+retain native gradients with an explicit, proven encoding error bound. Unsupported
+functions, composition and clip intersections fail closed.
 """
 from __future__ import annotations
 
@@ -13,7 +14,7 @@ from pathlib import Path
 
 
 class UnsupportedPdfShadingError(ValueError):
-    """The selected shading cannot be represented by one exact solid path."""
+    """The selected shading is outside the supported native-path subset."""
 
 
 _MAX_PDF_BYTES = 256 * 1024 * 1024
@@ -273,6 +274,169 @@ def _constant_function(doc, m, resource, components):
                    'coords': coords, 'extend': extend}
 
 
+def _linear_function(doc, m, resource):
+    """A single unit-domain type-2 RGB function, with exponent exactly one."""
+    def number(obj, key):
+        value = m.pdf_dict_gets(obj, key)
+        if not m.pdf_is_number(value):
+            raise UnsupportedPdfShadingError(f'{key} must be numeric')
+        value = m.pdf_to_real(value)
+        if not math.isfinite(value):
+            raise UnsupportedPdfShadingError(f'{key} must be finite')
+        return value
+
+    def array(obj, key, length, default=None, boolean=False):
+        value = m.pdf_dict_gets(obj, key)
+        if m.pdf_is_null(value) and default is not None:
+            return list(default)
+        if not m.pdf_is_array(value) or m.pdf_array_len(value) != length:
+            raise UnsupportedPdfShadingError(f'{key} requires {length} entries')
+        result = []
+        for i in range(length):
+            item = m.pdf_array_get(value, i)
+            if boolean:
+                if not m.pdf_is_bool(item):
+                    raise UnsupportedPdfShadingError(f'{key} requires Boolean entries')
+                result.append(bool(m.pdf_to_bool(item)))
+            else:
+                if not m.pdf_is_number(item):
+                    raise UnsupportedPdfShadingError(f'{key} requires numeric entries')
+                result.append(m.pdf_to_real(item))
+        if not boolean and not _finite(result):
+            raise UnsupportedPdfShadingError(f'Non-finite {key}')
+        return result
+
+    if number(resource, 'ShadingType') != 2:
+        raise UnsupportedPdfShadingError('Only axial ShadingType 2 is supported')
+    if any(not m.pdf_is_null(m.pdf_dict_gets(resource, k)) for k in ('Background', 'BBox')):
+        raise UnsupportedPdfShadingError('Shading background or explicit BBox is unsupported')
+    antialias = m.pdf_dict_gets(resource, 'AntiAlias')
+    if not m.pdf_is_null(antialias) and (not m.pdf_is_bool(antialias) or m.pdf_to_bool(antialias)):
+        raise UnsupportedPdfShadingError('Shading AntiAlias must be absent or false')
+    coords = array(resource, 'Coords', 4)
+    if coords[:2] == coords[2:]:
+        raise UnsupportedPdfShadingError('Degenerate axial shading coordinates')
+    domain = array(resource, 'Domain', 2, [0, 1])
+    if domain != [0, 1]:
+        raise UnsupportedPdfShadingError('Linear shading requires the unit Domain')
+    extend = array(resource, 'Extend', 2, [False, False], boolean=True)
+    function = m.pdf_dict_gets(resource, 'Function')
+    if not m.pdf_is_dict(function) or number(function, 'FunctionType') != 2:
+        raise UnsupportedPdfShadingError('A single type-2 Function dictionary is required')
+    xref = m.pdf_to_num(function) if m.pdf_is_indirect(function) else None
+    if xref is not None and doc.xref_is_stream(xref):
+        raise UnsupportedPdfShadingError('A type-2 Function cannot be a stream')
+    if number(function, 'N') != 1 or array(function, 'Domain', 2) != domain:
+        raise UnsupportedPdfShadingError('Linear Function requires N=1 and the unit Domain')
+    if array(function, 'Range', 6, [0, 1]*3) != [0, 1]*3:
+        raise UnsupportedPdfShadingError('Linear RGB Function requires the full unit Range')
+    c0 = array(function, 'C0', 3, [0, 0, 0])
+    c1 = array(function, 'C1', 3, [1, 1, 1])
+    if any(not 0 <= v <= 1 for v in c0+c1):
+        raise UnsupportedPdfShadingError('Linear RGB components must lie in [0,1]')
+    return {'function_xref': xref, 'function_type': 2, 'exponent': 1,
+            'domain': domain, 'function_domain': domain, 'range': [0, 1]*3,
+            'c0': c0, 'c1': c1, 'coords': coords, 'extend': extend}
+
+
+def _compose_exact(outer, inner):
+    a,b,c,d,e,f = map(_exact, outer)
+    g,h,i,j,k,l = map(_exact, inner)
+    return (a*g+c*h, b*g+d*h, a*i+c*j, b*i+d*j, a*k+c*l+e, b*k+d*l+f)
+
+
+def _inverse_point(matrix, point):
+    a,b,c,d,e,f = map(_exact, matrix)
+    x,y = map(_exact, point)
+    determinant = a*d-b*c
+    if not determinant:
+        raise UnsupportedPdfShadingError('Singular native shading transform')
+    return (d*(x-e)-c*(y-f))/determinant, (-b*(x-e)+a*(y-f))/determinant
+
+
+def _axis_parameter(matrix, coords, point):
+    u,v = _inverse_point(matrix, point)
+    x0,y0,x1,y1 = map(_exact, coords)
+    dx,dy = x1-x0,y1-y0
+    if dx*dx+dy*dy == 0:
+        raise UnsupportedPdfShadingError('Invalid axial shading length')
+    return ((u-x0)*dx+(v-y0)*dy)/(dx*dx+dy*dy)
+
+
+def _linear_fill(commands, source_transform, shade_transform, proof):
+    """Preserve a cardinal covector; prove the complete encoded color field."""
+    from .linear_gradient import gradient_axis, native_path_frame
+
+    def parameter(point):
+        return _axis_parameter(shade_transform, proof['coords'],
+                               _inverse_point(source_transform, point))
+
+    origin = parameter((0, 0))
+    dx,dy = parameter((1, 0))-origin, parameter((0, 1))-origin
+    if dy == 0 and dx != 0:
+        angle = 0 if dx > 0 else 180
+    elif dx == 0 and dy != 0:
+        angle = 90 if dy > 0 else 270
+    else:
+        raise UnsupportedPdfShadingError('Only exactly cardinal target gradient covectors are supported')
+    frame = native_path_frame(commands)
+    axis = gradient_axis(frame, angle)
+    low,high = parameter(axis[:2]), parameter(axis[2:])
+    if high <= low:
+        raise UnsupportedPdfShadingError('Non-increasing native gradient axis')
+    c0,c1 = list(map(_exact, proof['c0'])), list(map(_exact, proof['c1']))
+
+    def color(position):
+        value = max(Fraction(0), min(Fraction(1), low+(high-low)*position))
+        return [a+(b-a)*value for a,b in zip(c0,c1)]
+
+    positions = [Fraction(0), Fraction(1)]
+    positions.extend((v-low)/(high-low) for v in (0, 1) if low < v < high)
+    positions = sorted(set(positions))
+    stops, records = [], []
+    for position in positions:
+        components = color(position)
+        rgb = [round(v*255) for v in components]
+        units = math.floor(position*100000+Fraction(1, 2))
+        hex_color = '#'+''.join(f'{v:02X}' for v in rgb)
+        record = {'offset_exact': str(position), 'offset_units': units,
+                  'source_components_exact': list(map(str, components)), 'color': hex_color}
+        if stops and stops[-1]['units'] == units:
+            if stops[-1]['color'] != hex_color:
+                raise UnsupportedPdfShadingError('Gradient colors collide at native stop precision')
+            record['merged_with_identical_encoded_color'] = True
+        else:
+            stops.append({'units': units, 'color': hex_color, 'components': [Fraction(v, 255) for v in rgb]})
+        records.append(record)
+
+    def encoded_color(position):
+        for left,right in zip(stops, stops[1:]):
+            a,b = Fraction(left['units'], 100000), Fraction(right['units'], 100000)
+            if a <= position <= b:
+                fraction = (position-a)/(b-a)
+                return [x+(y-x)*fraction for x,y in zip(left['components'], right['components'])]
+        raise UnsupportedPdfShadingError('Incomplete native gradient endpoint coverage')
+
+    # Both fields are continuous piecewise linear. Their difference reaches its
+    # extrema at the union of source clamp points and encoded stop positions.
+    knots = sorted(set(positions+[Fraction(s['units'], 100000) for s in stops]))
+    errors = [abs(a-b) for p in knots for a,b in zip(color(p), encoded_color(p))]
+    maximum = max(errors)
+    if maximum > Fraction(1, 255):
+        raise UnsupportedPdfShadingError('Native linear color field exceeds the fixed one-level RGB encoding budget')
+    gradient = {'type': 'linear', 'angle': angle,
+                'stops': [{'offset': s['units']/100000, 'color': s['color']} for s in stops]}
+    receipt = {'method': 'exact_cardinal_covector_with_complete_piecewise_linear_error_proof',
+               'native_path_frame_target': frame, 'native_gradient_axis_target': list(axis),
+               'axis_parameter_endpoints_exact': [str(low), str(high)],
+               'stop_encodings': records, 'error_proof_knots_exact': list(map(str, knots)),
+               'maximum_component_encoding_error_exact': str(maximum),
+               'maximum_component_encoding_error': float(maximum), 'component_error_budget_exact': '1/255',
+               'stop_precision': 100000, 'angle_quantization_error_degrees': 0,
+               'scope': 'continuous source-native RGB field versus encoded gradient; excludes DrawingML geometry quantization and renderer differences'}
+    return gradient, receipt
+
+
 def extract_constant_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
                                     region, source_transform):
     """Return one native solid path plus source proof, or fail closed.
@@ -281,6 +445,31 @@ def extract_constant_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
     ``region`` is a top-left PDF rectangle. The resource xref is a claim checked
     against the actual callback pointer, never a nearest-bbox lookup.
     """
+    return _extract_axial_shading(pdf_path, page=page, paint_seqno=paint_seqno,
+                                  shading_xref=shading_xref, region=region,
+                                  source_transform=source_transform)
+
+
+def extract_linear_axial_shading(pdf_path, *, page, paint_seqno, resource_xref,
+                                 resource_kind, region, source_transform):
+    """Return a source-bound path and native linear fill, with encoding proof.
+
+    ``resource_kind`` is ``shading`` or ``pattern``. Pattern claims are loaded
+    as whole resources: the nested Shading dictionary has a different native
+    identity and omits the Pattern matrix. Only unit-domain, N=1 DeviceRGB and
+    exactly cardinal final covectors are supported. RGB/stop encoding is bounded
+    over the complete continuous field by one 8-bit component level.
+    """
+    if resource_kind not in ('shading', 'pattern'):
+        raise UnsupportedPdfShadingError('Expected shading or pattern resource_kind')
+    return _extract_axial_shading(pdf_path, page=page, paint_seqno=paint_seqno,
+                                  shading_xref=resource_xref, region=region,
+                                  source_transform=source_transform, linear=True,
+                                  pattern=resource_kind == 'pattern')
+
+
+def _extract_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
+                           region, source_transform, linear=False, pattern=False):
     try:
         import pymupdf as fitz
     except ImportError as error:
@@ -329,15 +518,44 @@ def extract_constant_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
             if paint_seqno >= len(bboxlog) or bboxlog[paint_seqno][0] != 'fill-shade':
                 raise UnsupportedPdfShadingError('Selected native paint is not fill-shade')
             pdf = m.pdf_specifics(doc.this)
-            resource = m.pdf_new_indirect(pdf, shading_xref, 0)
+            claimed_resource = m.pdf_new_indirect(pdf, shading_xref, 0)
+            resource = claimed_resource
+            declared_matrix = [1,0,0,1,0,0]
+            if pattern:
+                if (m.pdf_to_name(m.pdf_dict_gets(resource, 'Type')) != 'Pattern'
+                        or not m.pdf_is_number(m.pdf_dict_gets(resource, 'PatternType'))
+                        or m.pdf_to_real(m.pdf_dict_gets(resource, 'PatternType')) != 2
+                        or not m.pdf_is_null(m.pdf_dict_gets(resource, 'ExtGState'))):
+                    raise UnsupportedPdfShadingError('Only type-2 Pattern resources without ExtGState are supported')
+                matrix_obj = m.pdf_dict_gets(resource, 'Matrix')
+                if not m.pdf_is_null(matrix_obj):
+                    if not m.pdf_is_array(matrix_obj) or m.pdf_array_len(matrix_obj) != 6:
+                        raise UnsupportedPdfShadingError('Pattern Matrix requires six numeric entries')
+                    entries = [m.pdf_array_get(matrix_obj, i) for i in range(6)]
+                    if any(not m.pdf_is_number(v) for v in entries):
+                        raise UnsupportedPdfShadingError('Pattern Matrix requires six numeric entries')
+                    declared_matrix = list(_matrix([m.pdf_to_real(v) for v in entries]))
+                resource = m.pdf_dict_gets(claimed_resource, 'Shading')
+                if not m.pdf_is_dict(resource):
+                    raise UnsupportedPdfShadingError('Pattern requires a Shading dictionary')
             csobj = m.pdf_dict_gets(resource, 'ColorSpace')
             csname = m.pdf_to_name(csobj) if m.pdf_is_name(csobj) else None
             components = {'DeviceGray': 1, 'DeviceRGB': 3, 'DeviceCMYK': 4}.get(csname)
             if components is None:
                 raise UnsupportedPdfShadingError('Only explicit device shading colorspaces are supported')
-            color, proof = _constant_function(doc, m, resource, components)
-            loaded = m.pdf_load_shading(pdf, resource)
+            if linear:
+                if csname != 'DeviceRGB':
+                    raise UnsupportedPdfShadingError('Linear extraction requires explicit DeviceRGB')
+                proof = _linear_function(doc, m, resource)
+                function_text = (doc.xref_object(proof['function_xref']) if proof['function_xref'] is not None
+                                 else doc.xref_get_key(shading_xref, ('Shading/' if pattern else '')+'Function')[1])
+                proof['function_dictionary_sha256'] = hashlib.sha256(function_text.encode()).hexdigest()
+            else:
+                color, proof = _constant_function(doc, m, resource, components)
+            loaded = m.pdf_load_shading(pdf, claimed_resource)
             pointer = int(loaded.m_internal.this)
+            shading_dictionary_text = (doc.xref_object(m.pdf_to_num(resource)) if m.pdf_is_indirect(resource)
+                                       else doc.xref_get_key(shading_xref, 'Shading')[1])
 
             class Walker(m.FzPathWalker2):
                 def __init__(self):
@@ -422,40 +640,44 @@ def extract_constant_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
                         if alpha != 1 or params.op or shade.use_background or shade.type != 2:
                             raise UnsupportedPdfShadingError('Unsupported shading alpha, overprint, background or type')
                         shade_matrix = [float(getattr(shade.matrix, k)) for k in 'abcdef']
-                        if shade_matrix != [1,0,0,1,0,0]:
+                        if shade_matrix != declared_matrix:
                             raise UnsupportedPdfShadingError('Unexpected native shading resource matrix')
                         ctm = _matrix([float(getattr(matrix, k)) for k in 'abcdef'])
                         commands, geometry_proof = _clip_geometry(self.clips, region)
-                        a,b,c,d,e,f = map(_exact, ctm); determinant = a*d-b*c
-                        x0,y0,x1,y1 = map(_exact, proof['coords']); dx,dy = x1-x0,y1-y0
-                        axis2 = dx*dx+dy*dy
-                        if axis2 == 0:
-                            raise UnsupportedPdfShadingError('Invalid axial shading length')
-                        positions = []
-                        for x,y in _controls(commands):
-                            u=(d*(x-e)-c*(y-f))/determinant
-                            v=(-b*(x-e)+a*(y-f))/determinant
-                            positions.append(((u-x0)*dx+(v-y0)*dy)/axis2)
+                        shade_transform = _compose_exact(ctm, shade_matrix)
+                        positions = [_axis_parameter(shade_transform, proof['coords'], point)
+                                     for point in _controls(commands)]
                         if not _finite(positions) or (not proof['extend'][0] and min(positions)<0) or (not proof['extend'][1] and max(positions)>1):
                             raise UnsupportedPdfShadingError('Clip control hull crosses an unextended axial domain')
                         source_cs = m.FzColorspace(m.ll_fz_keep_colorspace(shade.colorspace))
                         declared_cs = m.pdf_load_colorspace(csobj)
                         if int(source_cs.m_internal.this) != int(declared_cs.m_internal.this):
                             raise UnsupportedPdfShadingError('Actual native shading colorspace differs from declared device space')
-                        rgb = m.fz_convert_color(source_cs, color, m.fz_device_rgb(), m.FzColorspace(), m.FzColorParams(params))[:3]
-                        rounded = [round(v*255) for v in rgb]
-                        if not _finite(rgb) or any(v < 0 or v > 1 for v in rgb) or any(abs(v*255-q)>1e-5 for v,q in zip(rgb,rounded)):
-                            raise UnsupportedPdfShadingError('Constant native color is not exactly representable as 8-bit RGB')
                         output_commands, output_roundoff = _closed_manifest_commands(commands, source_transform)
+                        if linear:
+                            for endpoint in (proof['c0'], proof['c1']):
+                                converted = list(m.fz_convert_color(source_cs, endpoint, m.fz_device_rgb(),
+                                                                   m.FzColorspace(), m.FzColorParams(params))[:3])
+                                if converted != endpoint:
+                                    raise UnsupportedPdfShadingError('Linear DeviceRGB conversion is not identity')
+                            gradient, encoding = _linear_fill(output_commands, source_transform, shade_transform, proof)
+                            fill = {'fill_gradient': gradient, 'gradient_encoding_proof': encoding}
+                        else:
+                            rgb = m.fz_convert_color(source_cs, color, m.fz_device_rgb(), m.FzColorspace(), m.FzColorParams(params))[:3]
+                            rounded = [round(v*255) for v in rgb]
+                            if not _finite(rgb) or any(v < 0 or v > 1 for v in rgb) or any(abs(v*255-q)>1e-5 for v,q in zip(rgb,rounded)):
+                                raise UnsupportedPdfShadingError('Constant native color is not exactly representable as 8-bit RGB')
+                            fill = {'color': '#'+''.join(f'{v:02X}' for v in rounded), 'native_rgb': list(rgb)}
                         self.selected = {'commands': output_commands,
                                          'output_coordinate_conversion': output_roundoff,
-                                         'color': '#'+''.join(f'{v:02X}' for v in rounded),
+                                         **fill,
                                          'native_ctm': list(ctm), 'native_shade_matrix': shade_matrix,
-                                         'native_rgb': list(rgb), 'native_clips': list(self.clips),
+                                         'native_clips': list(self.clips),
                                          'geometry_proof': geometry_proof,
                                          'axis_parameter_control_hull': [float(min(positions)), float(max(positions))],
                                          'axis_parameter_control_hull_exact': [str(min(positions)), str(max(positions))],
-                                         'axis_proof_arithmetic': 'exact_original_native_controls_and_clip_CTM_then_exact_inverse_shade_CTM',
+                                         'axis_proof_arithmetic': ('exact_original_native_controls_and_clip_CTM_then_exact_inverse_shade_CTM_and_resource_matrix'
+                                                                   if linear else 'exact_original_native_controls_and_clip_CTM_then_exact_inverse_shade_CTM'),
                                          'color_params': {k: int(getattr(params,k)) for k in ('ri','bp','op','opm')}}
                     except Exception as error: self.error(error)
 
@@ -487,22 +709,31 @@ def extract_constant_axial_shading(pdf_path, *, page, paint_seqno, shading_xref,
             if capture.clips or capture.groups or capture.mask_depth or capture.tiles or capture.selected is None:
                 raise UnsupportedPdfShadingError('Unbalanced source context or missing selected shade')
             selected = capture.selected
-            oid = f'pdf-shading-{paint_seqno:05d}-constant'
+            oid = f'pdf-shading-{paint_seqno:05d}-'+('linear' if linear else 'constant')
+            style = {'stroke': 'none', 'stroke_width': 0, 'opacity': 1}
+            if linear:
+                style['fill_gradient'] = selected.pop('fill_gradient')
+            else:
+                style['fill'] = selected.pop('color')
             return {'object': {'id': oid, 'kind': 'path', 'z_index': paint_seqno,
                                'commands': selected.pop('commands'),
-                               'style': {'fill': selected.pop('color'), 'stroke': 'none', 'stroke_width': 0, 'opacity': 1}},
-                    'provenance': {'source_kind': 'pdf_constant_axial_shading',
+                               'style': style},
+                    'provenance': {'source_kind': 'pdf_linear_axial_shading' if linear else 'pdf_constant_axial_shading',
                                    'source_pdf_sha256': hashlib.sha256(source_bytes).hexdigest(),
                                    'page': page, 'page_xref': sheet.xref, 'paint_seqno': paint_seqno,
-                                   'shading_xref': shading_xref, 'actual_native_resource_pointer_verified': True,
-                                   'shading_dictionary_sha256': hashlib.sha256(doc.xref_object(shading_xref).encode()).hexdigest(),
+                                   'shading_xref': m.pdf_to_num(resource) if m.pdf_is_indirect(resource) else None,
+                                   'actual_native_resource_pointer_verified': True,
+                                   'shading_dictionary_sha256': hashlib.sha256(shading_dictionary_text.encode()).hexdigest(),
+                                   **({'resource_kind': 'pattern' if pattern else 'shading',
+                                       'resource_xref': shading_xref,
+                                       'resource_dictionary_sha256': hashlib.sha256(doc.xref_object(shading_xref).encode()).hexdigest()} if linear else {}),
                                    'source_colorspace': csname, 'function': proof,
                                    'region_pdf_pt': list(region), 'source_transform': list(source_transform),
                                    'verified_source_paint_count': len(bboxlog), 'pymupdf_version': fitz.VersionBind,
-                                   'rendered_as': 'native_solid_path_not_image', 'alpha': 1,
+                                   'rendered_as': 'native_linear_gradient_path_not_image' if linear else 'native_solid_path_not_image', 'alpha': 1,
                                    'default_colorspaces_verified_device_identity': True,
                                    **selected}}
     except UnsupportedPdfShadingError:
         raise
     except Exception as error:
-        raise UnsupportedPdfShadingError('Native constant shading extraction failed: '+str(error)) from error
+        raise UnsupportedPdfShadingError('Native axial shading extraction failed: '+str(error)) from error

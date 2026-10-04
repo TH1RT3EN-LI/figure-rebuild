@@ -9,7 +9,8 @@ try:
 except ImportError:
     fitz = None
 
-from figure_rebuild.pdf_shading import extract_constant_axial_shading, UnsupportedPdfShadingError
+from figure_rebuild.pdf_shading import (extract_constant_axial_shading,
+                                      extract_linear_axial_shading, UnsupportedPdfShadingError)
 
 
 def _obj(doc, text, data=None):
@@ -47,6 +48,36 @@ def fixture(path, *, samples=bytes([0,0,0,0])*4, decode='[0 1 0 1 0 1 0 1]',
     doc.save(path)
     doc.close()
     return shade, other, function
+
+
+def linear_fixture(path, *, pattern=False, matrix='[1 0 0 1 0 0]',
+                   function='<< /FunctionType 2 /Domain [0 1] /C0 [1 0 0] /C1 [0 0 1] /N 1 >>',
+                   coords='[0 0 100 0]', extend='[true true]', clip='20 20 80 60 re W n',
+                   colorspace='/DeviceRGB', duplicate=False, contents=None, shade_extra='',
+                   pattern_extra='', indirect_function=False):
+    doc = fitz.open()
+    page = doc.new_page(width=200, height=120)
+    if indirect_function:
+        function = f'{_obj(doc, function)} 0 R'
+    shade_text = f'<< /ShadingType 2 /ColorSpace {colorspace} /Coords {coords} /Extend {extend} /Function {function} {shade_extra} >>'
+    shade = _obj(doc, shade_text)
+    if pattern:
+        text = f'<< /Type /Pattern /PatternType 2 /Matrix {matrix} /Shading {shade_text} {pattern_extra} >>'
+        resource = _obj(doc, text)
+        other = _obj(doc, text) if duplicate else None
+        resources = f'<< /Pattern << /P0 {resource} 0 R'+(f' /P1 {other} 0 R' if duplicate else '')+' >> >>'
+        paint = '/Pattern cs /P0 scn 0 0 200 120 re f'
+    else:
+        resource = shade
+        other = _obj(doc, shade_text) if duplicate else None
+        resources = f'<< /Shading << /Sh0 {shade} 0 R'+(f' /Sh1 {other} 0 R' if duplicate else '')+' >> >>'
+        paint = '/Sh0 sh'
+    resource_dict = _obj(doc, resources)
+    doc.xref_set_key(page.xref, 'Resources', f'{resource_dict} 0 R')
+    page.set_contents(_obj(doc, '<< >>', (contents or f'q {clip} {paint} Q').encode()))
+    doc.save(path)
+    doc.close()
+    return resource, other, shade
 
 
 @unittest.skipUnless(fitz, 'source extra requires PyMuPDF')
@@ -268,6 +299,162 @@ class PdfShadingTests(unittest.TestCase):
             with self.assertRaisesRegex(UnsupportedPdfShadingError, 'Native fill_shade bbox callback failed: SHADE_BBOX_SENTINEL'):
                 self.extract(shade)
         self.assertIn('abort', events)
+
+
+@unittest.skipUnless(fitz, 'source extra requires PyMuPDF')
+class PdfLinearShadingTests(unittest.TestCase):
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.pdf = Path(self.temp.name)/'source.pdf'
+
+    def extract(self, xref, **kwargs):
+        options = dict(page=1, paint_seqno=0, resource_xref=xref, resource_kind='shading',
+                       region=[0,0,200,120], source_transform=[1,0,0,1,0,0])
+        options.update(kwargs)
+        return extract_linear_axial_shading(self.pdf, **options)
+
+    def test_direct_linear_function_recovers_phase_without_modifying_source(self):
+        xref,_,_ = linear_fixture(self.pdf)
+        before = self.pdf.read_bytes()
+        result = self.extract(xref)
+        gradient = result['object']['style']['fill_gradient']
+        self.assertEqual(gradient, {'type':'linear', 'angle':0, 'stops':[
+            {'offset':0, 'color':'#CC0033'}, {'offset':1, 'color':'#0000FF'}]})
+        self.assertNotIn('fill', result['object']['style'])
+        proof = result['provenance']
+        self.assertEqual(proof['function']['function_type'], 2)
+        self.assertIsNone(proof['function']['function_xref'])
+        self.assertTrue(proof['actual_native_resource_pointer_verified'])
+        self.assertEqual(proof['gradient_encoding_proof']['maximum_component_encoding_error_exact'], '0')
+        self.assertEqual(self.pdf.read_bytes(), before)
+        self.assertEqual(proof['source_pdf_sha256'], hashlib.sha256(before).hexdigest())
+
+    def test_pattern_identity_includes_original_matrix_not_nested_dictionary(self):
+        xref,other,shade = linear_fixture(self.pdf, pattern=True, duplicate=True,
+                                         matrix='[0 2 -3 0 120 10]')
+        result = self.extract(xref, resource_kind='pattern')
+        self.assertEqual(result['provenance']['native_shade_matrix'], [0,2,-3,0,120,10])
+        self.assertEqual(result['object']['style']['fill_gradient']['angle'], 270)
+        self.assertEqual(result['provenance']['resource_xref'], xref)
+        with self.assertRaisesRegex(UnsupportedPdfShadingError, 'pointer'):
+            self.extract(other, resource_kind='pattern')
+        with self.assertRaisesRegex(UnsupportedPdfShadingError, 'pointer'):
+            self.extract(shade)
+
+    def test_original_curve_clip_and_reflected_vertical_gradient_preserved(self):
+        xref,_,_ = linear_fixture(self.pdf, coords='[0 0 0 100]',
+                                  clip='20 20 m 20 90 100 90 120 20 c h W n')
+        result = self.extract(xref, source_transform=[2,0,0,-3,0,360])
+        self.assertEqual(result['object']['style']['fill_gradient']['angle'], 90)
+        self.assertEqual(result['object']['commands'][1]['cubicTo'],
+                         {'x1':40,'y1':270,'x2':200,'y2':270,'x':240,'y':60})
+        self.assertFalse(result['provenance']['geometry_proof']['curves_flattened'])
+
+    def test_extension_clamps_are_native_stops_with_bounded_complete_field(self):
+        xref,_,_ = linear_fixture(self.pdf, coords='[40 0 80 0]')
+        result = self.extract(xref)
+        self.assertEqual(result['object']['style']['fill_gradient']['stops'], [
+            {'offset':0, 'color':'#FF0000'}, {'offset':.25, 'color':'#FF0000'},
+            {'offset':.75, 'color':'#0000FF'}, {'offset':1, 'color':'#0000FF'}])
+        self.assertEqual(result['provenance']['gradient_encoding_proof']['maximum_component_encoding_error_exact'], '0')
+        xref,_,_ = linear_fixture(self.pdf, coords='[40 0 80 0]', extend='[false true]')
+        with self.assertRaisesRegex(UnsupportedPdfShadingError, 'unextended axial domain'):
+            self.extract(xref)
+
+    def test_indirect_function_and_decimal_colors_have_explicit_encoding_bound(self):
+        xref,_,_ = linear_fixture(self.pdf, indirect_function=True,
+            function='<< /FunctionType 2 /Domain [0 1] /C0 [.835 .91 .831] /C1 [.592 .816 .467] /N 1 >>')
+        result = self.extract(xref)
+        proof = result['provenance']
+        self.assertIsInstance(proof['function']['function_xref'], int)
+        self.assertLessEqual(proof['gradient_encoding_proof']['maximum_component_encoding_error'], 1/255)
+        self.assertIn('excludes DrawingML', proof['gradient_encoding_proof']['scope'])
+
+    def test_near_clamp_merges_only_identical_encoded_colors(self):
+        xref,_,_ = linear_fixture(self.pdf, coords='[20.00001 0 100 0]')
+        proof = self.extract(xref)['provenance']['gradient_encoding_proof']
+        self.assertTrue(any(r.get('merged_with_identical_encoded_color') for r in proof['stop_encodings']))
+        self.assertLessEqual(proof['maximum_component_encoding_error'], 1/255)
+
+    def test_unsupported_functions_domains_colors_and_patterns_fail_closed(self):
+        cases = [dict(function='<< /FunctionType 2 /Domain [0 1] /N 2 >>'),
+                 dict(function='<< /FunctionType 2 /Domain [0 2] /N 1 >>'),
+                 dict(function='<< /FunctionType 2 /Domain [0 1] /N 1 /Range [0 .5 0 1 0 1] >>'),
+                 dict(function='<< /FunctionType 2 /Domain [0 1] /N 1 /C0 [1 0] >>'),
+                 dict(function='<< /FunctionType 2 /Domain [0 1] /N 1 /C1 [2 0 0] >>'),
+                 dict(function='<< /FunctionType 2 /Domain [0 1] /N true >>'),
+                 dict(colorspace='/DeviceCMYK'), dict(shade_extra='/BBox [0 0 100 100]'),
+                 dict(pattern=True, matrix='[1 0 0 0 0 0]'),
+                 dict(pattern=True, matrix='[1 0 0 1 false 0]'),
+                 dict(pattern=True, pattern_extra='/ExtGState << /ca .5 >>')]
+        for case in cases:
+            with self.subTest(case=case):
+                xref,_,_ = linear_fixture(self.pdf, **case)
+                with self.assertRaises(UnsupportedPdfShadingError):
+                    self.extract(xref, resource_kind='pattern' if case.get('pattern') else 'shading')
+
+    def test_tiny_covector_shear_not_rounded_to_cardinal(self):
+        xref,_,_ = linear_fixture(self.pdf)
+        with self.assertRaisesRegex(UnsupportedPdfShadingError, 'cardinal'):
+            self.extract(xref, source_transform=[1,0,2**-50,1,0,0])
+
+    def test_color_collision_at_stop_precision_is_rejected(self):
+        xref,_,_ = linear_fixture(self.pdf, coords='[40 0 40.0001 0]')
+        with self.assertRaisesRegex(UnsupportedPdfShadingError, 'collide at native stop precision'):
+            self.extract(xref)
+
+    def test_repeated_pattern_occurrences_keep_their_actual_clip_and_order(self):
+        xref,_,_ = linear_fixture(self.pdf, pattern=True,
+            contents='q 20 20 20 20 re W n /Pattern cs /P0 scn 0 0 200 120 re f Q '
+                     'q 70 20 20 20 re W n /Pattern cs /P0 scn 0 0 200 120 re f Q')
+        first = self.extract(xref, resource_kind='pattern')
+        second = self.extract(xref, resource_kind='pattern', paint_seqno=1)
+        self.assertNotEqual(first['object']['commands'], second['object']['commands'])
+        self.assertEqual(second['object']['z_index'], 1)
+        self.assertEqual(second['provenance']['verified_source_paint_count'], 2)
+
+    def test_linear_native_conversion_and_clip_callback_fail_closed(self):
+        xref,_,_ = linear_fixture(self.pdf)
+        with patch.object(fitz.mupdf, 'fz_convert_color', return_value=(.5,0,0,0)):
+            with self.assertRaisesRegex(UnsupportedPdfShadingError, 'not identity'): self.extract(xref)
+        with patch.object(fitz.mupdf, 'fz_walk_path', side_effect=RuntimeError('LINEAR_CLIP_SENTINEL')):
+            with self.assertRaisesRegex(UnsupportedPdfShadingError, 'LINEAR_CLIP_SENTINEL'): self.extract(xref)
+        with patch('figure_rebuild.pdf_shading._MAX_COMMANDS', 2):
+            with self.assertRaisesRegex(UnsupportedPdfShadingError, 'budget'): self.extract(xref)
+
+    def test_gradient_field_matches_independently_rendered_pdf(self):
+        xref,_,_ = linear_fixture(self.pdf, clip='20 20 m 20 90 80 90 100 20 c h W n')
+        result = self.extract(xref)
+        with fitz.open(self.pdf) as doc:
+            expected = doc[0].get_pixmap(matrix=fitz.Matrix(4,4), alpha=True).samples
+        gradient = result['object']['style']['fill_gradient']
+        self.assertEqual(len(gradient['stops']), 2)
+        from figure_rebuild.linear_gradient import gradient_axis, native_path_frame
+        a,b,c,d = gradient_axis(native_path_frame(result['object']['commands']), gradient['angle'])
+        components = [[int(s['color'][i:i+2],16)/255 for i in (1,3,5)] for s in gradient['stops']]
+        commands = []
+        for cmd in result['object']['commands']:
+            if 'moveTo' in cmd:
+                p=cmd['moveTo'];commands.append(f"{p['x']} {120-p['y']} m")
+            elif 'lineTo' in cmd:
+                p=cmd['lineTo'];commands.append(f"{p['x']} {120-p['y']} l")
+            elif 'cubicTo' in cmd:
+                p=cmd['cubicTo'];commands.append(f"{p['x1']} {120-p['y1']} {p['x2']} {120-p['y2']} {p['x']} {120-p['y']} c")
+            else: commands.append('h')
+        commands.append('W n /Sh0 sh')
+        with fitz.open() as doc:
+            page = doc.new_page(width=200,height=120)
+            fun = _obj(doc,'<< /FunctionType 2 /Domain [0 1] /N 1 /C0 ['+' '.join(map(str,components[0]))+'] /C1 ['+' '.join(map(str,components[1]))+'] >>')
+            shade = _obj(doc,f'<< /ShadingType 2 /ColorSpace /DeviceRGB /Coords [{a} {120-b} {c} {120-d}] /Extend [true true] /Function {fun} 0 R >>')
+            resource = _obj(doc,f'<< /Shading << /Sh0 {shade} 0 R >> >>')
+            doc.xref_set_key(page.xref,'Resources',f'{resource} 0 R')
+            page.set_contents(_obj(doc,'<< >>',' '.join(commands).encode()))
+            actual = page.get_pixmap(matrix=fitz.Matrix(4,4),alpha=True).samples
+        self.assertEqual(len(expected),len(actual))
+        errors = [abs(a-b) for a,b in zip(expected,actual)]
+        self.assertLessEqual(max(errors),2)  # source encoding + raster rounding
+        self.assertLess(sum(errors)/len(errors),.03)
 
 
 if __name__ == '__main__':

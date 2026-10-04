@@ -64,6 +64,34 @@ test('rotation is checked after measuring the full box', () => {
     box: {x: 0, y: 0, width: 40, height: 20}, rotation: 45}, measure, canvas), /rotated/);
 });
 
+test('rotated anchored text keeps the source baseline in slide coordinates', () => {
+  const baselineOnSlide = (result, alignment, angle) => {
+    const box = result.box, content = result.layout.content_box;
+    const x = content.x + (alignment === 'center' ? content.width / 2 : alignment === 'right' ? content.width : 0);
+    const y = content.y + result.layout.native_baseline_ascent;
+    const cx = box.x + box.width / 2, cy = box.y + box.height / 2;
+    const a = angle * Math.PI / 180;
+    return [cx + Math.cos(a) * (x - cx) - Math.sin(a) * (y - cy),
+      cy + Math.sin(a) * (x - cx) + Math.cos(a) * (y - cy)];
+  };
+  for (const rotation of [-90, 90, 37, 180]) {
+    for (const alignment of ['left', 'center', 'right']) {
+      const result = fittedTextBox({id: 'vertical-source-label', text: 'ABCDE', font_size: 10,
+        anchor: {x: 150, y: 80}, baseline_offset: 11, rotation, alignment,
+        insets: {left: 5, right: 9, top: 4, bottom: 3}}, measure, canvas);
+      const point = baselineOnSlide(result, alignment, rotation);
+      assert.ok(Math.abs(point[0] - 150) < 1e-10);
+      assert.ok(Math.abs(point[1] - 80) < 1e-10);
+    }
+  }
+});
+
+test('source baseline anchoring still rejects a rotated frame outside the canvas', () => {
+  assert.throws(() => fittedTextBox({id: 'outside-vertical', text: 'ABCDE', font_size: 10,
+    anchor: {x: 150, y: 5}, rotation: -90, baseline_offset: 11}, measure, canvas),
+    /outside the source canvas: outside-vertical/);
+});
+
 test('combining graphemes are kept together during oversized-token wrapping', () => {
   const graphemeMeasure = text => ({...measure(text), width: [...new Intl.Segmenter(undefined,
     {granularity: 'grapheme'}).segment(text)].length * 10,

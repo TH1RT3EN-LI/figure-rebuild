@@ -1,0 +1,821 @@
+{
+  "basis": "Synthetic measurements passed through the maintained Node fittedTextBox writer; independent verifier replays source anchor arithmetic.",
+  "cases": [
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor--90-left",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": -90,
+            "alignment": "left",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor--90-left",
+          "box": {
+            "x": 131.70000000000002,
+            "y": 57.10000000000001,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 134.70000000000002,
+              "y": 59.10000000000001,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor--90-center",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": -90,
+            "alignment": "center",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor--90-center",
+          "box": {
+            "x": 131.70000000000002,
+            "y": 67.7,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 134.70000000000002,
+              "y": 69.7,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor--90-right",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": -90,
+            "alignment": "right",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor--90-right",
+          "box": {
+            "x": 131.70000000000002,
+            "y": 78.3,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 134.70000000000002,
+              "y": 80.3,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-90-left",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 90,
+            "alignment": "left",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-90-left",
+          "box": {
+            "x": 137.1,
+            "y": 82.3,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 140.1,
+              "y": 84.3,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-90-center",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 90,
+            "alignment": "center",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-90-center",
+          "box": {
+            "x": 137.1,
+            "y": 71.7,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 140.1,
+              "y": 73.7,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-90-right",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 90,
+            "alignment": "right",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-90-right",
+          "box": {
+            "x": 137.1,
+            "y": 61.10000000000001,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 140.1,
+              "y": 63.10000000000001,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-37-left",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 37,
+            "alignment": "left",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-37-left",
+          "box": {
+            "x": 146.08770798910643,
+            "y": 75.12655341458812,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 149.08770798910643,
+              "y": 77.12655341458812,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-37-center",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 37,
+            "alignment": "center",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-37-center",
+          "box": {
+            "x": 137.62217158260512,
+            "y": 68.7473141691764,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 140.62217158260512,
+              "y": 70.7473141691764,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-37-right",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 37,
+            "alignment": "right",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-37-right",
+          "box": {
+            "x": 129.15663517610383,
+            "y": 62.368074923764695,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 132.15663517610383,
+              "y": 64.3680749237647,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-180-left",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 180,
+            "alignment": "left",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-180-left",
+          "box": {
+            "x": 121.80000000000001,
+            "y": 72.4,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 124.80000000000001,
+              "y": 74.4,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-180-center",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 180,
+            "alignment": "center",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-180-center",
+          "box": {
+            "x": 132.4,
+            "y": 72.4,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 135.4,
+              "y": 74.4,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    },
+    {
+      "resolved": {
+        "canvas": {
+          "width": 300,
+          "height": 200
+        },
+        "objects": [
+          {
+            "id": "anchor-180-right",
+            "kind": "text",
+            "text": "AB",
+            "font_size": 10,
+            "anchor": {
+              "x": 150,
+              "y": 80
+            },
+            "baseline_offset": 11,
+            "rotation": 180,
+            "alignment": "right",
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "anchor-180-right",
+          "box": {
+            "x": 143,
+            "y": 72.4,
+            "width": 31.2,
+            "height": 20.6
+          },
+          "layout": {
+            "lines": [
+              "AB"
+            ],
+            "line_count": 1,
+            "required_width": 20,
+            "required_height": 13,
+            "line_height": 12,
+            "ascent": 8,
+            "descent": 2,
+            "native_baseline_ascent": 11,
+            "default_native_baseline_ascent": 8.4,
+            "baseline_basis": "explicit_calibrated_offset",
+            "line_height_basis": "default_measured_leading",
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 146,
+              "y": 74.4,
+              "width": 21.2,
+              "height": 14.600000000000001
+            },
+            "insets": {
+              "left": 3,
+              "right": 7,
+              "top": 2,
+              "bottom": 4
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

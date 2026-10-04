@@ -33,15 +33,17 @@ def save(path, data):
         except FileNotFoundError: pass
 
 
-def font_profile(value, base):
+def font_profile(value, base, *, require_default_faces=True):
     """Normalize a portable profile; declared hashes bind configured font bytes."""
     if not isinstance(value, dict) or not isinstance(value.get('family'), str) or not value['family'].strip():
         raise ValueError('Font profile needs fonts.family and regular/bold records')
     if any(ord(character) < 32 or character in ('"', '\\') for character in value['family']):
         raise ValueError('Font family contains unsupported quote/control characters')
+    if not any(role in value for role in ('regular', 'bold', 'italic', 'boldItalic')):
+        raise ValueError('Font profile needs at least one real face: ' + value['family'])
     fonts = {'family': value['family'].strip()}
     for role in ('regular', 'bold', 'italic', 'boldItalic'):
-        if role in ('italic', 'boldItalic') and role not in value:
+        if role not in value and (not require_default_faces or role in ('italic', 'boldItalic')):
             continue
         face = value.get(role)
         if not isinstance(face, dict) or not isinstance(face.get('path'), str) or not face['path']:
@@ -68,7 +70,7 @@ def font_profile(value, base):
         for extra in additional:
             if not isinstance(extra, dict) or extra.get('additional'):
                 raise ValueError('Additional font profiles cannot be nested')
-            normalized = font_profile(extra, base)
+            normalized = font_profile(extra, base, require_default_faces=False)
             if normalized['family'].casefold() in names:
                 raise ValueError('Duplicate configured font family: ' + normalized['family'])
             names.add(normalized['family'].casefold())

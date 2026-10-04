@@ -14,10 +14,10 @@ except ImportError:
     FontBuilder = None
 
 
-def make_font(path, style='Regular'):
+def make_font(path, style='Regular', *, family='Unit Test Sans', characters=range(32, 127)):
     bold, italic = 'Bold' in style, 'Italic' in style
     builder = FontBuilder(1000, isTTF=True)
-    cmap = {code: 'char' + str(code) for code in range(32, 127)}
+    cmap = {code: 'char' + str(code) for code in characters}
     names = ['.notdef', *cmap.values()]
     builder.setupGlyphOrder(names)
     builder.setupCharacterMap(cmap)
@@ -30,8 +30,8 @@ def make_font(path, style='Regular'):
     builder.setupGlyf(glyphs)
     builder.setupHorizontalMetrics({name: (600, 0) for name in names})
     builder.setupHorizontalHeader(ascent=800, descent=-200)
-    builder.setupNameTable({'familyName': 'Unit Test Sans', 'styleName': style,
-                           'fullName': 'Unit Test Sans ' + style,
+    builder.setupNameTable({'familyName': family, 'styleName': style,
+                           'fullName': family + ' ' + style,
                            'uniqueFontIdentifier': 'unit-test-' + style,
                            'psName': 'UnitTestSans-' + style})
     builder.setupOS2(sTypoAscender=800, sTypoDescender=-200, usWinAscent=800, usWinDescent=200,
@@ -90,6 +90,53 @@ class FontPreparationTests(unittest.TestCase):
             prepare_fonts(self.profile, destination,
                           [{'id': 'unreadable-label', 'kind': 'text', 'text': '中'}])
         self.assertFalse(destination.exists())
+
+    def test_additional_subset_covers_its_labels_without_comparison_caption(self):
+        subset = self.root / 'subset.ttf'
+        make_font(subset, family='Source Subset', characters=[ord('A')])
+        self.profile['additional'] = [{'family': 'Source Subset',
+                                       'regular': {'path': str(subset)}}]
+        audit = prepare_fonts(self.profile, self.root / 'subset-render',
+                              [{'id': 'source-label', 'kind': 'text', 'text': 'A',
+                                'font_family': 'Source Subset'}])
+        source_face = next(face for face in audit if face['family'] == 'Source Subset')
+        self.assertEqual(source_face['checked_object_ids'], ['source-label'])
+        self.assertEqual(source_face['role'], 'regular')
+        self.assertIn('comparison-labels', audit[0]['checked_object_ids'])
+        with TTFont(source_face['renderer']) as font:
+            self.assertEqual(set(font.getBestCmap()), {ord('A')})
+
+    def test_additional_subset_does_not_grant_missing_glyph_or_style(self):
+        subset = self.root / 'subset.ttf'
+        make_font(subset, family='Source Subset', characters=[ord('A')])
+        self.profile['additional'] = [{'family': 'Source Subset',
+                                       'regular': {'path': str(subset)}}]
+        for text, flags, error in [('B', {}, 'source-label: U\\+0042'),
+                                   ('A', {'bold': True}, 'Missing real font face Source Subset bold'),
+                                   ('A', {'italic': True}, 'Missing real font face Source Subset italic')]:
+            with self.subTest(text=text, flags=flags):
+                destination = self.root / ('missing-' + str(len(flags)) + text + str(flags.get('bold')))
+                with self.assertRaisesRegex(ValueError, error):
+                    prepare_fonts(self.profile, destination,
+                                  [{'id': 'source-label', 'kind': 'text', 'text': text,
+                                    'font_family': 'Source Subset', **flags}])
+                self.assertFalse(destination.exists())
+
+    def test_additional_bold_only_face_and_default_requirements(self):
+        subset = self.root / 'bold-subset.ttf'
+        make_font(subset, 'Bold', family='Source Subset', characters=[ord('A')])
+        extra = {'family': 'Source Subset', 'bold': {'path': str(subset)}}
+        self.profile['additional'] = [extra]
+        audit = prepare_fonts(self.profile, self.root / 'bold-subset-render',
+                              [{'id': 'source-label', 'kind': 'text', 'text': 'A',
+                                'font_family': 'Source Subset', 'bold': True}])
+        self.assertEqual(audit[-1]['role'], 'bold')
+        self.assertTrue(audit[-1]['bold'])
+        with self.assertRaisesRegex(ValueError, 'requires regular.path'):
+            validate_profile(extra)
+        self.profile['additional'] = [{'family': 'Source Subset'}]
+        with self.assertRaisesRegex(ValueError, 'at least one real face'):
+            validate_profile(self.profile)
 
     def test_wrong_family_hash_and_relative_path_fail(self):
         self.profile['family'] = 'Different Family'
