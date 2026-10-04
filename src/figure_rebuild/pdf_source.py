@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from fractions import Fraction
-from .pdf_visibility import ID as EXACT_ID, exact_chain, prove_source_paint_invisible
+from .pdf_visibility import ID as EXACT_ID, exact_chain, prove_source_paint_invisible, simple_points
 import hashlib
 import math
 import re
@@ -181,6 +181,25 @@ def _bounds(commands):
         elif op == "C": pen.curveTo(*points)
         elif op == "Z": pen.closePath()
     return pen.bounds
+
+
+def _exact_zero_length_source_line(paint):
+    """A float-collapsed nonzero source line is never a zero-area certificate."""
+    if paint.kind != "path" or paint.reference_chain:
+        return None
+    node = ET.fromstring(paint.source_xml)
+    data = node.get("d", "")
+    if node.tag.rsplit("}", 1)[-1] != "path" or len(data) > 4096:
+        return None
+    try:
+        points, closed = simple_points(data)
+    except (ValueError, TypeError, OverflowError):
+        return None
+    if closed or len(points) != 2 or points[0] != points[1]:
+        return None
+    return {"exact_local_point": list(map(str, points[0])),
+            "source_path_data_sha256": hashlib.sha256(data.encode()).hexdigest(),
+            "predicate_arithmetic": "exact_rationals_of_original_svg_tokens"}
 
 
 def _attributes(node, inherited):
@@ -615,6 +634,25 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                 "source_text_unverified": paint.source_text})
                 continue
             invisible = prove_source_paint_invisible(paint, region)
+            if (fill == "none" and stroke != "none" and len(paint.commands) == 2
+                    and paint.commands[0][0] == "M" and paint.commands[1][0] == "L"
+                    and paint.commands[0][1] == paint.commands[1][1]
+                    and style["stroke-linecap"] == "butt"
+                    and style["stroke-linejoin"] in ("miter", "round", "bevel")
+                    and style["stroke-dasharray"] == "none"
+                    and (zero_line := _exact_zero_length_source_line(paint)) is not None):
+                if _number(style["stroke-width"]) < 0:
+                    raise UnsupportedPdfPaintError("Negative stroke width")
+                if (style["stroke-linejoin"] == "miter"
+                        and not 1 <= _number(style["stroke-miterlimit"]) <= 21474.83647):
+                    raise UnsupportedPdfPaintError("Source miter limit is outside SVG/native supported range")
+                skipped.append({"source_id": paint.source_id,
+                                "reason": "zero-length independent butt-capped line has no visible area",
+                                "proof": "one_moveto_one_equal_lineto_no_fill_no_dash_butt_cap",
+                                "source_point": list(paint.commands[0][1]),
+                                "source_linecap": "butt", "source_commands_changed": False,
+                                "source_lexical_geometry": zero_line})
+                continue
             if invisible is not None:
                 skipped.append({"source_id": paint.source_id, "reason": "proved source clip/support outside selected region", "visibility_certificate": invisible})
                 continue

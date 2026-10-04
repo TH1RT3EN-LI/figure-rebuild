@@ -5,11 +5,15 @@ polygon interiors have the same fill under either rule, regardless of contour
 orientation. Prove that restricted case without moving any source coordinates;
 Curved contours require an ordered convex control polygon, a proved
 single-cubic/two-line Jordan contour, or pairwise separated segment control
-hulls. The source coordinates stay unchanged.
-Intersections, touching contours and nesting remain unsupported.
+hulls. A bounded isolated-cubic arrangement can also certify nested contours
+when odd and nonzero winding agree on every face. Source coordinates stay
+unchanged; a failed proof is never permission to omit or normalize paint.
 """
 from fractions import Fraction
 import math
+
+from .pdf_cubic_winding import (UnsupportedPdfCubicWindingError,
+                                normalize_isolated_cubic_fill)
 
 
 def _point(value):
@@ -59,8 +63,9 @@ def prove_evenodd_nonzero_equivalent(commands):
     commands are unchanged. Fill-only implicit closures and exactly repeated
     straight vertices are handled in a separate proof representation, with a
     receipt; those changes must never be applied to a stroked source path.
-    Contours may be concave and use either
-    orientation; contained, intersecting or touching contours are rejected.
+    Contours may be concave and use either orientation. Curved nested contours
+    require a separate exact arrangement certificate; arbitrary nesting,
+    intersecting curves and touching contours remain unsupported.
     Resource bounds also fail closed. ``None`` is not permission to omit paint.
     """
     if not isinstance(commands, (list, tuple)) or len(commands) > 8192:
@@ -71,8 +76,56 @@ def prove_evenodd_nonzero_equivalent(commands):
     proof_commands, receipt = normalized
     proof = _prove_closed_fill(proof_commands)
     if proof is None:
+        proof = _prove_isolated_curve_parity(proof_commands)
+    if proof is None:
         return None
     return {**proof, "fill_proof_normalization": receipt}
+
+
+def _prove_isolated_curve_parity(commands):
+    """Reprove winding predicates; never consume the engine's output geometry.
+
+    Isolation certifies that whole cubics can be deformed to their chords
+    without changing topology. Every region with winding different from zero
+    borders a nonzero-jump atomic edge; the unbounded face has winding zero.
+    Testing both sides of these edges therefore covers every fill predicate.
+    Zero-multiplicity edges change neither winding nor parity. The existing
+    line-only admission policy is deliberately unchanged.
+    """
+    if len(commands) > 512 or not any(command[0] == "C" for command in commands):
+        return None
+    try:
+        result = normalize_isolated_cubic_fill(
+            commands, max_input_segments=128, max_commands=512,
+            max_atomic_edges=2048, max_operations=250000, max_probe_halvings=80)
+    except UnsupportedPdfCubicWindingError:
+        return None
+    topology = result["proof"]
+    # Keep the existing rejection of exact retracing/cancellation. The
+    # normalization engine can cancel those edges, but this source-admission
+    # extension does not authorize that broader domain.
+    if len(topology["boundary_classification"]) != topology["atomic_edge_count"]:
+        return None
+    for edge in topology["boundary_classification"]:
+        for side in ("left_winding", "right_winding"):
+            winding = edge[side]
+            if bool(winding) != bool(winding % 2):
+                return None
+    return {
+        "source_fill_rule": "evenodd", "output_fill_rule": "nonzero",
+        "proof": "isolated_whole_cubic_arrangement_with_equal_winding_predicates",
+        "predicate_arithmetic": "exact_rationals_of_input_coordinates",
+        "contour_count": sum(command[0] == "M" for command in commands),
+        "cubic_count": topology["source_curve_count"],
+        "source_commands_changed": False, "curve_approximation": False,
+        "unbounded_face_winding": 0,
+        "face_predicate": "nonzero(winding) == odd(winding)",
+        "normalization_output_geometry_used": False,
+        "topology_certificate": topology,
+        "topology_certificate_scope": "nonzero boundary analysis only; its output commands are discarded",
+        "budgets": {"commands": 512, "segments": 128, "atomic_edges": 2048,
+                    "operations": 250000, "probe_halvings": 80},
+    }
 
 
 def _normalize_fill_for_proof(commands):

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T06:08:10.850510+00:00",
+  "updated_at": "2026-10-04T07:04:59.994040+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 184,
-    "open": 111,
+    "closed_model_visual_review": 186,
+    "open": 109,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -4560,6 +4560,76 @@
           "sha256": "ac2e1393ac92a0c4245c780225a97e4b85f27b869cac2c8865a2e86341e18ed8"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2022-09-f01",
+      "issue_id": "ccf-2022-09-f01-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source Calibri outlines restore compact labels, encoder weight/size, and original title/label positions. Three previously blocked circles retain complete original cubic strokes and source clips. Complete new source candidate and normal CLI build, actual final XML and 1x/2x/4x visual review confirm source geometry/typography. This closure is model visual review, not user acceptance or live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/simgcl-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "7adcb40f6d12607d7ea0cb2b4a66b9db1bb3f8bf989ce4a1a81f056f5a7b05df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/output-review.json",
+          "sha256": "a69e00ccc6da8107595848a6ace4a7d0a45ad6940a75e1b93f2ed0b8795cb245"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "d3c4214c8531003770320da221faa53a04be2b9cfdc23bd6ef9ddda879b9d88f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "ad53745e6201daf8b97abf1c0fa12733dd4ca3f1648e0dde043de14dd6b73bc0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/comparison-001/individual-bindings.json",
+          "sha256": "23cb3f5d5a395138f0b47326353e51377b546f6ea164990dfd9ef5f7430dc7f2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/job/diagnostics/source-conversion.json",
+          "sha256": "5e5605b7bc1c924468307979c70d74c2c0b85ce8698dc1b1028bbfc64c18e067"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-17-f01",
+      "issue_id": "ccf-2020-17-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "RTT and Packet-level stay on the correct side of the red enclosure. Pacing component is one continuous two-line phrase; source Google Sans outlines preserve label widths and positions. Original nine-cubic red annulus is a single native editable source path with its white hole. Complete new source candidate and normal CLI build, actual final XML and 1x/2x/4x visual review confirm source geometry/typography. This closure is model visual review, not user acceptance or live text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/swift-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "9a7ce21b78de79b147ba653b8f3ccfaeacc56855f026a5c9e2b8024d754130ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/output-review.json",
+          "sha256": "61a6bd0a865c0fb6374396b49b59bb2bec723ed02a01c5d04ee41fae7bd03ce5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/native-verification-001/RESULT.json",
+          "sha256": "4b74ad049cf880943889fa2beb4db5e4e0454388f6f206f8aee08adff7c421e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "7e94e0a9635a8bf788582b677462a32e70af29c3dd8b9c3644c86e5447e9aa96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/individual-bindings.json",
+          "sha256": "c7d1b47b2a7e6c8986a46060522ef37785678feeabc16d5f4db1c9863ff38e0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/job/diagnostics/source-conversion.json",
+          "sha256": "0d7d558a81a3722a4617a67fb7a2d01132b39c2eb8bf6010b6e05f7751857c70"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -4587,7 +4657,6 @@
     "ccf-2020-14-f01-D01",
     "ccf-2020-14-f02-D01",
     "ccf-2020-15-f05-D03",
-    "ccf-2020-17-f01-D01",
     "ccf-2020-17-f02-D01",
     "ccf-2020-18-f01-D01",
     "ccf-2020-18-f01-D02",
@@ -4621,7 +4690,6 @@
     "ccf-2022-07-f01-D01",
     "ccf-2022-07-f01-D02",
     "ccf-2022-07-f01-D03",
-    "ccf-2022-09-f01-D01",
     "ccf-2022-12-f01-D01",
     "ccf-2022-12-f01-D02",
     "ccf-2022-12-f04-D01",
@@ -7040,6 +7108,78 @@
         }
       ],
       "output_review": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2022-09-f01",
+      "issue_id": "ccf-2022-09-f01-SOURCE-OUTLINE-TEXT-001",
+      "status": "open",
+      "severity": "major",
+      "description": "129 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
+      "latest_verified_attempt": "source-regeneration/simgcl-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "7adcb40f6d12607d7ea0cb2b4a66b9db1bb3f8bf989ce4a1a81f056f5a7b05df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/output-review.json",
+          "sha256": "a69e00ccc6da8107595848a6ace4a7d0a45ad6940a75e1b93f2ed0b8795cb245"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "d3c4214c8531003770320da221faa53a04be2b9cfdc23bd6ef9ddda879b9d88f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "ad53745e6201daf8b97abf1c0fa12733dd4ca3f1648e0dde043de14dd6b73bc0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/comparison-001/individual-bindings.json",
+          "sha256": "23cb3f5d5a395138f0b47326353e51377b546f6ea164990dfd9ef5f7430dc7f2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/simgcl-maintained-source-001/job/diagnostics/source-conversion.json",
+          "sha256": "5e5605b7bc1c924468307979c70d74c2c0b85ce8698dc1b1028bbfc64c18e067"
+        }
+      ],
+      "output_review": "source-regeneration/simgcl-maintained-source-001/output-review.json",
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-17-f01",
+      "issue_id": "ccf-2020-17-f01-SOURCE-OUTLINE-TEXT-001",
+      "status": "open",
+      "severity": "major",
+      "description": "183 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
+      "latest_verified_attempt": "source-regeneration/swift-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "9a7ce21b78de79b147ba653b8f3ccfaeacc56855f026a5c9e2b8024d754130ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/output-review.json",
+          "sha256": "61a6bd0a865c0fb6374396b49b59bb2bec723ed02a01c5d04ee41fae7bd03ce5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/native-verification-001/RESULT.json",
+          "sha256": "4b74ad049cf880943889fa2beb4db5e4e0454388f6f206f8aee08adff7c421e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "7e94e0a9635a8bf788582b677462a32e70af29c3dd8b9c3644c86e5447e9aa96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/individual-bindings.json",
+          "sha256": "c7d1b47b2a7e6c8986a46060522ef37785678feeabc16d5f4db1c9863ff38e0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/swift-maintained-source-002/job/diagnostics/source-conversion.json",
+          "sha256": "0d7d558a81a3722a4617a67fb7a2d01132b39c2eb8bf6010b6e05f7751857c70"
+        }
+      ],
+      "output_review": "source-regeneration/swift-maintained-source-002/output-review.json",
       "user_acceptance": "pending"
     }
   ]
