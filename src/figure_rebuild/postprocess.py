@@ -62,7 +62,7 @@ def _transform(element, label):
 def _mapped_frames(object_map, manifest):
     if object_map is None:
         return None
-    data = json.loads(Path(object_map).read_text())
+    data = object_map if isinstance(object_map, dict) else json.loads(Path(object_map).read_text())
     if not isinstance(data, dict):
         raise ValueError('Object map must be a record')
     placement = data.get('placement')
@@ -203,12 +203,16 @@ def _visual_bounds(element, label):
             math.ceil(max(p[0] for p in corners)), math.ceil(max(p[1] for p in corners)))
 
 
-def process(source, output, manifest_path, receipt, object_map=None, asset_root=None):
+def process(source, output, manifest_path, receipt, object_map=None, asset_root=None,
+            occupied_placement=None):
     source, output = Path(source), Path(output)
     if output.exists(): raise ValueError('Refusing to overwrite a PPTX')
     if Path(receipt).exists(): raise ValueError('Refusing to overwrite an editability receipt')
     manifest = json.loads(Path(manifest_path).read_text())
-    mapped_frames = _mapped_frames(object_map, manifest)
+    object_map_data = json.loads(Path(object_map).read_text()) if object_map is not None else None
+    if object_map is not None and not isinstance(object_map_data, dict):
+        raise ValueError('Object map must be a record')
+    mapped_frames = _mapped_frames(object_map_data, manifest)
     canvas_clip_receipt = None
     canvas_clip_ids = set()
     if 'source_canvas_clip' in manifest:
@@ -281,9 +285,15 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
                                   'geometry_preserved': True, 'manifest_modified': False,
                                   'visual_review_required': True})
         elif obj['kind'] == 'path':
-            winding_fills.append(normalize_native_polygon_fill(
-                element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,
-                parent_identity=parent_identity))
+            if any('cubicTo' in command for command in obj.get('commands', [])):
+                from .native_cubic_winding import normalize_native_cubic_fill
+                winding_fills.append(normalize_native_cubic_fill(
+                    page, object_id=obj['id'], manifest=manifest,
+                    object_map=object_map_data, placement=occupied_placement))
+            else:
+                winding_fills.append(normalize_native_polygon_fill(
+                    element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,
+                    parent_identity=parent_identity))
         if obj['kind'] == 'image' and element.tag != f"{{{NS['p']}}}pic": raise ValueError('Raster asset classification mismatch')
         if obj['kind'] == 'image':
             rect = element.find('p:blipFill/a:srcRect', NS)
@@ -381,4 +391,5 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
 if __name__ == '__main__':
     p = argparse.ArgumentParser(); p.add_argument('--input', required=True); p.add_argument('--output', required=True); p.add_argument('--manifest', required=True); p.add_argument('--receipt', required=True); p.add_argument('--object-map')
     p.add_argument('--asset-root')
-    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map, asset_root=a.asset_root), ensure_ascii=False))
+    p.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'))
+    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map, asset_root=a.asset_root, occupied_placement=a.placement), ensure_ascii=False))
