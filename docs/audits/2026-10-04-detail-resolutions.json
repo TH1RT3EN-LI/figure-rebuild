@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T00:37:31.453308+00:00",
+  "updated_at": "2026-10-04T01:16:11.498015+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 172,
-    "open": 123,
+    "closed_model_visual_review": 174,
+    "open": 121,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -1019,6 +1019,84 @@
         {
           "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-20-f03/output-review.json",
           "sha256": "c2f13838bedf52c22d2b0237111b74f312e6b7f613367eb50b99a6f76a956f76"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-02-f01",
+      "issue_id": "ccf-2021-02-f01-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Source2x/4x and actual native2x/4x show matching original glyph contours, baseline offsets and centering; source/old/new2x comparison visibly separates the old raised/light text from the restored baseline. This is source glyph outline fidelity, not live-word reconstruction. Independent review of the actual final native PPT confirms the bounded visual closure. There are961 source paths and5 unchanged source photos, with no live text; photo sampling differences and user acceptance remain pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/clip-source-complete-001/build-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-clip-verification-001.json",
+          "sha256": "105b52043dcd9ac03e3c943d1845530fe5d46e8bd3ed10cefe8967746fb5ef4d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/HANDOFF.json",
+          "sha256": "28832a757b1b2d1d8fed6ae9aeef6f91d53178f1d3cfc4a8a32d9bee7c8383a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/output-review.json",
+          "sha256": "31fad409461d971872d5928b92af2bf07cffe215340b51d79fe8186891823c7e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/VISUAL-RESULT.json",
+          "sha256": "7633fcf6506446c8847b4ca098351694c48050848ca0b6dfbdddee6a8d6d2b84"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/FREEZE.json",
+          "sha256": "680792449c64436c1f9d0ff5d090853162d28e3badbfce179cf38aeabee31319"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/REVIEW.md",
+          "sha256": "850b103b8542bc8545e95f087eab1708082c38d5f9e66bbac7ed026feb9eed91"
+        },
+        {
+          "audit_relative_path": "probes/clip-root-visual-spots-001.json",
+          "sha256": "b8ff8c43779760d875e89cf8c310603b21ac7648a6b334d944d8ca7eed9ee636"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-02-f01",
+      "issue_id": "ccf-2021-02-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "The original monospace source contours and original Text Encoder outlines preserve source stroke appearance, two-line spacing and vertical placement; source/old/new2x and source/native4x were actually inspected. Independent review of the actual final native PPT confirms the bounded visual closure. There are961 source paths and5 unchanged source photos, with no live text; photo sampling differences and user acceptance remain pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/clip-source-complete-001/build-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-clip-verification-001.json",
+          "sha256": "105b52043dcd9ac03e3c943d1845530fe5d46e8bd3ed10cefe8967746fb5ef4d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/HANDOFF.json",
+          "sha256": "28832a757b1b2d1d8fed6ae9aeef6f91d53178f1d3cfc4a8a32d9bee7c8383a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/output-review.json",
+          "sha256": "31fad409461d971872d5928b92af2bf07cffe215340b51d79fe8186891823c7e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/VISUAL-RESULT.json",
+          "sha256": "7633fcf6506446c8847b4ca098351694c48050848ca0b6dfbdddee6a8d6d2b84"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/FREEZE.json",
+          "sha256": "680792449c64436c1f9d0ff5d090853162d28e3badbfce179cf38aeabee31319"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/REVIEW.md",
+          "sha256": "850b103b8542bc8545e95f087eab1708082c38d5f9e66bbac7ed026feb9eed91"
+        },
+        {
+          "audit_relative_path": "probes/clip-root-visual-spots-001.json",
+          "sha256": "b8ff8c43779760d875e89cf8c310603b21ac7648a6b334d944d8ca7eed9ee636"
         }
       ]
     },
@@ -4155,8 +4233,6 @@
     "ccf-2020-18-f01-D03",
     "ccf-2020-18-f01-XC01",
     "ccf-2021-01-f01-D01",
-    "ccf-2021-02-f01-D01",
-    "ccf-2021-02-f01-D02",
     "ccf-2021-03-f03-D01",
     "ccf-2021-03-f04-D01",
     "ccf-2021-09-f02-D01",
@@ -6240,6 +6316,46 @@
         {
           "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/output-review.json",
           "sha256": "2039220abf70611974694af7fe99fb8b23c04df5019c21ba463859e41dca44e4"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Five author photographs: pretraining image stack and zero-shot single dog",
+      "description": "Actual native4x shows small texture/filtering differences from the source PDF4x, visible around the dog face, grass, background foliage and exposed rear tiles. All five encoded assets, placement frames, zero crop and painter order are verified identical; the remaining appearance differs in sampling. Specific filtering implementation has not been isolated. This is a newly recorded residual, not a proven newly introduced regression.",
+      "figure_id": "ccf-2021-02-f01",
+      "issue_id": "ccf-2021-02-f01-CLIP-IMAGE-SAMPLING-001",
+      "owner_finding_id": "CLIP-IMAGE-SAMPLING-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-clip-verification-001.json",
+          "sha256": "105b52043dcd9ac03e3c943d1845530fe5d46e8bd3ed10cefe8967746fb5ef4d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/HANDOFF.json",
+          "sha256": "28832a757b1b2d1d8fed6ae9aeef6f91d53178f1d3cfc4a8a32d9bee7c8383a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/output-review.json",
+          "sha256": "31fad409461d971872d5928b92af2bf07cffe215340b51d79fe8186891823c7e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/VISUAL-RESULT.json",
+          "sha256": "7633fcf6506446c8847b4ca098351694c48050848ca0b6dfbdddee6a8d6d2b84"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/FREEZE.json",
+          "sha256": "680792449c64436c1f9d0ff5d090853162d28e3badbfce179cf38aeabee31319"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/independent-review-001/REVIEW.md",
+          "sha256": "850b103b8542bc8545e95f087eab1708082c38d5f9e66bbac7ed026feb9eed91"
+        },
+        {
+          "audit_relative_path": "probes/clip-root-visual-spots-001.json",
+          "sha256": "b8ff8c43779760d875e89cf8c310603b21ac7648a6b334d944d8ca7eed9ee636"
         }
       ],
       "user_acceptance": "pending"
