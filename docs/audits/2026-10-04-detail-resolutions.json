@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T02:34:20.571218+00:00",
+  "updated_at": "2026-10-04T03:07:50.781339+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -6644,7 +6644,39 @@
           "sha256": "c49868a8338ebeb2879b59a57a6300c8567837457b302b39f6c4d647aeb4f12c"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "diagnostic_followups": [
+        {
+          "recorded_at": "2026-10-04T03:07:50.781339+00:00",
+          "status": "open",
+          "scope": "bounded_color_quantization_and_compositing_diagnosis_only",
+          "result": "Independent 24-case/28-shape actual source-SVG-PPT controls at1x/2x/4x support an opaque color quantization discrepancy; black50percent on white also differs despite identical black bytes and exact native alpha. No general color correction or RGB bound is established. The original BYOL output remains unchanged.",
+          "corrections": [
+            "Pillow-decoded saved PNG contains straight RGBA; eight fields were mislabeled premultiplied in the original diagnostic record, which is preserved.",
+            "Matching-tag MuPDF draw assignments are626/634/641, separate from SVG rounding.",
+            "Exact234/255 and235/255 refute blanket byte decrement; they do not refute source-bound float32 opaque truncation."
+          ],
+          "evidence": [
+            {
+              "audit_relative_path": "probes/root-flat-color-diagnostic-review-001.json",
+              "sha256": "fa3096695ace4c204ebbf4795ae66434b4fc82c02540568fbc4aca8f286f3ce6"
+            },
+            {
+              "audit_relative_path": "probes/pdf-source-flat-color-feasibility-001/FREEZE.json",
+              "sha256": "81e3c97a092ffe85d127073c9a94fb4bdae36fc2de425c3e471aab62c6d10ee3"
+            },
+            {
+              "audit_relative_path": "probes/pdf-source-flat-color-independent-001/HANDOFF.json",
+              "sha256": "5dd4ea9671cd3e36c5937542682044a7f55ee782e494b8a65fe2a5f3a2975d6d"
+            },
+            {
+              "audit_relative_path": "probes/pdf-source-flat-color-independent-001/REPORT.md",
+              "sha256": "cdebd1c91214b4df48ac058f367b30675b7fddd2d6486242edf674f3b30dd53c"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ]
     }
   ]
 }
