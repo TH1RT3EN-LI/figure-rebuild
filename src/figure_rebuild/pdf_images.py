@@ -506,7 +506,8 @@ def _svg_images(svg, selection=None):
 
 def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, image_indices=None,
                        allow_affine_rasterization=False, native_occurrence_rendering=False,
-                       allow_native_rgb_group_sampling=False, native_sampling_scale=8):
+                       allow_native_rgb_group_sampling=False, native_sampling_scale=8,
+                       allow_native_matte_sampling=False):
     """Return visible image occurrences with PNG bytes and explicit placement.
 
     ``page`` is one-based; ``region`` is x0/y0/x1/y1 in unrotated top-left PDF
@@ -547,6 +548,12 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     starts from the original source bytes in a fresh document, so decoding for
     SVG, image hashes, or a preceding occurrence cannot prime its image cache.
     Pixel-based receipts are captured only after the native PNG is complete.
+    ``allow_native_matte_sampling=True`` requires native occurrence rendering.
+    It additionally admits 8-bit DeviceRGB images and same-size 8-bit attached
+    Matte masks without Decode changes. The actual native image, bound mask and
+    clips are forwarded unchanged; no decoded-alpha recomposition occurs.
+    This opt-in remains sampled, requires whole-figure visual review and has no
+    RGB/alpha error bound. Default decoded and native Matte rejection remain.
     ``allow_native_rgb_group_sampling=True`` requires native occurrence rendering
     and additionally admits one actual RGB child transparency group (including
     ICC / isolated groups) under the neutral page root. Original colorspaces and
@@ -581,6 +588,10 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
     if allow_native_rgb_group_sampling and not native_occurrence_rendering:
         raise ValueError('allow_native_rgb_group_sampling requires native_occurrence_rendering=True')
+    if not isinstance(allow_native_matte_sampling, bool):
+        raise ValueError('allow_native_matte_sampling must be a boolean')
+    if allow_native_matte_sampling and not native_occurrence_rendering:
+        raise ValueError('allow_native_matte_sampling requires native_occurrence_rendering=True')
     if not isinstance(allow_affine_rasterization, bool):
         raise ValueError('allow_affine_rasterization must be a boolean')
     if isinstance(page, bool) or not isinstance(page, int) or page < 1:
@@ -674,7 +685,8 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                             render_document[page-1], bboxlog, paint[0], source_transform=mapping,
                             source_bounds=frame, user_clip_pdf=user_clip,
                             allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
-                            native_sampling_scale=native_sampling_scale)
+                            native_sampling_scale=native_sampling_scale,
+                            allow_native_matte_sampling=allow_native_matte_sampling)
                     native['receipt']['render_document_state'] = 'fresh_source_bytes_per_occurrence'
                     native['receipt']['metadata_and_render_documents_separated'] = True
                     if allow_native_rgb_group_sampling:

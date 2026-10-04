@@ -13,7 +13,8 @@ from .pdf_image_native import PdfImageNativeError
 
 def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                             source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
-                            native_sampling_scale=8, _paint_kind='fill-image'):
+                            native_sampling_scale=8, allow_native_matte_sampling=False,
+                            _paint_kind='fill-image'):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
     ``source_bounds`` is the declared storage x0/y0/x1/y1 in source pixels.
@@ -38,11 +39,20 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
     image sampling state. The public extraction helper opens a fresh document
     per occurrence; this low-level function cannot undo prior use of ``sheet``.
     Image/mask receipt decoding is deferred until the PNG has been encoded.
+
+    ``allow_native_matte_sampling`` separately admits a native 8-bit DeviceRGB
+    image with a same-size attached Matte mask. The actual image and mask are
+    forwarded unchanged; decoded alpha is never manually merged a second time.
+    This remains sampled output, without an RGB/alpha error bound.
     """
     if _paint_kind not in ('fill-image', 'stroke-path'):
         raise PdfImageNativeError('Unsupported selected paint kind')
     if not isinstance(allow_native_rgb_group_sampling, bool):
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
+    if not isinstance(allow_native_matte_sampling, bool):
+        raise ValueError('allow_native_matte_sampling must be a boolean')
+    if allow_native_matte_sampling and _paint_kind != 'fill-image':
+        raise ValueError('allow_native_matte_sampling requires an image paint')
     if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
             or native_sampling_scale not in (4, 8)):
         raise ValueError('native_sampling_scale must be the integer 4 or 8')
@@ -318,8 +328,15 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                 raise PdfImageNativeError('External masks and pattern compositing are unsupported')
             if alpha != 1 or params.op:
                 raise PdfImageNativeError('Image draw alpha or overprint requires unsupported compositing')
-            if image.mask and image.use_colorkey:
-                raise PdfImageNativeError('Image /Matte compositing is unsupported')
+            matte = bool(image.mask and image.use_colorkey)
+            if matte:
+                if not allow_native_matte_sampling:
+                    raise PdfImageNativeError('Image /Matte compositing is unsupported')
+                if (not image.colorspace or
+                        int(image.colorspace.this) != int(m.fz_device_rgb().m_internal.this) or
+                        image.n != 3 or image.bpc != 8 or image.use_decode or
+                        image.mask.bpc != 8 or image.mask.use_decode):
+                    raise PdfImageNativeError('Native Matte sampling requires 8-bit DeviceRGB and an 8-bit mask without Decode changes')
             if image.w <= 0 or image.h <= 0 or image.w*image.h > 64_000_000:
                 raise PdfImageNativeError('Native image dimensions exceed rendering budget')
             transform = [float(getattr(ctm, key)) for key in 'abcdef']
@@ -354,6 +371,12 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
             if allow_native_rgb_group_sampling:
                 self.selected['native_default_rgb_at_paint'] = colorspace_record(
                     m.fz_default_rgb(self.default_colorspaces).m_internal)
+            if allow_native_matte_sampling:
+                self.selected.update(allow_native_matte_sampling=True,
+                    native_matte_combination_present=matte,
+                    matte_color_reconstructed=False,
+                    decoded_alpha_manually_recombined=False,
+                    matte_handling='actual_image_and_bound_mask_forwarded_unchanged' if matte else 'not_present')
             self.forward('fill_image', image, ctm, alpha, params)
 
     try:
@@ -369,7 +392,8 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
         m.fz_rectto(region_path, *user_clip_pdf)
         m.fz_clip_path(target, region_path, 0, m.FzMatrix(), m.FzRect(m.fz_infinite_rect))
         device = ForwardPaint(target)
-        m.fz_run_page(sheet.this, device, m.FzMatrix(), m.FzCookie())
+        cookie = m.FzCookie()
+        m.fz_run_page(sheet.this, device, m.FzMatrix(), cookie)
         m.fz_close_device(device)
         m.fz_pop_clip(target)
         m.fz_close_device(target)
@@ -377,6 +401,8 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
         raise PdfImageNativeError('Native occurrence forwarding failed: '+str(error)) from error
     if [(row[0], tuple(row[1])) for row in device.result] != expected:
         raise PdfImageNativeError('Native forwarded paint type/bbox sequence differs from bboxlog')
+    if cookie.abort() or cookie.errors() or cookie.incomplete():
+        raise PdfImageNativeError('Native occurrence replay was aborted, incomplete or reported errors')
     if device.errors:
         raise PdfImageNativeError('; '.join(device.errors))
     if device.groups or device.clips or device.mask_depth or device.tile_depth:
@@ -417,6 +443,7 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                           'paint_count_scope': 'complete native group interval, including descendant paints',
                           'shared_group_split_unverified': end-start > 1})
     receipt = {**selected, 'method': 'native_fill_image_and_original_context_forwarding',
+               'native_replay': {'errors': 0, 'incomplete': 0, 'aborted': False},
                'paint_seqno': paint_seqno, 'pymupdf_version': fitz.VersionBind,
                'verified_total_source_paints': len(expected), 'image_paints_forwarded': 1,
                'independent_text_path_shading_other_image_paints_forwarded': 0,
@@ -444,6 +471,11 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                         'exact_group_decomposition_claimed': False,
                         'group_sampling_scope': 'original native callbacks; neutral page root plus at most one RGB child',
                         'mupdf_version': fitz.VersionFitz})
+    if allow_native_matte_sampling:
+        receipt.update(required_full_figure_visual_review=True,
+            matte_sampling_rgb_alpha_error_bound=None,
+            exact_matte_decomposition_claimed=False,
+            matte_sampling_scope='native 8-bit DeviceRGB image and same-size bound 8-bit mask; original clips and callbacks')
     if _paint_kind == 'stroke-path':
         for key in ('image_paints_forwarded','independent_text_path_shading_other_image_paints_forwarded',
                     'native_image_handle_forwarded_without_decode_reencode','native_color_mask_filtering_and_interpolation_retained'):
@@ -461,10 +493,11 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
 
 def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                             source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
-                            native_sampling_scale=8):
+                            native_sampling_scale=8, allow_native_matte_sampling=False):
     """Sample one actual image; preserve the existing image-only contract."""
     return _render_native_pdf_paint(sheet, bboxlog, paint_seqno,
         source_transform=source_transform, source_bounds=source_bounds,
         user_clip_pdf=user_clip_pdf,
         allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
-        native_sampling_scale=native_sampling_scale)
+        native_sampling_scale=native_sampling_scale,
+        allow_native_matte_sampling=allow_native_matte_sampling)

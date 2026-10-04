@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T18:18:53.320720+00:00",
+  "updated_at": "2026-10-04T19:28:47.075138+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 229,
-    "open": 66,
+    "closed_model_visual_review": 231,
+    "open": 64,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -7023,10 +7023,119 @@
           "sha256": "446c29e79163bac18181d917bf6af0ce550f9ea3811c9a91b4b9489490ae90eb"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-02-f02",
+      "issue_id": "ccf-2020-02-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore the complete five-path native clip chain of source paint 3. Actual embedded font program bytes, GIDs 1/34, composed glyph matrices and original cubic controls are bound independently to the source occurrence. Exact rational convex line clipping proves the separate minus shaft fill empty and cuts only the long straight shaft of the arrowhead. The retained head remains an editable cubic path. Actual source whole 1x, final native PPT whole 1x/2x and matched source/before/after 4x visual review confirm that the extra diagonal branch disappears and the source small open arrowhead is restored. Ordinary live labels, source font baselines, other paths/media and relative object order remain unchanged.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-02-f02-geometry-008v2/output-review.json",
+          "sha256": "513f7489be74907a700a3c79b746e7faaac4d8a1f9afe7d51ff3469110d97564"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-02-f02-geometry-008v2/native-readback.json",
+          "sha256": "08c6f26751f88c887e10d4721e809d21cbf99c871d8255cb4fd0434113c61787"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-02-f02-geometry-008v2/arrow-gallery-bindings.json",
+          "sha256": "a76328f5b444b23bf0144ceaee355af7114f679ef300255c6d83b8f0c5b1d4f7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-02-f02-geometry-008v2/visual-review-supplement.json",
+          "sha256": "1867cdf8cab8db2dc160376001683d726de6c6d99f304f1a156cae114da764a8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/build/run-001/output-review.json",
+          "sha256": "9059a5c795e7078b4818086c15582260c1d7f7b31839188510dfca284ab25c15"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/build/run-001/render-audit.json",
+          "sha256": "e32f1e227064da80e252d45e09ca001bc804f81326601010856f6c9e0da211b9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/build/run-001/editability.json",
+          "sha256": "ea859d097aae272958a1bdc2768abd358fced2c8ce6d7affa3f33edb6bee0155"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "b160948924384e0b0ed914f199816e13dd1963e71d5b71a64a89746890911a61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-002/jobs/ccf-2020-02-f02/source-evidence/glyph-clip-recovery.json",
+          "sha256": "ae6e4d9b4a10ee1204214fbc5453227d79a988be4b4191eb5d25686a246e8e00"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-008.json",
+          "sha256": "56d634856519cbab3ab9e3e8f7f3341a77e70c623859b942df0ed9758483f6ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/full-tests-008.json",
+          "sha256": "3d36d16265814b712e48e03a393bf09ca17689b7a02932954e231f29d390a9b2"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2024-08-f02",
+      "issue_id": "ccf-2024-08-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore actual source image occurrence 0 / native paint 1 using its full pre-clip matrix, original attached Matte mask and verified native context. The complete bitmap is no longer stretched into a clipped bbox. Source pointcloud scale/position and the red camera apex at the independent vector-axis origin are restored together. Only the author-provided local 3D illustration bitmap is sampled; separate vector axes, arrows, live labels, all other paths/media and object order remain unchanged. Source whole 1x, final native PPT whole 1x/2x and matched source/before/after 4x camera and pointcloud crops were actually viewed and confirm the restored source alignment. Matte sampling retains actual image/mask callbacks, never recombines decoded alpha, and declares no RGB/alpha error bound.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-08-f02-geometry-009/output-review.json",
+          "sha256": "eb1251b64f469b5c99c958acaa421c449f3d1253fefc415af96e5469781f8792"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-08-f02-geometry-009/native-readback.json",
+          "sha256": "3a20675b67153b4d538d6c823f53a448cb5a15595eccf0e067f8754cd17911ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-08-f02-geometry-009/image-gallery-bindings.json",
+          "sha256": "3d9d37584d47e807bc32cc7ff87c27b2ea7ffbba11c27d6317031d779f64b48a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-08-f02-geometry-009/visual-review-supplement.json",
+          "sha256": "a05531522cd1ea0098584244bd8da7e722114b6b27285fa3f9551d22f52eba53"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/build/run-001/output-review.json",
+          "sha256": "7668c06415187e3eda141d2f8156e5659c40ee954360a6ce0e00df50ab173adb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/build/run-001/render-audit.json",
+          "sha256": "d4ee3c57808f0d713d093d33592b84042ad1dd03f341642997d970819bb1d420"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/build/run-001/editability.json",
+          "sha256": "378ecd19a8f148fbca1f6b1e55edb119b301b06702e616006959abecc28aa13f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "62603a8459b2f3e931be7ef0a2e8a96394e20a144130773fa2e0543b5cfa5db2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-003/jobs/ccf-2024-08-f02/source-evidence/image-placement-recovery.json",
+          "sha256": "424ec262a4e13886388eb25b931be740bae71a5745d394a10ddc21b3acf5d634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-009.json",
+          "sha256": "8e53324f03b2976b8c6ed3157ae2a586742fcc7ab591135a83b86b6fc7435729"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/full-tests-009.json",
+          "sha256": "3360fe2b489007b9199676bd76f4c1d08a895cd00b057b967155be4005a13130"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
-    "ccf-2020-02-f02-D01",
     "ccf-2020-03-f04-D01",
     "ccf-2020-03-f04-D02",
     "ccf-2020-03-f04-D03",
@@ -7072,7 +7181,6 @@
     "ccf-2024-03-f02-D01",
     "ccf-2024-03-f02-D02",
     "ccf-2024-06-f02-D01",
-    "ccf-2024-08-f02-D01",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f02-D01",
     "ccf-2025-01-f02-D02",

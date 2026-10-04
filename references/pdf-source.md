@@ -58,6 +58,8 @@ result = outline_paths(
 
 另支持一个窄范围的真实交集：单个 nonzero 环形纯填充与严格嵌于其内外边界之间的单个 nonzero clip。精确反向共享直线仅按一对一抵消，再证明留下的内外简单轮廓方向相反、边界严格分离且内层包含关系成立。输出保留原 clip 曲线及原孔洞曲线，不扁平化或删除小洞；其余矩形裁切和 ROI 必须包含输出控制点凸包。`annular_fill_intersection` 明确记录输出命令改变、源输入未变及证明精度范围。其他跨边界、接触边界或预算耗尽的情况仍拒绝，不通过移除裁切蒙混过去。
 
+独立的[凸裁剪直线交点接口](pdf-convex-line-clip.md)可处理单个纯填充轮廓与完整凸直线裁剪链。它只允许直线穿越边界，完整保留留在同侧的三次曲线；曲线控制包络跨界仍拒绝。输入和输出保留精确有理数，源绘制、字体程序、实际裁剪上下文和最终原生编码由调用方另行绑定。`SourcePaint.commands` 已位于根坐标，不能再次乘 `SourcePaint.transform`。该显式接口不放宽 `outline_paths` 的默认拒绝策略。
+
 虚线以原子路径为单位重置相位，输出精确的 Bezier 子曲线。混合路径中的纯 moveto 子路径没有笔画，单独记录在 `skipped_nonpainting_subpaths`；零长度线段、曲线或 `M…Z` 仍拒绝，因为它们可能绘制线帽。这个区别遵循 [SVG 笔画规则](https://www.w3.org/TR/SVG11/painting.html#StrokeProperties)。
 
 ## 嵌入图片的完整放置与裁切
@@ -86,6 +88,8 @@ images = extract_pdf_images(
 默认要求图片放置严格轴对齐，任何非零旋转/斜切分量都不会静默舍弃。显式 `allow_affine_rasterization=True` 可用完整图片仿射矩阵生成上述派生素材；`source_transform` 本身仍限对角缩放/翻转和平移。不支持的外部软蒙版、组合效果、非中性透明组及未知原生设备行为明确抛出 `UnsupportedPdfImageError`。原生解码实测版本为 PyMuPDF 1.28.2；运行时检查所需能力，缺失时拒绝处理。
 
 对于需要保持原图过滤和裁切边缘的实例，可显式设置 `native_occurrence_rendering=True`。此模式直接向原生绘图设备转发所选真实图片、原 clip、绑定的 SMask、默认色彩空间及受支持的 RGB 透明组，避免先解码为 RGBA 后再放入临时 PDF 所引入的过滤差异。独立文字、路径、渐变和其他图片不转发；目标之后新增的 clip/group 也不应用到已绘制目标上。仅支持 Normal、alpha=1、无 knockout 的指定组结构，未知组合继续拒绝；仿射图片仍需单独开启 `allow_affine_rasterization`。
+
+带 Matte 的来源位图可另行开启[原生 Matte 采样](pdf-native-matte-sampling.md)：`allow_native_matte_sampling=True` 仅与原生实例绘制共同使用，限定无 Decode 改变的 8 位 DeviceRGB 图片及同尺寸 8 位蒙版。保持实际图片、蒙版和裁剪回调，不二次合并已解码 alpha。该模式没有 RGB/alpha 误差界，仍须最终整图和局部实际复查；默认 Matte 拒绝策略保留。
 
 原生实例模式以源像素整数网格向外扩展存储框，每边透明填充小于一源像素，并在框内以 8x 采样；原始 ROI 仍作为原生裁切，扩框不能新增 ROI 外内容。`box`、`visible_frame` 和 `asset_source_box` 统一描述派生框，crop 为零；紧致原框和完整原矩阵另存于回执。8x 是采样间距，不能声称 RGB/alpha 误差上限或像素无损。Swift 原图局部与完整 PPT、SAM2 独立原生图片层的对照应分别检查，不能用一个隔离样例替代整图验收。
 
