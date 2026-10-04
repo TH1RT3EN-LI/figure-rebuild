@@ -13,10 +13,12 @@ import re
 from xml.etree import ElementTree as ET
 
 from .pdf_cubic_winding import (
-    normalize_isolated_cubic_fill, UnsupportedPdfCubicWindingError,
+    normalize_isolated_cubic_fill, UnsupportedPdfCubicWindingError, _Arithmetic, _limits,
 )
+from .pdf_cubic_contact_winding import _normalize_with_budget as _normalize_contact_with_budget
 from .native_cubic_geometry import (
     decode_native_cubic_path, verify_native_cubic_path_encoding,
+    _decode, _proof_mode, _verify_native_cubic_path_encoding_with_budget,
 )
 
 P = '{http://schemas.openxmlformats.org/presentationml/2006/main}'
@@ -24,6 +26,7 @@ A = '{http://schemas.openxmlformats.org/drawingml/2006/main}'
 K = 9525
 MAX_INT = 2**31 - 1
 POLICY = 'isolated_cubic_authenticated_existing_native_grid_v1'
+CONTACT_POLICY = 'endpoint_contact_cubic_authenticated_existing_native_grid_v1'
 
 
 def _fail(code, message):
@@ -267,7 +270,9 @@ def _source_commands(obj, maximum):
     return result, box
 
 
-def _binding(props, obj, source, box, entry, manifest, mapping, placement, max_commands):
+def _binding(props, obj, source, box, entry, manifest, mapping, placement, max_commands, budget=None):
+    if budget is not None:
+        budget.spend(1 + len(source) + sum(len(command) - 1 for command in source))
     if set(entry) - {'id','kind','box','group_id','editable'}:
         _fail('source_binding', 'Only the raw known path object-map profile is admitted')
     if entry.get('group_id') is not None and (type(entry['group_id']) is not str or len(entry['group_id']) > 512):
@@ -306,7 +311,13 @@ def _binding(props, obj, source, box, entry, manifest, mapping, placement, max_c
     geom=_one(props,A+'custGeom');_structure(geom,(),(A+'pathLst',))
     paths=_one(geom,A+'pathLst');_structure(paths,(),(A+'path',))
     path=_one(paths,A+'path')
-    decoded=decode_native_cubic_path(path,max_commands=max_commands)
+    if budget is None:
+        decoded=decode_native_cubic_path(path,max_commands=max_commands)
+    else:
+        initial=budget.used
+        decoded=_decode(path,budget,max_commands)
+        decoded['decode_operations']=budget.used-initial
+        decoded['path_dimensions_are_not_a_clip']=True
     dw,dh=[max(1,math.floor(box[k]*K+.5)) for k in ('width','height')]
     if decoded['dimensions'] != [dw,dh]:
         _fail('restore_binding', 'Initial native path dimensions differ from restoration serializer')
@@ -337,7 +348,8 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
                                 placement, max_input_segments=128, max_commands=512,
                                 max_atomic_edges=2048, max_operations=1_000_000,
                                 max_probe_halvings=80, max_tree_nodes=200_000,
-                                max_xml_text_bytes=16_000_000):
+                                max_xml_text_bytes=16_000_000,
+                                proof_mode='isolated', proof_split_depth=None):
     """Return a receipt, replacing only a proven mismatching compound path.
 
     ``placement`` is the build's explicit resolved occupied placement; it must
@@ -348,6 +360,9 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
     label = object_id if type(object_id) is str and len(object_id) <= 512 else None
     base={'id':label,'policy':POLICY,'geometry_preserved':True,'manifest_modified':False,'visual_review_required':True}
     try:
+        mode,depth=_proof_mode(proof_mode,proof_split_depth)
+        if mode=='endpoint_contact':
+            base.update(policy=CONTACT_POLICY,proof_mode=mode,proof_split_depth=depth)
         for limit in (max_input_segments,max_commands,max_atomic_edges,max_operations,max_probe_halvings,max_tree_nodes,max_xml_text_bytes):
             if type(limit) is not int or limit <= 0:
                 _fail('budget','Wrapper budgets must be positive integers')
@@ -398,14 +413,24 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
         else:selected=[]
         if object_id in selected or 'source_canvas_clip_required=true' in [p.strip() for p in identity.get('descr','').split(';')]:
             return {**base,'status':'not_applicable','reason_code':'keep_original_canvas_clip_geometry'}
+        # Select one proof strategy before geometric work. Contact mode shares
+        # this counter through decoding, normalization and final reproof; there
+        # is no free retry after an isolated failure.
+        options=dict(max_input_segments=max_input_segments,max_commands=max_commands,max_atomic_edges=max_atomic_edges,max_probe_halvings=max_probe_halvings)
+        limits=_limits(max_input_segments,max_commands,max_atomic_edges,max_operations,max_probe_halvings)
+        budget=_Arithmetic(max_operations) if mode=='endpoint_contact' else None
+        if budget is not None:budget.spend(used)
         props,paint=_paint(shape,obj)
-        paths,original,decoded,extent,frame=_binding(props,obj,source,box,entry,manifest,object_map,placement,max_commands)
-        used+=decoded['decode_operations']
+        paths,original,decoded,extent,frame=_binding(props,obj,source,box,entry,manifest,object_map,placement,max_commands,budget)
+        used=budget.used if budget is not None else used+decoded['decode_operations']
         if used>=max_operations:_fail('budget','Source/native binding exhausted operation budget')
         before=ET.tostring(shape); original_bytes=ET.tostring(original)
-        options=dict(max_input_segments=max_input_segments,max_commands=max_commands,max_atomic_edges=max_atomic_edges,max_probe_halvings=max_probe_halvings)
-        normalized=normalize_isolated_cubic_fill(decoded['commands'],max_operations=max_operations-used,**options)
-        used+=normalized['proof']['exact_predicate_operations']
+        if budget is None:
+            normalized=normalize_isolated_cubic_fill(decoded['commands'],max_operations=max_operations-used,**options)
+            used+=normalized['proof']['exact_predicate_operations']
+        else:
+            normalized=_normalize_contact_with_budget(decoded['commands'],limits,budget,proof_split_depth=depth)
+            used=budget.used
         witness=[r for r in normalized['proof']['boundary_classification'] if any(type(r[k]) is int and r[k]!=0 and r[k]%2==0 for k in ('left_winding','right_winding'))]
         common={**base,'source_commands_sha256':_hash(_json(obj['commands']).encode()),'initial_geometry_sha256':_hash(original_bytes),
                 'initial_shape_sha256':_hash(before),'paint_verification':paint,'source_native_binding':frame,
@@ -419,19 +444,28 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
             _fail('empty_candidate','Empty candidate is not admitted by the bounded wrapper')
         replacement=ET.Element(original.tag,dict(original.attrib))
         for command in normalized['commands']:
+            if budget is not None:budget.spend()
             node=ET.SubElement(replacement,A+{'M':'moveTo','L':'lnTo','C':'cubicBezTo','Z':'close'}[command[0]])
             for point in command[1:]:
                 nums=[]
                 for value in point:
-                    q=value+F(1,2);n=q.numerator//q.denominator
+                    q=value+F(1,2) if budget is None else budget.add(value,F(1,2))
+                    n=q.numerator//q.denominator
                     if abs(n)>MAX_INT:_fail('budget','Candidate point exceeds native integer budget')
                     nums.append(n)
-                ET.SubElement(node,A+'pt',{'x':str(nums[0]),'y':str(nums[1])})
+                encoded=[str(n) if budget is None else budget.text(F(n)) for n in nums]
+                ET.SubElement(node,A+'pt',{'x':encoded[0],'y':encoded[1]})
         replacement=ET.fromstring(ET.tostring(replacement))
+        if budget is not None:used=budget.used
         if used>=max_operations:_fail('budget','Normalization exhausted shared operation budget')
-        final=verify_native_cubic_path_encoding(original,replacement,slide_extents=extent,
-                                               max_operations=max_operations-used,**options)
-        used+=final['exact_predicate_operations_including_decode']
+        if budget is None:
+            final=verify_native_cubic_path_encoding(original,replacement,slide_extents=extent,
+                                                   max_operations=max_operations-used,**options)
+            used+=final['exact_predicate_operations_including_decode']
+        else:
+            final=_verify_native_cubic_path_encoding_with_budget(original,replacement,limits,budget,
+                slide_extents=extent,proof_mode=mode,proof_split_depth=depth)
+            used=budget.used
         candidate_shape=deepcopy(shape)
         cprops=_one(candidate_shape,P+'spPr'); cpaths=_one(_one(cprops,A+'custGeom'),A+'pathLst')
         cpaths.remove(cpaths[0]);cpaths.append(replacement)
@@ -446,6 +480,9 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
                 'final_geometry_verification':final,'native_frame_path_dimensions_and_paint_unchanged':True,
                 'compound_paint_count':1,'exact_predicate_operations_including_context':used,
                 'existing_source_error_in_additional_half_emu_bound':False}
+        if budget is not None:
+            record=budget.serialize(record)
+            record['exact_predicate_operations_including_context']=budget.used
         _json(record)  # Finish all receipt work before the single mutation.
         paths.remove(original);paths.append(replacement)
         return record

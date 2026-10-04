@@ -1,0 +1,2226 @@
+{
+  "description": "Actual maintained text_fit.mjs outputs: 20 real Canvas measurements, including 18 real Artifact/Skia renderer measurements. This is not a full PPT build or independent metric replay proof.",
+  "writer_sha256": "192e042faf36f3571d3209d5ad896377f180e34897e56a9a080fa89aeaa7a069",
+  "resolved": {
+    "canvas": {
+      "width": 1200,
+      "height": 900
+    },
+    "objects": [
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "id": "baseline"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "\nAlpha\r\nBeta\rGamma\n",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 220
+        },
+        "insets": {
+          "left": 3.25,
+          "right": 17.5,
+          "top": 6.125,
+          "bottom": 8.75
+        },
+        "id": "box_insets_crlf"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "alignment": "left",
+        "insets": {
+          "left": 3.25,
+          "right": 17.5,
+          "top": 6.125,
+          "bottom": 8.75
+        },
+        "id": "anchor_left"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "alignment": "center",
+        "insets": {
+          "left": 3.25,
+          "right": 17.5,
+          "top": 6.125,
+          "bottom": 8.75
+        },
+        "id": "anchor_center"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "alignment": "right",
+        "insets": {
+          "left": 3.25,
+          "right": 17.5,
+          "top": 6.125,
+          "bottom": 8.75
+        },
+        "id": "anchor_right"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "box": {
+          "x": 370,
+          "y": 290,
+          "width": 240,
+          "height": 90
+        },
+        "rotation": 37.125,
+        "italic": true,
+        "id": "rotated_box"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "  Alpha  Beta Gamma   Delta  ",
+        "wrap": "square",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 132,
+          "height": 220
+        },
+        "insets": {
+          "left": 4,
+          "right": 8,
+          "top": 3,
+          "bottom": 5
+        },
+        "id": "square_words"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "ABCDEFGHIJKLMNO  PQRSTUVXYZ",
+        "wrap": "square",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 76,
+          "height": 260
+        },
+        "id": "square_long_token"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "ÁB́ĆD́ÉF́ GHI",
+        "wrap": "square",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 48,
+          "height": 260
+        },
+        "id": "square_grapheme"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha  Beta﻿  Gamma  ",
+        "wrap": "square",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 95,
+          "height": 260
+        },
+        "id": "square_unicode_whitespace"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha\nBeta",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "baseline_offset": 40,
+        "id": "explicit_baseline"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha\nBeta",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "baseline_offset": 0,
+        "id": "explicit_baseline_zero"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha\nBeta",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "line_height": 13.7,
+        "id": "explicit_lineheight"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha\nBeta",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "baseline_offset": 40,
+        "line_height": 13.7,
+        "id": "explicit_baseline_and_lineheight"
+      },
+      {
+        "kind": "text",
+        "font_size": 13.137,
+        "font_family": "Arial",
+        "text": "Hgx09\nHgx09",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "line_height": 15.741,
+        "id": "renderer_fractional_scale"
+      },
+      {
+        "kind": "text",
+        "font_size": 13.137,
+        "font_family": "Arial",
+        "text": "Hgx09\nHgx09",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "line_height": 15.741,
+        "id": "renderer_large_scale"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "baseline_offset": 0,
+        "id": "renderer_negative_adjustment"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "id": "source_only_baseline"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Alpha\nBeta",
+        "anchor": {
+          "x": 600,
+          "y": 350
+        },
+        "line_height": 13.7,
+        "baseline_offset": 40,
+        "id": "source_only_explicit_pitch"
+      },
+      {
+        "kind": "text",
+        "font_size": 20,
+        "font_family": "Arial",
+        "text": "Hgx09 ABC",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 103.38949938964844,
+          "height": 23.9995
+        },
+        "id": "box_tolerance"
+      }
+    ]
+  },
+  "text_fit": {
+    "schema_version": 1,
+    "status": "PASS",
+    "scope": "measured_live_text_only",
+    "counts": {
+      "resolved_objects": 20,
+      "live_text_objects": 20,
+      "measured_live_text_objects": 20,
+      "unmeasured_path_objects": 0,
+      "unmeasured_image_objects": 0
+    },
+    "font_family": "Arial",
+    "visual_verification_required": true,
+    "objects": [
+      {
+        "id": "baseline",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 550,
+            "height": 160
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "box_insets_crlf",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 220
+        },
+        "layout": {
+          "lines": [
+            "",
+            "Alpha",
+            "Beta",
+            "Gamma",
+            ""
+          ],
+          "line_count": 5,
+          "required_width": 71.12000274658203,
+          "required_height": 120,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 153.25,
+            "y": 146.125,
+            "width": 529.25,
+            "height": 205.125
+          },
+          "insets": {
+            "left": 3.25,
+            "right": 17.5,
+            "top": 6.125,
+            "bottom": 8.75
+          }
+        }
+      },
+      {
+        "id": "anchor_left",
+        "box": {
+          "x": 596.75,
+          "y": 323.76953125,
+          "width": 126.53999938964844,
+          "height": 42.075
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 329.89453125,
+            "width": 105.78999938964844,
+            "height": 27.200000000000003
+          },
+          "insets": {
+            "left": 3.25,
+            "right": 17.5,
+            "top": 6.125,
+            "bottom": 8.75
+          }
+        }
+      },
+      {
+        "id": "anchor_center",
+        "box": {
+          "x": 543.8550003051757,
+          "y": 323.76953125,
+          "width": 126.53999938964844,
+          "height": 42.075
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 547.1050003051757,
+            "y": 329.89453125,
+            "width": 105.78999938964844,
+            "height": 27.200000000000003
+          },
+          "insets": {
+            "left": 3.25,
+            "right": 17.5,
+            "top": 6.125,
+            "bottom": 8.75
+          }
+        }
+      },
+      {
+        "id": "anchor_right",
+        "box": {
+          "x": 490.9600006103516,
+          "y": 323.76953125,
+          "width": 126.53999938964844,
+          "height": 42.075
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 494.2100006103516,
+            "y": 329.89453125,
+            "width": 105.78999938964844,
+            "height": 27.200000000000003
+          },
+          "insets": {
+            "left": 3.25,
+            "right": 17.5,
+            "top": 6.125,
+            "bottom": 8.75
+          }
+        }
+      },
+      {
+        "id": "rotated_box",
+        "box": {
+          "x": 370,
+          "y": 290,
+          "width": 240,
+          "height": 90
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 104.306640625,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 370,
+            "y": 290,
+            "width": 240,
+            "height": 90
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "square_words",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 132,
+          "height": 220
+        },
+        "layout": {
+          "lines": [
+            "  Alpha  Beta",
+            "Gamma",
+            "Delta"
+          ],
+          "line_count": 3,
+          "required_width": 113.41999816894531,
+          "required_height": 72,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 154,
+            "y": 143,
+            "width": 120,
+            "height": 212
+          },
+          "insets": {
+            "left": 4,
+            "right": 8,
+            "top": 3,
+            "bottom": 5
+          }
+        }
+      },
+      {
+        "id": "square_long_token",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 76,
+          "height": 260
+        },
+        "layout": {
+          "lines": [
+            "ABCDE",
+            "FGHIJK",
+            "LMNO",
+            "PQRST",
+            "UVXYZ"
+          ],
+          "line_count": 5,
+          "required_width": 71.7734375,
+          "required_height": 120,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 76,
+            "height": 260
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "square_grapheme",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 48,
+          "height": 260
+        },
+        "layout": {
+          "lines": [
+            "ÁB́Ć",
+            "D́ÉF́",
+            "GHI"
+          ],
+          "line_count": 3,
+          "required_width": 42.119998931884766,
+          "required_height": 72,
+          "line_height": 24,
+          "ascent": 19,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 48,
+            "height": 260
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "square_unicode_whitespace",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 95,
+          "height": 260
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta",
+            "Gamma"
+          ],
+          "line_count": 3,
+          "required_width": 71.12000274658203,
+          "required_height": 72,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 95,
+            "height": 260
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "explicit_baseline",
+        "box": {
+          "x": 600,
+          "y": 310,
+          "width": 54.550001525878905,
+          "height": 71.2
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta"
+          ],
+          "line_count": 2,
+          "required_width": 52.150001525878906,
+          "required_height": 68,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 40,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "explicit_calibrated_offset",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": 19.5673828125,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 310,
+            "width": 54.550001525878905,
+            "height": 71.2
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "explicit_baseline_zero",
+        "box": {
+          "x": 600,
+          "y": 350,
+          "width": 54.550001525878905,
+          "height": 51.2
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta"
+          ],
+          "line_count": 2,
+          "required_width": 52.150001525878906,
+          "required_height": 48,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 0,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "explicit_calibrated_offset",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -20.4326171875,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 350,
+            "width": 54.550001525878905,
+            "height": 51.2
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "explicit_lineheight",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta"
+          ],
+          "line_count": 2,
+          "required_width": 52.150001525878906,
+          "required_height": 27.399839999999998,
+          "line_height": 13.699919999999999,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "explicit_pixel_value",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 11.392553187499999,
+            "line_height_px": 13.699919999999999,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 13.7,
+            "spacing_thousandths_percent": 57083,
+            "spacing": "percent_of_natural_line"
+          },
+          "baseline_adjustment_px": 8.712915562500001,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 550,
+            "height": 160
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "explicit_baseline_and_lineheight",
+        "box": {
+          "x": 600,
+          "y": 310,
+          "width": 54.550001525878905,
+          "height": 60.89992
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta"
+          ],
+          "line_count": 2,
+          "required_width": 52.150001525878906,
+          "required_height": 57.69992,
+          "line_height": 13.699919999999999,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 40,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "explicit_calibrated_offset",
+          "line_height_basis": "explicit_pixel_value",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 11.392553187499999,
+            "line_height_px": 13.699919999999999,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 13.7,
+            "spacing_thousandths_percent": 57083,
+            "spacing": "percent_of_natural_line"
+          },
+          "baseline_adjustment_px": 28.6074468125,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 310,
+            "width": 54.550001525878905,
+            "height": 60.89992
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "renderer_fractional_scale",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "layout": {
+          "lines": [
+            "Hgx09",
+            "Hgx09"
+          ],
+          "line_count": 2,
+          "required_width": 37.939998626708984,
+          "required_height": 31.48194562009419,
+          "line_height": 15.740972810047095,
+          "ascent": 9,
+          "descent": 3,
+          "native_baseline_ascent": 13.206277171325684,
+          "default_native_baseline_ascent": 13.206277171325684,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "explicit_pixel_value",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 12.148699877459801,
+            "line_height_px": 15.740972810047095,
+            "natural_line_height_px": 15.773940345368917,
+            "font_ascent_px": 12.114791830193615,
+            "paint_baseline_correction_px": -0.4440783705778736,
+            "rendered_font_size_px": 13.144950287807431,
+            "scale": 0.637,
+            "requested_line_height_px": 15.741,
+            "spacing_thousandths_percent": 99791,
+            "spacing": "percent_of_natural_line"
+          },
+          "baseline_adjustment_px": 1.057577293865883,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 550,
+            "height": 160
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "renderer_large_scale",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "layout": {
+          "lines": [
+            "Hgx09",
+            "Hgx09"
+          ],
+          "line_count": 2,
+          "required_width": 37.939998626708984,
+          "required_height": 31.481932651937395,
+          "line_height": 15.740966325968698,
+          "ascent": 9,
+          "descent": 3,
+          "native_baseline_ascent": 13.206277171325684,
+          "default_native_baseline_ascent": 13.206277171325684,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "explicit_pixel_value",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 12.603159814110102,
+            "line_height_px": 15.740966325968698,
+            "natural_line_height_px": 15.762718878020365,
+            "font_ascent_px": 12.106173454697037,
+            "paint_baseline_correction_px": 0.010386753335144387,
+            "rendered_font_size_px": 13.135599065016972,
+            "scale": 3.14159,
+            "requested_line_height_px": 15.741,
+            "spacing_thousandths_percent": 99862,
+            "spacing": "percent_of_natural_line"
+          },
+          "baseline_adjustment_px": 0.6031173572155826,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 550,
+            "height": 160
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "renderer_negative_adjustment",
+        "box": {
+          "x": 600,
+          "y": 350,
+          "width": 105.78999938964844,
+          "height": 27.2
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 0,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "explicit_calibrated_offset",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -20.4326171875,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 350,
+            "width": 105.78999938964844,
+            "height": 27.2
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "source_only_baseline",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 550,
+          "height": 160
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 550,
+            "height": 160
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "source_only_explicit_pitch",
+        "box": {
+          "x": 600,
+          "y": 310,
+          "width": 54.550001525878905,
+          "height": 60.900000000000006
+        },
+        "layout": {
+          "lines": [
+            "Alpha",
+            "Beta"
+          ],
+          "line_count": 2,
+          "required_width": 52.150001525878906,
+          "required_height": 57.7,
+          "line_height": 13.7,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 40,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "explicit_calibrated_offset",
+          "line_height_basis": "explicit_pixel_value",
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 600,
+            "y": 310,
+            "width": 54.550001525878905,
+            "height": 60.900000000000006
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      },
+      {
+        "id": "box_tolerance",
+        "box": {
+          "x": 150,
+          "y": 140,
+          "width": 103.38949938964844,
+          "height": 23.9995
+        },
+        "layout": {
+          "lines": [
+            "Hgx09 ABC"
+          ],
+          "line_count": 1,
+          "required_width": 103.38999938964844,
+          "required_height": 24,
+          "line_height": 24,
+          "ascent": 15,
+          "descent": 4,
+          "native_baseline_ascent": 20.10546875,
+          "default_native_baseline_ascent": 20.10546875,
+          "baseline_basis": "font_metrics_and_native_leading",
+          "line_height_basis": "default_measured_leading",
+          "renderer_baseline": {
+            "model": "artifact_presentation_v1",
+            "first_baseline_px": 20.4326171875,
+            "line_height_px": 24,
+            "natural_line_height_px": 24,
+            "font_ascent_px": 18.4326171875,
+            "paint_baseline_correction_px": 0.4326171875,
+            "rendered_font_size_px": 20,
+            "scale": 1,
+            "requested_line_height_px": 24,
+            "spacing": "default"
+          },
+          "baseline_adjustment_px": -0.3271484375,
+          "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+          "content_box": {
+            "x": 150,
+            "y": 140,
+            "width": 103.38949938964844,
+            "height": 23.9995
+          },
+          "insets": {
+            "left": 0,
+            "right": 0,
+            "top": 0,
+            "bottom": 0
+          }
+        }
+      }
+    ]
+  },
+  "independent_additional_writer_cases": [
+    {
+      "case": "hard_newline",
+      "resolved": {
+        "canvas": {
+          "width": 1200,
+          "height": 20000
+        },
+        "objects": [
+          {
+            "id": "hard_newline",
+            "kind": "text",
+            "text": "a\nb",
+            "font_size": 20,
+            "font_family": "Arial",
+            "wrap": "square",
+            "box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "hard_newline",
+          "box": {
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 200
+          },
+          "layout": {
+            "lines": [
+              "a",
+              "b"
+            ],
+            "line_count": 2,
+            "required_width": 11.119999885559082,
+            "required_height": 48,
+            "line_height": 24,
+            "ascent": 15,
+            "descent": 4,
+            "native_baseline_ascent": 20.10546875,
+            "default_native_baseline_ascent": 20.10546875,
+            "baseline_basis": "font_metrics_and_native_leading",
+            "line_height_basis": "default_measured_leading",
+            "renderer_baseline": {
+              "model": "artifact_presentation_v1",
+              "first_baseline_px": 20.4326171875,
+              "line_height_px": 24,
+              "natural_line_height_px": 24,
+              "font_ascent_px": 18.4326171875,
+              "paint_baseline_correction_px": 0.4326171875,
+              "rendered_font_size_px": 20,
+              "scale": 1,
+              "requested_line_height_px": 24,
+              "spacing": "default"
+            },
+            "baseline_adjustment_px": -0.3271484375,
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 200
+            },
+            "insets": {
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "bottom": 0
+            }
+          }
+        }
+      ],
+      "real_Canvas_and_renderer_metrics": true
+    },
+    {
+      "case": "trailing_newline",
+      "resolved": {
+        "canvas": {
+          "width": 1200,
+          "height": 20000
+        },
+        "objects": [
+          {
+            "id": "trailing_newline",
+            "kind": "text",
+            "text": "a\n",
+            "font_size": 20,
+            "font_family": "Arial",
+            "wrap": "square",
+            "box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 200
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "trailing_newline",
+          "box": {
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 200
+          },
+          "layout": {
+            "lines": [
+              "a",
+              ""
+            ],
+            "line_count": 2,
+            "required_width": 11.119999885559082,
+            "required_height": 48,
+            "line_height": 24,
+            "ascent": 15,
+            "descent": 4,
+            "native_baseline_ascent": 20.10546875,
+            "default_native_baseline_ascent": 20.10546875,
+            "baseline_basis": "font_metrics_and_native_leading",
+            "line_height_basis": "default_measured_leading",
+            "renderer_baseline": {
+              "model": "artifact_presentation_v1",
+              "first_baseline_px": 20.4326171875,
+              "line_height_px": 24,
+              "natural_line_height_px": 24,
+              "font_ascent_px": 18.4326171875,
+              "paint_baseline_correction_px": 0.4326171875,
+              "rendered_font_size_px": 20,
+              "scale": 1,
+              "requested_line_height_px": 24,
+              "spacing": "default"
+            },
+            "baseline_adjustment_px": -0.3271484375,
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 200
+            },
+            "insets": {
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "bottom": 0
+            }
+          }
+        }
+      ],
+      "real_Canvas_and_renderer_metrics": true
+    },
+    {
+      "case": "ambiguous_whitespace_1500",
+      "resolved": {
+        "canvas": {
+          "width": 1200,
+          "height": 20000
+        },
+        "objects": [
+          {
+            "id": "ambiguous_whitespace_1500",
+            "kind": "text",
+            "text": "WW                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            X",
+            "font_size": 20,
+            "font_family": "Arial",
+            "wrap": "square",
+            "box": {
+              "x": 100,
+              "y": 100,
+              "width": 20,
+              "height": 18000
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "ambiguous_whitespace_1500",
+          "box": {
+            "x": 100,
+            "y": 100,
+            "width": 20,
+            "height": 18000
+          },
+          "layout": {
+            "lines": [
+              "W",
+              "W",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "X"
+            ],
+            "line_count": 503,
+            "required_width": 19,
+            "required_height": 12072,
+            "line_height": 24,
+            "ascent": 15,
+            "descent": 4,
+            "native_baseline_ascent": 20.10546875,
+            "default_native_baseline_ascent": 20.10546875,
+            "baseline_basis": "font_metrics_and_native_leading",
+            "line_height_basis": "default_measured_leading",
+            "renderer_baseline": {
+              "model": "artifact_presentation_v1",
+              "first_baseline_px": 20.4326171875,
+              "line_height_px": 24,
+              "natural_line_height_px": 24,
+              "font_ascent_px": 18.4326171875,
+              "paint_baseline_correction_px": 0.4326171875,
+              "rendered_font_size_px": 20,
+              "scale": 1,
+              "requested_line_height_px": 24,
+              "spacing": "default"
+            },
+            "baseline_adjustment_px": -0.3271484375,
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 100,
+              "y": 100,
+              "width": 20,
+              "height": 18000
+            },
+            "insets": {
+              "left": 0,
+              "right": 0,
+              "top": 0,
+              "bottom": 0
+            }
+          }
+        }
+      ],
+      "real_Canvas_and_renderer_metrics": true
+    },
+    {
+      "case": "zero_content_height",
+      "resolved": {
+        "canvas": {
+          "width": 1200,
+          "height": 20000
+        },
+        "objects": [
+          {
+            "id": "zero_content_height",
+            "kind": "text",
+            "text": "A",
+            "font_size": 20,
+            "font_family": "Arial",
+            "line_height": 0.0005,
+            "box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 10
+            },
+            "insets": {
+              "top": 10
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "zero_content_height",
+          "box": {
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 10
+          },
+          "layout": {
+            "lines": [
+              "A"
+            ],
+            "line_count": 1,
+            "required_width": 15,
+            "required_height": 0.00048000000000000007,
+            "line_height": 0.00048000000000000007,
+            "ascent": 15,
+            "descent": 4,
+            "native_baseline_ascent": 20.10546875,
+            "default_native_baseline_ascent": 20.10546875,
+            "baseline_basis": "font_metrics_and_native_leading",
+            "line_height_basis": "explicit_pixel_value",
+            "renderer_baseline": {
+              "model": "artifact_presentation_v1",
+              "first_baseline_px": 0.4330011875,
+              "line_height_px": 0.00048000000000000007,
+              "natural_line_height_px": 24,
+              "font_ascent_px": 18.4326171875,
+              "paint_baseline_correction_px": 0.4326171875,
+              "rendered_font_size_px": 20,
+              "scale": 1,
+              "requested_line_height_px": 0.0005,
+              "spacing_thousandths_percent": 2,
+              "spacing": "percent_of_natural_line"
+            },
+            "baseline_adjustment_px": 19.6724675625,
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 100,
+              "y": 110,
+              "width": 200,
+              "height": 0
+            },
+            "insets": {
+              "left": 0,
+              "right": 0,
+              "top": 10,
+              "bottom": 0
+            }
+          }
+        }
+      ],
+      "real_Canvas_and_renderer_metrics": true,
+      "visual_quality_established": false
+    },
+    {
+      "case": "negative_content_height",
+      "resolved": {
+        "canvas": {
+          "width": 1200,
+          "height": 20000
+        },
+        "objects": [
+          {
+            "id": "negative_content_height",
+            "kind": "text",
+            "text": "A",
+            "font_size": 20,
+            "font_family": "Arial",
+            "line_height": 0.0005,
+            "box": {
+              "x": 100,
+              "y": 100,
+              "width": 200,
+              "height": 10
+            },
+            "insets": {
+              "top": 10.0005
+            }
+          }
+        ]
+      },
+      "measurements": [
+        {
+          "id": "negative_content_height",
+          "box": {
+            "x": 100,
+            "y": 100,
+            "width": 200,
+            "height": 10
+          },
+          "layout": {
+            "lines": [
+              "A"
+            ],
+            "line_count": 1,
+            "required_width": 15,
+            "required_height": 0.00048000000000000007,
+            "line_height": 0.00048000000000000007,
+            "ascent": 15,
+            "descent": 4,
+            "native_baseline_ascent": 20.10546875,
+            "default_native_baseline_ascent": 20.10546875,
+            "baseline_basis": "font_metrics_and_native_leading",
+            "line_height_basis": "explicit_pixel_value",
+            "renderer_baseline": {
+              "model": "artifact_presentation_v1",
+              "first_baseline_px": 0.4330011875,
+              "line_height_px": 0.00048000000000000007,
+              "natural_line_height_px": 24,
+              "font_ascent_px": 18.4326171875,
+              "paint_baseline_correction_px": 0.4326171875,
+              "rendered_font_size_px": 20,
+              "scale": 1,
+              "requested_line_height_px": 0.0005,
+              "spacing_thousandths_percent": 2,
+              "spacing": "percent_of_natural_line"
+            },
+            "baseline_adjustment_px": 19.6724675625,
+            "measurement_basis": "registered font; approximate PPT line layout; actual preview still required",
+            "content_box": {
+              "x": 100,
+              "y": 110.0005,
+              "width": 200,
+              "height": -0.0005000000000006111
+            },
+            "insets": {
+              "left": 0,
+              "right": 0,
+              "top": 10.0005,
+              "bottom": 0
+            }
+          }
+        }
+      ],
+      "real_Canvas_and_renderer_metrics": true,
+      "visual_quality_established": false
+    }
+  ]
+}

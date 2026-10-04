@@ -421,10 +421,20 @@ def normalize_isolated_cubic_fill(commands, *, max_input_segments=128, max_comma
     limits = _limits(max_input_segments, max_commands, max_atomic_edges,
                      max_operations, max_probe_halvings)
     budget = _Arithmetic(max_operations)
-    output, identities, origins, proof, _, _ = _normalize(commands, limits, budget)
+    return _normalize_isolated_with_budget(commands, limits, budget)
+
+
+def _normalize_isolated_with_budget(commands, limits, budget):
+    return _normalization_result(commands, limits, budget, _normalize)
+
+
+def _normalization_result(commands, limits, budget, normalize_geometry):
+    """Private shared-counter entry; the provider is selected by trusted code."""
+    started = budget.used
+    output, identities, origins, proof, _, _ = normalize_geometry(commands, limits, budget)
     result = {'commands': output, 'curve_identities': budget.serialize(identities),
               'vertex_origins': budget.serialize(origins), 'proof': budget.serialize(proof)}
-    result['proof']['exact_predicate_operations'] = budget.used
+    result['proof']['exact_predicate_operations'] = budget.used - started
     return result
 
 
@@ -455,6 +465,22 @@ def verify_isolated_cubic_integer_encoding(source_native_commands, candidate_int
     limits = _limits(max_input_segments, max_commands, max_atomic_edges,
                      max_operations, max_probe_halvings)
     budget = _Arithmetic(max_operations)
+    return _verify_integer_encoding(
+        source_native_commands, candidate_integer_commands, limits, budget,
+        max_coordinate_error=max_coordinate_error,
+        normalize_geometry=_normalize, candidate_geometry=_chord_rings)
+
+
+def _verify_integer_encoding(source_native_commands, candidate_integer_commands,
+                             limits, budget, *, max_coordinate_error,
+                             normalize_geometry, candidate_geometry,
+                             proof_metadata=None):
+    """One integer engine for privately selected, independently reproved domains.
+
+    Providers use the supplied counter; no caller result/receipt is accepted.
+    Returned operation usage is a phase delta, while the counter remains shared.
+    """
+    started = budget.used
     if type(max_coordinate_error) in (list, tuple):
         if len(max_coordinate_error) != 2:
             raise ValueError('Cubic encoding error needs a scalar or two axis bounds')
@@ -463,7 +489,7 @@ def verify_isolated_cubic_integer_encoding(source_native_commands, candidate_int
         errors = [_number(max_coordinate_error, budget)] * 2
     if any(v < 0 or v > F(1, 2) for v in errors):
         raise ValueError('Cubic encoding permits at most one half local grid unit per axis')
-    exact, identities, origins, proof, reference_rings, _ = _normalize(
+    exact, identities, origins, proof, reference_rings, _ = normalize_geometry(
         source_native_commands, limits, budget, integer=True)
     # Parsing first checks integers/command budgets before any candidate walk.
     output_limits = {**limits, 'segments': limits['atoms'], 'commands': limits['atoms'] * 3 + 16}
@@ -498,7 +524,8 @@ def verify_isolated_cubic_integer_encoding(source_native_commands, candidate_int
         encoding[point] = encoded
         maximum = [max(maximum[i], delta[i]) for i in (0, 1)]
         cursor = encoded
-    candidate_rings, topology, curves, tests, _ = _chord_rings(candidate, output_limits, budget, integer=True)
+    candidate_rings, topology, curves, tests, _ = candidate_geometry(
+        candidate, output_limits, budget, integer=True)
     if [len(r) for r in reference_rings] != [len(r) for r in candidate_rings] or topology != proof['chord_loop_topology']:
         _fail('encoding_topology', 'Integer encoding changed loop orientation, containment or vertices')
     receipt = {'method': 'recomputed_exact_native_whole_cubic_and_integer_encoding_proof',
@@ -515,6 +542,8 @@ def verify_isolated_cubic_integer_encoding(source_native_commands, candidate_int
                'exact_pointwise_fill_equivalence_to_initial_native': not any(maximum),
                'existing_source_to_initial_native_error_included': False,
                'frame_paint_and_slide_scaling_verified': False, 'rgb_alpha_error_bound': None}
+    if proof_metadata is not None:
+        receipt.update(proof_metadata)
     receipt = budget.serialize(receipt)
-    receipt['exact_predicate_operations'] = budget.used
+    receipt['exact_predicate_operations'] = budget.used - started
     return receipt

@@ -76,6 +76,65 @@ class NativeCubicWindingTests(unittest.TestCase):
         r=self.run_case(fixture(ROUND),'not_applicable')
         self.assertEqual(r['reason_code'],'no_proven_fill_rule_mismatch')
 
+    def test_contact_mode_preserves_whole_curve_and_old_default_refusal(self):
+        # The inner rectangle meets the genuine C endpoint at(4,0), and its
+        # interior overlaps the rounded contour. This requires both the new
+        # contact proof and a real even-winding witness before any rewrite.
+        commands=ROUND+[('M',(2,0)),('L',(4,0)),('L',(4,4)),('L',(2,4)),('Z',)]
+        old=self.run_case(fixture(commands),'rejected')
+        self.assertEqual(old['reason_code'],'curve_hull_isolation')
+        parts=fixture(commands);shape=deepcopy(find(parts[0],'.//p:spPr'))
+        r=self.run_case(parts,proof_mode='endpoint_contact',proof_split_depth=1)
+        self.assertEqual(r['policy'],w.CONTACT_POLICY)
+        self.assertEqual(r['proof_mode'],'endpoint_contact')
+        self.assertTrue(r['mismatch_witnesses'])
+        actual=find(parts[0],'.//p:spPr')
+        for tag in ('xfrm','solidFill','ln'):
+            self.assertEqual(ET.tostring(shape.find(A+tag)),ET.tostring(actual.find(A+tag)))
+        self.assertEqual([ET.tostring(n) for n in shape.findall('.//'+A+'cubicBezTo')],
+                         [ET.tostring(n) for n in actual.findall('.//'+A+'cubicBezTo')])
+        self.assertEqual(len(actual.findall('.//'+A+'path')),1)
+
+    def test_contact_mode_still_needs_a_fill_mismatch(self):
+        r=self.run_case(fixture(ROUND),'not_applicable',proof_mode='endpoint_contact')
+        self.assertEqual(r['reason_code'],'no_proven_fill_rule_mismatch')
+
+    def test_contact_mode_and_depth_are_closed_typed_options(self):
+        for mode,depth in [('unknown',None),(True,None),('isolated',1),
+                           ('endpoint_contact',True),('endpoint_contact',2)]:
+            with self.subTest(mode=mode,depth=depth):
+                self.run_case(fixture(),'rejected',proof_mode=mode,proof_split_depth=depth)
+
+    def test_contact_shared_budget_includes_final_reproof_and_receipt(self):
+        r=self.run_case(fixture(),proof_mode='endpoint_contact')
+        total=r['exact_predicate_operations_including_context']
+        phases=(r['normalization']['exact_predicate_operations']+
+                r['final_geometry_verification']['exact_predicate_operations_including_decode'])
+        self.assertGreater(total,phases)
+        rejected=self.run_case(fixture(),'rejected',proof_mode='endpoint_contact',
+                               max_operations=total-1)
+        self.assertEqual(rejected['reason_code'],'budget')
+
+    def test_contact_final_verifier_recomputes_source_after_corrupted_candidate(self):
+        normal=w._normalize_contact_with_budget
+        def corrupt(*args,**kwargs):
+            result=normal(*args,**kwargs)
+            i=next(i for i,c in enumerate(result['commands']) if c[0]=='C')
+            c=result['commands'][i]
+            result['commands'][i]=('C',(c[1][0]+1,c[1][1]),*c[2:])
+            return result
+        with patch.object(w,'_normalize_contact_with_budget',side_effect=corrupt):
+            self.run_case(fixture(),'rejected',proof_mode='endpoint_contact')
+
+    def test_contact_actual_interior_crossing_remains_unchanged(self):
+        first=[('M',(-4,-4)),('C',(-2,-2),(2,2),(4,4)),('L',(-4,4)),('Z',)]
+        second=[('M',(-4,4)),('C',(-2,2),(2,-2),(4,-4)),('L',(-4,-4)),('Z',)]
+        outer=[('M',(-10,-10)),('L',(10,-10)),('L',(10,10)),('L',(-10,10)),('Z',)]
+        for source in (first+second,outer*2+first+second):
+            with self.subTest(covered=len(source)>len(first+second)):
+                r=self.run_case(fixture(source),'rejected',proof_mode='endpoint_contact')
+                self.assertEqual(r['reason_code'],'contact_domain')
+
     def test_I01_I05_source_and_actual_identities(self):
         self.reject('I01',lambda r,m,mp,p:m['objects'].append(deepcopy(m['objects'][0])))
         self.reject('I02',lambda r,m,mp,p:mp['objects'].append(deepcopy(mp['objects'][0])))

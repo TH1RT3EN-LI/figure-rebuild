@@ -13,17 +13,23 @@ NS = postprocess.NS
 P, A = ('{' + NS[k] + '}' for k in ('p', 'a'))
 
 
-def fixture(overlap=True):
+def fixture(overlap=True, contact=False):
     commands = [
         {'moveTo': {'x': 10.0, 'y': 10.0}},
         {'cubicTo': {'x1': 11.0, 'y1': 9.0, 'x2': 13.0, 'y2': 9.0, 'x': 14.0, 'y': 10.0}},
         {'lineTo': {'x': 14.0, 'y': 14.0}},
         {'lineTo': {'x': 10.0, 'y': 14.0}}, {'close': {}}]
-    if overlap:
+    if contact:
+        commands += [{'moveTo': {'x': 12.0, 'y': 10.0}},
+                     {'lineTo': {'x': 14.0, 'y': 10.0}},
+                     {'lineTo': {'x': 14.0, 'y': 14.0}},
+                     {'lineTo': {'x': 12.0, 'y': 14.0}}, {'close': {}}]
+    elif overlap:
         commands += [{'moveTo': {'x': 12.0, 'y': 12.0}},
                      {'lineTo': {'x': 17.0, 'y': 13.0}},
                      {'lineTo': {'x': 13.0, 'y': 17.0}}, {'close': {}}]
-    box = {'x': 10, 'y': 9, 'width': 7 if overlap else 4, 'height': 8 if overlap else 5}
+    box = {'x': 10, 'y': 9, 'width': 7 if overlap and not contact else 4,
+           'height': 8 if overlap and not contact else 5}
     obj = {'id': 'curved-fill', 'kind': 'path', 'commands': commands,
            'style': {'fill': '#7f7f7f', 'opacity': .37, 'stroke': 'none', 'stroke_width': 0}}
     manifest = {'canvas': {'width': 100, 'height': 100}, 'objects': [obj]}
@@ -55,8 +61,8 @@ def fixture(overlap=True):
 
 
 class CubicPostprocessTests(unittest.TestCase):
-    def run_fixture(self, overlap=True, placement=(0.0, 0.0, 100.0, 100.0)):
-        root, shape, manifest, mapping = fixture(overlap)
+    def run_fixture(self, overlap=True, placement=(0.0, 0.0, 100.0, 100.0), contact=False):
+        root, shape, manifest, mapping = fixture(overlap, contact)
         with tempfile.TemporaryDirectory() as folder:
             p = Path(folder)
             mp, op = p/'manifest.json', p/'map.json'
@@ -83,6 +89,8 @@ class CubicPostprocessTests(unittest.TestCase):
         result, actual, restored = self.run_fixture()
         row = result['native_winding_fills'][0]
         self.assertEqual(row['status'], 'applied', row)
+        self.assertEqual(row['proof_mode'], 'endpoint_contact')
+        self.assertEqual(row['proof_split_depth'], 1)
         self.assertEqual(result['native_cubic_segment_count'], 1)
         for tag in ['xfrm', 'solidFill', 'ln']:
             self.assertEqual(ET.tostring(actual.find('p:spPr/a:'+tag, NS)),
@@ -98,6 +106,17 @@ class CubicPostprocessTests(unittest.TestCase):
         self.assertEqual(row['status'], 'rejected', row)
         self.assertEqual(row['reason_code'], 'source_binding')
         self.assertEqual(ET.tostring(actual.find('p:spPr', NS)), ET.tostring(restored.find('p:spPr', NS)))
+
+    def test_source_endpoint_contact_uses_new_proof_after_complete_restoration(self):
+        result, actual, restored = self.run_fixture(contact=True)
+        row = result['native_winding_fills'][0]
+        self.assertEqual(row['status'], 'applied', row)
+        self.assertEqual(row['proof_mode'], 'endpoint_contact')
+        self.assertTrue(row['mismatch_witnesses'])
+        self.assertEqual(len(restored.findall('.//a:moveTo', NS)), 2)
+        self.assertEqual(len(actual.findall('.//a:moveTo', NS)), 1)
+        self.assertEqual([ET.tostring(n) for n in actual.findall('.//a:cubicBezTo', NS)],
+                         [ET.tostring(n) for n in restored.findall('.//a:cubicBezTo', NS)])
 
     def test_correct_single_curve_fill_does_not_get_rewritten(self):
         result, actual, restored = self.run_fixture(overlap=False)

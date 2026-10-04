@@ -114,7 +114,21 @@ class OutputReviewChecks(unittest.TestCase):
         self.write_json(self.run / 'manifest-snapshot.json', manifest)
         self.write_json(self.run / 'resolved-scene.json', resolved)
         source = semantic['source_content']
-        measured = [{'id': obj['id']} for obj in resolved['objects'] if obj['kind'] == 'text']
+        # Complete synthetic writer-format evidence. Real-font writer outputs
+        # are exercised separately in test_output_review_text_fit.py.
+        measured = []
+        for obj in resolved['objects']:
+            if obj['kind'] != 'text':
+                continue
+            size = obj['font_size']; box = obj['box']; lines = obj['text'].split('\n')
+            measured.append({'id': obj['id'], 'box': box, 'layout': {
+                'lines': lines, 'line_count': len(lines), 'required_width': max(map(len, lines)) * size * .5,
+                'required_height': size * 1.2 * len(lines), 'line_height': size * 1.2,
+                'ascent': size * .8, 'descent': size * .2, 'native_baseline_ascent': size * .84,
+                'default_native_baseline_ascent': size * .84, 'baseline_basis': 'font_metrics_and_native_leading',
+                'line_height_basis': 'default_measured_leading',
+                'measurement_basis': 'registered font; approximate PPT line layout; actual preview still required',
+                'content_box': box.copy(), 'insets': {k: 0 for k in ('left', 'right', 'top', 'bottom')}}})
         counts = {'resolved_objects': len(resolved['objects']), 'live_text_objects': len(measured),
                   'measured_live_text_objects': len(measured),
                   'unmeasured_path_objects': sum(obj['kind'] == 'path' for obj in resolved['objects']),
@@ -222,6 +236,25 @@ class OutputReviewChecks(unittest.TestCase):
         audit['diagnostic_coverage']['reports']['source_content_audit']['status'] = 'PASS'
         self.save_diagnostic_audit(audit)
         with self.assertRaisesRegex(ValueError, 'declared constraints'): review.prepare_output_review(self.run)
+
+    def test_rebound_text_measurements_need_data_and_internal_fit_consistency(self):
+        audit = self.add_diagnostic_provenance([{'id': 'label', 'kind': 'text', 'text': 'ABC', 'font_size': 12,
+            'box': {'x': 10, 'y': 10, 'width': 40, 'height': 20}}])
+        original = json.loads((self.run / 'text-fit.json').read_text())
+        for mutation in ('id_only', 'overflow', 'nan', 'bool_count', 'wrong_text'):
+            data = copy.deepcopy(original)
+            row = data['objects'][0]
+            if mutation == 'id_only': data['objects'] = [{'id': 'label'}]
+            elif mutation == 'overflow': row['layout']['required_width'] = 1000
+            elif mutation == 'nan': row['layout']['required_width'] = float('nan')
+            elif mutation == 'bool_count': row['layout']['line_count'] = True
+            else: row['layout']['lines'] = ['changed']
+            self.write_json(self.run / 'text-fit.json', data)
+            rebound = copy.deepcopy(audit)
+            rebound['diagnostic_coverage']['reports']['text_fit']['artifact'] = review._binding(self.run / 'text-fit.json')
+            self.save_diagnostic_audit(rebound)
+            with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'Text-fit|text-fit.json'):
+                review.prepare_output_review(self.run)
 
     def test_legacy_runs_keep_their_original_binding_contract(self):
         before = review.prepare_output_review(self.run)

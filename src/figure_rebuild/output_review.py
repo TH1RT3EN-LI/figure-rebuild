@@ -9,6 +9,7 @@ and never infers visual quality from successful builds or numerical metrics.
 from datetime import datetime, timezone
 import hashlib
 import json
+import math
 import os
 from pathlib import Path
 import re
@@ -36,10 +37,27 @@ def _text(value, label):
     _require(isinstance(value, str) and bool(value.strip()), label + ' is required')
 
 
-def _json_record(path):
+def _json_record(path, *, strict_numbers_and_keys=False):
+    def unique_record(pairs):
+        result = {}
+        for key, value in pairs:
+            _require(key not in result, 'Duplicate JSON field: ' + key)
+            result[key] = value
+        return result
+
+    def finite_number(token):
+        value = float(token)
+        _require(math.isfinite(value), 'Nonfinite JSON number: ' + token)
+        return value
+
+    def invalid_constant(token):
+        raise ValueError('Nonstandard JSON numeric constant: ' + token)
+
     try:
-        value = json.loads(path.read_text(encoding='utf-8'))
-    except (OSError, ValueError) as exc:
+        options = ({'object_pairs_hook': unique_record, 'parse_float': finite_number,
+                    'parse_constant': invalid_constant} if strict_numbers_and_keys else {})
+        value = json.loads(path.read_text(encoding='utf-8'), **options)
+    except (OSError, ValueError, RecursionError) as exc:
         raise ValueError(f'Cannot read build record {path}: {exc}') from exc
     _require(isinstance(value, dict), f'Build record must be an object: {path}')
     return value
@@ -231,6 +249,236 @@ def _same_json(left, right):
     return json.dumps(left, sort_keys=True, allow_nan=False) == json.dumps(right, sort_keys=True, allow_nan=False)
 
 
+_JS_TRIM_SPACE = frozenset('\t\v\f \u00a0\u1680\u2000\u2001\u2002\u2003\u2004\u2005'
+                           '\u2006\u2007\u2008\u2009\u200a\u2028\u2029\u202f\u205f\u3000\ufeff')
+
+
+def _text_fit_number(value, label, *, minimum=None, positive=False):
+    try:
+        good = type(value) in (int, float) and math.isfinite(value)
+        number = float(value) if good else 0.
+    except (OverflowError, ValueError):
+        good, number = False, 0.
+    _require(good and (minimum is None or number >= minimum) and (not positive or number > 0),
+             'Text-fit invalid finite numeric evidence: ' + label)
+    return number
+
+
+def _text_fit_same(actual, expected, label):
+    # Reproduce the writer's binary64 arithmetic, not an adjustable tolerance.
+    # JSON's 1 and 1.0 are the same number; booleans are rejected before this.
+    _require(_text_fit_number(actual, label) == _text_fit_number(expected, label),
+             'Text-fit arithmetic disagrees with the writer: ' + label)
+
+
+def _text_fit_round(value, label):
+    value = _text_fit_number(value, label)
+    lower = math.floor(value)
+    # Math.round chooses +infinity on a tie. Adding .5 first can itself round
+    # across a boundary (just below .5, or at large odd integers).
+    return lower + (value - lower >= .5)
+
+
+def _text_fit_wrapped_lines(text, lines):
+    """Conserve Unicode and hard breaks, allowing only trimEnd at soft breaks.
+
+    This does not rerun font measurement or select grapheme/word break points.
+    Every line is an exact source substring. Only ECMAScript trailing space may
+    disappear at a line boundary, and each hard newline consumes a boundary.
+    The state budget keeps adversarial whitespace/empty-line ambiguity bounded.
+    """
+    limit = 1_000_000
+    work = len(text)
+    _require(work <= limit, 'Text-fit wrapped-line verification budget exceeded')
+    # States are disjoint inclusive intervals of source positions. Compressing
+    # their whitespace ambiguity avoids expanding the same suffix per position.
+    space_end = list(range(len(text) + 1))
+    for at in range(len(text) - 1, -1, -1):
+        if text[at] in _JS_TRIM_SPACE:
+            space_end[at] = space_end[at + 1]
+    states = [(0, 0)]
+    for index, line in enumerate(lines):
+        _require(not line or line[-1] not in _JS_TRIM_SPACE,
+                 'Text-fit wrapped line contradicts writer trimEnd')
+        following = []
+        for low, high in states:
+            at = low
+            while at <= high:
+                work += 1
+                _require(work <= limit, 'Text-fit wrapped-line verification budget exceeded')
+                if line:
+                    at = text.find(line, at, high + len(line))
+                    if at < 0:
+                        break
+                end = at + len(line)
+                stop = space_end[end]
+                if index == len(lines) - 1:
+                    if stop == len(text):
+                        return True
+                else:
+                    # A soft break needs characters or consumed whitespace;
+                    # a hard newline is consumed by precisely one boundary.
+                    begin = end + (not line)
+                    upper = stop - (stop == len(text) or text[stop] == '\n')
+                    if begin <= upper:
+                        following.append((begin, upper))
+                    if stop < len(text) and text[stop] == '\n':
+                        following.append((stop + 1, stop + 1))
+                # For an empty line, all further states in this whitespace run
+                # produce a subset of the interval already recorded above.
+                at = max(at + 1, stop + 1) if not line else at + 1
+        states = []
+        for low, high in sorted(following):
+            if states and low <= states[-1][1] + 1:
+                states[-1] = (states[-1][0], max(states[-1][1], high))
+            else:
+                states.append((low, high))
+        if not states:
+            return False
+    return False
+
+
+def _verify_text_fit_measurements(resolved, measured):
+    """Check current writer records, not independently remeasure actual fonts.
+
+    Fit uses the writer's 0.001 px overflow/canvas allowance. Deterministic
+    frame and layout arithmetic is checked without an added epsilon. Metrics
+    such as glyph advance/ascent remain recorded evidence, not replayed facts.
+    """
+    live = {obj['id']: obj for obj in resolved['objects'] if obj.get('kind') == 'text'}
+    for row in measured:
+        oid = row['id']; obj = live[oid]
+        label = 'object ' + oid
+        _require(set(row) == {'id', 'box', 'layout'}, 'Text-fit incomplete measurement: ' + label)
+        box, layout = row['box'], row['layout']
+
+        def frame(value, name, *, content=False):
+            _require(isinstance(value, dict) and set(value) == {'x', 'y', 'width', 'height'},
+                     'Text-fit invalid frame: ' + name)
+            return {k: _text_fit_number(value[k], name + '.' + k,
+                                      positive=k == 'width' or (k == 'height' and not content))
+                    for k in ('x', 'y', 'width', 'height')}
+
+        box = frame(box, label + '.box')
+        fields = {'lines', 'line_count', 'required_width', 'required_height', 'line_height', 'ascent',
+                  'descent', 'native_baseline_ascent', 'default_native_baseline_ascent', 'baseline_basis',
+                  'line_height_basis', 'measurement_basis', 'content_box', 'insets'}
+        _require(isinstance(layout, dict) and fields <= set(layout) and
+                 not set(layout) - fields - {'renderer_baseline', 'baseline_adjustment_px'},
+                 'Text-fit incomplete layout: ' + label)
+        lines, count = layout['lines'], layout['line_count']
+        _require(isinstance(lines, list) and bool(lines) and all(isinstance(v, str) and '\n' not in v and '\r' not in v for v in lines) and
+                 type(count) is int and count == len(lines), 'Text-fit invalid lines/count: ' + label)
+        text = obj.get('text')
+        _require(isinstance(text, str), 'Text-fit source text missing: ' + label)
+        text = text.replace('\r\n', '\n').replace('\r', '\n')
+        wrap = obj.get('wrap', 'none') if 'box' in obj else 'none'
+        _require(wrap in ('none', 'square'), 'Text-fit unsupported wrapping: ' + label)
+        _require(lines == text.split('\n') if wrap == 'none' else _text_fit_wrapped_lines(text, lines),
+                 'Text-fit line content differs from source text: ' + label)
+        values = {k: _text_fit_number(layout[k], label + '.' + k,
+                  minimum=0 if k in ('required_width', 'ascent', 'descent') else None,
+                  positive=k in ('required_height', 'line_height')) for k in
+                  ('required_width', 'required_height', 'line_height', 'ascent', 'descent',
+                   'native_baseline_ascent', 'default_native_baseline_ascent')}
+        # The writer separately requires positive content width. Its content
+        # height contract is only the recorded-height overflow check below.
+        content = frame(layout['content_box'], label + '.content_box', content=True)
+        insets = layout['insets']; declared = obj.get('insets', {})
+        sides = ('left', 'right', 'top', 'bottom')
+        _require(isinstance(insets, dict) and set(insets) == set(sides) and
+                 isinstance(declared, dict) and not set(declared) - set(sides),
+                 'Text-fit invalid insets: ' + label)
+        for side in sides:
+            _text_fit_same(_text_fit_number(insets[side], label + '.' + side, minimum=0),
+                           _text_fit_number(declared.get(side, 0), label + '.' + side, minimum=0), label + '.insets.' + side)
+        insets = {side: float(insets[side]) for side in sides}
+        expected_content = {'x': box['x'] + insets['left'], 'y': box['y'] + insets['top'],
+                            'width': box['width'] - insets['left'] - insets['right'],
+                            'height': box['height'] - insets['top'] - insets['bottom']}
+        for key in expected_content:
+            _text_fit_same(content[key], expected_content[key], label + '.content_box.' + key)
+        size = _text_fit_number(obj.get('font_size'), label + '.font_size', positive=True)
+        explicit_baseline = 'baseline_offset' in obj
+        baseline = (_text_fit_number(obj['baseline_offset'], label + '.baseline_offset', minimum=0)
+                    if explicit_baseline else values['default_native_baseline_ascent'])
+        _text_fit_same(values['native_baseline_ascent'], baseline, label + '.baseline')
+        _require(layout['baseline_basis'] == ('explicit_calibrated_offset' if explicit_baseline else 'font_metrics_and_native_leading') and
+                 layout['line_height_basis'] == ('explicit_pixel_value' if 'line_height' in obj else 'default_measured_leading') and
+                 layout['measurement_basis'] == 'registered font; approximate PPT line layout; actual preview still required',
+                 'Text-fit measurement basis disagrees with source: ' + label)
+        expected_pitch = (_text_fit_number(obj['line_height'], label + '.line_height', positive=True)
+                          if 'line_height' in obj else max(size * 1.2, values['ascent'] + values['descent']))
+        if 'renderer_baseline' in layout:
+            rb = layout['renderer_baseline']
+            rb_fields = {'model', 'first_baseline_px', 'line_height_px', 'natural_line_height_px', 'font_ascent_px',
+                         'paint_baseline_correction_px', 'rendered_font_size_px', 'scale', 'requested_line_height_px', 'spacing'}
+            _require(isinstance(rb, dict) and rb_fields <= set(rb) and
+                     not set(rb) - rb_fields - {'spacing_thousandths_percent'} and rb['model'] == 'artifact_presentation_v1',
+                     'Text-fit invalid renderer metrics: ' + label)
+            for key in rb_fields - {'model', 'spacing'}:
+                _text_fit_number(rb[key], label + '.renderer.' + key,
+                                 minimum=0 if key == 'first_baseline_px' else None,
+                                 positive=key not in ('first_baseline_px', 'paint_baseline_correction_px'))
+            scale = float(rb['scale']); px = _text_fit_round(size * scale * 75, label + '.rendered_font_size') / 75
+            natural = px * 1.2
+            _text_fit_number(natural, label + '.renderer.natural_height', positive=True)
+            _text_fit_same(rb['rendered_font_size_px'], px / scale, label + '.rendered_font_size')
+            _text_fit_same(rb['natural_line_height_px'], natural / scale, label + '.natural_line_height')
+            requested = float(obj['line_height']) * scale if 'line_height' in obj else natural
+            _text_fit_same(rb['requested_line_height_px'], float(obj['line_height']) if 'line_height' in obj else requested / scale,
+                           label + '.requested_line_height')
+            if 'line_height' in obj:
+                percent = rb.get('spacing_thousandths_percent')
+                _require(type(percent) is int and 0 < percent <= 9007199254740991 and rb['spacing'] == 'percent_of_natural_line' and
+                         percent == _text_fit_round(requested / natural * 100000, label + '.spacing'), 'Text-fit invalid percentage spacing: ' + label)
+                expected_pitch = natural * (percent / 100000) / scale
+            else:
+                _require(rb['spacing'] == 'default' and 'spacing_thousandths_percent' not in rb,
+                         'Text-fit invalid default spacing: ' + label)
+                expected_pitch = natural / scale
+            _text_fit_same(rb['line_height_px'], expected_pitch, label + '.renderer.line_height')
+            _text_fit_same(layout.get('baseline_adjustment_px'), baseline - rb['first_baseline_px'], label + '.baseline_adjustment')
+        else:
+            _require('baseline_adjustment_px' not in layout, 'Text-fit adjustment has no renderer metrics: ' + label)
+        _text_fit_same(values['line_height'], expected_pitch, label + '.line_height')
+        required_height = expected_pitch * count
+        if explicit_baseline:
+            required_height = max(required_height, baseline + values['descent'] + (count - 1) * expected_pitch)
+        _text_fit_same(values['required_height'], required_height, label + '.required_height')
+        if 'box' in obj:
+            source_box = frame(obj['box'], label + '.source_box')
+            for key in box:
+                _text_fit_same(box[key], source_box[key], label + '.box.' + key)
+        else:
+            anchor = obj.get('anchor')
+            _require(isinstance(anchor, dict) and set(anchor) == {'x', 'y'}, 'Text-fit source anchor missing: ' + label)
+            ax, ay = (_text_fit_number(anchor[k], label + '.anchor.' + k) for k in ('x', 'y'))
+            width = max(1, values['required_width'] + size * .12); height = required_height + size * .16
+            alignment = obj.get('alignment', 'left')
+            _require(alignment in ('left', 'center', 'right'), 'Text-fit invalid alignment: ' + label)
+            expected_box = {'x': ax - insets['left'] - (width / 2 if alignment == 'center' else width if alignment == 'right' else 0),
+                            'y': ay - insets['top'] - baseline, 'width': width + insets['left'] + insets['right'],
+                            'height': height + insets['top'] + insets['bottom']}
+            for key in box:
+                _text_fit_same(box[key], expected_box[key], label + '.anchored_box.' + key)
+        _require(values['required_width'] <= content['width'] + .001 and required_height <= content['height'] + .001,
+                 'Text-fit recorded measurement overflows content frame: ' + label)
+        canvas = resolved.get('canvas')
+        _require(isinstance(canvas, dict), 'Text-fit source canvas missing: ' + label)
+        width, height = (_text_fit_number(canvas.get(k), label + '.canvas.' + k, positive=True)
+                         for k in ('width', 'height'))
+        radians = _text_fit_number(obj.get('rotation', 0), label + '.rotation') * math.pi / 180
+        _text_fit_number(radians, label + '.rotation_radians')
+        co, si = math.cos(radians), math.sin(radians)
+        cx, cy = box['x'] + box['width'] / 2, box['y'] + box['height'] / 2
+        for dx in (-box['width'] / 2, box['width'] / 2):
+            for dy in (-box['height'] / 2, box['height'] / 2):
+                x, y = cx + co * dx - si * dy, cy + si * dx + co * dy
+                _require(math.isfinite(x) and math.isfinite(y) and -.001 <= x <= width + .001 and -.001 <= y <= height + .001,
+                         'Text-fit measured frame lies outside source canvas: ' + label)
+
+
 def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
     """Bind limited diagnostics, not source recognition or geometry replay."""
     if 'diagnostic_provenance_version' not in config:
@@ -242,7 +490,7 @@ def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
     for role, filename in (('source_content_audit', 'source-content-audit.json'),
                            ('semantic_audit', 'semantic-audit.json'), ('text_fit', 'text-fit.json')):
         path = _inside(run, run / filename)
-        reports[role] = _json_record(path)
+        reports[role] = _json_record(path, strict_numbers_and_keys=role == 'text_fit')
         paths[role] = path
     objects = resolved.get('objects')
     _require(isinstance(objects, list) and all(isinstance(obj, dict) for obj in objects),
@@ -271,6 +519,7 @@ def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
     _require(all(isinstance(item, str) and item for item in live_ids + measured_ids) and
              len(set(measured_ids)) == len(measured_ids) and sorted(measured_ids) == sorted(live_ids),
              'Text-fit measured identities disagree with the actual live text objects')
+    _verify_text_fit_measurements(resolved, measured)
     counts = {'resolved_objects': len(objects), 'live_text_objects': len(live_ids),
               'measured_live_text_objects': len(measured),
               'unmeasured_path_objects': sum(obj.get('kind') == 'path' for obj in objects),
