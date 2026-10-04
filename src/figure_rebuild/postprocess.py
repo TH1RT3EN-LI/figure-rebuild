@@ -388,8 +388,19 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     Path(receipt).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
     return data
 
-if __name__ == '__main__':
+def main(argv=None):
     p = argparse.ArgumentParser(); p.add_argument('--input', required=True); p.add_argument('--output', required=True); p.add_argument('--manifest', required=True); p.add_argument('--receipt', required=True); p.add_argument('--object-map')
     p.add_argument('--asset-root')
     p.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'))
-    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map, asset_root=a.asset_root, occupied_placement=a.placement), ensure_ascii=False))
+    p.add_argument('--quiet', action='store_true',
+                   help='Write the complete receipt file without repeating it on stdout')
+    a = p.parse_args(argv)
+    result = process(a.input, a.output, a.manifest, a.receipt,
+                     object_map=a.object_map, asset_root=a.asset_root, occupied_placement=a.placement)
+    if not a.quiet:
+        print(json.dumps(result, ensure_ascii=False))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

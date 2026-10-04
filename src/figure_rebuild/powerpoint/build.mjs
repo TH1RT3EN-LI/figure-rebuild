@@ -122,7 +122,9 @@ await fs.writeFile(path.join(run,'text-manifest.json'),JSON.stringify({schema_ve
 await fs.writeFile(path.join(run,'object-map.json'),JSON.stringify({...placementAudit,objects:objectMap},null,2));
 const raw=path.join(run,'artifact-authored.pptx');await (await PresentationFile.exportPptx(p)).save(raw);
 const grouped=path.join(run,'grouped-overlay.pptx');
-runPython('postprocess',['--input',raw,'--output',grouped,'--manifest',resolvedManifest,'--asset-root',assetRoot,'--object-map',path.join(run,'object-map.json'),'--placement',...placement.map(String),'--receipt',path.join(run,'editability.json')],{stdio:'pipe'});
+// The full geometry proof is already saved in editability.json. Repeating it
+// on captured stdout can exceed execFileSync's buffer even for valid figures.
+runPython('postprocess',['--input',raw,'--output',grouped,'--manifest',resolvedManifest,'--asset-root',assetRoot,'--object-map',path.join(run,'object-map.json'),'--placement',...placement.map(String),'--receipt',path.join(run,'editability.json'),'--quiet'],{stdio:'pipe'});
 const candidate=path.join(run,'candidate.pptx');
 if(config.base){
  const args=['merge','--base',config.base.path,'--overlay',grouped,'--output',candidate,'--slide-id',config.base.slide_id,'--base-sha256',config.base.sha256,'--receipt',path.join(run,'preservation.json')];
