@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T00:03:39.971755+00:00",
+  "updated_at": "2026-10-04T00:37:31.453308+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 168,
-    "open": 127,
+    "closed_model_visual_review": 172,
+    "open": 123,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -483,6 +483,37 @@
       ]
     },
     {
+      "figure_id": "ccf-2020-15-f02",
+      "issue_id": "ccf-2020-15-f02-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Bounded visual closure: actual source/old Artifact/new native1x2x4x inspected. The original decoded author image, nativePDFpaint208, svg-paint-0-1-1-0-0-0-0 and source-native200x200 asset are unchanged and correctly embedded. Head and shoulders retain smooth sampled curves and laptop code symbol has the source geometry. This is use of the maintained direct-native preview path, not new curve fitting, new asset creation or proof of pixel-perfect sampling.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-four-native-001/ccf-2020-15-f02/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
+          "sha256": "ca2b6fa7ed919cd581742a1175fa2e503cd0c22c4de7d1833ee419d3cc584c70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/handoff.json",
+          "sha256": "1ae5d4da4b1da3dceb2488d31b0609e886e4a67781db09b18949c9ab0182ef36"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-15-f02/RESULT.json",
+          "sha256": "e9c2777a18c4a57b60367602863d8ca098376655b02511fd2c29095152f61d9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-15-f02/job/build/run-001/output-review.json",
+          "sha256": "79bf0ca62cd8b4605ee068876e1d77ab9573085cb1e9a8ba0e31cc60d12048d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-15-f02/full-source-and-native-identity.json",
+          "sha256": "693c1dd5514bf9319d5629fc40e5b934a318e6b953237b0ca3dd49524daaa510"
+        }
+      ]
+    },
+    {
       "figure_id": "ccf-2020-15-f04",
       "issue_id": "ccf-2020-15-f04-D01",
       "severity": "major",
@@ -938,6 +969,37 @@
         {
           "audit_relative_path": "renderer-regression/corefix-renderer-v3/review-shards/shard-01/ccf-2020-20-f02/output-review.json",
           "sha256": "5cc614040bd28e497299f3bca17c3c52a2be3f301e1ba4eec605a81075c459ff"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-20-f03",
+      "issue_id": "ccf-2020-20-f03-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Bounded visual closure: actual source/old Artifact/new native1x2x4x inspected. Source rounded document and short strokes, circle and hourglass retain their original smooth contours. The original decoded native image paint26, svg-paint-0-1-116-0-0-0, source980x982 asset and placements are unchanged. Native image media, crop, frame and paint order are proven. Fine antialiasing/weight/phase differences remain outside this bounded defect closure.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-four-native-001/ccf-2020-20-f03/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
+          "sha256": "ca2b6fa7ed919cd581742a1175fa2e503cd0c22c4de7d1833ee419d3cc584c70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/handoff.json",
+          "sha256": "1ae5d4da4b1da3dceb2488d31b0609e886e4a67781db09b18949c9ab0182ef36"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-20-f03/RESULT.json",
+          "sha256": "34683738366cb378e7c0f77c8f4e3d17a63e5b5e7cb0e55872b70640d29e37b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-20-f03/job/build/run-001/output-review.json",
+          "sha256": "edb3f3e55e6139f328c5b9e279975908722e75df8f71329ea1548af421130806"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-four-native-001/ccf-2020-20-f03/full-source-and-native-identity.json",
+          "sha256": "27047c8e6449f575249c5521700d38694e087f943cea41e91550f3262fa08178"
         }
       ]
     },
@@ -1420,6 +1482,68 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/LOSSLESS-ADDENDUM-r2.json",
           "sha256": "102a1e94456aafde695ed400ac05ae6d1b462aee1409ff27aca3bde365198cf5"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f02",
+      "issue_id": "ccf-2021-16-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "The source double horizontal/vertical dashed borders, crossings and rounded boxes are retained in the actual native 1x/2x/4x output. This closure is source-asset fidelity: the genuine author raster is 909x338 and is embedded unchanged, with unchanged crop and a frame equal to rounded source EMU coordinates (maximum pre-rounding error about0.448EMU). Its internal boxes/connectors are not independent native objects. The separately recorded image sampling difference remains open.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/canvas-clip-cure-source-001/build-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
+          "sha256": "ca2b6fa7ed919cd581742a1175fa2e503cd0c22c4de7d1833ee419d3cc584c70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/root-verification-001.json",
+          "sha256": "c6a8470f31707dfaae079f4f6c12196286e87cae45a1bb61af04a2a40103a278"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/independent-review-001/FROZEN-RESULT.json",
+          "sha256": "8cc9a45222d91bc441faf4eee679c76367225fc5344076e879b07a9083c05c10"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/HANDOFF.json",
+          "sha256": "a192dee345dfbb5b9ae72459a6e0bf52241f83ece365bc1fb7979f4f553d4af8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/output-review.json",
+          "sha256": "2039220abf70611974694af7fe99fb8b23c04df5019c21ba463859e41dca44e4"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-16-f02",
+      "issue_id": "ccf-2021-16-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Font substitution and manually resized body labels are removed by preserving the genuine source author image. The111 caption glyph outlines also retain source geometry/style, including two independently replayed canvas-clipped edge glyphs. Actual1x/2x/4x inspection supports this source-asset fidelity closure; body text is still an image, caption text is paths, and no live text or automatic semantic verification is claimed. Image sampling and user acceptance remain pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/canvas-clip-cure-source-001/build-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
+          "sha256": "ca2b6fa7ed919cd581742a1175fa2e503cd0c22c4de7d1833ee419d3cc584c70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/root-verification-001.json",
+          "sha256": "c6a8470f31707dfaae079f4f6c12196286e87cae45a1bb61af04a2a40103a278"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/independent-review-001/FROZEN-RESULT.json",
+          "sha256": "8cc9a45222d91bc441faf4eee679c76367225fc5344076e879b07a9083c05c10"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/HANDOFF.json",
+          "sha256": "a192dee345dfbb5b9ae72459a6e0bf52241f83ece365bc1fb7979f4f553d4af8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/output-review.json",
+          "sha256": "2039220abf70611974694af7fe99fb8b23c04df5019c21ba463859e41dca44e4"
         }
       ]
     },
@@ -4023,7 +4147,6 @@
     "ccf-2020-14-f02-D01",
     "ccf-2020-14-f03-D01",
     "ccf-2020-14-f03-D02",
-    "ccf-2020-15-f02-D04",
     "ccf-2020-15-f05-D03",
     "ccf-2020-17-f01-D01",
     "ccf-2020-17-f02-D01",
@@ -4031,7 +4154,6 @@
     "ccf-2020-18-f01-D02",
     "ccf-2020-18-f01-D03",
     "ccf-2020-18-f01-XC01",
-    "ccf-2020-20-f03-D01",
     "ccf-2021-01-f01-D01",
     "ccf-2021-02-f01-D01",
     "ccf-2021-02-f01-D02",
@@ -4050,8 +4172,6 @@
     "ccf-2021-13-f08-D01",
     "ccf-2021-13-f08-D02",
     "ccf-2021-14-f04-D05",
-    "ccf-2021-16-f02-D01",
-    "ccf-2021-16-f02-D02",
     "ccf-2021-17-f02-D01",
     "ccf-2021-17-f05-D01",
     "ccf-2021-17-f05-D02",
@@ -5736,6 +5856,44 @@
               "sha256": "a72721c58b52b6e5a1a378fb5c4c202511f04aae3ab0be83fbff4f0b89f09359"
             }
           ]
+        },
+        {
+          "recorded_at": "2026-10-04T00:37:31.453308+00:00",
+          "candidate": "sam2-cubic-source-001",
+          "core_commit": "5007ec12df08f18ebd7874419d32aab1336ecddb",
+          "observed_site_count": 9,
+          "resolved_site_ids": [
+            "svg-paint-0-44-0-434-0",
+            "svg-paint-0-44-0-683-1"
+          ],
+          "remaining_open_site_ids": [
+            "svg-paint-0-44-0-681-47",
+            "svg-paint-0-44-0-681-48",
+            "svg-paint-0-44-0-681-49",
+            "svg-paint-0-44-0-678-0",
+            "svg-paint-0-44-0-678-1",
+            "svg-paint-0-44-0-678-2",
+            "svg-paint-0-44-0-678-3"
+          ],
+          "description": "A fresh normal CLI build on5007 applies the whole-cubic correction only to two yellow joints. Actual source/old/new1x/2x/4x and independent final-native integer proofs confirm those two holes are gone; three Repeat and four dotted joints retain old holes. Actual133 other paths and all647 image bytes/crops/frames/order are unchanged. Native preview changes at1x/2x/4x are110/280/680 pixels, all within the two yellow regions. The nine-site aggregate remains open, as do D03 image seams, D04 live-text absence and the separate sampling finding. Normal verification passes; strict no-issues rejects.",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/sam2-cubic-source-001/root-verification-001.json",
+              "sha256": "7f27eec2c32cf506cd5638eac7671892f035fbd47704c7420c1453e251dac676"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-cubic-source-001/HANDOFF.json",
+              "sha256": "34285ecdade94c5e46b84ecb0dff45c33c20427dd8a8d46790d07932c81c0786"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-cubic-source-001/output-review.json",
+              "sha256": "c9722ec8471403dc785c50e4b324255c0d14ffc2b5d02204ccd371773a198d19"
+            },
+            {
+              "audit_relative_path": "probes/sam-cubic-final-independent-001/HANDOFF.json",
+              "sha256": "a02d959aa51ab0465727ac380d6327a2c2129dc7a619d1c0328b9a3d970b81b9"
+            }
+          ]
         }
       ]
     },
@@ -6050,6 +6208,38 @@
         {
           "audit_relative_path": "source-regeneration/inventory003-seven-native-001/jobs/ccf-2026-02-f01/build/run-001/output-review.json",
           "sha256": "3dbdb0939c2e1620e22f92efc0fb929e400e657593573206e18e880b57bfd78c"
+        }
+      ],
+      "user_acceptance": "pending"
+    },
+    {
+      "severity": "minor",
+      "region": "Entire source author-body bitmap; particularly4x tokenization and double-border intersection",
+      "description": "The source PDF4x raster retains more visibly stepped source-image edges, while LibreOffice directPNG4x smooths the same unchanged embedded image. Font edges, circled numbers, dashed borders and rounded corners therefore differ in sampling appearance.",
+      "figure_id": "ccf-2021-16-f02",
+      "issue_id": "ccf-2021-16-f02-CURE-IMAGE-SAMPLING-001",
+      "owner_finding_id": "CURE-IMAGE-SAMPLING-001",
+      "status": "open",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
+          "sha256": "ca2b6fa7ed919cd581742a1175fa2e503cd0c22c4de7d1833ee419d3cc584c70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/root-verification-001.json",
+          "sha256": "c6a8470f31707dfaae079f4f6c12196286e87cae45a1bb61af04a2a40103a278"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/independent-review-001/FROZEN-RESULT.json",
+          "sha256": "8cc9a45222d91bc441faf4eee679c76367225fc5344076e879b07a9083c05c10"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/HANDOFF.json",
+          "sha256": "a192dee345dfbb5b9ae72459a6e0bf52241f83ece365bc1fb7979f4f553d4af8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/output-review.json",
+          "sha256": "2039220abf70611974694af7fe99fb8b23c04df5019c21ba463859e41dca44e4"
         }
       ],
       "user_acceptance": "pending"
