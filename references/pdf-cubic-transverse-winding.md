@@ -92,7 +92,9 @@ arithmetic inherits checked rational-size bounds. Hard caps include 128 input
 segments, 512 input commands, 2,048 atomic edges, 8,000,000 selectable work
 units, 80 probe halvings, and 16–96 root-isolation steps. Native use fixes root
 isolation at 80 steps. Tree and XML-text hard limits are 200,000 nodes and
-16,000,000 bytes. Exhaustion rejects without changing XML.
+16,000,000 Unicode string-length units. The legacy `max_xml_text_bytes`
+parameter counts string lengths, not encoded UTF-8 bytes. Exhaustion rejects
+without changing XML.
 
 Receipts include the selected/requested policy, classification evidence,
 source/native hashes and binding, complete fragment/face accounting, final
