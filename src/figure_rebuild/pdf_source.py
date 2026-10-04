@@ -27,7 +27,8 @@ from .pdf_fill_clip import clip_nonzero_annular_fill
 from .pdf_rect_clip import clip_convex_fill_to_rect
 from .pdf_line_clip import clip_axis_butt_stroke_to_rect
 from .pdf_clip import prove_clip_box_relation
-from .pdf_stroke_bounds import PdfStrokeBoundsError, stroke_envelope
+from .pdf_stroke_bounds import (PdfStrokeBoundsError, PdfTangentStrokeProofError,
+                                prove_tangent_stroke_support, stroke_envelope)
 
 
 class PdfSourceError(ValueError):
@@ -658,6 +659,24 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
             envelope = (_stroke_envelope(paint.transform, width, miter_limit, rectangle_stroke,
                                          linecap=cap, linejoin=join)
                         if stroke != "none" else (Fraction(0), Fraction(0)))
+            tangent_support = None
+            if (stroke != "none" and not rectangle_stroke and join == "miter"
+                    and fill == "none" and style["stroke-dasharray"] == "none"):
+                try:
+                    tangent_support = prove_tangent_stroke_support(
+                        paint.commands, paint.transform, width, miter_limit,
+                        linecap=cap, linejoin=join, dasharray=style["stroke-dasharray"], fill=fill)
+                except PdfTangentStrokeProofError as error:
+                    tangent_support = {"status": "not_proven", "reason": str(error),
+                                       "fallback": "unchanged_conservative_stroke_envelope"}
+                else:
+                    envelope = tuple(Fraction(v) for v in tangent_support["axis_support_exact_rationals"])
+                # This receipt concerns the original source stroke only. A
+                # later supported intersection can still create a fill.
+                tangent_support = {**tangent_support, "source_paint_id": paint.source_id,
+                                   "applies_to": "original_source_stroke_before_clip_intersection"}
+            tangent_record = ({"tangent_stroke_support": tangent_support}
+                              if tangent_support is not None else {})
             bounds = _expand_bounds(bounds, envelope)
             rectangles, complex_contexts, clip_proofs = [], [], []
             for context in paint.clips:
@@ -677,7 +696,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                 if effective[2] <= effective[0] or effective[3] <= effective[1] or _disjoint(effective, bounds):
                     skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
                                     "proof": "empty_rectangular_clip_intersection_or_disjoint_paint_bounds",
-                                    "rectangular_clip_intersection": list(effective)})
+                                    "rectangular_clip_intersection": list(effective), **tangent_record})
                     continue
                 if rectangle_stroke and fill == "none":
                     points = [c[1] for c in paint.commands if c[0] != "Z"]
@@ -705,7 +724,8 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                         if relation == "outside":
                             skipped.append({"source_id": paint.source_id,
                                             "reason": "zero-area finite butt stroke rectangle intersection",
-                                            "axis_butt_stroke_intersection": axis_stroke_intersection})
+                                            "axis_butt_stroke_intersection": axis_stroke_intersection,
+                                            **tangent_record})
                             continue
                         if relation == "inside":
                             boxes = [tuple(Fraction(v) for v in row["complete_butt_stroke_bounds_exact"])
@@ -791,7 +811,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                         "source_commands_changed": True})
             if any(p["relation"] == "outside" for p in clip_proofs):
                 skipped.append({"source_id": paint.source_id, "reason": "outside source clip/region",
-                                "clip_geometry_proofs": clip_proofs})
+                                "clip_geometry_proofs": clip_proofs, **tangent_record})
                 continue
             clip_rounding = []
             for clip_index, rectangle in enumerate(rectangles):
@@ -877,6 +897,7 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                           "stroke_visual_verification_required": bool(part_stroke_fields),
                           "stroke_preview_renderer_support": "not_verified_or_unsupported" if part_stroke_fields else "not_applicable",
                           "stroke_miterlimit_native_quantization": 1e-5 if "stroke_miterlimit" in part_stroke_fields else None}
+                record.update(tangent_record)
                 if part == "dash-stroke":
                     record["dash_lowering"] = dash_result.provenance
                     record["dash_coordinate_system"] = "original SVG path user space, before source affine"
