@@ -290,7 +290,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
                 winding_fills.append(normalize_native_cubic_fill(
                     page, object_id=obj['id'], manifest=manifest,
                     object_map=object_map_data, placement=occupied_placement,
-                    proof_mode='endpoint_contact', proof_split_depth=1))
+                    proof_mode='classified_contact_or_transverse', max_operations=4_000_000))
             else:
                 winding_fills.append(normalize_native_polygon_fill(
                     element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,

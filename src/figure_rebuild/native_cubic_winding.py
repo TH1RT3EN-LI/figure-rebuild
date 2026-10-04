@@ -27,6 +27,8 @@ K = 9525
 MAX_INT = 2**31 - 1
 POLICY = 'isolated_cubic_authenticated_existing_native_grid_v1'
 CONTACT_POLICY = 'endpoint_contact_cubic_authenticated_existing_native_grid_v1'
+TRANSVERSE_POLICY = 'transverse_line_cubic_authenticated_existing_native_grid_v1'
+CLASSIFIED_POLICY = 'classified_contact_or_transverse_cubic_v1'
 
 
 def _fail(code, message):
@@ -99,11 +101,12 @@ def _metadata(node, slide=False):
     _leaf(ext[0], ('val' if slide else 'id',))
 
 
-def _bounded_tree(root, max_nodes, max_bytes):
+def _bounded_tree(root, max_nodes, max_bytes, budget=None):
     if type(root) is not ET.Element:
         _fail('native_context', 'Actual native slide root required')
     stack = [root]; seen = set(); size = 0
     while stack:
+        if budget is not None:budget.spend()
         node = stack.pop()
         if type(node) is not ET.Element:
             _fail('native_context', 'Only actual ElementTree nodes are admitted')
@@ -239,7 +242,7 @@ def _paint(shape, obj):
                    'existing_alpha_error_exact': str(abs(opacity-F(alpha, 100000)))}
 
 
-def _source_commands(obj, maximum):
+def _source_commands(obj, maximum, budget=None):
     if set(obj) - {'id','kind','commands','style','z_index','group_id','fill_rule','fill-rule'}:
         _fail('source_binding', 'Unknown source object context is not admitted')
     if 'group_id' in obj and (type(obj['group_id']) is not str or len(obj['group_id']) > 512):
@@ -251,6 +254,7 @@ def _source_commands(obj, maximum):
         _fail('budget', 'Source command budget exceeded')
     result, points = [], []
     for cmd in commands:
+        if budget is not None:budget.spend()
         if type(cmd) is not dict or len(cmd) != 1:
             _fail('source_binding', 'Invalid source command')
         op, values = next(iter(cmd.items()))
@@ -259,6 +263,7 @@ def _source_commands(obj, maximum):
             _fail('source_binding', 'Unsupported source operation or control record')
         xy = []
         for i in range(0, len(keys), 2):
+            if budget is not None:budget.spend()
             x,y = values[keys[i]], values[keys[i+1]]; _number(x); _number(y)
             xy.append((x,y)); points.append((x,y))
         result.append(({'moveTo':'M','lineTo':'L','cubicTo':'C','close':'Z'}[op], *xy))
@@ -356,16 +361,35 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
     agree with the raw object map. This is not a caller-restored/identity flag.
     The original PDF extraction is not re-proved here. All source-canvas marked
     paths are excluded. Failures leave the entry post-restoration XML intact.
+    Explicit isolated/contact modes keep their existing contracts. The build's
+    classified policy examines authenticated integer geometry before selecting
+    exactly one contact or transverse proof; failed classification/normalization
+    never retries another domain. Its shared budget counts instrumented bounded
+    work units, not every interpreter instruction or Fraction primitive.
     """
     label = object_id if type(object_id) is str and len(object_id) <= 512 else None
     base={'id':label,'policy':POLICY,'geometry_preserved':True,'manifest_modified':False,'visual_review_required':True}
     try:
-        mode,depth=_proof_mode(proof_mode,proof_split_depth)
+        classified = type(proof_mode) is str and proof_mode == 'classified_contact_or_transverse'
+        if classified and proof_split_depth is not None:
+            _fail('input','Classified policy does not accept a caller-selected proof split depth')
+        mode,depth=_proof_mode('endpoint_contact' if classified else proof_mode,proof_split_depth)
+        extended = classified or mode == 'transverse_line'
         if mode=='endpoint_contact':
             base.update(policy=CONTACT_POLICY,proof_mode=mode,proof_split_depth=depth)
+        if classified:base.update(policy=CLASSIFIED_POLICY,requested_proof_policy=proof_mode)
+        elif mode=='transverse_line':base.update(policy=TRANSVERSE_POLICY,proof_mode=mode)
         for limit in (max_input_segments,max_commands,max_atomic_edges,max_operations,max_probe_halvings,max_tree_nodes,max_xml_text_bytes):
             if type(limit) is not int or limit <= 0:
                 _fail('budget','Wrapper budgets must be positive integers')
+        budget=None
+        if extended:
+            from . import pdf_cubic_transverse_winding as transverse
+            limits=_limits(max_input_segments,max_commands,max_atomic_edges,max_operations,max_probe_halvings)
+            transverse._domain(limits,80,F(1,2))
+            if max_tree_nodes>200_000 or max_xml_text_bytes>16_000_000:
+                _fail('budget','Transverse context limits exceed the bounded native profile')
+            budget=transverse.Arithmetic(max_operations)
         if type(object_id) is not str or not object_id or len(object_id)>512 or type(manifest) is not dict or type(object_map) is not dict:
             _fail('source_binding','Bounded source identity and full manifest/map required')
         objects,entries=manifest.get('objects'),object_map.get('objects')
@@ -377,6 +401,7 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
         def index(rows):
             found={}
             for row in rows:
+                if extended:budget.spend()
                 if type(row) is not dict or type(row.get('id')) is not str or len(row['id'])>512 or row['id'] in found:
                     _fail('source_binding','Invalid or duplicate source/map identity')
                 found[row['id']]=row
@@ -388,10 +413,11 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
             _fail('source_binding','Source kind must be a string')
         if obj.get('kind') != 'path':
             return {**base,'status':'not_applicable','reason_code':'not_path','visual_review_required':False}
-        source,box=_source_commands(obj,max_commands)
+        source,box=_source_commands(obj,max_commands,budget if extended else None)
         if not any(c[0]=='C' for c in source):
             return {**base,'status':'not_applicable','reason_code':'no_cubic_commands','visual_review_required':False}
-        used=initial_operations+_bounded_tree(slide_root,max_tree_nodes,max_xml_text_bytes)
+        nodes=_bounded_tree(slide_root,max_tree_nodes,max_xml_text_bytes,budget if extended else None)
+        used=budget.used if extended else initial_operations+nodes
         if used>=max_operations:
             _fail('budget','Native context exhausted operation budget')
         shape,identity,parent=_select(slide_root,object_id)
@@ -403,13 +429,14 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
             if len(declaration['objects']) > len(objects):
                 _fail('source_binding','Source canvas selection exceeds declared objects')
             for row in declaration['objects']:
+                if extended:budget.spend()
                 if (type(row) is not dict or set(row)-{'object_id','source_paint_id'} or
                         type(row.get('object_id')) is not str or not row['object_id'] or len(row['object_id'])>512 or
                         row['object_id'] in selected_ids or
                         ('source_paint_id' in row and (type(row['source_paint_id']) is not str or not row['source_paint_id'] or len(row['source_paint_id'])>512))):
                     _fail('source_binding','Invalid or duplicate source canvas selection identity')
                 selected.append(row['object_id']);selected_ids.add(row['object_id'])
-            used += len(selected)
+            used = budget.used if extended else used+len(selected)
         else:selected=[]
         if object_id in selected or 'source_canvas_clip_required=true' in [p.strip() for p in identity.get('descr','').split(';')]:
             return {**base,'status':'not_applicable','reason_code':'keep_original_canvas_clip_geometry'}
@@ -418,18 +445,32 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
         # is no free retry after an isolated failure.
         options=dict(max_input_segments=max_input_segments,max_commands=max_commands,max_atomic_edges=max_atomic_edges,max_probe_halvings=max_probe_halvings)
         limits=_limits(max_input_segments,max_commands,max_atomic_edges,max_operations,max_probe_halvings)
-        budget=_Arithmetic(max_operations) if mode=='endpoint_contact' else None
-        if budget is not None:budget.spend(used)
+        if not extended:
+            budget=_Arithmetic(max_operations) if mode=='endpoint_contact' else None
+            if budget is not None:budget.spend(used)
+        else:budget.spend()  # Selected native paint/context validation work unit.
         props,paint=_paint(shape,obj)
         paths,original,decoded,extent,frame=_binding(props,obj,source,box,entry,manifest,object_map,placement,max_commands,budget)
+        selection=None
+        if classified:
+            selection=transverse._classify_with_budget(decoded['commands'],limits,budget)
+            mode=selection['selected_proof_mode'];depth=1 if mode=='endpoint_contact' else None
+            base.update(policy=CONTACT_POLICY if mode=='endpoint_contact' else TRANSVERSE_POLICY,proof_mode=mode)
+            if depth is None:base.pop('proof_split_depth',None)
+            else:base['proof_split_depth']=depth
         used=budget.used if budget is not None else used+decoded['decode_operations']
         if used>=max_operations:_fail('budget','Source/native binding exhausted operation budget')
         before=ET.tostring(shape); original_bytes=ET.tostring(original)
+        if extended:budget.spend(1+(len(before)+len(original_bytes))//64)
         if budget is None:
             normalized=normalize_isolated_cubic_fill(decoded['commands'],max_operations=max_operations-used,**options)
             used+=normalized['proof']['exact_predicate_operations']
-        else:
+        elif mode=='endpoint_contact':
             normalized=_normalize_contact_with_budget(decoded['commands'],limits,budget,proof_split_depth=depth)
+            used=budget.used
+        else:
+            bounds=[min(F(1,2),budget.div(F(d),2*F(e))) for d,e in zip(decoded['dimensions'],extent)]
+            normalized=transverse._normalize_with_budget(decoded['commands'],limits,budget,max_coordinate_error=bounds)
             used=budget.used
         witness=[r for r in normalized['proof']['boundary_classification'] if any(type(r[k]) is int and r[k]!=0 and r[k]%2==0 for k in ('left_winding','right_winding'))]
         common={**base,'source_commands_sha256':_hash(_json(obj['commands']).encode()),'initial_geometry_sha256':_hash(original_bytes),
@@ -437,9 +478,17 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
                 'source_object_sha256':_hash(_json(obj).encode()),'raw_object_map_entry_sha256':_hash(_json(entry).encode()),
                 'parent_context_sha256':_hash(ET.tostring(parent)),'normalization':normalized['proof'],
                 'rgb_alpha_error_bound':None}
+        if selection is not None:common['source_domain_selection']=selection
+        if extended:
+            common['work_budget_counting_unit']='instrumented bounded work units; not every Python/Fraction primitive'
+            budget.spend(1+(len(_json(obj))+len(_json(entry)))//64)
         if not witness:
-            return {**common,'status':'not_applicable','reason_code':'no_proven_fill_rule_mismatch',
+            record={**common,'status':'not_applicable','reason_code':'no_proven_fill_rule_mismatch',
                     'reason':'No exact nonzero even-winding face witness; original XML retained'}
+            if extended:
+                record=budget.serialize(record);budget.spend(1+len(_json(record))//64)
+                record['exact_predicate_operations_including_context']=budget.used
+            return record
         if not normalized['commands']:
             _fail('empty_candidate','Empty candidate is not admitted by the bounded wrapper')
         replacement=ET.Element(original.tag,dict(original.attrib))
@@ -483,7 +532,10 @@ def normalize_native_cubic_fill(slide_root, *, object_id, manifest, object_map,
         if budget is not None:
             record=budget.serialize(record)
             record['exact_predicate_operations_including_context']=budget.used
-        _json(record)  # Finish all receipt work before the single mutation.
+        encoded_receipt=_json(record)  # Finish all receipt work before the single mutation.
+        if extended:
+            budget.spend(1+len(encoded_receipt)//64)
+            record['exact_predicate_operations_including_context']=budget.used
         paths.remove(original);paths.append(replacement)
         return record
     except UnsupportedPdfCubicWindingError as error:

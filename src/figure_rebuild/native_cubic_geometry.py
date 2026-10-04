@@ -1,4 +1,4 @@
-"""Strict integer DrawingML geometry decoding for the whole-cubic verifier.
+"""Strict integer DrawingML decoding and explicit cubic-domain verification.
 
 These helpers neither mutate XML nor validate shape paint/parent/frame identity.
 A later wrapper must bind those independently to the actual source and output.
@@ -99,9 +99,9 @@ def decode_native_cubic_path(path_element, *, max_commands=512, max_operations=1
 
 def _proof_mode(proof_mode, proof_split_depth):
     """Closed internal dispatch, selected before any proof; never a fallback."""
-    if type(proof_mode) is not str or proof_mode not in ('isolated', 'endpoint_contact'):
-        raise ValueError('Cubic proof mode must be isolated or endpoint_contact')
-    if proof_mode == 'isolated':
+    if type(proof_mode) is not str or proof_mode not in ('isolated', 'endpoint_contact', 'transverse_line'):
+        raise ValueError('Cubic proof mode must be isolated, endpoint_contact or transverse_line')
+    if proof_mode in ('isolated','transverse_line'):
         if proof_split_depth is not None:
             raise ValueError('Proof split depth is only applicable to endpoint_contact')
         return proof_mode, None
@@ -122,12 +122,21 @@ def verify_native_cubic_path_encoding(original_path, candidate_path, *, slide_ex
     Default isolated behavior is unchanged. Explicit endpoint_contact uses only
     proved original-endpoint contacts and proof-only halves, with whole-C output.
     Identical path attributes and caller-bound positive slide extents are required.
-    Only new L/L intersections may move, at most half a local grid unit AND the
-    declared (<= half) slide EMU bound. Frame/paint/ancestor identity is external.
+    In these whole-C modes only new L/L intersections may move. Transverse mode
+    instead proves a bounded C/L arrangement, then directly rounds algebraic
+    fragment controls onto the original grid. Its total additional control
+    error is at most half a local grid unit AND the declared (<= half) slide EMU
+    bound, without including earlier source restoration error. Frame, paint and
+    ancestor identity must be authenticated by the caller.
     """
     limits = _cubic._limits(max_input_segments, max_commands, max_atomic_edges,
                            max_operations, max_probe_halvings)
-    budget = _Arithmetic(max_operations)
+    mode,_ = _proof_mode(proof_mode,proof_split_depth)
+    if mode == 'transverse_line':
+        from .pdf_cubic_transverse_winding import Arithmetic
+        budget = Arithmetic(max_operations)
+    else:
+        budget = _Arithmetic(max_operations)
     return _verify_native_cubic_path_encoding_with_budget(
         original_path, candidate_path, limits, budget, slide_extents=slide_extents,
         max_slide_coordinate_error=max_slide_coordinate_error,
@@ -166,11 +175,15 @@ def _verify_native_cubic_path_encoding_with_budget(
             original['commands'], candidate['commands'], limits, budget,
             max_coordinate_error=local_bounds,
             normalize_geometry=_cubic._normalize, candidate_geometry=_cubic._chord_rings)
-    else:
+    elif mode == 'endpoint_contact':
         from .pdf_cubic_contact_winding import _verify_integer_with_budget
         proof = _verify_integer_with_budget(
             original['commands'], candidate['commands'], limits, budget,
             max_coordinate_error=local_bounds, proof_split_depth=depth)
+    else:
+        from .pdf_cubic_transverse_winding import _verify_integer_with_budget
+        proof = _verify_integer_with_budget(original['commands'],candidate['commands'],limits,budget,
+                                           max_coordinate_error=local_bounds)
     # These strings were produced by checked internal formatting, not supplied
     # by a caller. Their bounded conversion is charged as part of this receipt.
     budget.spend(2)
@@ -189,5 +202,9 @@ def _verify_native_cubic_path_encoding_with_budget(
     if mode == 'endpoint_contact':
         budget.spend(2)
         result.update(proof_mode=mode, proof_split_depth=depth)
+    elif mode == 'transverse_line':
+        budget.spend()
+        result.update(proof_mode=mode,method='actual_integer_path_decode_and_transverse_fragment_reproof',
+                      original_algebraic_fragment_to_final_integer_total_error=True)
     result['exact_predicate_operations_including_decode'] = budget.used - started
     return result
