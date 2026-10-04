@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-03T23:11:20.784289+00:00",
+  "updated_at": "2026-10-04T00:03:39.971755+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 166,
-    "open": 129,
+    "closed_model_visual_review": 168,
+    "open": 127,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -72,6 +72,60 @@
         {
           "audit_relative_path": "source-regeneration/ccf-2020-01-f1-1/job/build/run-006/root-review-followup.json",
           "sha256": "cb9ae5b01c3b5901b853d6caf95223df600790b1042309e2582a2b962215484b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-03-f02",
+      "issue_id": "ccf-2020-03-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original calligraphic T, t-prime, x-tilde, h/z and compact i/j subscripts, f/g parentheses and dots are restored as original source glyph outlines and verified in the actual native 1x/2x/4x output. All 322 source objects are accounted for, including 32 verified viewport-clipped glyphs. These are editable paths, not live text or semantic formulas; automatic semantic coverage and user acceptance remain pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/canvas-clip-simclr-source-001/build-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/root-verification-001.json",
+          "sha256": "a498db241f21b8e3c3a40bb1bd6d506bbb5b04a2dd357c43d9da9aa02b8f0b66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/independent-review-001/HANDOFF.json",
+          "sha256": "60de2d126d4cd66f5169913537a1a3419a34021f24fd66f7a9bb91c157b4e8af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/HANDOFF.json",
+          "sha256": "9ac1b42fc24de7e405dadb0d4e244ef3eb6139ae12a57a0bef4414bb8b3d167a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/output-review.json",
+          "sha256": "2638f6550d72efd79135a036a7ffe1a11d2a49ddf8094ef7b5ac1c826e84f455"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-03-f02",
+      "issue_id": "ccf-2020-03-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "The Representation arrows retain original source glyph contours and placement; both shafts, extensions and heads share a continuous baseline in the actual native output. The former stepped font-substitution artifact is absent in independently reviewed 4x crops. Source title/caption ROI clipping remains unchanged. Antialiasing differences and user acceptance remain separate.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/canvas-clip-simclr-source-001/build-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/root-verification-001.json",
+          "sha256": "a498db241f21b8e3c3a40bb1bd6d506bbb5b04a2dd357c43d9da9aa02b8f0b66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/independent-review-001/HANDOFF.json",
+          "sha256": "60de2d126d4cd66f5169913537a1a3419a34021f24fd66f7a9bb91c157b4e8af"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/HANDOFF.json",
+          "sha256": "9ac1b42fc24de7e405dadb0d4e244ef3eb6139ae12a57a0bef4414bb8b3d167a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-simclr-source-001/build-001/output-review.json",
+          "sha256": "2638f6550d72efd79135a036a7ffe1a11d2a49ddf8094ef7b5ac1c826e84f455"
         }
       ]
     },
@@ -3943,8 +3997,6 @@
   "open_issue_ids": [
     "ccf-2020-02-f02-D01",
     "ccf-2020-02-f02-D02",
-    "ccf-2020-03-f02-D01",
-    "ccf-2020-03-f02-D02",
     "ccf-2020-03-f03-D01",
     "ccf-2020-03-f04-D01",
     "ccf-2020-03-f04-D02",
@@ -5813,7 +5865,7 @@
       "description": "Two black input arrows have a small background-colored gap at the shaft/head overlap in actual native4x; source is solid. Exact source commands and PPT shape XML are frozen. Both contain only M/L/Z; winding is a candidate mechanism, not a confirmed cause.",
       "figure_id": "ccf-2025-01-f01",
       "issue_id": "ccf-2025-01-f01-NATIVE-JUNCTION-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
@@ -5836,7 +5888,27 @@
           "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution": "Actual source/old/new1x2x4x checked. Both source shapes svg-paint-0-1-0-11-9 and -11-10 consist only of opaque nonzero M/L/Z contours. Stable generic winding normalization applied to both without changing source manifest, native frame or original image assets. New native joints are continuous black as source; ordinary edge antialiasing differences remain. Closure proposal restricted to these observed holes. Independently viewed by root against frozen original/source/current native images; user acceptance remains pending.",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/root-verification-001.json",
+          "sha256": "7384aecaf8d25d0f63f6dda7b19535722d7c8487ba61ca20b76f77b73f71cf43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/handoff.json",
+          "sha256": "b2aea8a1566c67944e897add03072be2a3da327b774aff38cb8f53a115762102"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/closure-proposals.json",
+          "sha256": "812cb136314ac13c047766207d133bc477608d1d706aa5e487ee347c7f3e8332"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "3f7fdb8e8eb7cbe263f7d4574232d452527b2ce4410adde61ff43a000ce8ca4a"
+        }
+      ],
+      "attempt": "source-regeneration/sam1-winding-source-001/jobs/ccf-2025-01-f01/build/run-001"
     },
     {
       "severity": "minor",
@@ -5844,7 +5916,7 @@
       "description": "Dataset card dark borders have tiny square corner notches in native4x while the source L corners are continuous. Example exact original four-bar polygon paths and PPT XML are frozen; the large white interiors are correct. No repair applied.",
       "figure_id": "ccf-2025-01-f01",
       "issue_id": "ccf-2025-01-f01-NATIVE-CORNER-002",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "source-regeneration/inventory003-seven-native-001/root-verification-001.json",
@@ -5867,7 +5939,27 @@
           "sha256": "14c48961d123d2fc5b24d7d18e9cf5b89df1627b0874637a007afada248345cc"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution": "Actual source/old/new1x2x4x compared at original[908,242,930,259] and bound whole frames[872,200,931,259], plus all four dataset stacks at4x. Old corner holes remain evident in frozen old PPT crops; new continuous L corners match source topology. Exact bound source objects20-0/22-0 contain four pure polygon bars, not curves; both generic winding applied. Original source clipping evidence preserved unchanged. No local coordinate patch or curved-path support claim. Independently viewed by root against frozen original/source/current native images; user acceptance remains pending.",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/root-verification-001.json",
+          "sha256": "7384aecaf8d25d0f63f6dda7b19535722d7c8487ba61ca20b76f77b73f71cf43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/handoff.json",
+          "sha256": "b2aea8a1566c67944e897add03072be2a3da327b774aff38cb8f53a115762102"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/closure-proposals.json",
+          "sha256": "812cb136314ac13c047766207d133bc477608d1d706aa5e487ee347c7f3e8332"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam1-winding-source-001/jobs/ccf-2025-01-f01/build/run-001/output-review.json",
+          "sha256": "3f7fdb8e8eb7cbe263f7d4574232d452527b2ce4410adde61ff43a000ce8ca4a"
+        }
+      ],
+      "attempt": "source-regeneration/sam1-winding-source-001/jobs/ccf-2025-01-f01/build/run-001"
     },
     {
       "severity": "minor",
