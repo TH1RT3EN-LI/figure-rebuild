@@ -203,6 +203,15 @@ def _visual_bounds(element, label):
             math.ceil(max(p[0] for p in corners)), math.ceil(max(p[1] for p in corners)))
 
 
+def _write_editability_receipt(path, data):
+    # Large classified-curve proofs can exceed Node's string limit when pretty
+    # indentation doubles their on-disk size. Keep every proof field, stream
+    # compact JSON, and avoid a second complete serialized copy in Python.
+    with Path(path).open('w', encoding='utf-8') as stream:
+        json.dump(data, stream, ensure_ascii=False, separators=(',', ':'))
+        stream.write('\n')
+
+
 def process(source, output, manifest_path, receipt, object_map=None, asset_root=None,
             occupied_placement=None):
     source, output = Path(source), Path(output)
@@ -386,7 +395,7 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),
                 native_connectors=connectors, text_layout=text_layout_records)
-    Path(receipt).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+    _write_editability_receipt(receipt, data)
     return data
 
 def main(argv=None):

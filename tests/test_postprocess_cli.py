@@ -11,6 +11,25 @@ from figure_rebuild import postprocess
 
 
 class PostprocessCliTests(unittest.TestCase):
+    def test_large_nested_receipt_streams_compactly_without_dropping_proof_fields(self):
+        data = {'native_winding_fills': [
+            {'id': '字形', 'normalization': {'boundaries': [
+                {'point': [1, 1.0], 'predicate': True, 'winding': 2} for _ in range(1000)]}}
+            for _ in range(20)]}
+        expected = json.dumps(data, ensure_ascii=False, separators=(',', ':')) + '\n'
+        pretty = json.dumps(data, ensure_ascii=False, indent=2) + '\n'
+        self.assertGreater(len(pretty), len(expected) * 2)
+        with tempfile.TemporaryDirectory() as directory:
+            receipt = Path(directory) / 'editability.json'
+            with patch.object(postprocess.json, 'dumps', side_effect=AssertionError('complete serialized copy')):
+                postprocess._write_editability_receipt(receipt, data)
+            self.assertEqual(receipt.read_text(encoding='utf-8'), expected)
+            restored = json.loads(receipt.read_text(encoding='utf-8'))
+            self.assertEqual(restored, data)
+            point = restored['native_winding_fills'][0]['normalization']['boundaries'][0]['point']
+            self.assertIs(type(point[0]), int)
+            self.assertIs(type(point[1]), float)
+
     def test_quiet_preserves_large_receipt_without_serializing_it_again(self):
         # CLIP exposed a valid compact proof exceeding16MiB. The default Node
         # stdout buffer is much smaller; raising it only postpones the failure.

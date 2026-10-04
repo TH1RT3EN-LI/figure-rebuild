@@ -10,6 +10,7 @@ import {flattenPath,pathBounds} from './curves.mjs';
 import {fitPlacement} from './placement.mjs';
 import {fitImagePlacement} from './image_placement.mjs';
 import {linearGradientFill} from './linear_gradient.mjs';
+import {configureCpuRenderer} from './cpu_renderer.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -37,6 +38,7 @@ if(hasCanvasClip)runPython('source_canvas_clip',['--manifest',resolvedManifest,'
 const originalSource=path.join(assetRoot,manifest.source.path);
 if(createHash('sha256').update(await fs.readFile(originalSource)).digest('hex')!==manifest.source.sha256)throw Error('Original source changed before authoring');
 const req=createRequire(path.join(runtime.node_modules,'figure-rebuild-loader.cjs'));
+const previewImageSampling=configureCpuRenderer(req.resolve('@oai/artifact-tool')).imageSampling;
 const {Presentation,PresentationFile,FileBlob,defaultFontMetricsProvider,skiaPaintBaselineCompensationPx}=await import(pathToFileURL(req.resolve('@oai/artifact-tool')).href);
 if(!defaultFontMetricsProvider||typeof defaultFontMetricsProvider.getMetricsForSize!=='function'||typeof defaultFontMetricsProvider.reset!=='function'||typeof skiaPaintBaselineCompensationPx!=='function')throw Error('Configured Artifact Tool lacks required presentation baseline metrics API');
 const artifactRequire=createRequire(req.resolve('@oai/artifact-tool'));
@@ -174,7 +176,9 @@ if(previewBackend==='libreoffice'){
   const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
  }
  for(const s of [1,2,4]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
- previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
+ const imageSamplingAudit=previewImageSampling.audit();
+ if(imageSamplingAudit.cropped_minification_calls_unfiltered)previewLimitations.push({code:'cropped_image_minification_requires_visual_verification',draw_calls:imageSamplingAudit.cropped_minification_calls_unfiltered,detail:'Staged minification covers complete source windows. Cropped source windows retain native interpolation to avoid mixing excluded pixels into crop edges.'});
+ previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,image_sampling:{...imageSamplingAudit,scope:'artifact_process_through_raw_preview_exports'},svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
 }
 // Keep the raw 1x preview for comparison diagnostics. The viewing aide uses
 // supersampling so thin mathematical strokes are filtered rather than dropped.

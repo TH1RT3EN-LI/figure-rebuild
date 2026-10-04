@@ -4,6 +4,7 @@
  * internal image-resize canvases use the same constructor.
  */
 import {createRequire} from 'node:module';
+import {installImageMinification} from './image_sampling.mjs';
 
 const adapters = new WeakMap();
 export const CPU_RENDERER_NOTICE = 'CPU rendering avoids the Skia Vulkan/NVIDIA exit cleanup race. CPU and GPU antialiasing can differ; preview hashes and visual reviews must be regenerated for this backend.';
@@ -56,7 +57,9 @@ export function installCpuCanvas(skia, modulePath = 'skia-canvas') {
 export function configureCpuRenderer(artifactEntry) {
   const requireArtifact = createRequire(artifactEntry);
   const modulePath = requireArtifact.resolve('skia-canvas');
-  return installCpuCanvas(requireArtifact('skia-canvas'), modulePath);
+  const adapter = installCpuCanvas(requireArtifact('skia-canvas'), modulePath);
+  const imageSampling = installImageMinification(adapter.Canvas);
+  return {...adapter, imageSampling, audit: () => ({...adapter.audit(), image_sampling: imageSampling.audit()})};
 }
 
 export async function verifyCpuRenderer(adapter, OffscreenCanvasClass = globalThis.OffscreenCanvas) {

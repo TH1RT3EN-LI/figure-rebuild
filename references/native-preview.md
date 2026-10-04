@@ -1,5 +1,9 @@
 # Optional LibreOffice preview
 
+The default Artifact CPU backend uses the bounded
+[image minification policy](preview-image-sampling.md). Its raw output remains
+distinct from LibreOffice output and the separately derived smooth viewing aid.
+
 `build --preview-backend libreoffice` renders the **final validated PPTX** through LibreOffice Impress **direct PNG export**, at explicit 1x, 2x and 4x pixel dimensions (96, 192 and 384 pixels per inch of slide geometry). A separate lossless PDF export supplies font and image evidence; PyMuPDF inspects that PDF and does not generate the raw previews. Artifact remains the authoring backend and the default preview backend. This option currently supports new single-slide figures; `--base` is rejected explicitly. It does not install LibreOffice, alter the PPT geometry, or save a LibreOffice roundtrip PPT.
 
 Supply LibreOffice, Fontconfig's `fc-match`, and PyMuPDF in the configured Python environment. PyMuPDF is available through the package's optional `source` extra. Keep the existing Artifact runtime and presentation validators configured.

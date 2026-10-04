@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T07:04:59.994040+00:00",
+  "updated_at": "2026-10-04T08:44:45.560501+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 186,
-    "open": 109,
-    "closed_renderer_localization": 1
+    "closed_model_visual_review": 189,
+    "closed_renderer_localization": 1,
+    "open": 106
   },
   "closed_findings": [
     {
@@ -4630,6 +4630,175 @@
           "sha256": "0d7d558a81a3722a4617a67fb7a2d01132b39c2eb8bf6010b6e05f7751857c70"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2021-12-f04",
+      "issue_id": "ccf-2021-12-f04-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Source-bound native4 occurrences retain the peach/green background and sparse black dots without the previous white gutters or tile grids in raw1x/2x/4x and actual native direct PNG. No native dot-path editability claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/output-review.json",
+          "sha256": "a5f65234f11a18a5f7b5832c2f9a5b113a176e9b212ec81008bd3bbce94bfc64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/final-native-readback.json",
+          "sha256": "cce9f685f8f47d02663a35a51700b7620ea464ed2c4b59dbb5cad5fc32a2b547"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/render-audit.json",
+          "sha256": "5ecc0d45cb76f5efc5e059aeb7d05909436988a4a3d284a9c92e246304e0fe17"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "34e292d621c623fe894ba44fa5a65dc5af9fd64faa3148d2f9bd56df5b0fee76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "144e3e33a8e9f2a2861cfed0c363ea30267fd26bb1999e3b4dc2c57124b9e323"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/IMAGE-RECEIPTS.json",
+          "sha256": "082022eac15d91493954c13f8a6b9f7f0dd09c166a3085723b1b61c65dc56a9c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "f570f76fa189f620213e36c5e535ce98fefbcab6fdd83d492ab89e6126386218"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-18-f18",
+      "issue_id": "ccf-2021-18-f18-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-18-f18",
+      "issue_id": "ccf-2021-18-f18-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -4671,7 +4840,6 @@
     "ccf-2021-12-f02-D01",
     "ccf-2021-12-f02-D02",
     "ccf-2021-12-f02-D03",
-    "ccf-2021-12-f04-D01",
     "ccf-2021-13-f01-D01",
     "ccf-2021-13-f01-D02",
     "ccf-2021-13-f08-D01",
@@ -4680,8 +4848,6 @@
     "ccf-2021-17-f02-D01",
     "ccf-2021-17-f05-D01",
     "ccf-2021-17-f05-D02",
-    "ccf-2021-18-f18-D01",
-    "ccf-2021-18-f18-D02",
     "ccf-2022-01-f03-D01",
     "ccf-2022-01-f03-D02",
     "ccf-2022-02-f02-D01",
@@ -4824,9 +4990,58 @@
       "figure_id": "ccf-2021-12-f04",
       "issue_id": "ccf-2021-12-f04-D01",
       "severity": "major",
-      "status": "open",
+      "status": "superseded_by_closed_model_visual_review",
       "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2021-12-f04/job/build/run-001",
-      "closure_evidence": [],
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/output-review.json",
+          "sha256": "a5f65234f11a18a5f7b5832c2f9a5b113a176e9b212ec81008bd3bbce94bfc64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/final-native-readback.json",
+          "sha256": "cce9f685f8f47d02663a35a51700b7620ea464ed2c4b59dbb5cad5fc32a2b547"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/render-audit.json",
+          "sha256": "5ecc0d45cb76f5efc5e059aeb7d05909436988a4a3d284a9c92e246304e0fe17"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "34e292d621c623fe894ba44fa5a65dc5af9fd64faa3148d2f9bd56df5b0fee76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "144e3e33a8e9f2a2861cfed0c363ea30267fd26bb1999e3b4dc2c57124b9e323"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/IMAGE-RECEIPTS.json",
+          "sha256": "082022eac15d91493954c13f8a6b9f7f0dd09c166a3085723b1b61c65dc56a9c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "f570f76fa189f620213e36c5e535ce98fefbcab6fdd83d492ab89e6126386218"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ],
       "partial_resolution": "Sparse black dots and correct peach/green backgrounds are restored in source assets and lossless LibreOffice, but Artifact 1x/2x/4x has faint rectangular tile-grid artifacts around dots and strips. Pattern fidelity is not fully closed.",
       "partial_evidence": [
         {
@@ -4841,7 +5056,9 @@
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
-      ]
+      ],
+      "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+      "closure_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001"
     },
     {
       "figure_id": "ccf-2021-14-f04",
@@ -4874,9 +5091,54 @@
       "figure_id": "ccf-2021-18-f18",
       "issue_id": "ccf-2021-18-f18-D01",
       "severity": "minor",
-      "status": "open",
+      "status": "superseded_by_closed_model_visual_review",
       "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001",
-      "closure_evidence": [],
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ],
       "partial_resolution": "Original source network/arrow geometry replaces approximation, but Artifact 1x breaks pale DNN strokes into dots and 2x still has sharp/discontinuous lines; lossless LibreOffice adds native-image rectangles. Source fine appearance is not fully preserved.",
       "partial_evidence": [
         {
@@ -4891,15 +5153,62 @@
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
-      ]
+      ],
+      "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+      "closure_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001"
     },
     {
       "figure_id": "ccf-2021-18-f18",
       "issue_id": "ccf-2021-18-f18-D02",
       "severity": "minor",
-      "status": "open",
+      "status": "superseded_by_closed_model_visual_review",
       "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001",
-      "closure_evidence": [],
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+        }
+      ],
       "partial_resolution": "Source glyph baselines are restored and exact digit patches retained, but Artifact 1x/2x still renders the digits with visibly harder block edges than source. Native lossless output also adds image-extent rectangles. Target smooth sample appearance remains open.",
       "partial_evidence": [
         {
@@ -4914,7 +5223,9 @@
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
         }
-      ]
+      ],
+      "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+      "closure_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001"
     },
     {
       "figure_id": "ccf-2023-13-f07",
@@ -5212,70 +5523,236 @@
       "description": "Programmer hair/head/shoulder and laptop code mark show hard stair-stepped pixels in Artifact 1x. Source and lossless LibreOffice are smoothly sampled; 2x/4x improve but do not excuse 1x.",
       "region": "programmer icon",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2020-15-f02",
       "issue_id": "ccf-2020-15-f02-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-15-f02/RESULT.json",
-          "sha256": "00680b5bf87637ab1fb440969483463139fd28c10fdf62cc04ddadf56e2af642"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001/output-review.json",
+          "sha256": "7d19343594c10e3af07f0a636e73c194a485d129a30707fea6d5084b303ceca2"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-15-f02/job/build/run-001/output-review.json",
-          "sha256": "b4ebb62f9976282f5e5a395fa2d13b09fc5e5043eda0f6ff34fb376796c6360f"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/evidence/final-native-readback.json",
+          "sha256": "bb35680aebbf3a53f47828eef094651a5b7afb3abd357eb54c57bc3bec4865a1"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001/render-audit.json",
+          "sha256": "9bb97bb1b602609fd6ecd362679da3407def231f84bddbcea327fe16d263b29e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5feb06b1fb848f6a7fbac63993f903d0c7a77ed9ef88b129b20d055e03b49cb2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "3bf2f2788af69d279fa9503030809a08e44872ae437c0adad286da96f6917fbb"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "programmer icon",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-15-f02/RESULT.json",
+              "sha256": "00680b5bf87637ab1fb440969483463139fd28c10fdf62cc04ddadf56e2af642"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-15-f02/job/build/run-001/output-review.json",
+              "sha256": "b4ebb62f9976282f5e5a395fa2d13b09fc5e5043eda0f6ff34fb376796c6360f"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-15-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "CDF image at Artifact 1x has hard blue-curve stair steps and sharper chart labels/grid than source and lossless LibreOffice. Source chart frame/placement is preserved.",
       "region": "right CDF chart",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2020-18-f03",
       "issue_id": "ccf-2020-18-f03-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-18-f03/RESULT.json",
-          "sha256": "b243964c12774471e62dd43dc5d955aa50dbd9f37b333ddde88b49350ddb8357"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001/output-review.json",
+          "sha256": "717fddba7d83a5402b1f3332ba64b3c10629ddefb00484b027a553cf6ae72de6"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-18-f03/job/build/run-001/output-review.json",
-          "sha256": "54ce96c8feaf81ccf04a025c45015316bb4d64b8b927ebd871227ababbdf956d"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/evidence/final-native-readback.json",
+          "sha256": "dda07c858805e239f0df2d8776698f5f325c163552a29735688054a917b06288"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001/render-audit.json",
+          "sha256": "bb5cb27c84de714cdf04094495e1c4fe90768cb966d9bfcd1f9574b65c2e5d57"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001/manifest-snapshot.json",
+          "sha256": "d9298b8016293a2f4f4583645f36d9da8de8a7e64df76727484b55f904344367"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001/asset-snapshot.json",
+          "sha256": "40e936cb177ebf16cfae4317d255bd1b5efb9c05ae0951347e55d2bec60e600e"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/IMAGE-RECEIPTS.json",
+          "sha256": "b745b5f2d155e25130f74aa9f716540d3e4120ed43d215c844e92b7ab1c550eb"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "right CDF chart",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-18-f03/RESULT.json",
+              "sha256": "b243964c12774471e62dd43dc5d955aa50dbd9f37b333ddde88b49350ddb8357"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-18-f03/job/build/run-001/output-review.json",
+              "sha256": "54ce96c8feaf81ccf04a025c45015316bb4d64b8b927ebd871227ababbdf956d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-002/ccf-2020-18-f03/job/build/run-001/output-review.json",
+      "resolution": "Native4 occurrence sampling restores smooth blue CDF curve and source-like chart text/grid at raw1x/2x/4x without moving source chart content.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "Artifact 1x network image edges, brace curves and portraits show sharper/jagged sampling compared with source and lossless LibreOffice. 2x/4x preserve intended geometry.",
       "region": "network, portraits and overbraces",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2020-19-f01",
       "issue_id": "ccf-2020-19-f01-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/RESULT.json",
-          "sha256": "2970244ae14f2967fe867ad14ce86e92b0a1e9ad52e53858f5e851fc87d62379"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+          "sha256": "7c1734033c5e7cfbad995a1e360cb97696c1e09963b57be443b9a01dd7b17ffc"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/job/build/run-001/output-review.json",
-          "sha256": "faf2834d96bf591729d292901a13d068827ab49b2f91296ac430c9ad21a304aa"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/final-native-readback.json",
+          "sha256": "ba0282534de4cb047ede9d938ba2f61ff3a2c434840aa366e2165b1427c524b6"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/render-audit.json",
+          "sha256": "fdd9d026787f32b73dcddf9135043a3218f0d2c33ae118a9319c457d52637170"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "7fc9aaae5608e0036d5d738fe49dab68df19751fed69134b57a0c086973bc318"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "a3ec98aa277a94bb59b65e3050880805e90455b163176f2bb2418db93f4c2489"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/IMAGE-RECEIPTS.json",
+          "sha256": "89c346a3352151d5b200ceed18bba10f3f74c64b9505f783aeec546a1584a3b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "6bda75378042cd6a9a6649b0ab30784e04207d81df3e47f3b22b671333075713"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "network, portraits and overbraces",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/RESULT.json",
+              "sha256": "2970244ae14f2967fe867ad14ce86e92b0a1e9ad52e53858f5e851fc87d62379"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/job/build/run-001/output-review.json",
+              "sha256": "faf2834d96bf591729d292901a13d068827ab49b2f91296ac430c9ad21a304aa"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+      "resolution": "The selected native4 occurrences keep both brace curves continuous, and networks/portraits no longer have the earlier hard point sampling. Actual native direct PNG4x also has no observed light vertical seams inside either dark brace. Separate PDF inspection retains faint tile extent rectangles; that issue stays open.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "Both top overbraces acquire faint rectangular tile frames and vertical subdivisions in actual LibreOffice lossless PDF export at 1x/2x/4x. It persists with FlateDecode and original image dimensions. All 38 brace picture assets are byte-identical to manifest, have no spPr a:ln, no p:style/lnRef, and PDF has no corresponding stroked rectangle. Cause remains unresolved in the native import/export/render pipeline; not asserted as PowerPoint/WPS behavior.",
@@ -5286,16 +5763,52 @@
       "issue_id": "ccf-2020-19-f01-R02-NATIVE-IMAGE-RECTANGLES",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/RESULT.json",
-          "sha256": "2970244ae14f2967fe867ad14ce86e92b0a1e9ad52e53858f5e851fc87d62379"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+          "sha256": "7c1734033c5e7cfbad995a1e360cb97696c1e09963b57be443b9a01dd7b17ffc"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/job/build/run-001/output-review.json",
-          "sha256": "faf2834d96bf591729d292901a13d068827ab49b2f91296ac430c9ad21a304aa"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/final-native-readback.json",
+          "sha256": "ba0282534de4cb047ede9d938ba2f61ff3a2c434840aa366e2165b1427c524b6"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/render-audit.json",
+          "sha256": "fdd9d026787f32b73dcddf9135043a3218f0d2c33ae118a9319c457d52637170"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "7fc9aaae5608e0036d5d738fe49dab68df19751fed69134b57a0c086973bc318"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "a3ec98aa277a94bb59b65e3050880805e90455b163176f2bb2418db93f4c2489"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/IMAGE-RECEIPTS.json",
+          "sha256": "89c346a3352151d5b200ceed18bba10f3f74c64b9505f783aeec546a1584a3b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "6bda75378042cd6a9a6649b0ab30784e04207d81df3e47f3b22b671333075713"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
       "user_acceptance": "pending",
@@ -5306,30 +5819,116 @@
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
           "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
         }
-      ]
+      ],
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "native image extents in actual lossless LibreOffice evidence",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/RESULT.json",
+              "sha256": "2970244ae14f2967fe867ad14ce86e92b0a1e9ad52e53858f5e851fc87d62379"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/job/build/run-001/output-review.json",
+              "sha256": "faf2834d96bf591729d292901a13d068827ab49b2f91296ac430c9ad21a304aa"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending",
+          "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+          "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+          "followup_evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
+              "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+            }
+          ]
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001",
+      "partial_resolution": "The selected native4 occurrences keep both brace curves continuous, and networks/portraits no longer have the earlier hard point sampling. Actual native direct PNG4x also has no observed light vertical seams inside either dark brace. Separate PDF inspection retains faint tile extent rectangles; that issue stays open."
     },
     {
       "description": "Artifact previews at 1x/2x/4x have hard stair-stepped circle/hourglass and document edges. Source and lossless LibreOffice have smooth sampled contours.",
       "region": "document/clock/hourglass icon",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2020-20-f03",
       "issue_id": "ccf-2020-20-f03-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-20-f03/RESULT.json",
-          "sha256": "d8242f97824680c65fc4b78394f5f66d44b4e1e3529d8a9463fd83c65def897b"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001/output-review.json",
+          "sha256": "8b71aacd888c7b1c6e2dbe64a7462793429eeb8aceeda8da6ae1f9eb1d678fd8"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-20-f03/job/build/run-001/output-review.json",
-          "sha256": "d066d2e50ea9963ff0964cf632eb991b499fe9b38953ee09c662fa5247555114"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/evidence/final-native-readback.json",
+          "sha256": "1bbdf3bad05dd77d7a98303a29cdff06f7be2a5aa7f3d35349711581391b3791"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001/render-audit.json",
+          "sha256": "d5a8455abc08b05d483221d0ce4732c6ccaf4a1b86ddb2aedab27877d1b11fb2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001/manifest-snapshot.json",
+          "sha256": "e030f6433edd55837aced9acbc1804b8e5772ce17929fb474c36fcfd403dce1c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001/asset-snapshot.json",
+          "sha256": "d28fc0d82197f973593ae9df6d487616936fe63869202fbb00c60cca5e9b2c63"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/IMAGE-RECEIPTS.json",
+          "sha256": "dc369aad270a925c6ede9088f79acc0ff3a393bef24d6de9254261f442202e8c"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "document/clock/hourglass icon",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-20-f03/RESULT.json",
+              "sha256": "d8242f97824680c65fc4b78394f5f66d44b4e1e3529d8a9463fd83c65def897b"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-20-f03/job/build/run-001/output-review.json",
+              "sha256": "d066d2e50ea9963ff0964cf632eb991b499fe9b38953ee09c662fa5247555114"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-002/ccf-2020-20-f03/job/build/run-001/output-review.json",
+      "resolution": "Native4 occurrence sampling restores smooth hourglass circle and document contours at raw1x/2x/4x; surrounding source paths keep source frames and styles.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "Artifact 1x has conspicuously harsh/thin glyph edges and diagonal tile borders; 2x/4x grid/image sampling remains sharper than source and lossless LibreOffice. Geometric text positions and continuous hierarchy are retained.",
@@ -5340,42 +5939,152 @@
       "issue_id": "ccf-2021-03-f01-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f01/RESULT.json",
-          "sha256": "e78491876b992f79323344aafe35f8b6ce1a90d1dd0c004335ee243d1f7478de"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/job/build/run-001/output-review.json",
+          "sha256": "f857186c3fac98826c96a46547e3f88119fc0669c5b7fa621cea05dd804fb77c"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f01/job/build/run-001/output-review.json",
-          "sha256": "71a9379b76175ffa24b6161428d2f5b45e3eceab4a31ba528511c09f0fcbc8b1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/evidence/final-native-readback.json",
+          "sha256": "56d0a92688e2cc046a315af9a65cd95e9dc7c08faf8e735f428bcd2f3325566b"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/job/build/run-001/render-audit.json",
+          "sha256": "9eb78c5ecbe290b2a8695e82342f3bf74477f158d0623e8ea1145e3b25bd0aea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "f3eabe98b21f9f34ab1d7dd3ee0fe26ec73c46de3dfc1bb7ff4060a8a3f23bcb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "4a5782fc9ffa611c47bfcfb723154e1cb3ee28479ede36dd079cdcab7da422f2"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "whole authored source bitmap, especially labels and tile grids",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f01/RESULT.json",
+              "sha256": "e78491876b992f79323344aafe35f8b6ce1a90d1dd0c004335ee243d1f7478de"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f01/job/build/run-001/output-review.json",
+              "sha256": "71a9379b76175ffa24b6161428d2f5b45e3eceab4a31ba528511c09f0fcbc8b1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f01/job/build/run-001",
+      "partial_resolution": "Raw1x improves after staged minification, but photo/tile boundary sampling still looks sharper than source in2x/4x comparison. Keep the full sampling finding open."
     },
     {
       "description": "Artifact CPU strips and peach/green legend swatches show faint rectilinear tile seams/grids and hard point sampling at 1x/2x/4x; source and lossless LibreOffice have plain solid color between sparse dots. Original lost black dots are restored, but visible pattern issue remains.",
       "region": "CPU strips and dotted legend swatches",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2021-12-f04",
       "issue_id": "ccf-2021-12-f04-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-12-f04/RESULT.json",
-          "sha256": "d952aa8e51906ae7f478e0fee8c2e539d3d58c37de42e43921dfb48cf32d0455"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/output-review.json",
+          "sha256": "a5f65234f11a18a5f7b5832c2f9a5b113a176e9b212ec81008bd3bbce94bfc64"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-12-f04/job/build/run-001/output-review.json",
-          "sha256": "a1bad4673a46b04e9924a0c7f670a417ff351ca55bd55a65e0aeb3d8b47264b6"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/final-native-readback.json",
+          "sha256": "cce9f685f8f47d02663a35a51700b7620ea464ed2c4b59dbb5cad5fc32a2b547"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/render-audit.json",
+          "sha256": "5ecc0d45cb76f5efc5e059aeb7d05909436988a4a3d284a9c92e246304e0fe17"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "34e292d621c623fe894ba44fa5a65dc5af9fd64faa3148d2f9bd56df5b0fee76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "144e3e33a8e9f2a2861cfed0c363ea30267fd26bb1999e3b4dc2c57124b9e323"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/IMAGE-RECEIPTS.json",
+          "sha256": "082022eac15d91493954c13f8a6b9f7f0dd09c166a3085723b1b61c65dc56a9c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "f570f76fa189f620213e36c5e535ce98fefbcab6fdd83d492ab89e6126386218"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "CPU strips and dotted legend swatches",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-12-f04/RESULT.json",
+              "sha256": "d952aa8e51906ae7f478e0fee8c2e539d3d58c37de42e43921dfb48cf32d0455"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-12-f04/job/build/run-001/output-review.json",
+              "sha256": "a1bad4673a46b04e9924a0c7f670a417ff351ca55bd55a65e0aeb3d8b47264b6"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001/output-review.json",
+      "resolution": "Source-bound native4 occurrences retain the peach/green background and sparse black dots without the previous white gutters or tile grids in raw1x/2x/4x and actual native direct PNG. No native dot-path editability claim.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "Artifact 1x/2x/4x shows hard jagged red arrow/glyph edges and overly sharp tile/photo sampling compared with source and lossless LibreOffice. Source geometry is retained within one authored bitmap.",
@@ -5386,42 +6095,148 @@
       "issue_id": "ccf-2021-03-f02-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f02/RESULT.json",
-          "sha256": "2e685011c856b2fc74a2f1af21eb900ea72128dfeca5b38c062e328d262c131d"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/job/build/run-001/output-review.json",
+          "sha256": "b47e486c1b2b6915fa4d948c5496a9d2d930e5b776036e20f854f1573328995a"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f02/job/build/run-001/output-review.json",
-          "sha256": "a87e5534997cca8bfbb3cdadab74ecfdad970c425e55fe69b4876d7362256591"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/evidence/final-native-readback.json",
+          "sha256": "9b9e19dfb3dbf10484efa5552d23c13e4e5d2046704e560f20966ac3e47d9655"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/job/build/run-001/render-audit.json",
+          "sha256": "8f982d2610aea768dd138a8697a216e5c2b7a2e26ac69dbb2f6dc465b5ffa0f9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "1dbe7c30a89289119548c731970890fe9d63481fbc413e4bdbd7a0f2ee228a54"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "2dbb90878e7789777814afe251fb699da6e0c7b306a155ce4585fac878807ea1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "whole source bitmap, red arrow, tile borders and legend text",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f02/RESULT.json",
+              "sha256": "2e685011c856b2fc74a2f1af21eb900ea72128dfeca5b38c062e328d262c131d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-03-f02/job/build/run-001/output-review.json",
+              "sha256": "a87e5534997cca8bfbb3cdadab74ecfdad970c425e55fe69b4876d7362256591"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-03-f02/job/build/run-001",
+      "partial_resolution": "Raw1x red arrow and glyph sampling improves, but photo/grid texture still differs in sharpness at2x/4x. Keep the full sampling finding open."
     },
     {
       "description": "Artifact 1x turns both pale DNNs into sparse dotted/discontinuous strokes, with partial broken thin contours persisting at 2x. Digit strokes are hard/blocky. Source and lossless LibreOffice retain continuous network edges.",
       "region": "both DNNs and input digits",
       "severity": "major",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "figure_id": "ccf-2021-18-f18",
       "issue_id": "ccf-2021-18-f18-R01-PREVIEW-IMAGE-SAMPLING",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/RESULT.json",
-          "sha256": "9be05ae5ac13e4549c1aa43db321de3c485d5f282dd34c3794317c19ad96ccc0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001/output-review.json",
-          "sha256": "5e87c6f3e8dcfa73ceea32658f7b38c633477d36b8d87e828c13e0386766cb71"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "both DNNs and input digits",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/RESULT.json",
+              "sha256": "9be05ae5ac13e4549c1aa43db321de3c485d5f282dd34c3794317c19ad96ccc0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001/output-review.json",
+              "sha256": "5e87c6f3e8dcfa73ceea32658f7b38c633477d36b8d87e828c13e0386766cb71"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+      "resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "description": "Lossless LibreOffice output adds thin gray rectangular outlines around both pairs of digits and both DNN image extents, absent from source and Artifact. FlateDecode and original image dimensions rule out JPEG/downsampling alone. Native import/export/render root cause is not yet determined; no PowerPoint/WPS behavior claim.",
@@ -5432,16 +6247,48 @@
       "issue_id": "ccf-2021-18-f18-R02-NATIVE-IMAGE-RECTANGLES",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/RESULT.json",
-          "sha256": "9be05ae5ac13e4549c1aa43db321de3c485d5f282dd34c3794317c19ad96ccc0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001/output-review.json",
-          "sha256": "5e87c6f3e8dcfa73ceea32658f7b38c633477d36b8d87e828c13e0386766cb71"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
       "user_acceptance": "pending",
@@ -5452,111 +6299,343 @@
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/NATIVE-DIRECT-PNG-ADDENDUM.json",
           "sha256": "880a765a5e6f855b978e8199da19d4a320f6285ac8161fd5d143e47f2de39cc1"
         }
-      ]
+      ],
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "region": "native image extents in actual lossless LibreOffice evidence",
+          "status": "open",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/RESULT.json",
+              "sha256": "9be05ae5ac13e4549c1aa43db321de3c485d5f282dd34c3794317c19ad96ccc0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/job/build/run-001/output-review.json",
+              "sha256": "5e87c6f3e8dcfa73ceea32658f7b38c633477d36b8d87e828c13e0386766cb71"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending",
+          "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+          "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+          "followup_evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/NATIVE-DIRECT-PNG-ADDENDUM.json",
+              "sha256": "880a765a5e6f855b978e8199da19d4a320f6285ac8161fd5d143e47f2de39cc1"
+            }
+          ]
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
+      "partial_resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames."
     },
     {
       "severity": "major",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x, graph edges, GCN/matrix borders, labels and loss-circle boundaries become missing/discontinuous/pixel-thin. Source1x and actual LibreOffice1x retain them; Artifact2x/4x preserves most content. Suspected preview image-minification problem, not yet root-caused.",
       "region": "original author bitmap body at1x preview",
       "figure_id": "ccf-2021-11-f01",
       "issue_id": "ccf-2021-11-f01-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/RESULT.json",
-          "sha256": "cfaaad5ea0bf80cfad60ab98f016397e5b3502e0bcd7a874069a63a082c20724"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001/output-review.json",
+          "sha256": "6a6796cf698a89db9bdba890317281110f3c6b6103c1f1c881afb94292bd0a25"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/job/build/run-001/output-review.json",
-          "sha256": "e24bd581bc4c55865d1c58d935a17f0106f54b424930a13da86cb9a8fc2cd370"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/evidence/final-native-readback.json",
+          "sha256": "93f14a15e9d4d87cf86da596ee716626ad8e2c2bfe6232d235e84855a695d6ea"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001/render-audit.json",
+          "sha256": "5de0a38de856a6bf8d3038c04fd6b2d02bad912d3d97e7a46982396159ba8060"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "2d9e0337ed3e11f19dceb75cb7e60eb9180b6baff837b85e292bb632e058864b"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "eb15b2a25b8c40bfc97899fb74192b250ca65dc281cf21e22bed34564a4aca45"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "df82facc6589a54d506ac10cb0a6396110e7db7b8adb8270bb51004661a963ba"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "original author bitmap body at1x preview",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/RESULT.json",
+              "sha256": "cfaaad5ea0bf80cfad60ab98f016397e5b3502e0bcd7a874069a63a082c20724"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/job/build/run-001/output-review.json",
+              "sha256": "e24bd581bc4c55865d1c58d935a17f0106f54b424930a13da86cb9a8fc2cd370"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/LOSSLESS-ADDENDUM-r2.json",
+              "sha256": "2d9e0337ed3e11f19dceb75cb7e60eb9180b6baff837b85e292bb632e058864b"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-11-f01/job/build/run-001/output-review.json",
+      "resolution": "Raw1x retains continuous graph edges, three matrix/GCN borders and complete loss circles; no recurrence of the earlier lost-ink defect at2x or the inspected4x regions.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact1x makes body fine formula glyphs, labels and boundary curves visibly jagged/thinner than source1x and LibreOffice1x; Artifact2x/4x preserves the original scripts and shapes. Keep renderer sampling discrepancy open.",
       "region": "original author bitmap body at1x preview",
       "figure_id": "ccf-2021-14-f04",
       "issue_id": "ccf-2021-14-f04-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/RESULT.json",
-          "sha256": "ff5f66c0c3432e4d731856482d9a3199913183c09f10d214505bf415712a8b43"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001/output-review.json",
+          "sha256": "c0989ee851318d7343cd888563644eecafc4f4f59cdbe74d906df416aef9d938"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/job/build/run-001/output-review.json",
-          "sha256": "cc9b1a49ff1f79781411fd96566b461371436fed811efb5c8e0e85f4249df6ab"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/evidence/final-native-readback.json",
+          "sha256": "f27651c14e7bda0df9d2b37b4fe67d8bb2e6aabc631fe7804b12d2eb490367b0"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001/render-audit.json",
+          "sha256": "e38b6450fb8cac5fab1a9c17952360b5bab5b7a0a336739eb43f6a21a8bb2f81"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "102a1e94456aafde695ed400ac05ae6d1b462aee1409ff27aca3bde365198cf5"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "b2846f7ba00308ec163b682019cbcb62bbd9fec656853219655cbea07a0038aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "f2d4528579e742bf67ae5ee53d5d8a04d389be4075de10520af5ee84454d7a7c"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "original author bitmap body at1x preview",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/RESULT.json",
+              "sha256": "ff5f66c0c3432e4d731856482d9a3199913183c09f10d214505bf415712a8b43"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/job/build/run-001/output-review.json",
+              "sha256": "cc9b1a49ff1f79781411fd96566b461371436fed811efb5c8e0e85f4249df6ab"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/LOSSLESS-ADDENDUM-r2.json",
+              "sha256": "102a1e94456aafde695ed400ac05ae6d1b462aee1409ff27aca3bde365198cf5"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-14-f04/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact1x reduces small serif labels and dashed fine guides to sharp thin pixels compared with original source1x and native LibreOffice1x. Source bitmap details are present at2x/4x; minification appearance still differs.",
       "region": "original author bitmap body at1x preview",
       "figure_id": "ccf-2025-06-f02",
       "issue_id": "ccf-2025-06-f02-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/RESULT.json",
-          "sha256": "53990ee856e7e1f41eeb5fe582bf53b5a8bbc32d126951e54437e5dfc7499d33"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001/output-review.json",
+          "sha256": "ba4307e8fb030de2435afeb2db0fc07d844b437760e0b95fd5d74b3b4b50a16d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/job/build/run-001/output-review.json",
-          "sha256": "a36532400f71de13868d5c9efe98d357e88c4f697783d9c8d1aad67f850841f2"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/evidence/final-native-readback.json",
+          "sha256": "1b52af8b64417ef14dd32bd07721fc102e5e3734804cc972a16aba1f9f11eeae"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001/render-audit.json",
+          "sha256": "ac30f1b1d0a79abb3b699d6d999fe89581a2e7177153972228423dca9a882015"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "3222b5ddf997002441daea461ab08137bda78fb9a7dbbc22e21e783ecee8df8d"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "8129cf4b1fef11f9f0cff0ac0e7a89be964029b0a99166ae58de9970ad539b96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "aae24683886bded75fedd8a06149de7f58120ebf672d328fb8343d9c5beb9054"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "original author bitmap body at1x preview",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/RESULT.json",
+              "sha256": "53990ee856e7e1f41eeb5fe582bf53b5a8bbc32d126951e54437e5dfc7499d33"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/job/build/run-001/output-review.json",
+              "sha256": "a36532400f71de13868d5c9efe98d357e88c4f697783d9c8d1aad67f850841f2"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/LOSSLESS-ADDENDUM-r2.json",
+              "sha256": "3222b5ddf997002441daea461ab08137bda78fb9a7dbbc22e21e783ecee8df8d"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Training and ensemble network bitmap nodes/edges are coarse or dotted at Artifact1x compared with source/LO.",
       "region": "source author bitmap detail at1x",
       "figure_id": "ccf-2020-16-f02",
       "issue_id": "ccf-2020-16-f02-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/RESULT.json",
-          "sha256": "e58e21506b880e618ae9385809bd10285eb7c3886b21e8f2caaf140f12831ec2"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
+          "sha256": "2395a34b6d861446cba1a710200b03fafcd2243ec0582fc70dbc646a800d0d6e"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/job/build/run-001/output-review.json",
-          "sha256": "14aee2a7b3e49ea99f63c53ad5536baac6bf884afa0ac58d70e0c3e5a287ce9c"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/evidence/final-native-readback.json",
+          "sha256": "a06e1adb40ac729df73d92444cbedccfa1421b561d593876e2c475c390d9de8d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/render-audit.json",
+          "sha256": "381ca7e8b8d2444ceee5b6f0a3e61853e7056752576e240de28e71567c433c2f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "d0efa5a1716756285e6ea29a28fd51f5e294a29bfb81f68321e9aa29e3271b61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "6c1f23c3e8655a335c8a4befce207817a2463394fdbf4b06df064f6e087af6f4"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "source author bitmap detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/RESULT.json",
+              "sha256": "e58e21506b880e618ae9385809bd10285eb7c3886b21e8f2caaf140f12831ec2"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/job/build/run-001/output-review.json",
+              "sha256": "14aee2a7b3e49ea99f63c53ad5536baac6bf884afa0ac58d70e0c3e5a287ce9c"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -5567,42 +6646,140 @@
       "issue_id": "ccf-2020-16-f02-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/RESULT.json",
-          "sha256": "e58e21506b880e618ae9385809bd10285eb7c3886b21e8f2caaf140f12831ec2"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
+          "sha256": "2395a34b6d861446cba1a710200b03fafcd2243ec0582fc70dbc646a800d0d6e"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/job/build/run-001/output-review.json",
-          "sha256": "14aee2a7b3e49ea99f63c53ad5536baac6bf884afa0ac58d70e0c3e5a287ce9c"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/evidence/final-native-readback.json",
+          "sha256": "a06e1adb40ac729df73d92444cbedccfa1421b561d593876e2c475c390d9de8d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/render-audit.json",
+          "sha256": "381ca7e8b8d2444ceee5b6f0a3e61853e7056752576e240de28e71567c433c2f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "d0efa5a1716756285e6ea29a28fd51f5e294a29bfb81f68321e9aa29e3271b61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "6c1f23c3e8655a335c8a4befce207817a2463394fdbf4b06df064f6e087af6f4"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author image frame edges",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/RESULT.json",
+              "sha256": "e58e21506b880e618ae9385809bd10285eb7c3886b21e8f2caaf140f12831ec2"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-16-f02/job/build/run-001/output-review.json",
+              "sha256": "14aee2a7b3e49ea99f63c53ad5536baac6bf884afa0ac58d70e0c3e5a287ce9c"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001",
+      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x formula serifs, small labels, dashes and arrow tips are jagged/sparsely sampled versus source and actual LO; 2x/4x retain full visible terms.",
       "region": "source author bitmap detail at1x",
       "figure_id": "ccf-2024-02-f01",
       "issue_id": "ccf-2024-02-f01-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/RESULT.json",
-          "sha256": "7551860f20628bfd5e94562cb5784ee4f80affaebf935ee2dc9d4a9ae745bd9f"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/output-review.json",
+          "sha256": "bea040a333ef025999388798c7c1c000815e767c616a6b954ad9edacd5b34b99"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/job/build/run-001/output-review.json",
-          "sha256": "ff886cd3eb8a1b4feaa923982ea16e909c0f22272a4ba83f3be3a10ef2ce6e10"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/evidence/final-native-readback.json",
+          "sha256": "228270f91eaca24fa7c2c4f38b1778554e583da35b10e83d409bbbd8282ab10d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/render-audit.json",
+          "sha256": "64d7942982cfb6694e4d6c69084b119c6eee0155081c7af9c7f5e257a1156b93"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5e10e0d70e3b714dfc2bbc0b76a48ef4e6c885e21d5e263105437f33825c1c8d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "44505c26953a39cb9fe0c8868565ce5fe6f0ed6c13b303f9562b35f10796a842"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "source author bitmap detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/RESULT.json",
+              "sha256": "7551860f20628bfd5e94562cb5784ee4f80affaebf935ee2dc9d4a9ae745bd9f"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/job/build/run-001/output-review.json",
+              "sha256": "ff886cd3eb8a1b4feaa923982ea16e909c0f22272a4ba83f3be3a10ef2ce6e10"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -5613,42 +6790,140 @@
       "issue_id": "ccf-2024-02-f01-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/RESULT.json",
-          "sha256": "7551860f20628bfd5e94562cb5784ee4f80affaebf935ee2dc9d4a9ae745bd9f"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/output-review.json",
+          "sha256": "bea040a333ef025999388798c7c1c000815e767c616a6b954ad9edacd5b34b99"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/job/build/run-001/output-review.json",
-          "sha256": "ff886cd3eb8a1b4feaa923982ea16e909c0f22272a4ba83f3be3a10ef2ce6e10"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/evidence/final-native-readback.json",
+          "sha256": "228270f91eaca24fa7c2c4f38b1778554e583da35b10e83d409bbbd8282ab10d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/render-audit.json",
+          "sha256": "64d7942982cfb6694e4d6c69084b119c6eee0155081c7af9c7f5e257a1156b93"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "5e10e0d70e3b714dfc2bbc0b76a48ef4e6c885e21d5e263105437f33825c1c8d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "44505c26953a39cb9fe0c8868565ce5fe6f0ed6c13b303f9562b35f10796a842"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author image frame edges",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/RESULT.json",
+              "sha256": "7551860f20628bfd5e94562cb5784ee4f80affaebf935ee2dc9d4a9ae745bd9f"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-02-f01/job/build/run-001/output-review.json",
+              "sha256": "ff886cd3eb8a1b4feaa923982ea16e909c0f22272a4ba83f3be3a10ef2ce6e10"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001",
+      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x node glyphs, thin AST edges and pale enclosing hull have hard or discontinuous sampling compared with source/LO; source bitmap itself has finite resolution visible at4x.",
       "region": "source author bitmap detail at1x",
       "figure_id": "ccf-2023-14-funnumbered-p5",
       "issue_id": "ccf-2023-14-funnumbered-p5-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/RESULT.json",
-          "sha256": "36cf17f6f2ec5ed82dcf90be3a94277c31e6588247644ad3a48ad1d692727dd1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+          "sha256": "ffa927df8574f022a575bb3ffa43b4c25e619eda5b2f0c3287fe81bb77f84a91"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
-          "sha256": "b9fcf5fe89cf47a7812b7f2ce3dd63925878700aab848f273052994a28d43054"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/evidence/final-native-readback.json",
+          "sha256": "8ef18894a4183446d7dfa69336de1b4ebd6a079a177f4ec68684a50a2e625ca7"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/render-audit.json",
+          "sha256": "f55e302617e84f1196c848987417ac31f3e0a7db8f9f45dde3cfc82ead7466c3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/manifest-snapshot.json",
+          "sha256": "6e57cfc6fd6bbc4a83117dbaa898c4d5adf9a350623f9496bdc990b0d11f35d9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/asset-snapshot.json",
+          "sha256": "1c473280d8b1201159222346f1ef87877ae0a22f6995d155038e69f8db0c5089"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "source author bitmap detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/RESULT.json",
+              "sha256": "36cf17f6f2ec5ed82dcf90be3a94277c31e6588247644ad3a48ad1d692727dd1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+              "sha256": "b9fcf5fe89cf47a7812b7f2ce3dd63925878700aab848f273052994a28d43054"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -5659,69 +6934,217 @@
       "issue_id": "ccf-2023-14-funnumbered-p5-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/RESULT.json",
-          "sha256": "36cf17f6f2ec5ed82dcf90be3a94277c31e6588247644ad3a48ad1d692727dd1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+          "sha256": "ffa927df8574f022a575bb3ffa43b4c25e619eda5b2f0c3287fe81bb77f84a91"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
-          "sha256": "b9fcf5fe89cf47a7812b7f2ce3dd63925878700aab848f273052994a28d43054"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/evidence/final-native-readback.json",
+          "sha256": "8ef18894a4183446d7dfa69336de1b4ebd6a079a177f4ec68684a50a2e625ca7"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/render-audit.json",
+          "sha256": "f55e302617e84f1196c848987417ac31f3e0a7db8f9f45dde3cfc82ead7466c3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/manifest-snapshot.json",
+          "sha256": "6e57cfc6fd6bbc4a83117dbaa898c4d5adf9a350623f9496bdc990b0d11f35d9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/asset-snapshot.json",
+          "sha256": "1c473280d8b1201159222346f1ef87877ae0a22f6995d155038e69f8db0c5089"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author image frame edges",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/RESULT.json",
+              "sha256": "36cf17f6f2ec5ed82dcf90be3a94277c31e6588247644ad3a48ad1d692727dd1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+              "sha256": "b9fcf5fe89cf47a7812b7f2ce3dd63925878700aab848f273052994a28d43054"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001",
+      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x serif labels, dashed fan-in lines and stack edges are harder and thinner than source/LO;2x/4x retain heads and glyph content.",
       "region": "source author bitmap detail at1x",
       "figure_id": "ccf-2025-06-f06",
       "issue_id": "ccf-2025-06-f06-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f06/RESULT.json",
-          "sha256": "9bda2f002eeccbf0f124e4e58d587f072b61957fc9d3b6cd7ed05fc04aef7aca"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001/output-review.json",
+          "sha256": "27f049c849ea89922e10a5b81fbedc3ff78cebf1f431bac985edccf3acb14cc5"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f06/job/build/run-001/output-review.json",
-          "sha256": "d0e4b3144bef7e4c9cbe400d37db71a923b083c0a295635c4773dcafcda88a86"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/evidence/final-native-readback.json",
+          "sha256": "9896218a2ab3122a1d97bebb7674e10b032a3a93eec5770c3edade6cc775dfba"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001/render-audit.json",
+          "sha256": "98e0b356bc9495f7bd01914a018a96a40ccd0583f26245bf399b65c789e5f7ec"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001/manifest-snapshot.json",
+          "sha256": "56189af17268f11bb7a1efb3bdb92076e844012dd1e87f889889cb92ef685872"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001/asset-snapshot.json",
+          "sha256": "c7c051782931c2699f4d5d899a7cef4ee303e4bbaafcf1eda993474aba8310ba"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "source author bitmap detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f06/RESULT.json",
+              "sha256": "9bda2f002eeccbf0f124e4e58d587f072b61957fc9d3b6cd7ed05fc04aef7aca"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f06/job/build/run-001/output-review.json",
+              "sha256": "d0e4b3144bef7e4c9cbe400d37db71a923b083c0a295635c4773dcafcda88a86"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
+              "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f06/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Blue body text and fine gray braces are harder or partially dotted at Artifact1x versus source and LO;2x/4x preserve full terms.",
       "region": "author bitmap at1x",
       "figure_id": "ccf-2020-01-f1-1",
       "issue_id": "ccf-2020-01-f1-1-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
-          "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "0456592f1f9f1a3164dd2def19b9b5fecfabc1daee5dcd3c98165092375333a1"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
-          "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/evidence/final-native-readback.json",
+          "sha256": "a980d8028dd3093f72d23766cff3dde0a0f42f6b3b85d0c795f5d276a93375d4"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/render-audit.json",
+          "sha256": "ea5435d3237a4d4d8d1b0145aa331c99da6b7cc9efb9fea222178a798f7499a2"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/manifest-snapshot.json",
+          "sha256": "fb881d396595a7d5e85a802c2a201fb9ed58d2af3a42b5ee5c0a45a711d46eed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/asset-snapshot.json",
+          "sha256": "5e5c156aa3eb1885ba59dc93ef3f113b0e992c4e08b47000acae219d88b88b91"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author bitmap at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
+              "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+              "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -5732,50 +7155,148 @@
       "issue_id": "ccf-2020-01-f1-1-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
-          "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "0456592f1f9f1a3164dd2def19b9b5fecfabc1daee5dcd3c98165092375333a1"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
-          "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/evidence/final-native-readback.json",
+          "sha256": "a980d8028dd3093f72d23766cff3dde0a0f42f6b3b85d0c795f5d276a93375d4"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/render-audit.json",
+          "sha256": "ea5435d3237a4d4d8d1b0145aa331c99da6b7cc9efb9fea222178a798f7499a2"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/manifest-snapshot.json",
+          "sha256": "fb881d396595a7d5e85a802c2a201fb9ed58d2af3a42b5ee5c0a45a711d46eed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/asset-snapshot.json",
+          "sha256": "5e5c156aa3eb1885ba59dc93ef3f113b0e992c4e08b47000acae219d88b88b91"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author image frame edges",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/RESULT.json",
+              "sha256": "18743296a726f1e5e1d6acfca8292f902861dea01930ab5aa2abb47cbb035dac"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+              "sha256": "f6abeebb7a46a56378e4baaaae4b9b0a6ad096d575d70a55e1d7068792acc104"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001",
+      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact1x photos, dotted circle edge and small serif labels have harder sampling than source/LO. This is a finite-resolution preview difference; 2x/4x preserve marker/content structure.",
       "region": "author bitmap at1x",
       "figure_id": "ccf-2020-08-f02",
       "issue_id": "ccf-2020-08-f02-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
-          "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001/output-review.json",
+          "sha256": "ed28f42bcbde5cb66beda67b2be2df132f442b06e6b5f4170bc71445d00acd5d"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
-          "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/evidence/final-native-readback.json",
+          "sha256": "f0a8a6f8e200d3c37571247909b26bb4cb507f16be8ddfd7d0f82075dcd1bdde"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001/render-audit.json",
+          "sha256": "fa8b1769a961f9fee660d52b869ce91e45d85c2e9d8b1d91dad8fafeca335282"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "76dbc7aca528c1e35b3e6eec7c62ecc2bdf0b813a3f3a2e0de89a0cdbed5c51d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "009c2f30b15bcaa69b51c52bfda001f9fbfaeea138f9057f9d5ae360fca4e1ef"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author bitmap at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/RESULT.json",
+              "sha256": "8c3f8e448e62b95fd216642658b9f070ee97f545f50e4d0d2c6a32aa685e578a"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-08-f02/job/build/run-001/output-review.json",
+              "sha256": "ffe9b9d9aa7286161ecfa38113adacfa874fc453e6c003be5b6c1250dac8c5d6"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-08-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -5840,23 +7361,71 @@
       "issue_id": "ccf-2022-05-f01-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
-          "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "c79bcfd2b699e58c886be9fa37769ddd7d7975a5541fe0a382c6b72e46560532"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
-          "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/evidence/final-native-readback.json",
+          "sha256": "c7002375869ef5d49d843703369e8fa1c397548a5477e25316d8fc6f66e44e52"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/render-audit.json",
+          "sha256": "d0fad632cc1f79ee832421ae32e7b4363eab2e16d6aac956fc0775ccc8a41de8"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "7bcda2bd2761b0115b4ba2937a01e55b1f61324580d59f43edab5cfa35d715a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "8422081868fe80d2e6d8e346fdde4d3d90f3c55af45e4cfb04498bed10c3d199"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author photo/image detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
+              "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
+              "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001",
+      "partial_resolution": "Flamingo photo minification improves at1x, but fine patch/target texture is still sharper than source. Keep the sampling finding open."
     },
     {
       "severity": "minor",
@@ -5867,23 +7436,71 @@
       "issue_id": "ccf-2022-05-f01-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
-          "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "c79bcfd2b699e58c886be9fa37769ddd7d7975a5541fe0a382c6b72e46560532"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
-          "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/evidence/final-native-readback.json",
+          "sha256": "c7002375869ef5d49d843703369e8fa1c397548a5477e25316d8fc6f66e44e52"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/render-audit.json",
+          "sha256": "d0fad632cc1f79ee832421ae32e7b4363eab2e16d6aac956fc0775ccc8a41de8"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "7bcda2bd2761b0115b4ba2937a01e55b1f61324580d59f43edab5cfa35d715a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "8422081868fe80d2e6d8e346fdde4d3d90f3c55af45e4cfb04498bed10c3d199"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "input/target original photo image extent",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/RESULT.json",
+              "sha256": "9571388692b51521a2381d0c11125c4bbc2b4fe3782c52455e46464bb8cd6d66"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-05-f01/job/build/run-001/output-review.json",
+              "sha256": "82dad5eeefed0791bff498c10af1daebfd1b1e9fa19f5864bd01814d72abe2df"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001",
+      "partial_resolution": "Flamingo photo minification improves at1x, but fine patch/target texture is still sharper than source. Keep the sampling finding open."
     },
     {
       "severity": "minor",
@@ -5914,30 +7531,84 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x scissors/photo texture is more sharply aliased than source/LO, including fine writing on scissors and output mask photos. Native labels and glyph outlines remain positioned correctly.",
       "region": "author photo/image detail at1x",
       "figure_id": "ccf-2023-01-f04",
       "issue_id": "ccf-2023-01-f04-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/RESULT.json",
-          "sha256": "36e8d30fdf1c2d2aa2d5b86e53a6bd8f1f7a56fd7537fe5027a421c3b54b0bf0"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001/output-review.json",
+          "sha256": "a66ea0b91c7d7ebb5192db0a59afc710224ad9e98654d3cafed0d0209d4d5161"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/job/build/run-001/output-review.json",
-          "sha256": "323500d172f3c9ded5388db4ee535aff549b594a6ea49545897f32fc932a695d"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/evidence/final-native-readback.json",
+          "sha256": "873dd9f773fd3deff53b365a94b48f6dd9db770d6514b6253dc6e01a77ae2fd3"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001/render-audit.json",
+          "sha256": "8c1cb0e63208ffcb9a532f0405292c6c1face624834805b687adcbfc91c6b004"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "a6c6a3c368c2c5004e7f5d94691be4f7d6427aff1598712ad612a4db8fb24b24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "a955e958ae19d0cc598589e9b372dcc1d03efd46d8a47ab8659f1ae7e7f11ff5"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/IMAGE-RECEIPTS.json",
+          "sha256": "2791ed82a910c6c0035eb0db51bb6d01752f2072450f18057c44f301b9190e63"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author photo/image detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/RESULT.json",
+              "sha256": "36e8d30fdf1c2d2aa2d5b86e53a6bd8f1f7a56fd7537fe5027a421c3b54b0bf0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-01-f04/job/build/run-001/output-review.json",
+              "sha256": "323500d172f3c9ded5388db4ee535aff549b594a6ea49545897f32fc932a695d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-003/ccf-2023-01-f04/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -6049,57 +7720,161 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact1x photo detail is sharply aliased compared with source and LO, most clearly the small resized street photo. Labels/native paths themselves are not the cause.",
       "region": "author bitmap at1x",
       "figure_id": "ccf-2024-01-f02",
       "issue_id": "ccf-2024-01-f02-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/RESULT.json",
-          "sha256": "fba5799a1270d74be49fb1603fe419f19629826ca43af8d7b712e7b1a2ce56ee"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001/output-review.json",
+          "sha256": "acf7abcbfcde249b6a8506e34ef1a9639073cde38d0de4f4831e939097785696"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
-          "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/evidence/final-native-readback.json",
+          "sha256": "d8ca328282c128e0c794979cf3192f9782eaf5eedc1b0288e483c2e989d0489b"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001/render-audit.json",
+          "sha256": "615ba00d4be072c83b66113086e74c77d1ccfaff111be99dcb0e587e0c508d00"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "0fe3f986f36428bc53f72ed0931ff02dff46404baccc27f4caf0bb901208e2d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "fb81448ce4f698eb67df5390783baa4b24a89f8542200cce1684116737a55c9c"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/IMAGE-RECEIPTS.json",
+          "sha256": "7c94c642c7335f828545bab547341c91ab50a69ce762c605d7108ac77519239e"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author bitmap at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/RESULT.json",
+              "sha256": "fba5799a1270d74be49fb1603fe419f19629826ca43af8d7b712e7b1a2ce56ee"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
+              "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-003/ccf-2024-01-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "At Artifact1x small formulas/serif text, gold/red loop edges and gray block outlines appear harder and thinner than source/LO;2x/4x retain terms and arrowheads.",
       "region": "author bitmap at1x",
       "figure_id": "ccf-2025-06-f01",
       "issue_id": "ccf-2025-06-f01-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
-          "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001/output-review.json",
+          "sha256": "0af412c4ab789d255aefd33352c72a3d2d965a853213dce08d9219b5995e8d36"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
-          "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/evidence/final-native-readback.json",
+          "sha256": "614af1f642c2354c8f2c1ac244a2ce4f5aa37ae88a0c9146be2e1e6f0147d7c9"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001/render-audit.json",
+          "sha256": "5dca8fcab8e5766290853954a5df83915a632f315cb10a14171de1b0ff48e6a4"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "dd30c1d14e433278c9325fa1611ca387935720a43a49a777aab2cc62d9c95ac3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "d14a4593b6377a9f17bb1146849363d08949872dfbee15bce7a6e8d82278b9e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author bitmap at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/RESULT.json",
+              "sha256": "88fafeaa1f2e93d6723e74798c93e353e0322b4e3b2c89ac0d75227b22c1573c"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f01/job/build/run-001/output-review.json",
+              "sha256": "8ac578cc4b9ee43d816d316e12bcd05ad790960521b871e10514131812a94ce9"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2025-06-f01/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
@@ -6211,49 +7986,161 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact1x game screenshots/controller detail and fine green crop guides are harder/sparser than source and LO, whereas2x/4x preserve visible content.",
       "region": "author photo/image detail at1x",
       "figure_id": "ccf-2026-06-f02",
       "issue_id": "ccf-2026-06-f02-R01-PREVIEW-IMAGE-MINIFICATION",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/RESULT.json",
-          "sha256": "5c1664e2eab8b897c0bd1e2b4a840c2c39735d1b65d440907f9a7ab647b0391f"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001/output-review.json",
+          "sha256": "92ede2365cd668d9d2950d54ae42f8bb03bf316eefa9936d9d73cdc687360f4f"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001/output-review.json",
-          "sha256": "ee93731870f92681fe202f0caf29cee33e17557eeff753b8179530f2c708c026"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/evidence/final-native-readback.json",
+          "sha256": "4b213a786844999ea6af5583ab80ff48f862040e132c35fa5aec6c3e7fd9e2ee"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001/render-audit.json",
+          "sha256": "3fa7a4766de72815b9aef51106dfd3e23a5b9f4e1d5bfe7f8b06ea4e59363b93"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001/manifest-snapshot.json",
+          "sha256": "1953e79bd725b3e9772fb42b1c6c13cb94914555a6b086e17074fb078437e1cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "0dda9253fd6a0f6fc4ed499e0d3eade6b4f2ab88d2d47da6299bab986ee6e102"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "author photo/image detail at1x",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/RESULT.json",
+              "sha256": "5c1664e2eab8b897c0bd1e2b4a840c2c39735d1b65d440907f9a7ab647b0391f"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2026-06-f02/job/build/run-001/output-review.json",
+              "sha256": "ee93731870f92681fe202f0caf29cee33e17557eeff753b8179530f2c708c026"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001",
+      "output_review": "source-regeneration/preview-image-sampling-maintained-002/ccf-2026-06-f02/job/build/run-001/output-review.json",
+      "resolution": "Staged full-source minification removes the observed sparse/hard1x sampling; whole2x and source-aligned4x image details retain source content. Finite renderer appearance is not a pixel-equivalence proof.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "region": "User overbrace dark ink; fine vertical seams at image-tile boundaries",
       "description": "Direct native PNG removes the external rectangle grid but retains slight light vertical seams within the dark brace itself, visible in 4x source comparison. No source asset/placement adjustment attempted.",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
-          "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+          "sha256": "7c1734033c5e7cfbad995a1e360cb97696c1e09963b57be443b9a01dd7b17ffc"
         },
         {
-          "audit_relative_path": "probes/fawkes-ewe-direct-png-002/ccf-2020-19-f01/user-brace-4x.png",
-          "sha256": "88a5a5596b92ca47695702bde68962e1464dd31e443f33a83dbafa4bbd3e990c"
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/final-native-readback.json",
+          "sha256": "ba0282534de4cb047ede9d938ba2f61ff3a2c434840aa366e2165b1427c524b6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/render-audit.json",
+          "sha256": "fdd9d026787f32b73dcddf9135043a3218f0d2c33ae118a9319c457d52637170"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "7fc9aaae5608e0036d5d738fe49dab68df19751fed69134b57a0c086973bc318"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "a3ec98aa277a94bb59b65e3050880805e90455b163176f2bb2418db93f4c2489"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/IMAGE-RECEIPTS.json",
+          "sha256": "89c346a3352151d5b200ceed18bba10f3f74c64b9505f783aeec546a1584a3b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/native-exact-ppt/render-audit.json",
+          "sha256": "6bda75378042cd6a9a6649b0ab30784e04207d81df3e47f3b22b671333075713"
+        },
+        {
+          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
         }
       ],
       "figure_id": "ccf-2020-19-f01",
       "issue_id": "ccf-2020-19-f01-R03-DIRECT-NATIVE-TILE-SEAMS",
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T08:44:45.560501+00:00",
+          "status": "open",
+          "region": "User overbrace dark ink; fine vertical seams at image-tile boundaries",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
+              "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+            },
+            {
+              "audit_relative_path": "probes/fawkes-ewe-direct-png-002/ccf-2020-19-f01/user-brace-4x.png",
+              "sha256": "88a5a5596b92ca47695702bde68962e1464dd31e443f33a83dbafa4bbd3e990c"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001",
+      "output_review": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+      "resolution": "The selected native4 occurrences keep both brace curves continuous, and networks/portraits no longer have the earlier hard point sampling. Actual native direct PNG4x also has no observed light vertical seams inside either dark brace. Separate PDF inspection retains faint tile extent rectangles; that issue stays open.",
+      "closed_at": "2026-10-04T08:44:45.560501+00:00"
     },
     {
       "severity": "minor",
