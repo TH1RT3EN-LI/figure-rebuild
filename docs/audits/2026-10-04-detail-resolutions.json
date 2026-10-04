@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T03:07:50.781339+00:00",
+  "updated_at": "2026-10-04T05:32:01.874412+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 178,
-    "open": 117,
+    "closed_model_visual_review": 182,
+    "open": 113,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -4358,6 +4358,130 @@
           "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Source left/down/right arrows and counterclockwise loop all present in actual final PPT. Three complete source polygons and native image33 with original attached mask preserved. Final integer polygons independently replayed from pristine source, actual source/baseline/new crops inspected at1x/2x/4x.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+          "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Correct original placement, uniform module backgrounds and separated labels/icons; old rectangular crop patches and overlaps gone. True16original image occurrences replace old approximate crops; all assets and complete905object order bound through actual final media/XML.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+          "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Original italic lowercase spans, answer bold span and red/blue logo retained. Actual source reading is there are a total of20baseballs, not the mistaken three in the frozen expected-description.827source glyph objects preserved as paths, with styles and actual final geometry checked. This resolves visual formatting, not live text editability.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+          "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-D04",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Rounded dashed border is clean and original relative sizes match at inspected scales. Original source commands/styles used unchanged, final818cubicrestorations and71integer polygonproofs verified; complete source/final1x2x and matched4x inspected.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+          "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -4471,10 +4595,6 @@
     "ccf-2026-01-f05-D02",
     "ccf-2026-02-f01-D07",
     "ccf-2026-02-f01-D08",
-    "ccf-2026-03-f02-D01",
-    "ccf-2026-03-f02-D02",
-    "ccf-2026-03-f02-D03",
-    "ccf-2026-03-f02-D04",
     "ccf-2026-03-f02-D05",
     "ccf-2026-05-f01-D01",
     "ccf-2026-05-f01-D02"
@@ -6051,7 +6171,7 @@
       "description": "Newly observed small background-colored triangular gaps occur at five shaft/head intersections; source fills are continuous. They are present in both old and new direct native PNG, so this is not a new002 regression. Exact source contours, source and target coordinates, PPT shape XML and1x/2x/4x crops are frozen. A fill-winding mismatch is a candidate mechanism awaiting independent proof; no geometry repair applied.",
       "figure_id": "ccf-2025-01-f11",
       "issue_id": "ccf-2025-01-f11-SAM-ARROW-JOINT-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
@@ -6168,6 +6288,62 @@
               "sha256": "277be791d2f2f43b784e70200a1c93a3b6a6451b851d5f5cad9a0dcb8d5210e2"
             }
           ]
+        },
+        {
+          "recorded_at": "2026-10-04T05:00:45.234519+00:00",
+          "candidate": "sam2-transverse-source-001",
+          "core_commit": "3b6bc943e6dc8e99abf1c0763e12f520630ef0a0",
+          "observed_site_count": 9,
+          "resolved_site_ids": [
+            "svg-paint-0-44-0-678-0",
+            "svg-paint-0-44-0-678-1",
+            "svg-paint-0-44-0-678-2",
+            "svg-paint-0-44-0-678-3",
+            "svg-paint-0-44-0-434-0",
+            "svg-paint-0-44-0-683-1",
+            "svg-paint-0-44-0-681-47",
+            "svg-paint-0-44-0-681-48",
+            "svg-paint-0-44-0-681-49"
+          ],
+          "remaining_open_site_ids": [],
+          "description": "Fresh normal CLI full build and actual source/prior/new1x/2x/4x review confirm all nine shaft-head joins continuous. Four dotted holes resolved, five earlier sites unchanged. Independently restored/reproved nine final integer XML paths; other131spPr and all647 image occurrences/29 fields unchanged. Whole-preview changes64/153/415pixels confined to four dotted boxes. No non-idempotent wrapper reapplied. Source seams/sampling and zero-live-text remain open. Ordinary review0; strict no-issues1.",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/sam2-transverse-source-001/VISUAL-RESULT.json",
+              "sha256": "0938136da2f8a7e103c7473ee904dd8cc45ff7d2bf633c4156f99b56887f06cb"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-transverse-source-001/output-review.json",
+              "sha256": "6ae4492b06b60381ee8c9633e30cad5f48b30061897a25bef6865d3a60b7b613"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-transverse-source-001/native-verification-002/RESULT.json",
+              "sha256": "95f1870f9437b984b8d287f1703c07cfa6df3de4f9d7394663acdb717a9f6051"
+            },
+            {
+              "audit_relative_path": "source-regeneration/sam2-transverse-source-001/PREVIEW-DIFF.json",
+              "sha256": "830cabc98e837cc4b904e44c6dd221bd89b5836ed60957111d85716ab5d444e2"
+            }
+          ]
+        }
+      ],
+      "resolution": "Fresh normal CLI full build and actual source/prior/new1x/2x/4x review confirm all nine shaft-head joins continuous. Four dotted holes resolved, five earlier sites unchanged. Independently restored/reproved nine final integer XML paths; other131spPr and all647 image occurrences/29 fields unchanged. Whole-preview changes64/153/415pixels confined to four dotted boxes. No non-idempotent wrapper reapplied. Source seams/sampling and zero-live-text remain open. Ordinary review0; strict no-issues1.",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "source-regeneration/sam2-transverse-source-001/VISUAL-RESULT.json",
+          "sha256": "0938136da2f8a7e103c7473ee904dd8cc45ff7d2bf633c4156f99b56887f06cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-transverse-source-001/output-review.json",
+          "sha256": "6ae4492b06b60381ee8c9633e30cad5f48b30061897a25bef6865d3a60b7b613"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-transverse-source-001/native-verification-002/RESULT.json",
+          "sha256": "95f1870f9437b984b8d287f1703c07cfa6df3de4f9d7394663acdb717a9f6051"
+        },
+        {
+          "audit_relative_path": "source-regeneration/sam2-transverse-source-001/PREVIEW-DIFF.json",
+          "sha256": "830cabc98e837cc4b904e44c6dd221bd89b5836ed60957111d85716ab5d444e2"
         }
       ]
     },
@@ -6677,6 +6853,38 @@
           "user_acceptance": "pending"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-SOURCE-OUTLINE-TEXT-001",
+      "status": "open",
+      "severity": "major",
+      "description": "827 source glyph objects are paths and final native text_count is0; visual formatting matches source but live text is unavailable.",
+      "user_acceptance": "pending",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+          "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+          "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+          "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+        },
+        {
+          "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+          "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+        }
+      ],
+      "output_review": "source-regeneration/octotools-maintained-source-001/output-review.json",
+      "latest_verified_attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001"
     }
   ]
 }

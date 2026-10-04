@@ -56,3 +56,10 @@ paints to 100,000, context events to 200,000, and combined context depth to 128.
 Budget exhaustion or incomplete identity raises `PdfPaintContextError`; it
 never returns a partial report marked verified. A source/context report is not
 visual approval of a generated PPT.
+
+For a freshly bound report, [bounded native clip visibility](pdf-visibility.md)
+can separately certify that an active conservative clip support is strictly
+outside the ROI. This preserves every original role, unresolved reason and mask
+record. The version-checked local control hull, complete paint identity, clip
+span and float32 interval transform are required; an approximate rectangle
+predicate or an unbound page-space bbox cannot replace them.

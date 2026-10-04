@@ -10,6 +10,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 from fractions import Fraction
+from .pdf_visibility import ID as EXACT_ID, exact_chain, prove_source_paint_invisible
 import hashlib
 import math
 import re
@@ -228,6 +229,7 @@ class SourcePaint:
     source_text: str | None
     source_xml: str
     unsupported: tuple[str, ...]
+    exact_transform: tuple[str, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -306,7 +308,7 @@ def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_CO
             raise _PdfSourceBudgetError("Source SVG exceeds total command budget")
         parsed_commands += 1
 
-    def walk(node, matrix, inherited, clips, groups, errors, location, references=(), source_text=None):
+    def walk(node, matrix, inherited, clips, groups, errors, location, references=(), source_text=None, exact=EXACT_ID):
         nonlocal command_count, expanded_nodes
         if len(location) + len(references) > 256:
             raise _PdfSourceBudgetError("Source SVG exceeds expanded hierarchy depth budget")
@@ -322,14 +324,16 @@ def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_CO
         if "}" in node.tag and not node.tag.startswith("{"+_NS+"}"):
             errors += ("foreign drawable namespace",)
         matrix = _mul(matrix, _matrix(node.get("transform")))
+        exact = exact_chain(exact, node.get("transform"))
         if source_text is None: source_text = node.get("data-text")
         if tag == "use":
             matrix = _mul(matrix, (1., 0., 0., 1., _number(node.get("x", "0")), _number(node.get("y", "0"))))
+            exact = exact_chain(exact, None, (node.get("x", "0"),node.get("y", "0")))
         clip = style.get("clip-path", "none")
         if clip != "none":
             match = re.fullmatch(r"url\(#([^()]+)\)", clip)
             resource = definitions.get(match[1]) if match else None
-            clips = (*clips, {"id": match[1] if match else None, "transform": list(matrix),
+            clips = (*clips, {"id": match[1] if match else None, "transform": list(matrix), "exact_transform": list(map(str, exact)) if exact is not None else None,
                               "element": ET.tostring(resource, encoding="unicode") if resource is not None else None,
                               "reference": clip,
                               "unsupported_resource_ancestors": _clip_ancestor_context(resource, parents, root)})
@@ -342,14 +346,14 @@ def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_CO
         elif tag in ("svg", "g"):
             count_before = len(paints)
             for index, child in enumerate(node):
-                walk(child, matrix, style, clips, groups, errors, (*location, index), references, source_text)
+                walk(child, matrix, style, clips, groups, errors, (*location, index), references, source_text, exact)
             if references and len(paints) == count_before:
                 # MuPDF can emit empty Type3 glyph resources. Keep the use
                 # occurrence auditable; never invent its outline from Unicode.
                 paints.append(SourcePaint("svg-paint-" + "-".join(str(v) for v in identity), len(paints), identity,
                                           node.get("id"), references[-1], references,
                                           "glyph" if source_text is not None else "path", (), matrix, style,
-                                          clips, groups, source_text, ET.tostring(node, encoding="unicode"), tuple(errors)))
+                                          clips, groups, source_text, ET.tostring(node, encoding="unicode"), tuple(errors), tuple(map(str, exact)) if exact is not None else ()))
             return
         if tag == "use":
             href = node.get("href", node.get(_XLINK, ""))
@@ -366,7 +370,7 @@ def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_CO
             elif len(references) >= 32:
                 errors += ("local reference depth limit",)
             else:
-                walk(target, matrix, style, clips, groups, errors, location, (*references, resource), source_text)
+                walk(target, matrix, style, clips, groups, errors, location, (*references, resource), source_text, exact)
                 return
         kind = "glyph" if tag == "path" and source_text is not None else tag if tag in ("path", "image") else "unsupported"
         commands = ()
@@ -380,7 +384,7 @@ def extract_outlined_svg(data: str | bytes, *, max_total_commands: int = _MAX_CO
         source_id = "svg-paint-" + "-".join(str(v) for v in identity)
         paints.append(SourcePaint(source_id, len(paints), identity, node.get("id"), references[-1] if references else None,
                                   references, kind, commands, matrix, style, clips, groups, source_text,
-                                  ET.tostring(node, encoding="unicode"), tuple(errors)))
+                                  ET.tostring(node, encoding="unicode"), tuple(errors), tuple(map(str, exact)) if exact is not None else ()))
     walk(root, _IDENTITY, _DEFAULT_STYLE, (), (), (), (0,))
     return PdfSourceDocument(hashlib.sha256(raw).hexdigest(), view_box, tuple(paints),
                              {key: ET.tostring(value, encoding="unicode") for key, value in definitions.items()},
@@ -609,6 +613,10 @@ def outline_paths(document: PdfSourceDocument, *, glyph_mode: str,
                                 "proof": "all_path_controls_equal_and_no_stroke",
                                 "source_point": list(points[0]),
                                 "source_text_unverified": paint.source_text})
+                continue
+            invisible = prove_source_paint_invisible(paint, region)
+            if invisible is not None:
+                skipped.append({"source_id": paint.source_id, "reason": "proved source clip/support outside selected region", "visibility_certificate": invisible})
                 continue
             fill_rule_proof = None
             if style["fill-rule"] == "evenodd":

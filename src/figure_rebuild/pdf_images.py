@@ -112,6 +112,28 @@ def _box(rect):
     return dict(x=rect[0], y=rect[1], width=rect[2]-rect[0], height=rect[3]-rect[1])
 
 
+def _auxiliary_text_block(info, block):
+    """Keep text-page numbering as an unbound diagnostic candidate.
+
+    Extraction flags and clipping may give the text dictionary a different
+    namespace. Primary native/SVG occurrence checks have already succeeded.
+    Even equal dimensions and transforms cannot bind its pixels or soft mask.
+    """
+    if block is None:
+        return {'status': 'no_same_number_text_block', 'candidate_is_unbound': True,
+                'same_number_is_identity': False, 'used_for_placement': False}
+    same = (block.get('type') == 1 and
+            (block.get('width'), block.get('height')) == (info['width'], info['height']) and
+            _close(block.get('transform', ()), info['transform']))
+    return {'status': 'auxiliary_geometry_consistent' if same else 'unrelated_text_namespace_number_collision',
+            'image_info_number': info['number'], 'text_block_number': block.get('number'),
+            'text_block_dimensions': [block.get('width'), block.get('height')],
+            'text_block_transform': list(block.get('transform', ())),
+            'candidate_bbox': list(block.get('bbox', ())),
+            'candidate_is_unbound': True, 'same_number_is_identity': False,
+            'primary_native_svg_identity_still_required': True, 'used_for_placement': False}
+
+
 def _close(a, b, tolerance=0.002):
     return len(a) == len(b) and all(abs(x-y) <= tolerance for x, y in zip(a, b))
 
@@ -704,9 +726,7 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                         bottom=(normalized[3]-frame[3])/(normalized[3]-normalized[1]))
             if derived_raster:
                 crop = dict(left=0., top=0., right=0., bottom=0.)
-            block = blocks.get(info['number'])
-            if block is not None and not _close(block['transform'], transform):
-                raise UnsupportedPdfImageError('Text image block identity mismatch; bbox-nearest matching is forbidden')
+            auxiliary_receipt = _auxiliary_text_block(info, blocks.get(info['number']))
             smask = document.xref_get_key(info['xref'], 'SMask') if info.get('xref') else ('null', 'null')
             results.append({'image_index': index, 'xref': info.get('xref', 0),
                             'xref_identity': 'image_info_content_digest_candidate_not_occurrence_identity',
@@ -728,8 +748,9 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                                            'native_occurrence_rendering': native_occurrence_rendering,
                                            'native_image': native['receipt'],
                                            'svg_encoded_image_used_for_pixels': False,
-                                           'text_dict_bbox_pdf_pt': list(block['bbox']) if block else None,
+                                           'text_dict_bbox_pdf_pt': None,
                                            'text_dict_bbox_used_for_placement': False,
+                                           'auxiliary_text_block': auxiliary_receipt,
                                            'active_rectangular_clips': [clip for clip in occurrence['clips'] if clip['rectangular']],
                                            'active_image_clips': list(occurrence['clips']),
                                            'clip_rasterization': clip_rasterization,

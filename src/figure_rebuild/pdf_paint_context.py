@@ -10,6 +10,8 @@ import json
 import math
 from pathlib import Path
 
+from .pdf_visibility import native_hull_certificate
+
 
 class PdfPaintContextError(ValueError):
     """The complete original native paint/context identity was not verified."""
@@ -196,7 +198,23 @@ def inspect_pdf_paint_context(source_pdf, *, page=1, expected_bboxlog=None,
                 self.push_clip(kind, matrix=values)
 
             def clip_path(self, ctx, path, evenodd, ctm, scissor):
+                before = len(self.clip_records)
                 self.clip('clip_path', ctm)
+                if len(self.clip_records) == before:
+                    return
+                record = self.clip_records[-1]
+                if fitz.VersionFitz != '1.28.2' or not callable(getattr(m, 'll_fz_bound_path', None)):
+                    record['extent_not_certified'] = 'unverified native bound-path provider contract'
+                    return
+                try:
+                    # Identity avoids the native transform's near-zero shortcuts.
+                    # Keep the complete control hull, never a fuzzy rect predicate.
+                    local = m.ll_fz_bound_path(path, None, m.fz_identity)
+                    record['conservative_extent'] = native_hull_certificate(
+                        [float(getattr(local, k)) for k in ('x0', 'y0', 'x1', 'y1')],
+                        [float(getattr(ctm, k)) for k in 'abcdef'])
+                except (ValueError, TypeError, OverflowError, RuntimeError) as error:
+                    record['extent_not_certified'] = str(error)
 
             def clip_stroke_path(self, ctx, path, stroke, ctm, scissor):
                 self.clip('clip_stroke_path', ctm)
@@ -304,7 +322,8 @@ def inspect_pdf_paint_context(source_pdf, *, page=1, expected_bboxlog=None,
         if device.definitions or device.clips or device.groups or device.tiles:
             raise PdfPaintContextError('Native contexts did not return to their original state')
         identity = hashlib.sha256(json.dumps(expected, separators=(',', ':')).encode()).hexdigest()
-        return {'schema_version': 1, 'source_pdf': str(path),
+        report = {'schema_version': 1, 'source_pdf': str(path),
+                'page_rect_pdf_pt': list(sheet.rect),
                 'source_pdf_sha256': hashlib.sha256(data).hexdigest(), 'page': page,
                 'pymupdf_version': fitz.VersionBind, 'identity_complete': True,
                 'identity_method': 'complete original native paint type/bbox sequence exact equality',
@@ -313,6 +332,9 @@ def inspect_pdf_paint_context(source_pdf, *, page=1, expected_bboxlog=None,
                 'clips': device.clip_records, 'groups': device.group_records,
                 'events': device.events, 'mask_reductions': [],
                 'claim_boundary': 'Paint mask ownership only; normal is not general fidelity approval.'}
+        report['context_sha256'] = hashlib.sha256(json.dumps(
+            report, sort_keys=True, separators=(',', ':'), allow_nan=False).encode()).hexdigest()
+        return report
 
 
 def paint_context_record(report, source_seqno, *, expected_kind):
