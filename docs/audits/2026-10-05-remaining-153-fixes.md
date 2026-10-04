@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 31 张图的来源修复及实际成品复查，关闭 41 项原问题：35 项字体、字距、基线或数学字形问题，以及 RAG 渐变横条白缝、DDPM 多余斜线、DUSt3R 点云/相机偏移、SwitchML 箭头填充与遮挡、两张 ColBERT 图的省略号。原 153 项中仍有 112 项未关闭；另记录 1 项共用字体交付限制，共 113 项开放。原始 296 项现在 235 项关闭、61 项开放；78 项后续发现中 26 项解决、52 项开放。所有模型关闭项的用户验收仍为 pending。
+本轮完成 36 张图的来源修复及实际成品复查，关闭 48 项原问题：42 项字体、字距、基线或数学字形问题，以及 RAG 渐变横条白缝、DDPM 多余斜线、DUSt3R 点云/相机偏移、SwitchML 箭头填充与遮挡、两张 ColBERT 图的省略号。原 153 项中仍有 105 项未关闭；另记录 1 项共用字体交付限制，共 106 项开放。原始 296 项现在 242 项关闭、54 项开放；78 项后续发现中 26 项解决、52 项开放。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -15,9 +15,12 @@
 - DUSt3R 原问题来自把完整位图缩放进已裁剪的 bbox。源图片实例 0 / 原生绘制 1 现在保留完整矩阵、实际 Matte 蒙版和原始裁剪回调，点云尺度和红色相机顶点一并恢复。新增显式原生 Matte 采样仅允许无 Decode 改变的 8 位 DeviceRGB 图片和同尺寸 8 位附加蒙版，不二次合并已解码 alpha；默认拒绝保留，其他图片/文字/路径不转发，干净 replay cookie 另行核验。采样步长为 8×，没有 RGB/alpha 误差界。原生相机和点云 4× 对照实看确认对齐，所有独立矢量坐标轴及标签未变。
 - SwitchML 五支交叉箭头由 15 个真实 shade callback、完整 clip 链、实际 ICC profile、采样表和顺序绑定。五个旧颜色轮廓替换为五条独立可编辑渐变路径，绿色前景及蓝色箭头白缝恢复；原描边、139 个活动标签和其他对象不变。真实表不是两端点线性函数，首个两端点假设因超过固定预算而拒绝；后继按完整表选择分段 stops，并证明源分量代理在原控制包络内含 stops/方向编码的误差不超过 2/255。该界不涵盖 ICC 到 sRGB 插值或渲染器 RGB 等价，默认自动 shading 准入未改变。四箭头中间版因短蓝箭头仍污染白缝保持 partial，五箭头后继通过全图和 4× 复核才关闭原 D01。
 - ColBERT 图 2 的 14 个、图 3 的 2 个微小位图实例分别重建为 42 个、6 个可编辑三次曲线椭圆点，并保留局部灰色背景。原有轮廓追踪使填充相互抵消，黑点变成短痕或消失。实际原生实例、完整 clip 回调及采样字节重新绑定；质心、墨迹面积和宽高比用于显式位图基元拟合，没有原始矢量恢复或逐像素等价声明。背景使用真实可见 bbox，保留把整数 PNG 存储框误作可见 bbox 的中间版及纠正记录。图 3 的第三个、位于 Document Encoder 后的位图不在本次修复范围，旧零轮廓记录未升级为可见性证明。最终 452/101 条路径、34/29 个活动标签和 14/2 个原生恒等组均独立读回；核完整嵌套叶对象顺序，而非只核顶层对象。全图 1×/2×及 7 个源/旧/新原生 4× 局部实际查看后关闭省略号问题，图 2 的原 D03 描边问题继续开放。
+- Decision Transformer 恢复源 Lora-Bold 与两处 R-hat/帽号位置；ZeRO-Offload 恢复 Param update 两侧及 Update Super Node 顶部间距。CoAuthor 的 102 个活动片段恢复源字体和混色标点间隙。其同一 Libertine 字体程序在小型大写标题和普通图注中，对相同 Unicode 使用不同 GID；按实际原生字形映射分为两个兼容子集，别名身份含映射摘要，未改变来源字符或原生 item。三图均经新的完整原生字体重放、终态读回及 23 页匹配 4× 对照实看。
+- 两张 3D Gaussian Splatting 图恢复 75/93 个活动片段，包括图注、旋转标题与圆点；另实看 16 页匹配 4× 对照。其 Type1 转 CFF 的确切轮廓比较因坐标量化失败，失败及后继保留。私有显式策略在原 1000-unit em 下限定每个对应控制坐标误差 ≤ 1/1024 design unit，并核全部命名字形的操作/点数结构和精确 advance；使用字形及真实 ligature 槽位另从新原生 font handle 独立重放。回执明确 contour equality 为 false，无 raster/hinting 误差界；没有放宽公共 SFNT 精确比较。
+- VMamba 的源 em 不能由旧替代文字框的字号反推：12 个标题片段现已绑定实际源矩阵与嵌入字形。原字重还来自连续 fill_text/stroke_text；只恢复 regular 填充后的中间版仍偏细，原 D01 保持开放，待恢复原描边后再验收。
 - 最终 PPT 的字体、字符、源基线、frame/inset、曲线、图片字节和全部对象顺序均读回。曲线和绕向证明从原始 authoring 中间产物按完整生产前置条件重放，不重新处理终态。各图实看源全图 1×、最终原生 PPT 全图 1×/2×及匹配像素步长的 4× 局部；两批主要字体修复共实看 206 页 4× 对照。RAG 另实看源/旧/新渐变局部，白缝消失。
 
-源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 26 张主要字体批次的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
+源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 30 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
 
 ## 本轮关闭项
 
@@ -34,6 +37,8 @@
 | ccf-2021-01-f01 | D01 |
 | ccf-2021-03-f03 | D01 |
 | ccf-2021-09-f02 | D01 |
+| ccf-2021-10-f01 | D01, D02 |
+| ccf-2021-12-f02 | D03 |
 | ccf-2021-13-f01 | D02 |
 | ccf-2021-13-f08 | D01, D02 |
 | ccf-2021-17-f02 | D01 |
@@ -42,8 +47,11 @@
 | ccf-2022-02-f02 | D03 |
 | ccf-2022-07-f01 | D01, D02 |
 | ccf-2022-12-f04 | D01 |
+| ccf-2022-13-f01 | D01 |
 | ccf-2023-01-f01 | D01 |
 | ccf-2023-03-f01 | D01 |
+| ccf-2023-05-f02 | D01, D02 |
+| ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01 |
 | ccf-2024-03-f01 | D01, D02 |
 | ccf-2024-03-f12 | D01 |
@@ -101,3 +109,14 @@
 | `reports/remaining-153-001/COLBERT-DOT-PROPOSALS-001.json` | `afa1e63477bfde1a64a7ac980e3666b44571f20ecd5f22c8ff9d0de4070f4049` |
 | `reports/remaining-153-001/COLBERT-F03-DOT-PROPOSALS-001.json` | `9fb0f164191d32c2da3d50e10b9a13ec889391690a9d0d3c8b2e9b0b3dd4a38b` |
 | `reports/remaining-153-001/COLBERT-DOT-BACKGROUND-FRAME-CORRECTION-001.json` | `afa28e3ddb3a376addc4f03c4378325506f877c13fd273c8eb87a51ea1616a86` |
+| `reports/remaining-153-001/LEDGER-RESULT-011.json` | `26ecfe1e476f53c771b77c0730a0b25d9bc57f10421097812cf739fec6434239` |
+| `reports/remaining-153-001/LEDGER-RESULT-012.json` | `c949dc2dd7b83cc4e242761f4af162bfe5fad1e3b5a0755c2b0795da483bf441` |
+| `reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json` | `ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534` |
+| `reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json` | `6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json` | `596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json` | `e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919` |
+| `reports/remaining-153-001/SOURCE-FONT-NATIVE-GID-PARTITIONS-001.json` | `334d4bb755d99647da1181c9a4750b4e74bd2685cb1702a4af9c23e8b2fa5beb` |
+| `reports/remaining-153-001/TYPE1-BOUNDED-GEOMETRY-CONVERSION-001.json` | `bd04790708bb4cfd22f2eca6ebed7168e8bef3f74bdd966ee7aee3dcec5cb806` |
+| `reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010.json` | `5293ae0fa12598eaa50e3c9363a0adb4e22773324591f7c661e85217144c4442` |
+| `reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010gsv2.json` | `287e55ad52157bef60ac230959e605e137f2feab0b76bb1c677b9da294475557` |
+| `reports/remaining-153-001/VMAMBA-SOURCE-EM-BINDING-001.json` | `83dbeb77d7ed738664ba29a965b85ed665b4868b6caacf8bf7a2cee4c68b4d0a` |

@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T20:38:06.919087+00:00",
+  "updated_at": "2026-10-04T21:16:07.415140+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 234,
-    "open": 61,
+    "closed_model_visual_review": 241,
+    "open": 54,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -7338,6 +7338,475 @@
           "sha256": "fe374f8cceedaa318ad8cf22dee9a7844fc095921eb4477c0fa2f65e5ab983c9"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2021-10-f01",
+      "issue_id": "ccf-2021-10-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 35 source-bound live chunks with original Lora-Bold glyphs, advances, source em and baselines. Both serif R-hat labels keep the separate centered accent below their circle rims, and Transformer/embedding/decoder/return/state/action labels and round ellipsis dots match the source. Ten unrelated cropped page-text chunks remain outside this repair. Every other path/image/label and complete paint order remain unchanged. Source whole 1x, final native PPT whole 1x/2x and every one of six matched 4x text galleries were actually viewed. Native readback and a fresh full native font-handle replay independently verify final source-used glyphs and baseline frames. This closes visual appearance; automatic formula semantics and font delivery remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-legacy-010/output-review.json",
+          "sha256": "7bbc27bd3e458194c96d283db79f8eac94778cce9ee2a278dc451fbac1bdabdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-legacy-010/native-readback.json",
+          "sha256": "8ec6f9b1565597182e9cf1146924cef95478099dd64af41ea1cbe3f53dc6592f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-font-gallery-005/gallery-bindings.json",
+          "sha256": "5005c569408230bd044ca528b344a11828b8dcd913c3d2263d6b8d8ec14ec418"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-font-gallery-005/visual-review-supplement.json",
+          "sha256": "cf29e6d315dc8247a06132683c3e1a02ef98d720ad257afc0d4a17479d8edbdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010/ccf-2021-10-f01-result.json",
+          "sha256": "0210fc58683d44d92894cafba9e4e3ac2c29cd78d6483bc61858e992d4e7ec56"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/output-review.json",
+          "sha256": "f115ebc11f7e0261cc1c7896c3bec0515cab368eb5db6dfa4ff53fd3b8a41b55"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/render-audit.json",
+          "sha256": "9e4ed7e60d76eac7a6611679808556010b10eacdca625ff15c68376514455dd9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "4d3e3c8a9c3249bb9e79a08700a936404488b4b85a25dc7d6f4b89ee58e477e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/font-audit.json",
+          "sha256": "74ac7b890967fdeae73ca8df9e0c4300538ea7a91da022766df0ee43eed824f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/source-evidence/font-recovery.json",
+          "sha256": "071527d9d1020992bbd5a10384eee51f9ce78eb7db1dc4ea1e31fcee1d6a1bd2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/font-profile.json",
+          "sha256": "c89a47c955b24902a994672704774c7a015d9a0934b5f8f589a9eda889c4bd4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010.json",
+          "sha256": "5293ae0fa12598eaa50e3c9363a0adb4e22773324591f7c661e85217144c4442"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-10-f01",
+      "issue_id": "ccf-2021-10-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 35 source-bound live chunks with original Lora-Bold glyphs, advances, source em and baselines. Both serif R-hat labels keep the separate centered accent below their circle rims, and Transformer/embedding/decoder/return/state/action labels and round ellipsis dots match the source. Ten unrelated cropped page-text chunks remain outside this repair. Every other path/image/label and complete paint order remain unchanged. Source whole 1x, final native PPT whole 1x/2x and every one of six matched 4x text galleries were actually viewed. Native readback and a fresh full native font-handle replay independently verify final source-used glyphs and baseline frames. This closes visual appearance; automatic formula semantics and font delivery remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-legacy-010/output-review.json",
+          "sha256": "7bbc27bd3e458194c96d283db79f8eac94778cce9ee2a278dc451fbac1bdabdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-legacy-010/native-readback.json",
+          "sha256": "8ec6f9b1565597182e9cf1146924cef95478099dd64af41ea1cbe3f53dc6592f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-font-gallery-005/gallery-bindings.json",
+          "sha256": "5005c569408230bd044ca528b344a11828b8dcd913c3d2263d6b8d8ec14ec418"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-10-f01-font-gallery-005/visual-review-supplement.json",
+          "sha256": "cf29e6d315dc8247a06132683c3e1a02ef98d720ad257afc0d4a17479d8edbdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010/ccf-2021-10-f01-result.json",
+          "sha256": "0210fc58683d44d92894cafba9e4e3ac2c29cd78d6483bc61858e992d4e7ec56"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/output-review.json",
+          "sha256": "f115ebc11f7e0261cc1c7896c3bec0515cab368eb5db6dfa4ff53fd3b8a41b55"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/render-audit.json",
+          "sha256": "9e4ed7e60d76eac7a6611679808556010b10eacdca625ff15c68376514455dd9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "4d3e3c8a9c3249bb9e79a08700a936404488b4b85a25dc7d6f4b89ee58e477e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/build/run-001/font-audit.json",
+          "sha256": "74ac7b890967fdeae73ca8df9e0c4300538ea7a91da022766df0ee43eed824f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/source-evidence/font-recovery.json",
+          "sha256": "071527d9d1020992bbd5a10384eee51f9ce78eb7db1dc4ea1e31fcee1d6a1bd2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-10-f01/font-profile.json",
+          "sha256": "c89a47c955b24902a994672704774c7a015d9a0934b5f8f589a9eda889c4bd4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010.json",
+          "sha256": "5293ae0fa12598eaa50e3c9363a0adb4e22773324591f7c661e85217144c4442"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-12-f02",
+      "issue_id": "ccf-2021-12-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 54 source-bound ordinary labels using the actual complete Arial and Calibri source-used glyph contours/advances and original baselines. Both Param update labels retain clear side margins and Update Super Node retains its source clearance below the dashed enclosure. All original diagram paths, image tiles, unbound parameter numeral and object order are unchanged. Source whole 1x, final native PPT whole 1x/2x and all three matched 4x galleries were actually viewed; final OOXML/font/frame readback and fresh native source handles/used glyphs pass. Original activation-pattern D01 and arrow-seam D02 remain open.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-legacy-010/output-review.json",
+          "sha256": "c7db9f1d310e74e802e5a573fb09ebdde277a13e67b8224f1632d8f4a7cfd120"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-legacy-010/native-readback.json",
+          "sha256": "f8654ca2c3aa4019d437a806fc3c5c454ac92bcd6ef2d15d11ae9acfe431e058"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-font-gallery-005/gallery-bindings.json",
+          "sha256": "5fcd62ff59a66d066b5d6f34d83dc75776dea8fdbf490ee7af4df7667f678eec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-font-gallery-005/visual-review-supplement.json",
+          "sha256": "aa18a8a67a9bf184236f841fd61cc1dfc183abc5e8cf969d13f7e5df91a2cd30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010/ccf-2021-12-f02-result.json",
+          "sha256": "9045a104cad0bd7d81053a3d79178c7d421fd4c714e1f8739468b442602bb359"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/build/run-001/output-review.json",
+          "sha256": "ad3d8e9eefb896b726cbaeb777fe1c1fa8454641db7c66ba86950e1c300ace3f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/build/run-001/render-audit.json",
+          "sha256": "f75ffd91630e38d442cada6d258db6e2c04e76907a04ab086b23743d1d355945"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "b70aa1e9245435625cb9e8da8fbba1a16e1ed4010cffea27848ec2b48770c4bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/build/run-001/font-audit.json",
+          "sha256": "e1e1dee76f73f2fbe26990321fceb608a3db39200d96390a45715d647374d084"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/source-evidence/font-recovery.json",
+          "sha256": "f8d02c2c22058028a945812ec6b49f42a039dbfcb83e424d7feb9ebb977b9086"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-006/jobs/ccf-2021-12-f02/font-profile.json",
+          "sha256": "d0c72adb25effe99717cdf1ee0c2eecab92ec9deb4b665c57d5701567061824f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010.json",
+          "sha256": "5293ae0fa12598eaa50e3c9363a0adb4e22773324591f7c661e85217144c4442"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-13-f01",
+      "issue_id": "ccf-2022-13-f01-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore all 102 live text chunks in CoAuthor with source-used glyphs, exact advances and original baselines, recovering suggestion/UI/body weights and contiguous mixed-color punctuation, including There are so many pigs, comma/hidden and CoAuthor followed by comma. The real embedded Libertine program contains distinct source GIDs for the same Unicode in the small-cap CoAuthor title and ordinary caption; two explicitly bound Unicode/GID maps receive distinct aliases whose identities include the map digest. No source text or native item is changed, and all Type1 contours/advances are independently equal after conversion. Source whole 1x, final native PPT whole 1x/2x and all fourteen matched 4x galleries were actually viewed. Fresh full native handles/used glyphs and final OOXML/baseline/order readback pass. Original browser-frame/color D02 remains open; limited alias font delivery and automatic semantics remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-legacy-010/output-review.json",
+          "sha256": "ae87d6090e1385fbf5cc0cf147321a284cfc7ebf668bf9e8b6541b57065b379a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-legacy-010/native-readback.json",
+          "sha256": "0f76cc9feaec71e038daa21cdb157aee31177c29dde580ec976d763028b970ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-font-gallery-005/gallery-bindings.json",
+          "sha256": "ffee073a59aebdb983f17f5ba143bdb4834d1f06db252c1ad4b7821888f306ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-font-gallery-005/visual-review-supplement.json",
+          "sha256": "3446e0fff1a67cb3de8f97c13de46a6eda365491ebe7014c02fc3d54fe3f46c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010/ccf-2022-13-f01-result.json",
+          "sha256": "d3cfd1044b99c2a765412ebe8a490b69085c2d63facbf0b66c04e69428093957"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/build/run-001/output-review.json",
+          "sha256": "9822b89d2e31b726c7f4b06cc71c38b76b9b9606b20be57a939d10e8789b3d78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/build/run-001/render-audit.json",
+          "sha256": "3b276e19ba25c8be501aba9ccf18530becd85aa0754786b49291bb6d19731b21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "2bb7f7971381a1bb0a105adcbbb33830146cbbba1f710931fa6ff4cab88cf6e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/build/run-001/font-audit.json",
+          "sha256": "55d212582ae08f77d74286e2c3b08ab6f70744c7e8c0acab3beb501fb970c5b7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/source-evidence/font-recovery.json",
+          "sha256": "10ba9a3a2f6132b434acb8bc5c70c907f8e336a30454392d8324d8f972aee31b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-007/jobs/ccf-2022-13-f01/font-profile.json",
+          "sha256": "e160d3b098351f0ce2c43186dd06d89fb4946982c6d7b2a23310a7c062d9fcf3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010.json",
+          "sha256": "5293ae0fa12598eaa50e3c9363a0adb4e22773324591f7c661e85217144c4442"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-NATIVE-GID-PARTITIONS-001.json",
+          "sha256": "334d4bb755d99647da1181c9a4750b4e74bd2685cb1702a4af9c23e8b2fa5beb"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-05-f02",
+      "issue_id": "ccf-2023-05-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 75 source-bound live chunks in the actual Biolinum/Libertine faces, recovering serif caption word spacing, label widths and original baselines. Source whole 1x, final native PPT whole 1x/2x and all eight matched 4x text galleries were actually viewed. Fresh full native font handles, source bytes and per-item GID/UCS/matrices were independently replayed. Exact source advances and final OOXML frames, rotations, baselines and complete object order pass. For the actual Type1 source faces, conversion preserves outline operation/point structure with independently bounded control-coordinate error at most 1/1024 of the original 1000-unit em; contour equality is explicitly false. This design-coordinate bound is not a rendering, hinting, color or complete-family bound. Complex illustration bitmaps and all unrelated paths are unchanged. Automatic semantics and font delivery remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-legacy-010gs/output-review.json",
+          "sha256": "5193962535d4a17be33258b7ed3269fb0658cf4f7de994a1745f9fa00e5a3cf3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-legacy-010gs/native-readback.json",
+          "sha256": "e4bd199bf9d1fd845d9c1d5d09b79311b05210a0c3fa3c9e90e2207061bd4a5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-font-gallery-007/gallery-bindings.json",
+          "sha256": "5f87f87d1abb327fca467cc8ac1c5d42cb6d2bdf8ecb834bf2cc1b12f231d352"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-font-gallery-007/visual-review-supplement.json",
+          "sha256": "f6ac7c0b110059d6aa51524028a9b2e6ee56fb9f3bf6d04c562817faabdff031"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010gsv2/ccf-2023-05-f02-result.json",
+          "sha256": "d5cd98311027ac911325e401155fad7b5980a0c464c4601f67c0539492f48524"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/output-review.json",
+          "sha256": "9052068acedbcf52deed12c9cd165e0a947ca1459deaf636f9ec12b995561729"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/render-audit.json",
+          "sha256": "00a084f470bea197824f6ab8c08984136a16bfd0ccec3005478c9ea7ef8efce6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "35fdf0471d53ed482e77ef3b8b4a4a1436f256be0a1960290e2a9a36f36b561e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/font-audit.json",
+          "sha256": "ca86475d7e1e9c34557864940a997f2c7336a7c7cb6438d0330c032aed65dc28"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/source-evidence/font-recovery.json",
+          "sha256": "a0210cc5bba38f6ce51606906baebb404205278492f2fc905f0e8cb6ea2d8f27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/font-profile.json",
+          "sha256": "be3e982281405cf20999406da8debc9df05a1b695c828d41c6167c458b444060"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010gsv2.json",
+          "sha256": "287e55ad52157bef60ac230959e605e137f2feab0b76bb1c677b9da294475557"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/TYPE1-BOUNDED-GEOMETRY-CONVERSION-001.json",
+          "sha256": "bd04790708bb4cfd22f2eca6ebed7168e8bef3f74bdd966ee7aee3dcec5cb806"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LEGACY-FONT-MATCHES-013.json",
+          "sha256": "846cd622631426ca0adcb165ff61744d9ddd5c9eeeeb2bdf56d2a96dfd680b41"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-05-f02",
+      "issue_id": "ccf-2023-05-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 75 source-bound live chunks in the actual Biolinum/Libertine faces, recovering serif caption word spacing, label widths and original baselines. Source whole 1x, final native PPT whole 1x/2x and all eight matched 4x text galleries were actually viewed. Fresh full native font handles, source bytes and per-item GID/UCS/matrices were independently replayed. Exact source advances and final OOXML frames, rotations, baselines and complete object order pass. For the actual Type1 source faces, conversion preserves outline operation/point structure with independently bounded control-coordinate error at most 1/1024 of the original 1000-unit em; contour equality is explicitly false. This design-coordinate bound is not a rendering, hinting, color or complete-family bound. Complex illustration bitmaps and all unrelated paths are unchanged. Automatic semantics and font delivery remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-legacy-010gs/output-review.json",
+          "sha256": "5193962535d4a17be33258b7ed3269fb0658cf4f7de994a1745f9fa00e5a3cf3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-legacy-010gs/native-readback.json",
+          "sha256": "e4bd199bf9d1fd845d9c1d5d09b79311b05210a0c3fa3c9e90e2207061bd4a5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-font-gallery-007/gallery-bindings.json",
+          "sha256": "5f87f87d1abb327fca467cc8ac1c5d42cb6d2bdf8ecb834bf2cc1b12f231d352"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f02-font-gallery-007/visual-review-supplement.json",
+          "sha256": "f6ac7c0b110059d6aa51524028a9b2e6ee56fb9f3bf6d04c562817faabdff031"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010gsv2/ccf-2023-05-f02-result.json",
+          "sha256": "d5cd98311027ac911325e401155fad7b5980a0c464c4601f67c0539492f48524"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/output-review.json",
+          "sha256": "9052068acedbcf52deed12c9cd165e0a947ca1459deaf636f9ec12b995561729"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/render-audit.json",
+          "sha256": "00a084f470bea197824f6ab8c08984136a16bfd0ccec3005478c9ea7ef8efce6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "35fdf0471d53ed482e77ef3b8b4a4a1436f256be0a1960290e2a9a36f36b561e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/build/run-001/font-audit.json",
+          "sha256": "ca86475d7e1e9c34557864940a997f2c7336a7c7cb6438d0330c032aed65dc28"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/source-evidence/font-recovery.json",
+          "sha256": "a0210cc5bba38f6ce51606906baebb404205278492f2fc905f0e8cb6ea2d8f27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-010/jobs/ccf-2023-05-f02/font-profile.json",
+          "sha256": "be3e982281405cf20999406da8debc9df05a1b695c828d41c6167c458b444060"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010gsv2.json",
+          "sha256": "287e55ad52157bef60ac230959e605e137f2feab0b76bb1c677b9da294475557"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/TYPE1-BOUNDED-GEOMETRY-CONVERSION-001.json",
+          "sha256": "bd04790708bb4cfd22f2eca6ebed7168e8bef3f74bdd966ee7aee3dcec5cb806"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LEGACY-FONT-MATCHES-013.json",
+          "sha256": "846cd622631426ca0adcb165ff61744d9ddd5c9eeeeb2bdf56d2a96dfd680b41"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-05-f04",
+      "issue_id": "ccf-2023-05-f04-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore 93 source-bound live chunks in the actual Biolinum/Libertine regular and italic faces, including vertical Under-/Over-Reconstruction, Clone, Split, Optimization Continues and round ellipsis dots. Source whole 1x, final native PPT whole 1x/2x and all eight matched 4x text galleries were actually viewed. Fresh full native font handles, source bytes and per-item GID/UCS/matrices were independently replayed. Exact source advances and final OOXML frames, rotations, baselines and complete object order pass. For the actual Type1 source faces, conversion preserves outline operation/point structure with independently bounded control-coordinate error at most 1/1024 of the original 1000-unit em; contour equality is explicitly false. This design-coordinate bound is not a rendering, hinting, color or complete-family bound. Complex illustration bitmaps and all unrelated paths are unchanged. Automatic semantics and font delivery remain unproved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f04-legacy-010gs/output-review.json",
+          "sha256": "e86b92152162d73ed4cc6749dcfd7635bc74238cf77a2c1516aeba8295ecf6a8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f04-legacy-010gs/native-readback.json",
+          "sha256": "8b773f8274a04aa6263b155eba9f9adebc6c60fd4003af5c0dad80b066fa3f97"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f04-font-gallery-007/gallery-bindings.json",
+          "sha256": "3a4d8e8d1db2ffc7ebb65f346b5e2c8c82c26a808a4e1f5f30c513fabe3ebf6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-05-f04-font-gallery-007/visual-review-supplement.json",
+          "sha256": "3134be7775c259f22fa4c115f98b4c3cd70bf519b648a4700930caeb21762344"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/font-binding-replay-010gsv2/ccf-2023-05-f04-result.json",
+          "sha256": "a108fedf4eb7e8c7b171b59f6a615c69c96b35c855ffa9bfdccc42a1c7a54c49"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/build/run-001/output-review.json",
+          "sha256": "793446f5e213a79df6333eaab5f1cf93667b1b2c0e608d464cdf9c323d782a2f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/build/run-001/render-audit.json",
+          "sha256": "b7edf810cb454717f0d854bb208f19b41e7039c87c66351c99a9d087164c5f8d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/build/run-001/manifest-snapshot.json",
+          "sha256": "af3a827d051576bdb09104ebbcdefa0929e0e5bccb113c5c0bec859c06846681"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/build/run-001/font-audit.json",
+          "sha256": "bcd4d8c3d968bce739b7127ce27a9abf3314416dd9c5a1500d109110bc32f672"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/source-evidence/font-recovery.json",
+          "sha256": "f53b8b49875f9c3dfa377c4cff93a570cd5ec57a0a547990ecce5f3d17cdfd83"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-legacy-fonts-009/jobs/ccf-2023-05-f04/font-profile.json",
+          "sha256": "9abd357da23cc1cef28e8749c162dfa2f6c829532d053e62bbf5618da1fc33a2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-BINDING-REPLAY-RESULTS-010gsv2.json",
+          "sha256": "287e55ad52157bef60ac230959e605e137f2feab0b76bb1c677b9da294475557"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-010.json",
+          "sha256": "adccee1c855bc588aff3eb20b4e5785ccf1c332577908d5f39f02cd44e248a6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/TYPE1-BOUNDED-GEOMETRY-CONVERSION-001.json",
+          "sha256": "bd04790708bb4cfd22f2eca6ebed7168e8bef3f74bdd966ee7aee3dcec5cb806"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LEGACY-FONT-MATCHES-013.json",
+          "sha256": "846cd622631426ca0adcb165ff61744d9ddd5c9eeeeb2bdf56d2a96dfd680b41"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -7355,12 +7824,9 @@
     "ccf-2020-18-f01-D02",
     "ccf-2020-18-f01-D03",
     "ccf-2020-18-f01-XC01",
-    "ccf-2021-10-f01-D01",
-    "ccf-2021-10-f01-D02",
     "ccf-2021-11-f01-D06",
     "ccf-2021-12-f02-D01",
     "ccf-2021-12-f02-D02",
-    "ccf-2021-12-f02-D03",
     "ccf-2021-13-f01-D01",
     "ccf-2021-14-f04-D05",
     "ccf-2021-17-f05-D01",
@@ -7370,13 +7836,9 @@
     "ccf-2022-07-f01-D03",
     "ccf-2022-12-f01-D01",
     "ccf-2022-12-f01-D02",
-    "ccf-2022-13-f01-D01",
     "ccf-2022-13-f01-D02",
     "ccf-2022-14-f02-D01",
     "ccf-2023-01-f01-D02",
-    "ccf-2023-05-f02-D01",
-    "ccf-2023-05-f02-D02",
-    "ccf-2023-05-f04-D01",
     "ccf-2023-06-f01-D02",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
@@ -12812,7 +13274,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "Twenty-six reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed the font dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
+      "description": "Thirty reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed these dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-04-f01",
@@ -12821,6 +13283,7 @@
         "ccf-2020-12-f03",
         "ccf-2021-01-f01",
         "ccf-2021-09-f02",
+        "ccf-2021-10-f01",
         "ccf-2021-13-f08",
         "ccf-2021-17-f02",
         "ccf-2021-17-f05",
@@ -12828,8 +13291,11 @@
         "ccf-2022-02-f02",
         "ccf-2022-07-f01",
         "ccf-2022-12-f04",
+        "ccf-2022-13-f01",
         "ccf-2023-01-f01",
         "ccf-2023-03-f01",
+        "ccf-2023-05-f02",
+        "ccf-2023-05-f04",
         "ccf-2023-06-f01",
         "ccf-2024-03-f01",
         "ccf-2024-03-f12",
@@ -12857,6 +13323,22 @@
         {
           "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
           "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+          "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+          "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+          "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+          "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
         }
       ],
       "user_acceptance": "pending",
@@ -12892,6 +13374,132 @@
               {
                 "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
                 "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              }
+            ],
+            "user_acceptance": "pending"
+          }
+        },
+        {
+          "recorded_at": "2026-10-04T21:04:31.380556+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "Twenty-six reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed the font dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-12-f04",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              }
+            ],
+            "user_acceptance": "pending"
+          }
+        },
+        {
+          "recorded_at": "2026-10-04T21:16:07.415140+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "Twenty-eight reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed these dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
               }
             ],
             "user_acceptance": "pending"
