@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 37 张图的来源修复及实际成品复查，关闭 49 项原问题：43 项字体、字距、基线或数学字形问题，以及 RAG 渐变横条白缝、DDPM 多余斜线、DUSt3R 点云/相机偏移、SwitchML 箭头填充与遮挡、两张 ColBERT 图的省略号。原 153 项中仍有 104 项未关闭；另记录 1 项共用字体交付限制，共 105 项开放。原始 296 项现在 243 项关闭、53 项开放；78 项后续发现中 26 项解决、52 项开放。所有模型关闭项的用户验收仍为 pending。
+本轮完成 38 张图的来源修复及实际成品复查，关闭 52 项原问题：45 项字体、字距、基线或数学字形问题，以及 RAG 渐变横条白缝、DDPM 多余斜线、DUSt3R 点云/相机偏移、SwitchML 箭头填充与遮挡、两张 ColBERT 图的省略号和 SimCLR 图注裁切。原 153 项中仍有 101 项未关闭；另记录 1 项共用字体交付限制，共 102 项开放。原始 296 项现在 246 项关闭、50 项开放；78 项后续发现中 26 项解决、52 项开放。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -19,15 +19,17 @@
 - 两张 3D Gaussian Splatting 图恢复 75/93 个活动片段，包括图注、旋转标题与圆点；另实看 16 页匹配 4× 对照。其 Type1 转 CFF 的确切轮廓比较因坐标量化失败，失败及后继保留。私有显式策略在原 1000-unit em 下限定每个对应控制坐标误差 ≤ 1/1024 design unit，并核全部命名字形的操作/点数结构和精确 advance；使用字形及真实 ligature 槽位另从新原生 font handle 独立重放。回执明确 contour equality 为 false，无 raster/hinting 误差界；没有放宽公共 SFNT 精确比较。
 - 新增显式 `character_spacing`，以画布像素指定相邻字符的附加 advance，限定可打印 ASCII、单行、不换行、左对齐活动文字。源 Unicode 保留，SVG 禁用 kerning/ligature，原生 PPT 分为继承全部样式的逐字符 run，并编码百分之一 point 间距；用逐字注册字体测量重新计算实际 ink/advance 所需框，不能沿用整词 kerning 的测量。输出审阅将间距记录绑定源声明，不接受遗漏、改值或伪称应用已验证的回执。最终应用位置仍须独立读回；未声明的原有文字不变。
 - VMamba 的 12 个标题和小字号标签绑定实际源 em、原字体 GID 以及连续 fill_text/stroke_text。MuPDF 1.28.2 SVG 的 stroke-text 宽度遗漏外层 CTM expansion；按实际原生 linewidth/matrix 修正后，独立轮廓与活动填充仍在 Office 小字号中错位。逐字符间距修正长标签宽度，另以 5 个显式私有 CFF 字形墨迹字体合并源填充和对应描边，保留 Unicode、原 hmtx advance 与源半径/join/miter，去掉 75 个中间描边路径。派生前全部原 SFNT 点位核对；终态实际原生 font handle 的 78 个使用字形与派生字形轮廓在 f32 下逐项相同，143 个活动文字对象和 411 个有序字符完整保留，221 条原路径与 58 个图片实例不变。全图 1×/2×及全部 12 个匹配 4× 标签实看后关闭 D01。原始轮廓/family 相等、FreeType stroke/组复合/像素等价均不宣称；原生文字描边被 LibreOffice 忽略的失败探针和所有后继保留。SSM 活动数学、字体交付和 PowerPoint/WPS 重开继续开放。
+- SimCLR 按实际源矩阵恢复纵向 em，并显式处理 98%/98.4% 横向压缩及 Type1 FontMatrix 的斜切；四个私有变体保留源字号与受限字形映射。最终 82 个活动片段、416 个字符、10 个图片绑定和 121 条路径完整读回。LibreOffice 26.2.5.2 的 CFF 转 Type1 子集导出另将相对操作数舍入至 1/1024 design unit；全部 109 个使用字体/Unicode 对逐相对操作数与该版本上游策略精确核验，actual subset 曲线再由独立加载的实际字体字节核对 f32。它与来源到 CFF 的固定控制/advance 预算分别记录，不宣称实际子集与原 CFF 或原字体轮廓精确相等。源/实际文字位置最大观察差为横向 0.643 px、纵向 0.404 px，保留实测残差。源 ROI 从底边 300 显式扩展至 310 PDF points，完成 107 个被切字形并按原绘制顺序补回 4 个标点，完整第三行与署名显示；新增标点继承 paint 层级 33，避免排序移到末尾。全图 1×/2×及四组同网格 4× 实看通过后关闭 D01/D02/D04。第三行仍为可编辑轮廓，照片重采样 D03、自动语义及字体交付保持开放。
 - 最终 PPT 的字体、字符、源基线、frame/inset、曲线、图片字节和全部对象顺序均读回。曲线和绕向证明从原始 authoring 中间产物按完整生产前置条件重放，不重新处理终态。各图实看源全图 1×、最终原生 PPT 全图 1×/2×及匹配像素步长的 4× 局部；两批主要字体修复共实看 206 页 4× 对照。RAG 另实看源/旧/新渐变局部，白缝消失。
 
-源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 31 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
+源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 32 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
 
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
 | --- | --- |
 | ccf-2020-02-f02 | D01, D02 |
+| ccf-2020-03-f04 | D01, D02, D04 |
 | ccf-2020-04-f01 | D01, D02 |
 | ccf-2020-06-f01 | D01, D02 |
 | ccf-2020-09-f02 | D01 |
@@ -132,3 +134,6 @@
 | `reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json` | `13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b` |
 | `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json` | `1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec` |
 | `reports/remaining-153-001/VMAMBA-SOURCE-PAINT-PAIR-NATIVE-MEDIA-026.json` | `68708ac739230cd9e1503e0a3976ec146c2abf504d681632dc2ecbbdafb736c1` |
+| `reports/remaining-153-001/LEDGER-RESULT-014.json` | `75db001613a2fcdff36e63517cf8615050f4dd0e320075832ae32d7bcc0fdc1b` |
+| `reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json` | `f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json` | `0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c` |
