@@ -85,6 +85,8 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
             attrs.update(svg_stroke_attributes(s))
             attrs['stroke-width']=str(s.get('stroke_width',0)); ET.SubElement(root,'{'+SVG+'}path',attrs)
         elif o['kind']=='text':
+            from .text_spacing import validate_character_spacing
+            character_spacing = validate_character_spacing(o)
             size=o['font_size'];text_family,face=selected_face(o)
             font=ImageFont.truetype(str(face),max(1,round(size)));ascent,descent=font.getmetrics()
             inset={**dict(left=0,right=0,top=0,bottom=0),**o.get('insets',{})}
@@ -105,7 +107,11 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
                     b=o['box'];attrs['transform']=f"rotate({o['rotation']} {b['x']+b['width']/2} {b['y']+b['height']/2})"
             node=ET.SubElement(root,'{'+SVG+'}text',attrs)
             node.set('{http://www.w3.org/XML/1998/namespace}space','preserve')
-            if len(lines)==1:node.text=lines[0]
+            if character_spacing is not None:
+                node.set('font-kerning', 'none'); node.set('font-variant-ligatures', 'none')
+                for index, char in enumerate(o['text']):
+                    ET.SubElement(node, '{'+SVG+'}tspan', {'dx': str(0 if index == 0 else character_spacing[index-1])}).text = char
+            elif len(lines)==1:node.text=lines[0]
             else:
                 for index,line in enumerate(lines):
                     ET.SubElement(node,'{'+SVG+'}tspan',{'x':str(x),'y':str(y+index*line_height)}).text=line

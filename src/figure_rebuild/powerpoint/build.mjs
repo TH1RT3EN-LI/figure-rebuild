@@ -146,6 +146,8 @@ const nativeLayoutAudit=JSON.parse(await fs.readFile(path.join(run,'editability.
 const fractionalSpacingObjects=(nativeLayoutAudit.text_layout??[]).filter(record=>record.native_precision_review_required);
 if(fractionalSpacingObjects.length)previewLimitations.push({code:'fractional_percent_multiline_spacing_requires_application_verification',status:'needs_review',object_ids:fractionalSpacingObjects.map(record=>record.id),objects:fractionalSpacingObjects.map(record=>({id:record.id,line_count:record.line_count,spacing_thousandths_percent:record.spacing_thousandths_percent,whole_percent_fallback_accumulated_loss_px:record.whole_percent_fallback_accumulated_loss_px})),detail:'Some native applications reduce percentage line spacing to whole percent. Multiline text can accumulate pitch error; inspect the intended application. The recorded loss is a whole-percent fallback model, not a universal measured error bound.'});
 const varyingGradientAlpha=ordered.filter(o=>o.style?.fill_gradient&&new Set(o.style.fill_gradient.stops.map(stop=>stop.opacity??1)).size>1).map(o=>o.id);
+const spacedText=ordered.filter(o=>o.kind==='text'&&Object.hasOwn(o,'character_spacing')).map(o=>o.id);
+if(spacedText.length)previewLimitations.push({code:'character_spacing_requires_application_verification',status:'needs_review',object_ids:spacedText,detail:'Explicit ASCII character advances and disabled automatic kerning are written as native editable character runs. Registered-font measurement and point rounding do not prove actual application glyph positions or shaping. Inspect native output against the source.'});
 if(varyingGradientAlpha.length)previewLimitations.push({code:'gradient_stop_opacity_interpolation_requires_application_verification',status:'needs_review',object_ids:varyingGradientAlpha,detail:'Native stop RGB and alpha are verified in the final PPT. Artifact Tool 2.8.59 previews interpolate varying stop alpha differently from the SVG reference and LibreOffice. Inspect native application output; preview color alone cannot verify this fill.'});
 await finalizePresentation({workspaceDir:job,candidatePath:candidate,finalPath:checkedOutput,pythonExecutable:runtime.python,integrityValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(runtime.presentation_skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu',expectedSize],fontPolicy:config.base?undefined:{basis:'design',families:fontFamilies},verifyArtifactToolImport:true,receiptPath:path.join(run,'validation.json')});
 const bindFile=async file=>({path:path.resolve(file),sha256:createHash('sha256').update(await fs.readFile(file)).digest('hex')});
@@ -168,7 +170,7 @@ if(config.diagnostic_provenance_version===1){
 let previewAudit;
 if(previewBackend==='libreoffice'){
  previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
- previewAudit.preview_limitations.push(...previewLimitations.filter(item=>item.code==='fractional_percent_multiline_spacing_requires_application_verification'));
+ previewAudit.preview_limitations.push(...previewLimitations.filter(item=>['fractional_percent_multiline_spacing_requires_application_verification','character_spacing_requires_application_verification'].includes(item.code)));
 }else{
  const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
  let targetSlide=rendered.slides.items[0];

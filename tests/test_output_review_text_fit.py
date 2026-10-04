@@ -15,6 +15,26 @@ ROTATED = json.loads((Path(__file__).parent / 'fixtures/text-fit-rotated-anchor-
 
 
 class TextFitReceiptConsistency(unittest.TestCase):
+    def test_character_spacing_receipt_is_bound_to_declared_advances(self):
+        scene, rows = self.one()
+        obj = scene['objects'][0]
+        obj['kind'] = 'text'; obj['alignment'] = 'left'; obj['wrap'] = 'none'
+        obj['character_spacing'] = [0.125] * (len(obj['text']) - 1)
+        receipt = {'extra_advances_canvas_px': obj['character_spacing'].copy(),
+                   'measurement_basis': 'individual registered-font characters; native character spacing needs application verification'}
+        rows[0]['layout']['character_spacing'] = receipt
+        _verify_text_fit_measurements(scene, rows)
+        for case in ('missing', 'changed', 'boolean', 'basis', 'undeclared'):
+            candidate, measured = copy.deepcopy((scene, rows))
+            declared = measured[0]['layout']['character_spacing']
+            if case == 'missing': del measured[0]['layout']['character_spacing']
+            elif case == 'changed': declared['extra_advances_canvas_px'][0] += .01
+            elif case == 'boolean': declared['extra_advances_canvas_px'][0] = True
+            elif case == 'basis': declared['measurement_basis'] = 'actual application positions verified'
+            else: del candidate['objects'][0]['character_spacing']
+            with self.subTest(case=case), self.assertRaisesRegex(ValueError, 'Text-fit'):
+                _verify_text_fit_measurements(candidate, measured)
+
     def test_math_round_does_not_add_a_second_rounding(self):
         # Expected Math.round results also replayed against the real Node writer
         # runtime in the external contract validation evidence.

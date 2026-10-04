@@ -93,6 +93,16 @@ class ManifestChecks(unittest.TestCase):
         valid = self.text_manifest(); valid['objects'][-1]['style'] = {}
         self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
 
+    def test_explicit_character_spacing_checks_literal_boundaries_and_object_kind(self):
+        valid = self.text_manifest(); valid['objects'][-1]['character_spacing'] = [0] * 11
+        self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
+        for patch in [{'character_spacing': [0]}, {'character_spacing': [True] * 11},
+                      {'wrap': 'square'}, {'text': '复杂文字'}, {'alignment': 'right'}]:
+            bad = copy.deepcopy(valid); bad['objects'][-1].update(patch)
+            self.assertFails(bad, 'Character spacing')
+        bad = copy.deepcopy(valid); bad['objects'][0]['character_spacing'] = []
+        self.assertFails(bad, 'Character spacing')
+
     def test_invalid_text_position_or_box_rotation_fails_before_renderer(self):
         bad = self.text_manifest(); bad['objects'][-1]['anchor']['x'] = -1
         self.assertFails(bad, 'clipping is unsupported')

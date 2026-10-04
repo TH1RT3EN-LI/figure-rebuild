@@ -151,6 +151,11 @@ def validate(manifest, root, require_review=True, _materialized=False):
             check(oid not in ids, 'Duplicate stable id: ' + oid); ids.add(oid)
         label = str(oid)
         kind = obj.get('kind')
+        from .text_spacing import validate_character_spacing
+        try:
+            validate_character_spacing(obj)
+        except ValueError as exc:
+            errors.append(str(exc))
         check(enum(kind, KINDS), 'Unsupported object kind: ' + str(kind))
         if isinstance(kind, str) and kind in count:
             count[kind] += 1

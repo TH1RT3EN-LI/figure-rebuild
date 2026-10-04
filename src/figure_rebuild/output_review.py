@@ -383,8 +383,22 @@ def _verify_text_fit_measurements(resolved, measured):
                   'descent', 'native_baseline_ascent', 'default_native_baseline_ascent', 'baseline_basis',
                   'line_height_basis', 'measurement_basis', 'content_box', 'insets'}
         _require(isinstance(layout, dict) and fields <= set(layout) and
-                 not set(layout) - fields - {'renderer_baseline', 'baseline_adjustment_px'},
+                 not set(layout) - fields - {'renderer_baseline', 'baseline_adjustment_px', 'character_spacing'},
                  'Text-fit incomplete layout: ' + label)
+        from .text_spacing import validate_character_spacing
+        spacing = validate_character_spacing(obj)
+        if spacing is None:
+            _require('character_spacing' not in layout, 'Text-fit undeclared character spacing: ' + label)
+        else:
+            recorded_spacing = layout.get('character_spacing')
+            _require(isinstance(recorded_spacing, dict) and
+                     set(recorded_spacing) == {'extra_advances_canvas_px', 'measurement_basis'} and
+                     recorded_spacing['extra_advances_canvas_px'] == spacing and
+                     all(_text_fit_number(v, label + '.character_spacing') == v
+                         for v in recorded_spacing['extra_advances_canvas_px']) and
+                     recorded_spacing['measurement_basis'] ==
+                     'individual registered-font characters; native character spacing needs application verification',
+                     'Text-fit character spacing differs from source: ' + label)
         lines, count = layout['lines'], layout['line_count']
         _require(isinstance(lines, list) and bool(lines) and all(isinstance(v, str) and '\n' not in v and '\r' not in v for v in lines) and
                  type(count) is int and count == len(lines), 'Text-fit invalid lines/count: ' + label)

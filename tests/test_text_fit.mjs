@@ -1,11 +1,43 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {layoutText, fittedTextBox, fontRoleForText, fontFaceForText, measurePresentationBaseline} from '../src/figure_rebuild/powerpoint/text_fit.mjs';
+import {layoutText, fittedTextBox, fontRoleForText, fontFaceForText, measurePresentationBaseline, characterSpacedMeasurement} from '../src/figure_rebuild/powerpoint/text_fit.mjs';
 
 const measure = text => ({width: [...text].length * 10, actualBoundingBoxLeft: 0,
   actualBoundingBoxRight: [...text].length * 10, actualBoundingBoxAscent: 8,
   actualBoundingBoxDescent: 2});
 const canvas = {width: 300, height: 200};
+
+test('explicit character advances are measured without word kerning and preserve the baseline', () => {
+  const kerned = text => ({...measure(text), width: text === 'AV' ? 12 : measure(text).width,
+    actualBoundingBoxRight: text === 'AV' ? 12 : measure(text).width});
+  const o = {id: 'source-advances', text: 'AV', font_size: 10, character_spacing: [.5],
+    anchor: {x: 50, y: 80}};
+  const result = fittedTextBox(o, kerned, canvas);
+  assert.equal(result.layout.required_width, 20.5);
+  assert.equal(result.box.y + result.layout.native_baseline_ascent, 80);
+  assert.deepEqual(result.layout.lines, ['AV']);
+  assert.throws(() => fittedTextBox({...o, anchor: undefined, box: {x: 10, y: 10, width: 20, height: 20}}, kerned, canvas), /overflow/);
+});
+
+test('character overhangs and signed spacing participate in the measured frame', () => {
+  const overhang = text => ({...measure(text), actualBoundingBoxLeft: text === 'A' ? 2 : 0,
+    actualBoundingBoxRight: text === 'B' ? 14 : measure(text).width});
+  const result = characterSpacedMeasurement({id: 'ink', text: 'AB', character_spacing: [-2]}, overhang);
+  assert.equal(result.width, 18);
+  assert.equal(result.actualBoundingBoxLeft, 2);
+  assert.equal(result.actualBoundingBoxRight, 22);
+  assert.throws(() => characterSpacedMeasurement({id: 'reversed', text: 'AB', character_spacing: [-10]}, measure), /reverses/);
+});
+
+test('explicit spacing rejects unsupported script, wrapping and invalid boundaries', () => {
+  const o = {id: 'bad-spacing', text: 'AB', character_spacing: [0]};
+  for (const patch of [{text: 'e\u0301'}, {text: 'A\nB'}, {text: '中文'}, {text: '  '},
+    {wrap: 'square'}, {alignment: 'center'}, {character_spacing: []},
+    {character_spacing: [NaN]}, {character_spacing: [true]}]) {
+    assert.throws(() => characterSpacedMeasurement({...o, ...patch}, measure));
+  }
+  assert.equal(characterSpacedMeasurement({text: 'Existing'}, measure), undefined);
+});
 
 test('nowrap measures all explicit paragraphs and preserves the input text', () => {
   const input = 'AB\nCDE';

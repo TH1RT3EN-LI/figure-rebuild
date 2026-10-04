@@ -180,6 +180,8 @@ def apply_text_layout(element, obj, mapped_entry, scale):
     paragraphs = body.findall('a:p', NS)
     if not paragraphs:
         raise ValueError('Text layout requires native paragraphs: ' + label)
+    from .text_spacing import prepare_native_character_spacing, apply_prepared_character_spacing
+    character_spacing = prepare_native_character_spacing(element, obj, scale)
     result = {'id': label, 'line_height_applied': False, 'baseline_calibrated': False,
               'visual_verification_required': True}
     spacing = None
@@ -295,4 +297,6 @@ def apply_text_layout(element, obj, mapped_entry, scale):
         body_pr.set('tIns', str(inset))
     if bottom_inset is not None:
         body_pr.set('bIns', str(bottom_inset))
+    if character_spacing is not None:
+        result['character_spacing'] = apply_prepared_character_spacing(character_spacing)
     return result

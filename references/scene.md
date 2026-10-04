@@ -66,6 +66,7 @@ SVG 支持基本几何、变换、普通文字及路径 M/L/H/V/C/S/Q/T/A/Z；�
 - `connector`：`from/to:{id,site}`，`route` 为 `straight/elbow`，`arrow:{start,end}` 与描边。目标为已确认模块，导出原生连接器；连接器之间不连接。详见 [connections.md](connections.md)。
 - 标签 `attach_to:{id,site,offset:{x,y}}`：关联模块的中心或四边；框文本按框中心，基线文本按 anchor。构建保留原生分组并检验绘制顺序。
 - 文本 `line_height/baseline_offset/insets` 使用像素，四字面必须分别配置真实文件。详见 [fonts.md](fonts.md)。
+- 单行、左对齐且 `wrap:none` 的 ASCII 标签可声明 `character_spacing:[...]`，每个值是相邻字符之间额外增加的原画布像素长度，数组长度为字符数减一。例如 `"AV"` 配 `[0.125]` 表示 A 后增加 0.125 px。原文、空格和字体保留在同一个活动文字框，最终以逐字原生 run 写入间距并关闭自动字偶距；正负长度参与测量和溢出检查。SVG 主文件用相同的额外位移。此选项不识别源字距，也不支持复杂脚本或自动换行；实际应用可能进一步量化或整形，必须核验最终 glyph 位置和原生预览，不能由 XML 字段正确推断视觉一致。
 
 原始清单接受审阅，构建输出 `resolved-scene.json` 与 `semantic-audit.json` 供检查；临时解析清单不取代源清单。
 

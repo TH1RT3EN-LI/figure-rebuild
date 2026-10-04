@@ -40,6 +40,35 @@ function metricWidth(metrics) {
   return Math.max(advance, right) + left;
 }
 
+/** Measure separate simple characters and their declared extra advances. */
+export function characterSpacedMeasurement(object, measure) {
+  if (!Object.hasOwn(object, 'character_spacing')) return undefined;
+  const text = object.text, extra = object.character_spacing;
+  if (typeof text !== 'string' || !text.trim() || text.length < 1 || text.length > 2000 || /[^\x20-\x7e]/u.test(text)
+      || (object.wrap ?? 'none') !== 'none' || (object.alignment ?? 'left') !== 'left') {
+    throw Error('Character spacing requires a single-line left-aligned ASCII text label: ' + object.id);
+  }
+  if (!Array.isArray(extra) || extra.length !== text.length - 1
+      || extra.some(v => typeof v !== 'number' || !Number.isFinite(v) || Math.abs(v) > 1000)) {
+    throw Error('Character spacing needs finite canvas pixel advances at every character boundary: ' + object.id);
+  }
+  const sample = measure('Mg');
+  let cursor = 0, left = 0, right = 0, ascent = 0, descent = 0;
+  for (let i = 0; i < text.length; i++) {
+    const metrics = measure(text[i]), advance = metrics.width;
+    if (!Number.isFinite(advance) || advance < 0) throw Error('Invalid character advance: ' + object.id);
+    const inkLeft = metrics.actualBoundingBoxLeft ?? 0, inkRight = metrics.actualBoundingBoxRight ?? advance;
+    if (![inkLeft, inkRight].every(Number.isFinite)) throw Error('Invalid character ink bounds: ' + object.id);
+    left = Math.min(left, cursor - inkLeft); right = Math.max(right, cursor + inkRight);
+    ascent = Math.max(ascent, metrics.actualBoundingBoxAscent ?? 0);
+    descent = Math.max(descent, metrics.actualBoundingBoxDescent ?? 0);
+    if (i < extra.length && advance + extra[i] <= 0) throw Error('Character spacing reverses an advance: ' + object.id);
+    cursor += advance + (extra[i] ?? 0);
+  }
+  return {...sample, width: cursor, actualBoundingBoxLeft: Math.max(0, -left),
+    actualBoundingBoxRight: right, actualBoundingBoxAscent: ascent, actualBoundingBoxDescent: descent};
+}
+
 /**
  * Read the presentation renderer's metrics, separately from the source-font
  * measurer. The two Canvas implementations do not include font line gaps in
@@ -179,9 +208,13 @@ export function fittedTextBox(object, measure, canvas, {rendererBaseline} = {}) 
   const insets = textInsets(object.insets);
   const contentWidth = object.box ? object.box.width - insets.left - insets.right : Infinity;
   if (!(contentWidth > 0)) throw Error('Text insets leave no content width: ' + object.id);
+  const spaced = characterSpacedMeasurement(object, measure);
+  const lineMeasure = spaced === undefined ? measure : text => text === object.text ? spaced : measure(text);
   const layout = layoutText(object.text, {fontSize: object.font_size,
     width: contentWidth, wrap: object.box ? object.wrap ?? 'none' : 'none',
-    lineHeight: object.line_height, baselineOffset: object.baseline_offset, rendererBaseline}, measure);
+    lineHeight: object.line_height, baselineOffset: object.baseline_offset, rendererBaseline}, lineMeasure);
+  if (spaced !== undefined) layout.character_spacing = {extra_advances_canvas_px: [...object.character_spacing],
+    measurement_basis: 'individual registered-font characters; native character spacing needs application verification'};
   let box = object.box;
   if (!box) {
     const width = Math.max(1, layout.required_width + object.font_size * 0.12);

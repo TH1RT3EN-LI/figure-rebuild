@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T21:16:07.415140+00:00",
+  "updated_at": "2026-10-04T23:05:15.894331+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 241,
-    "open": 54,
+    "closed_model_visual_review": 242,
+    "open": 53,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -7807,6 +7807,85 @@
           "sha256": "846cd622631426ca0adcb165ff61744d9ddd5c9eeeeb2bdf56d2a96dfd680b41"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2024-03-f02",
+      "issue_id": "ccf-2024-03-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Recover 12 VMamba headings and tiny Linear/Embedding labels from independently bound source native em, original SFNT GIDs and consecutive fill_text/stroke_text paints. Explicit per-character extra advances retain original Unicode and hmtx while removing accumulated word spacing drift. Five job-local CFF ink faces coalesce source filled glyphs and the selected original stroke radius/join/miter, removing the independently rasterized outline/fill seams. All 78 used derived glyph contours are independently equal at native f32 precision in the actual final LibreOffice PDF; original-source contour/family equality and generic FreeType stroke/group/raster equivalence are explicitly not claimed. Whole source 1x and actual final native PPT 1x/2x plus all 12 matched 4x label crops were actually viewed: headings, hyphen gaps, label weight/size and placement now match without ghost contours. Final PPT contains 143 live text objects, 411 exact ordered Unicode characters and 221 unchanged original paths; 75 intermediate glyph-stroke vectors were removed. All 58 picture XML/geometry/media bindings are unchanged after resolving only generated numeric IDs and relationship IDs. SSM semantic editability, limited alias font delivery and PowerPoint/WPS reopening remain open.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/vmamba-atomic-readback-024/output-review.json",
+          "sha256": "860608447bebc78cdf3d86a6d334d612b86e0f3c6a46e461bc136401d959e099"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/vmamba-atomic-readback-024/native-readback.json",
+          "sha256": "14a4f7c802d3908cbd992e93ac7b4d08053dcc21f59291801549ab4f28794b8d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/vmamba-atomic-readback-024/full-native-font-trace.json",
+          "sha256": "a04fe2918b58f3cd4d865f42cc8efa7e5cab37a3377df3a416846cdb10ba4be5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/vmamba-actual-atomic-023/actual-glyph-readback.json",
+          "sha256": "f507345a9394f4b0bca6ec053e9bf4b813fe235d9519063f5a4b8f9db3c55811"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/vmamba-actual-atomic-023/visual-review.json",
+          "sha256": "45923beddbc1689f4acdfb3397c2b311e14e9f00a7aa884684d9d9e2143c6826"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/build/run-001/output-review.json",
+          "sha256": "7766a8ff8261bdefc22c8e7e7c9ea242df9d5331f130c6062dc7f62461d61c33"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "066e5f87b8e8c4bc6b7ab5b273ed34470ac881718ec4bb39f8ddb96aade39086"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/build/run-001/render-audit.json",
+          "sha256": "3ea7c2cbbcf81f2f728d43a31822797e83d847b0c296e4543af0e2c904b70036"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/build/run-001/font-audit.json",
+          "sha256": "3822587b045a68da43fcaa5052708a65042da8bf65855c91d19a54e2afa7c96e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/font-profile.json",
+          "sha256": "3e29f2a0e86b47adafc501058624c034aadaea7475e6d55c75f410ec780b69b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/source-evidence/atomic-ink-candidate.json",
+          "sha256": "3a0e139f912d6da232ffa19e8cd6ecc004f39443c1e670a434ae8e0ef77d16f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-014/jobs/ccf-2024-03-f02/source-evidence/manifest-before-atomic-ink.json",
+          "sha256": "4aa3533da139e89c2fb51ccc0ea1d0ebacd7d115b38c6fda483db71e450a0b65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/VMAMBA-SOURCE-PAINT-PAIR-NATIVE-MEDIA-026.json",
+          "sha256": "68708ac739230cd9e1503e0a3976ec146c2abf504d681632dc2ecbbdafb736c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/VMAMBA-NATIVE-STROKE-CAPTURE-003.json",
+          "sha256": "7fef787a97fa7b9a248e9b63d72f054b7a35b12d0db10d9adfae5fda6cad3d2b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/VMAMBA-STROKE-LOWERED-002.json",
+          "sha256": "d517750b4733f18d950e65c5bc2410e10a3e23f60edf42207cfff9cb5ec7e59b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/VMAMBA-NATIVE-FILL-PATH-CONTROL-007.json",
+          "sha256": "e12ab51c951e169b8bbf2ade31e0849ba16b92f1efe22243cef7c86a7a62f8e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -7842,7 +7921,6 @@
     "ccf-2023-06-f01-D02",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
-    "ccf-2024-03-f02-D01",
     "ccf-2024-03-f02-D02",
     "ccf-2024-06-f02-D01",
     "ccf-2025-01-f01-D02",
@@ -13274,7 +13352,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "Thirty reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed these dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
+      "description": "Thirty-one reviewed figure repairs depend on explicit job-local source aliases or source-derived fill/stroke ink fonts with limited Unicode repertoire. Used glyphs render correctly in the reviewed native application, but the PPTX does not embed these dependencies and expanded editing/reopening in PowerPoint/WPS without them is unverified.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-04-f01",
@@ -13298,6 +13376,7 @@
         "ccf-2023-05-f04",
         "ccf-2023-06-f01",
         "ccf-2024-03-f01",
+        "ccf-2024-03-f02",
         "ccf-2024-03-f12",
         "ccf-2024-06-f02",
         "ccf-2024-07-f02",
@@ -13339,6 +13418,14 @@
         {
           "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
           "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+          "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+          "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
         }
       ],
       "user_acceptance": "pending",
@@ -13500,6 +13587,84 @@
               {
                 "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
                 "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              }
+            ],
+            "user_acceptance": "pending"
+          }
+        },
+        {
+          "recorded_at": "2026-10-04T23:05:15.894331+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "Thirty reviewed source-font repairs depend on explicit job-local aliases with limited Unicode repertoire. Used glyphs render correctly, but the PPTX does not embed these dependencies and extended editing/reopening in PowerPoint/WPS without them is not verified.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
               }
             ],
             "user_acceptance": "pending"
