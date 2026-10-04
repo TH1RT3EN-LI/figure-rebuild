@@ -21,8 +21,8 @@ class StrokeArgumentTests(unittest.TestCase):
 
     def test_invalid_declared_coordinates_and_budgets_fail_before_pdf_read(self):
         base = dict(source_pdf_sha256='a' * 64, page=1, native_sequence=0, region=[0, 0, 100, 100])
-        for changes in [dict(source_pdf_sha256='unknown'), dict(page=True), dict(native_sequence=True), dict(page=0), dict(native_sequence=-1), dict(scale=True), dict(scale=float('nan')), dict(scale=65), dict(region=[0, 0, 0, 100]), dict(region=[0, 0, 100]), dict(region=[0, False, 100, 100]), dict(region=[0, 0, 100, float('inf')]), dict(region=[0.1, 0, 100, 100]), dict(native_sampling_scale=True), dict(native_sampling_scale=16), dict(region=[0, 0, 10000, 10000])]:
-            with self.subTest(changes=changes), self.assertRaises(PdfStrokeSamplingError):
+        for changes in [dict(source_pdf_sha256='unknown'), dict(page=True), dict(native_sequence=True), dict(page=0), dict(native_sequence=-1), dict(scale=True), dict(scale=float('nan')), dict(scale=65), dict(scale=10**1000), dict(scale=-(10**1000)), dict(region=[0,0,10**1000,100]), dict(region=[-(10**1000),0,100,100]), dict(region=[0, 0, 0, 100]), dict(region=[0, 0, 100]), dict(region=[0, False, 100, 100]), dict(region=[0, 0, 100, float('inf')]), dict(region=[0.1, 0, 100, 100]), dict(native_sampling_scale=True), dict(native_sampling_scale=16), dict(region=[0, 0, 10000, 10000])]:
+            with self.subTest(changes=changes), patch.object(Path, 'is_file', side_effect=AssertionError('invalid input accessed the filesystem')), self.assertRaises(PdfStrokeSamplingError):
                 sample_pdf_stroke('/file-must-not-be-read.pdf', **{**base, **changes})
 
     def test_storage_failure_is_a_controlled_sampling_error(self):

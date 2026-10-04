@@ -33,11 +33,11 @@ def sample_pdf_stroke(source_pdf, *, source_pdf_sha256, page, native_sequence, r
         raise PdfStrokeSamplingError('Source PDF SHA256 must be declared')
     if type(page) is not int or page < 1 or type(native_sequence) is not int or (native_sequence < 0):
         raise PdfStrokeSamplingError('Page and native sequence must be nonnegative integers; page starts at 1')
-    if type(scale) not in (int, float) or not math.isfinite(scale) or (not 0 < scale <= 64):
+    if type(scale) not in (int, float) or not 0 < scale <= 64 or not math.isfinite(scale):
         raise PdfStrokeSamplingError('Uniform source scale must be finite, positive and at most 64')
     if type(native_sampling_scale) is not int or native_sampling_scale not in (4, 8):
         raise PdfStrokeSamplingError('Native sampling scale must be integer 4 or 8')
-    if type(region) not in (list, tuple) or len(region) != 4 or any((type(v) not in (int, float) or not math.isfinite(v) or abs(v) > 2 ** 24 for v in region)) or (region[2] <= region[0]) or (region[3] <= region[1]):
+    if type(region) not in (list, tuple) or len(region) != 4 or any((type(v) not in (int, float) or abs(v) > 2 ** 24 or not math.isfinite(v) for v in region)) or (region[2] <= region[0]) or (region[3] <= region[1]):
         raise PdfStrokeSamplingError('ROI must have four finite ordered PDF coordinates')
     if any((not float(v * scale).is_integer() for v in region)):
         raise PdfStrokeSamplingError('ROI must align to the declared source pixel grid')
