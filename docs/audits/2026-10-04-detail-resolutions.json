@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T05:32:01.874412+00:00",
+  "updated_at": "2026-10-04T06:08:10.850510+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 182,
-    "open": 113,
+    "closed_model_visual_review": 184,
+    "open": 111,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -4482,6 +4482,84 @@
           "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-14-f03",
+      "issue_id": "ccf-2020-14-f03-D01",
+      "severity": "critical",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual final PPT preserves x^q, x^{k_0}, x^{k_1}, x^{k_2}, f_q and f_k. Quote/hash/dollar/plus/comma substitutions are gone. All93source glyphs retained as original paths; actual final352path geometry and paint independently replayed from pristine author XML. Source/baseline/new whole1x2x and matched4x math/encoder crops inspected. This is visual source fidelity, not live editable mathematical text.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/gcc-stroke-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "213ff3a4521d4c4a0d1b55434f5de784c937bf1d76c68c27729a87993728cc12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+          "sha256": "69c5074b4bf2af3fd9aaba3761815d9c1edca4557f8ace2b72aacda2db0a0030"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/native-verification-002/RESULT.json",
+          "sha256": "fec610d03eaeb4cf8da5253581920c190c889ef8ecac6f5c14d8dbf670859fd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "db4d75d8d491525d0442747ba959547ac2ec58196a43b06a9b570e24ba17d993"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/explicit-stroke-sampling.json",
+          "sha256": "69ddec9d5809278ce010c9731d9200e9b52debac29de4f4f0017048432ae70d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/source-crosswalk.json",
+          "sha256": "bce9bc7c397cc1a6c80bc0fafea1f239af5598f84f9755c2b942f1b9bf1a210a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/352-PATH-INVARIANTS.json",
+          "sha256": "ac2e1393ac92a0c4245c780225a97e4b85f27b869cac2c8865a2e86341e18ed8"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-14-f03",
+      "issue_id": "ccf-2020-14-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Final label widths, serif outlines, bold emphasis and relative size match source at inspected scales. Source typography geometry and placement used unchanged; actual source/baseline/final whole and matched4x reviewed, including encoder labels and query/key banks.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/gcc-stroke-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "213ff3a4521d4c4a0d1b55434f5de784c937bf1d76c68c27729a87993728cc12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+          "sha256": "69c5074b4bf2af3fd9aaba3761815d9c1edca4557f8ace2b72aacda2db0a0030"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/native-verification-002/RESULT.json",
+          "sha256": "fec610d03eaeb4cf8da5253581920c190c889ef8ecac6f5c14d8dbf670859fd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "db4d75d8d491525d0442747ba959547ac2ec58196a43b06a9b570e24ba17d993"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/explicit-stroke-sampling.json",
+          "sha256": "69ddec9d5809278ce010c9731d9200e9b52debac29de4f4f0017048432ae70d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/source-crosswalk.json",
+          "sha256": "bce9bc7c397cc1a6c80bc0fafea1f239af5598f84f9755c2b942f1b9bf1a210a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/352-PATH-INVARIANTS.json",
+          "sha256": "ac2e1393ac92a0c4245c780225a97e4b85f27b869cac2c8865a2e86341e18ed8"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -4508,8 +4586,6 @@
     "ccf-2020-12-f03-D01",
     "ccf-2020-14-f01-D01",
     "ccf-2020-14-f02-D01",
-    "ccf-2020-14-f03-D01",
-    "ccf-2020-14-f03-D02",
     "ccf-2020-15-f05-D03",
     "ccf-2020-17-f01-D01",
     "ccf-2020-17-f02-D01",
@@ -6885,6 +6961,86 @@
       ],
       "output_review": "source-regeneration/octotools-maintained-source-001/output-review.json",
       "latest_verified_attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001"
+    },
+    {
+      "figure_id": "ccf-2020-14-f03",
+      "issue_id": "ccf-2020-14-f03-SOURCE-OUTLINE-TEXT-001",
+      "status": "open",
+      "severity": "major",
+      "description": "Original glyphs are paths and final PPT contains zero live text. Text recognition and editable math have not been supplied. Keep separate from the resolved visual mathematical identity; source-content and semantic reports remain NOT_PROVIDED.",
+      "latest_verified_attempt": "source-regeneration/gcc-stroke-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "213ff3a4521d4c4a0d1b55434f5de784c937bf1d76c68c27729a87993728cc12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+          "sha256": "69c5074b4bf2af3fd9aaba3761815d9c1edca4557f8ace2b72aacda2db0a0030"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/native-verification-002/RESULT.json",
+          "sha256": "fec610d03eaeb4cf8da5253581920c190c889ef8ecac6f5c14d8dbf670859fd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "db4d75d8d491525d0442747ba959547ac2ec58196a43b06a9b570e24ba17d993"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/explicit-stroke-sampling.json",
+          "sha256": "69ddec9d5809278ce010c9731d9200e9b52debac29de4f4f0017048432ae70d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/source-crosswalk.json",
+          "sha256": "bce9bc7c397cc1a6c80bc0fafea1f239af5598f84f9755c2b942f1b9bf1a210a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/352-PATH-INVARIANTS.json",
+          "sha256": "ac2e1393ac92a0c4245c780225a97e4b85f27b869cac2c8865a2e86341e18ed8"
+        }
+      ],
+      "output_review": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+      "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2020-14-f03",
+      "issue_id": "ccf-2020-14-f03-SAMPLED-STROKES-001",
+      "status": "open",
+      "severity": "major",
+      "description": "Three true source strokes are transparent raster occurrences with original clips; they are not editable native paths. Each asset uses a fullROI selection frame. Explicit sampling recovers the complete figure without dropping actual clipping or asserting unproved curve clipping. Keep raster editability limitation open; sampling pitch is not a color/alpha/filtering error bound.",
+      "latest_verified_attempt": "source-regeneration/gcc-stroke-maintained-source-002/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/VISUAL-RESULT.json",
+          "sha256": "213ff3a4521d4c4a0d1b55434f5de784c937bf1d76c68c27729a87993728cc12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+          "sha256": "69c5074b4bf2af3fd9aaba3761815d9c1edca4557f8ace2b72aacda2db0a0030"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/native-verification-002/RESULT.json",
+          "sha256": "fec610d03eaeb4cf8da5253581920c190c889ef8ecac6f5c14d8dbf670859fd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/comparison-001/bindings.json",
+          "sha256": "db4d75d8d491525d0442747ba959547ac2ec58196a43b06a9b570e24ba17d993"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/explicit-stroke-sampling.json",
+          "sha256": "69ddec9d5809278ce010c9731d9200e9b52debac29de4f4f0017048432ae70d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/source-crosswalk.json",
+          "sha256": "bce9bc7c397cc1a6c80bc0fafea1f239af5598f84f9755c2b942f1b9bf1a210a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/gcc-stroke-maintained-source-002/352-PATH-INVARIANTS.json",
+          "sha256": "ac2e1393ac92a0c4245c780225a97e4b85f27b869cac2c8865a2e86341e18ed8"
+        }
+      ],
+      "output_review": "source-regeneration/gcc-stroke-maintained-source-002/output-review.json",
+      "user_acceptance": "pending"
     }
   ]
 }

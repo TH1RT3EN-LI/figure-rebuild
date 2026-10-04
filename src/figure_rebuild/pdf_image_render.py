@@ -1,6 +1,7 @@
-"""Rasterize one actual PDF image paint while preserving its native context.
+"""Rasterize one selected native PDF image or stroke in its original context.
 
-Independent text, path, shading and other image paints are never forwarded.
+Independent paints are never forwarded. Image extraction and explicit stroke
+sampling use separate public contracts and receipts.
 This module imports the optional MuPDF runtime only when explicitly called.
 """
 import hashlib
@@ -10,12 +11,14 @@ from collections import Counter
 from .pdf_image_native import PdfImageNativeError
 
 
-def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
+def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                             source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
-                            native_sampling_scale=8):
+                            native_sampling_scale=8, _paint_kind='fill-image'):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
-    ``source_bounds`` is the tight visible x0/y0/x1/y1 in source pixels.
+    ``source_bounds`` is the declared storage x0/y0/x1/y1 in source pixels.
+    Image callers use their verified visible bounds; explicit stroke sampling
+    uses the complete ROI rather than claiming a tight stroke-support proof.
     Its outward integer rounding introduces less than one pixel of transparent
     padding per edge. ``native_sampling_scale`` is explicitly 4 or 8 (default)
     samples per source pixel, a grid spacing rather than a color/filtering error
@@ -36,6 +39,8 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
     per occurrence; this low-level function cannot undo prior use of ``sheet``.
     Image/mask receipt decoding is deferred until the PNG has been encoded.
     """
+    if _paint_kind not in ('fill-image', 'stroke-path'):
+        raise PdfImageNativeError('Unsupported selected paint kind')
     if not isinstance(allow_native_rgb_group_sampling, bool):
         raise ValueError('allow_native_rgb_group_sampling must be a boolean')
     if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
@@ -56,15 +61,19 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
              'll_fz_clip_path', 'll_fz_clip_stroke_path', 'll_fz_clip_text',
              'll_fz_clip_stroke_text', 'll_fz_clip_image_mask', 'll_fz_pop_clip',
              'll_fz_begin_group', 'll_fz_end_group', 'll_fz_set_default_colorspaces')
+    if _paint_kind == 'stroke-path':
+        names += ('ll_fz_stroke_path', 'll_fz_colorspace_name')
     if allow_native_rgb_group_sampling:
         names += ('ll_fz_colorspace_is_rgb', 'll_fz_colorspace_n', 'll_fz_colorspace_name',
                   'll_fz_colorspace_digest', 'python_mutable_buffer_data')
     if (m is None or not hasattr(fitz, 'JM_new_bbox_device_Device') or
             not hasattr(fitz, 'jm_bbox_fill_image') or any(not hasattr(m, name) for name in names)):
         raise PdfImageNativeError('Installed PyMuPDF lacks required native image forwarding APIs')
+    if _paint_kind == 'stroke-path' and not hasattr(fitz, 'jm_bbox_stroke_path'):
+        raise PdfImageNativeError('Installed PyMuPDF lacks required native stroke forwarding APIs')
     if (isinstance(paint_seqno, bool) or not isinstance(paint_seqno, int) or
-            not 0 <= paint_seqno < len(bboxlog) or bboxlog[paint_seqno][0] != 'fill-image'):
-        raise PdfImageNativeError('Selected sequence must be an actual fill-image paint')
+            not 0 <= paint_seqno < len(bboxlog) or bboxlog[paint_seqno][0] != _paint_kind):
+        raise PdfImageNativeError('Selected sequence must equal the requested actual paint kind')
 
     def finite(values, length):
         return (isinstance(values, (tuple, list)) and len(values) == length and
@@ -108,7 +117,7 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                 'native_profile_md5': digest.hex(),
                 'actual_device_rgb_identity': int(cs.this) == int(m.fz_device_rgb().m_internal.this)}
 
-    class ForwardImage(fitz.JM_new_bbox_device_Device):
+    class ForwardPaint(fitz.JM_new_bbox_device_Device):
         def __init__(self, target):
             super().__init__([], False)
             self.target = target
@@ -123,6 +132,8 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                                          == int(m.fz_device_rgb().m_internal.this))
             self.selected = None
             self.selected_image = None
+            if _paint_kind == 'stroke-path':
+                self.use_virtual_stroke_path()
             for name in ('clip_path', 'clip_stroke_path', 'clip_text', 'clip_stroke_text',
                          'clip_image_mask', 'pop_clip', 'begin_group', 'end_group',
                          'set_default_colorspaces', 'begin_mask', 'end_mask',
@@ -257,10 +268,36 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         def end_tile(self, *args):
             self.tile_depth -= 1
 
+        def stroke_path(self, ctx, path, stroke, ctm, cs, color, alpha, params):
+            seqno = len(self.result)
+            fitz.jm_bbox_stroke_path(self, ctx, path, stroke, ctm, cs, color, alpha, params)
+            if seqno != paint_seqno or _paint_kind != 'stroke-path':
+                return
+            try:
+                if any(not g['supported'] for g in self.groups) or not self.default_rgb_identity:
+                    raise PdfImageNativeError('Unsupported stroke group/default RGB context')
+                if self.mask_depth or self.tile_depth or any(c['kind'] in ('external_mask','clip_image_mask') for c in self.clips):
+                    raise PdfImageNativeError('Stroke masks/patterns are not supported')
+                if alpha != 1 or params.op:
+                    raise PdfImageNativeError('Stroke alpha/overprint compositing is not supported')
+                matrix = [float(getattr(ctm,k)) for k in 'abcdef']
+                style = {k:float(getattr(stroke,k)) for k in ('linewidth','miterlimit','start_cap','dash_cap','end_cap','linejoin','dash_len','dash_phase')}
+                if not all(math.isfinite(v) for v in [*matrix,*style.values()]) or style['linewidth'] <= 0:
+                    raise PdfImageNativeError('Stroke native geometry/style is not finite and positive')
+                self.selected = {'transform':matrix,'groups':list(self.groups),
+                    'clip_chain':[dict(c) for c in self.clips], 'native_stroke':style,
+                    'native_colorspace':m.ll_fz_colorspace_name(cs) if cs else None,
+                    'color_params':{k:getattr(params,k) for k in ('ri','bp','op','opm')},
+                    'default_rgb_is_device_rgb_at_paint':self.default_rgb_identity,
+                    'default_colorspace_events_before_paint':self.default_count}
+                self.forward('stroke_path',path,stroke,ctm,cs,color,alpha,params)
+            except Exception as error:
+                self.error(f'Paint {seqno}: {type(error).__name__}: {error}')
+
         def fill_image(self, ctx, image, ctm, alpha, color_params):
             seqno = len(self.result)
             fitz.jm_bbox_fill_image(self, ctx, image, ctm, alpha, color_params)
-            if seqno != paint_seqno:
+            if seqno != paint_seqno or _paint_kind != 'fill-image':
                 return
             try:
                 self.capture_and_forward(image, ctm, alpha, color_params, seqno)
@@ -328,7 +365,7 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         region_path = m.fz_new_path()
         m.fz_rectto(region_path, *user_clip_pdf)
         m.fz_clip_path(target, region_path, 0, m.FzMatrix(), m.FzRect(m.fz_infinite_rect))
-        device = ForwardImage(target)
+        device = ForwardPaint(target)
         m.fz_run_page(sheet.this, device, m.FzMatrix(), m.FzCookie())
         m.fz_close_device(device)
         m.fz_pop_clip(target)
@@ -345,31 +382,32 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         raise PdfImageNativeError('Selected native image was not forwarded')
     encoded = fitz.Pixmap('raw', pix).tobytes('png')
     selected = device.selected
-    try:
-        image = device.selected_image.m_internal
-        native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
-        if (native.width, native.height) != (selected['width'], selected['height']):
-            raise PdfImageNativeError('Native receipt decoder unexpectedly changed dimensions')
-        attached = None
-        if image.mask:
-            mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
-            if (mask.width, mask.height, mask.n) != (image.w, image.h, 1):
-                raise PdfImageNativeError('Native receipt mask dimensions or channels disagree')
-            attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
-                        'actual_handle_and_matrix_and_sequence_bound': True}
-        selected.update({'native_digest': native.digest.hex(),
-                         'native_colorspace': native.colorspace.name if native.colorspace else None,
-                         'attached_mask': attached})
-    except Exception as error:
-        raise PdfImageNativeError('Native post-render receipt capture failed: '+str(error)) from error
-    finally:
-        device.selected_image = None
+    if _paint_kind == 'fill-image':
+        try:
+            image = device.selected_image.m_internal
+            native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
+            if (native.width, native.height) != (selected['width'], selected['height']):
+                raise PdfImageNativeError('Native receipt decoder unexpectedly changed dimensions')
+            attached = None
+            if image.mask:
+                mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
+                if (mask.width, mask.height, mask.n) != (image.w, image.h, 1):
+                    raise PdfImageNativeError('Native receipt mask dimensions or channels disagree')
+                attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
+                            'actual_handle_and_matrix_and_sequence_bound': True}
+            selected.update({'native_digest': native.digest.hex(),
+                             'native_colorspace': native.colorspace.name if native.colorspace else None,
+                             'attached_mask': attached})
+        except Exception as error:
+            raise PdfImageNativeError('Native post-render receipt capture failed: '+str(error)) from error
+        finally:
+            device.selected_image = None
     if allow_native_rgb_group_sampling:
         for group in selected['groups']:
             start, end = group['begin_paint_seqno'], group['end_paint_seqno_exclusive']
             counts = Counter(kind for kind, _ in expected[start:end])
             independent = counts.copy()
-            independent['fill-image'] -= 1
+            independent[_paint_kind] -= 1
             group.update({'source_paint_count': end-start, 'source_paint_counts': dict(counts),
                           'independent_paint_count': end-start-1,
                           'independent_paint_counts': {k: v for k, v in independent.items() if v},
@@ -403,6 +441,27 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
                         'exact_group_decomposition_claimed': False,
                         'group_sampling_scope': 'original native callbacks; neutral page root plus at most one RGB child',
                         'mupdf_version': fitz.VersionFitz})
+    if _paint_kind == 'stroke-path':
+        for key in ('image_paints_forwarded','independent_text_path_shading_other_image_paints_forwarded',
+                    'native_image_handle_forwarded_without_decode_reencode','native_color_mask_filtering_and_interpolation_retained'):
+            receipt.pop(key)
+        receipt.update(method='native_stroke_path_and_original_context_forwarding',
+            stroke_paints_forwarded=1, independent_other_paints_forwarded=0,
+            original_native_stroke_handle_forwarded=True, source_geometry_rebuilt=False,
+            source_dash_lowering_performed=False, output_representation='sampled_rgba_not_editable_path')
+        receipt['declared_storage_bbox_source_px'] = receipt.pop('tight_original_visible_bbox_source_px')
+        return {'asset_bytes':encoded,'frame':frame,'transform':selected['transform'],'receipt':receipt}
     return {'asset_bytes': encoded, 'frame': frame, 'width': selected['width'],
             'height': selected['height'], 'transform': selected['transform'],
             'native_digest': selected['native_digest'], 'receipt': receipt}
+
+
+def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
+                            source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
+                            native_sampling_scale=8):
+    """Sample one actual image; preserve the existing image-only contract."""
+    return _render_native_pdf_paint(sheet, bboxlog, paint_seqno,
+        source_transform=source_transform, source_bounds=source_bounds,
+        user_clip_pdf=user_clip_pdf,
+        allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
+        native_sampling_scale=native_sampling_scale)
