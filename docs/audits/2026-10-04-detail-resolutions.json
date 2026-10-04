@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T02:19:30.819310+00:00",
+  "updated_at": "2026-10-04T02:34:20.571218+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 177,
-    "open": 118,
+    "closed_model_visual_review": 178,
+    "open": 117,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -1314,6 +1314,45 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-03-f04",
+      "issue_id": "ccf-2021-03-f04-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Actual source/old/final1x/2x/4x restores masked MSA whitespace/baseline, A/B/C placement and operation-label positions. Independent777 actual paths, including filled dash implicit closures, and2331 exact original clip/ROI containment checks pass; zero-overhang fresh source replay yields4725=777+3948+0. Original772 source objects and relative order remain. Independent final PPT1x/2x/4x rerenders equal delivered previews. First normal CLI build succeeds, ordinary/strict verify0; outlines remain graphical paths, not live text or automatic semantic acceptance.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/roi-five-clips-source-001/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "probes/root-roi-five-clips-verification-002.json",
+          "sha256": "c2e956dd6c3567cec891530f822b1023ed250c580b016cb28f6a7242450e8ebf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/roi-five-clips-source-001/HANDOFF.json",
+          "sha256": "b37e05e4dd1251cac4c1e2098bc62d376c62715a0f1a4cf18b2c335cf3cbf9d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/roi-five-clips-source-001/output-review.json",
+          "sha256": "0e05cbc9cb852b2a3d96bd5d1e315144c9f7f8b6c966a8e4ee993af46380193a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/roi-five-clips-source-001/VISUAL-RESULT.json",
+          "sha256": "37acd1df90c19774683d939f61f5fd0dd53b4f7435321dbd3458fc8f8730dc32"
+        },
+        {
+          "audit_relative_path": "probes/roi-five-clips-independent-001/HANDOFF.json",
+          "sha256": "2e8fb6c940c1ce7e66b352166a60497cc9121f9776c05bbfe6585d65573b7753"
+        },
+        {
+          "audit_relative_path": "probes/roi-five-clips-independent-001/REPORT.md",
+          "sha256": "0164729fbfdc40529cc148608c7c54970ddd9fbd3590f31bfce5cf218ccfbb74"
+        },
+        {
+          "audit_relative_path": "probes/roi-five-clips-root-visual-spots-001.json",
+          "sha256": "c07540c3eefb4db1e64bfbf11601690f09730c8414baa48516f4f7a933dbabe9"
         }
       ]
     },
@@ -4356,7 +4395,6 @@
     "ccf-2020-18-f01-XC01",
     "ccf-2021-01-f01-D01",
     "ccf-2021-03-f03-D01",
-    "ccf-2021-03-f04-D01",
     "ccf-2021-09-f02-D01",
     "ccf-2021-10-f01-D01",
     "ccf-2021-10-f01-D02",
