@@ -48,6 +48,23 @@ class BuildInputChecks(unittest.TestCase):
         with patch.object(sys, 'argv', ['figure-rebuild', 'build', '--manifest', str(self.manifest), '--preview-backend', 'auto']), patch('sys.stderr', io.StringIO()):
             with self.assertRaises(SystemExit) as caught: cli.main()
         self.assertEqual(caught.exception.code, 2)
+
+    def test_pdf_derivation_requires_explicit_native_backend_before_runtime(self):
+        self.args.pdf_alpha_derivation = 'binary-alpha-white-matte-v1'
+        with patch.object(cli, 'runtime') as runtime:
+            with self.assertRaisesRegex(ValueError, 'LibreOffice'):
+                cli.build(self.args)
+            runtime.assert_not_called()
+        self.assertFalse((self.job / 'build').exists())
+
+    def test_pdf_derivation_is_frozen_in_native_build_config(self):
+        self.args.pdf_alpha_derivation = 'binary-alpha-white-matte-v1'
+        self.args.preview_backend = 'libreoffice'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job / 'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['pdf_alpha_derivation'], self.args.pdf_alpha_derivation)
+        self.assertEqual(config['preview_backend'], 'libreoffice')
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())

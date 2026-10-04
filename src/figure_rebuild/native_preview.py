@@ -40,6 +40,13 @@ def validate_backend(value):
     return value
 
 
+def validate_pdf_alpha_policy(value, backend):
+    from .pdf_binary_alpha import POLICY
+    if value is not None and (type(value) is not str or value != POLICY or backend != 'libreoffice'):
+        raise ValueError('PDF alpha derivation requires the explicit binary-alpha policy and LibreOffice backend')
+    return value
+
+
 def validate_profile(value, base, *, check_executables=True):
     """Normalize the optional external command profile; do not invoke it."""
     allowed = {'command', 'environment', 'fc_match', 'timeout_seconds'}
@@ -246,6 +253,7 @@ def render(config):
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     if validate_backend(config.get('preview_backend')) != 'libreoffice':
         raise ValueError('Native renderer requires explicit libreoffice preview backend')
+    alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), 'libreoffice')
     profile, fitz = preflight(config['runtime'])
     run = Path(config['run']).resolve()
     source = run / 'validated-output' / 'reconstruction.pptx'
@@ -302,6 +310,24 @@ def render(config):
                 raise ValueError('LibreOffice PDF contains an unregistered/substituted font: ' + ', '.join(actual_fonts))
             image_audit = _image_evidence(source, pdf, page)
             page_geometry = list(page.rect)
+        derivation = {}
+        if alpha_policy:
+            from .pdf_binary_alpha import derive_binary_alpha_pdf
+            derived_directory = directory / 'derived-pdf'
+            derived_directory.mkdir()
+            derived_pdf = derived_directory / 'binary-alpha-white-matte.pdf'
+            receipt_path = derived_directory / 'receipt.json'
+            receipt = derive_binary_alpha_pdf(pdf_path, derived_pdf)
+            _save(receipt_path, receipt)
+            evidence['native_pdf_derived'] = binding(derived_pdf)
+            evidence['native_pdf_alpha_receipt'] = binding(receipt_path)
+            derivation['pdf_alpha_derivation'] = {
+                'policy': alpha_policy, 'source_role': 'native_pdf',
+                'derived_role': 'native_pdf_derived', 'receipt_role': 'native_pdf_alpha_receipt',
+                'transformed_masks': len(receipt['transformed_masks']),
+                'retained_masks': len(receipt['retained_masks']),
+                'raw_export_replaced': False, 'raw_previews_derived_from_pdf': False,
+                'rgb_alpha_filtering_error_bound_proved': False}
         from PIL import Image
         sizes, png_exports = {}, {}
         for scale in (1, 2, 4):
@@ -341,7 +367,7 @@ def render(config):
             if binding(item['path']) != item:
                 raise ValueError('Native preview evidence changed during rendering')
         _save(commands_path, commands)
-        return {'renderer': 'LibreOffice Impress', 'renderer_backend': 'headless_direct_png',
+        return {**derivation, 'renderer': 'LibreOffice Impress', 'renderer_backend': 'headless_direct_png',
                 'libreoffice_version': version, 'libreoffice_command': profile['command'],
                 'pdf_export_options': export_options,
                 'command_executable': command_identity,

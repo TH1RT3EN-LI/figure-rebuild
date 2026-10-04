@@ -77,6 +77,18 @@ class OutputReviewChecks(unittest.TestCase):
                 'region': 'Top-right feedback edge',
                 'artifacts': ['source', 'preview_2x']}
 
+    def test_unrequested_pdf_derivation_cannot_be_added_to_artifact_or_legacy_delivery(self):
+        for provenance in (False, True):
+            if provenance:
+                audit = self.add_preview_provenance()
+                audit['pdf_alpha_derivation'] = {'policy': 'binary-alpha-white-matte-v1'}
+                self.write_json(self.run / 'render-audit.json', audit)
+            delivery = json.loads((self.run / 'delivery.json').read_text())
+            delivery['pdf_alpha_derivation'] = {'policy': 'binary-alpha-white-matte-v1'}
+            self.write_json(self.run / 'delivery.json', delivery)
+            with self.subTest(provenance=provenance), self.assertRaisesRegex(ValueError, 'unrequested|not requested'):
+                review.prepare_output_review(self.run)
+
     def add_preview_provenance(self):
         from PIL import Image
         config = json.loads((self.run / 'build-config.json').read_text())

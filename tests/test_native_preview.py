@@ -91,6 +91,18 @@ class NativeRenderTests(unittest.TestCase):
                         for _ in range(2 if self.mode == 'two_pages' else 1):
                             page = document.new_page(width=150, height=75.01 if self.mode == 'rounding' else 75)
                             page.draw_line((20, 30), (80, 30), width=6)
+                            if self.mode == 'binary':
+                                rgba = Image.new('RGBA', (4, 2), (0, 0, 0, 0))
+                                rgba.putpixel((1, 0), (30, 90, 150, 255))
+                                stream = io.BytesIO(); rgba.save(stream, format='PNG')
+                                parent = page.insert_image((10, 10, 100, 60), stream=stream.getvalue())
+                                mask = int(document.xref_get_key(parent, 'SMask')[1].split()[0])
+                                document.update_stream(parent, rgba.convert('RGB').tobytes())
+                                document.xref_set_key(parent, 'ColorSpace', '/DeviceRGB')
+                                document.xref_set_key(parent, 'DecodeParms', 'null')
+                                document.update_stream(mask, rgba.getchannel('A').tobytes())
+                                document.xref_set_key(mask, 'BitsPerComponent', '8')
+                                document.xref_set_key(mask, 'DecodeParms', 'null')
                         document.save(self.run / 'native-preview/pdf/reconstruction.pdf')
                 if self.mode == 'mutate':
                     self.pptx.write_bytes(b'changed final PPTX')
@@ -132,6 +144,87 @@ class NativeRenderTests(unittest.TestCase):
         self.assertEqual(result['raw_preview_format'], 'impress_png_Export')
         self.assertNotIn('rasterizer', result)
         self.assertEqual(result['native_render']['pixel_dimensions']['4'], [800, 400])
+
+    def test_explicit_pdf_derivation_keeps_raw_pdf_and_png_exports_separate(self):
+        self.config['pdf_alpha_derivation'] = 'binary-alpha-white-matte-v1'
+        result = self.render()
+        derived = result['pdf_alpha_derivation']
+        self.assertFalse(derived['raw_export_replaced'])
+        self.assertFalse(derived['raw_previews_derived_from_pdf'])
+        self.assertEqual(derived['transformed_masks'], 0)
+        receipt = json.loads(Path(result['evidence']['native_pdf_alpha_receipt']['path']).read_text())
+        from figure_rebuild.pdf_binary_alpha import verify_binary_alpha_pdf
+        self.assertEqual(verify_binary_alpha_pdf(result['evidence']['native_pdf']['path'],
+                         result['evidence']['native_pdf_derived']['path'], receipt)['status'], 'PASS')
+        for scale in (1, 2, 4):
+            self.assertEqual((self.run / f'preview-{scale}x.png').read_bytes(),
+                             (self.run / f'native-preview/png-{scale}x/reconstruction.png').read_bytes())
+
+    def test_binary_derivation_output_review_replays_samples_and_cross_binds_delivery(self):
+        from figure_rebuild.output_review import prepare_output_review
+        self.mode = 'binary'
+        self.config['pdf_alpha_derivation'] = 'binary-alpha-white-matte-v1'
+        result = self.render()
+        self.assertEqual(result['pdf_alpha_derivation']['transformed_masks'], 1)
+        previews = {}
+        for scale in (1, 2, 4):
+            previews[f'preview_{scale}x'] = {**native.binding(self.run / f'preview-{scale}x.png'),
+                'width': 200 * scale, 'height': 100 * scale, 'scale': scale}
+        smooth = self.run / 'preview-smooth-1x.png'
+        Image.new('RGB', (200, 100), 'orange').save(smooth)
+        previews['preview_smooth_1x'] = {**native.binding(smooth), 'width': 200, 'height': 100, 'scale': 1,
+            'derivation': {'source_role': 'preview_4x', 'source_sha256': previews['preview_4x']['sha256'],
+                           'kernel': 'lanczos3', 'target_size': [200, 100], 'is_raw_preview': False}}
+        result.update(schema_version=1, preview_backend='libreoffice', input_pptx=native.binding(self.pptx), previews=previews)
+        audit = self.run / 'render-audit.json'; audit.write_text(json.dumps(result))
+        assets = self.run / 'assets'; assets.mkdir()
+        source = assets / 'original.png'; Image.new('RGB', (200, 100), 'white').save(source)
+        manifest = {'id': 'binary-alpha', 'revision': 1,
+                    'source': {'path': source.name, 'sha256': native.binding(source)['sha256']}}
+        for name in ('manifest-snapshot.json', 'resolved-scene.json'):
+            (self.run / name).write_text(json.dumps(manifest))
+        delivered = self.run / 'delivered.pptx'; delivered.write_bytes(self.pptx.read_bytes())
+        self.config.update(preview_provenance_version=1, manifest=str(self.run / 'manifest-snapshot.json'),
+                           asset_root=str(assets), output=str(delivered))
+        config = self.run / 'build-config.json'; config.write_text(json.dumps(self.config))
+        delivery = {'output': str(delivered), 'sha256': native.binding(delivered)['sha256'],
+                    'source_sha256': native.binding(source)['sha256'], 'preview_backend': 'libreoffice',
+                    'render_audit_sha256': native.binding(audit)['sha256'],
+                    'pdf_alpha_derivation': {**result['pdf_alpha_derivation'],
+                        'original_pdf': result['evidence']['native_pdf'], 'derived_pdf': result['evidence']['native_pdf_derived'],
+                        'receipt': result['evidence']['native_pdf_alpha_receipt']}}
+        delivery_path = self.run / 'delivery.json'; delivery_path.write_text(json.dumps(delivery))
+        record = prepare_output_review(self.run)
+        self.assertIn('native_pdf_derived', record['bindings'])
+        for failure in ('missing_delivery', 'wrong_derived_path', 'float_count', 'unrequested', 'rebound_rgb'):
+            changed = copy.deepcopy(delivery)
+            changed_audit = copy.deepcopy(result)
+            changed_config = copy.deepcopy(self.config)
+            if failure == 'missing_delivery': del changed['pdf_alpha_derivation']
+            elif failure == 'wrong_derived_path': changed['pdf_alpha_derivation']['derived_pdf'] = changed['pdf_alpha_derivation']['original_pdf']
+            elif failure == 'float_count': changed_audit['pdf_alpha_derivation']['transformed_masks'] = 1.0
+            elif failure == 'unrequested': del changed_config['pdf_alpha_derivation']
+            else:
+                # Rebinding outer hashes cannot bless changed decoded RGB.
+                derived = Path(result['evidence']['native_pdf_derived']['path'])
+                receipt_path = Path(result['evidence']['native_pdf_alpha_receipt']['path'])
+                receipt = json.loads(receipt_path.read_text())
+                with pymupdf.open(derived) as pdf:
+                    parent = receipt['transformed_masks'][0]['parent_xrefs'][0]
+                    rgb = bytearray(pdf.xref_stream(parent)); rgb[12] ^= 1
+                    pdf.update_stream(parent, bytes(rgb))
+                    pdf.save(derived.with_suffix('.changed.pdf'))
+                derived.write_bytes(derived.with_suffix('.changed.pdf').read_bytes())
+                receipt['derived_pdf'] = native.binding(derived); receipt_path.write_text(json.dumps(receipt))
+                changed_audit['evidence']['native_pdf_derived'] = native.binding(derived)
+                changed_audit['evidence']['native_pdf_alpha_receipt'] = native.binding(receipt_path)
+                changed['pdf_alpha_derivation']['derived_pdf'] = native.binding(derived)
+                changed['pdf_alpha_derivation']['receipt'] = native.binding(receipt_path)
+            audit.write_text(json.dumps(changed_audit))
+            changed['render_audit_sha256'] = native.binding(audit)['sha256']
+            delivery_path.write_text(json.dumps(changed)); config.write_text(json.dumps(changed_config))
+            with self.subTest(failure=failure), self.assertRaises(ValueError):
+                prepare_output_review(self.run)
 
     def test_missing_pdf_success_exit_is_failure(self):
         self.mode = 'no_pdf'

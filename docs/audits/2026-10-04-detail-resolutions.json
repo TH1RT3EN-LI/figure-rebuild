@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-04T08:44:45.560501+00:00",
+  "updated_at": "2026-10-04T10:18:54.844240+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -5763,52 +5763,60 @@
       "issue_id": "ccf-2020-19-f01-R02-NATIVE-IMAGE-RECTANGLES",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
-          "sha256": "7c1734033c5e7cfbad995a1e360cb97696c1e09963b57be443b9a01dd7b17ffc"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/output-review.json",
+          "sha256": "465548d568cd31b196b34a7a56fca2b6f7417998249ca07a6ee2a971c1752296"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/final-native-readback.json",
-          "sha256": "ba0282534de4cb047ede9d938ba2f61ff3a2c434840aa366e2165b1427c524b6"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/render-audit.json",
+          "sha256": "650da62307e74789c66c787c6ed32c525d65dc04b8114fac08a3fb0ec4fc0315"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/render-audit.json",
-          "sha256": "fdd9d026787f32b73dcddf9135043a3218f0d2c33ae118a9319c457d52637170"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/delivery.json",
+          "sha256": "039a10716e03950f577561a9bcbaa3b11f581abb18f3e5761d1db4591c4e0a0c"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
           "sha256": "7fc9aaae5608e0036d5d738fe49dab68df19751fed69134b57a0c086973bc318"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
-          "sha256": "a3ec98aa277a94bb59b65e3050880805e90455b163176f2bb2418db93f4c2489"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "6f22c2e6fd079aacf9f6683ad20a53873d3d9038cbc48584e53de89799a8c0b8"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "bde958f818b8ea54a1a862dbcb58e23d3e68f20bc0b8e21fc0b359fb66fc3c9a"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/evidence/COMPARISONS.json",
+          "sha256": "07b1ae09e71b3a450f1941aba35e9d008bc6c3cb9c2184623f3f055b700f7267"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/evidence/final-native-readback.json",
+          "sha256": "2564988f76098ece5529957a25add1de28e2189429d6f68435745cf98e7a9319"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/IMAGE-RECEIPTS.json",
-          "sha256": "89c346a3352151d5b200ceed18bba10f3f74c64b9505f783aeec546a1584a3b3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
         },
         {
-          "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/native-exact-ppt/render-audit.json",
-          "sha256": "6bda75378042cd6a9a6649b0ab30784e04207d81df3e47f3b22b671333075713"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
-          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -5848,10 +5856,90 @@
               "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
             }
           ]
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "description": "Both top overbraces acquire faint rectangular tile frames and vertical subdivisions in actual LibreOffice lossless PDF export at 1x/2x/4x. It persists with FlateDecode and original image dimensions. All 38 brace picture assets are byte-identical to manifest, have no spPr a:ln, no p:style/lnRef, and PDF has no corresponding stroked rectangle. Cause remains unresolved in the native import/export/render pipeline; not asserted as PowerPoint/WPS behavior.",
+          "region": "native image extents in actual lossless LibreOffice evidence",
+          "severity": "minor",
+          "status": "open",
+          "figure_id": "ccf-2020-19-f01",
+          "issue_id": "ccf-2020-19-f01-R02-NATIVE-IMAGE-RECTANGLES",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/output-review.json",
+              "sha256": "7c1734033c5e7cfbad995a1e360cb97696c1e09963b57be443b9a01dd7b17ffc"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/final-native-readback.json",
+              "sha256": "ba0282534de4cb047ede9d938ba2f61ff3a2c434840aa366e2165b1427c524b6"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/render-audit.json",
+              "sha256": "fdd9d026787f32b73dcddf9135043a3218f0d2c33ae118a9319c457d52637170"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/manifest-snapshot.json",
+              "sha256": "7fc9aaae5608e0036d5d738fe49dab68df19751fed69134b57a0c086973bc318"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001/asset-snapshot.json",
+              "sha256": "a3ec98aa277a94bb59b65e3050880805e90455b163176f2bb2418db93f4c2489"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/IMAGE-RECEIPTS.json",
+              "sha256": "89c346a3352151d5b200ceed18bba10f3f74c64b9505f783aeec546a1584a3b3"
+            },
+            {
+              "audit_relative_path": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/evidence/native-exact-ppt/render-audit.json",
+              "sha256": "6bda75378042cd6a9a6649b0ab30784e04207d81df3e47f3b22b671333075713"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+              "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+            }
+          ],
+          "user_acceptance": "pending",
+          "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+          "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+          "followup_evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-19-f01/NATIVE-DIRECT-PNG-ADDENDUM.json",
+              "sha256": "cac3a5276aeafaec82005e5ac052493c6f7ebf33036ccedb1d5637d4f7ea7643"
+            }
+          ],
+          "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001",
+          "partial_resolution": "The selected native4 occurrences keep both brace curves continuous, and networks/portraits no longer have the earlier hard point sampling. Actual native direct PNG4x also has no observed light vertical seams inside either dark brace. Separate PDF inspection retains faint tile extent rectangles; that issue stays open."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2020-19-f01/job/build/run-001",
-      "partial_resolution": "The selected native4 occurrences keep both brace curves continuous, and networks/portraits no longer have the earlier hard point sampling. Actual native direct PNG4x also has no observed light vertical seams inside either dark brace. Separate PDF inspection retains faint tile extent rectangles; that issue stays open."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-19-f01/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. Most external image-extent rectangles are reduced, but thin light vertical subdivision joints in the dark braces remain at 1x/2x. One nonbinary mask is retained; no claim that every brace/image edge is restored. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "partial",
+        "observation": "Most external image-extent rectangles are reduced, but thin light vertical subdivision joints in the dark braces remain at 1x/2x. One nonbinary mask is retained; no claim that every brace/image edge is restored.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "description": "Artifact previews at 1x/2x/4x have hard stair-stepped circle/hourglass and document edges. Source and lossless LibreOffice have smooth sampled contours.",
@@ -6247,48 +6335,60 @@
       "issue_id": "ccf-2021-18-f18-R02-NATIVE-IMAGE-RECTANGLES",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
-          "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/output-review.json",
+          "sha256": "85a18f3881b2fd5596debafdc44c9ba045d9937950a9792d19ef058194919064"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
-          "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+          "sha256": "b1cace436fd16d77e362ff033bbf4acf435aed79b91af212632a9d56bae00583"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
-          "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/delivery.json",
+          "sha256": "e643402da829f6dea2316ceae66120e4ee7228bad985c6c3d2157a3ca33ad7c3"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
           "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
-          "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+          "sha256": "85f28f818c9c1d2b34e13e85a1629dda75e90a5bf90068933648c6d6f2843952"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "adfebe4e101f09f44fc0a7ae004125354cf708dcc0c170cc8db5f4bd1e8aa583"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/evidence/COMPARISONS.json",
+          "sha256": "b0aaa2c890086b71bdf39609b1598672c46bca3abc4a8a5cac3f25e0a08fc206"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/evidence/final-native-readback.json",
+          "sha256": "49a97fbe199e2e947599c087b161cf2d7a971184efc1de9bc3549677d8a7bc11"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
-          "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
-          "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -6328,10 +6428,86 @@
               "sha256": "880a765a5e6f855b978e8199da19d4a320f6285ac8161fd5d143e47f2de39cc1"
             }
           ]
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "description": "Lossless LibreOffice output adds thin gray rectangular outlines around both pairs of digits and both DNN image extents, absent from source and Artifact. FlateDecode and original image dimensions rule out JPEG/downsampling alone. Native import/export/render root cause is not yet determined; no PowerPoint/WPS behavior claim.",
+          "region": "native image extents in actual lossless LibreOffice evidence",
+          "severity": "minor",
+          "status": "open",
+          "figure_id": "ccf-2021-18-f18",
+          "issue_id": "ccf-2021-18-f18-R02-NATIVE-IMAGE-RECTANGLES",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/output-review.json",
+              "sha256": "4254509b15da29202ba98243fb144fd49fd90619f9903ff9572f2bbf98715596"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/final-native-readback.json",
+              "sha256": "64a3779b3f31d361761add3e7a80f6eddbc4cfbd4dc47041ed9bee60dd7c032a"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/render-audit.json",
+              "sha256": "a59fd557eb2b6bee86e946f062656474aa9f4a8b49325162d2f1aab3d9af2005"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/manifest-snapshot.json",
+              "sha256": "5796642943e3374a483062d25544affdd28c0f3d1b2fe42e6ad28ca500af9ef9"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001/asset-snapshot.json",
+              "sha256": "ff44ec64fc8a3e4db768aa2a2fcc91e37a8ea06b0854541ce6b83cdb610dbf4a"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/evidence/native-exact-ppt/render-audit.json",
+              "sha256": "49dcf35e4c7cf762560bf282a205b927c31fa9f17db34089127e09ab0d48ad45"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/NATIVE-EXACT-PPT-EXPORTS.json",
+              "sha256": "3e6b3e7540502f86bb25308ca96ab957e3dac7fbb82ad1511237c7db6f99cc13"
+            }
+          ],
+          "user_acceptance": "pending",
+          "classification": "validation_pipeline_limitation__not_observed_in_direct_native_png",
+          "diagnosis_followup": "Exact same unchanged PPT has rectangles in lossless LibreOffice PDF plus MuPDF/Poppler render, but no rectangles in actual LibreOffice direct PNG export. Keep historical observation and evidence; do not repair original source media/geometry to compensate for this PDF verification-chain artifact.",
+          "followup_evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-18-f18/NATIVE-DIRECT-PNG-ADDENDUM.json",
+              "sha256": "880a765a5e6f855b978e8199da19d4a320f6285ac8161fd5d143e47f2de39cc1"
+            }
+          ],
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
+          "partial_resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001",
-      "partial_resolution": "Raw1x/2x show both pale networks continuously; digit strokes and label baselines agree with the source appearance. Source4x confirms the source digits themselves have finite pixel blocks. Exact final PPT native direct PNG agrees; separate PDF inspection still has its previously reported rectangular frames."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-18-f18/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. Digit stacks and DNN image extents have substantially fewer outer gray frames, but fine top/left/bottom segments remain visible in exact 4x crops and a left segment at 2x. All eight binary masks replay exactly; continuous filtering is not proved. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "partial",
+        "observation": "Digit stacks and DNN image extents have substantially fewer outer gray frames, but fine top/left/bottom segments remain visible in exact 4x crops and a left segment at 2x. All eight binary masks replay exactly; continuous filtering is not proved.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "major",
@@ -6646,40 +6822,60 @@
       "issue_id": "ccf-2020-16-f02-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
-          "sha256": "2395a34b6d861446cba1a710200b03fafcd2243ec0582fc70dbc646a800d0d6e"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
+          "sha256": "5b8c8524cd07e8211db3f30b07bbaaca6141f146d4daa7122a4d1b9d2a301cca"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/evidence/final-native-readback.json",
-          "sha256": "a06e1adb40ac729df73d92444cbedccfa1421b561d593876e2c475c390d9de8d"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/render-audit.json",
+          "sha256": "13bc095051a615eb7c15a034a32a5136a153a06954829a9054aa7ff4198f2962"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/render-audit.json",
-          "sha256": "381ca7e8b8d2444ceee5b6f0a3e61853e7056752576e240de28e71567c433c2f"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/delivery.json",
+          "sha256": "9a494a9e0295e42011c2022fcba1b67f8c74e8c5f8971e74633597124ff36563"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/manifest-snapshot.json",
           "sha256": "d0efa5a1716756285e6ea29a28fd51f5e294a29bfb81f68321e9aa29e3271b61"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/asset-snapshot.json",
-          "sha256": "6c1f23c3e8655a335c8a4befce207817a2463394fdbf4b06df064f6e087af6f4"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/asset-snapshot.json",
+          "sha256": "0de9cedd6786503ad8552602b28dc4bdd18664a3451d7fc0578498fb05bfa08b"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "f1de755b730a57d692da1133b9720cbb670652f954425d6cc808973f32f3d86e"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/evidence/COMPARISONS.json",
+          "sha256": "286aed6d7fe6f888bf82e608ca4f9dd944a5e7df3b8182f072a9373ed96c42e4"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/evidence/final-native-readback.json",
+          "sha256": "658a35a22add5b6b62b82d21f5c9e0d7e5a16af4702f5f09eea98a5f5554ba82"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -6703,10 +6899,70 @@
             }
           ],
           "user_acceptance": "pending"
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "description": "Several training/ensemble network thumbnails gain fine rectangular gray frame segments absent from source; persists in actual LibreOffice lossless export at 1/2/4x. Cause unproven; lossless PNG dimensions and FlateDecode verified.",
+          "region": "author image frame edges",
+          "figure_id": "ccf-2020-16-f02",
+          "issue_id": "ccf-2020-16-f02-R02-NATIVE-IMAGE-FRAME",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/output-review.json",
+              "sha256": "2395a34b6d861446cba1a710200b03fafcd2243ec0582fc70dbc646a800d0d6e"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/evidence/final-native-readback.json",
+              "sha256": "a06e1adb40ac729df73d92444cbedccfa1421b561d593876e2c475c390d9de8d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/render-audit.json",
+              "sha256": "381ca7e8b8d2444ceee5b6f0a3e61853e7056752576e240de28e71567c433c2f"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/manifest-snapshot.json",
+              "sha256": "d0efa5a1716756285e6ea29a28fd51f5e294a29bfb81f68321e9aa29e3271b61"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001/asset-snapshot.json",
+              "sha256": "6c1f23c3e8655a335c8a4befce207817a2463394fdbf4b06df064f6e087af6f4"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            }
+          ],
+          "user_acceptance": "pending",
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001",
+          "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-003/ccf-2020-16-f02/job/build/run-001",
-      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-16-f02/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. Colored red/purple/yellow DNN extents have fewer outer gray lines, while fine frames around gray network thumbnails remain in 4x crops. Fifteen nonbinary masks are retained; nine binary masks replay exactly. The grouped masked-expression/image sampling limitations remain separate. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "partial",
+        "observation": "Colored red/purple/yellow DNN extents have fewer outer gray lines, while fine frames around gray network thumbnails remain in 4x crops. Fifteen nonbinary masks are retained; nine binary masks replay exactly. The grouped masked-expression/image sampling limitations remain separate.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "minor",
@@ -6790,40 +7046,60 @@
       "issue_id": "ccf-2024-02-f01-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/output-review.json",
-          "sha256": "bea040a333ef025999388798c7c1c000815e767c616a6b954ad9edacd5b34b99"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/output-review.json",
+          "sha256": "2bf6e75bbc4628d989be8288ff2e4558cbb20c72e37c74828a56429dd686c12d"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/evidence/final-native-readback.json",
-          "sha256": "228270f91eaca24fa7c2c4f38b1778554e583da35b10e83d409bbbd8282ab10d"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/render-audit.json",
+          "sha256": "326b7a4cd47ab7ccab5903fd91c1aa660b4b79dc84fce722d571d7442342db66"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/render-audit.json",
-          "sha256": "64d7942982cfb6694e4d6c69084b119c6eee0155081c7af9c7f5e257a1156b93"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/delivery.json",
+          "sha256": "4cfdc91124025748c404adefddecda21fec273ded668b90b6ebc2ac374bc7f00"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/manifest-snapshot.json",
           "sha256": "5e10e0d70e3b714dfc2bbc0b76a48ef4e6c885e21d5e263105437f33825c1c8d"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/asset-snapshot.json",
-          "sha256": "44505c26953a39cb9fe0c8868565ce5fe6f0ed6c13b303f9562b35f10796a842"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "195c034f7426d3d313325868e0b080a464de09a9d0a4f5cc27cd550fc81cf099"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "a66bbd016d27584042cab4e1c5b0bb42fd739954213d5b07d4d836611e312173"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/evidence/COMPARISONS.json",
+          "sha256": "3bc2e44201a88ad131ed11591094ffba3822ff3fd3e07f334f54f57be20aced5"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/evidence/final-native-readback.json",
+          "sha256": "1ddbd1eb590e3a314af93867470a682fee0e6eaddfb003d1b1f2dc1f03ceb159"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -6847,10 +7123,70 @@
             }
           ],
           "user_acceptance": "pending"
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "description": "Actual LibreOffice lossless PDF shows additional fine gray horizontal lines at the top and bottom of the author image frame, absent from source/Artifact; retained at 2x. No geometry workaround applied.",
+          "region": "author image frame edges",
+          "figure_id": "ccf-2024-02-f01",
+          "issue_id": "ccf-2024-02-f01-R02-NATIVE-IMAGE-FRAME",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/output-review.json",
+              "sha256": "bea040a333ef025999388798c7c1c000815e767c616a6b954ad9edacd5b34b99"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/evidence/final-native-readback.json",
+              "sha256": "228270f91eaca24fa7c2c4f38b1778554e583da35b10e83d409bbbd8282ab10d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/render-audit.json",
+              "sha256": "64d7942982cfb6694e4d6c69084b119c6eee0155081c7af9c7f5e257a1156b93"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/manifest-snapshot.json",
+              "sha256": "5e10e0d70e3b714dfc2bbc0b76a48ef4e6c885e21d5e263105437f33825c1c8d"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001/asset-snapshot.json",
+              "sha256": "44505c26953a39cb9fe0c8868565ce5fe6f0ed6c13b303f9562b35f10796a842"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            }
+          ],
+          "user_acceptance": "pending",
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001",
+          "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2024-02-f01/job/build/run-001",
-      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2024-02-f01/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. The extra top/bottom image-frame lines are absent in the separately named derived PDF at whole 1x/2x and all four image corners at 4x. The original orange dashed frame, modules, text and caption remain visible. Poppler critical 4x crops independently show no added frame. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "no_observed_frame",
+        "observation": "The extra top/bottom image-frame lines are absent in the separately named derived PDF at whole 1x/2x and all four image corners at 4x. The original orange dashed frame, modules, text and caption remain visible. Poppler critical 4x crops independently show no added frame.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "minor",
@@ -6934,40 +7270,60 @@
       "issue_id": "ccf-2023-14-funnumbered-p5-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
-          "sha256": "ffa927df8574f022a575bb3ffa43b4c25e619eda5b2f0c3287fe81bb77f84a91"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+          "sha256": "b28c9302af5256372351bdea67664ea151fea69d225633bde17d22ad82db889d"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/evidence/final-native-readback.json",
-          "sha256": "8ef18894a4183446d7dfa69336de1b4ebd6a079a177f4ec68684a50a2e625ca7"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/render-audit.json",
+          "sha256": "8b06481d7f1026c8a1d18c629d34574a67ad568fba459cacb0dda2da4de39c67"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/render-audit.json",
-          "sha256": "f55e302617e84f1196c848987417ac31f3e0a7db8f9f45dde3cfc82ead7466c3"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/delivery.json",
+          "sha256": "b43cdf71a81b7ea8671e929a02eba7c3e98f1111fdceb4f925d0ef95c7552905"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/manifest-snapshot.json",
           "sha256": "6e57cfc6fd6bbc4a83117dbaa898c4d5adf9a350623f9496bdc990b0d11f35d9"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/asset-snapshot.json",
-          "sha256": "1c473280d8b1201159222346f1ef87877ae0a22f6995d155038e69f8db0c5089"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/asset-snapshot.json",
+          "sha256": "64d5e6ea7e736dd66af32b1278de09aeb2f9a80e2592187f985d0d399e4df8c5"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "dd58c27d245f17f4bc906cb1c9a10c7eaf6ec834f50256cec68a0c43f68b53be"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/evidence/COMPARISONS.json",
+          "sha256": "83c00947fa9de02802aecfd5740501f207aa09df7a931f93c6c29074dfd1d75c"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/evidence/final-native-readback.json",
+          "sha256": "dc8e4f17e480dd1bcee3de5e61738a9b5c7cfd44451d4b9bff0b9bfe2224bb8e"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -6991,10 +7347,70 @@
             }
           ],
           "user_acceptance": "pending"
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "description": "Actual LibreOffice lossless PDF shows a thin gray external rectangle along authorbitmap top/left/right frame absent from source/Artifact; persists at1/2x. Not classified as JPEG compression.",
+          "region": "author image frame edges",
+          "figure_id": "ccf-2023-14-funnumbered-p5",
+          "issue_id": "ccf-2023-14-funnumbered-p5-R02-NATIVE-IMAGE-FRAME",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/output-review.json",
+              "sha256": "ffa927df8574f022a575bb3ffa43b4c25e619eda5b2f0c3287fe81bb77f84a91"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/evidence/final-native-readback.json",
+              "sha256": "8ef18894a4183446d7dfa69336de1b4ebd6a079a177f4ec68684a50a2e625ca7"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/render-audit.json",
+              "sha256": "f55e302617e84f1196c848987417ac31f3e0a7db8f9f45dde3cfc82ead7466c3"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/manifest-snapshot.json",
+              "sha256": "6e57cfc6fd6bbc4a83117dbaa898c4d5adf9a350623f9496bdc990b0d11f35d9"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001/asset-snapshot.json",
+              "sha256": "1c473280d8b1201159222346f1ef87877ae0a22f6995d155038e69f8db0c5089"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            }
+          ],
+          "user_acceptance": "pending",
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001",
+          "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2023-14-funnumbered-p5/job/build/run-001",
-      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-funnumbered-p5/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. The added outer gray AST image rectangle is absent in the separately named derived PDF at whole 1x/2x and all four corners at 4x. Original blue dashed boundaries and source shadows are retained. Poppler critical 4x crops independently show no added frame. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "no_observed_frame",
+        "observation": "The added outer gray AST image rectangle is absent in the separately named derived PDF at whole 1x/2x and all four corners at 4x. Original blue dashed boundaries and source shadows are retained. Poppler critical 4x crops independently show no added frame.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "minor",
@@ -7155,40 +7571,60 @@
       "issue_id": "ccf-2020-01-f1-1-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
-          "sha256": "0456592f1f9f1a3164dd2def19b9b5fecfabc1daee5dcd3c98165092375333a1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+          "sha256": "2756bfa19aec8ccbb4caa057b39aa43f3c490e7704957e94cb7da1ca2b51226d"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/evidence/final-native-readback.json",
-          "sha256": "a980d8028dd3093f72d23766cff3dde0a0f42f6b3b85d0c795f5d276a93375d4"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/render-audit.json",
+          "sha256": "990b6e80155240c3571d68a2aca0abb8a86387d31b9a78525f703e2db16c1fa5"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/render-audit.json",
-          "sha256": "ea5435d3237a4d4d8d1b0145aa331c99da6b7cc9efb9fea222178a798f7499a2"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/delivery.json",
+          "sha256": "89ef8caf0d34751d755dd3d6328393cb4e3e4c458b69aaf346798543f9ac16a5"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/manifest-snapshot.json",
           "sha256": "fb881d396595a7d5e85a802c2a201fb9ed58d2af3a42b5ee5c0a45a711d46eed"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/asset-snapshot.json",
-          "sha256": "5e5c156aa3eb1885ba59dc93ef3f113b0e992c4e08b47000acae219d88b88b91"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/asset-snapshot.json",
+          "sha256": "516e90777bbc6b6cf7ecaaec29db51add287589c6a0fc65555c65785eec4f67f"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "1a320e4e6d84f8fc81175517874905df7e5a23f8f058f17cb438a2033e31b1f3"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/evidence/COMPARISONS.json",
+          "sha256": "aa7d8625825098ede2620354e1d049201b86f5b9d833f05859607dfb2cf0684d"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/evidence/final-native-readback.json",
+          "sha256": "92d9dda3401622e5bebbce95c6f570d428c2cd7fcce7947e8e8b3fa26acb9f70"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -7216,10 +7652,70 @@
             }
           ],
           "user_acceptance": "pending"
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "description": "Actual LibreOffice lossless export shows extra thin gray exterior image-frame top/right/bottom lines absent from source/Artifact, including at1x/2x.",
+          "region": "author image frame edges",
+          "figure_id": "ccf-2020-01-f1-1",
+          "issue_id": "ccf-2020-01-f1-1-R02-NATIVE-IMAGE-FRAME",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/output-review.json",
+              "sha256": "0456592f1f9f1a3164dd2def19b9b5fecfabc1daee5dcd3c98165092375333a1"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/evidence/final-native-readback.json",
+              "sha256": "a980d8028dd3093f72d23766cff3dde0a0f42f6b3b85d0c795f5d276a93375d4"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/render-audit.json",
+              "sha256": "ea5435d3237a4d4d8d1b0145aa331c99da6b7cc9efb9fea222178a798f7499a2"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/manifest-snapshot.json",
+              "sha256": "fb881d396595a7d5e85a802c2a201fb9ed58d2af3a42b5ee5c0a45a711d46eed"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001/asset-snapshot.json",
+              "sha256": "5e5c156aa3eb1885ba59dc93ef3f113b0e992c4e08b47000acae219d88b88b91"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            }
+          ],
+          "user_acceptance": "pending",
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001",
+          "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2020-01-f1-1/job/build/run-001",
-      "partial_resolution": "Previously reported native PDF export issue remains open; this Artifact review does not grant a native-pipeline closure."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-01-f1-1/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. The only soft mask is nonbinary and retained. The derived PDF is an exact byte copy of the raw PDF; its gray outer image rectangle remains visible at 1x/2x/4x. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "unchanged",
+        "observation": "The only soft mask is nonbinary and retained. The derived PDF is an exact byte copy of the raw PDF; its gray outer image rectangle remains visible at 1x/2x/4x.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "minor",
@@ -7334,23 +7830,105 @@
       "issue_id": "ccf-2020-13-f01-R02-NATIVE-ALPHA-EDGE",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
-          "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/output-review.json",
+          "sha256": "8a9afd439b6d9b6ece400371196b1cb37a0f6358427ce92ab00d1a9267ea41e1"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
-          "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/render-audit.json",
+          "sha256": "bafa65b3cf9dab9de7a14b9023e3fc3768f05b50fd1dc4f55db64a5db3da2acd"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/delivery.json",
+          "sha256": "5e6d5082ac2eda3ab8925e08ca6248055a7cdd7037fcca5a3952844def4733db"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "820ae94fe763cf9343c659cfb68a4f691b6686ef5a372cdb606aff93e929735f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "4fe27d6f2ce9eed3901703784f7ceb74a220ff1baf258cc2772b4619dfc5c402"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "c5502382642e560d04eb790e9efc92191fccd1dd3d6cff047aaaed11c69015a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/evidence/COMPARISONS.json",
+          "sha256": "319eb513b9786c8587eea03747b46d3eaf6412bf4450f5a48e43d589cdd77741"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/evidence/final-native-readback.json",
+          "sha256": "890f70b3720d238aebecbf9590d7d04ba5def5841ea2bcedd1f71c67d6bb97a8"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "region": "Original author-image exterior boundary; actual source/default/lossless diagnostic crops",
+          "description": "A thin gray rectangular outline is visible at the author-image outer frame (canvas x11..833, y51..433), absent from source, and survives actual lossless LO export. This is not explained by default JPEG compression. No explicit picture line was observed in prior XML inspection; alpha-edge rendering cause remains unconfirmed.",
+          "figure_id": "ccf-2020-13-f01",
+          "issue_id": "ccf-2020-13-f01-R02-NATIVE-ALPHA-EDGE",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/RESULT.json",
+              "sha256": "b17f1895a427a115c369c73e48777c8540b1fd7765a56da9982843ffb6bef6de"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2020-13-f01/job/build/run-001/output-review.json",
+              "sha256": "705b067cc3c84c8dfcbddbe9fae8b0f1e13410693d1143461d5e21ab637828fa"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2020-13-f01/job/build/run-001",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "no_observed_frame",
+        "observation": "The added outer gray image rectangle is absent in the separately named derived PDF at whole 1x/2x and all four corners at 4x. Blue grid, three panels, legends and caption remain visible. Poppler critical 4x crops independently show no added frame.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      },
+      "partial_resolution": "Optional separately named PDF derivation only. The added outer gray image rectangle is absent in the separately named derived PDF at whole 1x/2x and all four corners at 4x. Blue grid, three panels, legends and caption remain visible. Poppler critical 4x crops independently show no added frame. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure."
     },
     {
       "severity": "minor",
@@ -7436,40 +8014,60 @@
       "issue_id": "ccf-2022-05-f01-R02-NATIVE-IMAGE-FRAME",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/output-review.json",
-          "sha256": "c79bcfd2b699e58c886be9fa37769ddd7d7975a5541fe0a382c6b72e46560532"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/output-review.json",
+          "sha256": "d976c656502fabbf88b4aa621104813ccc1136e8e0d7e68919e4ce4a503ff953"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/evidence/final-native-readback.json",
-          "sha256": "c7002375869ef5d49d843703369e8fa1c397548a5477e25316d8fc6f66e44e52"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/render-audit.json",
+          "sha256": "5a9a10e51efda3ab00319a0d744ef862b161b72e2d1fe486c45e8f44133ae729"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/render-audit.json",
-          "sha256": "d0fad632cc1f79ee832421ae32e7b4363eab2e16d6aac956fc0775ccc8a41de8"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/delivery.json",
+          "sha256": "9060e0ea3a6f6cb7dbafd7ff5eddf524b4ce8f69be2bec7854ae2162b5fa2523"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/manifest-snapshot.json",
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/manifest-snapshot.json",
           "sha256": "7bcda2bd2761b0115b4ba2937a01e55b1f61324580d59f43edab5cfa35d715a7"
         },
         {
-          "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/asset-snapshot.json",
-          "sha256": "8422081868fe80d2e6d8e346fdde4d3d90f3c55af45e4cfb04498bed10c3d199"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "7e3cc270a379942dead4c681d43b6bcf6e4c2d5070d5423742911f5daaced4ea"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
-          "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "976781129f5d3f8b96f847700156553ce28f06c5b3ac1aaafb1d83a9bddb34a1"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
-          "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/evidence/COMPARISONS.json",
+          "sha256": "61c24758ea286d75b762cb3c08bc4cfc816d6927e781e875d79e9b897a70e2bd"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
-          "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/evidence/final-native-readback.json",
+          "sha256": "d35ed687b70cb0279d516225f2ede0343c183db8f494cdea9fa3d3a06dfee283"
         },
         {
-          "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
-          "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
       "user_acceptance": "pending",
@@ -7497,10 +8095,70 @@
             }
           ],
           "user_acceptance": "pending"
+        },
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "description": "Actual LibreOffice lossless1/2/4x adds fine gray rectangular edges around input and target photo-grid image extents, absent from source/Artifact; PNGdimensions/FlateDecode verified.",
+          "region": "input/target original photo image extent",
+          "figure_id": "ccf-2022-05-f01",
+          "issue_id": "ccf-2022-05-f01-R02-NATIVE-IMAGE-FRAME",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/output-review.json",
+              "sha256": "c79bcfd2b699e58c886be9fa37769ddd7d7975a5541fe0a382c6b72e46560532"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/evidence/final-native-readback.json",
+              "sha256": "c7002375869ef5d49d843703369e8fa1c397548a5477e25316d8fc6f66e44e52"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/render-audit.json",
+              "sha256": "d0fad632cc1f79ee832421ae32e7b4363eab2e16d6aac956fc0775ccc8a41de8"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/manifest-snapshot.json",
+              "sha256": "7bcda2bd2761b0115b4ba2937a01e55b1f61324580d59f43edab5cfa35d715a7"
+            },
+            {
+              "audit_relative_path": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001/asset-snapshot.json",
+              "sha256": "8422081868fe80d2e6d8e346fdde4d3d90f3c55af45e4cfb04498bed10c3d199"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEWS.json",
+              "sha256": "2417e80249e6890cad670f53925f00e42311939f96cf86dedb6a91e180c02033"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+              "sha256": "938630ed0e1765958b555dce2acb322417a73bc9e8cea0d9d5a0a006aee7d6e1"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FINAL-NATIVE-READBACK-INDEX.json",
+              "sha256": "3eac4acd44ff292e4caea9d3925307607de3ac794d6abed6c6c2599c9b96cd49"
+            },
+            {
+              "audit_relative_path": "reports/artifact-image-sampling-maintained-002/FREEZE.json",
+              "sha256": "41067bae083ef4b909e7533486a5c98d55d457edb4af42d976286bf1a96fdfe3"
+            }
+          ],
+          "user_acceptance": "pending",
+          "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001",
+          "partial_resolution": "Flamingo photo minification improves at1x, but fine patch/target texture is still sharper than source. Keep the sampling finding open."
         }
       ],
-      "latest_verified_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2022-05-f01/job/build/run-001",
-      "partial_resolution": "Flamingo photo minification improves at1x, but fine patch/target texture is still sharper than source. Keep the sampling finding open."
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2022-05-f01/job/build/run-001",
+      "partial_resolution": "Optional separately named PDF derivation only. The extra gray outer frames around input and target photo grids are absent in the separately named derived PDF at whole 1x/2x and every image corner at 4x. Poppler critical 4x crops independently show no added outer frame. Photo-detail sampling differences remain under the separate existing minification finding; original narrow photo-strip fragments remain. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure.",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "no_observed_frame",
+        "observation": "The extra gray outer frames around input and target photo grids are absent in the separately named derived PDF at whole 1x/2x and every image corner at 4x. Poppler critical 4x crops independently show no added outer frame. Photo-detail sampling differences remain under the separate existing minification finding; original narrow photo-strip fragments remain.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      }
     },
     {
       "severity": "minor",
@@ -7700,23 +8358,105 @@
       "issue_id": "ccf-2023-14-f01-R02-NATIVE-ALPHA-EDGE",
       "evidence": [
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
-          "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/output-review.json",
+          "sha256": "58f21ee66db0f24a515b4c84cbcef0cf44087c4846ef4c2cb735512310fe9544"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
-          "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/render-audit.json",
+          "sha256": "7122dde8ce4bd99b0b2ed1776e83511215f457c8c27460fd4fa487ea1fa3b4fa"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/delivery.json",
+          "sha256": "4e88116633976875397f3fed38472d69c9f6aca575e5139dd2c6e3b4f62c6601"
         },
         {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/manifest-snapshot.json",
+          "sha256": "a39364c2436b5516d0f19d7e9f33c4a6c9d7ad92b5507309ecad664d1727d5f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/asset-snapshot.json",
+          "sha256": "3270070f5fd9948aa13f0d99daa2778bb80a2afc155e61eec98fe7552dd1d22b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "ba7f72692b0f5abfb5d7ade50d23a1494959540ee2edf705f8b51cc03d63670c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/evidence/COMPARISONS.json",
+          "sha256": "757497b13fba1d1d8dd9da2e699d3f83093055456596e65600845d4498ea7749"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/evidence/final-native-readback.json",
+          "sha256": "de9a7cd5dda24a2d09c3d1f8eae671e0cc4403d5281ea156a5351afb4dc85c8e"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "superseded_at": "2026-10-04T10:18:54.844240+00:00",
+          "severity": "minor",
+          "status": "open",
+          "region": "Original author-image exterior boundary; actual source/default/lossless diagnostic crops",
+          "description": "A thin gray horizontal line appears along the author bitmap bottom (canvas y≈850, x≈33..485) in both default and lossless LibreOffice exports, absent from source. No source-content repair or alpha pixel editing was performed; cause remains under investigation.",
+          "figure_id": "ccf-2023-14-f01",
+          "issue_id": "ccf-2023-14-f01-R02-NATIVE-ALPHA-EDGE",
+          "evidence": [
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/RESULT.json",
+              "sha256": "fec8de0ea834afa6704694bd89d50d46ddc29422a7c3094f3a3766262504d767"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-14-f01/job/build/run-001/output-review.json",
+              "sha256": "447186286ed326713016f0b1623f52d3405c8efd82d6c587084d46790f4f3f3b"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+              "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+            },
+            {
+              "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+              "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+            }
+          ],
+          "user_acceptance": "pending"
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2023-14-f01/job/build/run-001",
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "partial",
+        "observation": "The binary mask replays exactly and many outer edges improve, but a thin added bottom line remains visible at 2x below the colored mutant boxes and across source whitespace. Clean 4x corners do not close this scale-dependent residual.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      },
+      "partial_resolution": "Optional separately named PDF derivation only. The binary mask replays exactly and many outer edges improve, but a thin added bottom line remains visible at 2x below the colored mutant boxes and across source whitespace. Clean 4x corners do not close this scale-dependent residual. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure."
     },
     {
       "severity": "minor",
@@ -9068,6 +9808,85 @@
       ],
       "output_review": "source-regeneration/swift-maintained-source-002/output-review.json",
       "user_acceptance": "pending"
+    },
+    {
+      "figure_id": "ccf-2021-12-f04",
+      "issue_id": "ccf-2021-12-f04-R03-NATIVE-PDF-TILE-GRID",
+      "severity": "minor",
+      "status": "open",
+      "description": "Independently rasterized original LibreOffice lossless PDF adds fine gray subdivision lines across CPU-strip image tiles, absent from the source and same final PPT direct PNG. The separately named binary-alpha-derived PDF removes observed control-grid lines; the raw export stays unchanged.",
+      "region": "CPU-strip tile subdivision boundaries",
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/output-review.json",
+          "sha256": "b01e4dbadcc6cc5608e212b392ec2c352c6a23fda4cbc473f28da83cd8690416"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/render-audit.json",
+          "sha256": "37cd7835812356cb6066b4bc564e43f9814a0a2f350a53dd72cc994db07e3cf3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/delivery.json",
+          "sha256": "611a7a93f68192a59dc171dd6fbf5440a8fe1a7609a304d41459c35aa22a8b92"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/manifest-snapshot.json",
+          "sha256": "34e292d621c623fe894ba44fa5a65dc5af9fd64faa3148d2f9bd56df5b0fee76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/asset-snapshot.json",
+          "sha256": "f64e0ca97b6b7b7e783f5972e6f15f84f6f805e31d6f982efa56da223513626d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/job/build/run-001/native-preview/derived-pdf/receipt.json",
+          "sha256": "c17e09da62e2ee218378a4686829a10c403ec524a7f9fdeba0f4f53e3705ebe7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/evidence/COMPARISONS.json",
+          "sha256": "a63f3fe6ee495137b447e26a1c6cc9482a8d84f1a19df0ec528e2f98872fda04"
+        },
+        {
+          "audit_relative_path": "source-regeneration/native-binary-alpha-maintained-003/ccf-2021-12-f04/evidence/final-native-readback.json",
+          "sha256": "4ba4d6a2ee980b6295bc1445ad78928ad08c52dfad363e8c9286477537f684a4"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FREEZE-002.json",
+          "sha256": "ee4b2e04a7738fb5b81bd04bbc71890b8351c370fe65ae1780832b6d571fe9f1"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/BUILD-RESULTS-003.json",
+          "sha256": "692223e0a93436cae092670c1f1dfb10ae400463119e004484de92317f5edbff"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEWS.json",
+          "sha256": "1407b9819fa3763f0cf22ed817b7fa45e5f08b59e44b96a6c881b1491eaed186"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/OUTPUT-REVIEW-CLI-VERIFICATION.json",
+          "sha256": "5e6768ac78e611efaa5cf22258c703c850de9d0f93c63fb4c69f5172288f659c"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/FINAL-NATIVE-READBACK-INDEX.json",
+          "sha256": "78de54b7b59ed47f0a9dbf1aff017d8ac0e862c820f841b5fc7455bb28f4f9a7"
+        },
+        {
+          "audit_relative_path": "reports/native-binary-alpha-maintained-001/POPPLER-INDEX.json",
+          "sha256": "8d8f813057dcad6b62aa000ab7898bef598775c52f9ec002560d5ba8029f396b"
+        }
+      ],
+      "derived_pdf_observation": {
+        "policy": "binary-alpha-white-matte-v1",
+        "artifact_role": "native_pdf_derived",
+        "status": "no_observed_control_frame",
+        "observation": "Raw PDF CPU-strip tiles show fine gray subdivisions not present in the original or direct PNG. The separately named derived PDF removes the observed CPU tile grid at whole 1x/2x and the selected critical 4x CPU/legend regions. Source dot patterns, CPU strips, arrows and title remain visible; 4x sampling does not cover all 155 image occurrences.",
+        "source_and_raw_exports_preserved": true,
+        "discrete_binary_sample_replay": "PASS",
+        "rgb_alpha_filtering_error_bound_proved": false,
+        "original_issue_remains_open": true
+      },
+      "partial_resolution": "Optional separately named PDF derivation only. Raw PDF CPU-strip tiles show fine gray subdivisions not present in the original or direct PNG. The separately named derived PDF removes the observed CPU tile grid at whole 1x/2x and the selected critical 4x CPU/legend regions. Source dot patterns, CPU strips, arrows and title remain visible; 4x sampling does not cover all 155 image occurrences. Original native PDF export finding remains open; no live-text/automatic-semantic or application-playback closure."
     }
   ]
 }

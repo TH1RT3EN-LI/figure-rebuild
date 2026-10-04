@@ -30,6 +30,13 @@ figure-rebuild build --manifest /absolute/job/manifest.json \
 
 Omitting `--preview-backend` retains Artifact. Unknown values, including `auto`, are rejected. A requested native renderer failure does not fall back to Artifact. Configure validates the optional executables; later Artifact builds do not require those optional executable files to remain installed. New runs record the explicit backend and provenance version; existing frozen runs/reviews keep their previous binding contract.
 
+For observed gray image-extent lines in the separately rendered PDF, an
+explicit `--pdf-alpha-derivation binary-alpha-white-matte-v1` can produce a
+separately named document with exact binary-alpha sample replay. See
+[the policy, proof and limits](pdf-binary-alpha.md). The raw PDF, PPT media and
+direct PNG previews retain their original roles and bytes; nonbinary masks
+remain unchanged. This optional derivation requires the LibreOffice backend.
+
 ## What is checked
 
 - Only `validated-output/reconstruction.pptx` is converted. Its hash must remain unchanged through all PDF and direct PNG exports. The delivered PPT is the same validated input, not a renderer re-export.

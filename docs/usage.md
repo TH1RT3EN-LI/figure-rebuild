@@ -130,6 +130,8 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 输出包括 PPT、实际导出的 1x/2x 预览、并排比较图、文字测量、原生对象/图片审计、内容快照和交付摘要。文字溢出、XML 禁用字符、失效裁剪和来源字节变动会阻止交付。输出独占发布，不覆盖已存在文件；完整 PPT 是交付提交点。若进程在提交前被终止，残留回执只有在 PPT 存在且哈希一致时才算有效。
 
+需要用 LibreOffice 直接重渲最终 PPT 时，配置独立的[原生预览运行时](../references/native-preview.md)，并显式选择 `--preview-backend libreoffice`。若原始 PDF 的透明图片边缘出现额外灰框，可再指定 `--pdf-alpha-derivation binary-alpha-white-matte-v1` 生成单独命名的 PDF 派生件。原始 PDF 和直接 PNG 预览保留；半透明及不支持的上下文不改写，派生件也须另行复核。支持域、回执和预算见 [PDF 派生说明](../references/pdf-binary-alpha.md)。
+
 ## 裁剪精修与位置诊断
 
 ```bash

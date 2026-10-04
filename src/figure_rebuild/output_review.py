@@ -94,10 +94,11 @@ def _preview_provenance(run, config, paths):
     """New runs bind renderer identity and its actual input/output evidence."""
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         return None  # Keep immutable legacy v1 review bindings unchanged.
-    from .native_preview import validate_backend
+    from .native_preview import validate_backend, validate_pdf_alpha_policy
     _require(type(config.get('preview_provenance_version')) is int and
              config['preview_provenance_version'] == 1, 'Unsupported preview provenance version')
     backend = validate_backend(config.get('preview_backend'))
+    alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), backend)
     audit_path = _inside(run, run / 'render-audit.json')
     audit = _json_record(audit_path)
     _require(type(audit.get('schema_version')) is int and audit['schema_version'] == 1 and
@@ -140,6 +141,10 @@ def _preview_provenance(run, config, paths):
         path = _inside(run, Path(item['path']))
         _require(item == _binding(path), 'Renderer evidence changed: ' + role)
         paths[role] = path
+    if alpha_policy is None:
+        _require('pdf_alpha_derivation' not in audit and
+                 not {'native_pdf_derived', 'native_pdf_alpha_receipt'} & set(evidence),
+                 'PDF derivation was not requested in the immutable config')
     if backend == 'artifact':
         _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
     else:
@@ -219,6 +224,20 @@ def _preview_provenance(run, config, paths):
                      'Native PDF image encodings or resolutions disagree with render audit')
             actual_fonts = sorted({item[3] for item in pdf[0].get_fonts(full=True)})
             _require(native.get('pdf_fonts') == actual_fonts, 'Native PDF font declarations disagree with actual resources')
+        if alpha_policy:
+            from .pdf_binary_alpha import verify_binary_alpha_pdf
+            _require({'native_pdf_derived', 'native_pdf_alpha_receipt'} <= set(evidence), 'Derived PDF evidence is incomplete')
+            _require(paths['native_pdf_derived'] == directory / 'derived-pdf/binary-alpha-white-matte.pdf' and
+                     paths['native_pdf_alpha_receipt'] == directory / 'derived-pdf/receipt.json', 'Invalid derived PDF paths')
+            receipt = _json_record(paths['native_pdf_alpha_receipt'])
+            verify_binary_alpha_pdf(paths['native_pdf'], paths['native_pdf_derived'], receipt)
+            expected_derivation = {'policy': alpha_policy, 'source_role': 'native_pdf',
+                                  'derived_role': 'native_pdf_derived', 'receipt_role': 'native_pdf_alpha_receipt',
+                                  'transformed_masks': len(receipt['transformed_masks']),
+                                  'retained_masks': len(receipt['retained_masks']),
+                                  'raw_export_replaced': False, 'raw_previews_derived_from_pdf': False,
+                                  'rgb_alpha_filtering_error_bound_proved': False}
+            _require(_same_json(audit.get('pdf_alpha_derivation'), expected_derivation), 'Derived PDF declaration disagrees with sample replay')
         dimensions = native.get('pixel_dimensions')
         _require(isinstance(dimensions, dict) and dimensions == {str(s): [previews[f'preview_{s}x']['width'], previews[f'preview_{s}x']['height']] for s in (1, 2, 4)},
                  'Native preview sizes disagree with direct export evidence')
@@ -654,6 +673,15 @@ def _build_bindings(run_dir):
         _require(delivery.get('preview_backend') == preview_audit['preview_backend'] and
                  delivery.get('render_audit_sha256') == bindings['render_audit']['sha256'],
                  'Delivery receipt disagrees with preview renderer provenance')
+    alpha = preview_audit.get('pdf_alpha_derivation') if preview_audit is not None else None
+    if alpha is not None:
+        _require(_same_json(delivery.get('pdf_alpha_derivation'), {
+            **alpha, 'original_pdf': bindings['native_pdf'],
+            'derived_pdf': bindings['native_pdf_derived'], 'receipt': bindings['native_pdf_alpha_receipt']}),
+            'Delivery receipt disagrees with verified PDF derivation')
+    else:
+        _require('pdf_alpha_derivation' not in delivery,
+                 'Delivery receipt contains an unrequested PDF derivation')
     if diagnostic_coverage is not None:
         _require(_same_json(delivery.get('diagnostic_coverage'), diagnostic_coverage),
                  'Delivery receipt disagrees with limited diagnostic coverage')

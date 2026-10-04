@@ -460,8 +460,9 @@ def build(a):
     job = m.parent
     out = Path(a.output).resolve() if a.output else job / 'exports' / f"{data['id']}-r{data['revision']}.pptx"
     if out.exists(): raise ValueError('Output already exists; use a new revision or output name')
-    from .native_preview import validate_backend
+    from .native_preview import validate_backend, validate_pdf_alpha_policy
     preview_backend = validate_backend(getattr(a, 'preview_backend', 'artifact'))
+    pdf_alpha_policy = validate_pdf_alpha_policy(getattr(a, 'pdf_alpha_derivation', None), preview_backend)
     if preview_backend == 'libreoffice' and a.base:
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     rt = runtime()
@@ -513,6 +514,8 @@ def build(a):
         config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
                   'preview_backend': preview_backend, 'preview_provenance_version': 1,
                   'diagnostic_provenance_version': 1}
+        if pdf_alpha_policy:
+            config['pdf_alpha_derivation'] = pdf_alpha_policy
         if 'source_canvas_clip' in data:
             config['source_canvas_clip_provenance_version'] = 1
         if base_config:
@@ -578,6 +581,7 @@ def main():
     c.set_defaults(func=validate_reviewed)
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
     c.add_argument('--preview-backend', choices=['artifact', 'libreoffice'], default='artifact', help='Renderer for the exact finalized PPTX; LibreOffice currently supports single-slide builds only')
+    c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')
     c.add_argument('--input', required=True, help='Generated single-slide PPTX')

@@ -19,6 +19,7 @@ if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown pre
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
+if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
 const assetRoot=config.asset_root??job;
@@ -215,6 +216,7 @@ for(const asset of JSON.parse(await fs.readFile(path.join(run,'asset-snapshot.js
 }
 const editability=JSON.parse(await fs.readFile(path.join(run,'editability.json'),'utf8'));
 const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,formula_count:editability.formula_count??0,svg_formula_count:editability.svg_formula_count??0,native_connector_count:editability.native_connectors?.length??0,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
+if(previewAudit.pdf_alpha_derivation)delivery.pdf_alpha_derivation={...previewAudit.pdf_alpha_derivation,original_pdf:previewAudit.evidence.native_pdf,derived_pdf:previewAudit.evidence.native_pdf_derived,receipt:previewAudit.evidence.native_pdf_alpha_receipt};
 delivery.preview_backend=previewBackend;
 delivery.render_audit_sha256=(await bindFile(renderAuditPath)).sha256;
 if(diagnosticCoverage)delivery.diagnostic_coverage=diagnosticCoverage;
