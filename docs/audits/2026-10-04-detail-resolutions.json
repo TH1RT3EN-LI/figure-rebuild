@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T10:13:10.351452+00:00",
+  "updated_at": "2026-10-05T10:45:28.931382+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 273,
-    "open": 22,
+    "closed_model_visual_review": 275,
+    "open": 20,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -11803,6 +11803,520 @@
           "sha256": "07d141b3d21c3b34c1099dcb1ad7b73340673cb5b8780d7737a850fee027a749"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2022-01-f03",
+      "issue_id": "ccf-2022-01-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Expose 17 independently source-bound mathematical groups and 76 actual source path objects as explicit outlined/mixed representations. Original source equations are not supplied and semantic formula editing is unavailable, as permitted by this issue original expectation. LDM native path commands and source alpha/colour are rebound from actual original PDF drawing seqno; existing zero-width hairline surrogates are separately disclosed and are not source/device/pixel-equivalent. VMamba native program/GID/matrix occurrences and source SVG commands independently bind all outlined variables, with live operators reported separately. A maintained source_inventory declaration binds the immutable independently source/font/native-reviewed parent, fresh mathematical proof, original PDF/SVG and explicit per-group limitations. All 271 objects are compared in the source gate; a complete object scope remains REVIEW. Four structurally valid missing/shifted/incorrect/changed-colour mathematical controls are rejected, plus separate scoped controls including a changed live operator for VMamba. Final actual native object properties, order, media bytes and all 258 actual glyph controls/advances/matrices/RGBA are unchanged; all actual PDF path drawings match the source-verified parent. Source control encoding error stays below the fixed0.001canvas-px guard. Whole source/native/PDF1x, native2x and all 17 matched4x source/parent mathematical panels were actually viewed; final whole/native2x and two final4x mathematical panels were actually viewed again, and all remaining final figure pixels were independently verified identical to those viewed panels. This resolves explicit representation reporting only; automatic recognition, equation roundtrip, hairline/filtering equivalence, font delivery and final application/user acceptance are not granted.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-native-095/ccf-2022-01-f03/native-readback.json",
+          "sha256": "42ee54687c54f0be57588c4d06b8e2319ac1169db56f49302d85a9b4c4f409b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-native-095/ccf-2022-01-f03/output-review-math-099.json",
+          "sha256": "949dfc672f3230839d3d5ce20b6ca8d284271430c38e3909ed37e7869562a233"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/output-review-math-099.json",
+          "sha256": "949dfc672f3230839d3d5ce20b6ca8d284271430c38e3909ed37e7869562a233"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/visual-review-099.json",
+          "sha256": "4d4ef821ee2f0524d9964be911f2d2a9c26cf305890965be92034ef57170a925"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/bindings.json",
+          "sha256": "93f523adbc7a2c6dcee526c082403f7f1d29aab6e63a6c9e1a75607dd98dd93d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/whole-1x.png",
+          "sha256": "637aa17862ea1c4bc6e9d93c028149b9ce217b444916177654d1139c31c5d78e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/math-inventory-controls.json",
+          "sha256": "531c6647cb322c8873e8fff3164def34a314cec5a9235f55c223e661e16a37ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/manifest.json",
+          "sha256": "70b333518239b1e00315b114dac0ccaade69625e64767e75fc421d2ea5e8cdcc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MATH-INVENTORY-PREVIEW-EQUIVALENCE-098.json",
+          "sha256": "d921d4eae8d8464db23ce8c0e0546b46b33d4ce0d0fb3b7af68b259865fc283d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "70b333518239b1e00315b114dac0ccaade69625e64767e75fc421d2ea5e8cdcc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/resolved-scene.json",
+          "sha256": "70b333518239b1e00315b114dac0ccaade69625e64767e75fc421d2ea5e8cdcc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/source-inventory-audit.json",
+          "sha256": "74c4053acc7c2d296fd308420431e26970a1c18b7b8995eea9d356110048d5ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/semantic-audit.json",
+          "sha256": "10090f1f14f9377a691542ce2c91ce6d4b001496e17b43cf56e63985fc059967"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/render-audit.json",
+          "sha256": "bd14f7b781a8b315f01ba1fc3585dd01d172f10f9c8764aaab53df6305f8465e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/asset-snapshot.json",
+          "sha256": "96c9eaa3c4333b023abe472e52d4ffef7856a97664e744b794788b74726bfda9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/object-map.json",
+          "sha256": "65dd5e0aac111ae273cbb232c4206511961c8d2384f01d9ef3ceeb19f82a5892"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/editability.json",
+          "sha256": "288b78e85d315876ca295dc1131d6d993dfd4a46fe2659547024fb8068af597f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/delivery.json",
+          "sha256": "8b6e9734575237b059d22a7dcc94a0fee2e6a123b283bf58d187eb5b02b0eeca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/font-audit.json",
+          "sha256": "16004e4ee6bcbfc101e298d5b6dab56361768851649af3aee6e00689b80eaddd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "30deb3f2e02b0c9d03b8559635ca01b945afcbc86033970e7b9182f9addfb4c6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "5abd83d4d188e7cc69d3b1bd21a48bc371669e3ae8ab95e6ab0cc42c888ae4f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/source-1x.png",
+          "sha256": "a06c7b314dff65b344dad827bc69432370cfdec55716b9ac89f662a2032722a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/probe.json",
+          "sha256": "cd769cfdaef4a730b3d17f70897844aaadc7e9ac89db3dd9021f548ade804fcb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/source.svg",
+          "sha256": "f073e210db76cf0bdb8ef1354c1bae0773a022924bd51b1ce66a7ed0118b06c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/candidate-path-index.json",
+          "sha256": "dc205fbfaec16347ac68ec13e1be2394fee40c2d68a9c4eccd64163442c90834"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/source-2x.png",
+          "sha256": "a0879617bb70f13845d8abd44edd979464d11d24fe18a6a81538b05dd503d39e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2022-01-f03/source-4x.png",
+          "sha256": "ee822a3ca10a646ca70c0b71eff3035f8bb06632ecb655bcba263367943ea7e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2022-01-f03/native-readback.json",
+          "sha256": "3735657c5c452fbedecb734afaec129f3ee770166b61700f0826f7763addc19a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2022-01-f03/output-review-unperformed.json",
+          "sha256": "168d04086c23a21218757837ca3d3b13d6ce881de370474507acd866378c1843"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2022-01-f03/outlined-math-inventory.json",
+          "sha256": "a0e5afe51615509d5381638521cba69d1920c72bc72c101327192abc0b81054e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2022-01-f03/content-controls.json",
+          "sha256": "c3f72551d916aedc7c89a562db306a57cb3a588a6b0319448b62009697b654ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/source.pdf",
+          "sha256": "5e2b3a5c07d5ed193d5d115270c8a601732c6d8a25dc25fa0c9448dac53c9a82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/fresh-math-source.svg",
+          "sha256": "f073e210db76cf0bdb8ef1354c1bae0773a022924bd51b1ce66a7ed0118b06c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/fresh-math-source-probe.json",
+          "sha256": "cd769cfdaef4a730b3d17f70897844aaadc7e9ac89db3dd9021f548ade804fcb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/verified-outlined-math.json",
+          "sha256": "a0e5afe51615509d5381638521cba69d1920c72bc72c101327192abc0b81054e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/verified-parent-math-native.json",
+          "sha256": "3735657c5c452fbedecb734afaec129f3ee770166b61700f0826f7763addc19a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/verified-math-controls.json",
+          "sha256": "c3f72551d916aedc7c89a562db306a57cb3a588a6b0319448b62009697b654ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/verified-parent-font-native.json",
+          "sha256": "8e4cabe5c49c65ade15c52ddc414fb37c261a219eab7bd1abcc4c4ba94d9f641"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/reviewed-math-source-reference.json",
+          "sha256": "6c79daba5fe9a470deea9d83b87e971c8f345c72f63e7e04668cd84543f2a10e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2022-01-f03/source-evidence/math-inventory.json",
+          "sha256": "abeb31dec76c485535f52b0fb9626d18c289db54cbacd58349553b0f026daa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/QKV-4-4x.png",
+          "sha256": "63815552860d612a4108062f70737e96552c671e3aae51b4a10c7bd202200c99"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/latent-denoising-z-4x.png",
+          "sha256": "3489ea329f452b1185ba2551d804a92565b714a1d60d87e02bb0713c7548b4b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/decoder-symbol-4x.png",
+          "sha256": "8785e89f5097151c8b012bfa3d40390d55822a30d8d848733becadbcc3c51fa0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/encoder-symbol-4x.png",
+          "sha256": "3d2e83d51b0c0aa9fdb68429cfc7d42758bd75ddea86d6d38c81fcae36ba2460"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/denoising-epsilon-theta-4x.png",
+          "sha256": "26f7d0de865439e8748e184ac51d9d02bf4f15bc9ce623d07bd2eadd951e4be7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/predicted-x-and-timestep-4x.png",
+          "sha256": "0f9684f858cba1944a660caf4cb99755c4d4cd6da3edbb0b68daada23cef7ff4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/latent-bottom-z-T-4x.png",
+          "sha256": "e118af60ad6de5c78c6d09875e4b2222d2d84ec70ed0335ce916183454172b67"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/latent-z-T-minus-one-4x.png",
+          "sha256": "5e87d00501127d10f28cfdf97295b2cc87e7aa71dd35bf498ea7e82ba36c717e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/pixel-input-x-4x.png",
+          "sha256": "312334061f0608d7ea1e2fbb6f8640ffc34fe6fb66a4365809529f3ebff0dffc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/latent-input-z-4x.png",
+          "sha256": "cc2a35559628f5eec4103f1cf7c9900aebab7484a8f64dc08d1df4c896008e83"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/pixel-output-x-tilde-4x.png",
+          "sha256": "fdcf6e680d4dc0ccc0d66a6a468c5409ce8b9f67234f5b6c2331f1c507598d6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/QKV-1-4x.png",
+          "sha256": "ecda83e5723b194f478129c815967726bacfb32fa0f5b6e2d672ba97bd4a428b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/conditioning-tau-theta-4x.png",
+          "sha256": "2f19990f337d9f28e43f7f86055b52b36bec3e8f8b7c6316dfe2fee3de14fd89"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/QKV-3-4x.png",
+          "sha256": "b155a44b127e41e0a89692ff2cf19db56b7397bde06f20415fdcd3db08a7f12d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/native-PDF-4x.png",
+          "sha256": "330bbe2a7c0a39b65ae4f6e79471a53202317669c60aa6bb237bd060b759e912"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/latent-output-z-T-4x.png",
+          "sha256": "00c16513aa5659468722726f0a2cee359f301715943c4cc250e078cbb7f07269"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/QKV-legend-4x.png",
+          "sha256": "9862938108cc75ba4aeea537c0fdee40adee21d07d1821d3898026546d095326"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-095/ccf-2022-01-f03/QKV-2-4x.png",
+          "sha256": "4cf2c195e7c185eafa00ee0b884df7afe12826cd0f799441d16590d2c4a8dea4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_math_outline091.py",
+          "sha256": "07cc1ea8699e4732850feab1dba10d3b5bfda387cddab808a2b4828d58a13660"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_outline092.py",
+          "sha256": "e3fba24faa6eec717723cc75dc88afcd47b9b0f78354337a84ca055f4c3875a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_outline093.py",
+          "sha256": "3c509933658a56b15f97b14b23d52fa43c6aacca31e6ea8c6aa935176b219781"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_math_inventory094.py",
+          "sha256": "87753cedc6194c65c9d6bf5fe0e18324a2435218537d436c7b30e54ef66fb314"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery095.py",
+          "sha256": "849fd8d01612ea269cccd2e7e84ab088c32b4d60d6fa9bc0c46b6b28ee813d78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery096.py",
+          "sha256": "596fa4249dbee805378ae8300d49a84c06b67d7351fb20f3a476374f3f31a942"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery097.py",
+          "sha256": "e4311b418c16508bd6cfa7ba359667c1b9dcd47e50861cae6bfb3c431a3473b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_math_inventory099.py",
+          "sha256": "285d002cb866ca86f7eb21bf08923235354aaff8c4aa22ac8ecbbbb2e66ab6de"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2024-03-f02",
+      "issue_id": "ccf-2024-03-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Expose 5 independently source-bound mathematical groups and 28 actual source path objects as explicit outlined/mixed representations. Original source equations are not supplied and semantic formula editing is unavailable, as permitted by this issue original expectation. LDM native path commands and source alpha/colour are rebound from actual original PDF drawing seqno; existing zero-width hairline surrogates are separately disclosed and are not source/device/pixel-equivalent. VMamba native program/GID/matrix occurrences and source SVG commands independently bind all outlined variables, with live operators reported separately. A maintained source_inventory declaration binds the immutable independently source/font/native-reviewed parent, fresh mathematical proof, original PDF/SVG and explicit per-group limitations. All 422 objects are compared in the source gate; a complete object scope remains REVIEW. Four structurally valid missing/shifted/incorrect/changed-colour mathematical controls are rejected, plus separate scoped controls including a changed live operator for VMamba. Final actual native object properties, order, media bytes and all 411 actual glyph controls/advances/matrices/RGBA are unchanged; all actual PDF path drawings match the source-verified parent. Source control encoding error stays below the fixed0.001canvas-px guard. Whole source/native/PDF1x, native2x and all 5 matched4x source/parent mathematical panels were actually viewed; final whole/native2x and two final4x mathematical panels were actually viewed again, and all remaining final figure pixels were independently verified identical to those viewed panels. This resolves explicit representation reporting only; automatic recognition, equation roundtrip, hairline/filtering equivalence, font delivery and final application/user acceptance are not granted.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-native-097/ccf-2024-03-f02/native-readback.json",
+          "sha256": "12bd7140baa2c03d03d772e759d4b959c5ed1e15ffba196f9da3cca30afca29e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-native-097/ccf-2024-03-f02/output-review-math-099.json",
+          "sha256": "4c202df7fbf16783b16591f55b133c8ef78c89c9605d67005fce21d0f7977c16"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/output-review-math-099.json",
+          "sha256": "4c202df7fbf16783b16591f55b133c8ef78c89c9605d67005fce21d0f7977c16"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/visual-review-099.json",
+          "sha256": "9652a2d32563c404736fbec27387225b62e1b4e19f2471f05bd149aed8a32d18"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/bindings.json",
+          "sha256": "ee51bc22ebb40d38aefb58cf165038c9b3296593794507e3e9ceaf35451a5a53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/whole-1x.png",
+          "sha256": "8e55a8c202dca5ff468e298c47c2c25aafec75a9b6cfd9b7504975e3d4def05c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/math-inventory-controls.json",
+          "sha256": "250e29e3d33da1a6078e31ca180fa5d92ffa75a7f625521de56b6a3719416a06"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/manifest.json",
+          "sha256": "d98235567bd29c0ff85c6fe599f9615d1ec97917f3ea8b701913a4b8b29feac5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MATH-INVENTORY-PREVIEW-EQUIVALENCE-098.json",
+          "sha256": "d921d4eae8d8464db23ce8c0e0546b46b33d4ce0d0fb3b7af68b259865fc283d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "d98235567bd29c0ff85c6fe599f9615d1ec97917f3ea8b701913a4b8b29feac5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/resolved-scene.json",
+          "sha256": "d98235567bd29c0ff85c6fe599f9615d1ec97917f3ea8b701913a4b8b29feac5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "19ceffe8257544a2ad95301c9ffa6858688e17555f0d5a49a6943dace1565b10"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/semantic-audit.json",
+          "sha256": "c69b0b5956e60257fa6fcca70c2b99fb1d41582ea7f418252ad62a8a77507a8d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/render-audit.json",
+          "sha256": "0db2cdf995eb317473263c07d08c95c74862cf70e415a7009001495314a10c3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/asset-snapshot.json",
+          "sha256": "1455a32feb8868c9f9309f90ea4842a1b1c17175ba566f0bfff3a339feeb6beb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/object-map.json",
+          "sha256": "131bacdda1f11361851cc5eeaa792f2e480b9a627d8c89dff448ed04e57538fb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/editability.json",
+          "sha256": "45bfd9a0a9f0ae1470b6ee90afbbda8bd5003b4e58786c58880ed10d9f9f8b9f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/delivery.json",
+          "sha256": "215b2d7c7812160c4fd9794f411858ec0620ad1d1d632d7ab8b484eecb7fedb7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/font-audit.json",
+          "sha256": "65cdd803fb6bcfaa59c61e02415954b52d2803e8d61cf62859134a6897c9ba52"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "9da504f13618c76d4adf0c04bdf1d32bfee46cebee06b04ad7cd4cb60904d629"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "6d90eaad36050feab143eec71f5a3da436405d23682f37d533cf21bcde48c181"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/source-1x.png",
+          "sha256": "002c245afcc1b2eb041100910ccfe4a7af0133d53761faf171af6c44934c84fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/probe.json",
+          "sha256": "86584c389fb7c20b8f9e45e0e02287c36d3ab05fd99b02256d9d7f6bc45bb7bc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/source.svg",
+          "sha256": "e4421f99a8f583c868be23cace3ac562ce0a1a16f797cee9053332b1659b05da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/candidate-path-index.json",
+          "sha256": "345cd963bfe9f52898bb0ce4fdbfec1e7df0ae66ba97008c4c8e8bf5b6b46173"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/source-2x.png",
+          "sha256": "6cd25f824a08c6a9386b0cb3119487909d8bf0b74ade232bb5d5b442b435d9ba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-source-091/ccf-2024-03-f02/source-4x.png",
+          "sha256": "08e8974720298ecc53789dfab35ae9ee3c94bf4f8ae593401378a18818339ce8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2024-03-f02/native-readback.json",
+          "sha256": "fcc09d162bf15bbc04f281a554751484154d00185df97c39c306c6665f1d3938"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2024-03-f02/output-review-unperformed.json",
+          "sha256": "6aa39af67d8882f0d0d97ef3cf4d3f7204211563dc326910c439dc4935092555"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2024-03-f02/outlined-math-inventory.json",
+          "sha256": "5e7c8570f3e707248c6c35d455dc3443c497a583ccfa9988ea7f25bc286bc815"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2024-03-f02/source-native-font-trace.json",
+          "sha256": "b436695c7e2ec7699621bc543ace157e1cf72b1a580a448024c2f892314ea836"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-outline-native-093/ccf-2024-03-f02/content-controls.json",
+          "sha256": "170770657a425a777074dd6ae751eac26208139f1a659be3b1e3df9c27038b3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/source.pdf",
+          "sha256": "c011843c4ef353078d752e2f9bc812bfd8d2029ff8ddb476afb77603794e33b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/fresh-math-source.svg",
+          "sha256": "e4421f99a8f583c868be23cace3ac562ce0a1a16f797cee9053332b1659b05da"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/fresh-math-source-probe.json",
+          "sha256": "86584c389fb7c20b8f9e45e0e02287c36d3ab05fd99b02256d9d7f6bc45bb7bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/verified-outlined-math.json",
+          "sha256": "5e7c8570f3e707248c6c35d455dc3443c497a583ccfa9988ea7f25bc286bc815"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/verified-parent-math-native.json",
+          "sha256": "fcc09d162bf15bbc04f281a554751484154d00185df97c39c306c6665f1d3938"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/verified-math-controls.json",
+          "sha256": "170770657a425a777074dd6ae751eac26208139f1a659be3b1e3df9c27038b3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/verified-parent-font-native.json",
+          "sha256": "14a4f7c802d3908cbd992e93ac7b4d08053dcc21f59291801549ab4f28794b8d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/reviewed-math-source-reference.json",
+          "sha256": "066e5f87b8e8c4bc6b7ab5b273ed34470ac881718ec4bb39f8ddb96aade39086"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-math-inventory-002/jobs/ccf-2024-03-f02/source-evidence/math-inventory.json",
+          "sha256": "3fd7e7d4c32e4407dfa4ba209b05abd813671ecf40037fce721ba7e52b141340"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/output-definition-4x.png",
+          "sha256": "ae193f036f76a282d6d5e94591f63d5ca989a4396ccc2e83910cd38211c782ce"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/state-recurrence-4x.png",
+          "sha256": "74575e872dccee5dbeb60147a446fda4b4fdc85865f26495668f074e0c358b98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/native-PDF-4x.png",
+          "sha256": "d1a4c1453d1d5663745fabbeea0214453e89c1dab3087026d009a24f5ab3f6b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/projection-A-B-C-Delta-4x.png",
+          "sha256": "a356222a3386bd3be7393b81876bcc0e0397e2789bfd9722484691b4ca40ffa0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/output-recurrence-4x.png",
+          "sha256": "449cf6362acd4b6e41dc5c1d41a4fa6f0b81a3381f4245bb8f0e264ac570f82b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/math-inventory-final-galleries-097/ccf-2024-03-f02/input-output-variables-4x.png",
+          "sha256": "809ce26396ce614563361fa8294c7dd5959523a1d3bc00d14a5d04820fa10662"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_math_outline091.py",
+          "sha256": "07cc1ea8699e4732850feab1dba10d3b5bfda387cddab808a2b4828d58a13660"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_outline092.py",
+          "sha256": "e3fba24faa6eec717723cc75dc88afcd47b9b0f78354337a84ca055f4c3875a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_outline093.py",
+          "sha256": "3c509933658a56b15f97b14b23d52fa43c6aacca31e6ea8c6aa935176b219781"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_math_inventory094.py",
+          "sha256": "87753cedc6194c65c9d6bf5fe0e18324a2435218537d436c7b30e54ef66fb314"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery095.py",
+          "sha256": "849fd8d01612ea269cccd2e7e84ab088c32b4d60d6fa9bc0c46b6b28ee813d78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery096.py",
+          "sha256": "596fa4249dbee805378ae8300d49a84c06b67d7351fb20f3a476374f3f31a942"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_math_delivery097.py",
+          "sha256": "e4311b418c16508bd6cfa7ba359667c1b9dcd47e50861cae6bfb3c431a3473b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_math_inventory099.py",
+          "sha256": "285d002cb866ca86f7eb21bf08923235354aaff8c4aa22ac8ecbbbb2e66ab6de"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -11814,11 +12328,9 @@
     "ccf-2021-13-f01-D01",
     "ccf-2021-14-f04-D05",
     "ccf-2021-17-f05-D01",
-    "ccf-2022-01-f03-D02",
     "ccf-2022-07-f01-D03",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
-    "ccf-2024-03-f02-D02",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
