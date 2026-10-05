@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T00:53:41.414328+00:00",
+  "updated_at": "2026-10-05T01:30:21.651811+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 254,
-    "open": 41,
+    "closed_model_visual_review": 256,
+    "open": 39,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -8802,6 +8802,172 @@
           "sha256": "8fb40ab07adfef833e0d2b073d69e5a672ff5b21a4ec2285ae97ac8e3c7475c3"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2025-01-f07",
+      "issue_id": "ccf-2025-01-f07-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore ten actual original native card/frame fill paths, including the single SA mask frame and all five VOS output frames, from complete original M/L/C/Z contours rather than lossy get_drawings reconstruction. Actual original source paint/CTM/nonzero winding/ICC solid color/neutral groups and complete no-op clip containment are independently bound. Source whole 1x, final native whole 1x/2x and both matched 4x frame galleries were actually viewed; the thin pale frame edges and smooth round corners are continuous and aligned. The ten existing independent source picture objects remain unchanged and all media bytes, full retained order and final path receipts are independently read back. Source solid color encoding, geometry serialization and native image interpolation retain separate limits; no exact pixel or filtering equality is claimed.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f07-geometry-readback-009/output-review-012.json",
+          "sha256": "a94f3dd2ac7a3b15f611041bf68672ceb704e05de1e1ec141265006a0a4dea95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f07-geometry-readback-009/native-readback.json",
+          "sha256": "063ea36ec38aae012ae4c35110a988522af040d94978b32e19a88d18da0b20ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-galleries-011/ccf-2025-01-f07/visual-review-012.json",
+          "sha256": "dc19e74870cf05100734ab7f0bca635872e4b9c6e60c45141ae2ad02bf14a71d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-galleries-011/ccf-2025-01-f07/bindings.json",
+          "sha256": "507f7e0203cc9ffad529cce582e7448edd2de6bd4ce347e390872183bfd749e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/output-review-012.json",
+          "sha256": "a94f3dd2ac7a3b15f611041bf68672ceb704e05de1e1ec141265006a0a4dea95"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/manifest-snapshot.json",
+          "sha256": "9ca9ea1a995edfc5043b413ae9c82e42c5865c173c1443bef797be1e59b84dd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/render-audit.json",
+          "sha256": "ce369f3a179c6a808ca0fddcaa256dc3468cfa99f5054abb0a598340fdff035e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/font-audit.json",
+          "sha256": "092611f4fd05ee82db14b5304b3d89a9df0958373fd1073d874d6186966125e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/editability.json",
+          "sha256": "be23034a7543c9263fea7c3691f082d502897b40329bff771998b61c6a83751e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/repair-proof.json",
+          "sha256": "60f4756b5d4e212bfd55f7299e29b73645e29aa60481f4e432d560cbb1a32c79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/font-profile.json",
+          "sha256": "0c7a30e7d82b8ad702dd700e84a776b5c46768cd47e44471d91e6c8297cb81a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/source-evidence/manifest-before-repair.json",
+          "sha256": "fb8a4601bcba3543fa083b50e61859c4da68941d2c10b903ff83de2dd59c672d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-source-ink-capture-006/proof.json",
+          "sha256": "8e8bb0bb74ad3046e22f7840de75684288eb7d3ea2cf09194433bcb8713cc62f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-derived-ink-fonts-008/proof.json",
+          "sha256": "66a9d7cb53955d38064147709b8a820768de8f3192cbb3f5e11aea378279a4a9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-009/full-native-font-trace.json",
+          "sha256": "deb90aa2fd83a6c0d242c23f33721578a49e7416dd5ddcca51b95a70652d1ef9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-010/proof.json",
+          "sha256": "8e6be90208779292ba0bda26fd5c69825a38c80dfa113f86387c5f66437535ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+          "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-01-f07",
+      "issue_id": "ccf-2025-01-f07-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Replace the three source whole-title path paints with nine ordinary-Unicode live text objects, preserving all 98 encoded characters including three actual spaces. Source F1 Type3 font 1296 contains metrics-only d1 programs and cannot prove visible glyph ink; actual F1 resource reference and complete Form resource context are bound to the native font handle, while the visible letters are captured from separate actual native path paints 42/47/50. Original degenerate per-character path origin markers bind all 95 nonspace glyph slots in native Unicode/GID order, and every source marker/visible contour reassembles the exact original path. Three explicit job-local CFF ink fonts preserve per-character visible contours within fixed 0.001 canvas-pixel control reuse/encoding budgets; actual observed reuse delta is below 0.000002 px. Physical visible origins define per-character spacing; Type3 metadata origins are coarser and are not substituted for ink origins. Complete actual application subset relative operands and advances are independently verified against LibreOffice 26.2.5.2 rounding, and every actual native font handle/glyph is bound to the real saved subset programme at f32. All 98 final native Unicode characters are ordinary single-character glyphs, with no whole-word PUA mapping or fake activity. Source versus final observed origin residual is at most 0.648 px horizontally and 0.266 px vertically. Source whole 1x, final whole 1x/2x and all three same-grid 4x title comparisons were actually viewed. Original font identity, hinting, general shaping or raster equality is not claimed; limited repertoire, font delivery and PowerPoint/WPS reopening remain open.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f07-geometry-readback-009/output-review-012.json",
+          "sha256": "a94f3dd2ac7a3b15f611041bf68672ceb704e05de1e1ec141265006a0a4dea95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f07-geometry-readback-009/native-readback.json",
+          "sha256": "063ea36ec38aae012ae4c35110a988522af040d94978b32e19a88d18da0b20ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-galleries-011/ccf-2025-01-f07/visual-review-012.json",
+          "sha256": "dc19e74870cf05100734ab7f0bca635872e4b9c6e60c45141ae2ad02bf14a71d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-galleries-011/ccf-2025-01-f07/bindings.json",
+          "sha256": "507f7e0203cc9ffad529cce582e7448edd2de6bd4ce347e390872183bfd749e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/output-review-012.json",
+          "sha256": "a94f3dd2ac7a3b15f611041bf68672ceb704e05de1e1ec141265006a0a4dea95"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/manifest-snapshot.json",
+          "sha256": "9ca9ea1a995edfc5043b413ae9c82e42c5865c173c1443bef797be1e59b84dd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/render-audit.json",
+          "sha256": "ce369f3a179c6a808ca0fddcaa256dc3468cfa99f5054abb0a598340fdff035e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/font-audit.json",
+          "sha256": "092611f4fd05ee82db14b5304b3d89a9df0958373fd1073d874d6186966125e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/build/run-001/editability.json",
+          "sha256": "be23034a7543c9263fea7c3691f082d502897b40329bff771998b61c6a83751e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/repair-proof.json",
+          "sha256": "60f4756b5d4e212bfd55f7299e29b73645e29aa60481f4e432d560cbb1a32c79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/font-profile.json",
+          "sha256": "0c7a30e7d82b8ad702dd700e84a776b5c46768cd47e44471d91e6c8297cb81a6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-028/jobs/ccf-2025-01-f07/source-evidence/manifest-before-repair.json",
+          "sha256": "fb8a4601bcba3543fa083b50e61859c4da68941d2c10b903ff83de2dd59c672d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-source-ink-capture-006/proof.json",
+          "sha256": "8e8bb0bb74ad3046e22f7840de75684288eb7d3ea2cf09194433bcb8713cc62f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-derived-ink-fonts-008/proof.json",
+          "sha256": "66a9d7cb53955d38064147709b8a820768de8f3192cbb3f5e11aea378279a4a9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-009/full-native-font-trace.json",
+          "sha256": "deb90aa2fd83a6c0d242c23f33721578a49e7416dd5ddcca51b95a70652d1ef9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-010/proof.json",
+          "sha256": "8e6be90208779292ba0bda26fd5c69825a38c80dfa113f86387c5f66437535ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+          "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -8833,8 +8999,6 @@
     "ccf-2025-01-f02-D02",
     "ccf-2025-01-f02-D03",
     "ccf-2025-01-f03-D01",
-    "ccf-2025-01-f07-D01",
-    "ccf-2025-01-f07-D02",
     "ccf-2025-01-f08-D01",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
@@ -14256,7 +14420,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "Thirty-three reviewed figure repairs depend on explicit job-local source aliases or source-derived ink/FontMatrix/native em font variants with limited Unicode repertoire. Used glyphs render correctly in the reviewed native application, but PPTX does not embed these dependencies and expanded editing/reopening in PowerPoint/WPS without them is unverified.",
+      "description": "Thirty-four reviewed figure repairs depend on explicit job-local source aliases or source-derived ink/FontMatrix/native em font variants with limited Unicode repertoire. Used glyphs render correctly in the reviewed native application, but PPTX does not embed these dependencies and expanded editing/reopening in PowerPoint/WPS without them is unverified.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -14287,6 +14451,7 @@
         "ccf-2024-06-f02",
         "ccf-2024-07-f02",
         "ccf-2024-08-f02",
+        "ccf-2025-01-f07",
         "ccf-2025-01-f08",
         "ccf-2025-03-f02",
         "ccf-2025-05-f13",
@@ -14348,6 +14513,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
           "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+          "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
         }
       ],
       "user_acceptance": "pending",
