@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T05:36:19.725435+00:00",
+  "updated_at": "2026-10-05T06:13:55.222617+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 267,
-    "open": 28,
+    "closed_model_visual_review": 269,
+    "open": 26,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -10581,6 +10581,564 @@
           "sha256": "c29e1844c8e814d13a50ee6d922b6e85efeb0a7162ef76ee1c43745e320458a8"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2022-12-f01",
+      "issue_id": "ccf-2022-12-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore132 source Calibri/Calibri Light labels, weights, italic roles and actual source baselines. Nine real native source font groups bind actual programmes/GIDs/Unicode to complete supplied faces with exact used contours, hmtx and bearings; names/bboxes are not the font identity. The adjacent source X/Y stroke paints bind the same real Calibri Light glyphs, complete native cubic outlines, source stroke matrix and width0.4011400044; the omitted uniform outer factor0.2806315422 is restored before the canvas2x transform. All three actual clip rectangles are proved no-ops against a miter-expanded control envelope, preserving source miter10 and painter order. Two old over-thick flattened filled stroke shapes become two actual editable stroked paths. Native Office unexpectedly applies tt/ti/ft ligatures absent from the individual source encoded glyphs; character-run splitting alone did not prevent all of them. Five explicit complete-face job-local aliases remove only GSUB/name and preserve all other tables except routine head checksum/timestamp. An initial negative-spacing strategy still accumulated about1px drift in long labels. Four successor metric variants retain the same exact original ink/cmap/hint tables and declare synthetic90%-rounded hmtx, compensated by strictly nonnegative source-origin character spacing in91 eligible ASCII labels. Original advances are not claimed for these91 synthetic metric variants; other41 source labels retain original hmtx. Actual real saved native font programmes, no fake/substitute fonts, and all557 matched current glyph outlines are independently verified at f32 against the source-matched full face; actual advances separately match the declared original or synthetic metric font. Observed maximum source-origin differences are0.333px horizontal and0.541px vertical across all132 labels, without a general raster/hinting bound. Full1420-object order,194 Unicode text objects,1226 paths, cubic/winding/stroke/layout receipts and source baselines are independently replayed from original authoring under frozen012. Other62 original text objects and all other geometry remain unchanged. Fresh source whole1x, final actual native whole1x/2x and all10 matched4x panels were actually viewed at original pixels; original Section/GeMM/Shared Memory/FF/caption fonts and X/Y registration match. Automatic semantics, source font embedding/cross-app delivery and PowerPoint/WPS remain unverified; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-12-f01-geometry-readback-043/native-readback.json",
+          "sha256": "dc78db5ad6872aa2e9f62ab3e627b0a82ea289c27a62f6e510eecaf34ea10763"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-12-f01-geometry-readback-043/output-review-045.json",
+          "sha256": "84e9b2ab7feab958df0ef509993484e1f2e75d210a670c9eff64e561f7228fbc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-final-galleries-044/bindings.json",
+          "sha256": "298391ac45edc6ff0916ccc60b9d0cb597a0996e5660c0ca08d9d08cbc731bf4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-final-galleries-044/visual-review-045.json",
+          "sha256": "a7440eafe0c15b921f9a1f5cfcd1202e02339086b1e393de7ab5dbd6fde03d98"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/output-review-045.json",
+          "sha256": "84e9b2ab7feab958df0ef509993484e1f2e75d210a670c9eff64e561f7228fbc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "a054a2502a3f81d17e0664795c349f053d3ad97ba9ab28ac215fa90b14f72b06"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/render-audit.json",
+          "sha256": "7b5ecf90171a4868ca7a03f63053aef5bccc52262e577d4d328a08c784ac2338"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/font-audit.json",
+          "sha256": "24d6a23b592ffb0e10a40526e07af6056a4c219ac6fe941fe0f48764165f82b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/editability.json",
+          "sha256": "d051127dd9bdf28657b4ec78f50eafe35517698d91dc4484d1cb4dd7816f3a79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/delivery.json",
+          "sha256": "cbbfa9413a943998f83020cb46dc1af33bf22789a533e07a4b9296a8d058fe40"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/repair-proof.json",
+          "sha256": "fd23c88084b5b386c321a8df37bccdec3e8294479fc40c647f1bdd07c6e2cc7b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-glyph-stroke-proof.json",
+          "sha256": "06083fbffa029b7314b4c5a0c0c2aebe6c4f0736cf3b3a8e8266cd5836425ead"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-encoded-font-proof.json",
+          "sha256": "b20276625b11eda1740e78871ec7982a13cfdf9724c3372df100ff1a0f6a5a21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-encoded-label-spacing-proof.json",
+          "sha256": "a7cf678d71bbc4cc0f11ec641f82702be8790688d73a20b804d0134f020399e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/positive-spacing-proof.json",
+          "sha256": "472a911fdf74ad3016f0640faf5ae4773e1590c2079196b44697e7a8297a997d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/font-profile.json",
+          "sha256": "e9622c146bbc2403d75fb838923e78cec3b8ce8d0ceb018eff9f728d78701e2a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/proof.json",
+          "sha256": "dc9c9c8a8e6d24df67ab6d5a5e7ea6acee3489845f07b0862d6c00ea8c04c169"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-trace.json",
+          "sha256": "ee5ac84fcca2d4b97b15d3168aba9c7eaef4f674ee71b353a4670265c1959e10"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/native-trace.json",
+          "sha256": "e41babb3798e8331f726256f8f3d51b36684d40337847829a24edcbea349e6b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-NATIVE-STROKE-CAPTURE-024.json",
+          "sha256": "cd828ca6fdb8c52be9fc68aab28464c738dfe071c858cdb8f2fa5e8ac4c95c19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-NATIVE-STROKE-SOURCE-024.svg",
+          "sha256": "67cef47a97d3085533882e503d35a656ca3ab5644d78c3074db90e008164f323"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-028v2/first-outline-difference.json",
+          "sha256": "549dbf342b3364c97250cf65ca3eb83e28df8c8339e12d6db75ef3b9fc60c487"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-034/proof.json",
+          "sha256": "0908866b48e49e60a146b3728a4e3fd45b97c74f250bdb3c1752f2a48758394e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-038/proof.json",
+          "sha256": "111e8595377ff49a80f7308374554e426fae8f218e41c8b512a71ffa1d2fd4e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-PROCESS-ATTEMPTS-045.json",
+          "sha256": "23e070afacb9963d8da540c1c561ee320a90192b6d560e6ce94ef05e19d83b5f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+          "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_deepspeed_stroke024.py",
+          "sha256": "25630c29bee0144ae31eb9c1f8cc4aad2f874704bae63b7911fccfecac1ffa41"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries036.py",
+          "sha256": "82e5050176087da1dc1492b08b36610d9a8edd958552f1641ec13b93d12ab40b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries040.py",
+          "sha256": "42e83ce767d1945637c26360935f53696c90cdb2aeee9a29fa291ebbf72b346c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries044.py",
+          "sha256": "893ece16376acbe2fd82c03bc86d6bf5b5044abcee002fca9d294f3a97d58c13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_encoded_fonts033.py",
+          "sha256": "56aa6aa9dacd4fb24a2119b16e88443eb444a4235c7c6eac1bc13e85ed0c805c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_positive_spacing041.py",
+          "sha256": "5fa4ae93a94d6dfeb0bd6dded2d0af5f1b39d06847576b46924ef29520956bde"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_spacing030.py",
+          "sha256": "8f7fae3b519548e5f6ac7071494e63e445bab1aadedf021d05c000783bec1ba8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_spacing037.py",
+          "sha256": "a204034dfdebbd73c7b30802cebc451f90f2def5e886e61a607aa5fb6fb51b6e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_stroke026.py",
+          "sha256": "7fe01370d4b7acd75d81ee71ed9ba429a6e3298159c62ff04a40346e1e9e19f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_deepspeed045.py",
+          "sha256": "e3c84a9c8a49ced261a5d8fa0f1b00f47c84d4b232777842c7d5e6fa6f084c7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_deepspeed_calibri023.py",
+          "sha256": "e476457d6cfe998812e6471b3702f43da3fe8d77e87fcb5a0ae781da2466863d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts028.py",
+          "sha256": "f9d017fd12164a97b1689da3240d2f15984bf281dd707db5daebd1576d874ca4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts028v2.py",
+          "sha256": "681d2dc6f12a050661367f600bc7bbca3333f216601cc3e8c847ac645e9956a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts031.py",
+          "sha256": "686095501588dae44c853365c7fa36e4d382d8bb6b77c0bc4d8a5aad8c91d145"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts034.py",
+          "sha256": "ebe98bc846789b41d70b1a9e263256aa0c20bff75797f151af9d09acae9b09f7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts038.py",
+          "sha256": "bc64fc4da74055111b0950344fcb70e490502cc34e39f6e97d15cb67290a5fab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts042.py",
+          "sha256": "1fd5519952420b038e56550c03f56d4607968748bd8fd63746d2f2b7c3aa0360"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene027.py",
+          "sha256": "596a15f05bea938759e4b783d9139f3efa178ee52a5a7ea88558d8382582702c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene032.py",
+          "sha256": "b3a01e752f5745c2cf7329b57ed7f99e4a3fda1847219ae51d9be1465213955c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene035.py",
+          "sha256": "551e9bf9da3ebc848b6943548ab4df6a69ca8e0e6f0a82464e992015fa0fbbba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene039.py",
+          "sha256": "e3f6d40905ed6a337ac4f9ee0bae97798ce2dd35c04155784222ec090e5fa55e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene043.py",
+          "sha256": "a116e0cdad1a68b17fcaebeacda9fe58bb30d70b1590a11d128033e79f94bba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-0.json",
+          "sha256": "6215da42fc31fc265082250f26af4565e5cafebb741464da32bf2986be4f9e79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-1.json",
+          "sha256": "ef70166edd34f303ca831e2599bffcdf09292f5a8696bd3ac7cbb9ab6c9bbf63"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-2.json",
+          "sha256": "92cdeddff6056776ef103baae3b468a9d1a3f041dbf1a8a1134ea1b754245b1c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-3.json",
+          "sha256": "18c9bba53fe7b6275b0ea2478fd760b10bf08dd78d6ac114f69eb3feb5a9bfd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-4.json",
+          "sha256": "db8b13e40a2bebe6452b794c8c08d429dacbdfa050b4468c61c3020d58e6a40a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-5.json",
+          "sha256": "2f1929d9c259c32ed7f34b595414b14b01d2877acf10863503a5f56c209ae9bf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-6.json",
+          "sha256": "ea45a830e1c98c5b8cdcc89e1729c4fc4cfa0ea73663431311501c8327333b75"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-7.json",
+          "sha256": "2343a8bbebc0631e35c2e1234f032e28ab6801b6e41cbcf2dd7ace93cfb7c4c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-8.json",
+          "sha256": "04fa8151a3af90ae498f2a658ca83ccd5e4f1002a8358482a3dadde6f27dc26a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/0a8296747536ead27d5f48f67e911cc3b207742b3f704e66995251d12fd422e5.ttf",
+          "sha256": "c062f2302819362b8dd7a0df3f0b06bd560dcf21d6cd8b325352ffd70edddcc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/2db491080305b349588b9851fb6fe960eee04cd7c1097784a987287d782f0a54.ttf",
+          "sha256": "32ccdbd0155cd60d9be61ec2258bfa5c396ca6d67c953f1c668de53d8ea54e8d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/57e93ff143572bcc092c1f56202d43ddc07bb119aa104c6d7af163470fb551f6.ttf",
+          "sha256": "8d5ab12889dccd79925c045a193caa672eed363ba0e8959bce8130a9b613bee2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/760539bfedbe24e7853ca8a621d9cb1f3de52036c116e81aae36b33c4ab60a7c.ttf",
+          "sha256": "24340e3e4475902082f26260fbbdab0a5a83d9626f3b849b4de2ede87a29e2d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/7f150e9eabe5db3e1b0f9469dca5c96176bc2fbb306dc9d48b7029dc69c52763.ttf",
+          "sha256": "1125aa92ad977e9862b6f34300499062e6453be608becf2510a6f91d9db51d4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/0a8296747536ead27d5f48f67e911cc3b207742b3f704e66995251d12fd422e5.ttf",
+          "sha256": "4d23f552701f2063e685666457bf7d2a9cf5830e6f15d2e8cd89c4aa1c46570a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/57e93ff143572bcc092c1f56202d43ddc07bb119aa104c6d7af163470fb551f6.ttf",
+          "sha256": "608c020c5cceb0a139cdc1595d464e5cd328bad29962190a3cd6d7e5d73e2671"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/760539bfedbe24e7853ca8a621d9cb1f3de52036c116e81aae36b33c4ab60a7c.ttf",
+          "sha256": "b9fd860efbc81854d55c9b9ad071ead3190e169c55a3188df6c201c9a07ec02c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/7f150e9eabe5db3e1b0f9469dca5c96176bc2fbb306dc9d48b7029dc69c52763.ttf",
+          "sha256": "d4485e97d33accbc63d2b78fbc0277a86a717be707db62e756f63f7cb45edd46"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-12-f01",
+      "issue_id": "ccf-2022-12-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore132 source Calibri/Calibri Light labels, weights, italic roles and actual source baselines. Nine real native source font groups bind actual programmes/GIDs/Unicode to complete supplied faces with exact used contours, hmtx and bearings; names/bboxes are not the font identity. The adjacent source X/Y stroke paints bind the same real Calibri Light glyphs, complete native cubic outlines, source stroke matrix and width0.4011400044; the omitted uniform outer factor0.2806315422 is restored before the canvas2x transform. All three actual clip rectangles are proved no-ops against a miter-expanded control envelope, preserving source miter10 and painter order. Two old over-thick flattened filled stroke shapes become two actual editable stroked paths. Native Office unexpectedly applies tt/ti/ft ligatures absent from the individual source encoded glyphs; character-run splitting alone did not prevent all of them. Five explicit complete-face job-local aliases remove only GSUB/name and preserve all other tables except routine head checksum/timestamp. An initial negative-spacing strategy still accumulated about1px drift in long labels. Four successor metric variants retain the same exact original ink/cmap/hint tables and declare synthetic90%-rounded hmtx, compensated by strictly nonnegative source-origin character spacing in91 eligible ASCII labels. Original advances are not claimed for these91 synthetic metric variants; other41 source labels retain original hmtx. Actual real saved native font programmes, no fake/substitute fonts, and all557 matched current glyph outlines are independently verified at f32 against the source-matched full face; actual advances separately match the declared original or synthetic metric font. Observed maximum source-origin differences are0.333px horizontal and0.541px vertical across all132 labels, without a general raster/hinting bound. Full1420-object order,194 Unicode text objects,1226 paths, cubic/winding/stroke/layout receipts and source baselines are independently replayed from original authoring under frozen012. Other62 original text objects and all other geometry remain unchanged. Fresh source whole1x, final actual native whole1x/2x and all10 matched4x panels were actually viewed at original pixels; original Section/GeMM/Shared Memory/FF/caption fonts and X/Y registration match. Automatic semantics, source font embedding/cross-app delivery and PowerPoint/WPS remain unverified; user acceptance is pending.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-12-f01-geometry-readback-043/native-readback.json",
+          "sha256": "dc78db5ad6872aa2e9f62ab3e627b0a82ea289c27a62f6e510eecaf34ea10763"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-12-f01-geometry-readback-043/output-review-045.json",
+          "sha256": "84e9b2ab7feab958df0ef509993484e1f2e75d210a670c9eff64e561f7228fbc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-final-galleries-044/bindings.json",
+          "sha256": "298391ac45edc6ff0916ccc60b9d0cb597a0996e5660c0ca08d9d08cbc731bf4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-final-galleries-044/visual-review-045.json",
+          "sha256": "a7440eafe0c15b921f9a1f5cfcd1202e02339086b1e393de7ab5dbd6fde03d98"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/output-review-045.json",
+          "sha256": "84e9b2ab7feab958df0ef509993484e1f2e75d210a670c9eff64e561f7228fbc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "a054a2502a3f81d17e0664795c349f053d3ad97ba9ab28ac215fa90b14f72b06"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/render-audit.json",
+          "sha256": "7b5ecf90171a4868ca7a03f63053aef5bccc52262e577d4d328a08c784ac2338"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/font-audit.json",
+          "sha256": "24d6a23b592ffb0e10a40526e07af6056a4c219ac6fe941fe0f48764165f82b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/editability.json",
+          "sha256": "d051127dd9bdf28657b4ec78f50eafe35517698d91dc4484d1cb4dd7816f3a79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/build/run-001/delivery.json",
+          "sha256": "cbbfa9413a943998f83020cb46dc1af33bf22789a533e07a4b9296a8d058fe40"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/repair-proof.json",
+          "sha256": "fd23c88084b5b386c321a8df37bccdec3e8294479fc40c647f1bdd07c6e2cc7b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-glyph-stroke-proof.json",
+          "sha256": "06083fbffa029b7314b4c5a0c0c2aebe6c4f0736cf3b3a8e8266cd5836425ead"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-encoded-font-proof.json",
+          "sha256": "b20276625b11eda1740e78871ec7982a13cfdf9724c3372df100ff1a0f6a5a21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/source-encoded-label-spacing-proof.json",
+          "sha256": "a7cf678d71bbc4cc0f11ec641f82702be8790688d73a20b804d0134f020399e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/positive-spacing-proof.json",
+          "sha256": "472a911fdf74ad3016f0640faf5ae4773e1590c2079196b44697e7a8297a997d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-052/jobs/ccf-2022-12-f01/font-profile.json",
+          "sha256": "e9622c146bbc2403d75fb838923e78cec3b8ce8d0ceb018eff9f728d78701e2a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/proof.json",
+          "sha256": "dc9c9c8a8e6d24df67ab6d5a5e7ea6acee3489845f07b0862d6c00ea8c04c169"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-trace.json",
+          "sha256": "ee5ac84fcca2d4b97b15d3168aba9c7eaef4f674ee71b353a4670265c1959e10"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/native-trace.json",
+          "sha256": "e41babb3798e8331f726256f8f3d51b36684d40337847829a24edcbea349e6b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-NATIVE-STROKE-CAPTURE-024.json",
+          "sha256": "cd828ca6fdb8c52be9fc68aab28464c738dfe071c858cdb8f2fa5e8ac4c95c19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-NATIVE-STROKE-SOURCE-024.svg",
+          "sha256": "67cef47a97d3085533882e503d35a656ca3ab5644d78c3074db90e008164f323"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-028v2/first-outline-difference.json",
+          "sha256": "549dbf342b3364c97250cf65ca3eb83e28df8c8339e12d6db75ef3b9fc60c487"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-034/proof.json",
+          "sha256": "0908866b48e49e60a146b3728a4e3fd45b97c74f250bdb3c1752f2a48758394e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-038/proof.json",
+          "sha256": "111e8595377ff49a80f7308374554e426fae8f218e41c8b512a71ffa1d2fd4e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/DEEPSPEED-PROCESS-ATTEMPTS-045.json",
+          "sha256": "23e070afacb9963d8da540c1c561ee320a90192b6d560e6ce94ef05e19d83b5f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+          "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_deepspeed_stroke024.py",
+          "sha256": "25630c29bee0144ae31eb9c1f8cc4aad2f874704bae63b7911fccfecac1ffa41"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries036.py",
+          "sha256": "82e5050176087da1dc1492b08b36610d9a8edd958552f1641ec13b93d12ab40b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries040.py",
+          "sha256": "42e83ce767d1945637c26360935f53696c90cdb2aeee9a29fa291ebbf72b346c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/deepspeed_galleries044.py",
+          "sha256": "893ece16376acbe2fd82c03bc86d6bf5b5044abcee002fca9d294f3a97d58c13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_encoded_fonts033.py",
+          "sha256": "56aa6aa9dacd4fb24a2119b16e88443eb444a4235c7c6eac1bc13e85ed0c805c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_positive_spacing041.py",
+          "sha256": "5fa4ae93a94d6dfeb0bd6dded2d0af5f1b39d06847576b46924ef29520956bde"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_spacing030.py",
+          "sha256": "8f7fae3b519548e5f6ac7071494e63e445bab1aadedf021d05c000783bec1ba8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_spacing037.py",
+          "sha256": "a204034dfdebbd73c7b30802cebc451f90f2def5e886e61a607aa5fb6fb51b6e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_deepspeed_stroke026.py",
+          "sha256": "7fe01370d4b7acd75d81ee71ed9ba429a6e3298159c62ff04a40346e1e9e19f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_deepspeed045.py",
+          "sha256": "e3c84a9c8a49ced261a5d8fa0f1b00f47c84d4b232777842c7d5e6fa6f084c7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_deepspeed_calibri023.py",
+          "sha256": "e476457d6cfe998812e6471b3702f43da3fe8d77e87fcb5a0ae781da2466863d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts028.py",
+          "sha256": "f9d017fd12164a97b1689da3240d2f15984bf281dd707db5daebd1576d874ca4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts028v2.py",
+          "sha256": "681d2dc6f12a050661367f600bc7bbca3333f216601cc3e8c847ac645e9956a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts031.py",
+          "sha256": "686095501588dae44c853365c7fa36e4d382d8bb6b77c0bc4d8a5aad8c91d145"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts034.py",
+          "sha256": "ebe98bc846789b41d70b1a9e263256aa0c20bff75797f151af9d09acae9b09f7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts038.py",
+          "sha256": "bc64fc4da74055111b0950344fcb70e490502cc34e39f6e97d15cb67290a5fab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_fonts042.py",
+          "sha256": "1fd5519952420b038e56550c03f56d4607968748bd8fd63746d2f2b7c3aa0360"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene027.py",
+          "sha256": "596a15f05bea938759e4b783d9139f3efa178ee52a5a7ea88558d8382582702c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene032.py",
+          "sha256": "b3a01e752f5745c2cf7329b57ed7f99e4a3fda1847219ae51d9be1465213955c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene035.py",
+          "sha256": "551e9bf9da3ebc848b6943548ab4df6a69ca8e0e6f0a82464e992015fa0fbbba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene039.py",
+          "sha256": "e3f6d40905ed6a337ac4f9ee0bae97798ce2dd35c04155784222ec090e5fa55e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_deepspeed_scene043.py",
+          "sha256": "a116e0cdad1a68b17fcaebeacda9fe58bb30d70b1590a11d128033e79f94bba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-0.json",
+          "sha256": "6215da42fc31fc265082250f26af4565e5cafebb741464da32bf2986be4f9e79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-1.json",
+          "sha256": "ef70166edd34f303ca831e2599bffcdf09292f5a8696bd3ac7cbb9ab6c9bbf63"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-2.json",
+          "sha256": "92cdeddff6056776ef103baae3b468a9d1a3f041dbf1a8a1134ea1b754245b1c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-3.json",
+          "sha256": "18c9bba53fe7b6275b0ea2478fd760b10bf08dd78d6ac114f69eb3feb5a9bfd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-4.json",
+          "sha256": "db8b13e40a2bebe6452b794c8c08d429dacbdfa050b4468c61c3020d58e6a40a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-5.json",
+          "sha256": "2f1929d9c259c32ed7f34b595414b14b01d2877acf10863503a5f56c209ae9bf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-6.json",
+          "sha256": "ea45a830e1c98c5b8cdcc89e1729c4fc4cfa0ea73663431311501c8327333b75"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-7.json",
+          "sha256": "2343a8bbebc0631e35c2e1234f032e28ab6801b6e41cbcf2dd7ace93cfb7c4c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-native-fonts-042/source-used-glyphs-8.json",
+          "sha256": "04fa8151a3af90ae498f2a658ca83ccd5e4f1002a8358482a3dadde6f27dc26a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/0a8296747536ead27d5f48f67e911cc3b207742b3f704e66995251d12fd422e5.ttf",
+          "sha256": "c062f2302819362b8dd7a0df3f0b06bd560dcf21d6cd8b325352ffd70edddcc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/2db491080305b349588b9851fb6fe960eee04cd7c1097784a987287d782f0a54.ttf",
+          "sha256": "32ccdbd0155cd60d9be61ec2258bfa5c396ca6d67c953f1c668de53d8ea54e8d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/57e93ff143572bcc092c1f56202d43ddc07bb119aa104c6d7af163470fb551f6.ttf",
+          "sha256": "8d5ab12889dccd79925c045a193caa672eed363ba0e8959bce8130a9b613bee2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/760539bfedbe24e7853ca8a621d9cb1f3de52036c116e81aae36b33c4ab60a7c.ttf",
+          "sha256": "24340e3e4475902082f26260fbbdab0a5a83d9626f3b849b4de2ede87a29e2d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-source-encoded-fonts-033/7f150e9eabe5db3e1b0f9469dca5c96176bc2fbb306dc9d48b7029dc69c52763.ttf",
+          "sha256": "1125aa92ad977e9862b6f34300499062e6453be608becf2510a6f91d9db51d4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/0a8296747536ead27d5f48f67e911cc3b207742b3f704e66995251d12fd422e5.ttf",
+          "sha256": "4d23f552701f2063e685666457bf7d2a9cf5830e6f15d2e8cd89c4aa1c46570a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/57e93ff143572bcc092c1f56202d43ddc07bb119aa104c6d7af163470fb551f6.ttf",
+          "sha256": "608c020c5cceb0a139cdc1595d464e5cd328bad29962190a3cd6d7e5d73e2671"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/760539bfedbe24e7853ca8a621d9cb1f3de52036c116e81aae36b33c4ab60a7c.ttf",
+          "sha256": "b9fd860efbc81854d55c9b9ad071ead3190e169c55a3188df6c201c9a07ec02c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/deepspeed-positive-fonts-041/7f150e9eabe5db3e1b0f9469dca5c96176bc2fbb306dc9d48b7029dc69c52763.ttf",
+          "sha256": "d4485e97d33accbc63d2b78fbc0277a86a717be707db62e756f63f7cb45edd46"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -10597,8 +11155,6 @@
     "ccf-2021-17-f05-D01",
     "ccf-2022-01-f03-D02",
     "ccf-2022-07-f01-D03",
-    "ccf-2022-12-f01-D01",
-    "ccf-2022-12-f01-D02",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
     "ccf-2024-03-f02-D02",
@@ -16216,6 +16772,7 @@
         "ccf-2022-01-f03",
         "ccf-2022-02-f02",
         "ccf-2022-07-f01",
+        "ccf-2022-12-f01",
         "ccf-2022-12-f04",
         "ccf-2022-13-f01",
         "ccf-2022-14-f02",
@@ -16319,6 +16876,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
           "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+          "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
         }
       ],
       "user_acceptance": "pending",
