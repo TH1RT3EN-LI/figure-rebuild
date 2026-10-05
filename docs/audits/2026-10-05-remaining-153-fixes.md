@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 80 张图的来源修复及实际成品复查，关闭 120 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 66 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 33 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 37 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 56 项解决、27 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 120 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 81 张图的来源修复及实际成品复查，关闭 122 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 68 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 31 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 35 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 58 项解决、25 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 122 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -66,6 +66,8 @@
 
 - Swin 两图、ZeRO、DPO、CodaMosa、Titans、SAM3D 和 NitroGen 的八项 Artifact 图片采样问题关闭。显式原生解码保留实际 RGB、同尺寸附加蒙版和浮点位置；允许完整 canonical DeviceRGB 隔离根组的政策仍为 opt-in，默认严格政策与资源预算不变。以前 Swin 资产来自原生图片实例 8× 采样，早期图库172的 SVG 标签误记在本回执纠正，原记录保留。维护预览适配器仅从最终 PPTX 媒体、EMU 图片框和绘制顺序计算，在 1×/2×/4× 分别用 MuPDF 采样，并恢复 Artifact 全部混合遮挡顺序；不读取参考图像素、不重导出瞬态场景。全部 1783 个原生对象读回，八个真实作者图片和 1775 个其他 manifest 对象保留；1763 个其他对象的原生属性相同，DPO 一次、NitroGen 十一次填充改写实际双端摘要及完整证明重放，其他样式与位置相同，控制点仍受固定 0.001 px 守卫。八图源/Artifact/独立原生 PDF 的全图 1×、完整 2× 分片及 4× 图片支持区，共 165 张原尺寸对照全部实看。有限图片区域 RGB 数值改善仅作诊断，未宣称整体像素相同、通用 RGB/alpha 界或 Office 滤波等价。MAE 的 4× 诊断未改善，继续开放；DPO 手工原生路径候选的 native-sampling-residual 也继续开放，未用作者位图候选替代其独立编辑能力声明。公开 Python 1254（8 跳过）、Node 66（0 跳过，真实 CPU 像素/蒙版/遮挡控制）、wheel/sdist 89/291 文件及安装后 1254（8 跳过）检查通过，冻结017绑定 212 个运行测试构建输入及 82 个安装/归档模块。图片内部活动文字、自动语义、ICC/组、裁剪和跨应用验收仍保留各自限制。
 
+- TPU 和 Moon 两项 Artifact 图片采样问题关闭。v2 维护适配器从实际最终 PPT 媒体、EMU 框和原生百分比裁剪推导完整图片矩阵，再按真实浮点可见框裁剪采样；不把裁剪舍入为源图片整数像素框、不改交付图片。22 张图的原生位置与 crop 元素均和父版本相同。800 个对象完整读回，778 个其他 manifest 对象未变；616 个其他原生属性相同，162 处填充改写双端摘要及精确证明重放，控制点仍受固定 0.001 px 守卫。全部 48 张源/Artifact/独立原生 PDF 全图 1×、完整 2× 和 4× 图片支持区实看。TPU 的原问题为 2×/4× 平滑错误，这两级有限区域 RGB 诊断明显改善；1× 诊断从 2.5368 增至 3.9271，作为残差保留，不宣称各尺度均更优。Moon 三尺度诊断改善，仅作诊断，没有阈值或通用误差界。裁剪边缘可能仍在滤波中引用邻近存储样本。Python 1260（8 跳过）、真实 CPU Node 67（0 跳过）、wheel/sdist 89/291 文件、安装后 1260 检查通过，冻结018绑定 212 输入和 82 运行模块；旧八图 v1 完整定义和 PNG 字节重放相同，提交0c7b970的16项 GitHub 检查通过。内部位图文字、自动语义、普通 Office 滤波、字体交付及跨应用验收限制继续保留。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -125,6 +127,7 @@
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
 | ccf-2023-08-f02 | D03 |
+| ccf-2023-13-f01 | R01-PREVIEW-SAMPLING |
 | ccf-2023-13-f07 | D05 |
 | ccf-2023-14-f01 | R01-PREVIEW-SAMPLING, R02-NATIVE-ALPHA-EDGE |
 | ccf-2023-14-funnumbered-p5 | R02-NATIVE-IMAGE-FRAME |
@@ -144,7 +147,7 @@
 | ccf-2025-05-f13 | D01 |
 | ccf-2025-06-f02 | D05 |
 | ccf-2025-06-f05 | R01-PREVIEW-SAMPLING |
-| ccf-2025-07-f04 | D04 |
+| ccf-2025-07-f04 | D04, R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f02 | R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f05 | D01, D02 |
 | ccf-2026-03-f02 | D05 |
@@ -350,3 +353,13 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-034.json` | `87515a5e08c35f9b594c1883f91484b849c1682ede21e32843fd3c1813ef3b59` |
 | `reports/remaining-153-001/tools/check_audit_consistency034.py` | `2babe3592b6de8842856c67feb6cbdafbdd12de2c48a068870129ff2fd845cbc` |
 | `reports/remaining-153-001/DISTILLATION-195.json` | `1f9e4696616fc331c4ec28b3317d155a6e9eab7e027177fc7bd7b102b8602174` |
+| `reports/remaining-153-001/LEDGER-RESULT-035.json` | `fcf6351ba472e6b0fdcf32e1627eb110d8f7379a207b9347e2d303d42dfb189e` |
+| `reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-REVIEW-RESULT-206.json` | `753bf15c6a5fa7ee351ad6c7ec63a1df895acde09d9441462cec76cc7cf5563d` |
+| `reports/remaining-153-001/FREEZE-018.json` | `a2b38bedfa4e3d4bf4651e840f98afec130ee3f9feb4f851dec4bb72c4af1298` |
+| `reports/remaining-153-001/PUBLIC-PICTURE-CROP-CHECKS-202.json` | `576ff23959572f5ccae90936886fa2ec628e89141c987217a5386f848d9f9976` |
+| `reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-BUILDS-203.json` | `8198d5982f1935a016bd4b586d337c4a29d1c1630198f79fac85ec4b16b073bb` |
+| `reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-READBACK-204.json` | `9df9a89e7717c733d2821e8430fe6a22523886eb78c4b9ba60ce7467edaf3849` |
+| `reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-MEASUREMENTS-205.json` | `77b9f657c7dfce7d230f46dfc6e29e05536df70c89324526c2237b442bfe9508` |
+| `reports/remaining-153-001/github-checks-0c7b970-001.json` | `6b59b5adb4a4ad389ce3715143f591386a329c386ffd68a1998e601b8c8d23aa` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-035.json` | `e8c710162805b07acd1d50b27f708e74ceab0def16004b76623c080ed3b7a8c3` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-035b.json` | `009ebf5ae833a1d985c62f028872f82e7c59b21d8125039173f7ab8cdb27e43c` |

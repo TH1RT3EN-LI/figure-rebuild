@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T16:28:53.391498+00:00",
+  "updated_at": "2026-10-05T17:07:14.638870+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -25726,7 +25726,7 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
       "description": "Actual Artifact2x/4x smooths the original low-resolution bitmap edges differently, visible at circle digits/cube outlines/OCS loops, while source and lossless native retain the original jagged pixel structure. This is minor interpolation mismatch, not a connectivity or digit-content error.",
       "figure_id": "ccf-2023-13-f01",
@@ -25749,7 +25749,1160 @@
           "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-018.json",
+          "sha256": "a2b38bedfa4e3d4bf4651e840f98afec130ee3f9feb4f851dec4bb72c4af1298"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-PICTURE-CROP-CHECKS-202.json",
+          "sha256": "576ff23959572f5ccae90936886fa2ec628e89141c987217a5386f848d9f9976"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-PICTURE-CROP-TEST-INPUTS-200.json",
+          "sha256": "4e89e43279d672c03955a5a0b3b996bec3ce25c1ee12251258a28685b348ce20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/proof.json",
+          "sha256": "530cf85d2ed840cd4efd9d4e0ca6ffa802d4a7655444eb0e699abbed52dfdbd8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LEGACY-IMAGE-PREVIEW-REPLAY-200.json",
+          "sha256": "e7a40cf9dcdec79f3cbcfe4c46829ca3376dc44f49cec8f026ad98c8681e75d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/INTRINSIC-IMAGE-SURVEY-190.json",
+          "sha256": "9beaff457c0a3a2c5e215836294da762a6b74c043744918ea7e9a9270c93105b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-BUILDS-203.json",
+          "sha256": "8198d5982f1935a016bd4b586d337c4a29d1c1630198f79fac85ec4b16b073bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-READBACK-204.json",
+          "sha256": "9df9a89e7717c733d2821e8430fe6a22523886eb78c4b9ba60ce7467edaf3849"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-MEASUREMENTS-205.json",
+          "sha256": "77b9f657c7dfce7d230f46dfc6e29e05536df70c89324526c2237b442bfe9508"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-205.json",
+          "sha256": "7a3dffe0df3305af573f341582b3d6ea09da42c6686bf9cd6d31c1a10be0ee6c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-0c7b970-001.json",
+          "sha256": "6b59b5adb4a4ad389ce3715143f591386a329c386ffd68a1998e601b8c8d23aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f01/inventory-input/source-evidence/source.pdf",
+          "sha256": "94f08ac4cd041e46e5037876793761df8043296ac374aa5372af7afb0bdf3ce2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/manifest.json",
+          "sha256": "67c0d6d30d70cfbd3f6ed0f7513fdf0b694ccce1e14b92373b3b05db833aee00"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/output-review-unperformed.json",
+          "sha256": "a028d510dd91a81f6971f638c9dc7d4d2391616437dc623ceb550a09ce002ba4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build-result.json",
+          "sha256": "868c97d2152025bb869e056d30c0d223c447a14ef63de31ecfe49bba08891e32"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/image-receipts.json",
+          "sha256": "18f721a4ed7d5def2857b0ebd60852d0f00767be59b7c7fe1732e4494c6fc64d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/parent-binding.json",
+          "sha256": "0e717df7006cbb16ae550274216e434475e804610466f44a714e4fc951a3329b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/sources/original.png",
+          "sha256": "8b4abc2c3174d484cef331ac453d79a0f4dd474fdec0d5255773d0e9dbff90d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/exports/reconstruction.pptx",
+          "sha256": "303a3ef2085b50060c8f66a4831d2396e5e3a8f0241aaac6dc095172df1a78c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/build.stdout",
+          "sha256": "7b36a714139d7d4701944aff35dbe0ba925525b923deef2a16d285324ef905a9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/review.json",
+          "sha256": "774a347cf5d65842b3f8c5c951a17c3bdbe40aebf4677295e0bfd49d98d5ce6b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/build.json",
+          "sha256": "3f6a36f9288b41a615b1fa85dbbb73b77fd28c1fac714bc180807166c3083d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/commands/review.stdout",
+          "sha256": "132db4fd4ec09e39c701acf66024e9548dbdb023beeee9ee575a4a5702ef91b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/assets/source-image-00000.png",
+          "sha256": "d6e768744352f4ea58bc32bc0d5a8c633156c28de06f04755d755e5efe98d082"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/assets/source-image-00001.png",
+          "sha256": "d6e768744352f4ea58bc32bc0d5a8c633156c28de06f04755d755e5efe98d082"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/assets/source-intrinsic-image-1.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/assets/source-intrinsic-image-0.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "03cba5638bde16106653103a7ee8b5c29753df0a9fea1b974d3dfcd22cee50eb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/validation.json",
+          "sha256": "12324b2c64108d01abaa1ee91a9d84f6d817e886c7dd2b6013ac703c290f54ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/delivery.json",
+          "sha256": "b62a8418f213489fdb53dcf6ec3a0bb319c7ccdf0336af2adbe272cfbefc0701"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "03903b429fd2f9dd5b985f54840f378d3bac45b945e749120edd5f1f56283cca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "dffca5ec9d45ed04970317c459a802f7fca670f327c5b84efe2d75ff5ea37bc0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/font-audit.json",
+          "sha256": "ed3acdee35404f20df2b824a2d02c9fc1bfb093fdc53ca3a1f137d849e1bce53"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/object-map.json",
+          "sha256": "75e86348f1e98db62eaea6a4d253c4cea43b24b5db6d1a45ddfed4ee8cc24e71"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/artifact-stroke-preview.json",
+          "sha256": "22d183f98abdad0e4199d508d0626672ae425bb6b137a31600191000b1a912a2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/comparison.png",
+          "sha256": "f0e97983b10dbf01fa9a303e8f23eb2827593b0923302b12b731bc211e6a1578"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/manifest-validation.json",
+          "sha256": "e3a391381055b0ef5283cb298661f4e48bf8ddd1366f0c9384e3ee028f8bbf9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/reconstructed.svg",
+          "sha256": "1a8f0be857828fad448ea78001959f6fb89610fee08f7584bdb3118cd2395ef5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/preview-2x.png",
+          "sha256": "46044a198fd2d514cc166269505a1c1254a282ddf2c74b444dc48e318e1496c7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/asset-snapshot.json",
+          "sha256": "a138a1d52755b8933163ce064eabe7b93595ce5e3435c66e75b597ff880fbb97"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/preview-1x.png",
+          "sha256": "83499788084eca06b12c5992b2549c797406405e5fefceebe191a13661452ac3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/delivery-candidate.json",
+          "sha256": "6c6a75a05fd6fed26124aa5c14d5dcfab501af14dc3bc6810982c6b88965c0a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/editability.json",
+          "sha256": "5fac1d81f6435e48094529cb3e8b2de264ebb214cbf975f30b3e663fb9ff3d7a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/artifact-image-preview.json",
+          "sha256": "b3707ec09b4218ed6eb79bb9dd2e7fed1c12f308301fef12211f28ae7c040532"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/output-review-picture-crop-206.json",
+          "sha256": "f44417d11069b3c9e8b1d6f261ad8a8497f73042898733f94487f9083c1e0167"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/resolved-scene.json",
+          "sha256": "67c0d6d30d70cfbd3f6ed0f7513fdf0b694ccce1e14b92373b3b05db833aee00"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/comparison-metrics.json",
+          "sha256": "0172bf5b055cff1ce928f354bff9897185a198ee83f68fd5b05059e99932d02c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "67c0d6d30d70cfbd3f6ed0f7513fdf0b694ccce1e14b92373b3b05db833aee00"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/render-audit.json",
+          "sha256": "5825f98032e94603c3cf3954ba8e1dc5bda5dfecffd35f1edc3f7f5abd7aeaa5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/preview-4x.png",
+          "sha256": "8d2eea171afb19c1ace4c14a3fb355e2eaba254f69675c525621a53d1d695b31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/build-config.json",
+          "sha256": "b8eb51a1d11b4089dbefdcdaa9dbcb8f9df273e4120fee572de11bfc38bdac63"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/text-fit.json",
+          "sha256": "be2f93242bae7efcd6acdd0095e9fb3c5353ac0f711fffe09fd53f0f12a3353f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "303a3ef2085b50060c8f66a4831d2396e5e3a8f0241aaac6dc095172df1a78c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/candidate.pptx",
+          "sha256": "303a3ef2085b50060c8f66a4831d2396e5e3a8f0241aaac6dc095172df1a78c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/text-manifest.json",
+          "sha256": "d550add8b350a6c52a274729f76e43dda611b1072efc1fa9145e1dedb5a32c7d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/comparison-scene.json",
+          "sha256": "bea55eafef5f6b5b6edf6e5374e9d6a0c23c5490cd9e24ada1409db22d8e9f76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "eea087f1618ef4358a9df31d8c2bfb18b841e95476faa4d17957b053bf98786f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "285297dd9d3fc8ed01026f9db891a015617a1c11f971084f0a9b8973cee7cebd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "46cc1ec7c057e2fa021405feb24d4d0f6a917dce8fdd404d46cac516f18e7e17"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "d3a68217cf98921aec02f552cfa8ee2b075970c6ac88de6ee6e5e5b7866acedc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "303a3ef2085b50060c8f66a4831d2396e5e3a8f0241aaac6dc095172df1a78c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "2f63849b1c322c61c3f4c6b66bf5280358a02c94e99de0d6cf78c503fb441cef"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "8c47bafc4e1abe4c8d071c3d94f525b0472961987181f48ded211b9ec4f421ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "6e4e12138fae498b64264d49e316b3f50cf070fd2a3e5e0dea7b8dfdf22c7e28"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "32634f8aad2fb82685312da8204eb03945da3f4a85222f905610c3757b738640"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "a44e41db523005600ac7a6135b2403b0fcac6fb6e84a8ac4b3090aadaca59a53"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "48f7d6d06ec057c421f38c6eb0deb6c05386c4bf9fdaddd28f91ae473026bdb3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "427617ecd6da2637bb838b7343bfaefd73d1a2b4d0cf02f653cd794ad144e701"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "c9dfcd159b76a0f69ffb5bc587dd4714cc7ae08692f5489564d70acc5f28688b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/assets/sources/original.png",
+          "sha256": "8b4abc2c3174d484cef331ac453d79a0f4dd474fdec0d5255773d0e9dbff90d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/assets/assets/source-intrinsic-image-1.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2023-13-f01/build/run-001/assets/assets/source-intrinsic-image-0.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/readback.json",
+          "sha256": "0a0e4f3c2946dec43f43a11c3d9447e1819a6931d36ed8960075445abcb7a74a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/output-review-picture-crop-206.json",
+          "sha256": "f44417d11069b3c9e8b1d6f261ad8a8497f73042898733f94487f9083c1e0167"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-config.json",
+          "sha256": "c75db65af4927e3c8270f7716b521e81116f28b26b1c46c8b685b60226f1330b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/font-audit.json",
+          "sha256": "843a87a68c93cfdb749d6f8ecb2bfe54c805aedcccf8d353b0399caf3f0e7e2f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/preview-2x.png",
+          "sha256": "0b018f0f3470747c84d2bcc5b781af83b0d03e1ded478e8c9a40669511ae3fc3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/preview-1x.png",
+          "sha256": "82ce489dffaff44e3cedbde8ce4fbdcc1110576bb688e3d10699083a57796e87"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/render-audit.json",
+          "sha256": "7924b828fb0b3b53f5a97411c3ffbd826aa58936a2e831fe45f2d8d209f5a1c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/preview-4x.png",
+          "sha256": "b6506066101405467ed49eb3db61afa5b01a1d032959e804e845fabeb74a50bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts.conf",
+          "sha256": "33ca016aa8712d2cb74057cca4bbd0d3de9378241561b9c8e8b1ba15eb14ed0b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/commands.json",
+          "sha256": "ebca9099fbeb933ec75c0bc2a4464ec48ba50f83e8b2c179361954b860ca8a84"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/5.ttf",
+          "sha256": "c9dfcd159b76a0f69ffb5bc587dd4714cc7ae08692f5489564d70acc5f28688b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/1.ttf",
+          "sha256": "d3a68217cf98921aec02f552cfa8ee2b075970c6ac88de6ee6e5e5b7866acedc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/9.ttf",
+          "sha256": "32634f8aad2fb82685312da8204eb03945da3f4a85222f905610c3757b738640"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/10.ttf",
+          "sha256": "2f63849b1c322c61c3f4c6b66bf5280358a02c94e99de0d6cf78c503fb441cef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/6.ttf",
+          "sha256": "a44e41db523005600ac7a6135b2403b0fcac6fb6e84a8ac4b3090aadaca59a53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/7.ttf",
+          "sha256": "427617ecd6da2637bb838b7343bfaefd73d1a2b4d0cf02f653cd794ad144e701"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/4.ttf",
+          "sha256": "48f7d6d06ec057c421f38c6eb0deb6c05386c4bf9fdaddd28f91ae473026bdb3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/0.ttf",
+          "sha256": "285297dd9d3fc8ed01026f9db891a015617a1c11f971084f0a9b8973cee7cebd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/2.ttf",
+          "sha256": "eea087f1618ef4358a9df31d8c2bfb18b841e95476faa4d17957b053bf98786f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/11.ttf",
+          "sha256": "6e4e12138fae498b64264d49e316b3f50cf070fd2a3e5e0dea7b8dfdf22c7e28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/8.ttf",
+          "sha256": "8c47bafc4e1abe4c8d071c3d94f525b0472961987181f48ded211b9ec4f421ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/registered-fonts/3.ttf",
+          "sha256": "46cc1ec7c057e2fa021405feb24d4d0f6a917dce8fdd404d46cac516f18e7e17"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/validated-output/reconstruction.pptx",
+          "sha256": "303a3ef2085b50060c8f66a4831d2396e5e3a8f0241aaac6dc095172df1a78c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/png-1x/reconstruction.png",
+          "sha256": "82ce489dffaff44e3cedbde8ce4fbdcc1110576bb688e3d10699083a57796e87"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/png-2x/reconstruction.png",
+          "sha256": "0b018f0f3470747c84d2bcc5b781af83b0d03e1ded478e8c9a40669511ae3fc3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/pdf/reconstruction.pdf",
+          "sha256": "569b67ecde14d191e0949031ac215f8c52836466f37084f5ffddf1f1c9c3b804"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/5.ttf",
+          "sha256": "c9dfcd159b76a0f69ffb5bc587dd4714cc7ae08692f5489564d70acc5f28688b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/1.ttf",
+          "sha256": "d3a68217cf98921aec02f552cfa8ee2b075970c6ac88de6ee6e5e5b7866acedc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/9.ttf",
+          "sha256": "32634f8aad2fb82685312da8204eb03945da3f4a85222f905610c3757b738640"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/10.ttf",
+          "sha256": "2f63849b1c322c61c3f4c6b66bf5280358a02c94e99de0d6cf78c503fb441cef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/6.ttf",
+          "sha256": "a44e41db523005600ac7a6135b2403b0fcac6fb6e84a8ac4b3090aadaca59a53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/7.ttf",
+          "sha256": "427617ecd6da2637bb838b7343bfaefd73d1a2b4d0cf02f653cd794ad144e701"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/4.ttf",
+          "sha256": "48f7d6d06ec057c421f38c6eb0deb6c05386c4bf9fdaddd28f91ae473026bdb3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/0.ttf",
+          "sha256": "285297dd9d3fc8ed01026f9db891a015617a1c11f971084f0a9b8973cee7cebd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/2.ttf",
+          "sha256": "eea087f1618ef4358a9df31d8c2bfb18b841e95476faa4d17957b053bf98786f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/11.ttf",
+          "sha256": "6e4e12138fae498b64264d49e316b3f50cf070fd2a3e5e0dea7b8dfdf22c7e28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/8.ttf",
+          "sha256": "8c47bafc4e1abe4c8d071c3d94f525b0472961987181f48ded211b9ec4f421ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/fonts/3.ttf",
+          "sha256": "46cc1ec7c057e2fa021405feb24d4d0f6a917dce8fdd404d46cac516f18e7e17"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/font-cache/2665fdac78a94769a3137392e3d4bec9-le64.cache-9",
+          "sha256": "4a88c662d449be0d81d4c81602f366ff4a91a18a72753fd0c01c92a9f8158779"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/png-4x/reconstruction.png",
+          "sha256": "b6506066101405467ed49eb3db61afa5b01a1d032959e804e845fabeb74a50bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2023-13-f01/independent-native/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-1x.png",
+          "sha256": "7ec9c4b336bee47467ee7d664aa097568f40633eeea274c5cde4282978b89f77"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/source-1x.png",
+          "sha256": "8b4abc2c3174d484cef331ac453d79a0f4dd474fdec0d5255773d0e9dbff90d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/native-PDF-2x.png",
+          "sha256": "24b3eb15d5684e75554c42ab599e7bf3ec09d7bb595c8422f047d8ae9c7f1e53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-06.png",
+          "sha256": "4339929ed6151392403ef936334a522e1a4b7160fd8d43ca0afe082dd74d5831"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-01.png",
+          "sha256": "cc8780356ac81694e1429bc21f071e0c10e31216f92ebaf0750d128c8fa40d11"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-00.png",
+          "sha256": "4c93897fd2abbae564b668be1d98e1b61eed85a227298b99687182c733c6902b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-320-220.png",
+          "sha256": "d4833f5c181dd9578e36005f6d1d97c1d72c7f85110a71a9db3260b82133cdda"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-03.png",
+          "sha256": "1a23e75a10255ec8d56dba3c3fda3b0059b6489076cd4ca1a48322654c964de0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-09.png",
+          "sha256": "db9f8389038f18c196ea321c7886a9245cc96ffe2630889d30675317ae99f349"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-05.png",
+          "sha256": "486af64d2a05d180d492de9dd73e942c6f60cdc509ff999e1181bca83bd2f757"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/visual-review-206.json",
+          "sha256": "dfaf177b34f32659de476b3c35f5337cb16eb43c76b336d6920b287d9f44355b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-320-0.png",
+          "sha256": "de5325d63b1f75f8bd4f06aa82a51500dc648330b89b499b8f47db3319889caf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-0-0.png",
+          "sha256": "cadb966a5a5591285244de719acabf56b4991e4efc9b138fbc2dddbe588239b3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/native-PDF-1x.png",
+          "sha256": "4fa65137465c43b94e1005a4e2743f05db02772bf5603fc130b219c86cc323ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-0-660.png",
+          "sha256": "d5faa3c166ffb5003c5482de4bbb3c862205096475307916f5cac94b328d28f4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/source-2x.png",
+          "sha256": "5ddaec4f2a78e618237571ee6cc37684e27ff314973fd6f4c361655a25729e93"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-320-660.png",
+          "sha256": "adb1a4a5398303e37a7d1d1b514a72ee50f5bbef6fd948bcbd4b03c0e027e7fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-07.png",
+          "sha256": "cb7d89e8818cb50f8cea8ad1011a96feab1d01272faac9443269706b2acb138b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-0-220.png",
+          "sha256": "6dade906ab0d42815eb5fc9f2b3eb359269194bdb827a0dc72d3074a7b24500e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-08.png",
+          "sha256": "0113bd33249cf8a0fa84455384fe3c90e45045e6ab0fa6b067c65024fd992e5c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/native-PDF-4x.png",
+          "sha256": "0d15e2ad02a6cf71df7278c0c2470d98e2191f344142bf3f7426c1eb82b829a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-320-440.png",
+          "sha256": "e5e16e57ae41bc627dbd780e273e10f1ac7926bef5fb56ad50812bda9ba7ae13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-02.png",
+          "sha256": "71c806724cf820c29c3cb282a1dfc7e2ba4c4a11bb7c853a86b1a1c10684af5c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/image-4x-04.png",
+          "sha256": "9ec7fb9dcc7f419bd2f623225d2d09cc4b2e674fd8b2d6da7b214a1a2ae75cbb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/whole-2x-0-440.png",
+          "sha256": "a0b86efd0994b6c24020fea24965b1a9e46341251985784628af08c0828721f1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/source-4x.png",
+          "sha256": "d8c431f1adc169bc32418351bad2b6e070fadfe98e1cccb0030c85a71360bf97"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2023-13-f01/bindings.json",
+          "sha256": "b946bb7f7f5de53404933073ada4c0fd7070bb90ead3e3e4d06595c0ac416e12"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2023-13-f01/receipts.json",
+          "sha256": "60185ab741642cb63908b910d98eebbb634a97fb61839b8c66e0f83a85724a1c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2023-13-f01/image-0.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2023-13-f01/result.json",
+          "sha256": "9d5148e22a018ab2a63b6a2556a70796130f3becc2cea826d9f6f4c9094d837a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2023-13-f01/image-1.png",
+          "sha256": "fffbe53376c3ad4f0b4d6d3bb8467906c929d518b9a6260534b690cdc5ad98d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.stderr",
+          "sha256": "845ef46c9beed6d3aac4228a02e40a1f9650a0f3e18dbb64499be2f42a781ce1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.json",
+          "sha256": "2feb0ff022085d0dacb8867d7b8cfa53878f6538f6cb21b5b1ab94b692996b5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.stdout",
+          "sha256": "adeef546d713609c4c66061f94c6174c049a82118c128190717daa01b3672bed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.stderr",
+          "sha256": "c12081fd8da6eeda2fa379b40c676cdc9c7d0d218b79af62a897212f8c72d111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.stdout",
+          "sha256": "01cc97bdcf81d1345a5ac309b531d93fe48c570344ae79295c5c05ae2588e755"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.json",
+          "sha256": "48a13e7753a4c87ecf95fd0fe2d2b794b5d7d54e7325450ce2fde749fda302b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.stdout",
+          "sha256": "1956d571c85e792455cc7f9b06dd0a1e67a4a0f1e335a2e98833686add291acc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.json",
+          "sha256": "dde320f466e4cb9eeb3338d5841cd17caa4584e1d450eac120b554e553ea9bd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.stderr",
+          "sha256": "db1c320252546d819cc189405b40a2d905c724b220b033171e071a08a0317932"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/figure_rebuild-0.6.0.tar.gz",
+          "sha256": "f6d1ca190b17985b95fd9051ed0e373fde5e6387e63b86f521c6d2cdf2a33b90"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/figure_rebuild-0.6.0-py3-none-any.whl",
+          "sha256": "72deb5cbb7e224fd9bc5e179eb635bc836ab023c583f7e11fa77ea8016a9429c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.stdout",
+          "sha256": "6c40944c2606c72c4d3f475603345103a372a36a61902aa1ed1b8e31e247c014"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.json",
+          "sha256": "97b33d4f480bc6aac084b3c3fd9871ac78f4945a2c8a0679e41b4e0548731395"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace018.py",
+          "sha256": "242c7e4159a970cc35a54d31a51796fb7e7f6461bc122930f5a340bcd533ed1e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/survey_intrinsic_images190.py",
+          "sha256": "4245caf19f682ecca63298155a4a4b1880618f2475c406cbbeea96383bb6b9aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_picture_crop201.py",
+          "sha256": "bc22e6090f0fcdc3433f5200c391e29a98391309cdbe74f7b53a54f184ec2b19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_native_picture_crop_previews203.py",
+          "sha256": "7b65440fdd1d0b98a16c4456179a23ac390eda07dddb2e2f1030663df953e991"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_picture_crop_previews204.py",
+          "sha256": "7e4ac831c49d9bdea37ee94116ac72feee74aee5745211d7c7ac6bdf44ec82ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_picture_crop_previews206.py",
+          "sha256": "824c4d647037e056cc0d1942d729dffccb0080937c4660f57f14a885e62c2325"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-builds-203.stdout",
+          "sha256": "874294fb16b8863dda82b5c43c81a184f0f70fa3f8f9a1d339a450d02bf91298"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-builds-203.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204.stdout",
+          "sha256": "89b794fdc50b8020988352c0648157c0a8497c2c946d7637efa4e721879c0a79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-picture-crop-200.stdout",
+          "sha256": "01cc97bdcf81d1345a5ac309b531d93fe48c570344ae79295c5c05ae2588e755"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-picture-crop-200.stderr",
+          "sha256": "8da638baaac6ee9739cd172f0ac1719af35c5dbf1b03edef112139c6e7a3a66f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-picture-crop-200.stdout",
+          "sha256": "623a6590d363c011915120943493b900b33d85fecae317495e899630f7f70693"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-picture-crop-200.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/legacy-image-preview-replay-200.stdout",
+          "sha256": "5d6e1013011ce505725a82ad7d281c4b3a80ebee5a0ea2790de5cc88ff0ee65e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/legacy-image-preview-replay-200.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-picture-crop201.stdout",
+          "sha256": "11e7cfd434d15b9ae020c6d05aed8fe58a1b666fa6f1a5137417127acc96c68b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-picture-crop201.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-196.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-196.stderr",
+          "sha256": "f7a9bf167e503ec5ec480fe1d5cab38ac709414cb7a40d7f0815e49bbc0d9914"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-197.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-197.stderr",
+          "sha256": "00404b28e7cd982341d03d736f8780825ae7245666e29f5a57495c3815353c4a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-198.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-198.stderr",
+          "sha256": "42ece88fdf2c272ff80a627b10de785332ce3e3ab6cd54d9ee9a88d554f44a80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-199.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-199.stderr",
+          "sha256": "5cb04acb6bb28afcc15af9fab4666812dd1f1399da935e9543fa1a1f778a9113"
+        }
+      ],
+      "resolution": "Resolve the stated Artifact sampling mismatch for TPU circle digits, cube edges, OCS loop structure and low-resolution bitmap pixel steps. Actual source native-image RGB/alpha data are retained at intrinsic dimensions, with full placement and declared fractional source windows. New public explicitly selected version2 picture previews use actual final embedded media, integer native EMU frames, actual native crop units and final mixed-scene order only; source references do not supply pixels. Complete media is transformed and clipped at the actual fractional frame in a temporary PDF, separately sampled at1x/2x/4x, then inserted transiently in Artifact without re-exporting delivery. Negative/empty crops, destination insets, unsupported geometry/effects/groups/ICC and complete-transform allocation budgets fail closed; source decode policies and budgets are unchanged. Parent native image frames and crop elements are identical for all 2 images. All 179 final native objects retain source order; 177 other manifest objects are identical. Actual native properties of 168 other objects match the source-verified parent; 9 fill normalizations have actual authored/final geometry hashes, fixed0.001canvas-px source control checks and complete public exact-proof replay, with other properties unchanged. Final media hashes/dimensions/alpha, crop units, all three sampler definitions and native application IDs are independently read back and regenerated. Separate byte-identical PPTX with registered fonts is rendered to direct PNG and PDF. All 19 complete source/Artifact/native-PDF whole1x, full2x and native-size4x image-region comparison panels were actually viewed without resizing. The relevant jagged/source low-resolution pixel structure or minified pin/chip sampling is restored in this finite visual review. TPU1x finite image-region RGB diagnostic is worse than the parent (3.9271 versus2.5368 mean component difference), while2x/4x improve (1.2323 versus3.1841;0.5306 versus3.6798). No whole-scale or general sampling superiority is claimed; the actual finding concerns2x/4x smoothing and the complete1x review finds preserved content and readability. Public Python1260(8 optional skips), real CPU Node67(0 skips),89/291-file wheel/sdist and installed-wheel1260(8 optional skips) checks pass;212 tested inputs and82 runtime modules are byte-bound to freeze018/commit0c7b970. All eight version1 closed builds independently replay complete definitions and PNG bytes exactly. All16 exact-head GitHub checks pass. Only the Artifact sampling finding closes: bitmap interiors, ordinary live text, automatic semantic/equation recognition, native filter differences, font delivery, PowerPoint/WPS and user acceptance retain separate limits. Filtering near a clipped edge can include adjacent stored samples, so source-window support does not establish pixel equality or independence from excluded colors. Every failed control, prior candidate and conservative refusal is retained.",
+      "closed_at": "2026-10-05T17:07:14.638870+00:00"
     },
     {
       "severity": "minor",
@@ -28387,7 +29540,7 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "region": "Original author-image detail; full1x/2x and listed Artifact4x crops",
       "description": "The actual Artifact 1x preview aliases small NIC/GPU/DRAM pin and chip details more sharply than source; hardware4x also uses different raster interpolation. Lossless native retains the source hardware detail. This is a preview sampling mismatch, not a replacement of the four NICs with GPUs.",
       "figure_id": "ccf-2025-07-f04",
@@ -28410,7 +29563,1488 @@
           "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-018.json",
+          "sha256": "a2b38bedfa4e3d4bf4651e840f98afec130ee3f9feb4f851dec4bb72c4af1298"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-PICTURE-CROP-CHECKS-202.json",
+          "sha256": "576ff23959572f5ccae90936886fa2ec628e89141c987217a5386f848d9f9976"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-PICTURE-CROP-TEST-INPUTS-200.json",
+          "sha256": "4e89e43279d672c03955a5a0b3b996bec3ce25c1ee12251258a28685b348ce20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/proof.json",
+          "sha256": "530cf85d2ed840cd4efd9d4e0ca6ffa802d4a7655444eb0e699abbed52dfdbd8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LEGACY-IMAGE-PREVIEW-REPLAY-200.json",
+          "sha256": "e7a40cf9dcdec79f3cbcfe4c46829ca3376dc44f49cec8f026ad98c8681e75d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/INTRINSIC-IMAGE-SURVEY-190.json",
+          "sha256": "9beaff457c0a3a2c5e215836294da762a6b74c043744918ea7e9a9270c93105b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-BUILDS-203.json",
+          "sha256": "8198d5982f1935a016bd4b586d337c4a29d1c1630198f79fac85ec4b16b073bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-READBACK-204.json",
+          "sha256": "9df9a89e7717c733d2821e8430fe6a22523886eb78c4b9ba60ce7467edaf3849"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PICTURE-CROP-PREVIEW-MEASUREMENTS-205.json",
+          "sha256": "77b9f657c7dfce7d230f46dfc6e29e05536df70c89324526c2237b442bfe9508"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-205.json",
+          "sha256": "7a3dffe0df3305af573f341582b3d6ea09da42c6686bf9cd6d31c1a10be0ee6c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-0c7b970-001.json",
+          "sha256": "6b59b5adb4a4ad389ce3715143f591386a329c386ffd68a1998e601b8c8d23aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/inventory-input/source-evidence/source.pdf",
+          "sha256": "543e56c541523c5e807d2231370f96749b2294bc901266397a7265b18ae2c130"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/manifest.json",
+          "sha256": "ae9e255d11c9e7340e457c5645c89493ecfe881aae00f97a85b2387089937cd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/output-review-unperformed.json",
+          "sha256": "d809f6be4e90785be873c21c53f581491c84ae741e7c1ee61f4a244157d01588"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build-result.json",
+          "sha256": "4d0f1e272afcc3d2082cec8eca9a9439a0471241485948cb21609753fe273eb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/image-receipts.json",
+          "sha256": "977194d1e5f3ce999564bfce6833bf4b22d9fb1bf5a9498e22aa2b1b0c3823a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/parent-binding.json",
+          "sha256": "6d191b849baaa6a503df49ca99275431811cd35c10dd2d2f11bce96f21322ccc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/sources/original.png",
+          "sha256": "01e6e139a54082929de32b9c262ce463b0025de3171446a10f986e1a0162bd87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/exports/reconstruction.pptx",
+          "sha256": "53ddc5ddc1b57f5c1b0db867e814a210d503552de23525feedba4e793a93479c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/build.stdout",
+          "sha256": "807b4c10fae0f7dd98d1d8091263e36b3126d0f85521fa33e33c3c4bb000a977"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/review.json",
+          "sha256": "9edf30b9124a11513ea05b4276e9dbf2296b03e9c596069312e20873492c5e3a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/build.json",
+          "sha256": "12a6debdde2451ffc5ddb2af375e678621f055a0fb3a4a458bd607f27186637d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/commands/review.stdout",
+          "sha256": "b9b0027935f39359a5224c2c2db87730acd5b31e951f6082450b9b8a4b0eed54"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-9.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-15.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-19.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-2.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-7.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-12.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00000.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00005.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00008.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00001.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00012.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00007.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00013.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-16.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00004.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00009.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00017.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-1.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-0.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00019.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00006.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00018.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-5.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00014.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00015.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-11.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-3.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-10.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-14.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-4.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-8.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-13.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-6.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00011.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-18.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00010.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00016.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00003.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-image-00002.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/assets/source-intrinsic-image-17.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/artifact-authored.pptx",
+          "sha256": "697d3f4aa7bd62cc8223c538b77c585c93c69bb6f0167b6b247c70e6fb83043c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/validation.json",
+          "sha256": "e0a64fdd5259db53491073ad6427af44745de92ba10c46f64701081907289e9f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/delivery.json",
+          "sha256": "41f6453436a1ad751711e8ffacf17c956f954d101625c47c53ab379f702e455f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/preview-smooth-1x.png",
+          "sha256": "1a94a1dc2d4a0ca34e84f3e6a1158e803b24baab22527d2c6698501e33d0f7c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "a18c1af52249bc56d2e35fff6d607f82814b9f3cdab6e38ef646751f4cfc02ed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/font-audit.json",
+          "sha256": "23fe4b88e0ecd2eee5754e3e8ae00debad1657b80b1761dca0b79d2ce2567de9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/object-map.json",
+          "sha256": "281250b93975238bc2e5081995c277855580f3341d1e7d9e7e2128ca1b56935e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/artifact-stroke-preview.json",
+          "sha256": "5b3268d1eced02a4303157012b02b8028b0b672039bc51bb24513f09418acaa2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/comparison.png",
+          "sha256": "732d643fca82253c6210bdd40f210c0164f313b2f00245993f52b9f03d7371ae"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/manifest-validation.json",
+          "sha256": "c13f446525c451ef5909d7d104629780fc8d6667171b07423549ab2ecde1dc9d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/reconstructed.svg",
+          "sha256": "e0e46fbc51081ad2826e0c96a03062e23852b665638d3c09bbf40ca9b259970e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/preview-2x.png",
+          "sha256": "f5d06c9f57a60d2e1425cadfac772410f875a8a2ab172840c505a9c15807a810"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/asset-snapshot.json",
+          "sha256": "1b99d64b00e61cfb2984c306b8fe3eb6eaf86d800b65439a39aaa6daf26e498e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/preview-1x.png",
+          "sha256": "d6fc50264a0acf4b426ae824bfb27282640e137e2e2dfeb3d36a67b010ac6890"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/delivery-candidate.json",
+          "sha256": "db1fa679b8aaa69abdca91694998c38e5b2b61d6e0fefe813bd501f063c89efc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/editability.json",
+          "sha256": "c8e140029350b8fe0aa901f4d17606165b149df7ce130db7bc76a690a24ed245"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/artifact-image-preview.json",
+          "sha256": "7bcdbb048b64c98c74d541846de275278de28c2f0290855ce3b2b1d990fd1457"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/output-review-picture-crop-206.json",
+          "sha256": "10270af7be577d3612703c47d0698cfccf5a4600e7ded717c9d16bfcd61b5b69"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/resolved-scene.json",
+          "sha256": "ae9e255d11c9e7340e457c5645c89493ecfe881aae00f97a85b2387089937cd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/comparison-metrics.json",
+          "sha256": "faa7bd96d371dcc3e07e23f99ede82c74c19591c7c3405a8ba85df4ff5d8eda4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/manifest-snapshot.json",
+          "sha256": "ae9e255d11c9e7340e457c5645c89493ecfe881aae00f97a85b2387089937cd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/render-audit.json",
+          "sha256": "3d1293155db647d20ec4605982a936151652354c78b0620baf4fd87c86e5f2a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/preview-4x.png",
+          "sha256": "3c78138d7d8b8815f76ce3de6aae35460d2498102227d40c032f2536c38b93a9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/build-config.json",
+          "sha256": "11288aa120fb0141f1b9df1b99f518e54cdba63ed2f558d08f15c55bcd0c20ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/text-fit.json",
+          "sha256": "c1a44bed50746bbc641b6019f1543b66ff7a4c5e27a9a9c2c9c04f07cf3258c0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/grouped-overlay.pptx",
+          "sha256": "53ddc5ddc1b57f5c1b0db867e814a210d503552de23525feedba4e793a93479c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/candidate.pptx",
+          "sha256": "53ddc5ddc1b57f5c1b0db867e814a210d503552de23525feedba4e793a93479c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/text-manifest.json",
+          "sha256": "e4361eba5fc32959de51be3c762ede7eac74202c911003e0a864d2b790f69925"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/comparison-scene.json",
+          "sha256": "9b1391dcf04a4e5d3215a78d5e56feac0e428214eaee3ec465e8f4d52ab7473c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/italic.ttf",
+          "sha256": "ceda9b8ed5531b14fabf36c1ecc4170bdd6542a004dcad624ba0d03149326ba1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/regular.ttf",
+          "sha256": "27a692a06fb8c4450df16ac0ee3187bd14c0e3233460f9073b21ae101f9d4107"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "b14ee106049c9bdc5b081a28bdb68f7b89e42d89a34aa465262c4eade066b4a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/bold.ttf",
+          "sha256": "88f04863c74982812cdd0aee8b93e5e91ca1e350404df201aad03ea70dfaed18"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "53ddc5ddc1b57f5c1b0db867e814a210d503552de23525feedba4e793a93479c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "3ac6de080f33c3bd19bacce26e3eb4a22690393593c0bb10c52302129d2e9880"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "723821f719a0f7f26f257d227d0c8c33c86cb1c2f9c81ffbdd26280c07f21d1d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "b2712dea1891169f8b42d0d7133388402edf30e54f31861e07ec8f5a6cf82ce3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "150d54c1d6a8a38ffe3ae5a6cf8e02133fe211528b207c4e9a35946c944837f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "f750dc358698876528e90e53dabda927a37bada0c6046118d68475618b876a65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "ef28a608ea5471ae7f13e886673bc3cf51a62d5a70880555da21262acc3bc433"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "21ac50b512dc5aa0135f27a6153b8f0cfff07d512c58799f991e5e04c8e25121"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "39250b45ea215692403443cf5fa6666bcde1e80fc9195ed97d9ce670ff469704"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/sources/original.png",
+          "sha256": "01e6e139a54082929de32b9c262ce463b0025de3171446a10f986e1a0162bd87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-9.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-15.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-19.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-2.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-7.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-12.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-16.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-1.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-0.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-5.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-11.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-3.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-10.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-14.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-4.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-8.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-13.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-6.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-18.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-picture-crop-previews-001/jobs/ccf-2025-07-f04/build/run-001/assets/assets/source-intrinsic-image-17.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/readback.json",
+          "sha256": "3b2eebf453a6a954e7914dcdedeac2c37eb3dd60a140bd9f7269cef3fb617ea3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/output-review-picture-crop-206.json",
+          "sha256": "10270af7be577d3612703c47d0698cfccf5a4600e7ded717c9d16bfcd61b5b69"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-config.json",
+          "sha256": "9cc8bcfe8c6b421e0783fdc1f8d4141f07a3459aacdf07e157e02daabdb7b23c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/font-audit.json",
+          "sha256": "5812e7145dc2fde5085d404d0c447ce94f830d77039a84eb7e55c58dd4ed5266"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/preview-2x.png",
+          "sha256": "c6934a68e99a040d07f6090a53c3635e2cfeca50471b6c1ec907a152fd431bb5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/preview-1x.png",
+          "sha256": "b43a9925637dc6c4d36510f74959a7befe5ae85d3c2c4079aa528c409fdceaab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/render-audit.json",
+          "sha256": "6137697794e4821cd773690303e0af622be9a5f2c13393af8b7a5f2d3e5c3c84"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/preview-4x.png",
+          "sha256": "536474ae4d88a451afd2e35f910f2bb601532bb37cbefc7808306fd4c037cc1c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts.conf",
+          "sha256": "98b50dc2caea06c1e5e8ad5cfd543e7a3dd557fd083214450f0617514e53eac6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/commands.json",
+          "sha256": "67b50c1ae839cfddf1cc4f4eefcc150c033390ca8361467514497365a9aee18d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/5.ttf",
+          "sha256": "39250b45ea215692403443cf5fa6666bcde1e80fc9195ed97d9ce670ff469704"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/1.ttf",
+          "sha256": "88f04863c74982812cdd0aee8b93e5e91ca1e350404df201aad03ea70dfaed18"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/9.ttf",
+          "sha256": "150d54c1d6a8a38ffe3ae5a6cf8e02133fe211528b207c4e9a35946c944837f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/10.ttf",
+          "sha256": "3ac6de080f33c3bd19bacce26e3eb4a22690393593c0bb10c52302129d2e9880"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/6.ttf",
+          "sha256": "f750dc358698876528e90e53dabda927a37bada0c6046118d68475618b876a65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/7.ttf",
+          "sha256": "21ac50b512dc5aa0135f27a6153b8f0cfff07d512c58799f991e5e04c8e25121"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/4.ttf",
+          "sha256": "ef28a608ea5471ae7f13e886673bc3cf51a62d5a70880555da21262acc3bc433"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/0.ttf",
+          "sha256": "27a692a06fb8c4450df16ac0ee3187bd14c0e3233460f9073b21ae101f9d4107"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/2.ttf",
+          "sha256": "ceda9b8ed5531b14fabf36c1ecc4170bdd6542a004dcad624ba0d03149326ba1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/11.ttf",
+          "sha256": "b2712dea1891169f8b42d0d7133388402edf30e54f31861e07ec8f5a6cf82ce3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/8.ttf",
+          "sha256": "723821f719a0f7f26f257d227d0c8c33c86cb1c2f9c81ffbdd26280c07f21d1d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/registered-fonts/3.ttf",
+          "sha256": "b14ee106049c9bdc5b081a28bdb68f7b89e42d89a34aa465262c4eade066b4a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/validated-output/reconstruction.pptx",
+          "sha256": "53ddc5ddc1b57f5c1b0db867e814a210d503552de23525feedba4e793a93479c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/png-1x/reconstruction.png",
+          "sha256": "b43a9925637dc6c4d36510f74959a7befe5ae85d3c2c4079aa528c409fdceaab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/png-2x/reconstruction.png",
+          "sha256": "c6934a68e99a040d07f6090a53c3635e2cfeca50471b6c1ec907a152fd431bb5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/pdf/reconstruction.pdf",
+          "sha256": "3b5ecca917ccbf06a58faf3f839f39a908c2d1aa31e23763180d17cd4d790136"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/5.ttf",
+          "sha256": "39250b45ea215692403443cf5fa6666bcde1e80fc9195ed97d9ce670ff469704"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/1.ttf",
+          "sha256": "88f04863c74982812cdd0aee8b93e5e91ca1e350404df201aad03ea70dfaed18"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/9.ttf",
+          "sha256": "150d54c1d6a8a38ffe3ae5a6cf8e02133fe211528b207c4e9a35946c944837f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/10.ttf",
+          "sha256": "3ac6de080f33c3bd19bacce26e3eb4a22690393593c0bb10c52302129d2e9880"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/6.ttf",
+          "sha256": "f750dc358698876528e90e53dabda927a37bada0c6046118d68475618b876a65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/7.ttf",
+          "sha256": "21ac50b512dc5aa0135f27a6153b8f0cfff07d512c58799f991e5e04c8e25121"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/4.ttf",
+          "sha256": "ef28a608ea5471ae7f13e886673bc3cf51a62d5a70880555da21262acc3bc433"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/0.ttf",
+          "sha256": "27a692a06fb8c4450df16ac0ee3187bd14c0e3233460f9073b21ae101f9d4107"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/2.ttf",
+          "sha256": "ceda9b8ed5531b14fabf36c1ecc4170bdd6542a004dcad624ba0d03149326ba1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/11.ttf",
+          "sha256": "b2712dea1891169f8b42d0d7133388402edf30e54f31861e07ec8f5a6cf82ce3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/8.ttf",
+          "sha256": "723821f719a0f7f26f257d227d0c8c33c86cb1c2f9c81ffbdd26280c07f21d1d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/fonts/3.ttf",
+          "sha256": "b14ee106049c9bdc5b081a28bdb68f7b89e42d89a34aa465262c4eade066b4a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/font-cache/7d37a4cbda3cb3bc2fcb71a75c9361dc-le64.cache-9",
+          "sha256": "56c3a3be08f332045cbf9c5d57877b2223f567320ea08db6e40fbe79c7d19d6f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/png-4x/reconstruction.png",
+          "sha256": "536474ae4d88a451afd2e35f910f2bb601532bb37cbefc7808306fd4c037cc1c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204/ccf-2025-07-f04/independent-native/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-1x.png",
+          "sha256": "dc8a8a50e2ebf7d5fc993e04df320a7137649856081b5031c1c2820b5df6e8ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-12.png",
+          "sha256": "5812d198139dc408967424bb9f591ad6ca57dac38a14fc092cd25f2013f26f34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-17.png",
+          "sha256": "edd9bcedee8cedd7f89b8b900f226c935bec8456968779468f80f9bd7c57c98f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/source-1x.png",
+          "sha256": "01e6e139a54082929de32b9c262ce463b0025de3171446a10f986e1a0162bd87"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/native-PDF-2x.png",
+          "sha256": "94b35404fc78349ba0f4d83c63fb73f114293810d9da902163448e731216b799"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-06.png",
+          "sha256": "91f45f10f135696c6b85156cd9e14a9e417ae4a69bf1b75edefff79a4f2a6f94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-16.png",
+          "sha256": "f64d7e3c94b45dc776c038688e6632e30eac41db79e2c36aa6c36bd41bda7f63"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-01.png",
+          "sha256": "932bc3e55eb5e37e0c610948d79c190bebfb534488c953f9afcaf28ea9a21bac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-19.png",
+          "sha256": "2b27d214b2a23b83f75046503ae7c2b3327895c95dd13bcd1e7b033aa37a9f16"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-18.png",
+          "sha256": "9addee2f67d6c71fdc357fb0aa79fd8c83459f223266ff2d1fd81629d69d540b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-00.png",
+          "sha256": "f7ddb8e903933f0ac732b0436480240df2a62b05d96aeb3bff2e109f5d88a998"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-320-220.png",
+          "sha256": "1cd83174c5c2c07e4959835e78786d6113edafe6023e595549647f222eadb026"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-03.png",
+          "sha256": "490c17c86461e5adfffd81612ff9cb45e56032cafd1ef3478fcf14b8034472fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-09.png",
+          "sha256": "8b8f3c35da692739c02c77efd51986f787f762aa483e05a1356868ee901ef866"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-05.png",
+          "sha256": "5cc000d13c17b96a0de9ed512e6f01b480b21c29dfe1e05134ee733d32a58c32"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/visual-review-206.json",
+          "sha256": "ea26ce1ad72f920ca4699ca29f9a699fc972439a9c73c30c4ce9e9acc92413c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-320-0.png",
+          "sha256": "084ec6a790751bd5690e0d74a5ee0803292e1b32bad1625a12eb11bf9920f3f8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-15.png",
+          "sha256": "bee4261f0b2ad9f01d171acb0aae3fa301e3d558bbf5029c8833386ffd05d0c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-0-0.png",
+          "sha256": "99e62362398319cb68bb6756d0e22dd50c81bba22d20e7648a2c241b74a1eb80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-640-0.png",
+          "sha256": "54ac029e318244ff6351dcde96d4904c92a98ea8fa8326216804acc7de77fc8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/native-PDF-1x.png",
+          "sha256": "c26e8bb6ef1e3ce73c2652ca48d3bd92fc70179c6379fd1c39c6f0a978cd5ed7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-640-220.png",
+          "sha256": "412f64ed467298722f948741851623f65d18915f3e148f46959d829c109e8dde"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/source-2x.png",
+          "sha256": "1b4ff60b86c36b862ff1f1d2410b59b48ce3680bfc8a2dc7d41442a2704832ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-10.png",
+          "sha256": "954569bcc18d79a269af2622f8fea332ea958864f0729244cf5e7e2ea63ca448"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-13.png",
+          "sha256": "3b64ecaf032d795f63c59b94c1adf35319245e268a16e7cda39b2ac908ba4e98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-07.png",
+          "sha256": "e4747b9ec2a5ba03860c039a429c6980b58ec7e7588e2380bffcc00a59bae72b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-0-220.png",
+          "sha256": "4197ab2e146207d2911c64eab5a7cfc4621c98a3b2e64822c70348ff3cc731c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-08.png",
+          "sha256": "7bec447f072998a84e199a975ba53a46d6938251c4634577ecd54cb81522fd72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-960-220.png",
+          "sha256": "a67d35be5c9c22c6728ca9f8c165869ea92196c030542f1bd904005d4395f828"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-14.png",
+          "sha256": "c8e6612ddbf02c1bffa434d77ffcfdd1d5bc6d998f8df4a486d327bf0cb26830"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/native-PDF-4x.png",
+          "sha256": "a616f022c610784edfc1346b299222600e1a9653804d8ee546572fc31b29c1c4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-02.png",
+          "sha256": "1aecb227614f468fd15d5c02d8fecc995a0212e025018ea7d51fcb29001df500"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-04.png",
+          "sha256": "5985aa89686f60e2d8a79cfa48a4a1d6925e1b9be974871f24fa55b3d491af9b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/image-4x-11.png",
+          "sha256": "0c9522018fae6b5c327bc9bc060e5f2dafc94694bbaf302343bf36c3e39416df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/source-4x.png",
+          "sha256": "4fb4dd631e3cd1e775ba554b0690b1d75188743a2589f30ce912562544a79bb3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/bindings.json",
+          "sha256": "8665c04c5ff27d558da2762c3e228f1663cf453901d171fe2211138ab0654b7a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-galleries-204/ccf-2025-07-f04/whole-2x-960-0.png",
+          "sha256": "ec4445bfad8675a659a5c890ec17a7200c3890e9cdbb26e4922ca79bf0d23550"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-19.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/receipts.json",
+          "sha256": "8530bad7005e8435af1b7299bc980b974e1bb91213c3d93fa038c5690d392b27"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-16.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-0.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-8.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-15.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-14.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-9.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-13.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-3.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-4.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-7.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-17.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-5.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-18.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-6.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-11.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-2.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-12.png",
+          "sha256": "45434a6191a1db0b067e17061f0a152360fb9b06a160914e243d848528c65a43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-10.png",
+          "sha256": "36148ff1e5df50f5630fc5d7684284f1339d6e248b31a663c918e48c4013d00a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/result.json",
+          "sha256": "6cb63f1bc493d3ead3a48cec512766dd4787c9e00fc0bcad917b2358635518c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/intrinsic-image-survey-190/ccf-2025-07-f04/image-1.png",
+          "sha256": "69af5c040756a68f15605e6e10ef207dc2e7eb161ecadc99ea0536746592e486"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.stderr",
+          "sha256": "845ef46c9beed6d3aac4228a02e40a1f9650a0f3e18dbb64499be2f42a781ce1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.json",
+          "sha256": "2feb0ff022085d0dacb8867d7b8cfa53878f6538f6cb21b5b1ab94b692996b5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.stdout",
+          "sha256": "adeef546d713609c4c66061f94c6174c049a82118c128190717daa01b3672bed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.stderr",
+          "sha256": "c12081fd8da6eeda2fa379b40c676cdc9c7d0d218b79af62a897212f8c72d111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.stdout",
+          "sha256": "01cc97bdcf81d1345a5ac309b531d93fe48c570344ae79295c5c05ae2588e755"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/installed-full.json",
+          "sha256": "48a13e7753a4c87ecf95fd0fe2d2b794b5d7d54e7325450ce2fde749fda302b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.stdout",
+          "sha256": "1956d571c85e792455cc7f9b06dd0a1e67a4a0f1e335a2e98833686add291acc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.json",
+          "sha256": "dde320f466e4cb9eeb3338d5841cd17caa4584e1d450eac120b554e553ea9bd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/install.stderr",
+          "sha256": "db1c320252546d819cc189405b40a2d905c724b220b033171e071a08a0317932"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/figure_rebuild-0.6.0.tar.gz",
+          "sha256": "f6d1ca190b17985b95fd9051ed0e373fde5e6387e63b86f521c6d2cdf2a33b90"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/figure_rebuild-0.6.0-py3-none-any.whl",
+          "sha256": "72deb5cbb7e224fd9bc5e179eb635bc836ab023c583f7e11fa77ea8016a9429c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/check-distribution.stdout",
+          "sha256": "6c40944c2606c72c4d3f475603345103a372a36a61902aa1ed1b8e31e247c014"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-picture-crop-201/build.json",
+          "sha256": "97b33d4f480bc6aac084b3c3fd9871ac78f4945a2c8a0679e41b4e0548731395"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace018.py",
+          "sha256": "242c7e4159a970cc35a54d31a51796fb7e7f6461bc122930f5a340bcd533ed1e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/survey_intrinsic_images190.py",
+          "sha256": "4245caf19f682ecca63298155a4a4b1880618f2475c406cbbeea96383bb6b9aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_picture_crop201.py",
+          "sha256": "bc22e6090f0fcdc3433f5200c391e29a98391309cdbe74f7b53a54f184ec2b19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_native_picture_crop_previews203.py",
+          "sha256": "7b65440fdd1d0b98a16c4456179a23ac390eda07dddb2e2f1030663df953e991"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_picture_crop_previews204.py",
+          "sha256": "7e4ac831c49d9bdea37ee94116ac72feee74aee5745211d7c7ac6bdf44ec82ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_picture_crop_previews206.py",
+          "sha256": "824c4d647037e056cc0d1942d729dffccb0080937c4660f57f14a885e62c2325"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-builds-203.stdout",
+          "sha256": "874294fb16b8863dda82b5c43c81a184f0f70fa3f8f9a1d339a450d02bf91298"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-builds-203.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204.stdout",
+          "sha256": "89b794fdc50b8020988352c0648157c0a8497c2c946d7637efa4e721879c0a79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-picture-crop-preview-readback-204.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-picture-crop-200.stdout",
+          "sha256": "01cc97bdcf81d1345a5ac309b531d93fe48c570344ae79295c5c05ae2588e755"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-picture-crop-200.stderr",
+          "sha256": "8da638baaac6ee9739cd172f0ac1719af35c5dbf1b03edef112139c6e7a3a66f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-picture-crop-200.stdout",
+          "sha256": "623a6590d363c011915120943493b900b33d85fecae317495e899630f7f70693"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-picture-crop-200.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/legacy-image-preview-replay-200.stdout",
+          "sha256": "5d6e1013011ce505725a82ad7d281c4b3a80ebee5a0ea2790de5cc88ff0ee65e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/legacy-image-preview-replay-200.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-picture-crop201.stdout",
+          "sha256": "11e7cfd434d15b9ae020c6d05aed8fe58a1b666fa6f1a5137417127acc96c68b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-picture-crop201.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-196.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-196.stderr",
+          "sha256": "f7a9bf167e503ec5ec480fe1d5cab38ac709414cb7a40d7f0815e49bbc0d9914"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-197.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-197.stderr",
+          "sha256": "00404b28e7cd982341d03d736f8780825ae7245666e29f5a57495c3815353c4a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-198.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-198.stderr",
+          "sha256": "42ece88fdf2c272ff80a627b10de785332ce3e3ab6cd54d9ee9a88d554f44a80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-199.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/picture-crop-targeted-199.stderr",
+          "sha256": "5cb04acb6bb28afcc15af9fab4666812dd1f1399da935e9543fa1a1f778a9113"
+        }
+      ],
+      "resolution": "Resolve the stated Artifact sampling mismatch for Moon NIC, GPU and DRAM pin/chip contours and tiny fractional source windows. Actual source native-image RGB/alpha data are retained at intrinsic dimensions, with full placement and declared fractional source windows. New public explicitly selected version2 picture previews use actual final embedded media, integer native EMU frames, actual native crop units and final mixed-scene order only; source references do not supply pixels. Complete media is transformed and clipped at the actual fractional frame in a temporary PDF, separately sampled at1x/2x/4x, then inserted transiently in Artifact without re-exporting delivery. Negative/empty crops, destination insets, unsupported geometry/effects/groups/ICC and complete-transform allocation budgets fail closed; source decode policies and budgets are unchanged. Parent native image frames and crop elements are identical for all 20 images. All 621 final native objects retain source order; 601 other manifest objects are identical. Actual native properties of 448 other objects match the source-verified parent; 153 fill normalizations have actual authored/final geometry hashes, fixed0.001canvas-px source control checks and complete public exact-proof replay, with other properties unchanged. Final media hashes/dimensions/alpha, crop units, all three sampler definitions and native application IDs are independently read back and regenerated. Separate byte-identical PPTX with registered fonts is rendered to direct PNG and PDF. All 29 complete source/Artifact/native-PDF whole1x, full2x and native-size4x image-region comparison panels were actually viewed without resizing. The relevant jagged/source low-resolution pixel structure or minified pin/chip sampling is restored in this finite visual review. Moon finite image-region RGB diagnostics improve at1x/2x/4x (0.9971/0.5967/0.3292 versus42.8819/19.8877/9.3555). These measurements are diagnostic, without thresholds or general error bounds. Public Python1260(8 optional skips), real CPU Node67(0 skips),89/291-file wheel/sdist and installed-wheel1260(8 optional skips) checks pass;212 tested inputs and82 runtime modules are byte-bound to freeze018/commit0c7b970. All eight version1 closed builds independently replay complete definitions and PNG bytes exactly. All16 exact-head GitHub checks pass. Only the Artifact sampling finding closes: bitmap interiors, ordinary live text, automatic semantic/equation recognition, native filter differences, font delivery, PowerPoint/WPS and user acceptance retain separate limits. Filtering near a clipped edge can include adjacent stored samples, so source-window support does not establish pixel equality or independence from excluded colors. Every failed control, prior candidate and conservative refusal is retained.",
+      "closed_at": "2026-10-05T17:07:14.638870+00:00"
     },
     {
       "severity": "minor",
