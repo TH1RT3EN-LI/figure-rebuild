@@ -166,6 +166,11 @@ if(config.diagnostic_provenance_version===1){
   semantic_audit:{artifact:await bindFile(path.join(run,'semantic-audit.json')),status:semanticAudit.formulas.length+semanticAudit.connections.length?'RECORDED':'NOT_PROVIDED',scope:'declared_formula_connection_records_only',counts:{formula_records:semanticAudit.formulas.length,connection_records:semanticAudit.connections.length}},
   text_fit:{artifact:await bindFile(path.join(run,'text-fit.json')),status:textFitReport.status,scope:textFitReport.scope,counts:textFitReport.counts}
  },semantic_recognition_performed:false,source_fidelity_evaluated:false,visual_acceptance:'pending'};
+ if(manifest.source_inventory){
+  const inventoryAudit=semanticAudit.source_inventory;
+  if(!inventoryAudit || inventoryAudit.status==='FAIL')throw new Error('Source inventory is missing or failed');
+  diagnosticCoverage.reports.source_inventory={artifact:await bindFile(path.join(run,'source-inventory-audit.json')),status:inventoryAudit.status,scope:inventoryAudit.scope,counts:inventoryAudit.coverage};
+ }
 }
 let previewAudit;
 if(previewBackend==='libreoffice'){

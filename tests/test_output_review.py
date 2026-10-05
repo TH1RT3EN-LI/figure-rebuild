@@ -113,16 +113,31 @@ class OutputReviewChecks(unittest.TestCase):
         self.write_json(self.run / 'delivery.json', delivery)
         return audit
 
-    def add_diagnostic_provenance(self, objects=None, *, declared_literal=False):
+    def add_diagnostic_provenance(self, objects=None, *, declared_literal=False, source_inventory=False):
         from figure_rebuild.scene_compile import compile_scene
         manifest = json.loads((self.run / 'manifest-snapshot.json').read_text())
         manifest['canvas'] = {'width': 200, 'height': 100}
         manifest['objects'] = objects or []
+        if source_inventory:
+            root = self.run / 'assets'
+            reference = root / 'source/reference.json'
+            self.write_json(reference, manifest)
+            artifact = root / 'source/original.svg'
+            artifact.write_text('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100"><path d="M1 1L10 10"/></svg>')
+            inventory = {'schema_version': 1, 'source_sha256': manifest['source']['sha256'],
+                'reference_manifest': {'path': 'source/reference.json', 'sha256': review._binding(reference)['sha256']},
+                'source_artifacts': [{'path': 'source/original.svg', 'sha256': review._binding(artifact)['sha256']}],
+                'components': [{'id': 'reviewed-source-graphic', 'category': 'graphic',
+                    'source_region': {'x': 0, 'y': 0, 'width': 200, 'height': 100},
+                    'object_ids': [o['id'] for o in manifest['objects']], 'representation': 'native_geometry',
+                    'reading_status': 'verified', 'limitations': []}], 'unresolved': []}
+            file = root / 'source/inventory.json'; self.write_json(file, inventory)
+            manifest['source_inventory'] = {'path': 'source/inventory.json', 'sha256': review._binding(file)['sha256']}
         if declared_literal:
             manifest['source_evidence'] = {'schema_version': 1, 'source_sha256': manifest['source']['sha256'],
                 'literals': [{'id': 'source-reading', 'status': 'confirmed', 'object_ids': ['label'], 'text': 'ABC',
                               'source_region': {'x': 10, 'y': 10, 'width': 40, 'height': 20}}], 'connections': []}
-        resolved, semantic = compile_scene(manifest, self.run)
+        resolved, semantic = compile_scene(manifest, self.run, asset_root=self.run / 'assets')
         self.write_json(self.run / 'manifest-snapshot.json', manifest)
         self.write_json(self.run / 'resolved-scene.json', resolved)
         source = semantic['source_content']
@@ -150,6 +165,8 @@ class OutputReviewChecks(unittest.TestCase):
                     'visual_verification_required': True}
         for filename, data in [('source-content-audit.json', source), ('semantic-audit.json', semantic), ('text-fit.json', text_fit)]:
             self.write_json(self.run / filename, data)
+        if source_inventory:
+            self.write_json(self.run / 'source-inventory-audit.json', semantic['source_inventory'])
         audit = self.add_preview_provenance()
         config = json.loads((self.run / 'build-config.json').read_text())
         config['diagnostic_provenance_version'] = 1
@@ -169,9 +186,46 @@ class OutputReviewChecks(unittest.TestCase):
                              'scope': text_fit['scope'], 'counts': counts}},
             'semantic_recognition_performed': False, 'source_fidelity_evaluated': False, 'visual_acceptance': 'pending'}
         coverage['reports']['source_content_audit']['counts'].pop('scope')
+        if source_inventory:
+            inventory = semantic['source_inventory']
+            coverage['reports']['source_inventory'] = {'artifact': review._binding(self.run / 'source-inventory-audit.json'),
+                'status': inventory['status'], 'scope': inventory['scope'], 'counts': inventory['coverage']}
         audit['diagnostic_coverage'] = coverage
         self.save_diagnostic_audit(audit)
         return audit
+
+    def add_inventory_fixture(self):
+        return self.add_diagnostic_provenance([{'id': 'source-operator', 'kind': 'path',
+            'commands': [{'moveTo': {'x': 1, 'y': 1}}, {'lineTo': {'x': 10, 'y': 10}}]}], source_inventory=True)
+
+    def test_source_inventory_report_is_bound_and_remains_scoped(self):
+        self.add_inventory_fixture(); record = self.observed()
+        self.assertIn('source_inventory_audit', record['bindings'])
+        report = record['diagnostic_coverage']['reports']['source_inventory']
+        self.assertEqual(report['status'], 'PASS')
+        self.assertEqual(report['counts']['objects_compared'], 1)
+        self.assertFalse(record['diagnostic_coverage']['semantic_recognition_performed'])
+        review.verify_output_review(self.run, record)
+
+    def test_changed_source_inventory_sidecars_and_frozen_evidence_fail(self):
+        self.add_inventory_fixture(); record = self.observed()
+        for relative in ('source-inventory-audit.json', 'assets/source/original.svg', 'assets/source/reference.json'):
+            file = self.run / relative; original = file.read_bytes(); file.write_bytes(b'{}')
+            try:
+                with self.subTest(relative=relative), self.assertRaises(ValueError):
+                    review.verify_output_review(self.run, record)
+            finally:
+                file.write_bytes(original)
+
+    def test_source_bound_resolved_geometry_and_diagnostic_provenance_cannot_be_bypassed(self):
+        self.add_inventory_fixture()
+        resolved = json.loads((self.run / 'resolved-scene.json').read_text())
+        resolved['objects'][0]['commands'][1]['lineTo']['x'] += 1
+        self.write_json(self.run / 'resolved-scene.json', resolved)
+        with self.assertRaisesRegex(ValueError, 'source-bound authoring'): review.prepare_output_review(self.run)
+        config = json.loads((self.run / 'build-config.json').read_text()); config.pop('diagnostic_provenance_version')
+        self.write_json(self.run / 'build-config.json', config)
+        with self.assertRaisesRegex(ValueError, 'requires diagnostic provenance'): review.prepare_output_review(self.run)
 
     def save_diagnostic_audit(self, audit):
         self.write_json(self.run / 'render-audit.json', audit)

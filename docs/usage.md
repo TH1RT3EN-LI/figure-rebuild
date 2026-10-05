@@ -228,6 +228,8 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 
 ## 独立来源保真检查与边缘字形
 
+有源文件并已逐区核对时，可添加[来源组件清单](../references/source-inventory.md)。它比较独立参考场景的全部对象，检测改字、移/删符号和反转箭头，冻结核对证据并绑定输出审阅；数学轮廓和未覆盖区域保留明确限制，不由 text-fit `PASS` 推导语义正确。
+
 有原始 PDF 时，可另用 `figure-rebuild verify-source-fidelity` 重新读取来源，核对源绘制、清单、resolved scene 及实际 PPT 的路径、图片字节和放置。请求文件绑定 PDF 哈希、页码和 ROI；证据目录必须是新目录。当前仅支持明确声明的有限来源配置，未知效果返回 `UNRESOLVED`，检测到变更返回 `FAIL`；退出 0 只表示该范围内对应关系已验证，不代表识别了公式含义、完成视觉审查或获得用户验收。参数与示例见[公开命令说明](../references/source-fidelity-cli.md)，完整限制见[来源保真契约](../references/source-fidelity.md)。
 
 原 ROI 刚好切过字形时，显式 `source_canvas_clip` 可以在有限支持条件下保留完整源字形曲线，并由独立幻灯片边界提供原裁切。构建会冻结 PDF/SVG、重新核对源 PNG 与字形、验证最终原生整数控制点，并将证据纳入输出审查。该声明不允许普通对象任意越界，也不允许把依赖原画布裁切的成品作为覆盖层移入其他画布。详见[字形与画布裁切](../references/source-canvas-clip.md)。

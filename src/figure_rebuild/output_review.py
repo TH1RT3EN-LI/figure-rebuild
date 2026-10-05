@@ -526,6 +526,8 @@ def _verify_text_fit_measurements(resolved, measured):
 def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
     """Bind limited diagnostics, not source recognition or geometry replay."""
     if 'diagnostic_provenance_version' not in config:
+        _require('source_inventory' not in _json_record(paths['manifest']),
+                 'Source inventory requires diagnostic provenance')
         return None  # Existing run/review bindings remain unchanged.
     _require(type(config['diagnostic_provenance_version']) is int and config['diagnostic_provenance_version'] == 1,
              'Unsupported diagnostic provenance version')
@@ -587,6 +589,25 @@ def _diagnostic_provenance(run, config, paths, resolved, preview_audit):
                                  'scope': 'measured_live_text_only', 'counts': counts}},
                 'semantic_recognition_performed': False, 'source_fidelity_evaluated': False,
                 'visual_acceptance': 'pending'}
+    manifest = _json_record(paths['manifest'])
+    if 'source_inventory' in manifest:
+        from .source_inventory import audit_source_inventory
+        from .scene_compile import compile_scene
+        path = _inside(run, run / 'source-inventory-audit.json')
+        inventory = _json_record(path, strict_numbers_and_keys=True)
+        paths['source_inventory_audit'] = path
+        _require(_same_json(inventory, audit_source_inventory(manifest, config['asset_root'])),
+                 'Source inventory diagnostic is stale or disagrees with frozen source evidence')
+        _require(inventory['status'] != 'FAIL' and _same_json(semantic.get('source_inventory'), inventory),
+                 'Source inventory failed or semantic diagnostics contain different evidence')
+        compiled, _ = compile_scene(manifest, config.get('job', run), asset_root=config['asset_root'])
+        _require(_same_json(resolved, compiled),
+                 'Resolved scene disagrees with source-bound authoring objects')
+        expected['reports']['source_inventory'] = {'artifact': _binding(path),
+            'status': inventory['status'], 'scope': inventory['scope'], 'counts': inventory['coverage']}
+    else:
+        _require('source_inventory' not in semantic,
+                 'Source inventory evidence lacks an authoring declaration')
     _require(_same_json(preview_audit.get('diagnostic_coverage'), expected),
              'Diagnostic coverage is missing, stale, or exceeds the actual declared/measured scope')
     return expected

@@ -279,6 +279,8 @@ def freeze_assets(job, run, manifest):
             assets[record['path']] = record['sha256']
     from .scene_compile import compile_scene
     _, semantic = compile_scene(manifest, job)
+    if semantic.get('source_inventory', {}).get('status') == 'FAIL':
+        raise ValueError('Source inventory has mismatches or unresolved source evidence')
     for record in semantic['hash_files']:
         assets[record['path']] = record['sha256']
     for item in manifest['objects']:

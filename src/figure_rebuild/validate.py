@@ -58,6 +58,14 @@ def validate(manifest, root, require_review=True, _materialized=False):
             scene, audit = compile_scene(manifest, root)
             result = validate(scene, root, require_review, _materialized=True)
             result['semantic_counts'] = {'formula': len(audit['formulas']), 'connector': len(audit['connections'])}
+            if 'source_inventory' in audit:
+                result['source_inventory'] = audit['source_inventory']
+                if audit['source_inventory']['status'] == 'FAIL':
+                    result['errors'].extend('Source inventory: ' + item.get('code', 'unresolved')
+                        for item in audit['source_inventory']['mismatches'] + audit['source_inventory']['unresolved'])
+                    result['status'] = 'FAIL'
+                elif audit['source_inventory']['status'] == 'REVIEW':
+                    result['warnings'].append('Source component coverage or representation needs review; see source_inventory')
             return result
         except (ValueError, OSError, KeyError, TypeError, ImportError) as exc:
             return {'status': 'FAIL', 'errors': [str(exc)], 'warnings': [], 'object_counts': {},
@@ -321,6 +329,16 @@ def validate(manifest, root, require_review=True, _materialized=False):
             result['status'] = 'FAIL'
         if content['diagnostics']:
             warnings.append('Possible duplicate live text requires source review; see source_content diagnostics')
+        if 'source_inventory' in manifest and not _materialized:
+            from .source_inventory import audit_source_inventory
+            inventory = audit_source_inventory(manifest, root)
+            result['source_inventory'] = inventory
+            if inventory['status'] == 'FAIL':
+                errors.extend('Source inventory: ' + item.get('code', 'unresolved')
+                              for item in inventory['mismatches'] + inventory['unresolved'])
+                result['status'] = 'FAIL'
+            elif inventory['status'] == 'REVIEW':
+                warnings.append('Source component coverage or representation needs review; see source_inventory')
     return result
 
 def load_and_validate(path, require_review=True):
