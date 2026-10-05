@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 56 张图的来源修复及实际成品复查，关闭 88 项原问题：51 项字体、字距、基线、数学字形或活动文字问题，以及 37 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 65 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 68 项开放。原始 296 项现在 271 项关闭、25 项开放；82 项后续发现中 39 项解决、43 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 88 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 57 张图的来源修复及实际成品复查，关闭 89 项原问题：51 项字体、字距、基线、数学字形或活动文字问题，以及 38 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 64 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 67 项开放。原始 296 项现在 271 项关闭、25 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 89 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -48,6 +48,8 @@
 - SAM2 图 8 的全原生回调表确认外框是填充与描边共同处于一个透明组，内框则仅填充处于透明组、描边随后独立且不透明。旧 `get_drawings` 聚合的 fs 行遮蔽了组/clip 边界。外框以精确裁切矩形并集一次应用源透明度，内框恢复源真实裁切填充与完整不透明描边；98 个其他对象及 41 个活动文字、309 个字符的实际原生 trace（除 paint seqno）、字体程序全部与父成品相同。实际 PPT 的透明度、颜色、路径、cap/join 和顺序读回，全图 1×/2×及六组匹配 4× 边框实看通过，D01 关闭。源颜色编码界与几何编码界分别记录，未宣称跨应用像素相同。
 - GPT-3 图 1.1 以独立 RGBA 政策裁掉仅 alpha=0 的存储行列，所有 253/254/255 样本、RGBA 与 dpi 保留；不将部分透明度变为不透明。安装 wheel 独立重放相同资产和框，实际 PPT 的媒体、crop、框及 523 条未变路径读回。原生 PDF 的 RGB 与解码 alpha 样本逐字节相同；其反向 mask 与 `[1 0]` Decode 通过代数及独立 Pixmap 解码双重核验。全图 1×/2×及六组匹配 4× 边缘实看后，新增原生灰框问题关闭。公开 helper 的完整工作区 1193 项测试通过（8 跳过），14 项安装测试及 wheel 84 / sdist 277 文件检查通过。初次 style 字段、raw authoring 图片名称和 alpha 值集假设失败均保留。
 
+- BYOL 两块不透明底色和三条灰框按完整原生绘制上下文的实际 f32 颜色绑定，用明确的乘 255 后截断编码修正 PDF→SVG 的一个色阶舍入误差。全 394 路径及顺序不变，实际 PPT 的 389 个其他对象属性相同，全部 408 条原生 PDF 绘制除五处颜色外相同。五个内部颜色控制与源图相同，全图 1×/2×和七组匹配 4× 实看通过后关闭 FLAT-COLOR；透明合成、灰线 AA 和虚线弧端点继续开放。原初 tuple/根路径选择证明失败保留；没有采用整体 RGB 减一。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -57,6 +59,7 @@
 | ccf-2020-03-f04 | D01, D02, D04 |
 | ccf-2020-04-f01 | D01, D02 |
 | ccf-2020-06-f01 | D01, D02 |
+| ccf-2020-07-f02 | BYOL-FLAT-COLOR-001 |
 | ccf-2020-09-f02 | D01 |
 | ccf-2020-11-f02 | D01, D02 |
 | ccf-2020-11-f03 | D01, D02 |
@@ -232,3 +235,8 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/rgba-border-pixel-proof-068v2/proof.json` | `3e225fe78f1e6679835fb16c207d25d94ef871e0ba164d4a3700c193123ee38f` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-025.json` | `fc1ab9368e7597f6ac9b0d039d0cf8e5a8f4d7a32f7ab3e1a8ae92e01607d64a` |
 | `reports/remaining-153-001/BACKGROUND-BORDER-RECORD-ATTEMPT-069.json` | `6f36d63b92af0c53bbf26b0ac878fb61d7a9ffc61ca36ba031716719703559ea` |
+| `reports/remaining-153-001/LEDGER-RESULT-026.json` | `3c99f270e81cb765c709bb1bb9ba014dbb87bf4bd473d79a66ea75b81a97f01a` |
+| `reports/remaining-153-001/BYOL-COLOUR-REVIEW-RESULT-073.json` | `2ffe3610dc02054c61bb08b5c9963fe59c7c6e864cd778c9eb2aa08061ec7f89` |
+| `reports/remaining-153-001/BYOL-COLOUR-ATTEMPTS-073.json` | `0745450cc143c8216b872e2a7dea0604fabe2002b1c3d6dbc1ee48d717903d82` |
+| `reports/remaining-153-001/github-checks-95a2b45-001.json` | `1cfed2063db09ea1410f01bd7030e6ad22147130ed1390b769b86797dd172fa0` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-026.json` | `b44ce61823b97e411cbdab4b20965d9b4ec9d3b590288c371aa17ffed9850a80` |

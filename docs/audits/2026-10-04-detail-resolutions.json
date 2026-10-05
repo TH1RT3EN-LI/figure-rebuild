@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T08:00:16.881400+00:00",
+  "updated_at": "2026-10-05T08:26:41.634120+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -18426,7 +18426,7 @@
       "figure_id": "ccf-2020-07-f02",
       "issue_id": "ccf-2020-07-f02-BYOL-FLAT-COLOR-001",
       "owner_finding_id": "one-level-flat-color-residual",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "probes/root-byol-verification-001.json",
@@ -18493,7 +18493,225 @@
           ],
           "user_acceptance": "pending"
         }
-      ]
+      ],
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-05T08:26:41.634120+00:00",
+          "previous": {
+            "severity": "minor",
+            "region": "Upper/lower colored backgrounds and grey separators",
+            "description": "Source upperRGB(234,234,255) differs from native(235,235,255), lower(255,234,234) from(255,235,235); sampled grey separator101 vs102 at4x. The old attempt already contains the flat-color difference; it is a newly recorded residual, not a proven new regression. User acceptance remains pending.",
+            "figure_id": "ccf-2020-07-f02",
+            "issue_id": "ccf-2020-07-f02-BYOL-FLAT-COLOR-001",
+            "owner_finding_id": "one-level-flat-color-residual",
+            "status": "open",
+            "evidence": [
+              {
+                "audit_relative_path": "probes/root-byol-verification-001.json",
+                "sha256": "5e4c7489ddf962e15ea1b91fb5c8023f7f8b97f812c15511e1f42d8298a4cc9d"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/handoff.json",
+                "sha256": "fbf52fc4beee6a951b0422c070aaf66b53fa36f25302c30b782e813d3ef6b086"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/job/build/run-001/output-review.json",
+                "sha256": "281006c854de9755190bcbf4dab5e2972f2302ae5efc20b7504858b2d6b28cde"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/closure-proposals.json",
+                "sha256": "45f100e7c652a36160e450d114734c57c83b97dad6a388cde9ac75b7e48559c3"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/original-issue-independent-001/fresh-review-receipt.json",
+                "sha256": "b90cbc75190d78f98dcbbfe9b4ec58fdb9eb63540c0d54ebff1991c106b9b9fc"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/original-issue-independent-001/evidence-freeze.json",
+                "sha256": "b576275082384c7228cfde4ea997f4d62842361eed1166c8635b4104318cc159"
+              },
+              {
+                "audit_relative_path": "probes/byol-root-visual-spots-001.json",
+                "sha256": "75f6f2df86fca64605935d0add6abe7a46193914f869830e5010986fede04bc9"
+              },
+              {
+                "audit_relative_path": "source-regeneration/byol-tangent-source-001/loss-arrow-source-native-binding.json",
+                "sha256": "c49868a8338ebeb2879b59a57a6300c8567837457b302b39f6c4d647aeb4f12c"
+              }
+            ],
+            "user_acceptance": "pending",
+            "diagnostic_followups": [
+              {
+                "recorded_at": "2026-10-04T03:07:50.781339+00:00",
+                "status": "open",
+                "scope": "bounded_color_quantization_and_compositing_diagnosis_only",
+                "result": "Independent 24-case/28-shape actual source-SVG-PPT controls at1x/2x/4x support an opaque color quantization discrepancy; black50percent on white also differs despite identical black bytes and exact native alpha. No general color correction or RGB bound is established. The original BYOL output remains unchanged.",
+                "corrections": [
+                  "Pillow-decoded saved PNG contains straight RGBA; eight fields were mislabeled premultiplied in the original diagnostic record, which is preserved.",
+                  "Matching-tag MuPDF draw assignments are626/634/641, separate from SVG rounding.",
+                  "Exact234/255 and235/255 refute blanket byte decrement; they do not refute source-bound float32 opaque truncation."
+                ],
+                "evidence": [
+                  {
+                    "audit_relative_path": "probes/root-flat-color-diagnostic-review-001.json",
+                    "sha256": "fa3096695ace4c204ebbf4795ae66434b4fc82c02540568fbc4aca8f286f3ce6"
+                  },
+                  {
+                    "audit_relative_path": "probes/pdf-source-flat-color-feasibility-001/FREEZE.json",
+                    "sha256": "81e3c97a092ffe85d127073c9a94fb4bdae36fc2de425c3e471aab62c6d10ee3"
+                  },
+                  {
+                    "audit_relative_path": "probes/pdf-source-flat-color-independent-001/HANDOFF.json",
+                    "sha256": "5dd4ea9671cd3e36c5937542682044a7f55ee782e494b8a65fe2a5f3a2975d6d"
+                  },
+                  {
+                    "audit_relative_path": "probes/pdf-source-flat-color-independent-001/REPORT.md",
+                    "sha256": "cdebd1c91214b4df48ac058f367b30675b7fddd2d6486242edf674f3b30dd53c"
+                  }
+                ],
+                "user_acceptance": "pending"
+              }
+            ]
+          }
+        }
+      ],
+      "latest_verified_attempt": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-readback-072/readback.json",
+          "sha256": "07156f744553db91f5d8953e5d13f31045a306da66f9f525769278690c814ea8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-readback-072/output-review-073.json",
+          "sha256": "a699a592a25a97f3f63640cd7249d012374cd29748498c3ddd7ca65824384a24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/output-review-073.json",
+          "sha256": "a699a592a25a97f3f63640cd7249d012374cd29748498c3ddd7ca65824384a24"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/visual-review-073.json",
+          "sha256": "ab4a64bd0b085d4de46c0e32067b48c0a0f1314e80305e11dbd74d6db38a56d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/bindings.json",
+          "sha256": "dbc3e98e7d8fafb25a1ad6c3fd002405b7c0b617707ef8866c8170b2071e1f5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/whole-1x.png",
+          "sha256": "53e5a72b0b8d96d10cbde8edb3d182d8ecadcb12906e2cb8d08587a889874460"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/repair-proof.json",
+          "sha256": "f69446d656d23aabcb4676699335f92aaf531aba1124855d83b428bcbe6521f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-source-colour-070/capture.json",
+          "sha256": "3fb1c13c6cb9745f29146528c67e4d4169df3422f59874f4db4996b7e1b5522d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/BYOL-COLOUR-ATTEMPTS-073.json",
+          "sha256": "0745450cc143c8216b872e2a7dea0604fabe2002b1c3d6dbc1ee48d717903d82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-95a2b45-001.json",
+          "sha256": "1cfed2063db09ea1410f01bd7030e6ad22147130ed1390b769b86797dd172fa0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "d94b4580bf2205ba87fc896fedb26d71a9f295687d7b659092fc22553bc87500"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/resolved-scene.json",
+          "sha256": "d94b4580bf2205ba87fc896fedb26d71a9f295687d7b659092fc22553bc87500"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/object-map.json",
+          "sha256": "d3cd1d6b104b70b49e396aedd996ba15405da4c4a0fd17ff35e927dab810b6fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/asset-snapshot.json",
+          "sha256": "33a0b62be82b995ee34ca57581150f83edafac2c5c05ae96d5ac2badd3d2f683"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/render-audit.json",
+          "sha256": "b9ac0fcd6b36f4bd35cffc5377c5179d1a93946eb1dcc27d5fabfa1bd7a74e70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/editability.json",
+          "sha256": "df73b19ead6596fe6544d07da006b3ff1597c7923fc1b6dd99e9e0d9bd674b4c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/delivery.json",
+          "sha256": "ac9547913ab56c16adcba472e5351e87d180c90ddc14c7e81147b405e9061586"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "8f70e902cfcdc3b6fedb21d81b688fe8396e57ffacb5507eb0be0a62394c5ff3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-060/jobs/ccf-2020-07-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "124693591e4474bc00ac17c2b2f08d80b0184e2e1d4380f1b573795d02222d12"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/red-corner-4x.png",
+          "sha256": "71867abaad7f365c487fedab7870c523cc493cf11fc45fadcceef116e21acdcd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/red-background-4x.png",
+          "sha256": "84776ec1f3b1cff4ed4921d4a4ea6cfe2485d5d3dc7ef3389992cb94ad4ffd07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/gray-second-frame-4x.png",
+          "sha256": "9137f32fe3cc831f52179f2aae2114ee4f82820c6929f9d34b119f8c2d21cae1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/gray-third-frame-4x.png",
+          "sha256": "b65881e8df7c6938f72d311b9d4327d38e6f1c438c3c4bee6eed144b9e318998"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/blue-corner-4x.png",
+          "sha256": "c2bb8be796e3fb928bfbde9f08bc3eff80ac0f66162ec67f43702f027d6d65ce"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/gray-first-frame-4x.png",
+          "sha256": "cbf9d2a1082f4e2f9384e2d9207c6bcb5644331fac94ccb7688417cfb4e3897a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/blue-background-4x.png",
+          "sha256": "82f79144e75a8b4d939b1bdae5b51f863f8737f621f1c0581dee95de1f6b0275"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/byol-colour-galleries-072/native-PDF-4x.png",
+          "sha256": "6891a00a92838d41347242db78988f90d659aad65d1751b1fd8c5bb862a26786"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_byol_colour070.py",
+          "sha256": "61e8a0d15acc46da8944845c32f100434624492eb75155874965a3a29a1ebce0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_byol_colour071.py",
+          "sha256": "9a67ea232d1722d8321121c12dc8ea5190a5ebff357a24cc0830b50e6f085b0a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_byol_colour071v2.py",
+          "sha256": "c419b962e3c1b4b7ac96c859fe1208649ea74a908249c93a29b0d57bbcd46f4f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_byol_colour072.py",
+          "sha256": "82823368c1ecb7325302af515b16f8f9b28c640765999e7cefb50e5ab685444c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_byol_colour073.py",
+          "sha256": "197aa0f743817e8f50900bc2216c62ae2f99869fa4b372fcb39084e2374c5734"
+        }
+      ],
+      "resolution": "Fresh complete native callbacks bind all130source paints, real color conversion, alpha, group/overprint state and clips. The first six source paths precede all text expansion; each of the five changed paths has an exactly f32-equal full original local M/L/C/Z command stream including trailing moveto, and its SVG source ID/paint index is bound to the actual source paint. Encode only the two actual opaque DeviceRGB fills and three actual converted DeviceGray strokes with explicit float32 multiply-by255 then truncation, rather than SVG nearest-byte rounding. Do not decrement encoded bytes generally or adjust any transparent/group/ICC policy. The five color fields change from EBEBFF/FFEBEB/666666 to EAEAFF/FFEAEA/656565; all394path commands/order and389other objects remain identical. All actual PPT native geometry/style properties remain identical except those five color fields, and all408actual native-PDF drawing records remain identical except the corresponding five colors. Fresh source/direct-PNG/independent-PDF whole1x, direct native2x and all seven matched4x regions were actually viewed. Five opaque interior controls independently equal the source:234,234,255;255,234,234;101,101,101for all three gray frames. Fixed rational encoding residual is bounded by1/255per component; no global color, hinting, filtering, AA or alpha compositing equivalence is claimed. Separate BYOL-RASTER-DETAIL-001 remains open.",
+      "closed_at": "2026-10-05T08:26:41.634120+00:00"
     },
     {
       "figure_id": "ccf-2026-03-f02",
