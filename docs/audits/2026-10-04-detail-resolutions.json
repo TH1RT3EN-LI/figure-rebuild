@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T00:25:28.779736+00:00",
+  "updated_at": "2026-10-05T00:53:41.414328+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 250,
-    "open": 45,
+    "closed_model_visual_review": 254,
+    "open": 41,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -8510,6 +8510,298 @@
           "sha256": "7f5ae74e932050c57989673e1dac22504a0ca8431f678e71e7ad165b106a8e38"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-17-f02",
+      "issue_id": "ccf-2020-17-f02-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Replace ten constant-width manually estimated shaft/head paths with the five actual original independently sampled bitmap arrow occurrences, source paints 11/142/144/154/158. Preserve all five full affine CTMs, actual attached alpha-mask handles and matching clip callbacks, complete clips/groups and original order. The strict original native group policy admits the actual RGB root/nonisolated inherited child; a previous redundant RGB-extension opt-in rejected that already-supported child and is retained as a failed attempt, not bypassed or relaxed. Explicit 8x sampling preserves the source taper, soft gray-blue texture and broad open head branches. All 87 live chunks and 406 ordered native characters, 167 other paths and all relative retained object order are independently unchanged. Source whole 1x, actual final native PPT whole 1x/2x and all five matched 4x arrow crops were actually viewed. These remain independent bitmap source artwork, without vector/editing or generic RGB/alpha/filter equivalence claims.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-17-f02-geometry-readback-041/output-review-047.json",
+          "sha256": "ac10c546a496a166944cc99dcbfd3173e912e208c28c8b63b5e4b54fbef53ff2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-17-f02-geometry-readback-041/native-readback.json",
+          "sha256": "8b9ea411a13a035dc05a8b899261d2483c09bb8ff74affc0f84157feb18008ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-045/ccf-2020-17-f02/visual-review-047.json",
+          "sha256": "0965852a6d8dc57b8a456945bcc4bcd2f3ac1bf8a3f1932112d138bbf88d60d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-045/ccf-2020-17-f02/bindings.json",
+          "sha256": "a10d1e6b738cb76cde568fd1304f0d63e753bf3b7afc3362855f72902124e141"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001/output-review-047.json",
+          "sha256": "ac10c546a496a166944cc99dcbfd3173e912e208c28c8b63b5e4b54fbef53ff2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "3c67591033f9bb1f4d6a9f4681ca54d65d0b2f40b20e9ccbd17ec58968f74c2c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001/render-audit.json",
+          "sha256": "6f1daffe85ba58a45cb44a07d2d68bafce4d1f84819673e4ce40f4b26b468a31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001/font-audit.json",
+          "sha256": "f188d68bab9c346338f0f6ff18b0bb348fc17af43c9fcbe795fc9ea33ee2d052"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/build/run-001/editability.json",
+          "sha256": "35eea27e2ad25276671ecf12337192b6eb38302aef6256f9527f4e3ff3247662"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/repair-proof.json",
+          "sha256": "73446191c5dd2df071d2a7335e1cc9c989b8d028ba2cd0b0cfb78582e4adae67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/font-profile.json",
+          "sha256": "4c3d445f2c5f4ffa3c88e0508702f54b232b218f650c5382aa4d7575bf9ca2ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-025/jobs/ccf-2020-17-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "ca852854a8df414af4cca98366d84e69b2e6a0abcbac1544bf47d28bbbaf0b60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-artwork-extraction-034/ccf-2020-17-f02/extraction.json",
+          "sha256": "4bef58c3e92697a8934cce236fbec1698d366b6c35307c9192e17c0898310ddd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/original-artwork-source-inspection-031/ccf-2020-17-f02-context.json",
+          "sha256": "02b9f1998285e5c50a59aafea4f1e0e4e2caa1373c5507b97337dec5e9c3f647"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2022-13-f01",
+      "issue_id": "ccf-2022-13-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Replace all 15 integer staircase/manual browser-frame and traffic-control color paths with the two independently bound original source bitmap occurrences at paints 4/5. Preserve original actual mask, CTM, source clip, palette and complete layer order. The source dark olive rounded frames, pale blue trim and solid red/yellow/green controls now match the original artwork without artificial white polygon halos. Existing 102 live text objects and 1215 ordered characters, 55 other paths including avatars/illustrations, and source typography remain unchanged. Source whole 1x, final native whole 1x/2x and both matched 4x browser-header crops were actually viewed. Original browser artwork is bitmap content in two independent picture objects; local edge interpolation and extended source-font delivery limits remain, with no pixel equality or new vector editability claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-geometry-readback-036/output-review-047.json",
+          "sha256": "8636f2048c11cae32bdde633a23161b076535cb25b29591848bf2e994d1fc890"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-13-f01-geometry-readback-036/native-readback.json",
+          "sha256": "6efdb8b946634e3ccfa50f861ebfa2b5822d6c9b6aac41e6cee965a9118bcc27"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-045/ccf-2022-13-f01/visual-review-047.json",
+          "sha256": "6c5e0ebe63105f6c0c47e4ecc9db50e8d6c4266f20dbc146ffc73371399d8a49"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-045/ccf-2022-13-f01/bindings.json",
+          "sha256": "579da8e164e51c779723fa5285634acd3e863daea4cca5aff68fcfd3e977db30"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001/output-review-047.json",
+          "sha256": "8636f2048c11cae32bdde633a23161b076535cb25b29591848bf2e994d1fc890"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "4462712153a9943ae8fcfed26753d8997ff1c1fe29533a85e3ada479e8b8a0a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001/render-audit.json",
+          "sha256": "ea0e181ca66f96064ecff1eff8a5e6bb181d46c6a1c9c97d7e116349e925a5d5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001/font-audit.json",
+          "sha256": "1282ba3ac125e7e05844f77f456de8ccc2abd82c892c291b37a65ef535b30c0d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/build/run-001/editability.json",
+          "sha256": "55a0e2fff3e19cfe52d2adf6a42816a12e3f70ffd6a860e5386d7810d663cdc3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/repair-proof.json",
+          "sha256": "9014be364a3a83c9c9146aa7b228cf84eecb455fcc78c1393ca17f0936a2efd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/font-profile.json",
+          "sha256": "e160d3b098351f0ce2c43186dd06d89fb4946982c6d7b2a23310a7c062d9fcf3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-023/jobs/ccf-2022-13-f01/source-evidence/manifest-before-repair.json",
+          "sha256": "2bb7f7971381a1bb0a105adcbbb33830146cbbba1f710931fa6ff4cab88cf6e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-artwork-extraction-032/ccf-2022-13-f01/extraction.json",
+          "sha256": "a7b165f81e9b74de9b0e34d3c7533a824ad6d673e16b8afe2b84dc27510689ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/original-artwork-source-inspection-031/ccf-2022-13-f01-context.json",
+          "sha256": "24e557f5be3950cba4ada274f5840aa52dfae7bc4a83663a619ef29a57586f72"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-12-f02",
+      "issue_id": "ccf-2021-12-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Re-extract all 102 actual original pattern-tile image occurrences with full native CTMs, original actual bound masks and clips, using explicit 8x source occurrence sampling. The old extraction scaled each full 64x64 checker tile into its clipped visible bbox and changed pattern pitch; corrected transparent integer frames preserve the actual occurrence sampling/clip mapping. Fresh source PDF4x confirms fine dither inside all three activation circles, so the original audit wording uniform gray was a 1x appearance description, not a source solid-fill identity. The excessive coarse checker/crosshatch is replaced by the actual source fine dot pattern, with original circular boundaries intact. Source whole 1x, actual final native whole 1x/2x and all three same-grid 4x circle crops were actually inspected. Original pattern texture is retained rather than painted over by an invented flat fill. All live labels and other source geometry are unchanged; original tile bitmaps remain bitmaps, and no exact RGB/alpha or renderer/filter error bound is claimed.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-geometry-readback-041/output-review-047.json",
+          "sha256": "1c2327743a97d1c08d1575a12c0b776d575af40c490b8923a8273c266c134198"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-geometry-readback-041/native-readback.json",
+          "sha256": "2c33083b0c1720cca3d0bbbadc59a3099c6bc474a7b712e102575b1c350cefa2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-046/ccf-2021-12-f02/visual-review-047.json",
+          "sha256": "f3f06f24f17f1abf87dd9404a002debe9d4110f542850743b0c5e2b378f34b72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-046/ccf-2021-12-f02/bindings.json",
+          "sha256": "8d1b26ef2357d2825f7be9a4e733ee8063f558f10860dd4221f8c91099c99705"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/output-review-047.json",
+          "sha256": "1c2327743a97d1c08d1575a12c0b776d575af40c490b8923a8273c266c134198"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "cbd7dfe7df3cd20212e28c37d05d70802ed4c5b70536d21659ad2317e4c61397"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/render-audit.json",
+          "sha256": "a0b3fda8f27675b755588b5655a2b7e0695073d85a584d077fc7c8c18003e332"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/font-audit.json",
+          "sha256": "38cde2c9df0da4b92836c6e1edb9c37091e0c3e0ab2e94b1d0f4530a963a76ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/editability.json",
+          "sha256": "7ec0a0ad835588d9537cefe28b303035d151c2c42021df8854a644d6ed03b249"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/repair-proof.json",
+          "sha256": "e2b7d0dc7bb21d94fa160b9fa45b86707ad7bf170265f85696fdc3ed6a2ad3c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/font-profile.json",
+          "sha256": "d0c72adb25effe99717cdf1ee0c2eecab92ec9deb4b665c57d5701567061824f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "b70aa1e9245435625cb9e8da8fbba1a16e1ed4010cffea27848ec2b48770c4bc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-artwork-extraction-043/ccf-2021-12-f02/extraction.json",
+          "sha256": "425ba5ed0c31f6224320e7c1cd26705bebb6b759d668ee9441ea6f2374250510"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/original-artwork-source-inspection-031/ccf-2021-12-f02-context.json",
+          "sha256": "a3b81fc79a226c5cc0dd19b83f5b1da90adb9fc49607b42a9f3b80737a632781"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/zero-native-arrow-capture-040/proof.json",
+          "sha256": "8fb40ab07adfef833e0d2b073d69e5a672ff5b21a4ec2285ae97ac8e3c7475c3"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-12-f02",
+      "issue_id": "ccf-2021-12-f02-D02",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Recover actual source-native fill_path 133/197 for the two 12 M arrows. The old get_drawings rectangle reconstruction reversed shaft contour orientation relative to the head, cancelling the overlapping fill and creating a white seam. Actual source local M/L/Z commands, source matrix, nonzero rule, complete no-op clip containment, original neutral groups, alpha/overprint and actual ICC colorspace handle are independently captured from the full clean native page replay. Retain the real source rectangle winding and head contour order, map to canvas without inventing vertices, and bind native solid RGB conversion through source ICC programme 13/resource 225. Final native nonzero-to-simple-loop receipts are replayed independently from actual authoring; the full shape and character order and all 102 corrected image bindings are read back. Source whole 1x, final native whole 1x/2x and both matched 4x arrow views show continuous blue shaft/head fills. Source color-component encoding budget is distinct from renderer RGB equality; no raster or inferred scientific connection equivalence claim.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-geometry-readback-041/output-review-047.json",
+          "sha256": "1c2327743a97d1c08d1575a12c0b776d575af40c490b8923a8273c266c134198"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2021-12-f02-geometry-readback-041/native-readback.json",
+          "sha256": "2c33083b0c1720cca3d0bbbadc59a3099c6bc474a7b712e102575b1c350cefa2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-046/ccf-2021-12-f02/visual-review-047.json",
+          "sha256": "f3f06f24f17f1abf87dd9404a002debe9d4110f542850743b0c5e2b378f34b72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/geometry-galleries-046/ccf-2021-12-f02/bindings.json",
+          "sha256": "8d1b26ef2357d2825f7be9a4e733ee8063f558f10860dd4221f8c91099c99705"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/output-review-047.json",
+          "sha256": "1c2327743a97d1c08d1575a12c0b776d575af40c490b8923a8273c266c134198"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "cbd7dfe7df3cd20212e28c37d05d70802ed4c5b70536d21659ad2317e4c61397"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/render-audit.json",
+          "sha256": "a0b3fda8f27675b755588b5655a2b7e0695073d85a584d077fc7c8c18003e332"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/font-audit.json",
+          "sha256": "38cde2c9df0da4b92836c6e1edb9c37091e0c3e0ab2e94b1d0f4530a963a76ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/build/run-001/editability.json",
+          "sha256": "7ec0a0ad835588d9537cefe28b303035d151c2c42021df8854a644d6ed03b249"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/repair-proof.json",
+          "sha256": "e2b7d0dc7bb21d94fa160b9fa45b86707ad7bf170265f85696fdc3ed6a2ad3c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/font-profile.json",
+          "sha256": "d0c72adb25effe99717cdf1ee0c2eecab92ec9deb4b665c57d5701567061824f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-026/jobs/ccf-2021-12-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "b70aa1e9245435625cb9e8da8fbba1a16e1ed4010cffea27848ec2b48770c4bc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-artwork-extraction-043/ccf-2021-12-f02/extraction.json",
+          "sha256": "425ba5ed0c31f6224320e7c1cd26705bebb6b759d668ee9441ea6f2374250510"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/original-artwork-source-inspection-031/ccf-2021-12-f02-context.json",
+          "sha256": "a3b81fc79a226c5cc0dd19b83f5b1da90adb9fc49607b42a9f3b80737a632781"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/zero-native-arrow-capture-040/proof.json",
+          "sha256": "8fb40ab07adfef833e0d2b073d69e5a672ff5b21a4ec2285ae97ac8e3c7475c3"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -8519,11 +8811,8 @@
     "ccf-2020-11-f02-D03",
     "ccf-2020-12-f02-D03",
     "ccf-2020-15-f05-D03",
-    "ccf-2020-17-f02-D01",
     "ccf-2020-18-f01-D03",
     "ccf-2021-11-f01-D06",
-    "ccf-2021-12-f02-D01",
-    "ccf-2021-12-f02-D02",
     "ccf-2021-13-f01-D01",
     "ccf-2021-14-f04-D05",
     "ccf-2021-17-f05-D01",
@@ -8533,7 +8822,6 @@
     "ccf-2022-07-f01-D03",
     "ccf-2022-12-f01-D01",
     "ccf-2022-12-f01-D02",
-    "ccf-2022-13-f01-D02",
     "ccf-2022-14-f02-D01",
     "ccf-2023-01-f01-D02",
     "ccf-2023-08-f02-D03",
