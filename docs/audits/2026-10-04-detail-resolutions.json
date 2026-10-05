@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T10:45:28.931382+00:00",
+  "updated_at": "2026-10-05T11:30:52.923949+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 275,
-    "open": 20,
+    "closed_model_visual_review": 282,
+    "open": 13,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -12317,6 +12317,1835 @@
           "sha256": "285d002cb866ca86f7eb21bf08923235354aaff8c4aa22ac8ecbbbb2e66ab6de"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2021-11-f01",
+      "issue_id": "ccf-2021-11-f01-D06",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 188 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 0 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 5 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2021-11-f01/native-readback.json",
+          "sha256": "99a1ad004eda9fe40282ed93b2dec66828490d3192269ac914bd837482983ff0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2021-11-f01/output-review-diagnostic-109.json",
+          "sha256": "9c57ab948631f50ce2d534a582dc143174d338b671f755c5bcd02a5337d3489f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "9c57ab948631f50ce2d534a582dc143174d338b671f755c5bcd02a5337d3489f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/visual-review-109.json",
+          "sha256": "03a429b845a6929d3603727e5c75dfc820c7e7f923c7813785dc081d64e5b48a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/bindings.json",
+          "sha256": "7779c1850678aa2945c60ec9679e8b44254a11970d2c33a6533dd855ece3a989"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/whole-1x.png",
+          "sha256": "ee83b6c3adb8dd1b95bece568241194f6d5c18349fcd0f089f377e6015d884ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/preview-2x.png",
+          "sha256": "2df22e6103121970703f687dd39be3099339437a0c0d94606f1acff35faebfb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-inventory-controls.json",
+          "sha256": "7b2a9df5362c651e36bcf4f17a352593c633065e0ae0a8037c1371759bad110a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/manifest.json",
+          "sha256": "106b7ce79150e4498014efca284cc22a1be92b128f04576b4b00fe2afe746d70"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "106b7ce79150e4498014efca284cc22a1be92b128f04576b4b00fe2afe746d70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/resolved-scene.json",
+          "sha256": "106b7ce79150e4498014efca284cc22a1be92b128f04576b4b00fe2afe746d70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/source-inventory-audit.json",
+          "sha256": "01505162013c40f1d2abf07c72df796f056ad25f7c262c3c9df4030f17ce0354"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/semantic-audit.json",
+          "sha256": "298b2333831c3d16df3a38320a0a987af156ffa00c42cb65688397829349c15b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/render-audit.json",
+          "sha256": "23c2a8fe1c03fd72820d52baadf79f1f4d1165ef53c3d9c053459148917c3b0f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/asset-snapshot.json",
+          "sha256": "b076ab61a91ad3965933d30f6bb98f871a9cf659b999e390029c7f8200e4d1ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/object-map.json",
+          "sha256": "3fc38f63638ff46b706fb3ec05f37d7e469917446064ce0e25103cd1e535004f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/editability.json",
+          "sha256": "c615920df75511c110320a373fe7135f7b724b6d413dac21e21f6481a81dfe33"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/delivery.json",
+          "sha256": "a9c05b6f937959cd7968930d3242cbcb31264ac5c218a3d3bcbbc3053d377a38"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/font-audit.json",
+          "sha256": "852bf8e3e5c4a39ac6125551c788c1b8583e8e20cdabc8f69cee3b748bcaa7ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "4c926fc0e82e397ef43b763d14ac5198fd02866dbe8cec029157c14e5f776248"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "ab1be25066aede1a80be6033e3f11653f9cf8444b2885fb1a78af245798307d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "e0fb816b7dc425d77cada624aca25d6d45946fdf19f182747a8063280a3510d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/report.json",
+          "sha256": "92b504ecad9e2f29911a2fbeb8e9c02d142bd9573192c7c3a188da0793380c04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/source-1x.png",
+          "sha256": "e06daa9866245834a4cab544d01623cc3f1c1015e4e5045e2cc50b787c12e53c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/source-2x.png",
+          "sha256": "2ac0f55fd19045cd42f454a0d0b75ce1b092d9ee5705ccac047d8ff0ea7e950b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/fresh-source.svg",
+          "sha256": "86d01eaa8d9a9ce0edb05a28123e26302d7506ae78166a44c4699260f8205f9d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/fresh-vector-reference.json",
+          "sha256": "067dc39f8f76c770152ced39f4990345118a463d69cbbb462f0611e7275db2a3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-11-f01/source-4x.png",
+          "sha256": "84d4edb8bfdc6c8d9352b14932a98f67a6cadd01a265af3262d30e2172fd5373"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/fresh-vector-replay.json",
+          "sha256": "92b504ecad9e2f29911a2fbeb8e9c02d142bd9573192c7c3a188da0793380c04"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/inventory.json",
+          "sha256": "cf3bee58fea3312ce9bd244258d36008fc6e9cf274b8380f6f1a4aeaa0c00cfb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/source.pdf",
+          "sha256": "0189f105d7d70495316010d24522dddd8354aa63acc4d790382ddebffd6145d3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/source-recipe.json",
+          "sha256": "11a329751a8a4ae9b7663947d92dcb355e68719239c807a56b93ce151c772a94"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/fresh-source.svg",
+          "sha256": "86d01eaa8d9a9ce0edb05a28123e26302d7506ae78166a44c4699260f8205f9d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/independent-source-reference.json",
+          "sha256": "eb15b2a25b8c40bfc97899fb74192b250ca65dc281cf21e22bed34564a4aca45"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "6a6796cf698a89db9bdba890317281110f3c6b6103c1f1c881afb94292bd0a25"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/caption-lower-4x.png",
+          "sha256": "0e7b367dc4928b27a6bc2cbee677823a3314ffabc89212cd32fbb38d85c4f345"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/main-and-SSL-loss-4x.png",
+          "sha256": "761131f1b67c60a41eefa95b254581b186d64f06aa6de8caa5f9a7a52ba41552"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/GCN-and-representation-4x.png",
+          "sha256": "73e9739534b4ede8a2c3672c6f103627d7290e4bc544a95c83c28add4e9eb7b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/left-graphs-and-augmentations-4x.png",
+          "sha256": "e2e166cdacedfa0e3a1ff462a57ecba57662a10802f4ab166f97a534357f6329"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/native-PDF-4x.png",
+          "sha256": "9aba34507452e7354d4a746f4815ca226ea3a2bc39a074b622bdeaf17a612479"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-11-f01/caption-upper-4x.png",
+          "sha256": "8ccbf5a53f83244077cda4a2057a17008b2473b55222e812a71869ffa6a57063"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-controls/shifted-source-symbol.json",
+          "sha256": "e5a89eb9482f6918763d8491591a6e9538b21bd6ce7c72081d38f07cfe540dde"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-controls/missing-source-symbol.json",
+          "sha256": "36a75017a9d4a5817ba438b122040935251e3ceaced383cc9978ba1ae94b5f46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-controls/deleted-directed-component.json",
+          "sha256": "36a75017a9d4a5817ba438b122040935251e3ceaced383cc9978ba1ae94b5f46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-controls/incorrect-source-symbol.json",
+          "sha256": "388a919473d1f2c534d8f0893d7779377a5e751c24df1245c2b03e02f8f284e2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-controls/changed-source-raster-content.json",
+          "sha256": "5b049f501662e2b057ea42988e972ab437fee62226f9ca5b1a00bb33b1eaa95d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "b538e3097ab109ad06a5ae95c49007edbb3649943ecf793be3bc51f404d18681"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-11-f01/negative-control-assets/incorrect-source-symbol.png",
+          "sha256": "b538e3097ab109ad06a5ae95c49007edbb3649943ecf793be3bc51f404d18681"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-11-f01/parent-binding.json",
+          "sha256": "28c03d722aa786b9384ea75768a877b1f556229105e8e48fc3afb3febd81ab3e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-11-f01/render-audit.json",
+          "sha256": "eb3febcb030cf416d383fbff0f508b7e78d1c891b87623994ec2f6db56f3f57d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-11-f01/validated-output/reconstruction.pptx",
+          "sha256": "682e5fef79873c53db5438a85a5a4570f57035dec4f14aad70a37b20b06cbc6e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-11-f01/native-preview/pdf/reconstruction.pdf",
+          "sha256": "94289ed033fbc64a6732e7062a455d7bc89254ffb421623f963de4d3b75d8c72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2021-14-f04",
+      "issue_id": "ccf-2021-14-f04-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 442 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 0 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 4 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2021-14-f04/native-readback.json",
+          "sha256": "dd14eae8d68c80638977bca7800e492bd9b21e859a095ff258f3040074d3519e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2021-14-f04/output-review-diagnostic-109.json",
+          "sha256": "b4f3483deb65f623f5388646a37fe35cd373863c062332a9d050be36b7087baa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "b4f3483deb65f623f5388646a37fe35cd373863c062332a9d050be36b7087baa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/visual-review-109.json",
+          "sha256": "e6dca13fc046c656becf1297b4c682be25ca7276351ec305eb7aae01eefe221f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/bindings.json",
+          "sha256": "2508541ccd0b6c2c9cf6ec1c157fad88baef0631b2fd0d9c421ce71daddf69c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/whole-1x.png",
+          "sha256": "66eab5e463aef7895bb42507ab45ee5b1e84d2c6c6f6cfd30d78023ad784bcf1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/preview-2x.png",
+          "sha256": "1b2c14bbc8ac1ac0b59bfbc7e5c1860bc7fcc5edfb018640eb15316c855d31ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-inventory-controls.json",
+          "sha256": "46c5e81cae9f1663a6ad41fa8f2a3798dae360e15aa3f47b2facf8a20774dfd6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/manifest.json",
+          "sha256": "8e3d678f18b723e646f1fe6e1e1246453998e8fe21056e8362932d2ee82953b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/manifest-snapshot.json",
+          "sha256": "8e3d678f18b723e646f1fe6e1e1246453998e8fe21056e8362932d2ee82953b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/resolved-scene.json",
+          "sha256": "8e3d678f18b723e646f1fe6e1e1246453998e8fe21056e8362932d2ee82953b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/source-inventory-audit.json",
+          "sha256": "fd785f020b5d4f6c25533b2a2e3673093b3f60cf39bb86b7fab58822ef1ac25d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/semantic-audit.json",
+          "sha256": "9d01dd3c5ae0d9803c6561c0b1d0fd9a2c40c5765c6f39251de49ce469cc6fbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/render-audit.json",
+          "sha256": "3c0fa37bb68fda47b5bf44c54d6f343a50be9df5fe2abd8dd9beccf5b5787b9f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/asset-snapshot.json",
+          "sha256": "ab70675d848937e64955e614fe3e5fc57a4d1973e6b5d8e575cd1744bab3fa51"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/object-map.json",
+          "sha256": "f2b143b94e88cffc9a9ef5f624739ee83b9235e0bb1f238ed89ef6f13bc8ee33"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/editability.json",
+          "sha256": "f8e8327ba2b9ff02e47ee51f4725388d5cc6ce5ccb14320f0a343c2f9b175135"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/delivery.json",
+          "sha256": "4837010e8b0f00b91830d8f16cf543a4ba37880383f2e9cb73291c47de0f1867"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/font-audit.json",
+          "sha256": "a36f920a2db9ff6c337a765dcf5bf9af6305492545e13d12d4cc543c36ae64b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "685bcae9a38a9897bae008f797281697747b5c74545ff65a9fbba41797c105fc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/artifact-authored.pptx",
+          "sha256": "eb28ffc709f60ff7f052150722fedaa6a25679d38417a2f3e71eeb775f824d86"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "dc5ac5b7ee0e364105e5f197e7c82d56922e77d2b43b999a909db5a8354e64f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/report.json",
+          "sha256": "28c0b12ff909aca5195642b5699657868b1e9f06b46f8574882229837cb13e50"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/source-1x.png",
+          "sha256": "66a7926e03a73dc6b0ace5e2bfd0a69e139ae5465db4342145ced77f4942a0c3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/source-2x.png",
+          "sha256": "821c5e66e816667ab7fb47f6add3adf8c9fca300b159a25d4c161696ba2c5e3d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/fresh-source.svg",
+          "sha256": "d90d9644b5bb2c81d6efd5f40a9092c34d63d548364c2a0d79d0d2875a2a90dc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/fresh-vector-reference.json",
+          "sha256": "8cc8a6ac863241dea863452b969604e90c5d4016fa50bdf7bb986f2eb4fb7636"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2021-14-f04/source-4x.png",
+          "sha256": "f91cefce6fc3800b7d2cce68b545aa806de44c3b3145589182eea66b2817c84d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/fresh-vector-replay.json",
+          "sha256": "28c0b12ff909aca5195642b5699657868b1e9f06b46f8574882229837cb13e50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/inventory.json",
+          "sha256": "1110b2526394383b853f2648520da119f281b54ff83bff68ad62c6b00f38ba1a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/source.pdf",
+          "sha256": "6b291a9bf12fe52d6eafda2ec69d65cbab59db046cf27d8ecb4912331dc402c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/source-recipe.json",
+          "sha256": "d756bda09a23a6ca2247adbf62e9b27e8c59e3708b342999d24c11bf3eca28a4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/fresh-source.svg",
+          "sha256": "d90d9644b5bb2c81d6efd5f40a9092c34d63d548364c2a0d79d0d2875a2a90dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/independent-source-reference.json",
+          "sha256": "b2846f7ba00308ec163b682019cbcb62bbd9fec656853219655cbea07a0038aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "c0989ee851318d7343cd888563644eecafc4f4f59cdbe74d906df416aef9d938"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/all-model-state-and-rank-symbols-4x.png",
+          "sha256": "d7e8edc8ab87d0522e4864de7cfd7feca8b6a936257e3aa9877b5ba15a4264f7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/caption-math-left-4x.png",
+          "sha256": "848f842d99c36f582b899dcd3a554178344a617ad8eac59154d3de46d4eae669"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/native-PDF-4x.png",
+          "sha256": "518c2aec79155780fe16b4d92e037d0005e41ae0c08b2789e5e255a651f3aa84"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/caption-upper-4x.png",
+          "sha256": "5b03e0ec35b5f48995d224af37f7b4f3b10217daab1021339a44c823579e8d8c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2021-14-f04/caption-math-right-4x.png",
+          "sha256": "af2345bdf8855e51cd965c2a94ab50c9cf09ef407b60a6f3420de28b34122381"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-controls/shifted-source-symbol.json",
+          "sha256": "9878aede0ff957d2f21d979dac253f58468d25c428f6821b09a8630a006135c0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-controls/missing-source-symbol.json",
+          "sha256": "5ec294f725a88c302de6b7f8430ccf902b316c99a8ad8d622d2aef3401aa30bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-controls/deleted-directed-component.json",
+          "sha256": "5ec294f725a88c302de6b7f8430ccf902b316c99a8ad8d622d2aef3401aa30bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-controls/incorrect-source-symbol.json",
+          "sha256": "9911f3e814d9706c6729411d7eec55ba92c4a4c1b62ddf62545c743ff57b95bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-controls/changed-source-raster-content.json",
+          "sha256": "c1d4d3e8cd67b10b8ba4751b2a2a54903524e4dbb1e1d397719e9a241841c5f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "39ca71e79196b075edb2acf8166b21f6821ca8bd077c47a6710533241c4afce6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2021-14-f04/negative-control-assets/incorrect-source-symbol.png",
+          "sha256": "39ca71e79196b075edb2acf8166b21f6821ca8bd077c47a6710533241c4afce6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-14-f04/parent-binding.json",
+          "sha256": "ddd9eaf0a9669b58cd5b3382c325aeccc0b0771c076fd0a634207240798fc58a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-14-f04/render-audit.json",
+          "sha256": "18974d596d11a477c211662e597d2efb4f41368205fcd243fd61850dac5b356f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-14-f04/validated-output/reconstruction.pptx",
+          "sha256": "0269e79c260405b7a690ee4ce5e92ea1a259b3f7c65457333d6cae0c394e3243"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2021-14-f04/native-preview/pdf/reconstruction.pdf",
+          "sha256": "f7af9b19b92aa35fd61aad3df24dbb7e6bcea0ea4edec6a3dd44bc8beeefec9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-08-f02",
+      "issue_id": "ccf-2023-08-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 488 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 1 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 3 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2023-08-f02/native-readback.json",
+          "sha256": "2e15800aac805e2e1d0034f91386c7c1f97b7febf32f338eabcb0797e81b65f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2023-08-f02/output-review-diagnostic-109.json",
+          "sha256": "7c934aa238cc5a5ba748947c9a877efebc514d30570fafa8d169c67972aeb8a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "7c934aa238cc5a5ba748947c9a877efebc514d30570fafa8d169c67972aeb8a7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/visual-review-109.json",
+          "sha256": "fd8fb0e2b6a8b798bda286d31add7a59fb2862af3eadc44ad2b01c329122f99f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/bindings.json",
+          "sha256": "493792c1a9aa284b6aa2211b9f12581936193cd6fa5245a2dd855f0ca73d42d3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/whole-1x.png",
+          "sha256": "286971af9d9436ccf9e8881e6888556cdcfb04d7789eebc6f1e54f5eb008a9f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/preview-2x.png",
+          "sha256": "78a47b92f6f966ecf8993465bfd5269d9bb205ad475368943023b12edf845a38"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-inventory-controls.json",
+          "sha256": "a10dd3098fc4978aed1dc050c49514dcd411ccd749e97cdeb067119ec846bf4e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/manifest.json",
+          "sha256": "11db87e2166638f6f254d019fa905faf0d5f5c3d31a6f2b8b10062763b45da4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "11db87e2166638f6f254d019fa905faf0d5f5c3d31a6f2b8b10062763b45da4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/resolved-scene.json",
+          "sha256": "11db87e2166638f6f254d019fa905faf0d5f5c3d31a6f2b8b10062763b45da4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "78aa1c0965dc4171fd2286326bd8be35d3b60dd7854b3c711c71b0342a570326"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/semantic-audit.json",
+          "sha256": "46a51115f41f65dffddc4fc613e48b74b2fdd25deedcaaff598aa99464b0e8f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/render-audit.json",
+          "sha256": "a942688d3a0b5cc92cbed56e47b13327b9f06968c838bb545bcd47cd6b480164"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/asset-snapshot.json",
+          "sha256": "3b7d727d73d1f2c5ba019736e4f841ca5b226edea059e79afa222b63792dbe99"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/object-map.json",
+          "sha256": "1d8ca84005ead092704dadbfaf4217714ec1b4028a7bdc72b9725b8bb1edc885"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/editability.json",
+          "sha256": "65ca5cc95d1e59ea79092a17a9a9248a8249f2cec32d5c5b33b5e18fb6d5ef13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/delivery.json",
+          "sha256": "5af6cc2f039f73f7be3740ea9d0c56a95181bc752f69aa105768f44d5216c480"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/font-audit.json",
+          "sha256": "069a38714ded6d8e09943ef880bc9e56b5b30fbb85962843ef76c3f9ad450696"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "27a0801e3cebcbfd5c2ad955f6bed7f231ccb85948684c8eff0427a83eb10ec5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "899d8e676b5179f9a53cfab5a35d67a5d3b7ac91335fe1ccb93169d6de329d66"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "2c92b6d40d509918210fb69b8ee1840e1a943bb743725bc54c3d0b3e29bd0f15"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/report.json",
+          "sha256": "43c80122e33fa23c0fb5699468654b5a9244aee781013589b406a9d230b9a6b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/source-1x.png",
+          "sha256": "4eb2847d83e4a92848a114afd69f69cd02df944e3cf6eb04804bbb852aca6929"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/source-2x.png",
+          "sha256": "66857c660c92d620d5fc0d6d81ff45eb421646268edde760a91ad39b11f4fc1b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/fresh-source.svg",
+          "sha256": "4d09bd9d5b0c8ad93eb179a27590da336b0164254c565e5aa47eac70e40ab736"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/fresh-vector-reference.json",
+          "sha256": "d29935cafaae7180446b83f7761ca87b6824bf7971ce1c8ed155ac0f45784c57"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-08-f02/source-4x.png",
+          "sha256": "5ab42ebb9a0beb3abf38deae59ad37993950a76ca9248e9a75d284dd7b41ae55"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/fresh-vector-replay.json",
+          "sha256": "43c80122e33fa23c0fb5699468654b5a9244aee781013589b406a9d230b9a6b9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-1x.png",
+          "sha256": "4eb2847d83e4a92848a114afd69f69cd02df944e3cf6eb04804bbb852aca6929"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-paints.json",
+          "sha256": "690be16b9424a1e5b2500bccad501736115fdfdbf0a58b3f8ba301250da5655a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-parser-limits.json",
+          "sha256": "2c8e4e1dcd047b4f6a9e08bae509dc8b2d8d6897a140ea933aa3f0037b403f1e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/pdf-native-paint-context.json",
+          "sha256": "3af38555ab80fd9b1c823a5eb2ced0193361c4597f10c73f4ca0cd4228bc4b8a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/inventory.json",
+          "sha256": "93ef7e216c2e03720744313614716220c6fb87490b56be92ddc6cce3297a863f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source.pdf",
+          "sha256": "5cdb3da7d7929477b1b13138e483a6e904788dd0f824f230ef0abf395bfee59b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/assignment.json",
+          "sha256": "fed773539b3b34b3f335bb2ba426f35c304eb198c94e8121c422eba549543dd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-recipe.json",
+          "sha256": "2dcc75a115253d0d7cf0726fb75c55266f8e885f3eb7abd980223f0fa02164a8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-2x.png",
+          "sha256": "66857c660c92d620d5fc0d6d81ff45eb421646268edde760a91ad39b11f4fc1b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/pdf-bboxlog.json",
+          "sha256": "320189c41f6def90d80f5c346b7bdd559f2a86b91a554e96dcab680b7828a2a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/page-outlined.svg",
+          "sha256": "4d09bd9d5b0c8ad93eb179a27590da336b0164254c565e5aa47eac70e40ab736"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/fresh-source.svg",
+          "sha256": "4d09bd9d5b0c8ad93eb179a27590da336b0164254c565e5aa47eac70e40ab736"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/independent-source-reference.json",
+          "sha256": "96073a3fc557488c1f8c9eaff0c1ae49a0eb27b8deb1467b82d4c85d6c1b57f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/native-context-guard.json",
+          "sha256": "9654acb35733dd4f388d22480b69ac987d6172c96b691745ebc5cca0c6eaca2c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/source-4x.png",
+          "sha256": "5ab42ebb9a0beb3abf38deae59ad37993950a76ca9248e9a75d284dd7b41ae55"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "75c7b106ca73c8885c0b3a6e714bbf97354ee12bd1d9d92dc4a61afb752a0607"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/caption-source-symbols-4x.png",
+          "sha256": "4c29dce9d26c95321f83486e49eca57d62b6d319318660e1c032e2a420fd3fdf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/after-condition-and-training-flow-4x.png",
+          "sha256": "86ec6d3ab38f15f451429b0d0782dec6b0ec62dec0c37020f250a43e309e0088"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/before-variables-and-relation-4x.png",
+          "sha256": "a8917d912074005c1e5cbe424bb8556d9ff47207b90749cbc37fedf036310082"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-08-f02/native-PDF-4x.png",
+          "sha256": "52991ddc4fd044c0356fb479e8bf613ce83b830d32b8c97e99cfc2b946e3fdd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-controls/shifted-source-symbol.json",
+          "sha256": "9d122305c1fad885cef9ebab4449ec04908c3c1f84f18241823e0d6a24c45124"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-controls/missing-source-symbol.json",
+          "sha256": "623ea91b5c9c528d3512929628c56e52b636dce8a783cc1ad4fbcb6581f02ff2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-controls/deleted-directed-component.json",
+          "sha256": "6ef480f64b47e757f0bc44024235b1b8a6a096aa1c5e788aed50d009ad3caf87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-controls/incorrect-source-symbol.json",
+          "sha256": "243f7392f87dd6fdbd10552fd2d1a9a38b2a998458dc36ccd86cff0a38f651d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-controls/changed-source-raster-content.json",
+          "sha256": "b9aa35493d52cea31bac7515e872f5e3a89ad27dfcd23a29d6149b913d1c503a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-08-f02/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "626471368df476fd1752b6a99169ead05c089af7a756c42a6e78057ccdabecf2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2023-13-f07",
+      "issue_id": "ccf-2023-13-f07-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 45 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 0 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 2 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2023-13-f07/native-readback.json",
+          "sha256": "507ea750c280dc94e9d9c92b6a5dfa14d2ba39f7bf74e14293883673980b1546"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2023-13-f07/output-review-diagnostic-109.json",
+          "sha256": "d05e5c28dc101667e183863ba2a387e5b817627da5ac6fb331b7e613521f46c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "d05e5c28dc101667e183863ba2a387e5b817627da5ac6fb331b7e613521f46c5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/visual-review-109.json",
+          "sha256": "d0599059a708b5ee37703da64b4baf637d378dcf94a04c434e392056ed79f20c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/bindings.json",
+          "sha256": "2f1774a35238c10eff68982d3a2b4e8499c5e793af6e0915d224603933f33b4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/whole-1x.png",
+          "sha256": "4e8b58963f5bc8a30dd98adad267c111b3cfa08bd877c8cb3176e2bb66cfb973"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/preview-2x.png",
+          "sha256": "2dd9c0323f97061c35ef23e8f836427a87e3874fa5ee45bc84f0e282765feb28"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-inventory-controls.json",
+          "sha256": "7272b402b6e33db80f8796983711ff17f053fa194d37eae6b1ad46a977464234"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/manifest.json",
+          "sha256": "96b80d417e2182d0464419d45f637fefa0e55246c80d4497d80a5260327bbc7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/manifest-snapshot.json",
+          "sha256": "96b80d417e2182d0464419d45f637fefa0e55246c80d4497d80a5260327bbc7b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/resolved-scene.json",
+          "sha256": "96b80d417e2182d0464419d45f637fefa0e55246c80d4497d80a5260327bbc7b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/source-inventory-audit.json",
+          "sha256": "2adabdec967285c33c0a98421604e627bd018fcb01c757aef7b4e075e6839c57"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/semantic-audit.json",
+          "sha256": "1fad092c135042a8d3cde677db6daa91eea434c12bc4ba8826c307051d9eb97d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/render-audit.json",
+          "sha256": "1c52c776ce0a12380e107eab4ed2aea6007e23f9fc96bf954fd51478afbfd69e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/asset-snapshot.json",
+          "sha256": "8f5f7efac3384e005aac5f192d8f32f692fbd3c3751ef18e3597fb14b8266df8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/object-map.json",
+          "sha256": "824da15c0eb0a752fedc4f6e6255aaa6e1d35811f48815a472495b3b8d1780f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/editability.json",
+          "sha256": "2a0a75a6231b83cc36d14b81d50f6d1e246cf0610cd9851b74a5831921d84978"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/delivery.json",
+          "sha256": "578c013a18298b6328889151318ceeb93d9ce62aee0f6fa9e7f2ef65548d4307"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/font-audit.json",
+          "sha256": "163e73fcab4d66d89f344d06b09f80d38c8e483448f746a4d3bb95d07dceacd0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "587470306df789d91603f7f3f4695d4781bd6dcd54b732c11a217aa9ab0e76d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/artifact-authored.pptx",
+          "sha256": "0af67a0e0673dffa33140c85b05ec35687240838dc97d8ee54d34ad8200a7e08"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "eb29b83c10fe5075bf798b66277fbe35a4937cd93a054f4ad4404e254e530957"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/report.json",
+          "sha256": "b5d4799ab36678e25717cf3901a617706084652b6dd7f943f6bbe5cd075e2d4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/source-1x.png",
+          "sha256": "3713c090dbb3ff78ce62966dc7d70a8bcfa4f45de2c28a9dccb3b3920fc8af9f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/source-2x.png",
+          "sha256": "b58fc4d1608d5ef85560caa25f6a0fee0b7f40de6a9ca9b629519073fcc2c022"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/fresh-source.svg",
+          "sha256": "2941843cf522b69e9e42bb0dc340df441863eecf9bc03c4165a79fc84791cf85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/fresh-vector-reference.json",
+          "sha256": "1cbae47129a9c9ad6151beb6c90f9a81110d397f9f8c5121de13cdfb79c69663"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2023-13-f07/source-4x.png",
+          "sha256": "5fdf7cd18d8dab108efab13f25724cf73ec17d4937a68e27bee04a30612526ff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/fresh-vector-replay.json",
+          "sha256": "b5d4799ab36678e25717cf3901a617706084652b6dd7f943f6bbe5cd075e2d4d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/inventory.json",
+          "sha256": "01226f65fc862029830addb7bef83322178badd87f23e85423d943334f2722e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/source.pdf",
+          "sha256": "94f08ac4cd041e46e5037876793761df8043296ac374aa5372af7afb0bdf3ce2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/source-recipe.json",
+          "sha256": "642800c54436ffa1c90c8862f12cea6fd9a81c89c641a48c3dc902c55777d594"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/fresh-source.svg",
+          "sha256": "2941843cf522b69e9e42bb0dc340df441863eecf9bc03c4165a79fc84791cf85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/independent-source-reference.json",
+          "sha256": "241cfb67d8ccaae35a438e77056c85238fcc60bc89d2c85a13ca326c50163f0c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "ea6ccfa51fabdfacb2e37b0dbae0370232e3780dc211231f5c286d2a341538fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/source-arrow-key-and-caption-4x.png",
+          "sha256": "55768569e13f747de0205103801df5d6940d7024af1c6d5e40f57c96b80d63d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/native-PDF-4x.png",
+          "sha256": "d31f836e9243b65d62bf9b16994dddb8981613532f2fb739ce3b0e7e60bb1e17"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2023-13-f07/source-hardware-body-4x.png",
+          "sha256": "264044dab605dbb2a675597c37342ed5e4746b1cde13be956e9dcd3721207ef3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-controls/shifted-source-symbol.json",
+          "sha256": "74c60ea023c42a43650a73e1555e5cfcdd569192a8418009889b07dec2ebb033"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-controls/missing-source-symbol.json",
+          "sha256": "26e39df1c975edefbb1ba7c6a885a7fa73a533d9eadfccd3bb160f8ce246dc48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-controls/deleted-directed-component.json",
+          "sha256": "26e39df1c975edefbb1ba7c6a885a7fa73a533d9eadfccd3bb160f8ce246dc48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-controls/incorrect-source-symbol.json",
+          "sha256": "7a4210d6c1c9db501a916877a217e5c4acd89145bf3b964357d35cccef116231"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-controls/changed-source-raster-content.json",
+          "sha256": "7d319d0bf3190cea329c966698ecf4d84d708e843d07a1b1a3e696b257a07eea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "76b9929ddae154329ee93bbd697d806806bafa55eb9634d38d59ebb979bf9733"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2023-13-f07/negative-control-assets/incorrect-source-symbol.png",
+          "sha256": "76b9929ddae154329ee93bbd697d806806bafa55eb9634d38d59ebb979bf9733"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2023-13-f07/parent-binding.json",
+          "sha256": "5803b8cc8a98ca37d2c192b46296c8f3af8a61715c4fee9fad022207edc966ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2023-13-f07/render-audit.json",
+          "sha256": "e3208ba12c8127ea628e18138af51007b16079d2e5a09044bb7977cd3de2cb1f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2023-13-f07/validated-output/reconstruction.pptx",
+          "sha256": "c83c3d307b8baa0e3e06849abb8f3981ab742f38af2ffea1efd58895bdb23642"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2023-13-f07/native-preview/pdf/reconstruction.pdf",
+          "sha256": "6a14f9d7259b2a7ed1abf02f90cf76dbc77f6275c40e3eb6295095742b4ea83c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-06-f02",
+      "issue_id": "ccf-2025-06-f02-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 329 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 0 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 7 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2025-06-f02/native-readback.json",
+          "sha256": "40ef9c55dd538f259705803f933f4b218c0376313f5a24b5ceab438213e6b0cf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2025-06-f02/output-review-diagnostic-109.json",
+          "sha256": "cf25ed7dc2a36e1feb787488886d3b295abf0572632cb2ffd497e04d80a4010e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "cf25ed7dc2a36e1feb787488886d3b295abf0572632cb2ffd497e04d80a4010e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/visual-review-109.json",
+          "sha256": "37f40222de512865004f52a80b0c6fcbe89966c2610130d74f226ad361dbb2df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/bindings.json",
+          "sha256": "d23c232af38a7f626f7b231278100bd7cc483ca7e1c0448b00da6770a407e329"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/whole-1x.png",
+          "sha256": "ff29f4148d08fb5d84170ece34a95a83f23f9c4675c6546693e1c61f92bdfa85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/preview-2x.png",
+          "sha256": "f1895a1da3e228c5c18976fefc0ef2b9786ed76ace2ac66fcbd3925426e17512"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-inventory-controls.json",
+          "sha256": "ab2498961e22e46b0f78a49476cefe2c33e7efcaf7bd1e62c0f252151290fdeb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/manifest.json",
+          "sha256": "5570efe72dd67bb5b532cb1c8582f1fb8305f2dc271b7caacb5e7f00a0673ee3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "5570efe72dd67bb5b532cb1c8582f1fb8305f2dc271b7caacb5e7f00a0673ee3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/resolved-scene.json",
+          "sha256": "5570efe72dd67bb5b532cb1c8582f1fb8305f2dc271b7caacb5e7f00a0673ee3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "0ab10c9f2e8f53ff9058885f4e536c730cd91704f32a5e38816caad671826c1d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/semantic-audit.json",
+          "sha256": "06034dbe9017a481a6a45c173cb2de2dda9ac32abaf7f08ba184f1783af925dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/render-audit.json",
+          "sha256": "d1ddcc239f4ef29a100d9066d2854a4f9ced635c28ba7981300af52335a0d3c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/asset-snapshot.json",
+          "sha256": "085025e7a91ecd550ca0af5d099e5ab7eeee8bb0b95cdaac8717f7f88771d050"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/object-map.json",
+          "sha256": "d4276ac02d822776c5343cbf55de14c6c55af0b26f91f0691b5406b535c9f588"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/editability.json",
+          "sha256": "dc307c361fea59a4c4d1696ea8840121c2be7fec99c2bc1f1dc2885120d9af36"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/delivery.json",
+          "sha256": "d4afed6d0adb72c296da974871d719877d6d1b5728ae4dbde6a921d11f0c5004"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/font-audit.json",
+          "sha256": "098eaba3fe81e3c8ed3ad4d0feccdf9c293d9a86d4c70dbe52eddc1e042ad17f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "c7e64ee320ed794ca17c9d8a98d1dac83cafad1fa576b25221172af6eeb42d81"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "ab49420250d914f543b62e4c97c123ca0aae08b02b82104bf99ab1d038bc20f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "cc6e8e1bfc0c9cf5f326cd75b83ba91bd0aa9f4b201cb685b55f2503e53b8ab9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/report.json",
+          "sha256": "577c317c586f6ea3648a95e173d5d0d4d5dac6b4495d3b6bed066f6b836d144d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/source-1x.png",
+          "sha256": "a6820f278890550d4c1cabdc9c375cf8e3f6e51af7102fbcdd1bd9dabc082c45"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/source-2x.png",
+          "sha256": "23bd841ad3104977975d6b43b58928712681dde240cfe2f883f3f86eb8bbaef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/fresh-source.svg",
+          "sha256": "28b1b2f4262b8296a792ea09ca42b99593d7dcd1ea2fb86d826e464feeb5f8de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/fresh-vector-reference.json",
+          "sha256": "0152ff6ed116507cb3ae125ef9972d3bd96882967ea70b3b907b745f132262a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-06-f02/source-4x.png",
+          "sha256": "8f7111cf7b154ce9cad8233e91fa3148dbefcb45095828bf5d2b3b0107e9ec8c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/fresh-vector-replay.json",
+          "sha256": "577c317c586f6ea3648a95e173d5d0d4d5dac6b4495d3b6bed066f6b836d144d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/inventory.json",
+          "sha256": "e4d9c0dcfa3c91e6c846a811272a90b50f05fd4787e81b9c4bf40d7d6a442a4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/source.pdf",
+          "sha256": "9b0f0c4a0163abab6bc2f8acb105ae3c95f3fff25573aa71a252b0b9c040bf78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/source-recipe.json",
+          "sha256": "a9a5ae16792ca101833e1ffa389e83c13a3bd34f197ac8d8e743c1c0c4ff163e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/fresh-source.svg",
+          "sha256": "28b1b2f4262b8296a792ea09ca42b99593d7dcd1ea2fb86d826e464feeb5f8de"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/independent-source-reference.json",
+          "sha256": "8129cf4b1fef11f9f0cff0ac0e7a89be964029b0a99166ae58de9970ad539b96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "ba4307e8fb030de2435afeb2db0fc07d844b437760e0b95fd5d74b3b4b50a16d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/memory-update-and-operator-4x.png",
+          "sha256": "6c4269f25bb60fce44b216ac5d013d2a1dc3202dfcc4130ccd808bb6a2051cf8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/core-and-attention-concatenation-4x.png",
+          "sha256": "48307de99831000e605ea2417b951cc2d7c0facb481ba083d97a5c0a6c4915b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/caption-right-4x.png",
+          "sha256": "ede0bb65c897f78e90989547e9caa6d51bcaa43bb531c42fbb3e55cebd9268a4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/persistent-memory-left-4x.png",
+          "sha256": "bb2c28feafd2121cb4b84ec96f106a817c95a5d0da17c71cba40b74abc27444b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/native-PDF-4x.png",
+          "sha256": "bb948ebf77d41b9589e9afc8922c7a306d6b86dc6488235481df4a6e3b423a30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/persistent-memory-right-4x.png",
+          "sha256": "817b91bb69adcda35a87d75645408273950c03057679a382f063319299914598"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/caption-left-4x.png",
+          "sha256": "e528d5f5ae872ae0e432c3e43f2319dea86b0793dce51327ed6ae20be2ff3ddb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-06-f02/contextual-memory-4x.png",
+          "sha256": "d5bae62df5f2fb7362da8958deb717b15cd8778b8a74426d640245f0e6e93aa6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-controls/shifted-source-symbol.json",
+          "sha256": "da8e55cc06590c2942b44c134c522bf1d729b56d11f3eae110382c790cf6245b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-controls/missing-source-symbol.json",
+          "sha256": "8ab11e41d2317c75fa6b64176df81460c751c7f62a0a5b74e6e472a859594396"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-controls/deleted-directed-component.json",
+          "sha256": "8ab11e41d2317c75fa6b64176df81460c751c7f62a0a5b74e6e472a859594396"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-controls/incorrect-source-symbol.json",
+          "sha256": "6d153754232562993e4d2dec536e576d556a4f7fe8e872c83837d26a2579f7b9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-controls/changed-source-raster-content.json",
+          "sha256": "5ae09d1b8447cee860d5266953b45f73b0651e6848ebfcf4d43d78ba4db4b687"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "d651cffc87bebf9e1dd580d9abf0bac7e8a7d163cf30e89b8f4f00b2d83ba785"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-06-f02/negative-control-assets/incorrect-source-symbol.png",
+          "sha256": "d651cffc87bebf9e1dd580d9abf0bac7e8a7d163cf30e89b8f4f00b2d83ba785"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-06-f02/parent-binding.json",
+          "sha256": "531a7446a2a6bf8f52a73a9481bf86ba5a6c085f726935404e2fdbf8ccf34d9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-06-f02/render-audit.json",
+          "sha256": "8681e80cf4932373827acd087c3ee38e757dc8d4069c1ae67c38c5f4a2e5f11f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-06-f02/validated-output/reconstruction.pptx",
+          "sha256": "de987735de14eba4d84f2216da80140314c528d8dd52b0abfaee7d4c811548c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-06-f02/native-preview/pdf/reconstruction.pdf",
+          "sha256": "b3ab205e3268ffe56444bc000fd75b14380d17aaadaa941cd834bfe23f5d2c26"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f04",
+      "issue_id": "ccf-2025-07-f04-D04",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 621 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 153 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 4 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2025-07-f04/native-readback.json",
+          "sha256": "6abab6a40a5497ee59a24e7a57e260546f8f9f9101b64f4fb6238c22ccdc4c52"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2025-07-f04/output-review-diagnostic-109.json",
+          "sha256": "e746a213ab968c838bf33b3eb680b63da9e308fb14e5530e9f2813aa0e3f4ecd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "e746a213ab968c838bf33b3eb680b63da9e308fb14e5530e9f2813aa0e3f4ecd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/visual-review-109.json",
+          "sha256": "55f6c8a81d74017e5944b79c43675960b9b51151a44925a95ef84aa36d5ba315"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/bindings.json",
+          "sha256": "2b0f63b93b01b8f71e41443446c9945463bdbe708b39e7111d82d0f1ffe2ccde"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/whole-1x.png",
+          "sha256": "962af4af8946e27162e485ea392a2ccb6b647df32325f056028bb27f3669f65f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/preview-2x.png",
+          "sha256": "c6934a68e99a040d07f6090a53c3635e2cfeca50471b6c1ec907a152fd431bb5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-inventory-controls.json",
+          "sha256": "56adc3aa0713f6378904167e9de089da7dae81381acdcf05269b5028423890fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/manifest.json",
+          "sha256": "11dd04bd8107cde8fff390734e9b4ba35ba8e0fccdf7a9b6678a03631135a394"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/manifest-snapshot.json",
+          "sha256": "11dd04bd8107cde8fff390734e9b4ba35ba8e0fccdf7a9b6678a03631135a394"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/resolved-scene.json",
+          "sha256": "11dd04bd8107cde8fff390734e9b4ba35ba8e0fccdf7a9b6678a03631135a394"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/source-inventory-audit.json",
+          "sha256": "510a625c1d7e1c46dbbd29e2232189b9475e1f00f2b0c8e7116891929eb67455"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/semantic-audit.json",
+          "sha256": "3c0faeabcbe1bdfd0ce10fea8d191db070dd88ab2c12782b214c3e283586e5be"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/render-audit.json",
+          "sha256": "c3b9b56d42e0c247fe37af4b224da79c4d00b13fa7cca8799bb1ab5a36087174"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/asset-snapshot.json",
+          "sha256": "f270dd4ffa73583e2bd39f15453c702d3201b62ecfda8b8b599bb4dacf5253f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/object-map.json",
+          "sha256": "281250b93975238bc2e5081995c277855580f3341d1e7d9e7e2128ca1b56935e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/editability.json",
+          "sha256": "ffcf83eb6bb5d42d331d7b787aac8d18ffdd73d1623ed8391769a95a26cb8ed7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/delivery.json",
+          "sha256": "7c79650ac92b93e3777742507c75fb576409a3c23e30aabf73668fb253cd7fd3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/font-audit.json",
+          "sha256": "4b1658f1ac90e4ca24696b2094b6ec1d0eab04b6a3136b3175dd50ac95ff9c41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "310a1a3875835dc161762ed788b272b188818061c66eeb487e1e7662b5a48ac2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/artifact-authored.pptx",
+          "sha256": "49e25f5533594034a09f98326df6b220341bfd65062a0752999414bd66171f02"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "0df62edf8e4bb5e6553cb99fe1aa2246c09e07a07b7f47d717f8cdbe0fa19502"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/report.json",
+          "sha256": "69a940ba3173b2a0209398c2009e35de0d23659eafb0c0469058ff21592190d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/source-1x.png",
+          "sha256": "01e6e139a54082929de32b9c262ce463b0025de3171446a10f986e1a0162bd87"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/source-2x.png",
+          "sha256": "1b4ff60b86c36b862ff1f1d2410b59b48ce3680bfc8a2dc7d41442a2704832ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/fresh-source.svg",
+          "sha256": "960d1ab3018d09a3bff036608fbc94ae7264cb7834e60d124b0417d8827c20ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/fresh-vector-reference.json",
+          "sha256": "0182c76965bc85dece97f8613ccefe091d56943ded374db0ebf002eb8153a5c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-source-replay-100/ccf-2025-07-f04/source-4x.png",
+          "sha256": "4fb4dd631e3cd1e775ba554b0690b1d75188743a2589f30ce912562544a79bb3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/fresh-vector-replay.json",
+          "sha256": "69a940ba3173b2a0209398c2009e35de0d23659eafb0c0469058ff21592190d9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/inventory.json",
+          "sha256": "6c57b8485c00fc3bbfe3d2529a9a5fceb731f6cbaf388edc614118ef934c5828"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/source.pdf",
+          "sha256": "543e56c541523c5e807d2231370f96749b2294bc901266397a7265b18ae2c130"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/source-recipe.json",
+          "sha256": "0c4301100e2765d4d0ecd7081a283fd875d5f388102875ff809a984ca17045ef"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/fresh-source.svg",
+          "sha256": "960d1ab3018d09a3bff036608fbc94ae7264cb7834e60d124b0417d8827c20ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/independent-source-reference.json",
+          "sha256": "005f6dc791f4692a8688083a9d4f85446a31c88977f15dd029395d9730f2ab27"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/topology-matrix-code-4x.png",
+          "sha256": "9519bef32ccfe631827f19a70d2ed804a0a2b3366a8432a8b8d7eca49155439c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/CPU0-memory-and-NICs-4x.png",
+          "sha256": "e4e58cf860fa42fea885f871415e63682889854d1541e6df4347df61f600adb7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/registered-memory-and-batch-transfer-4x.png",
+          "sha256": "7426a13aa655116000aa92a2d0c2f0c60156d4ad9f356adcf63f26c2458d00de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/native-PDF-4x.png",
+          "sha256": "a616f022c610784edfc1346b299222600e1a9653804d8ee546572fc31b29c1c4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2025-07-f04/CPU1-memory-and-NICs-4x.png",
+          "sha256": "abebc560f1e94fc3f4da6a585edd16c84d53206ce9f0bb24275b576a5b7e02c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-controls/shifted-source-symbol.json",
+          "sha256": "6d0c92112eca2befd3dfaf9991ddc32cc82f82d65f989773ad6bbf627f4adbcc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-controls/missing-source-symbol.json",
+          "sha256": "941417a7e16adc016da47d1a28bf9a1f930db1e5c8b77e6130b77539218b6b3f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-controls/deleted-directed-component.json",
+          "sha256": "d8a10ac601cbeeee357ba71ffbfc0390a6fe0c27d953268e192fe35e9fa1817a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-controls/incorrect-source-symbol.json",
+          "sha256": "7c5608c4653cdf7b29c71756c814ada182baf054bafaf9bf3d27087a1c76664f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-controls/changed-source-raster-content.json",
+          "sha256": "36e16926dc5fe04c2a6a53d6b72f6099fdcae30f91e78a6d69bb13f96b5b1ebe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2025-07-f04/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "25a8b03c416e0a73d763a4128d9b3f1b7ee09988183483fe4d030f3f24ce1317"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-07-f04/parent-binding.json",
+          "sha256": "0c3d71227b3da5a8e289d65f7a658efed2efbbb18fad4647aa9f9fe473d55b34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-07-f04/render-audit.json",
+          "sha256": "34d487bee7b5fe2b861ace068e8ab65e18cd626ad6ff4f4b76142156ccacd96c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-07-f04/validated-output/reconstruction.pptx",
+          "sha256": "43db12fa448f809e26f077b3c9fd1ec36088456f184d1aeeddf86d1d2f959cbc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-parent-native-105/ccf-2025-07-f04/native-preview/pdf/reconstruction.pdf",
+          "sha256": "3d8ad2d06c7abddeda34796dc1e40a259b0fd1e036aacc98e736d1cd7892fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-03-f02",
+      "issue_id": "ccf-2026-03-f02-D05",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Maintained source_inventory checks all 905 source objects, complete order, geometry, styles and actual raster SHA256/placement against an independently reviewed source reference. Fresh original PDF/SVG replay independently matches every vector to the immutable source-reviewed parent; raster instances inherit that parent source proof and stay explicitly raster. Literal/math/directed components are declared with outline or raster editing/readout limits; no semantic equation, OCR or automatic topology recognition is granted. Large composite bitmaps may share one target across math/connection/graphic inventories: this preserves exact byte/frame checking, not independent editing of internal symbols/arrows. OctoTools uses actual native DisplayList ROI scissoring to exclude unrelated page paints under the unchanged parser budget, with 889 fresh source paths and 16 existing images; no invented mathematical component is added. Five structurally valid missing, shifted, incorrect source-symbol, changed-raster and deleted-directed-component controls fail the maintained source gate. A raster symbol mutation changes an actual image pixel, not a semantically recognized operator. All final native objects/order/media/crop are independently read back; original source controls use actual raw authored frames and exact source cubic restoration, with both actual normalization receipt hashes independently recomputed. 0 path-property changes are certified filling rewrites; other native properties match the parent. Actual native PDF image pixel arrays and occurrence frames equal the parent; path drawing equality is recorded separately, never inferred across fill rewrites. Seven whole source/final/PDF1x figures, seven final native2x figures and all 33 matched source/native/PDF4x panels were actually viewed, including this figure 8 panels. Full comparison remains REVIEW, distinguishing source matching from structural PASS. This resolves the source diagnostic coverage gap only; existing sampling/antialiasing, ordinary live-text/automatic-semantic issues, font delivery, PowerPoint/WPS and user acceptance stay limited.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2026-03-f02/native-readback.json",
+          "sha256": "148299985f48fd5f7c21bfd8daa337baa93708c2095322ab18594645457ef550"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-native-108/ccf-2026-03-f02/output-review-diagnostic-109.json",
+          "sha256": "dbf912ed98a76bd4dce9a5cb6eec680b39f6f6aeddde4b1de939b9195d44ae96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/output-review-diagnostic-109.json",
+          "sha256": "dbf912ed98a76bd4dce9a5cb6eec680b39f6f6aeddde4b1de939b9195d44ae96"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/visual-review-109.json",
+          "sha256": "38a3d0658aabfe4f1a0aba9d78e4d2f8f7ac37332721ce22f5195af36c4e2539"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/bindings.json",
+          "sha256": "33df1e987d036862d98c247dedca764e80bb14ad9f84160a7a1cef77a1acabcb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/whole-1x.png",
+          "sha256": "bc838d39ecd3797efd322cf09ddc71ce9cf8f3ea1ea73cc9a685d1a341f9ba93"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/preview-2x.png",
+          "sha256": "d4089605c62c4c099511a730190eed4f2c79708e4f002285cb3f8a87d8591039"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-inventory-controls.json",
+          "sha256": "feeea718e783e2226f23e689772981a83f5b4a30ec6dc8dee22534f85e3c205b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/manifest.json",
+          "sha256": "4779c9a599683ac627b9ecec77d92d283b8901923ff783b9988f1c40339504d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "4779c9a599683ac627b9ecec77d92d283b8901923ff783b9988f1c40339504d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/resolved-scene.json",
+          "sha256": "4779c9a599683ac627b9ecec77d92d283b8901923ff783b9988f1c40339504d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "9adf2b5e4657fc738db7b3738e04f3b8e86c59d1d56036b4a28523657c41ec74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/semantic-audit.json",
+          "sha256": "f2dda2c145250f1be672cd475849e3933a22e75bbb484e8de8244eae66c387ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/render-audit.json",
+          "sha256": "4f972566350041592c8ca968a4ea2563c837162550d7b6c69846ff0cf4e38fd0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/asset-snapshot.json",
+          "sha256": "b3e2ebfcbeda5c7b6f58d1cf14927281757bfc440c3f12268d8140605f2d1dd6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/object-map.json",
+          "sha256": "500abd1dfff0228ab4bf1279963da5cac04b82fb0645367974daa9adbdd9894b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/editability.json",
+          "sha256": "52699230bcf0a16aff58ca97231e055057520b38be199cff7148cc7301c928cf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/delivery.json",
+          "sha256": "33fbe33f9e86e3f37cee9d38301487a7e15dd94ba519b424275e322e3e738f72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/font-audit.json",
+          "sha256": "241342dca196bc3c35804d3232985f339848527f0927b093dc0e25dec3ad8549"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "6022fb73b99e61c3a7ed3ee283b209448041e8bdded2199387be5409f26f6234"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "3f8d11b2ebb7aee56d9ff3ade053d7e8211f2e7e33bba22c828e1ad77e5dba76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "f59e4b13b473b4a8303bf5e8a714de54a44495e5386a52bc4e7a0d87f23ce301"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/report.json",
+          "sha256": "158e4a2cca8ed8648df2d6e6a2c4ee6f9568f7d01a615c9a511d25010dacf7e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/source-1x.png",
+          "sha256": "74f24748ae3b5553126599d21a664e0a763a1097fab2a0ca8c751475cee8d052"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/source-2x.png",
+          "sha256": "3ba8b8409539aac4d44cee755ff52c5bcc4b537d2c8e95f7fbbb7344798d0128"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/fresh-scoped-source.svg",
+          "sha256": "ae2a3445361182a07ba41d92bcd4c391a6ee568a4b0ee50147ad08425c7d77c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/fresh-vector-reference.json",
+          "sha256": "1afb0c49a14c4f0901709fc385e66171b230d108a815f6af64d6dfcf5ca9d2f1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octotools-scoped-source-replay-102/source-4x.png",
+          "sha256": "8e958ceedb43e77b5db53e51ae4f6b9a76df49eee78eb9879a4f853054fcefc1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/fresh-vector-replay.json",
+          "sha256": "158e4a2cca8ed8648df2d6e6a2c4ee6f9568f7d01a615c9a511d25010dacf7e3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/source-paints.json",
+          "sha256": "fdc3e4c0b22cbfbe5da7db182110ab7af17699a390544a2a580b6fa40cc46913"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/source-parser-limits.json",
+          "sha256": "2ff9915f4468cd4b00f75a48c6b47df44ee818763b38be8072b78adee3850cf3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/pdf-native-paint-context.json",
+          "sha256": "547e7d13d32c9c7c0bcdc755b72c6af81d63c1c047d6a16a5fcf39e468392171"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/inventory.json",
+          "sha256": "b30fe20290ce4dd571288351c2fa162767835582870ce5fa1b960afae68a4fc6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/source.pdf",
+          "sha256": "27a9f25e781a68e9be98415167feadc03fefcfe8418f7fbbc1fbfefcf91dc654"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/assignment.json",
+          "sha256": "815015d7ffe7c0e22d35e69a18f0ea32fd59f851e4a9513d11161d836fa919e1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/source-recipe.json",
+          "sha256": "1564e136fbc469104a05e0c2439929c88145067e4e40cad7b02590b183ae5d05"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/pdf-bboxlog.json",
+          "sha256": "e114899f5153ce37979fc89ce762980e967dec6ca42986e300a329e917ec897a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/page-outlined.svg",
+          "sha256": "5371052ed874e1709387e7b1c3bd5df89c4a72bc77b68c8584621ac00023cd57"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/fresh-source.svg",
+          "sha256": "ae2a3445361182a07ba41d92bcd4c391a6ee568a4b0ee50147ad08425c7d77c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/independent-source-reference.json",
+          "sha256": "0a6efb790a10eaa52e8b86466d75b546a8224483c798d2ef632ed18feb8b7dfe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/native-context-guard.json",
+          "sha256": "312b4267b143fc56416d448a7c4b1cb49f1dc73f45a352c904e593b3fce3d668"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/OctoTools-badge-4x.png",
+          "sha256": "f6001607bb3ddd51f93a92dfd692c0a7c45c90f15e29275ccd76d214af6000fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/query-action-prediction-4x.png",
+          "sha256": "730dc92ad465a6023609387de276f2b3ffba6f47c98c9fe0376931dd67ecdb7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/context-and-solution-4x.png",
+          "sha256": "dbf9d662564af9d36767b8037a4af3804528950569997e4b78152532bd3aa408"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/answer-output-4x.png",
+          "sha256": "ae1eec3d4e6b80b9c398d4650b1189589df9ed898a46c3688cc109b312d8e6ab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/caption-right-4x.png",
+          "sha256": "2527402a0cae2c9b48e828669f1ac8c2837bde4dff1ffb7174c285144a7689c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/executor-and-return-loop-4x.png",
+          "sha256": "efc9e75115378ab03291965fb395ae508b94eab97f1ff907884ea8cb2719dd34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/tool-cards-and-query-4x.png",
+          "sha256": "95722550c03d87cf686353fdf74c7401bd1d94c7c0f608875b7b6010fe7c4918"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/native-PDF-4x.png",
+          "sha256": "504904eb7bea5d721520060a77d9ccef4a9040676b3fabab2156570f96b1d956"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/diagnostic-inventory-galleries-108/ccf-2026-03-f02/caption-left-4x.png",
+          "sha256": "bf7a7f2bda2dd5e4406eb26059baa38c4903c40ae899e99947332a9447a5cc92"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-controls/shifted-source-literal-glyph.json",
+          "sha256": "77817a08f2ae3ae24b15ffe8fa02252a70fa82ea8bbc0ee7d6906bd21243f22d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-controls/incorrect-source-literal-glyph.json",
+          "sha256": "0c0b9ecb4b425fe19d9f42069e68e02bf46aef926ce82eff1deb5986a3e3d936"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-controls/deleted-directed-component.json",
+          "sha256": "a67d2e2636281f2b72b9e9a889a196e5bcec1b24ced2b9fc98ad2fa37973a3d3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-controls/changed-source-raster-content.json",
+          "sha256": "f771288ac672a51924101ed1096eb32313376908b68a56da9ea78f49fee1ffd8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-controls/missing-source-literal-glyph.json",
+          "sha256": "b0644397fc245dd948689289c308a88ba8187dfa92b1bc1b2216164fd298311e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-diagnostic-inventory-003/jobs/ccf-2026-03-f02/negative-control-assets/changed-source-raster-content.png",
+          "sha256": "89036f70a06f316af5cb3a3d6a09501fc10e75c6b9b34cd1558bf196070f8247"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_diagnostic_replay100.py",
+          "sha256": "912d747c8d14d4ee402e1c1cfcef12f6abd32792ee7a7b41e6c7e04f0d2e3d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_diagnostic_inventory101.py",
+          "sha256": "2e86d916f6a80cdc663b0e3ee23852e6ac8e859f3f8b343804f20115f8939048"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octotools_inventory103.py",
+          "sha256": "0698fcce658845f9e6450ea48143a356dc9149afb38df723ff695c0de7977fdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery104.py",
+          "sha256": "b53cd561539522368037f22c23b251f6ff696c7aa53f1d8482219091a5e66b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_diagnostic_parents105.py",
+          "sha256": "edd9aefdefdc979b5588611212d09aaa20a6e77a7ba548070aa67a3098bc34d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery106.py",
+          "sha256": "bc0c013c556d8d0e61e3faf2add9daf990b9bb40f9782b2af6c4394d9f75dca6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery107.py",
+          "sha256": "3fbdcd9fbaa884ae0e9756a5bb432cf1d1430cad5b1d6a930771d0b71e824cd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_diagnostic_delivery108.py",
+          "sha256": "cb65ed3dfe0300194c9a5343b0997878304b3a30f7801ad5db39631f26cb0ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_diagnostic_inventory109.py",
+          "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -12324,22 +14153,15 @@
     "ccf-2020-09-f02-D02",
     "ccf-2020-11-f02-D03",
     "ccf-2020-18-f01-D03",
-    "ccf-2021-11-f01-D06",
     "ccf-2021-13-f01-D01",
-    "ccf-2021-14-f04-D05",
     "ccf-2021-17-f05-D01",
     "ccf-2022-07-f01-D03",
-    "ccf-2023-08-f02-D03",
-    "ccf-2023-13-f07-D05",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
-    "ccf-2025-06-f02-D05",
     "ccf-2025-07-f03-D02",
-    "ccf-2025-07-f04-D04",
     "ccf-2026-02-f01-D07",
-    "ccf-2026-02-f01-D08",
-    "ccf-2026-03-f02-D05"
+    "ccf-2026-02-f01-D08"
   ],
   "external_evidence_root": "figure-build-data/work/detail-audit-20261003",
   "source_assets_and_full_outputs_in_git": false,
@@ -12388,33 +14210,6 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
           "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
-        }
-      ]
-    },
-    {
-      "figure_id": "ccf-2021-11-f01",
-      "issue_id": "ccf-2021-11-f01-D06",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/job/build/run-001",
-      "closure_evidence": [],
-      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED; actual visual inspection does not create automatic coverage.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/RESULT.json",
-          "sha256": "cfaaad5ea0bf80cfad60ab98f016397e5b3502e0bcd7a874069a63a082c20724"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/job/build/run-001/output-review.json",
-          "sha256": "e24bd581bc4c55865d1c58d935a17f0106f54b424930a13da86cb9a8fc2cd370"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-11-f01/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "2d9e0337ed3e11f19dceb75cb7e60eb9180b6baff837b85e292bb632e058864b"
         }
       ]
     },
@@ -12491,33 +14286,6 @@
       ],
       "superseded_at": "2026-10-04T08:44:45.560501+00:00",
       "closure_attempt": "source-regeneration/native-four-image-sampling-002/ccf-2021-12-f04/job/build/run-001"
-    },
-    {
-      "figure_id": "ccf-2021-14-f04",
-      "issue_id": "ccf-2021-14-f04-D05",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/job/build/run-001",
-      "closure_evidence": [],
-      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED; actual visual inspection does not create automatic coverage.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/RESULT.json",
-          "sha256": "ff5f66c0c3432e4d731856482d9a3199913183c09f10d214505bf415712a8b43"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/job/build/run-001/output-review.json",
-          "sha256": "cc9b1a49ff1f79781411fd96566b461371436fed811efb5c8e0e85f4249df6ab"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2021-14-f04/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "102a1e94456aafde695ed400ac05ae6d1b462aee1409ff27aca3bde365198cf5"
-        }
-      ]
     },
     {
       "figure_id": "ccf-2021-18-f18",
@@ -12660,33 +14428,6 @@
       "closure_attempt": "source-regeneration/preview-image-sampling-maintained-002/ccf-2021-18-f18/job/build/run-001"
     },
     {
-      "figure_id": "ccf-2023-13-f07",
-      "issue_id": "ccf-2023-13-f07-D05",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f07/job/build/run-001",
-      "closure_evidence": [],
-      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED; actual visual inspection does not create automatic coverage.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f07/RESULT.json",
-          "sha256": "fb3c995be391083a73be16b424758beb4e84352e92ad3d6c6b3def0275c7d9d2"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f07/job/build/run-001/output-review.json",
-          "sha256": "ea6ccfa51fabdfacb2e37b0dbae0370232e3780dc211231f5c286d2a341538fc"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2023-13-f07/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "37931669e12a2f6a4cdf28f9e0141d6aa93e64d743de9afa3f43eb1d83415343"
-        }
-      ]
-    },
-    {
       "figure_id": "ccf-2024-01-f02",
       "issue_id": "ccf-2024-01-f02-D01",
       "severity": "minor",
@@ -12702,60 +14443,6 @@
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2024-01-f02/job/build/run-001/output-review.json",
           "sha256": "f119e5b9c218b6b133f099d83d3fe8caa37e7d846641df6bf98a367692661771"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
-          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
-          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
-        }
-      ]
-    },
-    {
-      "figure_id": "ccf-2025-06-f02",
-      "issue_id": "ccf-2025-06-f02-D05",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/job/build/run-001",
-      "closure_evidence": [],
-      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED; actual visual inspection does not create automatic coverage.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/RESULT.json",
-          "sha256": "53990ee856e7e1f41eeb5fe582bf53b5a8bbc32d126951e54437e5dfc7499d33"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/job/build/run-001/output-review.json",
-          "sha256": "a36532400f71de13868d5c9efe98d357e88c4f697783d9c8d1aad67f850841f2"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-first-sixteen-verification.json",
-          "sha256": "0a078db45fa2538812dfa52a9fcbb508224185b867eb08784897352a41b5a1f1"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-06-f02/LOSSLESS-ADDENDUM-r2.json",
-          "sha256": "3222b5ddf997002441daea461ab08137bda78fb9a7dbbc22e21e783ecee8df8d"
-        }
-      ]
-    },
-    {
-      "figure_id": "ccf-2025-07-f04",
-      "issue_id": "ccf-2025-07-f04-D04",
-      "severity": "major",
-      "status": "open",
-      "latest_verified_attempt": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001",
-      "closure_evidence": [],
-      "partial_resolution": "Remains open: source-content literal/formula/connector semantic audit is NOT_PROVIDED. Visual/manual source inspection does not establish automatic diagnostic coverage.",
-      "partial_evidence": [
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/RESULT.json",
-          "sha256": "38db39a2c4bc336793cebff1fc1624745e77afa667318db96f518649ef039a8e"
-        },
-        {
-          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2025-07-f04/job/build/run-001/output-review.json",
-          "sha256": "2b498e13bcb093c8f83f58233bc9971be6f31e4971b59ddc9313d8e787bd2c27"
         },
         {
           "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",

@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 59 张图的来源修复及实际成品复查，关闭 94 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 40 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 59 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 62 项开放。原始 296 项现在 276 项关闭、20 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 94 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 66 张图的来源修复及实际成品复查，关闭 101 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 47 项渐变、箭头、图片、图注、边框、括号、省略号或来源诊断问题。原 153 项中仍有 52 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 55 项开放。原始 296 项现在 283 项关闭、13 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 101 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -56,6 +56,8 @@
 
 - LDM 的 17 组数学标记和 VMamba 的五组 SSM 数学表达明确登记为轮廓或活动运算符/轮廓变量混合表达。76/28 条数学路径分别由真实 PDF 绘制及原生字体 GID/matrix、源 SVG 控制点独立绑定；不补造方程源、LaTeX 或公式语义编辑。数学清单接入维护门禁，全部 271/422 个来源对象参与比较，四个结构仍 PASS 的改字形/删字形/移位/变色反例被拒绝，状态保持 REVIEW。终态所有原生属性、顺序、实际媒体和 258/411 个真实字形的控制点、advance、矩阵及 RGBA 未变，独立 PDF 的全部路径绘制相同。源数学控制点编码误差小于固定 0.001 px。源/父成品全部十七/五组 4× 实看，后继全图、2× 和各两组 4× 实看，其他数学图像像素逐一证明与已查看父成品相同。按原问题允许的明确轮廓限制关闭两项 D02。LDM 的零宽 hairline 旧替代宽度另行披露，未升级为设备/像素等价；区域误含已裁切图形、图片 relationship ID 与 OPC 包根绝对路径的首次读回失败均保留。
 
+- SGL、ZeRO-Infinity、ControlNet、SparseCore、Titans MAC、Mooncake 与 OctoTools 七张图接入来源组件诊断，分别比较全部 188/442/488/45/329/621/905 个对象、完整顺序、样式、路径与实际图片字节/放置框。新原 PDF/SVG 重放独立匹配所有矢量，图片继承不可变且已独立源核对的父成品。位图内公式、标签、箭头可共享同一目标对象，明确为 raster；不冒充独立可编辑数学或拓扑。OctoTools 采用真实 DisplayList ROI scissor 排除页外绘制，889 条路径在原预算内重放；首轮全页 SVG 超出命令预算的失败保留，未放宽预算。各五个结构仍 PASS 的删符号、移位、错误符号、实际改图片像素和删关系反例被维护来源门禁拒绝；位图符号反例是改像素，不宣称自动读出算子。最终所有原生属性/顺序、实际 media/crop 读回；固定控制点守卫 0.001 px 下最大约 0.000105 px。ControlNet 一条、Mooncake 153 条填充改写实际双端摘要核对，其余原生属性保持；实际原生 PDF 图片解码样本和实例框与父成品相同。对缺原生 PDF 的五个父成品，另以字节相同 PPT 与字体影子导出留证，未改父快照。七图全图源/终态/PDF 1×、终态 2×及全部三十三组匹配 4× 实看。七项来源诊断问题关闭，完整清单仍 REVIEW；自动语义、活动文字、采样/抗锯齿和字体交付的独立问题继续开放。首次把 candidate 当作改写前路径及矩形冗余闭合命令不一致的失败保留，后继以实际 artifact-authored 框和精确源曲线恢复读回原摘要。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -82,10 +84,12 @@
 | ccf-2021-03-f03 | D01 |
 | ccf-2021-09-f02 | D01 |
 | ccf-2021-10-f01 | D01, D02 |
+| ccf-2021-11-f01 | D06 |
 | ccf-2021-12-f02 | D01, D02, D03 |
 | ccf-2021-12-f04 | R03-NATIVE-PDF-TILE-GRID |
 | ccf-2021-13-f01 | D02 |
 | ccf-2021-13-f08 | D01, D02 |
+| ccf-2021-14-f04 | D05 |
 | ccf-2021-17-f02 | D01 |
 | ccf-2021-17-f05 | D02 |
 | ccf-2021-18-f18 | R02-NATIVE-IMAGE-RECTANGLES |
@@ -102,6 +106,8 @@
 | ccf-2023-05-f02 | D01, D02 |
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
+| ccf-2023-08-f02 | D03 |
+| ccf-2023-13-f07 | D05 |
 | ccf-2023-14-f01 | R02-NATIVE-ALPHA-EDGE |
 | ccf-2023-14-funnumbered-p5 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2024-02-f01 | R02-NATIVE-IMAGE-FRAME |
@@ -117,7 +123,10 @@
 | ccf-2025-01-f08 | D01, D02 |
 | ccf-2025-03-f02 | D01, D02 |
 | ccf-2025-05-f13 | D01 |
+| ccf-2025-06-f02 | D05 |
+| ccf-2025-07-f04 | D04 |
 | ccf-2026-01-f05 | D01, D02 |
+| ccf-2026-03-f02 | D05 |
 | ccf-2026-05-f01 | D01, D02 |
 
 ## 验证与证据
@@ -274,3 +283,7 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/MATH-INVENTORY-PREVIEW-EQUIVALENCE-098.json` | `d921d4eae8d8464db23ce8c0e0546b46b33d4ce0d0fb3b7af68b259865fc283d` |
 | `reports/remaining-153-001/github-checks-ca023cc-001.json` | `05dada59db4b3c0dc7d1c7e5b55358bd9486e3ad041406f2f197e4bceadb8c8c` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-029.json` | `c80e783120b397c853d02a165b62b3ff686cc9ba132f60afe4db2bf0095bf6e5` |
+| `reports/remaining-153-001/LEDGER-RESULT-030.json` | `bd9790162e6def9f5a9af73826b92e93ebf5d78e8d6816d995ccc4e4c5df8346` |
+| `reports/remaining-153-001/DIAGNOSTIC-INVENTORY-REVIEW-RESULT-109.json` | `baa77218575df54216762a97682a48db49d8dfae27a1ee5f666787c0c8907a42` |
+| `reports/remaining-153-001/github-checks-30dccc3-001.json` | `851d8aaf55463a96cbacfd37cbf2bd4b6fcad0f7f09d726fcdf12648e4285f25` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-030.json` | `e57af4fd36eaab2b8b660dcb156f00768b507661a28cd0c62b86d5d893aaccaf` |
