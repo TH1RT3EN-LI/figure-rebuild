@@ -7,6 +7,7 @@ from pathlib import Path
 import shutil
 import tempfile
 import unittest
+from zipfile import ZipFile
 from unittest.mock import patch
 
 from figure_rebuild import output_review as review
@@ -112,6 +113,83 @@ class OutputReviewChecks(unittest.TestCase):
         delivery.update(preview_backend='artifact', render_audit_sha256=review._binding(self.run / 'render-audit.json')['sha256'])
         self.write_json(self.run / 'delivery.json', delivery)
         return audit
+
+    def add_stroke_preview_provenance(self):
+        from figure_rebuild.artifact_stroke_preview import NS, prepare_stroke_preview
+        pptx = self.run / 'validated-output/reconstruction.pptx'
+        with ZipFile(pptx, 'w') as z:
+            z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/></p:spTree></p:cSld></p:sld>')
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        Path(delivery['output']).write_bytes(pptx.read_bytes())
+        delivery['sha256'] = digest(pptx.read_bytes())
+        self.write_json(self.run / 'delivery.json', delivery)
+        audit = self.add_preview_provenance()
+        config = json.loads((self.run / 'build-config.json').read_text())
+        config['artifact_stroke_preview_version'] = 1
+        self.write_json(self.run / 'build-config.json', config)
+        definition = prepare_stroke_preview(pptx, json.loads((self.run / 'resolved-scene.json').read_text()))
+        path = self.run / 'artifact-stroke-preview.json'
+        self.write_json(path, definition)
+        audit['evidence']['stroke_preview_definition'] = review._binding(path)
+        audit['artifact_stroke_preview'] = {'schema_version': 1, 'policy': definition['policy'],
+            'preview_only': True, 'native_delivery_modified': False, 'applied_object_ids': [],
+            'unsupported': [], 'complete_mixed_paint_order_preserved': True,
+            'source_pixel_equivalence': False, 'application_playback_verified': False}
+        self.save_stroke_preview_provenance(audit)
+        return audit, definition
+
+    def save_stroke_preview_provenance(self, audit):
+        self.write_json(self.run / 'render-audit.json', audit)
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        delivery['render_audit_sha256'] = review._binding(self.run / 'render-audit.json')['sha256']
+        self.write_json(self.run / 'delivery.json', delivery)
+
+    def test_stroke_preview_definition_is_replayed_from_actual_native_bytes(self):
+        audit, definition = self.add_stroke_preview_provenance()
+        record = self.observed()
+        review.verify_output_review(self.run, record)
+        for field, value in [('native_slide_xml_sha256', '0' * 64), ('objects', [{'id': 'forged-stroke'}]),
+                             ('preview_only', False), ('source_pixel_equivalence', True)]:
+            changed = copy.deepcopy(definition); changed[field] = value
+            path = self.run / 'artifact-stroke-preview.json'; self.write_json(path, changed)
+            audit['evidence']['stroke_preview_definition'] = review._binding(path)
+            self.save_stroke_preview_provenance(audit)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'actual delivered PPTX'):
+                review.prepare_output_review(self.run)
+        self.write_json(path, definition)
+        audit['evidence']['stroke_preview_definition'] = review._binding(path)
+        # A newly hashed and structurally valid native package also invalidates an old definition.
+        pptx = self.run / 'validated-output/reconstruction.pptx'
+        with ZipFile(pptx) as z: xml = z.read('ppt/slides/slide1.xml')
+        with ZipFile(pptx, 'w') as z: z.writestr('ppt/slides/slide1.xml', xml.replace(b'<p:cSld>', b'<p:cSld name="changed">'))
+        delivery = json.loads((self.run / 'delivery.json').read_text()); Path(delivery['output']).write_bytes(pptx.read_bytes())
+        delivery['sha256'] = digest(pptx.read_bytes()); self.write_json(self.run / 'delivery.json', delivery)
+        audit['input_pptx'] = review._binding(pptx); self.save_stroke_preview_provenance(audit)
+        with self.assertRaisesRegex(ValueError, 'actual delivered PPTX'): review.prepare_output_review(self.run)
+
+    def test_stroke_preview_application_receipt_cannot_grant_order_or_playback_without_evidence(self):
+        audit, _ = self.add_stroke_preview_provenance()
+        for field, value in [('applied_object_ids', ['forged-stroke']), ('complete_mixed_paint_order_preserved', False),
+                             ('native_delivery_modified', True), ('application_playback_verified', True)]:
+            changed = copy.deepcopy(audit); changed['artifact_stroke_preview'][field] = value
+            self.save_stroke_preview_provenance(changed)
+            with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'application/order receipt'):
+                review.prepare_output_review(self.run)
+
+    def test_stroke_preview_requires_complete_and_requested_backend_provenance(self):
+        audit, _ = self.add_stroke_preview_provenance()
+        config = json.loads((self.run / 'build-config.json').read_text())
+        changed = copy.deepcopy(audit); del changed['evidence']['stroke_preview_definition']
+        self.save_stroke_preview_provenance(changed)
+        with self.assertRaisesRegex(ValueError, 'definition is missing'): review.prepare_output_review(self.run)
+        self.save_stroke_preview_provenance(audit)
+        for change in [{'artifact_stroke_preview_version': True}, {'base': 'other.pptx'},
+                       {'preview_backend': 'libreoffice'}, {'artifact_stroke_preview_version': None}]:
+            self.write_json(self.run / 'build-config.json', {**config, **change})
+            with self.subTest(change=change), self.assertRaises(ValueError): review.prepare_output_review(self.run)
+        stripped = {k: v for k, v in config.items() if k not in ('preview_backend', 'preview_provenance_version', 'artifact_stroke_preview_version')}
+        self.write_json(self.run / 'build-config.json', stripped)
+        with self.assertRaisesRegex(ValueError, 'Unrequested'): review.prepare_output_review(self.run)
 
     def add_diagnostic_provenance(self, objects=None, *, declared_literal=False, source_inventory=False):
         from figure_rebuild.scene_compile import compile_scene

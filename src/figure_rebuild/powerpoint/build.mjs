@@ -11,6 +11,7 @@ import {fitPlacement} from './placement.mjs';
 import {fitImagePlacement} from './image_placement.mjs';
 import {linearGradientFill} from './linear_gradient.mjs';
 import {configureCpuRenderer} from './cpu_renderer.mjs';
+import {applyStrokePreview} from './stroke_preview.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -18,6 +19,7 @@ const previewBackend=config.preview_backend??'artifact';
 if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
+if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
 if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
@@ -183,10 +185,23 @@ if(previewBackend==='libreoffice'){
   const info=JSON.parse(runPython('package',['inspect',checkedOutput],{encoding:'utf8'}));
   const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
  }
+ let nativeStrokePreview,strokeDefinition;
+ if(config.artifact_stroke_preview_version===1){
+  const file=path.join(run,'artifact-stroke-preview.json');
+  runPython('artifact_stroke_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file],{stdio:'pipe'});
+  const definition=JSON.parse(await fs.readFile(file,'utf8'));
+  nativeStrokePreview=applyStrokePreview(targetSlide,definition);strokeDefinition=await bindFile(file);
+  const unsupported=new Set(definition.unsupported.map(o=>o.id));
+  for(const limitation of previewLimitations)if(limitation.code==='native_stroke_geometry_requires_application_verification'){
+   limitation.object_ids=limitation.object_ids.filter(id=>unsupported.has(id));
+   limitation.detail='Unsupported native path strokes retain ordinary Artifact rendering; eligible strokes use transient SVGs decoded from final native coordinates/cap/join. Final PowerPoint/WPS appearance still requires application verification.';
+  }
+ }
  for(const s of [1,2,4]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
  const imageSamplingAudit=previewImageSampling.audit();
  if(imageSamplingAudit.cropped_minification_calls_unfiltered)previewLimitations.push({code:'cropped_image_minification_requires_visual_verification',draw_calls:imageSamplingAudit.cropped_minification_calls_unfiltered,detail:'Staged minification covers complete source windows. Cropped source windows retain native interpolation to avoid mixing excluded pixels into crop edges.'});
  previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,image_sampling:{...imageSamplingAudit,scope:'artifact_process_through_raw_preview_exports'},svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
+ if(nativeStrokePreview){previewAudit.artifact_stroke_preview=nativeStrokePreview;previewAudit.evidence.stroke_preview_definition=strokeDefinition;}
 }
 // Keep the raw 1x preview for comparison diagnostics. The viewing aide uses
 // supersampling so thin mathematical strokes are filtered rather than dropped.

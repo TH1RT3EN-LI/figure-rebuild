@@ -287,3 +287,9 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/DIAGNOSTIC-INVENTORY-REVIEW-RESULT-109.json` | `baa77218575df54216762a97682a48db49d8dfae27a1ee5f666787c0c8907a42` |
 | `reports/remaining-153-001/github-checks-30dccc3-001.json` | `851d8aaf55463a96cbacfd37cbf2bd4b6fcad0f7f09d726fcdf12648e4285f25` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-030.json` | `e57af4fd36eaab2b8b660dcb156f00768b507661a28cd0c62b86d5d893aaccaf` |
+
+- 原生线端/连接预览适配器已完成维护实现及来源重算：Python 1224 项（8 跳过），Node 62 项（61 通过、1 跳过；含实际像素和前景遮挡验证），wheel/sdist 分发及已安装 62 项测试通过。五张实际受影响图仍待新构建和视觉复核，本条不计为已关闭问题。
+| `reports/remaining-153-001/public-stroke-preview-checks-114/python.json` | `51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed` |
+| `reports/remaining-153-001/public-stroke-preview-checks-114/node.json` | `37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075` |
+| `reports/remaining-153-001/packages-stroke-preview-115/proof.json` | `cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5` |
+| `reports/remaining-153-001/github-checks-6fa282d-001.json` | `db9fb516cba68b1e571c74251ac7ce6e0325ceba85a88cb32e8bcb2e55d15e55` |

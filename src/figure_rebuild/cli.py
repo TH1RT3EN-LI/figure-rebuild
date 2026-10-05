@@ -531,6 +531,8 @@ def build(a):
         config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
                   'preview_backend': preview_backend, 'preview_provenance_version': 1,
                   'diagnostic_provenance_version': 1}
+        if preview_backend == 'artifact' and not base_config:
+            config['artifact_stroke_preview_version'] = 1
         if pdf_alpha_policy:
             config['pdf_alpha_derivation'] = pdf_alpha_policy
         if 'source_canvas_clip' in data:

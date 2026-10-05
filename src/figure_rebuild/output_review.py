@@ -93,6 +93,12 @@ def _inside(root, path):
 def _preview_provenance(run, config, paths):
     """New runs bind renderer identity and its actual input/output evidence."""
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
+        _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
+        if (run / 'render-audit.json').exists():
+            legacy_audit = _json_record(run / 'render-audit.json')
+            _require('artifact_stroke_preview' not in legacy_audit and
+                     'stroke_preview_definition' not in legacy_audit.get('evidence', {}),
+                     'Unrequested native stroke preview adapter')
         return None  # Keep immutable legacy v1 review bindings unchanged.
     from .native_preview import validate_backend, validate_pdf_alpha_policy
     _require(type(config.get('preview_provenance_version')) is int and
@@ -147,7 +153,27 @@ def _preview_provenance(run, config, paths):
                  'PDF derivation was not requested in the immutable config')
     if backend == 'artifact':
         _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
+        stroke_version = config.get('artifact_stroke_preview_version')
+        if stroke_version is None:
+            _require('artifact_stroke_preview' not in audit and 'stroke_preview_definition' not in evidence,
+                     'Unrequested native stroke preview adapter')
+        else:
+            _require(type(stroke_version) is int and stroke_version == 1 and not config.get('base'),
+                     'Unsupported native stroke preview provenance')
+            _require('stroke_preview_definition' in evidence, 'Native stroke preview definition is missing')
+            from .artifact_stroke_preview import prepare_stroke_preview
+            definition = _json_record(paths['stroke_preview_definition'], strict_numbers_and_keys=True)
+            replay = prepare_stroke_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True))
+            _require(_same_json(definition, replay), 'Native stroke preview definition disagrees with actual delivered PPTX')
+            expected_strokes = {'schema_version': 1, 'policy': replay['policy'], 'preview_only': True,
+                                'native_delivery_modified': False, 'applied_object_ids': [o['id'] for o in replay['objects']],
+                                'unsupported': replay['unsupported'], 'complete_mixed_paint_order_preserved': True,
+                                'source_pixel_equivalence': False, 'application_playback_verified': False}
+            _require(_same_json(audit.get('artifact_stroke_preview'), expected_strokes),
+                     'Native stroke preview application/order receipt disagrees with actual native definition')
     else:
+        _require('artifact_stroke_preview_version' not in config and 'artifact_stroke_preview' not in audit and
+                 'stroke_preview_definition' not in evidence, 'Native stroke preview adapter requires Artifact')
         _require(not config.get('base') and audit.get('renderer') == 'LibreOffice Impress' and
                  audit.get('renderer_backend') == 'headless_direct_png' and audit.get('raw_preview_format') == 'impress_png_Export' and
                  audit.get('pdf_inspector') == 'PyMuPDF' and audit.get('pdf_role') == 'font_and_image_evidence_only' and
