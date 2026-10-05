@@ -149,6 +149,14 @@ class SourceInventoryChecks(unittest.TestCase):
         self.assertEqual(result['status'], 'FAIL')
         self.assertTrue(any(m.get('object_id') == 'symbol-825' for m in result['mismatches']))
 
+    def test_reference_uses_scene_byte_budget_instead_of_smaller_inventory_budget(self):
+        reference = copy.deepcopy(self.manifest); reference.pop('source_inventory')
+        for count, expected in ((9, 'REVIEW'), (33, 'FAIL')):
+            reference['notes'] = 'x' * (count * 1024**2)
+            file = self.job / 'reference.json'; file.write_text(json.dumps(reference))
+            self.inventory['reference_manifest'] = self.binding('reference.json'); self.write_inventory()
+            with self.subTest(megabytes=count): self.assertEqual(self.audit()['status'], expected)
+
     def test_clearing_recognition_cannot_hide_unresolved_source_evidence(self):
         self.inventory['unresolved'] = [{'id': 'unknown-subscript', 'category': 'math',
             'source_region': {'x': 10, 'y': 10, 'width': 20, 'height': 20}, 'reason': 'Unreadable index.'}]

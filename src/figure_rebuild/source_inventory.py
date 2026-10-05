@@ -125,7 +125,9 @@ def audit_source_inventory(manifest, asset_root):
                 or not _SHA.fullmatch(inventory['source_sha256']) or source.get('sha256') != inventory['source_sha256']):
             raise ValueError('Source inventory original-source hash mismatch')
         checked({'path': source['path'], 'sha256': source['sha256']})
-        reference = _load_json(checked(inventory['reference_manifest']), 8 * 1024**2)
+        # Match the bounded source replay's 32 MiB scene limit. The smaller
+        # 8 MiB inventory limit must not reject a valid dense reference scene.
+        reference = _load_json(checked(inventory['reference_manifest']), 32 * 1024**2)
         if not isinstance(reference, dict) or reference.get('source', {}).get('sha256') != inventory['source_sha256']:
             raise ValueError('Reference manifest is bound to a different source')
         artifacts = inventory['source_artifacts']
