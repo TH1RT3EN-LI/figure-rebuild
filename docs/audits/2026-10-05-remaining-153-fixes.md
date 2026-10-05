@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 71 张图的来源修复及实际成品复查，关闭 109 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 55 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 44 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 48 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 45 项解决、38 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 109 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 74 张图的来源修复及实际成品复查，关闭 112 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 58 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 41 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 45 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 48 项解决、35 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 112 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -62,6 +62,8 @@
 
 - FlashAttention、LightGCN 和 ColBERT 本批关闭三项。FlashAttention 的 259 个真实活动片段、45 个短 Q/K/V/维度标记及 139 条路径全部接入独立来源门禁，七个结构仍 PASS 的反例被拒绝；123 条源描边端点/转角/斜接恢复。LightGCN 的 73 条细灰轮廓从实际 PDF 回调恢复；原清单“圆点”预期经来源核对纠正为真实 butt 端点，原预期历史保留。ColBERT 不再把源核对父版本中的多边形当原曲线，88 对真实填充/描边分别恢复三次曲线与源闭合状态；85 对完整包含于所有源裁剪和 ROI，3 对跨右裁剪边界，采用源白底及所有其他父路径/实际字形不相交的证明保留裁剪。字形证明使用实际原生 PDF 画布比例，修正私有组装器 0.75 假设；无通用遮罩准入。原 486 个叶对象/14 恒等省略号组顺序及 42 圆点保留，插入 3 个局部白底裁剪框，共 489 对象。三图全部 1217 个对象、1647 个真实字形读回；控制点固定 0.001 px 守卫、最大约 0.000105 px，ColBERT 219 次填充改写实际双端摘要核验。源/终态/PDF 1×、终态 2×、28 组匹配 4× 实看；初次漏 reading、误用偶奇填充/路径闭合/控制字段/数值 z-index/固定 PDF 比例，以及异步子进程丢失的失败均保留。四个 score 圆框已无折角；三枚蓝色节点源裁剪边界仍有细 AA 浅边，另登记 E01-CLIP-AA，不冒充像素裁剪等价。自动识别、方程语义、字体交付和跨应用验收继续开放。
 
+- GCC 两图和近线性流算法图的三项采样描边问题关闭。六条原描边恢复为独立原生曲线路径，三图成品均无图片；其他 794 个源对象及 191 个真实活动字形保持。显式有界曲线接口以精确导数细分、细分控制包络和局部斜接支撑核算，固定 256/128/32/4096 预算不变，默认自动裁剪和组策略未放宽。三条完整源支撑包含于所有裁剪，另三条真实跨界；四个局部白底框仅在源白底及所有其他路径/实际字形不相交证明后保留源边缘。实际 Normal/alpha1/RGB 隔离组仅作本源实例的代数复合核对，未宣称通用 RGB/alpha 或像素等价。正虚线在原用户空间保留相位，输出真实 cubic 子曲线，弧位置误差最多 0.0001 目标 px。实际源/最终 PPT 控制点固定 0.001 px 守卫、最大约 0.0001043 px；69 次填充改写实际原/终态摘要核验。全部 804 个对象原生读回，源/终态/PDF 1×、终态 2×和全部十四组匹配 4× 实看，本次未发现新增可见裁剪接缝。源实际回调的虚线数组通过已安装 SWIG floats_getitem 读取，保留首次指针下标失败；空导数、全局斜接包络及预算耗尽探针均保留。公开 Python 1242、Node 62、wheel/sdist 87/287 文件及安装后 1242 项通过，冻结016含 281 文件/208个运行测试构建输入。活动文字、方程 AST、自动语义、字体交付与跨应用验收继续保留各自问题。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -81,6 +83,8 @@
 | ccf-2020-12-f03 | D01 |
 | ccf-2020-13-f01 | R02-NATIVE-ALPHA-EDGE |
 | ccf-2020-14-f01 | D01 |
+| ccf-2020-14-f02 | SAMPLED-STROKES-001 |
+| ccf-2020-14-f03 | SAMPLED-STROKES-001 |
 | ccf-2020-15-f05 | D03 |
 | ccf-2020-16-f02 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2020-16-f03 | R01-PREVIEW-JOIN |
@@ -108,6 +112,7 @@
 | ccf-2022-12-f01 | D01, D02 |
 | ccf-2022-12-f04 | D01 |
 | ccf-2022-13-f01 | D01, D02 |
+| ccf-2022-14-f01 | SAMPLED-STROKES-001 |
 | ccf-2022-14-f02 | D01 |
 | ccf-2023-01-f01 | D01, D02 |
 | ccf-2023-03-f01 | D01 |
@@ -314,3 +319,14 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-fae0f04-001.json` | `e08f1c5dab3d058f0e2a41858205e2ede24bef3cf2514984dba27a181a82e378` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-032.json` | `62755ae2388dc2cd7530db5619b71b8d53291f2176de3644e6afd273f89ef44f` |
 | `reports/remaining-153-001/SKILL-DISTILLATION-146.json` | `13768d9c42341704773e6920b85ab9ab24678d5bb15bac0f5a51ec317021cba9` |
+| `reports/remaining-153-001/LEDGER-RESULT-033.json` | `d39bd696442c845a76cc4e5bf20eb4f3f21efacb86f68e8397a5936d2813976d` |
+| `reports/remaining-153-001/SAMPLED-NATIVE-STROKE-REVIEW-RESULT-167.json` | `aa1d3daa804e978565ae8be7623a01bbb4c9c342dc6452e0852d7ca6e49d885a` |
+| `reports/remaining-153-001/FREEZE-016.json` | `fd3e169490338b4022123d46cc16973e545d943cb917deffc59cbedebdad21da` |
+| `reports/remaining-153-001/PUBLIC-CURVE-SUPPORT-CHECKS-164.json` | `bda42ecbfc1e2deb48f9a770ab32410a7694f6af0b77af389dee8d46e30e39c1` |
+| `reports/remaining-153-001/SAMPLED-NATIVE-STROKE-BUILD-165.json` | `5f07bfb17f00c324d89df3e8b968beb80a73f016e59a2d38f1793e7d33ba93b2` |
+| `reports/remaining-153-001/SAMPLED-NATIVE-STROKE-READBACK-166.json` | `ec582f715d2c36825b5d8dd956173ee18662c4e11876a75430257e0c046e41b2` |
+| `reports/remaining-153-001/github-checks-9b0b913-001.json` | `682bd73c548a1314000d72319d7ced563d204492658eb141efd36aa1cc88e354` |
+| `reports/remaining-153-001/SAMPLED-STROKE-DOCUMENTATION-CORRECTION-168.json` | `e5bdc1bb8f216af4d55fba06a28ef9369627749936a641e96a4d379bc1518bb6` |
+| `reports/remaining-153-001/SKILL-DISTILLATION-167.json` | `845c2d402bce49042553656d7b3b3aa35e7da00f9dafbfd8b20bc4cae66c907f` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-033.json` | `bbb35e7d581760fc8f8eb11bef857eb2f17c6dafa7b231c6b522c1566ac8bc13` |
+| `reports/remaining-153-001/AUDIT-SUMMARY-REFS-033b.json` | `8f6ab2c099932af9c97ba32500bbc3496e66c6538aade1c1136430955689e2a7` |
