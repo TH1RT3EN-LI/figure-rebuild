@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 81 张图的来源修复及实际成品复查，关闭 122 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 68 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 31 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 35 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 58 项解决、25 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 122 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 81 张图的来源修复及实际成品复查，关闭 123 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 69 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 30 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 34 项开放。原始 296 项现在 287 项关闭、9 项开放；83 项后续发现中 58 项解决、25 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 123 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -68,6 +68,8 @@
 
 - TPU 和 Moon 两项 Artifact 图片采样问题关闭。v2 维护适配器从实际最终 PPT 媒体、EMU 框和原生百分比裁剪推导完整图片矩阵，再按真实浮点可见框裁剪采样；不把裁剪舍入为源图片整数像素框、不改交付图片。22 张图的原生位置与 crop 元素均和父版本相同。800 个对象完整读回，778 个其他 manifest 对象未变；616 个其他原生属性相同，162 处填充改写双端摘要及精确证明重放，控制点仍受固定 0.001 px 守卫。全部 48 张源/Artifact/独立原生 PDF 全图 1×、完整 2× 和 4× 图片支持区实看。TPU 的原问题为 2×/4× 平滑错误，这两级有限区域 RGB 诊断明显改善；1× 诊断从 2.5368 增至 3.9271，作为残差保留，不宣称各尺度均更优。Moon 三尺度诊断改善，仅作诊断，没有阈值或通用误差界。裁剪边缘可能仍在滤波中引用邻近存储样本。Python 1260（8 跳过）、真实 CPU Node 67（0 跳过）、wheel/sdist 89/291 文件、安装后 1260 检查通过，冻结018绑定 212 输入和 82 运行模块；旧八图 v1 完整定义和 PNG 字节重放相同，提交0c7b970的16项 GitHub 检查通过。内部位图文字、自动语义、普通 Office 滤波、字体交付及跨应用验收限制继续保留。
 
+- Bao 的 D01 细边框问题关闭。源回调区分 21 次填充和随后真实零宽描边，绑定完整路径、CTM、黑色、不透明、butt cap、round join、无 dash 和真实 clip/group；21 个对象恢复源显式闭合。维护代码通过显式 `stroke_hairline` 写入启用的原生零宽线，保留填充；`libreoffice-pdf` 从未修改的最终 PDF 生成规范 1×/2×/4× 预览，三份直接 Impress PNG 单独保留。21 条最终 PDF 的真实零宽、颜色、闭合与线型独立读回；其余 186 个实际原生对象和 92 个活动文字框/内容与父版本相同。实际 PPTX 全部源控制点维持 0.001 px 守卫，最大 0.000093367454085 px；原生 PDF 导出坐标诊断残差最大 0.073738881966392 px，未包含在该守卫内。14 个字体输入字节相同，注册件除 head 时间戳/校验和外全部表一致，最终 PDF 两份真实字体程序独立绑定且无伪粗/斜/替代。11 张完整 1×/2×/4× 四方对照全部以原尺寸实看，细边线恢复；直接 PNG 黑边差异继续保留。有限区域 RGB 诊断改善，不用阈值替代实看。第一版真实构建因 Node 整数浮点 JSON 格式而未通过严格输出核验，失败与冻结019完整保留；修复仅统一整数数值写法，不四舍五入非整数系数、不放宽类型检查。冻结020与637d9fc绑定 214 输入/83 运行模块，Python 1276（8 跳过）、真实 CPU Node 67（0 跳过）、wheel/sdist 90/294 文件、安装后1276检查及该提交16项 GitHub 检查通过。SVG hairline、跨应用、字体嵌入/扩展编辑和自动语义仍有独立限制。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -108,7 +110,7 @@
 | ccf-2021-13-f08 | D01, D02 |
 | ccf-2021-14-f04 | D05 |
 | ccf-2021-17-f02 | D01 |
-| ccf-2021-17-f05 | D02 |
+| ccf-2021-17-f05 | D01, D02 |
 | ccf-2021-18-f18 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2022-01-f03 | D01, D02 |
 | ccf-2022-02-f02 | D01, D02, D03, V3-R01 |
@@ -363,3 +365,16 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-0c7b970-001.json` | `6b59b5adb4a4ad389ce3715143f591386a329c386ffd68a1998e601b8c8d23aa` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-035.json` | `e8c710162805b07acd1d50b27f708e74ceab0def16004b76623c080ed3b7a8c3` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-035b.json` | `009ebf5ae833a1d985c62f028872f82e7c59b21d8125039173f7ab8cdb27e43c` |
+| `reports/remaining-153-001/LEDGER-RESULT-036.json` | `d62e644bc2a96a5fcbf7f234b1237631233f16c802ee831f427128713659a5fa` |
+| `reports/remaining-153-001/BAO-NATIVE-HAIRLINE-REVIEW-RESULT-230.json` | `8d80a1d5081876da983b250103aa6f7191a4f0768296c9c05a3ca26e14d3445a` |
+| `reports/remaining-153-001/FREEZE-019.json` | `3a116f4f2ee1cda354f5c9338c72c97b2cfaf9e86a668719bfbe7a5f7ded4a51` |
+| `reports/remaining-153-001/FREEZE-020.json` | `58aa596f922905a2832c29e8abbd6d6c39b7287a48535c8f9414983426500790` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-PDF-HAIRLINE-CHECKS-215.json` | `80a30dc5b018ee1bdde43d03ae82cef42b4d01e506dcb6d2fc6ab38455209fa7` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-PDF-JSON-CHECKS-224.json` | `ba4b598d9488e454ccba446871fb89142c72c9c7cbf274d4ed361fd44aef441e` |
+| `reports/remaining-153-001/BAO-NATIVE-HAIRLINE-BUILD-225.json` | `9ce09ad2010a74b2d6a21a7ff46cf0fc5cd36e55bfb29689410fc03c936964fa` |
+| `reports/remaining-153-001/BAO-NATIVE-HAIRLINE-READBACK-228.json` | `83c54fd939f219ba6b37032765013126a76698336873f519cfbb4c57f5d949cd` |
+| `reports/remaining-153-001/BAO-NATIVE-HAIRLINE-MEASUREMENTS-229.json` | `f7884c9306f9442fbed509eb1ece4cec76e65a69b96b2d3543d6c42db753dc1e` |
+| `reports/remaining-153-001/github-checks-feee493-001.json` | `58516fd9f5d24d211677b8b5b7882296abd09aca8d584cfd64e3efc36799f29b` |
+| `reports/remaining-153-001/github-checks-637d9fc-001.json` | `b50659137b8e10078fe4fa78474499e0711aaa0a243d07f32c6b156c62c762f5` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-036.json` | `6f6994be14eae936fe69c8a5485ca948977d52cdaf3468d9ebe62f60bc7105f8` |
+| `reports/remaining-153-001/DISTILLATION-231.json` | `fd500627893b70d8457b7ffaa746f8c0d9bb67757000b90441da01213b281055` |
