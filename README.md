@@ -43,6 +43,7 @@ npx skills add TH1RT3EN-LI/figure-rebuild
 | 从方法说明创作 | 调用方填写结构规格，`create --spec creation.json --job new-job`，无需参考图；审阅后用 `build` 导出 |
 | 导出独立 PPTX | `build --manifest manifest.json`，从审阅后的清单生成可编辑单页 |
 | 检查原生 PDF 预览 | `build --preview-backend libreoffice-pdf`，从最终 PPT 的 PDF 导出生成预览，并保留直接 PNG；[零宽细线及验收边界](references/native-pdf-preview.md) |
+| 检查透明图像的 PDF 预览 | `build --preview-backend libreoffice-pdf-rgb`，保留原始导出，并生成仅修改零透明度 RGB 的独立 PDF；[逐像素证明与验收边界](references/pdf-zero-alpha-rgb.md) |
 | 生成时插入指定位置 | `build --manifest manifest.json --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx` |
 | 生成后插入指定位置 | `insert --input figure.pptx --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx`，直接复用已生成的单页 PPTX |
 

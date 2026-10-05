@@ -31,7 +31,7 @@ class BuildInputChecks(unittest.TestCase):
             run.assert_not_called();self.assertFalse((self.job/'build').exists())
 
     def test_explicit_native_base_and_unknown_backend_fail_before_runtime(self):
-        for backend, base in [('libreoffice', 'missing.pptx'), ('libreoffice-pdf', 'missing.pptx'), ('auto', None)]:
+        for backend, base in [('libreoffice', 'missing.pptx'), ('libreoffice-pdf', 'missing.pptx'), ('libreoffice-pdf-rgb', 'missing.pptx'), ('auto', None)]:
             self.args.preview_backend = backend; self.args.base = base
             with patch.object(cli, 'runtime') as runtime:
                 with self.assertRaises(ValueError): cli.build(self.args)
@@ -78,11 +78,20 @@ class BuildInputChecks(unittest.TestCase):
     def test_device_hairline_requires_pdf_backend_before_runtime_or_allocation(self):
         self.m['objects'][0]['style'].update(stroke='#888888', stroke_width=0, stroke_hairline=True, fill='none')
         cli.save(self.manifest, self.m); cli.review(Namespace(manifest=str(self.manifest), note='Verify source PDF hairline'))
-        for backend in ('artifact', 'libreoffice'):
+        for backend in ('artifact', 'libreoffice', 'libreoffice-pdf-rgb'):
             self.args.preview_backend = backend
             with patch.object(cli, 'runtime') as runtime, self.assertRaisesRegex(ValueError, 'hairlines'):
                 cli.build(self.args)
             runtime.assert_not_called(); self.assertFalse((self.job / 'build').exists())
+
+    def test_rgb_pdf_backend_freezes_a_distinct_version_and_fixed_policy(self):
+        self.args.preview_backend = 'libreoffice-pdf-rgb'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job / 'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['native_pdf_preview_version'], 2)
+        self.assertEqual(config['pdf_rgb_derivation'], 'pdf-zero-alpha-rgb-white-v1')
+        self.assertNotIn('pdf_alpha_derivation', config)
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())

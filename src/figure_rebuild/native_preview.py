@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 
-BACKENDS = ('artifact', 'libreoffice', 'libreoffice-pdf')
+BACKENDS = ('artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb')
 PROVENANCE_VERSION = 1
 
 
@@ -44,6 +44,14 @@ def validate_pdf_alpha_policy(value, backend):
     from .pdf_binary_alpha import POLICY
     if value is not None and (type(value) is not str or value != POLICY or backend != 'libreoffice'):
         raise ValueError('PDF alpha derivation requires the explicit binary-alpha policy and LibreOffice backend')
+    return value
+
+
+def validate_pdf_rgb_policy(value, backend):
+    from .pdf_zero_alpha_rgb import POLICY
+    if ((backend == 'libreoffice-pdf-rgb' and (type(value) is not str or value != POLICY)) or
+            (backend != 'libreoffice-pdf-rgb' and value is not None)):
+        raise ValueError('PDF RGB derivation requires its explicit policy and libreoffice-pdf-rgb backend')
     return value
 
 
@@ -252,15 +260,17 @@ def render(config):
     if config.get('base'):
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     backend = validate_backend(config.get('preview_backend'))
-    if backend not in ('libreoffice', 'libreoffice-pdf'):
+    if backend not in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb'):
         raise ValueError('Native renderer requires explicit LibreOffice preview backend')
-    pdf_preview = backend == 'libreoffice-pdf'
+    pdf_preview = backend in ('libreoffice-pdf', 'libreoffice-pdf-rgb')
+    rgb_policy = validate_pdf_rgb_policy(config.get('pdf_rgb_derivation'), backend)
     version = config.get('native_pdf_preview_version')
-    if (pdf_preview and (type(version) is not int or version != 1)) or (not pdf_preview and version is not None):
+    required_version = 2 if rgb_policy else 1
+    if (pdf_preview and (type(version) is not int or version != required_version)) or (not pdf_preview and version is not None):
         raise ValueError('Unsupported native PDF preview version or backend')
     if pdf_preview and config.get('pdf_alpha_derivation') is not None:
         raise ValueError('Native PDF previews use the unmodified exported PDF')
-    alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), 'libreoffice')
+    alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), backend)
     profile, fitz = preflight(config['runtime'])
     run = Path(config['run']).resolve()
     source = run / 'validated-output' / 'reconstruction.pptx'
@@ -318,6 +328,25 @@ def render(config):
             image_audit = _image_evidence(source, pdf, page)
             page_geometry = list(page.rect)
         derivation = {}
+        preview_pdf = pdf_path
+        if rgb_policy:
+            from .pdf_zero_alpha_rgb import derive_zero_alpha_rgb_pdf
+            derived_directory = directory / 'derived-pdf'
+            derived_directory.mkdir()
+            preview_pdf = derived_directory / 'zero-alpha-rgb-white.pdf'
+            receipt_path = derived_directory / 'zero-alpha-rgb-receipt.json'
+            receipt = derive_zero_alpha_rgb_pdf(pdf_path, preview_pdf)
+            _save(receipt_path, receipt)
+            evidence['native_pdf_derived'] = binding(preview_pdf)
+            evidence['native_pdf_rgb_receipt'] = binding(receipt_path)
+            derivation['pdf_rgb_derivation'] = {
+                'policy': rgb_policy, 'source_role': 'native_pdf',
+                'derived_role': 'native_pdf_derived', 'receipt_role': 'native_pdf_rgb_receipt',
+                'transformed_masks': len(receipt['transformed_masks']),
+                'retained_masks': len(receipt['retained_masks']),
+                'raw_export_replaced': False, 'canonical_previews_derived_from_pdf': True,
+                'alpha_and_positive_alpha_rgb_samples_unchanged': True,
+                'rgb_alpha_filtering_error_bound_proved': False}
         if alpha_policy:
             from .pdf_binary_alpha import derive_binary_alpha_pdf
             derived_directory = directory / 'derived-pdf'
@@ -340,7 +369,7 @@ def render(config):
         pdf_outputs, pdf_receipt = {}, None
         if pdf_preview:
             from .native_pdf_preview import sample_pdf_previews
-            pdf_outputs, pdf_receipt = sample_pdf_previews(pdf_path, dimensions)
+            pdf_outputs, pdf_receipt = sample_pdf_previews(preview_pdf, dimensions)
             receipt_path = directory / 'pdf-preview-receipt.json'
             _save(receipt_path, pdf_receipt)
             evidence['native_pdf_preview_receipt'] = binding(receipt_path)
@@ -393,8 +422,14 @@ def render(config):
                      'rasterizer': 'PyMuPDF', 'native_pdf_preview': pdf_receipt} if pdf_preview else
                     {'renderer': 'LibreOffice Impress', 'renderer_backend': 'headless_direct_png',
                      'raw_preview_format': 'impress_png_Export', 'pdf_role': 'font_and_image_evidence_only'})
+        if rgb_policy:
+            identity.update(renderer_backend='headless_pdf_zero_alpha_rgb_mupdf',
+                            raw_preview_format='derived_native_pdf_MuPDF',
+                            pdf_role='raw_font_and_image_evidence_with_separate_derived_preview')
         limitation = ('Canonical previews sample the unmodified native PDF with MuPDF. All direct Impress PNG exports are retained separately. PDF hairlines and other appearance remain renderer-specific; this does not verify PowerPoint/WPS or source pixel equality.' if pdf_preview else
                       'This is LibreOffice direct PNG export appearance, not PowerPoint/WPS verification. PDF evidence is a separate export and is not the source of raw previews. Native miter limits, default joins, text spacing and other application differences remain subject to actual visual review.')
+        if rgb_policy:
+            limitation = ('Canonical previews sample a separately derived native PDF. Only RGB at exactly zero decoded alpha changes; raw PDF, all masks, positive-alpha RGB, vector/text objects and direct PNG exports are retained. Pointwise equivalence does not bound RGB/alpha filtering or prove source pixel equality. Actual visual review and PowerPoint/WPS verification remain separate.')
         return {**derivation, **identity,
                 'libreoffice_version': version, 'libreoffice_command': profile['command'],
                 'pdf_export_options': export_options,

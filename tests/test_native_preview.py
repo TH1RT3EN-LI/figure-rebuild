@@ -95,9 +95,13 @@ class NativeRenderTests(unittest.TestCase):
                                 xref = page.get_contents()[0]
                                 document.update_stream(xref, document.xref_stream(xref).replace(b'6 w', b'0 w'))
                                 self.assertEqual(page.get_drawings()[0]['width'], 0)
-                            if self.mode == 'binary':
+                            if self.mode in ('binary', 'partial_inverse'):
                                 rgba = Image.new('RGBA', (4, 2), (0, 0, 0, 0))
                                 rgba.putpixel((1, 0), (30, 90, 150, 255))
+                                if self.mode == 'partial_inverse':
+                                    rgba.putpixel((2, 0), (80, 100, 120, 1))
+                                    rgba.putpixel((0, 1), (20, 40, 60, 128))
+                                    rgba.putpixel((2, 1), (90, 120, 150, 254))
                                 stream = io.BytesIO(); rgba.save(stream, format='PNG')
                                 parent = page.insert_image((10, 10, 100, 60), stream=stream.getvalue())
                                 mask = int(document.xref_get_key(parent, 'SMask')[1].split()[0])
@@ -107,6 +111,9 @@ class NativeRenderTests(unittest.TestCase):
                                 document.update_stream(mask, rgba.getchannel('A').tobytes())
                                 document.xref_set_key(mask, 'BitsPerComponent', '8')
                                 document.xref_set_key(mask, 'DecodeParms', 'null')
+                                if self.mode == 'partial_inverse':
+                                    document.update_stream(mask, bytes(255 - a for a in rgba.getchannel('A').tobytes()))
+                                    document.xref_set_key(mask, 'Decode', '[1 0]')
                         document.save(self.run / 'native-preview/pdf/reconstruction.pdf')
                 if self.mode == 'mutate':
                     self.pptx.write_bytes(b'changed final PPTX')
@@ -172,6 +179,106 @@ class NativeRenderTests(unittest.TestCase):
             with patch.object(native, '_execute') as execute, self.assertRaisesRegex(ValueError, 'version'):
                 native.render(config)
             execute.assert_not_called(); self.assertFalse((self.run / 'native-preview').exists())
+
+    def test_rgb_pdf_backend_replays_partial_inverse_mask_and_keeps_raw_exports(self):
+        self.mode = 'partial_inverse'
+        self.config.update(preview_backend='libreoffice-pdf-rgb', native_pdf_preview_version=2,
+                           pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1')
+        before = self.pptx.read_bytes(); result = self.render()
+        self.assertEqual(self.pptx.read_bytes(), before)
+        self.assertEqual(result['renderer_backend'], 'headless_pdf_zero_alpha_rgb_mupdf')
+        self.assertEqual(result['pdf_rgb_derivation']['transformed_masks'], 1)
+        self.assertNotIn('pdf_alpha_derivation', result)
+        from figure_rebuild.pdf_zero_alpha_rgb import verify_zero_alpha_rgb_pdf
+        receipt = json.loads(Path(result['evidence']['native_pdf_rgb_receipt']['path']).read_text())
+        self.assertEqual(receipt['transformed_masks'][0]['partial_alpha_pixels'], 3)
+        self.assertEqual(verify_zero_alpha_rgb_pdf(result['evidence']['native_pdf']['path'],
+                         result['evidence']['native_pdf_derived']['path'], receipt)['status'], 'PASS')
+        from figure_rebuild.native_pdf_preview import sample_pdf_previews
+        outputs, expected = sample_pdf_previews(result['evidence']['native_pdf_derived']['path'], {'cx':200*9525,'cy':100*9525})
+        self.assertEqual(result['native_pdf_preview'], expected)
+        for scale in (1, 2, 4):
+            self.assertEqual((self.run / f'preview-{scale}x.png').read_bytes(), outputs[scale])
+            with Image.open(self.run / f'native-preview/png-{scale}x/reconstruction.png') as direct:
+                self.assertEqual(direct.getpixel((0, 0)), (255, 165, 0))
+
+    def test_rgb_pdf_requires_distinct_version_policy_and_no_binary_matte_before_exports(self):
+        for changes in ({}, {'native_pdf_preview_version': 1}, {'native_pdf_preview_version': True},
+                        {'pdf_rgb_derivation': 'auto'}, {'pdf_alpha_derivation': 'binary-alpha-white-matte-v1'},
+                        {'preview_backend': 'libreoffice-pdf'}, {'preview_backend': 'libreoffice'}):
+            config = dict(self.config, preview_backend='libreoffice-pdf-rgb', native_pdf_preview_version=2,
+                          pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1')
+            if not changes: config.pop('pdf_rgb_derivation')
+            config.update(changes)
+            with self.subTest(changes=changes), patch.object(native, '_execute') as execute, self.assertRaises(ValueError):
+                native.render(config)
+            execute.assert_not_called(); self.assertFalse((self.run / 'native-preview').exists())
+
+    def test_rgb_pdf_output_review_replays_samples_and_binds_delivery(self):
+        from figure_rebuild.output_review import prepare_output_review
+        self.mode = 'partial_inverse'
+        self.config.update(preview_backend='libreoffice-pdf-rgb', native_pdf_preview_version=2,
+                           pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1')
+        result = self.render(); previews = {}
+        for scale in (1, 2, 4):
+            previews[f'preview_{scale}x'] = {**native.binding(self.run / f'preview-{scale}x.png'),
+                'width': 200 * scale, 'height': 100 * scale, 'scale': scale}
+        smooth = self.run / 'preview-smooth-1x.png'
+        with Image.open(self.run / 'preview-4x.png') as img:
+            img.resize((200, 100), Image.Resampling.LANCZOS).save(smooth)
+        previews['preview_smooth_1x'] = {**native.binding(smooth), 'width': 200, 'height': 100, 'scale': 1,
+            'derivation': {'source_role': 'preview_4x', 'source_sha256': previews['preview_4x']['sha256'],
+                           'kernel': 'lanczos3', 'target_size': [200, 100], 'is_raw_preview': False}}
+        result.update(schema_version=1, preview_backend='libreoffice-pdf-rgb', input_pptx=native.binding(self.pptx), previews=previews)
+        def node_numbers(value):
+            if type(value) is float and value.is_integer(): return int(value)
+            if isinstance(value, dict): return {k:node_numbers(v) for k,v in value.items()}
+            if isinstance(value, list): return [node_numbers(v) for v in value]
+            return value
+        result = node_numbers(result)
+        audit = self.run / 'render-audit.json'; audit.write_text(json.dumps(result))
+        assets = self.run / 'assets'; assets.mkdir()
+        source = assets / 'original.png'; Image.new('RGB', (200, 100), 'white').save(source)
+        manifest = {'id': 'zero-alpha-rgb', 'revision': 1,
+                    'source': {'path': source.name, 'sha256': native.binding(source)['sha256']}}
+        for name in ('manifest-snapshot.json', 'resolved-scene.json'):
+            (self.run / name).write_text(json.dumps(manifest))
+        delivered = self.run / 'delivered.pptx'; delivered.write_bytes(self.pptx.read_bytes())
+        self.config.update(preview_provenance_version=1, manifest=str(self.run / 'manifest-snapshot.json'),
+                           asset_root=str(assets), output=str(delivered))
+        config = self.run / 'build-config.json'; config.write_text(json.dumps(self.config))
+        delivery = {'output': str(delivered), 'sha256': native.binding(delivered)['sha256'],
+                    'source_sha256': native.binding(source)['sha256'], 'preview_backend': 'libreoffice-pdf-rgb',
+                    'render_audit_sha256': native.binding(audit)['sha256'],
+                    'pdf_rgb_derivation': {**result['pdf_rgb_derivation'],
+                        'original_pdf': result['evidence']['native_pdf'], 'derived_pdf': result['evidence']['native_pdf_derived'],
+                        'receipt': result['evidence']['native_pdf_rgb_receipt']}}
+        delivery_path = self.run / 'delivery.json'; delivery_path.write_text(json.dumps(delivery))
+        record = prepare_output_review(self.run); self.assertIn('native_pdf_rgb_receipt', record['bindings'])
+        for failure in ('missing_delivery', 'wrong_derived_path', 'float_count', 'unrequested', 'raw_as_canonical', 'rebound_rgb'):
+            changed = copy.deepcopy(delivery); changed_audit = copy.deepcopy(result); changed_config = copy.deepcopy(self.config)
+            if failure == 'missing_delivery': del changed['pdf_rgb_derivation']
+            elif failure == 'wrong_derived_path': changed['pdf_rgb_derivation']['derived_pdf'] = changed['pdf_rgb_derivation']['original_pdf']
+            elif failure == 'float_count': changed_audit['pdf_rgb_derivation']['transformed_masks'] = 1.0
+            elif failure == 'unrequested': del changed_config['pdf_rgb_derivation']
+            elif failure == 'raw_as_canonical': changed_audit['native_pdf_preview']['input_pdf'] = result['evidence']['native_pdf']
+            else:
+                derived = Path(result['evidence']['native_pdf_derived']['path'])
+                receipt_path = Path(result['evidence']['native_pdf_rgb_receipt']['path'])
+                receipt = json.loads(receipt_path.read_text())
+                with pymupdf.open(derived) as pdf:
+                    parent = receipt['transformed_masks'][0]['parents'][0]['xref']
+                    data = bytearray(pdf.xref_stream(parent)); data[6] ^= 1
+                    pdf.update_stream(parent, bytes(data)); pdf.save(derived.with_suffix('.changed.pdf'))
+                derived.write_bytes(derived.with_suffix('.changed.pdf').read_bytes())
+                receipt['derived_pdf'] = native.binding(derived); receipt_path.write_text(json.dumps(receipt))
+                changed_audit['evidence']['native_pdf_derived'] = native.binding(derived)
+                changed_audit['evidence']['native_pdf_rgb_receipt'] = native.binding(receipt_path)
+                changed['pdf_rgb_derivation']['derived_pdf'] = native.binding(derived)
+                changed['pdf_rgb_derivation']['receipt'] = native.binding(receipt_path)
+            audit.write_text(json.dumps(changed_audit)); changed['render_audit_sha256'] = native.binding(audit)['sha256']
+            delivery_path.write_text(json.dumps(changed)); config.write_text(json.dumps(changed_config))
+            with self.subTest(failure=failure), self.assertRaises(ValueError): prepare_output_review(self.run)
 
     def test_pdf_preview_review_rejects_rebound_pixels_receipt_and_backend(self):
         from figure_rebuild.output_review import _preview_provenance

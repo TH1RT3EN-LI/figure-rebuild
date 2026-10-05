@@ -96,6 +96,7 @@ def _preview_provenance(run, config, paths):
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
         _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
         _require('native_pdf_preview_version' not in config, 'Native PDF preview requires preview provenance')
+        _require('pdf_rgb_derivation' not in config, 'PDF RGB derivation requires preview provenance')
         if (run / 'render-audit.json').exists():
             legacy_audit = _json_record(run / 'render-audit.json')
             _require('artifact_stroke_preview' not in legacy_audit and
@@ -107,13 +108,17 @@ def _preview_provenance(run, config, paths):
             _require('native_pdf_preview' not in legacy_audit and
                      not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt'
                              for k in legacy_audit.get('evidence', {})), 'Unrequested native PDF preview')
+            _require('pdf_rgb_derivation' not in legacy_audit and
+                     'native_pdf_rgb_receipt' not in legacy_audit.get('evidence', {}),
+                     'Unrequested PDF RGB derivation')
         return None  # Keep immutable legacy v1 review bindings unchanged.
-    from .native_preview import validate_backend, validate_pdf_alpha_policy
+    from .native_preview import validate_backend, validate_pdf_alpha_policy, validate_pdf_rgb_policy
     _require(type(config.get('preview_provenance_version')) is int and
              config['preview_provenance_version'] == 1, 'Unsupported preview provenance version')
     backend = validate_backend(config.get('preview_backend'))
     alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), backend)
-    if backend != 'libreoffice-pdf':
+    rgb_policy = validate_pdf_rgb_policy(config.get('pdf_rgb_derivation'), backend)
+    if backend not in ('libreoffice-pdf', 'libreoffice-pdf-rgb'):
         _require('native_pdf_preview_version' not in config, 'Native PDF preview requires its explicit backend')
     audit_path = _inside(run, run / 'render-audit.json')
     audit = _json_record(audit_path)
@@ -159,8 +164,12 @@ def _preview_provenance(run, config, paths):
         paths[role] = path
     if alpha_policy is None:
         _require('pdf_alpha_derivation' not in audit and
-                 not {'native_pdf_derived', 'native_pdf_alpha_receipt'} & set(evidence),
+                 'native_pdf_alpha_receipt' not in evidence and
+                 (rgb_policy is not None or 'native_pdf_derived' not in evidence),
                  'PDF derivation was not requested in the immutable config')
+    if rgb_policy is None:
+        _require('pdf_rgb_derivation' not in audit and 'native_pdf_rgb_receipt' not in evidence,
+                 'PDF RGB derivation was not requested in the immutable config')
     if backend == 'artifact':
         _require('native_pdf_preview' not in audit and
                  not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt' for k in evidence),
@@ -211,12 +220,16 @@ def _preview_provenance(run, config, paths):
                  'image_preview_definition' not in evidence, 'Native picture preview adapter requires Artifact')
         _require('artifact_stroke_preview_version' not in config and 'artifact_stroke_preview' not in audit and
                  'stroke_preview_definition' not in evidence, 'Native stroke preview adapter requires Artifact')
-        pdf_preview = backend == 'libreoffice-pdf'
+        pdf_preview = backend in ('libreoffice-pdf', 'libreoffice-pdf-rgb')
         if pdf_preview:
-            _require(type(config.get('native_pdf_preview_version')) is int and config['native_pdf_preview_version'] == 1 and
+            expected_identity = ({'renderer_backend': 'headless_pdf_zero_alpha_rgb_mupdf',
+                                  'raw_preview_format': 'derived_native_pdf_MuPDF',
+                                  'pdf_role': 'raw_font_and_image_evidence_with_separate_derived_preview'} if rgb_policy else
+                                 {'renderer_backend': 'headless_pdf_mupdf', 'raw_preview_format': 'native_pdf_MuPDF',
+                                  'pdf_role': 'canonical_preview_and_font_and_image_evidence'})
+            _require(type(config.get('native_pdf_preview_version')) is int and config['native_pdf_preview_version'] == (2 if rgb_policy else 1) and
                      not alpha_policy and audit.get('renderer') == 'LibreOffice Impress + MuPDF' and
-                     audit.get('renderer_backend') == 'headless_pdf_mupdf' and audit.get('raw_preview_format') == 'native_pdf_MuPDF' and
-                     audit.get('pdf_role') == 'canonical_preview_and_font_and_image_evidence' and audit.get('rasterizer') == 'PyMuPDF',
+                     all(audit.get(k) == v for k, v in expected_identity.items()) and audit.get('rasterizer') == 'PyMuPDF',
                      'Invalid native PDF preview renderer identity')
             _require({'native_pdf_preview_receipt', 'native_pdf_png_1x', 'native_pdf_png_2x', 'native_pdf_png_4x'} <= set(evidence),
                      'Native PDF preview evidence is incomplete')
@@ -304,9 +317,29 @@ def _preview_provenance(run, config, paths):
                      'Native PDF image encodings or resolutions disagree with render audit')
             actual_fonts = sorted({item[3] for item in pdf[0].get_fonts(full=True)})
             _require(native.get('pdf_fonts') == actual_fonts, 'Native PDF font declarations disagree with actual resources')
+        preview_pdf = paths['native_pdf']
+        if rgb_policy:
+            from .pdf_zero_alpha_rgb import verify_zero_alpha_rgb_pdf
+            _require({'native_pdf_derived', 'native_pdf_rgb_receipt'} <= set(evidence), 'Derived RGB PDF evidence is incomplete')
+            _require(paths['native_pdf_derived'] == directory / 'derived-pdf/zero-alpha-rgb-white.pdf' and
+                     paths['native_pdf_rgb_receipt'] == directory / 'derived-pdf/zero-alpha-rgb-receipt.json',
+                     'Invalid derived RGB PDF paths')
+            rgb_receipt = _json_record(paths['native_pdf_rgb_receipt'], strict_numbers_and_keys=True)
+            verify_zero_alpha_rgb_pdf(paths['native_pdf'], paths['native_pdf_derived'], rgb_receipt)
+            expected_derivation = {
+                'policy': rgb_policy, 'source_role': 'native_pdf',
+                'derived_role': 'native_pdf_derived', 'receipt_role': 'native_pdf_rgb_receipt',
+                'transformed_masks': len(rgb_receipt['transformed_masks']),
+                'retained_masks': len(rgb_receipt['retained_masks']),
+                'raw_export_replaced': False, 'canonical_previews_derived_from_pdf': True,
+                'alpha_and_positive_alpha_rgb_samples_unchanged': True,
+                'rgb_alpha_filtering_error_bound_proved': False}
+            _require(_same_json(audit.get('pdf_rgb_derivation'), expected_derivation),
+                     'Derived RGB PDF declaration disagrees with sample replay')
+            preview_pdf = paths['native_pdf_derived']
         if pdf_preview:
             from .native_pdf_preview import sample_pdf_previews
-            outputs, receipt = sample_pdf_previews(paths['native_pdf'], deck['slide_size_emu'])
+            outputs, receipt = sample_pdf_previews(preview_pdf, deck['slide_size_emu'])
             _require(_same_json(audit.get('native_pdf_preview'), receipt) and
                      _same_json(_json_record(paths['native_pdf_preview_receipt']), receipt) and
                      paths['native_pdf_preview_receipt'] == directory / 'pdf-preview-receipt.json',
@@ -827,6 +860,15 @@ def _build_bindings(run_dir):
     else:
         _require('pdf_alpha_derivation' not in delivery,
                  'Delivery receipt contains an unrequested PDF derivation')
+    rgb = preview_audit.get('pdf_rgb_derivation') if preview_audit is not None else None
+    if rgb is not None:
+        _require(_same_json(delivery.get('pdf_rgb_derivation'), {
+            **rgb, 'original_pdf': bindings['native_pdf'],
+            'derived_pdf': bindings['native_pdf_derived'], 'receipt': bindings['native_pdf_rgb_receipt']}),
+            'Delivery receipt disagrees with verified PDF RGB derivation')
+    else:
+        _require('pdf_rgb_derivation' not in delivery,
+                 'Delivery receipt contains an unrequested PDF RGB derivation')
     if diagnostic_coverage is not None:
         _require(_same_json(delivery.get('diagnostic_coverage'), diagnostic_coverage),
                  'Delivery receipt disagrees with limited diagnostic coverage')
