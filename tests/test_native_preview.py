@@ -7,6 +7,7 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from xml.etree import ElementTree as ET
 
 from PIL import Image
 from figure_rebuild import native_preview as native
@@ -114,6 +115,15 @@ class NativeRenderTests(unittest.TestCase):
                                 if self.mode == 'partial_inverse':
                                     document.update_stream(mask, bytes(255 - a for a in rgba.getchannel('A').tobytes()))
                                     document.xref_set_key(mask, 'Decode', '[1 0]')
+                            if self.mode == 'native_photo':
+                                parent = page.insert_image((9.2, 15.07, 32.04, 34.36), stream=self.photo_encoded, keep_proportion=False)
+                                document.update_stream(parent, self.photo_image.tobytes())
+                                document.xref_set_key(parent, 'ColorSpace', '/DeviceRGB')
+                                document.xref_set_key(parent, 'DecodeParms', 'null')
+                                resources = int(document.xref_get_key(page.xref, 'Resources')[1].split()[0])
+                                document.xref_set_key(resources, 'XObject', f'<< /Im1 {parent} 0 R >>')
+                                data = page.read_contents().replace(b'/fzImg0', b'/Im1')
+                                contents = page.get_contents(); page.set_contents(contents[0]); document.update_stream(contents[0], data)
                         document.save(self.run / 'native-preview/pdf/reconstruction.pdf')
                 if self.mode == 'mutate':
                     self.pptx.write_bytes(b'changed final PPTX')
@@ -131,6 +141,26 @@ class NativeRenderTests(unittest.TestCase):
     def render(self):
         with patch.object(native, '_execute', side_effect=self.command):
             return native.render(self.config)
+
+    def photo_fixture(self):
+        from figure_rebuild.artifact_image_preview import NS
+        self.mode = 'native_photo'
+        self.photo_image = Image.new('RGB', (16, 16), (20, 80, 140))
+        for x in range(16):
+            for y in range(16): self.photo_image.putpixel((x, y), (20+x*8, 80+y*4, 140+x+y))
+        buffer = io.BytesIO(); self.photo_image.save(buffer, format='PNG'); self.photo_encoded = buffer.getvalue()
+        files = fixture([(1001, 'ppt/slides/slide1.xml', slide([]))], size=(200 * 9525, 100 * 9525))
+        root = ET.fromstring(files['ppt/slides/slide1.xml'])
+        pic = ET.fromstring(f'''<p:pic xmlns:p="{NS['p']}" xmlns:a="{NS['a']}" xmlns:r="{NS['r']}">
+            <p:nvPicPr><p:cNvPr id="2" name="photo"/><p:cNvPicPr/><p:nvPr/></p:nvPicPr>
+            <p:blipFill><a:blip r:embed="RPhoto"/><a:stretch/></p:blipFill>
+            <p:spPr><a:xfrm><a:off x="116681" y="191691"/><a:ext cx="290513" cy="245269"/></a:xfrm>
+            <a:prstGeom prst="rect"><a:avLst/></a:prstGeom></p:spPr></p:pic>''')
+        root.find('p:cSld/p:spTree', NS).append(pic)
+        files['ppt/slides/slide1.xml'] = ET.tostring(root)
+        files['ppt/slides/_rels/slide1.xml.rels'] = f'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="RPhoto" Type="{NS["r"]}/image" Target="../media/photo.png"/></Relationships>'.encode()
+        files['ppt/media/photo.png'] = self.photo_encoded
+        write_archive(self.pptx, files)
 
     def test_final_ppt_pdf_font_and_all_scales_are_bound_without_acceptance(self):
         before = self.pptx.read_bytes()
@@ -215,10 +245,20 @@ class NativeRenderTests(unittest.TestCase):
             execute.assert_not_called(); self.assertFalse((self.run / 'native-preview').exists())
 
     def test_rgb_pdf_output_review_replays_samples_and_binds_delivery(self):
+        self.exercise_rgb_pdf_output_review()
+
+    def test_photo_pdf_output_review_replays_both_derivations_and_binds_delivery(self):
+        self.exercise_rgb_pdf_output_review(photo=True)
+
+    def exercise_rgb_pdf_output_review(self, photo=False):
         from figure_rebuild.output_review import prepare_output_review
         self.mode = 'partial_inverse'
         self.config.update(preview_backend='libreoffice-pdf-rgb', native_pdf_preview_version=2,
                            pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1')
+        if photo:
+            self.photo_fixture()
+            self.config.update(preview_backend='libreoffice-pdf-photos', native_pdf_preview_version=3,
+                               pdf_native_photo_placement='native-opaque-photo-matrix-v1')
         result = self.render(); previews = {}
         for scale in (1, 2, 4):
             previews[f'preview_{scale}x'] = {**native.binding(self.run / f'preview-{scale}x.png'),
@@ -229,7 +269,7 @@ class NativeRenderTests(unittest.TestCase):
         previews['preview_smooth_1x'] = {**native.binding(smooth), 'width': 200, 'height': 100, 'scale': 1,
             'derivation': {'source_role': 'preview_4x', 'source_sha256': previews['preview_4x']['sha256'],
                            'kernel': 'lanczos3', 'target_size': [200, 100], 'is_raw_preview': False}}
-        result.update(schema_version=1, preview_backend='libreoffice-pdf-rgb', input_pptx=native.binding(self.pptx), previews=previews)
+        result.update(schema_version=1, preview_backend=self.config['preview_backend'], input_pptx=native.binding(self.pptx), previews=previews)
         def node_numbers(value):
             if type(value) is float and value.is_integer(): return int(value)
             if isinstance(value, dict): return {k:node_numbers(v) for k,v in value.items()}
@@ -248,37 +288,72 @@ class NativeRenderTests(unittest.TestCase):
                            asset_root=str(assets), output=str(delivered))
         config = self.run / 'build-config.json'; config.write_text(json.dumps(self.config))
         delivery = {'output': str(delivered), 'sha256': native.binding(delivered)['sha256'],
-                    'source_sha256': native.binding(source)['sha256'], 'preview_backend': 'libreoffice-pdf-rgb',
+                    'source_sha256': native.binding(source)['sha256'], 'preview_backend': self.config['preview_backend'],
                     'render_audit_sha256': native.binding(audit)['sha256'],
                     'pdf_rgb_derivation': {**result['pdf_rgb_derivation'],
                         'original_pdf': result['evidence']['native_pdf'], 'derived_pdf': result['evidence']['native_pdf_derived'],
                         'receipt': result['evidence']['native_pdf_rgb_receipt']}}
+        if photo:
+            self.assertEqual(result['pdf_native_photo_placement']['transformed_photos'], 1)
+            delivery['pdf_native_photo_placement'] = {**result['pdf_native_photo_placement'],
+                'input_pdf':result['evidence']['native_pdf_derived'], 'derived_pdf':result['evidence']['native_pdf_photo_derived'],
+                'receipt':result['evidence']['native_pdf_photo_receipt']}
         delivery_path = self.run / 'delivery.json'; delivery_path.write_text(json.dumps(delivery))
         record = prepare_output_review(self.run); self.assertIn('native_pdf_rgb_receipt', record['bindings'])
-        for failure in ('missing_delivery', 'wrong_derived_path', 'float_count', 'unrequested', 'raw_as_canonical', 'rebound_rgb'):
+        failures = ('missing_delivery', 'wrong_derived_path', 'float_count', 'unrequested', 'raw_as_canonical', 'rebound_rgb')
+        if photo: failures += ('missing_photo_delivery', 'wrong_photo_input', 'float_photo_count')
+        for failure in failures:
             changed = copy.deepcopy(delivery); changed_audit = copy.deepcopy(result); changed_config = copy.deepcopy(self.config)
             if failure == 'missing_delivery': del changed['pdf_rgb_derivation']
             elif failure == 'wrong_derived_path': changed['pdf_rgb_derivation']['derived_pdf'] = changed['pdf_rgb_derivation']['original_pdf']
             elif failure == 'float_count': changed_audit['pdf_rgb_derivation']['transformed_masks'] = 1.0
             elif failure == 'unrequested': del changed_config['pdf_rgb_derivation']
             elif failure == 'raw_as_canonical': changed_audit['native_pdf_preview']['input_pdf'] = result['evidence']['native_pdf']
+            elif failure == 'missing_photo_delivery': del changed['pdf_native_photo_placement']
+            elif failure == 'wrong_photo_input': changed['pdf_native_photo_placement']['input_pdf'] = result['evidence']['native_pdf']
+            elif failure == 'float_photo_count': changed_audit['pdf_native_photo_placement']['transformed_photos'] = 1.0
             else:
-                derived = Path(result['evidence']['native_pdf_derived']['path'])
-                receipt_path = Path(result['evidence']['native_pdf_rgb_receipt']['path'])
+                derived_role = 'native_pdf_photo_derived' if photo else 'native_pdf_derived'
+                receipt_role = 'native_pdf_photo_receipt' if photo else 'native_pdf_rgb_receipt'
+                declaration = 'pdf_native_photo_placement' if photo else 'pdf_rgb_derivation'
+                derived = Path(result['evidence'][derived_role]['path'])
+                receipt_path = Path(result['evidence'][receipt_role]['path'])
                 receipt = json.loads(receipt_path.read_text())
                 with pymupdf.open(derived) as pdf:
-                    parent = receipt['transformed_masks'][0]['parents'][0]['xref']
+                    parent = receipt['transformed_photos'][0]['PDF_image_xref'] if photo else receipt['transformed_masks'][0]['parents'][0]['xref']
                     data = bytearray(pdf.xref_stream(parent)); data[6] ^= 1
                     pdf.update_stream(parent, bytes(data)); pdf.save(derived.with_suffix('.changed.pdf'))
                 derived.write_bytes(derived.with_suffix('.changed.pdf').read_bytes())
                 receipt['derived_pdf'] = native.binding(derived); receipt_path.write_text(json.dumps(receipt))
-                changed_audit['evidence']['native_pdf_derived'] = native.binding(derived)
-                changed_audit['evidence']['native_pdf_rgb_receipt'] = native.binding(receipt_path)
-                changed['pdf_rgb_derivation']['derived_pdf'] = native.binding(derived)
-                changed['pdf_rgb_derivation']['receipt'] = native.binding(receipt_path)
+                changed_audit['evidence'][derived_role] = native.binding(derived)
+                changed_audit['evidence'][receipt_role] = native.binding(receipt_path)
+                changed[declaration]['derived_pdf'] = native.binding(derived)
+                changed[declaration]['receipt'] = native.binding(receipt_path)
             audit.write_text(json.dumps(changed_audit)); changed['render_audit_sha256'] = native.binding(audit)['sha256']
             delivery_path.write_text(json.dumps(changed)); config.write_text(json.dumps(changed_config))
             with self.subTest(failure=failure), self.assertRaises(ValueError): prepare_output_review(self.run)
+
+    def test_photo_backend_requires_both_policies_and_distinct_version_before_exports(self):
+        for changes in ({'native_pdf_preview_version':2}, {'native_pdf_preview_version':True},
+                        {'pdf_native_photo_placement':None}, {'pdf_native_photo_placement':'auto'},
+                        {'pdf_rgb_derivation':None}, {'preview_backend':'libreoffice-pdf-rgb'}):
+            config=dict(self.config,preview_backend='libreoffice-pdf-photos',native_pdf_preview_version=3,
+                        pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1',pdf_native_photo_placement='native-opaque-photo-matrix-v1')
+            config.update(changes)
+            with self.subTest(changes=changes),patch.object(native,'_execute')as execute,self.assertRaises(ValueError):native.render(config)
+            execute.assert_not_called();self.assertFalse((self.run/'native-preview').exists())
+
+    def test_photo_backend_preserves_full_PPT_and_exact_pixels_in_a_separate_PDF(self):
+        self.photo_fixture();before=self.pptx.read_bytes()
+        self.config.update(preview_backend='libreoffice-pdf-photos',native_pdf_preview_version=3,
+                           pdf_rgb_derivation='pdf-zero-alpha-rgb-white-v1',pdf_native_photo_placement='native-opaque-photo-matrix-v1')
+        result=self.render();self.assertEqual(self.pptx.read_bytes(),before)
+        self.assertEqual(result['renderer_backend'],'headless_pdf_zero_alpha_rgb_native_photos_mupdf')
+        self.assertEqual(result['pdf_native_photo_placement']['transformed_photos'],1)
+        from figure_rebuild.native_pdf_preview import sample_pdf_previews
+        outputs,receipt=sample_pdf_previews(result['evidence']['native_pdf_photo_derived']['path'],{'cx':200*9525,'cy':100*9525})
+        self.assertEqual(result['native_pdf_preview'],receipt)
+        for scale in (1,2,4):self.assertEqual((self.run/f'preview-{scale}x.png').read_bytes(),outputs[scale])
 
     def test_pdf_preview_review_rejects_rebound_pixels_receipt_and_backend(self):
         from figure_rebuild.output_review import _preview_provenance

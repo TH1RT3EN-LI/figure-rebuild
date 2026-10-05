@@ -483,7 +483,7 @@ def build(a):
     image_preview = getattr(a, 'artifact_image_preview', False)
     if image_preview and (preview_backend != 'artifact' or a.base):
         raise ValueError('Native picture preview requires a standalone Artifact build')
-    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb') and a.base:
+    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos') and a.base:
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     if any(o.get('style', {}).get('stroke_hairline') is True for o in data['objects']) and preview_backend != 'libreoffice-pdf':
         raise ValueError('Explicit device hairlines require the libreoffice-pdf preview backend')
@@ -497,7 +497,7 @@ def build(a):
             raise ValueError('Native picture preview dependency check timed out') from exc
         except subprocess.CalledProcessError as exc:
             raise ValueError('Native picture preview dependency check failed: ' + (exc.stderr or '').strip()) from exc
-    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb'):
+    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
         # Probe the configured interpreter, not the interpreter running this CLI.
         with tempfile.TemporaryDirectory(prefix='figure-rebuild-native-check-') as temp:
             native_config = Path(temp) / 'runtime.json'; save(native_config, rt)
@@ -551,10 +551,14 @@ def build(a):
             config['artifact_image_preview_version'] = 2
         if preview_backend == 'libreoffice-pdf':
             config['native_pdf_preview_version'] = 1
-        if preview_backend == 'libreoffice-pdf-rgb':
+        if preview_backend in ('libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
             from .pdf_zero_alpha_rgb import POLICY
             config['native_pdf_preview_version'] = 2
             config['pdf_rgb_derivation'] = POLICY
+        if preview_backend == 'libreoffice-pdf-photos':
+            from .pdf_native_photos import POLICY
+            config['native_pdf_preview_version'] = 3
+            config['pdf_native_photo_placement'] = POLICY
         if pdf_alpha_policy:
             config['pdf_alpha_derivation'] = pdf_alpha_policy
         if 'source_canvas_clip' in data:
@@ -626,7 +630,7 @@ def main():
         print(json.dumps(report, ensure_ascii=False))
     c.set_defaults(func=validate_reviewed)
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
-    c.add_argument('--preview-backend', choices=['artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb'], default='artifact', help='Renderer for the exact finalized PPTX; libreoffice-pdf samples the raw native PDF; libreoffice-pdf-rgb samples a separate PDF with RGB changed only at zero alpha; all native exports are retained; LibreOffice backends support standalone slides only')
+    c.add_argument('--preview-backend', choices=['artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'], default='artifact', help='Renderer for the exact finalized PPTX; libreoffice-pdf samples the raw PDF; libreoffice-pdf-rgb derives zero-alpha RGB; libreoffice-pdf-photos also restores eligible opaque photo coordinates on fontless slides; all native exports are retained; standalone LibreOffice slides only')
     c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
     c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)

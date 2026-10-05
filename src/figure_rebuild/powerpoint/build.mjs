@@ -17,14 +17,16 @@ import {applyImagePreview} from './image_preview.mjs';
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
 const previewBackend=config.preview_backend??'artifact';
-if(!['artifact','libreoffice','libreoffice-pdf','libreoffice-pdf-rgb'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
+if(!['artifact','libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
-if(previewBackend==='libreoffice-pdf-rgb' ? config.native_pdf_preview_version!==2 : previewBackend==='libreoffice-pdf' ? config.native_pdf_preview_version!==1 : config.native_pdf_preview_version!==undefined)throw Error('Unsupported native PDF preview version or backend');
-if(previewBackend==='libreoffice-pdf-rgb' ? config.pdf_rgb_derivation!=='pdf-zero-alpha-rgb-white-v1' : config.pdf_rgb_derivation!==undefined)throw Error('Unsupported PDF RGB derivation policy or backend');
+const nativePdfVersion={'libreoffice-pdf':1,'libreoffice-pdf-rgb':2,'libreoffice-pdf-photos':3}[previewBackend];
+if(config.native_pdf_preview_version!==nativePdfVersion)throw Error('Unsupported native PDF preview version or backend');
+if(['libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend) ? config.pdf_rgb_derivation!=='pdf-zero-alpha-rgb-white-v1' : config.pdf_rgb_derivation!==undefined)throw Error('Unsupported PDF RGB derivation policy or backend');
+if(previewBackend==='libreoffice-pdf-photos' ? config.pdf_native_photo_placement!=='native-opaque-photo-matrix-v1' : config.pdf_native_photo_placement!==undefined)throw Error('Unsupported native photo placement policy or backend');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
 if(config.artifact_image_preview_version!==undefined&&(![1,2].includes(config.artifact_image_preview_version)||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
-if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb'].includes(previewBackend)&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
+if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend)&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
@@ -180,7 +182,7 @@ if(config.diagnostic_provenance_version===1){
  }
 }
 let previewAudit;
-if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb'].includes(previewBackend)){
+if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend)){
  previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
  previewAudit.preview_limitations.push(...previewLimitations.filter(item=>['fractional_percent_multiline_spacing_requires_application_verification','character_spacing_requires_application_verification'].includes(item.code)));
 }else{
@@ -268,6 +270,7 @@ const editability=JSON.parse(await fs.readFile(path.join(run,'editability.json')
 const delivery={output,sha256:createHash('sha256').update(await fs.readFile(checkedOutput)).digest('hex'),source_sha256:manifest.source.sha256,source_preserved:true,recognition_provider:manifest.recognition.provider,native_path_count:editability.path_count,native_text_count:editability.text_count,native_group_count:editability.native_groups.length,raster_count:editability.raster_count,formula_count:editability.formula_count??0,svg_formula_count:editability.svg_formula_count??0,native_connector_count:editability.native_connectors?.length??0,visual_acceptance:'pending',application_playback_verified:false,external_recognition_api_called:false};
 if(previewAudit.pdf_alpha_derivation)delivery.pdf_alpha_derivation={...previewAudit.pdf_alpha_derivation,original_pdf:previewAudit.evidence.native_pdf,derived_pdf:previewAudit.evidence.native_pdf_derived,receipt:previewAudit.evidence.native_pdf_alpha_receipt};
 if(previewAudit.pdf_rgb_derivation)delivery.pdf_rgb_derivation={...previewAudit.pdf_rgb_derivation,original_pdf:previewAudit.evidence.native_pdf,derived_pdf:previewAudit.evidence.native_pdf_derived,receipt:previewAudit.evidence.native_pdf_rgb_receipt};
+if(previewAudit.pdf_native_photo_placement)delivery.pdf_native_photo_placement={...previewAudit.pdf_native_photo_placement,input_pdf:previewAudit.evidence.native_pdf_derived,derived_pdf:previewAudit.evidence.native_pdf_photo_derived,receipt:previewAudit.evidence.native_pdf_photo_receipt};
 delivery.preview_backend=previewBackend;
 delivery.render_audit_sha256=(await bindFile(renderAuditPath)).sha256;
 if(diagnosticCoverage)delivery.diagnostic_coverage=diagnosticCoverage;
