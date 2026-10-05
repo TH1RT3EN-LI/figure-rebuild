@@ -162,14 +162,14 @@ def _preview_provenance(run, config, paths):
             _require('artifact_image_preview' not in audit and 'image_preview_definition' not in evidence,
                      'Unrequested native picture preview adapter')
         else:
-            _require(type(image_version) is int and image_version == 1 and not config.get('base'),
+            _require(type(image_version) is int and image_version in (1, 2) and not config.get('base'),
                      'Unsupported native picture preview provenance')
             _require('image_preview_definition' in evidence, 'Native picture preview definition is missing')
             from .artifact_image_preview import prepare_image_preview
             definition = _json_record(paths['image_preview_definition'], strict_numbers_and_keys=True)
-            replay = prepare_image_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True))
+            replay = prepare_image_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True), version=image_version)
             _require(_same_json(definition, replay), 'Native picture preview definition disagrees with actual delivered PPTX')
-            expected_images = {'schema_version': 1, 'policy': replay['policy'], 'preview_only': True,
+            expected_images = {'schema_version': image_version, 'policy': replay['policy'], 'preview_only': True,
                                'native_delivery_modified': False, 'reference_pixels_used': False,
                                'renderer': replay['renderer'], 'renderer_version': replay['renderer_version'],
                                'mupdf_version': replay['mupdf_version'],

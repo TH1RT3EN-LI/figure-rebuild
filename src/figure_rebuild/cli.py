@@ -546,7 +546,7 @@ def build(a):
         if preview_backend == 'artifact' and not base_config:
             config['artifact_stroke_preview_version'] = 1
         if image_preview:
-            config['artifact_image_preview_version'] = 1
+            config['artifact_image_preview_version'] = 2
         if pdf_alpha_policy:
             config['pdf_alpha_derivation'] = pdf_alpha_policy
         if 'source_canvas_clip' in data:

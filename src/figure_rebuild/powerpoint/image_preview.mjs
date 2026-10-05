@@ -4,7 +4,7 @@
 import {createHash} from 'node:crypto';
 const digest = data => createHash('sha256').update(data).digest('hex');
 export function applyImagePreview(slide, definition, scale) {
-  if (definition?.schema_version !== 1 || definition.policy !== 'delivered-native-picture-mupdf-device-grid-v1' ||
+  if (![1,2].includes(definition?.schema_version) || definition.policy !== `delivered-native-picture-mupdf-device-grid-v${definition.schema_version}` ||
       definition.preview_only !== true || definition.native_delivery_modified !== false || definition.reference_pixels_used !== false ||
       ![1,2,4].includes(scale) || !Array.isArray(definition.objects) || !Array.isArray(definition.unsupported) ||
       !Array.isArray(definition.paint_order)) throw Error('Invalid native picture preview definition');

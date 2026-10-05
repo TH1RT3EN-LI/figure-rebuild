@@ -21,7 +21,7 @@ if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown pre
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
-if(config.artifact_image_preview_version!==undefined&&(config.artifact_image_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
+if(config.artifact_image_preview_version!==undefined&&(![1,2].includes(config.artifact_image_preview_version)||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
 if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
@@ -189,9 +189,9 @@ if(previewBackend==='libreoffice'){
  }
  let nativeStrokePreview,strokeDefinition,strokeData,imageData,imageDefinition;
  const imageApplications=[];
- if(config.artifact_image_preview_version===1){
+ if(config.artifact_image_preview_version!==undefined){
   const file=path.join(run,'artifact-image-preview.json');
-  runPython('artifact_image_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file],{stdio:'pipe'});
+  runPython('artifact_image_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file,'--version',String(config.artifact_image_preview_version)],{stdio:'pipe'});
   imageData=JSON.parse(await fs.readFile(file,'utf8'));imageDefinition=await bindFile(file);
  }
  if(config.artifact_stroke_preview_version===1){
@@ -221,7 +221,7 @@ if(previewBackend==='libreoffice'){
  previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,image_sampling:{...imageSamplingAudit,scope:'artifact_process_through_raw_preview_exports'},svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
  if(nativeStrokePreview){previewAudit.artifact_stroke_preview=nativeStrokePreview;previewAudit.evidence.stroke_preview_definition=strokeDefinition;}
  if(imageData){
-  previewAudit.artifact_image_preview={schema_version:1,policy:imageData.policy,preview_only:true,native_delivery_modified:false,reference_pixels_used:false,
+  previewAudit.artifact_image_preview={schema_version:imageData.schema_version,policy:imageData.policy,preview_only:true,native_delivery_modified:false,reference_pixels_used:false,
    renderer:imageData.renderer,renderer_version:imageData.renderer_version,mupdf_version:imageData.mupdf_version,applications:imageApplications,
    unsupported:imageData.unsupported,source_pixel_equivalence:false,application_playback_verified:false};
   previewAudit.evidence.image_preview_definition=imageDefinition;

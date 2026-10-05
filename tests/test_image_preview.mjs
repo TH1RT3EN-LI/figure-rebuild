@@ -23,6 +23,13 @@ test('actual native picture replacement retains front occlusion and explicit sca
   assert.equal(slide.elements.items[1],front); assert.equal(receipt.scale,1);
   assert.equal(receipt.complete_mixed_paint_order_preserved,true);
 });
+test('version2 transient window supports its own policy and rejects mixed provenance',()=>{
+  const d=definition();d.schema_version=2;d.policy='delivered-native-picture-mupdf-device-grid-v2';
+  d.objects[0].native_source_crop_units={l:20000,t:10000,r:20000,b:10000};
+  assert.deepEqual(applyImagePreview(fake(),d,1).applied_object_ids,['picture']);
+  d.policy='delivered-native-picture-mupdf-device-grid-v1';const s=fake(),original=[...s.elements.items];
+  assert.throws(()=>applyImagePreview(s,d,1),/Invalid/);assert.deepEqual(s.elements.items,original);
+});
 test('changed native identity, position, order, PNG or target grid fails before mutation',()=>{
   for(const change of [d=>d.paint_order.reverse(),d=>d.objects[0].id='missing',
     d=>d.objects[0].native_position.left+=.01,d=>d.objects[0].previews[0].png_sha256='0'.repeat(64),
@@ -47,7 +54,9 @@ test('actual Artifact CPU copies the sampled grid and preserves alpha and front 
     const p=Presentation.create({slideSize:{width:40,height:30}}),s=p.slides.add();s.background.fill='#ffffff';
     const image=s.images.add({blob:new Uint8Array(original),contentType:'image/png',position:{...position},geometry:'rect'});image.name='picture';
     s.shapes.add({name:'front',geometry:'rect',position:{left:6,top:5,width:2,height:2},fill:'#0000ff',line:{fill:'none',width:0}});
-    const d=definition();d.objects[0].previews[0]={scale:1,width:10,height:10,position:{...position},png_base64:sampled.toString('base64'),png_sha256:hash(sampled)};
+    const d=definition();d.schema_version=2;d.policy='delivered-native-picture-mupdf-device-grid-v2';
+    d.objects[0].native_source_crop_units={l:21234,t:12345,r:20123,b:15432};
+    d.objects[0].previews[0]={scale:1,width:10,height:10,position:{...position},png_base64:sampled.toString('base64'),png_sha256:hash(sampled)};
     const snapshot=Buffer.from(original);applyImagePreview(s,d,1);
     const pixels=await sharp(new Uint8Array(await(await p.export({slide:s,format:'png',scale:1})).arrayBuffer())).ensureAlpha().raw().toBuffer({resolveWithObject:true});
     const pixel=(x,y)=>[...pixels.data.subarray((y*pixels.info.width+x)*4,(y*pixels.info.width+x)*4+4)];

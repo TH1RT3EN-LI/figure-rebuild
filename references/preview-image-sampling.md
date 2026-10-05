@@ -69,7 +69,7 @@ JSON, total interpreter memory or every external renderer limit.
 ## Explicit native picture device-grid previews
 
 `build --artifact-image-preview` opts a standalone Artifact build into
-`delivered-native-picture-mupdf-device-grid-v1`. The adapter reads the actual
+`delivered-native-picture-mupdf-device-grid-v2`. The adapter reads the actual
 validated PPT's embedded PNG/JPEG bytes and integer EMU picture coordinates.
 MuPDF samples each supported picture into a transparent device-aligned frame
 at 1x, 2x and 4x; Artifact renders the complete mixed scene with those transient
@@ -79,8 +79,20 @@ text and the existing stroke preview adapter. The delivered PPT is not
 re-exported from this transient presentation. References never supply pixels.
 Ordinary builds retain the existing sampling policy.
 
-Support is restricted to plain top-level rectangular pictures with zero crop,
-rotation and reflection, no painted border, effects or embedded color profile.
+Support is restricted to plain top-level rectangular pictures with no
+rotation or reflection, painted border, effects or embedded color profile.
+Version 2 accepts nonnegative source-crop percentages that leave a positive
+internal rectangular window. It maps the complete actual media to the native
+visible frame and clips at that frame's fractional device coordinates; it
+never rounds the crop to an integer media pixel box or encodes a cropped
+replacement into the delivered PPT. The complete media transform is bounded
+before allocation in addition to the visible render surface. Negative or
+empty windows and destination insets remain unsupported. Existing immutable
+version 1 builds retain their zero-crop procedure and independently replayable
+definitions; the public helper defaults to version 1 unless explicitly selected.
+Filtering near a crop edge can include neighboring stored samples before
+clipping, as in PDF image rendering; source-window support is not a proof
+of independence from excluded sample colors or of identical edge pixels.
 Unsupported pictures retain ordinary Artifact sampling and an explicit audit
 limitation. Grouped slides fail this opt-in request. Package, decoded-image,
 device-grid and combined rendering budgets are checked before allocation.

@@ -79,29 +79,43 @@ class OutputReviewChecks(unittest.TestCase):
                 'region': 'Top-right feedback edge',
                 'artifacts': ['source', 'preview_2x']}
 
-    def add_image_preview_provenance(self):
+    def add_image_preview_provenance(self, version=1, picture_crop=None):
         from figure_rebuild.artifact_image_preview import prepare_image_preview
         from figure_rebuild.artifact_image_preview import NS
         pptx = self.run / 'validated-output/reconstruction.pptx'
+        pic, rel, media = '', '', None
+        if picture_crop:
+            from PIL import Image
+            from io import BytesIO
+            image = BytesIO(); Image.new('RGB', (20,20), (0,255,0)).save(image, format='PNG'); media = image.getvalue()
+            pic = ('<p:pic><p:nvPicPr><p:cNvPr id="2" name="photo"/></p:nvPicPr>'
+                   '<p:blipFill><a:blip r:embed="image"/><a:srcRect '+picture_crop+'/>'
+                   '<a:stretch/></p:blipFill><p:spPr><a:xfrm><a:off x="9525" y="9525"/>'
+                   '<a:ext cx="95250" cy="95250"/></a:xfrm><a:prstGeom prst="rect">'
+                   '<a:avLst/></a:prstGeom></p:spPr></p:pic>')
+            rel = '<Relationship Id="image" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/photo.png"/>'
+            scene = json.loads((self.run / 'resolved-scene.json').read_text()); scene['objects'] = [{'id':'photo','kind':'image'}]
+            self.write_json(self.run / 'resolved-scene.json', scene)
         with ZipFile(pptx, 'w') as z:
-            z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/></p:spTree></p:cSld></p:sld>')
-            z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"/>')
+            z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}" xmlns:r="{NS["r"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/>{pic}</p:spTree></p:cSld></p:sld>')
+            z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+rel+'</Relationships>')
+            if media is not None: z.writestr('ppt/media/photo.png', media)
         delivery = json.loads((self.run / 'delivery.json').read_text())
         Path(delivery['output']).write_bytes(pptx.read_bytes())
         delivery['sha256'] = digest(pptx.read_bytes()); self.write_json(self.run / 'delivery.json', delivery)
         self.add_preview_provenance()
         config = json.loads((self.run / 'build-config.json').read_text())
-        config['artifact_image_preview_version'] = 1
+        config['artifact_image_preview_version'] = version
         self.write_json(self.run / 'build-config.json', config)
         d = prepare_image_preview(self.run / 'validated-output/reconstruction.pptx',
-                                  json.loads((self.run / 'resolved-scene.json').read_text()))
+                                  json.loads((self.run / 'resolved-scene.json').read_text()), version=version)
         definition = self.run / 'artifact-image-preview.json'; self.write_json(definition, d)
         audit = json.loads((self.run / 'render-audit.json').read_text())
         audit['evidence']['image_preview_definition'] = review._binding(definition)
-        audit['artifact_image_preview'] = {'schema_version': 1, 'policy': d['policy'],
+        audit['artifact_image_preview'] = {'schema_version': version, 'policy': d['policy'],
             'preview_only': True, 'native_delivery_modified': False, 'reference_pixels_used': False,
             'renderer': d['renderer'], 'renderer_version': d['renderer_version'], 'mupdf_version': d['mupdf_version'],
-            'applications': [{'scale': s, 'applied_object_ids': [], 'complete_mixed_paint_order_preserved': True} for s in (1,2,4)],
+            'applications': [{'scale': s, 'applied_object_ids': [o['id']for o in d['objects']], 'complete_mixed_paint_order_preserved': True} for s in (1,2,4)],
             'unsupported': [], 'source_pixel_equivalence': False, 'application_playback_verified': False}
         self.write_json(self.run / 'render-audit.json', audit)
         delivery = json.loads((self.run / 'delivery.json').read_text())
@@ -115,6 +129,26 @@ class OutputReviewChecks(unittest.TestCase):
         self.assertIn('image_preview_definition', record['bindings'])
         self.assertFalse(record['model_review']['performed'])
         self.assertEqual(record['user_acceptance'], {'status': 'pending'})
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_version2_binds_its_own_policy_and_rejects_downgrade(self):
+        self.add_image_preview_provenance(version=2)
+        self.assertFalse(review.prepare_output_review(self.run)['model_review']['performed'])
+        config = json.loads((self.run / 'build-config.json').read_text()); config['artifact_image_preview_version'] = 1
+        self.write_json(self.run / 'build-config.json', config)
+        with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_fractional_crop_is_replayed_and_forgery_rejected(self):
+        audit = self.add_image_preview_provenance(version=2, picture_crop='l="12345" t="0" r="23456" b="0"')
+        record = review.prepare_output_review(self.run)
+        self.assertFalse(record['model_review']['performed'])
+        path = self.run / 'artifact-image-preview.json'; d = json.loads(path.read_text())
+        self.assertEqual(d['objects'][0]['native_source_window_exact'], ['2469/20000','0','2392/3125','1'])
+        d['objects'][0]['native_source_crop_units']['l'] = 0
+        self.write_json(path, d); audit['evidence']['image_preview_definition'] = review._binding(path)
+        self.write_json(self.run / 'render-audit.json', audit)
+        with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
 
     @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
     def test_picture_preview_forged_definition_rejected_even_after_its_hash_is_updated(self):
@@ -134,9 +168,9 @@ class OutputReviewChecks(unittest.TestCase):
             with self.assertRaisesRegex(ValueError, 'receipt disagrees'): review.prepare_output_review(self.run)
 
     @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
-    def test_picture_preview_unrequested_or_bad_version_is_rejected(self):
+    def test_picture_preview_unrequested_bad_or_incompatible_version_is_rejected(self):
         self.add_image_preview_provenance(); config = json.loads((self.run / 'build-config.json').read_text())
-        for value in (None, True, 2):
+        for value in (None, True, 2, 3):
             edited = copy.deepcopy(config)
             if value is None: edited.pop('artifact_image_preview_version')
             else: edited['artifact_image_preview_version'] = value

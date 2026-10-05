@@ -115,5 +115,55 @@ class ImagePreviewTests(unittest.TestCase):
         d = preview.prepare_image_preview(self.pptx, self.manifest)
         self.assertEqual(d['unsupported'], []); self.assertEqual(d['objects'][0]['previews'][0]['position']['left'], -1)
 
+    def test_version2_fractional_source_window_preserves_content_frame_and_delivery(self):
+        # The left and right bands lie outside the requested source window.
+        # A fractional crop must retain the two distinct interior color bands,
+        # without stretching the full media into the visible frame. Filtering
+        # near the crop boundary can include neighboring stored samples; this
+        # test asserts the independently specified interior colors only.
+        source = Image.new('RGB', (100, 80), (255, 0, 0))
+        for x in range(100):
+            color = (255, 0, 0) if x < 20 else (0, 255, 0) if x < 50 else (255, 255, 0) if x < 80 else (0, 0, 255)
+            for y in range(80): source.putpixel((x, y), color)
+        b = io.BytesIO(); source.save(b, format='PNG')
+        xml = self.xml.replace('l="0" t="0" r="0" b="0"', 'l="21234" t="12345" r="20123" b="15432"')
+        self.write(xml, media=b.getvalue()); before = self.pptx.read_bytes()
+        self.assertTrue(preview.prepare_image_preview(self.pptx, self.manifest)['unsupported'])
+        d = preview.prepare_image_preview(self.pptx, self.manifest, version=2)
+        self.assertEqual(d['schema_version'], 2); self.assertEqual(d['policy'], preview.POLICY_V2)
+        self.assertEqual(d['unsupported'], []); self.assertEqual(self.pptx.read_bytes(), before)
+        o, = d['objects']; self.assertEqual(o['native_source_crop_units'], {'l':21234,'t':12345,'r':20123,'b':15432})
+        self.assertEqual(o['native_source_window_exact'], ['10617/50000','2469/20000','79877/100000','10571/12500'])
+        for item in o['previews']:
+            png = Image.open(io.BytesIO(base64.b64decode(item['png_base64']))).convert('RGBA')
+            self.assertEqual(png.getpixel((png.width//4, png.height//2)), (0,255,0,255))
+            self.assertEqual(png.getpixel((3*png.width//4, png.height//2)), (255,255,0,255))
+        self.assertEqual(d, preview.prepare_image_preview(self.pptx, self.manifest, version=2))
+
+    def test_version2_zero_window_keeps_v1_pixels_and_invalid_crop_fails_closed(self):
+        self.write(); old = preview.prepare_image_preview(self.pptx, self.manifest)
+        new = preview.prepare_image_preview(self.pptx, self.manifest, version=2)
+        self.assertEqual(old['objects'][0]['previews'], new['objects'][0]['previews'])
+        for crop in ['l="-1"', 'l="100001"', 'l="100000"', 'l="50000" r="50000"', 't="60000" b="40000"', 'l="junk"']:
+            xml = self.xml.replace('l="0" t="0" r="0" b="0"', crop)
+            self.write(xml)
+            self.assertEqual(preview.prepare_image_preview(self.pptx, self.manifest, version=2)['objects'], [])
+        for version in [True, '2', 0, 3]:
+            with self.assertRaisesRegex(ValueError, 'version'): preview.prepare_image_preview(self.pptx, self.manifest, version=version)
+
+    def test_version2_uncropped_transform_is_bounded_before_render_allocation(self):
+        self.write(self.xml.replace('l="0"', 'l="99999"'))
+        with patch.object(pymupdf, 'open', side_effect=AssertionError('allocation before transform planning')):
+            d = preview.prepare_image_preview(self.pptx, self.manifest, version=2)
+        self.assertEqual(d['objects'], []); self.assertIn('transform budget', d['unsupported'][0]['reason'])
+
+    def test_crop_with_unknown_namespace_or_transform_state_is_not_ignored(self):
+        for xml in [self.xml.replace('<a:srcRect', '<bad:srcRect xmlns:bad="urn:unknown"'),
+                    self.xml.replace('x="97631"', 'x="97631" extra="1"'),
+                    self.xml.replace('<a:xfrm>', '<a:xfrm><a:extLst/>')]:
+            self.write(xml)
+            for version in (1, 2):
+                self.assertEqual(preview.prepare_image_preview(self.pptx, self.manifest, version=version)['objects'], [])
+
 
 if __name__ == '__main__': unittest.main()
