@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 66 张图的来源修复及实际成品复查，关闭 101 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 47 项渐变、箭头、图片、图注、边框、括号、省略号或来源诊断问题。原 153 项中仍有 52 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 55 项开放。原始 296 项现在 283 项关闭、13 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 101 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 71 张图的来源修复及实际成品复查，关闭 106 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 52 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 47 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 50 项开放。原始 296 项现在 283 项关闭、13 项开放；82 项后续发现中 45 项解决、37 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 106 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -58,6 +58,8 @@
 
 - SGL、ZeRO-Infinity、ControlNet、SparseCore、Titans MAC、Mooncake 与 OctoTools 七张图接入来源组件诊断，分别比较全部 188/442/488/45/329/621/905 个对象、完整顺序、样式、路径与实际图片字节/放置框。新原 PDF/SVG 重放独立匹配所有矢量，图片继承不可变且已独立源核对的父成品。位图内公式、标签、箭头可共享同一目标对象，明确为 raster；不冒充独立可编辑数学或拓扑。OctoTools 采用真实 DisplayList ROI scissor 排除页外绘制，889 条路径在原预算内重放；首轮全页 SVG 超出命令预算的失败保留，未放宽预算。各五个结构仍 PASS 的删符号、移位、错误符号、实际改图片像素和删关系反例被维护来源门禁拒绝；位图符号反例是改像素，不宣称自动读出算子。最终所有原生属性/顺序、实际 media/crop 读回；固定控制点守卫 0.001 px 下最大约 0.000105 px。ControlNet 一条、Mooncake 153 条填充改写实际双端摘要核对，其余原生属性保持；实际原生 PDF 图片解码样本和实例框与父成品相同。对缺原生 PDF 的五个父成品，另以字节相同 PPT 与字体影子导出留证，未改父快照。七图全图源/终态/PDF 1×、终态 2×及全部三十三组匹配 4× 实看。七项来源诊断问题关闭，完整清单仍 REVIEW；自动语义、活动文字、采样/抗锯齿和字体交付的独立问题继续开放。首次把 candidate 当作改写前路径及矩形冗余闭合命令不一致的失败保留，后继以实际 artifact-authored 框和精确源曲线恢复读回原摘要。
 
+- MoCo 两图、CoCoNuT、GraphMAE 和 GraphMAE2 的五项 Artifact 圆头/圆角预览缺陷关闭。最终 PPT 中 7/25/265/207/138 条受影响描边的原生属性与独立源核对父成品相同，全部 101/254/801/1248/482 个对象顺序、实际 media/crop 读回；107973 个原始源控制点最大约 0.000105 px，固定 0.001 px 守卫不变。共 553 条非描边范围的已应用填充改写逐项核对真实原/终态路径摘要；不从改写证明推导像素等价。维护适配器从实际交付 PPT 解码 SVG，只替换预览中的路径，完整混合遮挡顺序恢复，交付仍为原生可编辑路径。另用字节相同 PPT 和字体作独立原生 PNG 导出；五张源/旧 Artifact/新 Artifact/原生 1×、各新 Artifact及原生 2×，以及十八组匹配 4× 实看。首次图层删除 API 不存在及遗漏原生 helper 标签参数的尝试保留。来源定义、顺序回执及最终原生文件重算，篡改/漏证据/去版本/虚报播放验证的反例被拒绝。维护测试 Python 1224、Node 62、分发 87/284 文件及已安装 62 项通过。不支持的路径、图像采样、活动文字、自动语义及 PowerPoint/WPS 保持各自限制。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -66,6 +68,8 @@
 | ccf-2020-02-f02 | D01, D02 |
 | ccf-2020-03-f04 | D01, D02, D04 |
 | ccf-2020-04-f01 | D01, D02 |
+| ccf-2020-05-f01 | R01-PREVIEW-STROKE |
+| ccf-2020-05-f02 | R01-PREVIEW-STROKE |
 | ccf-2020-06-f01 | D01, D02 |
 | ccf-2020-07-f02 | BYOL-FLAT-COLOR-001 |
 | ccf-2020-09-f02 | D01, D03 |
@@ -77,6 +81,7 @@
 | ccf-2020-14-f01 | D01 |
 | ccf-2020-15-f05 | D03 |
 | ccf-2020-16-f02 | R02-NATIVE-IMAGE-FRAME |
+| ccf-2020-16-f03 | R01-PREVIEW-JOIN |
 | ccf-2020-17-f02 | D01 |
 | ccf-2020-18-f01 | D01, D02, XC01 |
 | ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
@@ -97,6 +102,7 @@
 | ccf-2022-02-f02 | D01, D02, D03, V3-R01 |
 | ccf-2022-05-f01 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2022-07-f01 | D01, D02 |
+| ccf-2022-10-f02 | R01-PREVIEW-STROKE-STYLE |
 | ccf-2022-12-f01 | D01, D02 |
 | ccf-2022-12-f04 | D01 |
 | ccf-2022-13-f01 | D01, D02 |
@@ -110,6 +116,7 @@
 | ccf-2023-13-f07 | D05 |
 | ccf-2023-14-f01 | R02-NATIVE-ALPHA-EDGE |
 | ccf-2023-14-funnumbered-p5 | R02-NATIVE-IMAGE-FRAME |
+| ccf-2023-15-f02 | R01-PREVIEW-STROKE |
 | ccf-2024-02-f01 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2024-03-f01 | D01, D02 |
 | ccf-2024-03-f02 | D01, D02 |
@@ -288,8 +295,13 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-30dccc3-001.json` | `851d8aaf55463a96cbacfd37cbf2bd4b6fcad0f7f09d726fcdf12648e4285f25` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-030.json` | `e57af4fd36eaab2b8b660dcb156f00768b507661a28cd0c62b86d5d893aaccaf` |
 
-- 原生线端/连接预览适配器已完成维护实现及来源重算：Python 1224 项（8 跳过），Node 62 项（61 通过、1 跳过；含实际像素和前景遮挡验证），wheel/sdist 分发及已安装 62 项测试通过。五张实际受影响图仍待新构建和视觉复核，本条不计为已关闭问题。
+- 原生线端/连接预览适配器已完成维护实现及来源重算：Python 1224 项（8 跳过），Node 62 项（61 通过、1 跳过；含实际像素和前景遮挡验证），wheel/sdist 分发及已安装 62 项测试通过。五张实际受影响图后续已完成新构建及视觉复核，详见上面的五项预览描边关闭记录。
 | `reports/remaining-153-001/public-stroke-preview-checks-114/python.json` | `51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed` |
 | `reports/remaining-153-001/public-stroke-preview-checks-114/node.json` | `37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075` |
 | `reports/remaining-153-001/packages-stroke-preview-115/proof.json` | `cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5` |
 | `reports/remaining-153-001/github-checks-6fa282d-001.json` | `db9fb516cba68b1e571c74251ac7ce6e0325ceba85a88cb32e8bcb2e55d15e55` |
+| `reports/remaining-153-001/LEDGER-RESULT-031.json` | `d0fdb72ea6af04c58aa58c88dd0734d63de8e441eb51738dc701c278553ff8e3` |
+| `reports/remaining-153-001/ARTIFACT-STROKE-REVIEW-RESULT-120.json` | `04a7fafaf3e086255c5ecb104358b46aa1c4c6ec8fc109fef2c4125e178472c6` |
+| `reports/remaining-153-001/FREEZE-015.json` | `5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-031.json` | `4b7553ed95bf53f455f61b8e4e36c529ac85318ef3745baca44c309756e05033` |
+| `reports/remaining-153-001/github-checks-99a6971-001.json` | `6a22d3bc82678cab1191106f38d659f0ad0939db2c50dc42911dcbac7e953de9` |

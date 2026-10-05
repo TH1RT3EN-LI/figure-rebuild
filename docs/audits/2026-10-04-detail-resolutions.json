@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T11:30:52.923949+00:00",
+  "updated_at": "2026-10-05T12:16:41.293755+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -14614,7 +14614,7 @@
     {
       "figure_id": "ccf-2023-15-f02",
       "issue_id": "ccf-2023-15-f02-R01-PREVIEW-STROKE",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "description": "Actual Artifact PPT previews render source/native round caps and joins as flat/miter: visible at MLP/decoder/latent dashed frames, arrow shafts, double-headed comparisons and card edges. Final native PPT fields and actual LibreOffice import/export retain correct round geometry; preview backend limitation remains.",
       "evidence": [
@@ -14627,7 +14627,196 @@
           "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2023-15-f02/readback.json",
+          "sha256": "a0c88a59138f17b6f98edead2942dffd05afdb262c6bc04cf2a9d5500669716c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2023-15-f02/output-review-strokes-120.json",
+          "sha256": "b4b9623bf28231ef5f6b97a780b6203c5ec31f35a6b1b852db6a79c9ac6a8fc0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/output-review-strokes-120.json",
+          "sha256": "b4b9623bf28231ef5f6b97a780b6203c5ec31f35a6b1b852db6a79c9ac6a8fc0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/visual-review-120.json",
+          "sha256": "1412268227363b28c4d4f18db6594bf33a5e8ec5318118cf3a3e1afe588548fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/bindings.json",
+          "sha256": "f5a8e99218d9f45b82cfcf4b6a30ce2e18c72525ca287b9dc2902cbfd05bbc39"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/parent-binding.json",
+          "sha256": "b4410b106aebf9456edbb5f65e1765907cb1011ede4f2f64583d5f49bb1bf2a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/manifest.json",
+          "sha256": "22cb14714ff33894a5e75b53454eb36f44c386880b16ad5445c040f4597e701c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ARTIFACT-STROKE-BUILD-RESULT-116.json",
+          "sha256": "c8f5c8dfc2a0545a9136e60954efbf95bc3543bb84c63bfed4c8d230a7a8120c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-stroke-preview-115/proof.json",
+          "sha256": "cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.json",
+          "sha256": "51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.json",
+          "sha256": "37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.stderr",
+          "sha256": "6ce76a06741154da5460552a21c128444fd204a6fa5444ea989e346cb7108f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.stdout",
+          "sha256": "815c0c9507e33ed71583b2c3ffd91d80e1370efac8c9619e69d1238a4c28888e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/whole-1x.png",
+          "sha256": "9fd34cb9a26f2f9dcf3e04af69df95815ed1911d77fd4bc0512bc3e096297c2e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/preview-2x.png",
+          "sha256": "baa022afd76289c1455ea89616cc6a9ccdfeccd0c5cbbec4789e8881f1ddf5f6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2023-15-f02/preview-2x.png",
+          "sha256": "d2dc2b38c6fb1861876f7dd87ac42f282190d93bf26381abd26afbe571aacdab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/source-graph-and-encoder-4x.png",
+          "sha256": "b195493955c421ad3501528f1e1e50b594f9d030d2623ad9752623db1f21ae65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/projector-and-feedback-4x.png",
+          "sha256": "63bb66c3369c1ad04d62c223d4a94e93c8fea8ac869eba0647c4832ae6af03ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/remask-and-decoder-4x.png",
+          "sha256": "5c17d6976d950a4a3fed6836be45c376e6e2ce09802c0683865b701a115ec8a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/latent-and-double-relations-4x.png",
+          "sha256": "6c6490fe8d0cd7c58c07287f304b4e8935fa8d695f971fff316c8698123f10a8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2023-15-f02/baseline-4x.png",
+          "sha256": "d86783e30edab525c3e5c4043feb95b29d49d651d7dc3225ddbb50221e22fe1a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-additional-gallery-119/baseline-right-4x.png",
+          "sha256": "f6f44ab2b8487d3b4fa97b316e9be0e0d4a9603a49eac4a69cb13d7b1ae3cc15"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/artifact-stroke-preview.json",
+          "sha256": "ae9ec0696b759e65aa8fc906cf8121fd77e7c29cd62d94e5669c95489a8d4487"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/render-audit.json",
+          "sha256": "46f24c0f926251ff121d40474e900309fc6959957fae09a708e9823c690aed9a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/delivery.json",
+          "sha256": "c5e3a6b0c1bf99407669a30acf655833e828ee57abc6681ce991b45f554df4d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/resolved-scene.json",
+          "sha256": "22cb14714ff33894a5e75b53454eb36f44c386880b16ad5445c040f4597e701c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "22cb14714ff33894a5e75b53454eb36f44c386880b16ad5445c040f4597e701c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/object-map.json",
+          "sha256": "235df5e051dcae09f7314910bb47c76bef5b2feeb542e7034a570da5f31a6f95"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/editability.json",
+          "sha256": "7d4a624ed69a8ddcb1cb931ae49f2a959172c567c7ee0ecb7952f0672c3b8be4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/asset-snapshot.json",
+          "sha256": "88d650549db96b3fec8c3f68b8d2b04143697332e0eaeeb34a3bf4ff4470082a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/font-audit.json",
+          "sha256": "e3b29e0117de626818d8824b7c3a091e0775c2a63f1b5687b13df38608fe241b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "99bcf4370ebd6a8ab962501569c0f54ac957b53eff7d397ed3fa3280f57b453e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2023-15-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "dc0e30d21bed0a6b4ffc2dec5b37905a09102182bbae7a11b771505f9b899441"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2023-15-f02/parent-binding.json",
+          "sha256": "9fd24e56cf9b778134e6cf15820062acc922d08fec63d006b3e43b00bb88ffb4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2023-15-f02/render-audit.json",
+          "sha256": "1369051f9236afc74a5a9da6737fa82b4a0e808e9616a8b7c3ca21b10e8db3e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2023-15-f02/validated-output/reconstruction.pptx",
+          "sha256": "99bcf4370ebd6a8ab962501569c0f54ac957b53eff7d397ed3fa3280f57b453e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2023-15-f02/native-preview/pdf/reconstruction.pdf",
+          "sha256": "bd2089dad37bad1dc4546a6fccc7d2e776655a13c891d5887fd91eeb9b5a0561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_stroke_preview114.py",
+          "sha256": "dd529c37a4d1183728ea7666265b64738d7b6396eaa77164895208b3f99d7df4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_stroke_preview115.py",
+          "sha256": "50d161766792bbd3097ffcaf210428b17aa7ce72cef734c2c51b04d723773e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_artifact_strokes116.py",
+          "sha256": "cfa4c0a4857f593350e376f6d498388a959e0e3750115dbf9a47496344c42fd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_artifact_strokes117.py",
+          "sha256": "add87d62b74455c57c84573318a76cedbb1f79f4cc314faf84c8a5e4e8e5dc80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_artifact_strokes118.py",
+          "sha256": "ce0006239f68e0d92429d9a09f624d73576c7ffb274d459b0457e921ca2b68e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_artifact_strokes120.py",
+          "sha256": "fd14d58c3dc62fc75ae20cae09efe0bca704412bee7bdbab6c2a11d43313abf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/RESULT.json",
+          "sha256": "50e749afbff3f8b3140f622fcd4aa933009e5167b1df27f77a2d69be8382cd22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/ccf-2023-15-f02/job/build/run-001/output-review.json",
+          "sha256": "2d6d3ba9c3204ba9e677f3be33410e3922fb7e4210c2f35219d69141d1e6a959"
+        }
+      ],
+      "resolution": "The maintained Artifact preview adapter decodes the actual delivered native PPTX, preserving explicit source cap/join, cubic commands, solid RGB/alpha and miter fields for all 138 eligible strokes in this figure. It substitutes padded SVGs only in the transient preview presentation, preserves the complete mixed shape/image/text occlusion order, and never re-exports the delivery. Final PPT contains all 482 native objects in source order; every selected native stroke spPr equals the independently source-reviewed parent and remains editable path geometry. Original source objects/assets are unchanged. Actual original source control points read back under a fixed 0.001 px guard, maximum observed 0.000104387280999 canvas px; 68 certified fill-only normalizations outside adapter scope have independently verified original/final actual path hashes, with other properties unchanged. Native image ZIP bytes, placement and crops are independently compared. A byte-identical final PPT and registered fonts are exported separately through real LibreOffice direct PNG, preserving Artifact previews and immutable parents. Whole source/before/corrected/actual-native1x, corrected Artifact2x, native2x and all 6 matched4x panels were actually viewed. Round dash endpoints, shaft endpoints, outlined-arrow and fine polygon joins recover the source appearance without clipping or changed paint order. The renderer definition, SVG hashes, placement and application/order receipt are recomputed from final native bytes during maintained output review; forged native XML/definitions/applied IDs, missing evidence, backend/version stripping and false playback/pixel claims fail regression tests. Full public Python1224 (8 skipped), Node62 (61 passed,1 skipped,including actual cap/join and front-occlusion pixels), wheel/sdist87/284 files and installed62 tests pass. Unsupported fill/dash/group/effect/compound/end-symbol paths remain ordinary-preview limitations; source-interpolation/antialiasing equivalence, live Unicode, automatic semantics, PowerPoint/WPS and user acceptance are not granted. This closes only the Artifact cap/join preview defect.",
+      "closed_at": "2026-10-05T12:16:41.293755+00:00"
     },
     {
       "figure_id": "ccf-2020-17-f03",
@@ -14650,7 +14839,7 @@
     {
       "figure_id": "ccf-2020-05-f01",
       "issue_id": "ccf-2020-05-f01-R01-PREVIEW-STROKE",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "description": "Actual Artifact PPT preview renders original round line caps as flat endpoints. Source and final native PPT specify round caps/joins; actual LibreOffice rendering preserves them. This known preview-backend limitation remains open.",
       "evidence": [
@@ -14663,12 +14852,185 @@
           "sha256": "ba132cf70bfc7543d71f8dddd1ac69f36175efc01cae80308e9196f1d3f97219"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-05-f01/readback.json",
+          "sha256": "1b5ba7313593177f77d57611f19899a295855bcd7e9d8132fdc2ce678e790cfe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-05-f01/output-review-strokes-120.json",
+          "sha256": "49279aa7356bc1936173954e176f430d55f5f0083a0b91370286b0143fdc3c5f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/output-review-strokes-120.json",
+          "sha256": "49279aa7356bc1936173954e176f430d55f5f0083a0b91370286b0143fdc3c5f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f01/visual-review-120.json",
+          "sha256": "c784902d8154355cfe69bf42eb92dd609d7bb0262469d5535048fd6142d26c80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f01/bindings.json",
+          "sha256": "0f977d73aeaaaba910beec45dc616bc50fc7d2d30df23c416fc8993527888f28"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/parent-binding.json",
+          "sha256": "b5e471354624a3d6c433569693b25480e1afa435713282ae9c6ec386e370b2db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/manifest.json",
+          "sha256": "86fdfc656f35c2fbd09aa36cd7eefde9567b52a326fa1a9b9543c203d0c91037"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ARTIFACT-STROKE-BUILD-RESULT-116.json",
+          "sha256": "c8f5c8dfc2a0545a9136e60954efbf95bc3543bb84c63bfed4c8d230a7a8120c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-stroke-preview-115/proof.json",
+          "sha256": "cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.json",
+          "sha256": "51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.json",
+          "sha256": "37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.stderr",
+          "sha256": "6ce76a06741154da5460552a21c128444fd204a6fa5444ea989e346cb7108f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.stdout",
+          "sha256": "815c0c9507e33ed71583b2c3ffd91d80e1370efac8c9619e69d1238a4c28888e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f01/whole-1x.png",
+          "sha256": "ac69226813f4a1131d9b1c6499f703c3d134992aea5c77781d9ce85809715c69"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/preview-2x.png",
+          "sha256": "01076a23819ac635a5f85ed5ffb03620a9c20c634e349be5fe00223d1111247a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f01/preview-2x.png",
+          "sha256": "009d7ac462d8dae567657c8556fc70c7f7afd1e091ae280a03b28e318e7e55ab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f01/query-relations-4x.png",
+          "sha256": "8a52dd6f72e343d9ecd98fc01dcb68e2f6872a762e257804b53871d983a283ad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f01/key-and-queue-4x.png",
+          "sha256": "3c9e05ceded35f6ea54ae57feff17b45dbd387c4f7f36f66b96ef57e12862fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/artifact-stroke-preview.json",
+          "sha256": "c30f33519b67a27f62d4169ef340e1aa333097b2852ea74b8ad02fed271e2de9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/render-audit.json",
+          "sha256": "a5751519cd9b4b988de1390c5d151369801043050a2494ae40c808153c3d9178"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/delivery.json",
+          "sha256": "1395c9c058433ddfcfa12b3ddd36a04a0fa23ee4aeca01e75d471584099ce127"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/resolved-scene.json",
+          "sha256": "86fdfc656f35c2fbd09aa36cd7eefde9567b52a326fa1a9b9543c203d0c91037"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "86fdfc656f35c2fbd09aa36cd7eefde9567b52a326fa1a9b9543c203d0c91037"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/object-map.json",
+          "sha256": "0d1999bd8aae1bb799ca9205de06317bf88d13659826e230ee302cb1475b5c15"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/editability.json",
+          "sha256": "b472cdb5a6cdc30d5621774326df4dd9c4afcdb55a9e06fce2e5578d7469f60c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/asset-snapshot.json",
+          "sha256": "7d634103355233aeca7d27d089bb52faa8871d46e8907629395dff6a83e7ff21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/font-audit.json",
+          "sha256": "cfcb5feb5929cc86fcd9e1891e28e35c7bdc2e930b64052dededaec8bde84ada"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "e417f0ef3644ebd641edfb06e7479c6c0447badf4bb953a39573e4074f4afb52"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "d69adfa8d11e36e5de364c1639fa4613ae1a93e6ef4472eb241b63f3ad59897a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f01/parent-binding.json",
+          "sha256": "ad0e379f1df1b781b26d4609ade1d2564c74585dd404e455e96b8f2933832f07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f01/render-audit.json",
+          "sha256": "8ce89e90daee54d887ac494acd12eb675a72f2fb78b003839f1ba14363ef987e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f01/validated-output/reconstruction.pptx",
+          "sha256": "e417f0ef3644ebd641edfb06e7479c6c0447badf4bb953a39573e4074f4afb52"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f01/native-preview/pdf/reconstruction.pdf",
+          "sha256": "94013b39a1d741a9bbf2a5311829f47b69d5aa157100969698505bbb84107a04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_stroke_preview114.py",
+          "sha256": "dd529c37a4d1183728ea7666265b64738d7b6396eaa77164895208b3f99d7df4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_stroke_preview115.py",
+          "sha256": "50d161766792bbd3097ffcaf210428b17aa7ce72cef734c2c51b04d723773e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_artifact_strokes116.py",
+          "sha256": "cfa4c0a4857f593350e376f6d498388a959e0e3750115dbf9a47496344c42fd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_artifact_strokes117.py",
+          "sha256": "add87d62b74455c57c84573318a76cedbb1f79f4cc314faf84c8a5e4e8e5dc80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_artifact_strokes118.py",
+          "sha256": "ce0006239f68e0d92429d9a09f624d73576c7ffb274d459b0457e921ca2b68e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_artifact_strokes120.py",
+          "sha256": "fd14d58c3dc62fc75ae20cae09efe0bca704412bee7bdbab6c2a11d43313abf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/RESULT.json",
+          "sha256": "ac90b8fe6b04869d1aa72831ef2f0011f1b8c8279b8a2550c159717b7ea271e6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f01/job/build/run-001/output-review.json",
+          "sha256": "ba132cf70bfc7543d71f8dddd1ac69f36175efc01cae80308e9196f1d3f97219"
+        }
+      ],
+      "resolution": "The maintained Artifact preview adapter decodes the actual delivered native PPTX, preserving explicit source cap/join, cubic commands, solid RGB/alpha and miter fields for all 7 eligible strokes in this figure. It substitutes padded SVGs only in the transient preview presentation, preserves the complete mixed shape/image/text occlusion order, and never re-exports the delivery. Final PPT contains all 101 native objects in source order; every selected native stroke spPr equals the independently source-reviewed parent and remains editable path geometry. Original source objects/assets are unchanged. Actual original source control points read back under a fixed 0.001 px guard, maximum observed 0.00010404381004 canvas px; 12 certified fill-only normalizations outside adapter scope have independently verified original/final actual path hashes, with other properties unchanged. Native image ZIP bytes, placement and crops are independently compared. A byte-identical final PPT and registered fonts are exported separately through real LibreOffice direct PNG, preserving Artifact previews and immutable parents. Whole source/before/corrected/actual-native1x, corrected Artifact2x, native2x and all 2 matched4x panels were actually viewed. Round dash endpoints, shaft endpoints, outlined-arrow and fine polygon joins recover the source appearance without clipping or changed paint order. The renderer definition, SVG hashes, placement and application/order receipt are recomputed from final native bytes during maintained output review; forged native XML/definitions/applied IDs, missing evidence, backend/version stripping and false playback/pixel claims fail regression tests. Full public Python1224 (8 skipped), Node62 (61 passed,1 skipped,including actual cap/join and front-occlusion pixels), wheel/sdist87/284 files and installed62 tests pass. Unsupported fill/dash/group/effect/compound/end-symbol paths remain ordinary-preview limitations; source-interpolation/antialiasing equivalence, live Unicode, automatic semantics, PowerPoint/WPS and user acceptance are not granted. This closes only the Artifact cap/join preview defect.",
+      "closed_at": "2026-10-05T12:16:41.293755+00:00"
     },
     {
       "figure_id": "ccf-2020-05-f02",
       "issue_id": "ccf-2020-05-f02-R01-PREVIEW-STROKE",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "description": "Actual Artifact PPT preview renders original round line caps as flat endpoints. Source and final native PPT specify round caps/joins; actual LibreOffice rendering preserves them. This known preview-backend limitation remains open.",
       "evidence": [
@@ -14681,12 +15043,189 @@
           "sha256": "89641a1cd39fe609acd2f01a993e356129f5545977b7e3a1ff520a6ae4d30a65"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-05-f02/readback.json",
+          "sha256": "58da9357c21705d0ebf0b1cacd347cc3e4f19faa56bef17133b6e113e1e174a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-05-f02/output-review-strokes-120.json",
+          "sha256": "9557c43eaa2982e1249ba017ae26f3a8614f21a7c1c3eef4eda1e24d511b62ef"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/output-review-strokes-120.json",
+          "sha256": "9557c43eaa2982e1249ba017ae26f3a8614f21a7c1c3eef4eda1e24d511b62ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/visual-review-120.json",
+          "sha256": "115fe36a207f7514b06a6927516bc661730a35d39feff63ce185dcd197bde727"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/bindings.json",
+          "sha256": "193359cc039aa179e6d7a3a9282b260f906636fa0f6505ed9bbab1e2ce493e13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/parent-binding.json",
+          "sha256": "3515dde568e0f57f750b64e81ecf8a9392c235102dd4021f800e8868bd8d2d64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/manifest.json",
+          "sha256": "32700ae49576bbb7be1a6bc73d54fe31ac00cf1a218168050abb3e9560e6c0a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ARTIFACT-STROKE-BUILD-RESULT-116.json",
+          "sha256": "c8f5c8dfc2a0545a9136e60954efbf95bc3543bb84c63bfed4c8d230a7a8120c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-stroke-preview-115/proof.json",
+          "sha256": "cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.json",
+          "sha256": "51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.json",
+          "sha256": "37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.stderr",
+          "sha256": "6ce76a06741154da5460552a21c128444fd204a6fa5444ea989e346cb7108f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.stdout",
+          "sha256": "815c0c9507e33ed71583b2c3ffd91d80e1370efac8c9619e69d1238a4c28888e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/whole-1x.png",
+          "sha256": "973056271603296ea4c3a68768893bffcfa86585e71fef60c52ada4af92bed13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/preview-2x.png",
+          "sha256": "3d01da0be49b91be71d0e6a3180bcec6d5df90e6efcbc0308a59df3e3458f17a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f02/preview-2x.png",
+          "sha256": "92653a1ec73d373884502778620a871be58a08ef02045a38b372f89b36483082"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/end-to-end-4x.png",
+          "sha256": "baf73576d161c43e742d67d53d84aba67976de44f7e54a7962aefe3c5c5481e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/memory-bank-4x.png",
+          "sha256": "03aab49172650e0f72df33d2ce7a7cfbb529a0ed5ad9ad404ddadb52930689fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-05-f02/MoCo-4x.png",
+          "sha256": "9e6e0c2284a9ed84d9eaff91140f409b6eec95f180d5c5c26a36ea567ba42242"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/artifact-stroke-preview.json",
+          "sha256": "37abf88b8fdf7a5cb070be9ae0de2f0a2b0ee1f590ed3788eb93e975e3b88491"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/render-audit.json",
+          "sha256": "06944b95f4772ef81a3ac6ed4d096a142a3e0d745b659f1d08d69fb6e8be8f61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/delivery.json",
+          "sha256": "d3362b1fb69322caeb87dbc0f63852cdc454c0c3aa33023d351d9078c0003525"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/resolved-scene.json",
+          "sha256": "32700ae49576bbb7be1a6bc73d54fe31ac00cf1a218168050abb3e9560e6c0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "32700ae49576bbb7be1a6bc73d54fe31ac00cf1a218168050abb3e9560e6c0a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/object-map.json",
+          "sha256": "a31d8ee29e56960fb085bb50fe7d634ed2b27e8847bcd778c7c1604a50316944"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/editability.json",
+          "sha256": "7d90223dcd42bbeed1cecaae142e251fc6bb13ebb0bcb70d0b11cf55a572e1db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/asset-snapshot.json",
+          "sha256": "fb4d102085082d980f419b6073099638022d0094eb6da7007d880e5660b8f82d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/font-audit.json",
+          "sha256": "a641e4398044bda0b027226202e51c3e5e1469787ce0b351f30b00b52b95fc39"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "e5e1205fc1535029d7f52a49d6e1668ebf43ae5e3db67c604e7870a1ddf30f51"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-05-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "2be5671bbb6d3dc5a15877923ca4b369f8db620318e3fbeb1c5ad2d5220d12e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f02/parent-binding.json",
+          "sha256": "1b90d48cbf32e89c96c42eff8849f861c0bad8f5e81d383efafaacfb614f3ec0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f02/render-audit.json",
+          "sha256": "d61cdb7fcda6b2594ea5442f4d3027b296c9ef4cd61d47c16b0bb5a92b308d23"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f02/validated-output/reconstruction.pptx",
+          "sha256": "e5e1205fc1535029d7f52a49d6e1668ebf43ae5e3db67c604e7870a1ddf30f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-05-f02/native-preview/pdf/reconstruction.pdf",
+          "sha256": "d643b9256b6ebd5ced254fdecdf9d8780edf91abd63472c252554f6fbe10c715"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_stroke_preview114.py",
+          "sha256": "dd529c37a4d1183728ea7666265b64738d7b6396eaa77164895208b3f99d7df4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_stroke_preview115.py",
+          "sha256": "50d161766792bbd3097ffcaf210428b17aa7ce72cef734c2c51b04d723773e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_artifact_strokes116.py",
+          "sha256": "cfa4c0a4857f593350e376f6d498388a959e0e3750115dbf9a47496344c42fd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_artifact_strokes117.py",
+          "sha256": "add87d62b74455c57c84573318a76cedbb1f79f4cc314faf84c8a5e4e8e5dc80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_artifact_strokes118.py",
+          "sha256": "ce0006239f68e0d92429d9a09f624d73576c7ffb274d459b0457e921ca2b68e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_artifact_strokes120.py",
+          "sha256": "fd14d58c3dc62fc75ae20cae09efe0bca704412bee7bdbab6c2a11d43313abf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/RESULT.json",
+          "sha256": "da829488dd4fdb806bf8ad3c7bb4d0a16b1e5fb59cd8892dae4e9fd7cd569942"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-05-f02/job/build/run-001/output-review.json",
+          "sha256": "89641a1cd39fe609acd2f01a993e356129f5545977b7e3a1ff520a6ae4d30a65"
+        }
+      ],
+      "resolution": "The maintained Artifact preview adapter decodes the actual delivered native PPTX, preserving explicit source cap/join, cubic commands, solid RGB/alpha and miter fields for all 25 eligible strokes in this figure. It substitutes padded SVGs only in the transient preview presentation, preserves the complete mixed shape/image/text occlusion order, and never re-exports the delivery. Final PPT contains all 254 native objects in source order; every selected native stroke spPr equals the independently source-reviewed parent and remains editable path geometry. Original source objects/assets are unchanged. Actual original source control points read back under a fixed 0.001 px guard, maximum observed 0.000103150943005 canvas px; 41 certified fill-only normalizations outside adapter scope have independently verified original/final actual path hashes, with other properties unchanged. Native image ZIP bytes, placement and crops are independently compared. A byte-identical final PPT and registered fonts are exported separately through real LibreOffice direct PNG, preserving Artifact previews and immutable parents. Whole source/before/corrected/actual-native1x, corrected Artifact2x, native2x and all 3 matched4x panels were actually viewed. Round dash endpoints, shaft endpoints, outlined-arrow and fine polygon joins recover the source appearance without clipping or changed paint order. The renderer definition, SVG hashes, placement and application/order receipt are recomputed from final native bytes during maintained output review; forged native XML/definitions/applied IDs, missing evidence, backend/version stripping and false playback/pixel claims fail regression tests. Full public Python1224 (8 skipped), Node62 (61 passed,1 skipped,including actual cap/join and front-occlusion pixels), wheel/sdist87/284 files and installed62 tests pass. Unsupported fill/dash/group/effect/compound/end-symbol paths remain ordinary-preview limitations; source-interpolation/antialiasing equivalence, live Unicode, automatic semantics, PowerPoint/WPS and user acceptance are not granted. This closes only the Artifact cap/join preview defect.",
+      "closed_at": "2026-10-05T12:16:41.293755+00:00"
     },
     {
       "figure_id": "ccf-2020-16-f03",
       "issue_id": "ccf-2020-16-f03-R01-PREVIEW-JOIN",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "description": "Artifact preview sharpens source round stroke joins to miter corners on fine convolution polygons and rectangular path boundaries. Effect is subtle at4x; source styles and finalPPT native fields retain round joins, and actualLibreOffice native rendering preserves them. Known preview-backend limitation remains open.",
       "evidence": [
@@ -14699,7 +15238,184 @@
           "sha256": "08eed32b8df7bc0ea146723b620d3b5c1d4c6a3c507a143abdc5a2cfefea109b"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-16-f03/readback.json",
+          "sha256": "317a07464fea84bfa4644dfb07dbd736f8fbc2e896f0a792b48217f9ead8b513"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2020-16-f03/output-review-strokes-120.json",
+          "sha256": "d03fdf5d9241db4807872fbe328dae9d2c15655c73e6db0b88be7a9e4a3559ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/output-review-strokes-120.json",
+          "sha256": "d03fdf5d9241db4807872fbe328dae9d2c15655c73e6db0b88be7a9e4a3559ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/visual-review-120.json",
+          "sha256": "16d5e793a16ea951375a20e592f0b7471b7f0446305159ff2a4aba3db7593c04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/bindings.json",
+          "sha256": "d303b3ac2e4cd789cf2638efa0f24dc2b94306a626b1dbe915863256acbed680"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/parent-binding.json",
+          "sha256": "000c68dae7dcb65148026c94016701209301cd62812e4eb7f973058ed80fee42"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/manifest.json",
+          "sha256": "26af9a4330964fa7e28054ec925c8ac6f92423a0eee131a92d611ef754418569"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ARTIFACT-STROKE-BUILD-RESULT-116.json",
+          "sha256": "c8f5c8dfc2a0545a9136e60954efbf95bc3543bb84c63bfed4c8d230a7a8120c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-stroke-preview-115/proof.json",
+          "sha256": "cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.json",
+          "sha256": "51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.json",
+          "sha256": "37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.stderr",
+          "sha256": "6ce76a06741154da5460552a21c128444fd204a6fa5444ea989e346cb7108f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.stdout",
+          "sha256": "815c0c9507e33ed71583b2c3ffd91d80e1370efac8c9619e69d1238a4c28888e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/whole-1x.png",
+          "sha256": "52b58665047106c10a513d2bf47aa79cd101d1aa5476cb09634b9d28697e37d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/preview-2x.png",
+          "sha256": "c92e62b38e653aaaa40670a8493c30e6ce7a7527dd38148b2dee2692e5ae63aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-16-f03/preview-2x.png",
+          "sha256": "e021596d7f0ab4b4c42da825f24b8d6c8d7fe583b1e4d46bc9a70959321eb576"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/input-and-context-encoder-4x.png",
+          "sha256": "f6e2ed74c17b1ac14abdabe7557418428e2efaecd49c77f3540384e6363f8375"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/merger-and-attention-4x.png",
+          "sha256": "3416d0b44f2faa53a707b63614ec55b9e192627babb8a66535c89a854442687e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2020-16-f03/decoder-and-return-relations-4x.png",
+          "sha256": "71ba150d7451a6e34cb87798bd399c640ec289dc8a6d2c1280ce425c3001ef5b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/artifact-stroke-preview.json",
+          "sha256": "471e0d452cf7eb232d382982f8dc039b406fec421ae3c020bbaceeae56d71c6f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/render-audit.json",
+          "sha256": "581989da23009ed6475432368256c03e3dc7bf94c547b434ee616c5caf1fd236"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/delivery.json",
+          "sha256": "30c65ebbdcfef65d998659f0ae47fe51366a5bf5b3dffd90ab14e9a44acedd7c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/resolved-scene.json",
+          "sha256": "26af9a4330964fa7e28054ec925c8ac6f92423a0eee131a92d611ef754418569"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "26af9a4330964fa7e28054ec925c8ac6f92423a0eee131a92d611ef754418569"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/object-map.json",
+          "sha256": "07bd5ef9aefd66403d2ba7c6581fb74dd1dff5951fa73ac6e3ffd6d02edeb29f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/editability.json",
+          "sha256": "0a3612c5868f109b9ee63a1bb8141aaa48f2c0759d20e0635ba2bf3e6dcc74f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/asset-snapshot.json",
+          "sha256": "b15498afaea7a2943bffb9751b7f2f35b423b6067096657950e4cf9d90d7dd6c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/font-audit.json",
+          "sha256": "e05bdfdd41e72362af2e99289b0dab5766928ef214c824f83f5747ede11ecd07"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "8692bd7c03814898668b0966ba82fae8e1209f24b868b2db631121a86cb1f05f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2020-16-f03/build/run-001/artifact-authored.pptx",
+          "sha256": "7648052f4b809eca7c02cafa6e0ce1d3e658563cae00e5af248b0935d99f05c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-16-f03/parent-binding.json",
+          "sha256": "702a51ca02f42dc63a596a86ec352913357b2ea1ce26a3cf96a34b334a1dcf47"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-16-f03/render-audit.json",
+          "sha256": "e43f55bd62239075802f26ce3749be024c97bacca59e98cfff131f85194caeb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-16-f03/validated-output/reconstruction.pptx",
+          "sha256": "8692bd7c03814898668b0966ba82fae8e1209f24b868b2db631121a86cb1f05f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2020-16-f03/native-preview/pdf/reconstruction.pdf",
+          "sha256": "d276d945e81548c8f2f1daa4a7372d60f73cdddae2d22ebd1fa0bc88027f9368"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_stroke_preview114.py",
+          "sha256": "dd529c37a4d1183728ea7666265b64738d7b6396eaa77164895208b3f99d7df4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_stroke_preview115.py",
+          "sha256": "50d161766792bbd3097ffcaf210428b17aa7ce72cef734c2c51b04d723773e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_artifact_strokes116.py",
+          "sha256": "cfa4c0a4857f593350e376f6d498388a959e0e3750115dbf9a47496344c42fd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_artifact_strokes117.py",
+          "sha256": "add87d62b74455c57c84573318a76cedbb1f79f4cc314faf84c8a5e4e8e5dc80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_artifact_strokes118.py",
+          "sha256": "ce0006239f68e0d92429d9a09f624d73576c7ffb274d459b0457e921ca2b68e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_artifact_strokes120.py",
+          "sha256": "fd14d58c3dc62fc75ae20cae09efe0bca704412bee7bdbab6c2a11d43313abf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/RESULT.json",
+          "sha256": "59633b6aee554cb3340466ffd905ff003edfe5cf8a970a98363195643bae58d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-build-001/ccf-2020-16-f03/job/build/run-001/output-review.json",
+          "sha256": "08eed32b8df7bc0ea146723b620d3b5c1d4c6a3c507a143abdc5a2cfefea109b"
+        }
+      ],
+      "resolution": "The maintained Artifact preview adapter decodes the actual delivered native PPTX, preserving explicit source cap/join, cubic commands, solid RGB/alpha and miter fields for all 265 eligible strokes in this figure. It substitutes padded SVGs only in the transient preview presentation, preserves the complete mixed shape/image/text occlusion order, and never re-exports the delivery. Final PPT contains all 801 native objects in source order; every selected native stroke spPr equals the independently source-reviewed parent and remains editable path geometry. Original source objects/assets are unchanged. Actual original source control points read back under a fixed 0.001 px guard, maximum observed 0.000104140313596 canvas px; 319 certified fill-only normalizations outside adapter scope have independently verified original/final actual path hashes, with other properties unchanged. Native image ZIP bytes, placement and crops are independently compared. A byte-identical final PPT and registered fonts are exported separately through real LibreOffice direct PNG, preserving Artifact previews and immutable parents. Whole source/before/corrected/actual-native1x, corrected Artifact2x, native2x and all 3 matched4x panels were actually viewed. Round dash endpoints, shaft endpoints, outlined-arrow and fine polygon joins recover the source appearance without clipping or changed paint order. The renderer definition, SVG hashes, placement and application/order receipt are recomputed from final native bytes during maintained output review; forged native XML/definitions/applied IDs, missing evidence, backend/version stripping and false playback/pixel claims fail regression tests. Full public Python1224 (8 skipped), Node62 (61 passed,1 skipped,including actual cap/join and front-occlusion pixels), wheel/sdist87/284 files and installed62 tests pass. Unsupported fill/dash/group/effect/compound/end-symbol paths remain ordinary-preview limitations; source-interpolation/antialiasing equivalence, live Unicode, automatic semantics, PowerPoint/WPS and user acceptance are not granted. This closes only the Artifact cap/join preview defect.",
+      "closed_at": "2026-10-05T12:16:41.293755+00:00"
     },
     {
       "figure_id": "ccf-2022-02-f02",
@@ -19470,7 +20186,7 @@
     },
     {
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "description": "Artifact4x displays square-ended encoder/decoder enclosure dashes and pointed outlined-arrow corners where source uses rounded caps/joins; actual LibreOffice lossless4x retains the source rounding. This is renderer stroke-style support, not bitmap sampling.",
       "region": "Encoder/decoder dashed boxes and outlined pipeline arrows",
       "figure_id": "ccf-2022-10-f02",
@@ -19493,7 +20209,196 @@
           "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2022-10-f02/readback.json",
+          "sha256": "ee76d59bb22ed15a36a0513677b3c84cedb64b67e3ae048fd3614d01ea6357cc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-delivery-readback-118/ccf-2022-10-f02/output-review-strokes-120.json",
+          "sha256": "031d565db4f3f606bbed90a7c2bd557158b484010587481a802c80eabe8aa165"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/output-review-strokes-120.json",
+          "sha256": "031d565db4f3f606bbed90a7c2bd557158b484010587481a802c80eabe8aa165"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/visual-review-120.json",
+          "sha256": "713da4c017ef29e32fe5902bf3872135d8231adf04c9e496df400a0aa1fb84b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/bindings.json",
+          "sha256": "47a8ef959c0ad5b7f48ec4ec61c19f17bcf194555fa05b48bdc880ddd8e71a90"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/parent-binding.json",
+          "sha256": "6d59f998b183c15cd68d278697ea80de176701b771444ad8883b3f93aa13181a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/manifest.json",
+          "sha256": "e7b40f15226161dfc2f2fd4fb0e63f9f60cde342ff9c3a6be79d1be0f9fc0bff"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ARTIFACT-STROKE-BUILD-RESULT-116.json",
+          "sha256": "c8f5c8dfc2a0545a9136e60954efbf95bc3543bb84c63bfed4c8d230a7a8120c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-stroke-preview-115/proof.json",
+          "sha256": "cef7f9a74333b5b1dff26a9fc6110cb23ed2c4eb4c6ddfbd27163ad8ce86c4b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.json",
+          "sha256": "51e4a12f795194b52c0e78b64c8409668f1120fa278678b65c6d2b70440817ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.json",
+          "sha256": "37c7e31856bccf0b9c3a1ffc0794febd685c0f617c0e0665461f023a70133075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/python.stderr",
+          "sha256": "6ce76a06741154da5460552a21c128444fd204a6fa5444ea989e346cb7108f51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-stroke-preview-checks-114/node.stdout",
+          "sha256": "815c0c9507e33ed71583b2c3ffd91d80e1370efac8c9619e69d1238a4c28888e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/whole-1x.png",
+          "sha256": "e7f9a1c9b057ba91df1f12887cacc353f4b74b44619a281e229088d310299193"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/preview-2x.png",
+          "sha256": "ac11b04ccb916c66d2b3223bcd2d96fcb990ad7c77ba76642647c751101c9bba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2022-10-f02/preview-2x.png",
+          "sha256": "68556aac77a17ef2ba89afd3a5f0a8872973106d88adf092b75c25950f9170aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/masked-graph-and-encoder-4x.png",
+          "sha256": "7700b06b756b87d505c27e6270a0cbccbbae934091582b3173b92cf8ba9baa5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/remask-and-decoder-4x.png",
+          "sha256": "87b12b8f2445416c7fe2f9488970a9976cbbb528b692474f734e917708d35c7a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/outlined-arrow-and-target-4x.png",
+          "sha256": "74a6f4df4461e1ad9b793a81e1d07f27638ac00efbdb799073d440c0c44c3139"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-galleries-118/ccf-2022-10-f02/encoding-decoding-and-baseline-4x.png",
+          "sha256": "9a3b29ccd556632a881add778bdc17ef16dcd092c93015eee35617a5fe3c4034"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/artifact-stroke-preview.json",
+          "sha256": "7bf3add880c50a77dbde34b5d178e27ff3e165f12d3fa5bacf1dded031c5b8d5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/render-audit.json",
+          "sha256": "92e153dd0b1fc3cd4659d0e80755e5e81d63dc4c5a32e0d7b467e45dea549ede"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/delivery.json",
+          "sha256": "addfb879607f96e9cbb5b5b424647890ad8d0fd833d24fd442912dc575f4d9f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/resolved-scene.json",
+          "sha256": "e7b40f15226161dfc2f2fd4fb0e63f9f60cde342ff9c3a6be79d1be0f9fc0bff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "e7b40f15226161dfc2f2fd4fb0e63f9f60cde342ff9c3a6be79d1be0f9fc0bff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/object-map.json",
+          "sha256": "261aec6c4891fc02ad7adc6ebb1f1d35a670ad7b339f3ea8b8c714f1026a8fb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/editability.json",
+          "sha256": "254a2026ab7f7e198c542908e3d8bb07646cf101b2699f5f6729467353dd50f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/asset-snapshot.json",
+          "sha256": "59151eaafd64003bf8d7cce3002fd1366c3dbfef9cd60508eac8ce4c9486fc9a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/font-audit.json",
+          "sha256": "11502f22040e78d2f800181ddfa64a95c0a37ae232b97f6f5c23de651ee239d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "0ddc3807dcca34cdfe44b5b866f3e7ecd572a4ac1d42b6b0ae1a607d752fad60"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-artifact-strokes-001/jobs/ccf-2022-10-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "2a337438d543595d2c9aa2c17266f398c7161f168e708c972b1f58a86d6755b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2022-10-f02/parent-binding.json",
+          "sha256": "60293a96393127760eea469bcc7f6d6ba1cb8093187667a293238b888be8b205"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2022-10-f02/render-audit.json",
+          "sha256": "bcf26eade1f7ad2bf386492b245f46b1d11ae0279cdd9a20bad120dfebd0d47d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2022-10-f02/validated-output/reconstruction.pptx",
+          "sha256": "0ddc3807dcca34cdfe44b5b866f3e7ecd572a4ac1d42b6b0ae1a607d752fad60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/artifact-stroke-native-shadow-117/ccf-2022-10-f02/native-preview/pdf/reconstruction.pdf",
+          "sha256": "3132b0839f23bdafd761b07d13b6fdf52da8b70b661871bd85c9442ec6703020"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_stroke_preview114.py",
+          "sha256": "dd529c37a4d1183728ea7666265b64738d7b6396eaa77164895208b3f99d7df4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_stroke_preview115.py",
+          "sha256": "50d161766792bbd3097ffcaf210428b17aa7ce72cef734c2c51b04d723773e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_artifact_strokes116.py",
+          "sha256": "cfa4c0a4857f593350e376f6d498388a959e0e3750115dbf9a47496344c42fd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_artifact_strokes117.py",
+          "sha256": "add87d62b74455c57c84573318a76cedbb1f79f4cc314faf84c8a5e4e8e5dc80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_artifact_strokes118.py",
+          "sha256": "ce0006239f68e0d92429d9a09f624d73576c7ffb274d459b0457e921ca2b68e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_artifact_strokes120.py",
+          "sha256": "fd14d58c3dc62fc75ae20cae09efe0bca704412bee7bdbab6c2a11d43313abf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/RESULT.json",
+          "sha256": "6558e7245c6f683a179bf97b0069cc08c2d347094a9fdd0354feadb377b8a425"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/ccf-2022-10-f02/job/build/run-001/output-review.json",
+          "sha256": "64ebffc702da4780157133cbd86670c4d7e3786bc0c097a6adf690b1c8c633ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-verification.json",
+          "sha256": "37c032ac33224cc268bfc27be7747dc51c2133da70da3ed4175637179bcc04e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/corpus-source-image-build-001/root-next-sixteen-visual-spots.json",
+          "sha256": "7eed54a0d336b8539fc4726d80960fd94ab7366133ba91c9cd417b63aa2420c0"
+        }
+      ],
+      "resolution": "The maintained Artifact preview adapter decodes the actual delivered native PPTX, preserving explicit source cap/join, cubic commands, solid RGB/alpha and miter fields for all 207 eligible strokes in this figure. It substitutes padded SVGs only in the transient preview presentation, preserves the complete mixed shape/image/text occlusion order, and never re-exports the delivery. Final PPT contains all 1248 native objects in source order; every selected native stroke spPr equals the independently source-reviewed parent and remains editable path geometry. Original source objects/assets are unchanged. Actual original source control points read back under a fixed 0.001 px guard, maximum observed 0.00010461942253 canvas px; 113 certified fill-only normalizations outside adapter scope have independently verified original/final actual path hashes, with other properties unchanged. Native image ZIP bytes, placement and crops are independently compared. A byte-identical final PPT and registered fonts are exported separately through real LibreOffice direct PNG, preserving Artifact previews and immutable parents. Whole source/before/corrected/actual-native1x, corrected Artifact2x, native2x and all 4 matched4x panels were actually viewed. Round dash endpoints, shaft endpoints, outlined-arrow and fine polygon joins recover the source appearance without clipping or changed paint order. The renderer definition, SVG hashes, placement and application/order receipt are recomputed from final native bytes during maintained output review; forged native XML/definitions/applied IDs, missing evidence, backend/version stripping and false playback/pixel claims fail regression tests. Full public Python1224 (8 skipped), Node62 (61 passed,1 skipped,including actual cap/join and front-occlusion pixels), wheel/sdist87/284 files and installed62 tests pass. Unsupported fill/dash/group/effect/compound/end-symbol paths remain ordinary-preview limitations; source-interpolation/antialiasing equivalence, live Unicode, automatic semantics, PowerPoint/WPS and user acceptance are not granted. This closes only the Artifact cap/join preview defect.",
+      "closed_at": "2026-10-05T12:16:41.293755+00:00"
     },
     {
       "severity": "minor",
