@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 84 张图的来源修复及实际成品复查，关闭 128 项原问题：55 项字体、字距、基线、数学字形或活动文字问题，以及 73 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 25 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 29 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 61 项解决、22 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 128 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 87 张图的来源修复及实际成品复查，关闭 131 项原问题：55 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 22 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 26 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 64 项解决、19 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 131 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -74,7 +74,9 @@
 
 - SAM 2 图 1 的 D02 活动文字问题关闭。源图没有对应的文字层或字体程序；24 条标签路径按原图人工确认 Unicode、大小写、分行与空格，恢复 40 个普通活动片段、424 个字符，其中 381 个可见字形来自真实源墨迹。全部 384 次原生绘制顺序及 24 条路径的实际非零填充、颜色、无作用裁剪独立绑定；仅规范等价的填充闭合弦。五个共用 CFF 墨迹字体通过重复字形求物理基线，381 个字形的 28185 个原始原生控制点与实际保存字形在固定 0.001 px 界内，最大 0.000659704999093 px；不是拿接近的 Times 字体替代来源。43 个空格和字体度量明确为人工/合成；未使用的 Mg 度量探针来自供应字体，实际当前文本均不使用这些补充字形。早期压缩 CFF 的可选曲线末端被 LibreOffice26.2.5.2 转整数，严格读回失败；最终保留同一源控制与 advance，以完整曲线指令绕开该分支。全部 115 个使用字体/Unicode 对按该版本相对操作数 1/1024 design unit 舍入核验，424 个真实字体 handle、子集字节、f32 轮廓和原生颜色独立读取，无伪粗/斜或替代。源派生/终态原点差最大横向 0.246 px、纵向 0.508 px，单列应用排版残差。其余 291 个原生对象精确保持，包括 31 张图片的真实媒体、裁剪和位置、260 条路径；8351 个路径控制点最大 0.000101972913399 px，固定守卫不变。全图 1×、完整 2× 六片及全部 24 条标签 4×，31 张原尺寸对照实际查看。源墨迹普通字形、粗细、数值与布局保持；图片滤波、自动识别、未见字形扩展编辑、字体嵌入/交付及 PowerPoint/WPS 仍开放，共用字体交付关联 40 张图。失败版本完整保留，公开代码未改，不重复宣称新测试；前一提交bc5eb5a的16项检查通过。对应整数转换由[LibreOffice26.2.5.2上游代码](https://github.com/LibreOffice/core/blob/libreoffice-26.2.5.2/vcl/source/fontsubset/cff.cxx#L1300-L1317)支持。
 
-- SimCLR 照片重采样 D03 和 MAE 原 Artifact 1× 图片锯齿问题关闭。新预览从实际最终原生 PDF 的有界采样回执生成，图片原字节、位置、裁剪和顺序保留，三份直接 Impress PNG 另存。两图全部 724 个 manifest/原生属性及 26122 个源控制点读回，固定 0.001 px 守卫下最大差 0.000104855 px；123/501 个实际 PDF 路径绘制与父版相同。SimCLR 82 个活动文字对象、416 个实际字形与 109 个使用的 font/GID 对，位置/矩阵/颜色和 f32 轮廓/advance 均与已验证父版一致；九份实际 Type1 子集原始 hash 因 UniqueID 改变而不同，两端实际程序保留，其他字体/Private 字段、encoding、所有字形和 subroutine operands 精确比较。未用别名声称原字体身份。MAE 另与原开放项的 Artifact 预览直接实看；其 1× 图片区域 RGB 诊断从 9.055535 降至 3.992731，照片/网格采样恢复。两图全部 69 张原尺寸对照实看，4× 仍有相位/滤波残差，没有一般像素误差界。BLIP 三张的 31 张对照也全部实看：照片的均值改善掩盖了白色雪花内部变空的回归，候选均未选用，三项继续开放。上次文档提交6faf170的8项检查通过、8项因托管 runner 无法接单取消，保留 GitHub annotation；未宣称全部通过。本批沿用冻结020已验证运行时，未改公开代码或重复宣称新测试；279/280 构建失败及283原字体 hash 假设失败均保留。
+- SimCLR 照片重采样 D03 和 MAE 原 Artifact 1× 图片锯齿问题关闭。新预览从实际最终原生 PDF 的有界采样回执生成，图片原字节、位置、裁剪和顺序保留，三份直接 Impress PNG 另存。两图全部 724 个 manifest/原生属性及 26122 个源控制点读回，固定 0.001 px 守卫下最大差 0.000104855 px；123/501 个实际 PDF 路径绘制与父版相同。SimCLR 82 个活动文字对象、416 个实际字形与 109 个使用的 font/GID 对，位置/矩阵/颜色和 f32 轮廓/advance 均与已验证父版一致；九份实际 Type1 子集原始 hash 因 UniqueID 改变而不同，两端实际程序保留，其他字体/Private 字段、encoding、所有字形和 subroutine operands 精确比较。未用别名声称原字体身份。MAE 另与原开放项的 Artifact 预览直接实看；其 1× 图片区域 RGB 诊断从 9.055535 降至 3.992731，照片/网格采样恢复。两图全部 69 张原尺寸对照实看，4× 仍有相位/滤波残差，没有一般像素误差界。BLIP 三张的 31 张对照也全部实看：照片的均值改善掩盖了白色雪花内部变空的回归，该轮候选均未选用，三项当时继续开放；后继修复见下一条。上次文档提交6faf170的8项检查通过、8项因托管 runner 无法接单取消，保留 GitHub annotation；未宣称全部通过。本批沿用冻结020已验证运行时，未改公开代码或重复宣称新测试；279/280 构建失败及283原字体 hash 假设失败均保留。
+
+- BLIP 三项原生照片预览采样问题关闭。先保留并证明失败的输入 PNG 候选：LibreOffice 会重置零 alpha 像素的 RGB，实际 PDF 数组及九份预览与已实看的失败版完全相同。独立零 alpha RGB PDF 后继恢复雪花填充，但三图 4× 照片漂移仍在，31 张实看及正式 partial 审阅保留。进一步证明完整照片 RGB 与来源精确相同，导出矩阵却偏移最多 0.056271 画布 px。新增显式 `libreoffice-pdf-photos`：保留原始 PDF，先派生只改零 alpha RGB 的 PDF，再从实际交付 PPT 整数 EMU 恢复四个完整 RGB 精确匹配的不透明照片框；八枚局部 alpha 雪花矩阵不动。安装版独立重放两段回执及最终九份 PNG 像素/字节，1391 个实际非图片 PDF 绘制、全部图片/蒙版编码流和无文字/font 状态精确核对。1400 个 manifest/原生对象及 66480 个源控制点读回，固定 0.001 px 守卫下最大 0.000104497 px。新输出 31 张原尺寸全图 1×、完整 2× 和全部 4× 图片支持区全部实看，猫毛、眼镜边缘和原网格对齐，雪花分枝保持填充；无可见布局回退。小量边缘/滤波残差仍披露，不宣称像素完全相同或通用 RGB/alpha/filter 等价。冻结021/022/023及先前候选/失败全部保留，公开能力及真实安装分别验证；当前冻结023的 Python1311（8 跳过）、真实 CPU Node67（0 跳过）、93/303 文件分发、86 运行模块及安装后1311（8 跳过）检查通过，220 输入与提交737602f字节绑定；该准确提交16项 GitHub 检查全部通过。自动语义、字体交付、PowerPoint/WPS 及用户验收未替代。
 
 ## 本轮关闭项
 
@@ -136,6 +138,9 @@
 | ccf-2023-05-f02 | D01, D02 |
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
+| ccf-2023-06-f02 | NATIVE-SAMPLING-001 |
+| ccf-2023-06-f03 | NATIVE-SAMPLING-001 |
+| ccf-2023-06-f07 | NATIVE-SAMPLING-001 |
 | ccf-2023-08-f02 | D03 |
 | ccf-2023-13-f01 | R01-PREVIEW-SAMPLING |
 | ccf-2023-13-f07 | D05 |
@@ -417,3 +422,39 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-6faf170-004.json` | `431387016adb370b2d35baad66fb730739f92170abc199b216c02cd5356972e4` |
 | `reports/remaining-153-001/github-check-6faf170-cancel-reason-285.json` | `f3c4260a3c74af3069ae9a2c1d8ffd7909525ab400f60e8014d1cfd9324cdd44` |
 | `reports/remaining-153-001/NATIVE-PHOTO-LEDGER-GUARD-288.json` | `e673be97fac8fe077d23fbf27fb4d93d3890224f91d226f5e6f09899eb5ce200` |
+| `reports/remaining-153-001/FREEZE-021.json` | `6aae2c9963a6e754af97a5c590591715973423a9cbdbf5117bd6f51e72df7916` |
+| `reports/remaining-153-001/FREEZE-022.json` | `e718a3c72d28a5d96956b0d1a39d1a489118428ad942624afe170efb6b130cf4` |
+| `reports/remaining-153-001/FREEZE-023.json` | `fa2d44c1cd7456c23ef1694007da6394e3685a2d5eafbc7e648052106a22cc95` |
+| `reports/remaining-153-001/PUBLIC-HIDDEN-RGB-CHECKS-293.json` | `aa12e8e3a816c4cafb5c9f5c8aeca2daa73dac61f63afcadfe7122029d74b853` |
+| `reports/remaining-153-001/PUBLIC-PDF-ZERO-ALPHA-RGB-CHECKS-300.json` | `53fe4e409b6e32da41f936213121f86dfc0e06ef49fee097f7177b6a7082f4db` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-PHOTOS-CHECKS-312.json` | `b87fd124eb60dd74127aa4b2ab45093b8447f2ab50be6b624009c07290ef98d2` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-PHOTOS-TEST-INPUTS-310.json` | `d02e3faeb2dc3615ecf6081d20676f1e953708b96803abc4a8a27cff7e90351e` |
+| `reports/remaining-153-001/BLIP-ZERO-ALPHA-RGB-BUILDS-294.json` | `2376b39a9ef2508b682dba1ab48a0c89b68c35cc73d4fabaa6660680c90419fa` |
+| `reports/remaining-153-001/BLIP-ZERO-ALPHA-RGB-READBACK-295.json` | `5c799fe7c02fa96ebe025e4c2f08622bc960d3e3991dff1f4ec105b870375cae` |
+| `reports/remaining-153-001/BLIP-NATIVE-IMAGE-ARRAYS-296.json` | `c96d5c3492bea0ef70696d3a66c4f7ad156d5b401d525e644f7bbae51cf12051` |
+| `reports/remaining-153-001/BLIP-ZERO-ALPHA-RGB-VIEWED-PIXEL-EQUALITY-299.json` | `35c90c22756a3fce45bb049eb15afc7dbe03d260e1e444a780e0515c6bf13fd6` |
+| `reports/remaining-153-001/BLIP-ZERO-ALPHA-RGB-RETAINED-REVIEWS-299.json` | `02d0001b91b78ef314cb7393f6b221b1633ea456bac22338fca5e571e3cefeb8` |
+| `reports/remaining-153-001/PDF-ZERO-ALPHA-RGB-HARNESS-RETAINED-FAILURE-297.json` | `5dccd1953baab2b0ed041865d29ca328287b6b6b663ad494c8c07ab95a5485f5` |
+| `reports/remaining-153-001/PDF-ZERO-ALPHA-RGB-INSTALLED-HARNESS-RETAINED-FAILURE-298.json` | `3b9b67c891db8c038970561dd2b3397a6977011b31dee27d1514a3cc7387ee1e` |
+| `reports/remaining-153-001/BLIP-DERIVED-NATIVE-PDF-BUILDS-301.json` | `50e8780bef0ad19864c6c350245778f5e987b53fdb87dc8e9df6880627ee9ea3` |
+| `reports/remaining-153-001/BLIP-DERIVED-NATIVE-PDF-READBACK-302.json` | `4af1ba3ec9e8c84207de1957ad3679b42f62f6f14a8e1b451b3ceafb41c6eb63` |
+| `reports/remaining-153-001/actual-view-names-blip-derived-native-pdf-306.json` | `c39a0812eff805c09e7d6b04e533822a423f339789511c476dff94faf73ba3b4` |
+| `reports/remaining-153-001/actual-view-names-blip-native-picture-matrix-310.json` | `d2e542d9c35222617864ed70b85937f7e777e3f7e2fa3512b224f8c87c462af3` |
+| `reports/remaining-153-001/BLIP-NATIVE-PICTURE-MATRIX-PROBE-307.json` | `6e4b64702c31dd0096d3633b6fc1fb6040af901a425add8e18a460c5323ef433` |
+| `reports/remaining-153-001/BLIP-PUBLIC-NATIVE-PHOTO-MATRIX-PROBE-308.json` | `391a5a7992d1616f9ee592c522dd19c180bf5596d8fb2879537200d55563b2bf` |
+| `reports/remaining-153-001/BLIP-PUBLIC-NATIVE-PHOTO-MATRIX-HELPER-SNAPSHOT-310.json` | `a30a2303162a9ab6bb45ce89984360b7547d17c8b774ec50eb25e244c263dae8` |
+| `reports/remaining-153-001/retained-public-native-photo-matrix-helper-308.py` | `c47cc52c00b19ad1baffcaaa0e65309f622584c8a458b843bd640b6efaa85b01` |
+| `reports/remaining-153-001/BLIP-NATIVE-PHOTO-MATRIX-BUILDS-313.json` | `e29397275f833ebc89415ba276079e08b4762a57520e450b58fecd4d0ae729e7` |
+| `reports/remaining-153-001/BLIP-NATIVE-PHOTO-MATRIX-READBACK-314.json` | `c3b1b572f0d421c42ca624b8004056273fd0daad46afa59472b5bcbc6bddb13f` |
+| `reports/remaining-153-001/BLIP-NATIVE-PHOTO-MATRIX-PROOFS-315.json` | `283464f7c0050196cd3ac3f9f96f848ea28416ab052deb77c3411b45f523b02c` |
+| `reports/remaining-153-001/actual-view-names-blip-native-photo-matrix-316.json` | `64ffe14da78995bd02a89e16d20bfb71e3eef9ece591905de7d2185b45d9a43a` |
+| `reports/remaining-153-001/BLIP-NATIVE-PHOTO-MATRIX-REVIEWS-316.json` | `5fac3223dcec333f132d116d2b889d6612b9554e46edd53c8266de5f33865e14` |
+| `reports/remaining-153-001/github-checks-87ee7a2-001.json` | `e892a7921ea3eb386b52c03feaf1f25afcc2803cf1fdb8f282d4a2ba40355a62` |
+| `reports/remaining-153-001/github-checks-737602f-001.json` | `55cc14a8a5eb3ae84d8d8868b9cd7e215c2763d28495249fec7eddd57711fb14` |
+| `reports/remaining-153-001/packages-native-photos-311/proof.json` | `a72c838c490158325b19688fca1dd6c61d1df2ab2edbd4d6d51139a513a4935b` |
+| `reports/remaining-153-001/retained-native-photo-test-fixture-309/failure.json` | `d961681fe6da8db9d068309b79fe3634da7a82714d3768e591bd7aef367720b6` |
+| `reports/remaining-153-001/BLIP-LEDGER-HARNESS-RETAINED-FAILURE-317.json` | `e66d938c01871c2d4a18eddac460eb45627d35fab01362b08f2353c92911ec59` |
+| `reports/remaining-153-001/retained-ledger-harness-317.py` | `461f9a7105019ed24161697fbf651657572bc9658c69e3d0c748c373114c39c0` |
+| `reports/remaining-153-001/LEDGER-RESULT-040.json` | `163370edac71bb8831df0b76696b723b9960c9829e4be898231aa6c4ecdd4797` |
+| `reports/remaining-153-001/BLIP-NATIVE-PHOTO-MATRIX-LEDGER-GUARD-318.json` | `ce1770f77878c8483494a897e685e648555abe160a52755e9668dc8fefeb3a00` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-040.json` | `b2c8c84ffb243a6424ad79c05a6a6db8ca362a70dd2370f8ad4c9fb1525f1c3b` |
