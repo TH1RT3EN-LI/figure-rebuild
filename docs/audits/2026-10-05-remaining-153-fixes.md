@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 81 张图的来源修复及实际成品复查，关闭 123 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 69 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 30 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 34 项开放。原始 296 项现在 287 项关闭、9 项开放；83 项后续发现中 58 项解决、25 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 123 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 83 张图的来源修复及实际成品复查，关闭 125 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 71 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 28 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 32 项开放。原始 296 项现在 287 项关闭、9 项开放；83 项后续发现中 60 项解决、23 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 125 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -70,6 +70,8 @@
 
 - Bao 的 D01 细边框问题关闭。源回调区分 21 次填充和随后真实零宽描边，绑定完整路径、CTM、黑色、不透明、butt cap、round join、无 dash 和真实 clip/group；21 个对象恢复源显式闭合。维护代码通过显式 `stroke_hairline` 写入启用的原生零宽线，保留填充；`libreoffice-pdf` 从未修改的最终 PDF 生成规范 1×/2×/4× 预览，三份直接 Impress PNG 单独保留。21 条最终 PDF 的真实零宽、颜色、闭合与线型独立读回；其余 186 个实际原生对象和 92 个活动文字框/内容与父版本相同。实际 PPTX 全部源控制点维持 0.001 px 守卫，最大 0.000093367454085 px；原生 PDF 导出坐标诊断残差最大 0.073738881966392 px，未包含在该守卫内。14 个字体输入字节相同，注册件除 head 时间戳/校验和外全部表一致，最终 PDF 两份真实字体程序独立绑定且无伪粗/斜/替代。11 张完整 1×/2×/4× 四方对照全部以原尺寸实看，细边线恢复；直接 PNG 黑边差异继续保留。有限区域 RGB 诊断改善，不用阈值替代实看。第一版真实构建因 Node 整数浮点 JSON 格式而未通过严格输出核验，失败与冻结019完整保留；修复仅统一整数数值写法，不四舍五入非整数系数、不放宽类型检查。冻结020与637d9fc绑定 214 输入/83 运行模块，Python 1276（8 跳过）、真实 CPU Node 67（0 跳过）、wheel/sdist 90/294 文件、安装后1276检查及该提交16项 GitHub 检查通过。SVG hairline、跨应用、字体嵌入/扩展编辑和自动语义仍有独立限制。
 
+- CURE 和 CLIP 的两项图片预览采样问题关闭。显式 `libreoffice-pdf` 以实际最终 PDF、物理画布比例和独立有界采样回执生成 1×/2×/4× 预览，三份直接 Impress PNG 单独保留。六张原始图片的实际媒体字节、位置、裁剪、效果和顺序不变；重新生成的 relationship ID 在双端独立解析到同一媒体后才排除，其他图片属性精确比较。全部 1078 个 manifest 和实际原生绘制属性与源核对父版本一致，无填充改写或字形转换。45920 个源控制点独立读回，固定 0.001 px 守卫下最大 0.000104653161543 px；CURE 源视口字形裁剪重新核验。全部 36 张原尺寸全图 1×、完整 2× 和 4× 图片区域对照实看，源文字/虚线像素阶梯及草地/背景/叠层照片纹理恢复。CURE 图片区域三尺度 RGB 诊断从 5.412407/2.536732/7.318610 到 0/0/1.411501，CLIP 从 12.127244/9.758971/5.444924 到 0.078216/2.138745/1.487916；仅作有限诊断，4× 仍有相位/滤波残差，不宣称一般像素等价。沿用冻结020已验证的 214 输入/83 模块、Python 1276（8 跳过）、真实 CPU Node 67（0 跳过）、90/294 文件分发及安装后 1276 检查；本批未改公开代码，未重复宣称新测试。提交28b7b9f的16项 GitHub 检查通过。图片内部仍为位图，轮廓字形、活动文字、自动语义、字体交付及跨应用限制保留；读回时 relationship ID 和源元数据路径的两次失败均保留。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -98,6 +100,7 @@
 | ccf-2020-18-f01 | D01, D02, XC01 |
 | ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2021-01-f01 | D01 |
+| ccf-2021-02-f01 | CLIP-IMAGE-SAMPLING-001 |
 | ccf-2021-03-f01 | R01-PREVIEW-IMAGE-SAMPLING |
 | ccf-2021-03-f02 | R01-PREVIEW-IMAGE-SAMPLING |
 | ccf-2021-03-f03 | D01 |
@@ -109,6 +112,7 @@
 | ccf-2021-13-f01 | D02 |
 | ccf-2021-13-f08 | D01, D02 |
 | ccf-2021-14-f04 | D05 |
+| ccf-2021-16-f02 | CURE-IMAGE-SAMPLING-001 |
 | ccf-2021-17-f02 | D01 |
 | ccf-2021-17-f05 | D01, D02 |
 | ccf-2021-18-f18 | R02-NATIVE-IMAGE-RECTANGLES |
@@ -378,3 +382,11 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-637d9fc-001.json` | `b50659137b8e10078fe4fa78474499e0711aaa0a243d07f32c6b156c62c762f5` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-036.json` | `6f6994be14eae936fe69c8a5485ca948977d52cdaf3468d9ebe62f60bc7105f8` |
 | `reports/remaining-153-001/DISTILLATION-231.json` | `fd500627893b70d8457b7ffaa746f8c0d9bb67757000b90441da01213b281055` |
+| `reports/remaining-153-001/LEDGER-RESULT-037.json` | `3a2f8570b35d77dbaa2fa6f18c614d27e28363b92ea1875cf1fb7731ac61c968` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-REVIEW-RESULT-238.json` | `36e93b9b8c38fe4c24191230da22e06cd1bec68889a7446b0aa33bd706337805` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-BUILDS-232.json` | `b8df75051fefefb80c910c2ef5b3e479689844c761f33719c365a66b2d923ea1` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-READBACK-235.json` | `738ebb08ba1289c2ab97bb7c70ef1ff5d64a39c275cd485a5e8057d887f7f3c4` |
+| `reports/remaining-153-001/actual-view-names-236.json` | `4cfc98f5c4d8fb6f8e41dd4c8d89e65bde47b15cad27dc8b2555e232ef0a8d6a` |
+| `reports/remaining-153-001/github-checks-28b7b9f-002.json` | `efb23ea24fa8d887b89ff7e8c6999946593b6d4fbe2922992821fed046f559e3` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-037.json` | `4019d70248a0647707fb8a9c6e6195ad98ea350a7a1c54254feeed8e80fd5e2a` |
+| `reports/remaining-153-001/DISTILLATION-239.json` | `0adda1d96306663401eb9c6be2401ffb4bd7ded85c5941f520aaa58b87044b03` |

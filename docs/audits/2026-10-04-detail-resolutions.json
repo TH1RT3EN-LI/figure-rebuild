@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T18:12:49.735185+00:00",
+  "updated_at": "2026-10-05T18:36:42.791215+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -35981,7 +35981,7 @@
       "figure_id": "ccf-2021-16-f02",
       "issue_id": "ccf-2021-16-f02-CURE-IMAGE-SAMPLING-001",
       "owner_finding_id": "CURE-IMAGE-SAMPLING-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "probes/root-cure-and-four-verification-001.json",
@@ -36004,7 +36004,1148 @@
           "sha256": "2039220abf70611974694af7fe99fb8b23c04df5019c21ba463859e41dca44e4"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-020.json",
+          "sha256": "58aa596f922905a2832c29e8abbd6d6c39b7287a48535c8f9414983426500790"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-NATIVE-PDF-JSON-CHECKS-224.json",
+          "sha256": "ba4b598d9488e454ccba446871fb89142c72c9c7cbf274d4ed361fd44aef441e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-NATIVE-PDF-JSON-TEST-INPUTS-222.json",
+          "sha256": "4a55e7b259807d223b5f282469128a53e1fc796b8f470fe9b8a17185d0206861"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-BUILDS-232.json",
+          "sha256": "b8df75051fefefb80c910c2ef5b3e479689844c761f33719c365a66b2d923ea1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-READBACK-235.json",
+          "sha256": "738ebb08ba1289c2ab97bb7c70ef1ff5d64a39c275cd485a5e8057d887f7f3c4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-236.json",
+          "sha256": "4cfc98f5c4d8fb6f8e41dd4c8d89e65bde47b15cad27dc8b2555e232ef0a8d6a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-637d9fc-001.json",
+          "sha256": "b50659137b8e10078fe4fa78474499e0711aaa0a243d07f32c6b156c62c762f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-28b7b9f-002.json",
+          "sha256": "efb23ea24fa8d887b89ff7e8c6999946593b6d4fbe2922992821fed046f559e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-LEDGER-GUARD-237.json",
+          "sha256": "80e911e68b5b6a2fbbdccf84c20c7c9ec6a5b1b549a13bf0d4b3de9e17ce3875"
+        },
+        {
+          "audit_relative_path": "source-regeneration/canvas-clip-cure-source-001/build-001/job/source-evidence/assignment.json",
+          "sha256": "0637b52f32a2b3674923d982184565dd1ec88330f50a9ac7930afe25b43c206d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/manifest.json",
+          "sha256": "8538f29c5b4f09b51c0564c7b70cddf7e67ac7c6b62eb59034702064ad6f94d2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/output-review-unperformed.json",
+          "sha256": "14710ce736bc6064f7337a4d0c8513d03f7e112ffa2d14b7a91f1cba9b9edc53"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build-result.json",
+          "sha256": "b6612bea69c20205e7cc56397823636320a07819a7d6a83c42bd4b7c6333f411"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/parent-binding.json",
+          "sha256": "2b74a394bda102619b5f6cb5ce965b372fb60b09aaa016445f00d596bcfbb133"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/font-profile.json",
+          "sha256": "6ec53c18c3115cf6ad4be1fd3c976c2c82cc89b4d2b26764ada613b65dcbf9ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/sources/original.png",
+          "sha256": "82699c7f5073dd5bb366a87c739a36beee30c67bdc60295a8fa37b1ba2893b42"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/exports/reconstruction.pptx",
+          "sha256": "bc846266592cf72da0d440dbced4ac23d3f3ec87ba9b770858024963808edb12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/build.stdout",
+          "sha256": "521f7d2944490fe1a22c1cf21fc3ded24027e452e56a397342f633bb998ed1a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/review.json",
+          "sha256": "a96c8f686b6b521a35f4d09f849b973fa2c07353fb73d3cf58bd8afc51660f61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/build.json",
+          "sha256": "833acacb547ae9c0da4994329c2b289c72516bed2b74e8a8d742f061335a9d8b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/commands/review.stdout",
+          "sha256": "496092e9811b257266cd132e11ab90ae9ecb8c6dccede2a5919f5c17d746cc50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/source-evidence/source.pdf",
+          "sha256": "35fdcd0e1a3a7ee21da05af204fde35be0fbdd99ca0f2b2211881e217daca11d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/source-evidence/page-outlined.svg",
+          "sha256": "87766ff8a1286f35c386c067d86b0ac366710f1ce92aeb8a64dcd9019e4b93a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/assets/source-image-00000.png",
+          "sha256": "2b91783e1fa435817b579230c4c6e69f1eb5187433d8ad2bd53dd9849656b6c6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "bb7c4e2605db85f007870427f274198e8ef48178f6f18bc597f4451cc343d3f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/validation.json",
+          "sha256": "04b060c6d2909f27e1f5082cb069b57cf5feb5a53579ec60a487010736685157"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/output-review-native-photo-237.json",
+          "sha256": "02b6c16f3ea738a0aab54512523683b0cf13d9054459914ba1359aa28f650bb4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/delivery.json",
+          "sha256": "2ab0bc2f4de981eafa96d85d3f36af1b3a0d131e1c5a6e3a2555a34fc939a091"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/preview-smooth-1x.png",
+          "sha256": "5d4a47bc5ba8c5f646b2c0a43f4ec8fffe13090d1b98b463213968be091914cb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/source-canvas-clip.json",
+          "sha256": "0bf5c6efcdfbddf82b0eada8d2ebdce99a0d19e2b7c6c388988c925c2dbb991a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "1eaa21e2a6a2a512f6e1eea2e8d923bf29eca46d9abeac197802af1826a1231e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/font-audit.json",
+          "sha256": "6fd3e897195d2a852dadec0a6bcf204a41d4495b340059c11a646ed92a3e6453"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/object-map.json",
+          "sha256": "3d9e68f23e897f5851142cdd457daa1ee28955702297677885a565702b6f78d3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/comparison.png",
+          "sha256": "d2b2942a3791b0e49e30cae83f1620a5c9af51185f8ac8ddc6bec4be8cecbd3a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/manifest-validation.json",
+          "sha256": "8f311d096f17ade64637625dc91153c4dd98a25e210d6c4d2602949c5f7e43f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-canvas-clip.json",
+          "sha256": "e37b642e0da3052eee4f21bbe61b1e62a6006b30ca4e8fd95ab37073625b01e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/reconstructed.svg",
+          "sha256": "ba4128c03e9cf2e241710c3d923012db917444828b5042c75b55e81a9825e822"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/preview-2x.png",
+          "sha256": "0843ab66e875942b4e2a8de928477ce9bd108f3adbe6f6e2287dbc48ac45b8f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/asset-snapshot.json",
+          "sha256": "0e337a14cf4299a36f04680c013f5cc6d52001b46bf206896ea4994ca30ed43c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/output-review-native-photo-238.json",
+          "sha256": "7f6ebd89fb3b4f1bf6d6a38c1bbb17c113b90bbc9474b2bed01f06fb332e15ec"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/preview-1x.png",
+          "sha256": "6186cbf541264b6432be765c46ab0e053773cd21cc0011b642e631ef299dead9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/delivery-candidate.json",
+          "sha256": "76b0d8925b6069ba326bb1daed0f8105717b1a94ccad91c536c5ba5d2640dcad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/editability.json",
+          "sha256": "e192a1b56da1399d8da78a84dc943863891309ac43a01d2ef2496ba0434edc09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/resolved-scene.json",
+          "sha256": "8538f29c5b4f09b51c0564c7b70cddf7e67ac7c6b62eb59034702064ad6f94d2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/comparison-metrics.json",
+          "sha256": "e36198a3ff94bcbbeae8598a292db223e3ceb5d43ceb6f20f0f0861901d2f051"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "8538f29c5b4f09b51c0564c7b70cddf7e67ac7c6b62eb59034702064ad6f94d2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/render-audit.json",
+          "sha256": "321ffff93ca57738c8e2cc94b6f45041d07cead8501184c5bc30d0fac7769925"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/preview-4x.png",
+          "sha256": "ab87a6d6e364c893deb154c86328b82fb457a77eefc953ae89f5ea5c8e44f54b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/build-config.json",
+          "sha256": "39368a9c428e04b0afa389a7b31ff75d8cc655dd19195fd991d687207b0380c7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/text-fit.json",
+          "sha256": "086a8b27c221ccc757c311e0b1a6821b2869e9459702f467de3ce38b9fc61e48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/grouped-overlay.pptx",
+          "sha256": "bc846266592cf72da0d440dbced4ac23d3f3ec87ba9b770858024963808edb12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/candidate.pptx",
+          "sha256": "bc846266592cf72da0d440dbced4ac23d3f3ec87ba9b770858024963808edb12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/text-manifest.json",
+          "sha256": "b4ffe3ac987fa5759ca0d54e56c27bb3a01c37d661125b03b36f93ed3029b36f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/comparison-scene.json",
+          "sha256": "cbd785c4c110bf6506db25ca40b64843bee03ecb4e986b9be522383073f9df33"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/italic.ttf",
+          "sha256": "04e01b38a23fd7bc46f5190db3fb6ef44ca621bfb79a1324f4e1d02dab1ebdb5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/regular.ttf",
+          "sha256": "d04708ad0ded2515f4e162b71cd28e9f8650f847125c1bc43a64395ca5389ed3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "2289e68e7205564cc8e62bedb4c2473e123d4dd073d16e21962f3bc7067f7b24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/bold.ttf",
+          "sha256": "bc7334e06bd5a00fe73a9d0c4d93debd2b0d58d0a1b2f27d22a506634dddb89c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/pdf-preview-receipt.json",
+          "sha256": "6602e8481f0b2054186c3319726be0b793b1f83c2a5175a1dbc00b24ed558bbb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts.conf",
+          "sha256": "f8a46baebb08f4c62c10b1300af0bd4a4339b2b1754d6daa0bd53202c63c824e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/commands.json",
+          "sha256": "85b1b081a445c5301d64da2e840bf34eb6c81ab6f0d48d3a6eae7b4ba3874086"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "bc846266592cf72da0d440dbced4ac23d3f3ec87ba9b770858024963808edb12"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-4/italic.ttf",
+          "sha256": "59eb4d2284879114574202149e4309a2dcf3868415882a06810618681c22df90"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-4/regular.ttf",
+          "sha256": "cc91944d9f64e145fead389dffbc47b4cf9dc0975c038a460411398654c754c3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-4/boldItalic.ttf",
+          "sha256": "d5e0315b1318d1aefd91e73835c199f3c033e9b6b00ba96cd824d3606736de65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-4/bold.ttf",
+          "sha256": "76ba0e35558fe3b949bbb8525034f150f280b28db793f4d12448e7b1b307c32b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-3/italic.ttf",
+          "sha256": "73f421bf71b75ee84183d29947bbc83c7923fcfa254e83d622269fc54c6d41c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-3/regular.ttf",
+          "sha256": "96250907e0000315e7cf2f2158d01ddc69fcf432a7985b444992917f0d48c348"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-3/boldItalic.ttf",
+          "sha256": "dca0f7d3870c05a89594ebe7cfc5dc4ce874b707b4f19960fc89a84dca126c3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "5543a6bb62452f56eb8252b2603064731601e9d77500bf26b4670b985e24a1fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "119f5ae2b97aed01afae8c6a7ee3f2b3512b224339cf857d1ec8682b5a3efd77"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "c32d28e898dc0dfe2e700689e8ad7c58121a83bec2f44f2833c40eb75c8ea00e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "87d6560db010bfb60ca80e0da3873dd20770e791602035eb65cc70fa79b21224"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "05c84fcb7c4c1e90bc8bf08f0c3463a443c602dde09b23628ee87b4948cbd3c8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "65f1d9f135d9f1dfd1309ec7d3b3a63463608f107913526116afa39a74b93f48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "b19b05a474b6cd3d9a6db257cb615c98efd0bf8ff61fd1aadddb3eebf46b1d6f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "7c0fa864c6e73b07d2684721944f96a61b8fedde4496efeecfa609e69b731c2f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "6ec06625dfe1889ee1e79221ba1064fbcd35c51cde7b3a66d54098bc19a9aa3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/pdf-png-1x/reconstruction.png",
+          "sha256": "6186cbf541264b6432be765c46ab0e053773cd21cc0011b642e631ef299dead9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/pdf-png-2x/reconstruction.png",
+          "sha256": "0843ab66e875942b4e2a8de928477ce9bd108f3adbe6f6e2287dbc48ac45b8f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "90f99e78417179fe3f87aa533f6a3b7898c5ebec2db720f06be472a7d575d440"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "043332319c67b27cfc36293700aaee1ae1dbdc5f1ebbc4739d59e9c5270ce610"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "afd9c15d3bc34169a0867a718ef76e2964cf66792a3cb772e2e22d448be7243f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/12.ttf",
+          "sha256": "96250907e0000315e7cf2f2158d01ddc69fcf432a7985b444992917f0d48c348"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/19.ttf",
+          "sha256": "d5e0315b1318d1aefd91e73835c199f3c033e9b6b00ba96cd824d3606736de65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "6ec06625dfe1889ee1e79221ba1064fbcd35c51cde7b3a66d54098bc19a9aa3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/15.ttf",
+          "sha256": "dca0f7d3870c05a89594ebe7cfc5dc4ce874b707b4f19960fc89a84dca126c3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "bc7334e06bd5a00fe73a9d0c4d93debd2b0d58d0a1b2f27d22a506634dddb89c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/9.ttf",
+          "sha256": "05c84fcb7c4c1e90bc8bf08f0c3463a443c602dde09b23628ee87b4948cbd3c8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/13.ttf",
+          "sha256": "5543a6bb62452f56eb8252b2603064731601e9d77500bf26b4670b985e24a1fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/10.ttf",
+          "sha256": "119f5ae2b97aed01afae8c6a7ee3f2b3512b224339cf857d1ec8682b5a3efd77"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "65f1d9f135d9f1dfd1309ec7d3b3a63463608f107913526116afa39a74b93f48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/7.ttf",
+          "sha256": "7c0fa864c6e73b07d2684721944f96a61b8fedde4496efeecfa609e69b731c2f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "b19b05a474b6cd3d9a6db257cb615c98efd0bf8ff61fd1aadddb3eebf46b1d6f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "d04708ad0ded2515f4e162b71cd28e9f8650f847125c1bc43a64395ca5389ed3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "04e01b38a23fd7bc46f5190db3fb6ef44ca621bfb79a1324f4e1d02dab1ebdb5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/16.ttf",
+          "sha256": "cc91944d9f64e145fead389dffbc47b4cf9dc0975c038a460411398654c754c3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/11.ttf",
+          "sha256": "87d6560db010bfb60ca80e0da3873dd20770e791602035eb65cc70fa79b21224"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/8.ttf",
+          "sha256": "c32d28e898dc0dfe2e700689e8ad7c58121a83bec2f44f2833c40eb75c8ea00e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "2289e68e7205564cc8e62bedb4c2473e123d4dd073d16e21962f3bc7067f7b24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/18.ttf",
+          "sha256": "59eb4d2284879114574202149e4309a2dcf3868415882a06810618681c22df90"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/14.ttf",
+          "sha256": "73f421bf71b75ee84183d29947bbc83c7923fcfa254e83d622269fc54c6d41c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/fonts/17.ttf",
+          "sha256": "76ba0e35558fe3b949bbb8525034f150f280b28db793f4d12448e7b1b307c32b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/font-cache/cf60e78cc8ccc8fa9a74d71751b4ea93-le64.cache-9",
+          "sha256": "b7a98c4471222e30a974428c6c77d8ab398f6dc44b805259f97f3029710d8de0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/pdf-png-4x/reconstruction.png",
+          "sha256": "ab87a6d6e364c893deb154c86328b82fb457a77eefc953ae89f5ea5c8e44f54b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "b935afca98f0862611a49b7ecfe8c1b8fc1fc7a7018003f9fa186e168a8d49f9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/assets/sources/original.png",
+          "sha256": "82699c7f5073dd5bb366a87c739a36beee30c67bdc60295a8fa37b1ba2893b42"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/assets/source-evidence/source.pdf",
+          "sha256": "35fdcd0e1a3a7ee21da05af204fde35be0fbdd99ca0f2b2211881e217daca11d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/assets/source-evidence/page-outlined.svg",
+          "sha256": "87766ff8a1286f35c386c067d86b0ac366710f1ce92aeb8a64dcd9019e4b93a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-16-f02/build/run-001/assets/assets/source-image-00000.png",
+          "sha256": "2b91783e1fa435817b579230c4c6e69f1eb5187433d8ad2bd53dd9849656b6c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-16-f02/output-review-native-photo-237.json",
+          "sha256": "02b6c16f3ea738a0aab54512523683b0cf13d9054459914ba1359aa28f650bb4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-16-f02/readback.json",
+          "sha256": "ba48c414d040bb2d4d112b6d7e926e529899e586e9718528d22397ab821075df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-16-f02/output-review-native-photo-238.json",
+          "sha256": "7f6ebd89fb3b4f1bf6d6a38c1bbb17c113b90bbc9474b2bed01f06fb332e15ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-1x.png",
+          "sha256": "594ddfede857aa31ac6b5e4e9a6b2aaf823e7cc2a77f7c43c1047fb8395ba3a4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/source-1x.png",
+          "sha256": "82699c7f5073dd5bb366a87c739a36beee30c67bdc60295a8fa37b1ba2893b42"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-640-190.png",
+          "sha256": "690fbe56611bf950b335a0a93f5f72f2b614dee261573b5ae27c7e59a6280ee1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-38-19.png",
+          "sha256": "2b1854818ddd39fae039ecf242e3b9d645187d16d47bf51d8d8c76d8ae60e0b3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-838-19.png",
+          "sha256": "2b5227cb69ac61eebf98fde42c33d4a88d2823b97b1d1ee2d1373d23fb567b21"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-358-299.png",
+          "sha256": "19fbc67065da0364df23ad9a23b444bf4ce95430591a428f3be1e4da1abf6edb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-678-299.png",
+          "sha256": "8324fdc87956a97cc4921aef26a510d7967bc6f5811a91e922dbcd7f82693689"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-198-299.png",
+          "sha256": "9e14d3edbad46a5bddf4022da917c964c7019ffa4dcdaec83a57f03226b22c14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-198-159.png",
+          "sha256": "33dc72d4a21101c025a05362e76a4bc21671b16af2be331b5d84e2d2b7b716f8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-320-0.png",
+          "sha256": "8f200fe19536c91a049f26a8b70db42765aa4447bffd4d9d2544c99ca4642c7a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-678-159.png",
+          "sha256": "d9cdb9f1bc9e9e22cf47088f8b0128adcfb8826c74895e6043520cf75845cd6c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-518-19.png",
+          "sha256": "908627b8db19038d5d74c183ff959141ba6e2a5426fca328b0c290c88d702a5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-0-0.png",
+          "sha256": "b9a202a66225cae1cdfc3a0c3c933abb92a5ba7f5cbab003764e0a20529ef12c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-640-0.png",
+          "sha256": "2e0b954d39575c710e872febebd7257b6ec2437f2e4fd91c91a11e01a13ccddb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-518-159.png",
+          "sha256": "8074e245b860187a81e456345f98ccbf936809f761ca9c79af5f0fcad6f1ddbd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-0-190.png",
+          "sha256": "cf83ff400e17ec0a02cf262c39755a92292dd787e492b3a00999ebc5da72007f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-358-19.png",
+          "sha256": "1e0419d196db8b62ebe9a47c0da2848bfe98a71c8014f3f914c30b541c9d3ba9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/visual-review-238.json",
+          "sha256": "935e1a14ee09d08e585e96e60a6314343a254ab314613c3fc647851dfee71606"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-678-19.png",
+          "sha256": "051550df86a17937721544da6cedb7c5cff764a662e6bf5f3bcceceef3cb3d9b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/source-2x.png",
+          "sha256": "bdd946c2f0cfff3d1aa3ab4b0b313283512353f9e9339c33f836be1cbe6760ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-358-159.png",
+          "sha256": "484bce4876a453829acd8d91784651097bd5a0964a0c5fa31ec260c326d729ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-838-159.png",
+          "sha256": "67f02ef9d9a4d155df35d90a59e7e6ed878a7b233724546680e011d91da754b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-198-19.png",
+          "sha256": "d0e686322abf43374255ec3f3146f19ac1ed37cbb1255e5ed7e69a25832658ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-518-299.png",
+          "sha256": "fbbf691886d185ec865159c4805d98b646f8ca6a62f22100d344240192231912"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/whole-2x-320-190.png",
+          "sha256": "d743b51cc688cb38a8f11fafe4b57ee3699ee031e687354f2c0f44a4a79aae60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-838-299.png",
+          "sha256": "9a11ff913840a8be7e78168cebde1c87e082071cdb911ac1d6ee78a084ddbf64"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-38-299.png",
+          "sha256": "f6fe0a467a48a4b6ce908d3c63f077280eb8d8553821fd11fa711ed0602ce766"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/image-4x-38-159.png",
+          "sha256": "07cbdaeb80eb79188f556d0cfbeb317cf8082dc11d24134eb2b79167fb4d9b89"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/visual-review-237.json",
+          "sha256": "6eb6e3e5779b949ef2a97b448d96aa6ed2c04eb587d91a882f38b712225b6195"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/source-4x.png",
+          "sha256": "d53a9eafa0c5b3441717e439e2130f0fb0c33d722ebc845e12115d6a08a0bd8a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-16-f02/bindings.json",
+          "sha256": "916f53feaed555688e08fe6fe867e924e9abd2b91c9234626cff9f7ffacd741c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.stderr",
+          "sha256": "9b2fbfa564935b5786e80585cc4821378f21a3f8dcbbd20275f25e68b7e924ce"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.json",
+          "sha256": "43bb496f2295ee5047a3831f7e1509ecdcf82b32990538d1e86ae203dc841946"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.stdout",
+          "sha256": "e231aac2ba171afebbf460886a04f55c7ee6d1f672030a964a37db757bf8b41c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.stderr",
+          "sha256": "c12081fd8da6eeda2fa379b40c676cdc9c7d0d218b79af62a897212f8c72d111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.stdout",
+          "sha256": "318c86d4e18d761178dc9d3e59580cdc84311bb7ab37dcb7544e5627e9155dfa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.json",
+          "sha256": "48a13e7753a4c87ecf95fd0fe2d2b794b5d7d54e7325450ce2fde749fda302b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.stdout",
+          "sha256": "906524fee284b0b9177ef4db1e3c366bf3a58e041af7c43ebc8c3016739654df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.json",
+          "sha256": "d3b0eb4ba191ac2a2b67dd0267633c39ff1bf895bc4413b79b092478192e68d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.stderr",
+          "sha256": "db1c320252546d819cc189405b40a2d905c724b220b033171e071a08a0317932"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/figure_rebuild-0.6.0.tar.gz",
+          "sha256": "33a158a04d4ec88759e0b7c49b8ea36b7d2876219e407dc3ac34b93a3b93fbc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/figure_rebuild-0.6.0-py3-none-any.whl",
+          "sha256": "6896913e7b73c47d2450b1acbe588c777c6e09325669b74e078a749ed86e9f1b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.stdout",
+          "sha256": "15f14383ea112f3a80673c1a361f1a16b2053d96fad9f585f5dc0e7561c4184c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/proof.json",
+          "sha256": "6ec38d814cf37872574e4128fbe84daca0c732ee79f044ab582df351b719f9db"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.json",
+          "sha256": "12d23b6d5a3486fc7771079549c4f6fdc8fd9f7a97056f1bcc9515fc01629063"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/build-native-photo-pdf-previews-232.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/build-native-photo-pdf-previews-232.stdout",
+          "sha256": "245fef15ca9e507cea99d647816a42ee97d139fab152cc02c90bd22a938e51ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-234.stderr",
+          "sha256": "9024ffdc18a577ca2c77c5c06a0760aee16d04d8d5c6c32ba03953ae485361bf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-234.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-235.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-235.stdout",
+          "sha256": "ab5c26c49993eee01a2916d3abbebc03732ec0b3244603515cb4a119dd8e483c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-233.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-233.stderr",
+          "sha256": "2dbaadc607d9098dbc845c9426993086a088b2640ed96d2d3a6906e6e6d44f19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-native-pdf-json-222.stderr",
+          "sha256": "d930de10172c45f2f08f13a8f0970f16f795b254054d1b5eabe31dc123272524"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-native-pdf-json-222.stdout",
+          "sha256": "16e76f5a30aaca36acddb84dfaf214c783fe795199976ef9b5663585334b885a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-native-pdf-json-222.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-native-pdf-json-222.stdout",
+          "sha256": "201ef5c9b75eaa92dcb716921bd9510fcd51e169deddebebf602b9a5e14b366e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-native-pdf-json-223.stdout",
+          "sha256": "7c32d9939181ca84a166eae1ab0c96dd83737f16e11154a289c641aac78f89b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-native-pdf-json-223.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_native_photo_pdf_previews232.py",
+          "sha256": "d0742068b4b45d2dc1cb4b1d8841cf9c4b4ef48badf27d7a0a14208753bc4c1e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews234.py",
+          "sha256": "b716b5af3679f9686ec9a61af148ea83235c7818923c40b2aef48f45dc070574"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews235.py",
+          "sha256": "a750d2cb39b3043fab571e22a17931dabdda54f34800ab62642b4e563cee44ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews233.py",
+          "sha256": "0def88dfc07828ef599874d467a0d60852f3ecca9c8260d925f00204457f1001"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_photo_pdf_previews238.py",
+          "sha256": "c5f6b52110a915f7d7c10dbdbcdd3964d3901c649a71e9ee6ce9bbfb18d57d13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_photo_pdf_previews237.py",
+          "sha256": "a91a991c6c8e469bb5ef62f260756fbbd4c40bb1b5736db46d003e299d4d0366"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace020.py",
+          "sha256": "cd4b7dc07d53f4cf184eb1aac0c4c7fce7e3bd209fe16cc436f66c6a647dc5d5"
+        }
+      ],
+      "resolution": "Resolve the stated direct-PNG preview sampling mismatch for CURE author-bitmap letters, circled digits, dashed borders and rounded corners. The maintained explicitly selected libreoffice-pdf backend samples the unmodified actual final native PDF at1x/2x/4x using independently recomputed bounded plans, actual physical page/canvas ratios, DeviceRGB output and fixed lossless native-export options. Every original source bitmap remains at its original intrinsic dimensions, media bytes, placement, crop and source paint order; no reference pixels, image replacement, resampling of delivered media or new rasterized vector body is used. Actual embedded final and parent media are independently relationship-resolved and hash-equal to author assets for all 1 images. Arbitrary regenerated r:embed identifiers are excluded only after both sides resolve to the same actual media; all other picture frame, geometry, effects, fill and crop properties compare exactly. All 112 manifest objects, source, canvas and actual native paint properties equal the source-verified parent; all source path controls are independently read back under the unchanged0.001canvas-px guard. No fill normalizations, glyph conversion, object deletion or source-policy/budget changes occur. Strict output review independently replays actual native PDF receipt/matrix/PNG bytes and retains all three separate direct Impress PNGs. CURE finite padded image-support RGB diagnostics at1x/2x/4x change from5.412407/2.536732/7.318610 to0.0/0.0/1.411501. Zero in these two finite windows does not imply general pixel equality. The original source-viewport glyph clipping receipt is independently reverified; source caption clipping is retained. All 25 complete whole1x, complete2x and original-size4x source/parent-direct-PNG/canonical-native-PDF comparison boards were actually viewed. The stated source stepped glyph/border pixels or grass/foliage/photo-tile texture is restored in this finite visual review; small4x phase/filtering residuals remain disclosed. Finite metrics are diagnostics only, without thresholds or general RGB/alpha/filtering bounds. Frozen020/commit637d9fc public runtime and installed bytes remain exact:214 tested inputs,83 modules, Python1276(8 optional skips), real CPU Node67(0 skips),90/294-file wheel/sdist and installed-wheel1276(8 optional skips); no public code changed and no redundant test rerun is claimed. Exact-head28b7b9f has16 successful GitHub checks. Earlier readback assumptions about relationship identifiers and partially copied source-assignment metadata failed and are retained; final source assignment is hash-bound to the actual source-verified parent metadata and source PDF. Only this stated preview-sampling finding closes. Bitmap interiors and source outline labels retain their existing editability limitations; general source pixel/filter/group equivalence, ordinary live text, automatic semantics, font delivery, PowerPoint/WPS and user acceptance remain unverified. All prior outputs, original source and failed probes remain retained.",
+      "closed_at": "2026-10-05T18:36:42.791215+00:00"
     },
     {
       "severity": "minor",
@@ -36013,7 +37154,7 @@
       "figure_id": "ccf-2021-02-f01",
       "issue_id": "ccf-2021-02-f01-CLIP-IMAGE-SAMPLING-001",
       "owner_finding_id": "CLIP-IMAGE-SAMPLING-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "probes/root-clip-verification-001.json",
@@ -36044,7 +37185,1140 @@
           "sha256": "b8ff8c43779760d875e89cf8c310603b21ac7648a6b334d944d8ca7eed9ee636"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-020.json",
+          "sha256": "58aa596f922905a2832c29e8abbd6d6c39b7287a48535c8f9414983426500790"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-NATIVE-PDF-JSON-CHECKS-224.json",
+          "sha256": "ba4b598d9488e454ccba446871fb89142c72c9c7cbf274d4ed361fd44aef441e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-NATIVE-PDF-JSON-TEST-INPUTS-222.json",
+          "sha256": "4a55e7b259807d223b5f282469128a53e1fc796b8f470fe9b8a17185d0206861"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-BUILDS-232.json",
+          "sha256": "b8df75051fefefb80c910c2ef5b3e479689844c761f33719c365a66b2d923ea1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-READBACK-235.json",
+          "sha256": "738ebb08ba1289c2ab97bb7c70ef1ff5d64a39c275cd485a5e8057d887f7f3c4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-236.json",
+          "sha256": "4cfc98f5c4d8fb6f8e41dd4c8d89e65bde47b15cad27dc8b2555e232ef0a8d6a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-637d9fc-001.json",
+          "sha256": "b50659137b8e10078fe4fa78474499e0711aaa0a243d07f32c6b156c62c762f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-28b7b9f-002.json",
+          "sha256": "efb23ea24fa8d887b89ff7e8c6999946593b6d4fbe2922992821fed046f559e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-LEDGER-GUARD-237.json",
+          "sha256": "80e911e68b5b6a2fbbdccf84c20c7c9ec6a5b1b549a13bf0d4b3de9e17ce3875"
+        },
+        {
+          "audit_relative_path": "source-regeneration/clip-source-complete-001/build-002/job/source-evidence/assignment.json",
+          "sha256": "308bf278c7769672ce8f26245ba8f391fd16838e44d709647a8abc573553d9bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/manifest.json",
+          "sha256": "5caf612d42282bbede8aa46ae596038b90b71180f9225b2f5525bfac208ae900"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/output-review-unperformed.json",
+          "sha256": "69454ea2c9b3b1a35ebced0e4b25d71df02e81ff8f0e3fb16ce0819c9cfac048"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build-result.json",
+          "sha256": "e25f33f3e3565d9022b4248cea892cb1beef94db385cb29428756bb22730ba9a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/parent-binding.json",
+          "sha256": "afa7fe5451a97e0f379c440c28d440ad98c0eacb120b75683ef7cfbd53383f65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/font-profile.json",
+          "sha256": "6ec53c18c3115cf6ad4be1fd3c976c2c82cc89b4d2b26764ada613b65dcbf9ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/sources/original.png",
+          "sha256": "14f32cd2a31936e38dea1578b074831fdb1f8433bf793899304a30c237fdfba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/exports/reconstruction.pptx",
+          "sha256": "5aeb6562309fb510063eafe2741337b640dcfead389bf7929d96c627ef8ca616"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/build.stdout",
+          "sha256": "5a266abd0c7b213151f224bb4f2018d0054979d0af51088d3582eac574697e6b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/review.json",
+          "sha256": "8e8f9a447ff13b192a9835e0d948e112f354f03c571f51aa66a988d95a8b9a21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/build.json",
+          "sha256": "63fe34f788771a5795a3570c349b26397f00675c42c85ba6678f52a9b9fc622f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/commands/review.stdout",
+          "sha256": "ef71aaa98b751698bddaf134debdc8df6e463f2ae20c422184d0886f936d69e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/native-paint-context.json",
+          "sha256": "fb6eec652bec0cc4ec3b55485bb4c304492e80b9e5ad9d7fd0d11d52e4562d5a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source-1x.png",
+          "sha256": "14f32cd2a31936e38dea1578b074831fdb1f8433bf793899304a30c237fdfba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source-paints.json",
+          "sha256": "6c6fd3c5dfa8769c47606b982e74d271adc8a3da2d0306ee6dfb8ba0d722f0f5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source-parser-limits.json",
+          "sha256": "34adaece6bf174d5fe8c881c1e5b32f1e5dcd566243ca3139ed2556f6a784426"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source.pdf",
+          "sha256": "2a4952960f350e50a3a4a847371b80b8aaa09ba82d1c2a8f6b30450e392a1fe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/assignment.json",
+          "sha256": "308bf278c7769672ce8f26245ba8f391fd16838e44d709647a8abc573553d9bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/native-context-accounting.json",
+          "sha256": "ec9dd478b175cf2a7d94b900f16974370c52c73c661679c420f8598ab25ab4ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source-2x.png",
+          "sha256": "55b0fffc8622e82f2050c2aa8e0f6a4ad7a88d0aaabd10d0acbd5cffd59cc326"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/page-outlined.svg",
+          "sha256": "8e56fc2658d9137218b55a411288c42bb875005bf35ea4aa271a213a986d5479"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/source-evidence/source-4x.png",
+          "sha256": "466da90ee315de333be493245d6b2891f929be65d7754aa8e3aa754fddbe3a6f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/assets/source-image-00000.png",
+          "sha256": "693b07e967eebc80d82a621fa7b65bba518403d88f0d4649619e5e12defb1ce4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/assets/source-image-00001.png",
+          "sha256": "34be4437fb70c3573fc000cc49fc3c73f586721963f7ce88d7065defbaeac264"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/assets/source-image-00004.png",
+          "sha256": "9ec05e5578f151aa04a9bc06ba3aa15bc4875596674c93cdda62be69bdd98d3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/assets/source-image-00003.png",
+          "sha256": "8d20365b530643bdba96d0954027622afa7fa98f0b408dfd52cfe7e6daf5e8b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/assets/source-image-00002.png",
+          "sha256": "6cc3d00e24c9f764bfbd899d509795097dab72f0f7730d9acb41ca0de34f4ed9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "ce2b41cfdff8b965aaf036542f1ffc64d300087e6838448cc825e8d40d389cb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/validation.json",
+          "sha256": "20206d85cf81c0e4959b03279f43ea488523a45739f90767713f69d12c56ddca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/output-review-native-photo-237.json",
+          "sha256": "ce205631065ae77675e0462018e01f5609c9425c8236eb9ee05fa18dc22c804a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/delivery.json",
+          "sha256": "87b69b2a56c66a65dcb0e4e05dfd2fedd5ad94e9833fac409921f4730218504a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "28cdff8e64873cee95951963e6b8e8933634976d799f2c256a8a4667f6fb6682"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "8928c08c2e159f02bae180d260b825251107d5b88b74c723171ab3fb6e72b1bb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/font-audit.json",
+          "sha256": "15f35808780c8b818bca14245b3cad3fb577022352b5baf433fb9ef52c818ce2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/object-map.json",
+          "sha256": "ee0ad1cce0afba8074cfb9072c32447548e658f370ef3a5c7e805bf7cfc95d09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/comparison.png",
+          "sha256": "3320fd1db40ff2366abb84b6e87c4fa28ec9d86b2d0cf927ac1b448de8b2f815"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/manifest-validation.json",
+          "sha256": "caeef97d8118043cb1f994ec7fa32f1e58e2fb8fe418f93d7ddb7f0e05d800d1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/reconstructed.svg",
+          "sha256": "8dfc7639cc20b35d88cfa41fe31b8b0e576ce39c4026dc9375afb3b14f11d08c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/preview-2x.png",
+          "sha256": "0db0945ea6b73be109f4b5ead6b812e9d8a72279c7dd44e6e79ba7dfb0472994"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/asset-snapshot.json",
+          "sha256": "d4a30f0755a1872b12f6da7e7bc42adfc948b98c6e90966264e9a13d6a2f8c05"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/output-review-native-photo-238.json",
+          "sha256": "6adb510a297d88d850c61f482707b486ffc6837891a58ecfd54483e713112f67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/preview-1x.png",
+          "sha256": "f275996a60d077964c93d899567bfa91a7e70689a033103906e7942ce0ce6034"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/delivery-candidate.json",
+          "sha256": "9ca120568484f4b83521c2bfa537a2748b2be19000ef5a98e844cdeb82cf431e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/editability.json",
+          "sha256": "21c0b56fc7884ef8c2ddc81566f4c99d65e8763206b39386096fc3d6f019e727"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/resolved-scene.json",
+          "sha256": "5caf612d42282bbede8aa46ae596038b90b71180f9225b2f5525bfac208ae900"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/comparison-metrics.json",
+          "sha256": "77856444582e03e77097b6c771846f6c9fd50887c9ba820106a713489b387a40"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "5caf612d42282bbede8aa46ae596038b90b71180f9225b2f5525bfac208ae900"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/render-audit.json",
+          "sha256": "f7849b8e672af73fa184e35e95b4e13d54ab5c46f10f4cf452749cf451c94bd3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/preview-4x.png",
+          "sha256": "2845579889424dad0d438c2dd4df33e4dcd5ab659d309db464538f6cae43eeb9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/build-config.json",
+          "sha256": "f9819d1a8abfbe50fabc7386316176141e5791228b60783e8ce11e7a32dfe0c0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/text-fit.json",
+          "sha256": "14e4dc41b1f3c6b93ecce1619c9a85b6fc32a9d80428d68f36ee4716f9286ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "5aeb6562309fb510063eafe2741337b640dcfead389bf7929d96c627ef8ca616"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/candidate.pptx",
+          "sha256": "5aeb6562309fb510063eafe2741337b640dcfead389bf7929d96c627ef8ca616"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/text-manifest.json",
+          "sha256": "b69056d51bacd7367a799cce47fd26e8ad58ba44cf03ab1c293b82d6541f2188"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/comparison-scene.json",
+          "sha256": "fdbef2738563cc490d77571d9fe06fe77e3103649b2d49a49b5190141dc5cbd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "15bb1a77329fbb1409c6610fb0404ec83c1fbbc09b70bb138d88e88151e4f7d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "f6a81590be43ac73428c90706fd5f1517210e7f2e463fba622dabb5752f233fc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "3c7f5d1726aee842007ec25967889e253ae5e48d43fde18a27c57da6b2c6260d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "9cbe5623d7dbc0b53dc2fcd15915a049a987b799d80d74f2fbc85bdad03cd021"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/pdf-preview-receipt.json",
+          "sha256": "713d1522fcc461c8b5664e387ccf336be2da2d5fdfd3a6115ae869c56d5709dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts.conf",
+          "sha256": "e109a2af10eca245b46c1049fc905aec4ddf3c06a634fbef4a212a45e17db4e2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/commands.json",
+          "sha256": "251c5cc1096647adb01f219db6b1a7e7e0e5ad7fee76a445234e22e2c5edbe74"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "5aeb6562309fb510063eafe2741337b640dcfead389bf7929d96c627ef8ca616"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-4/italic.ttf",
+          "sha256": "a88c02930b0b4219cf9bcb67df558d3e4d4144b6035770ea88189e7a680a0442"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-4/regular.ttf",
+          "sha256": "af537faa7d089170d140186f9535679b3cd4a0a4189c89c36766b29af2238482"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-4/boldItalic.ttf",
+          "sha256": "e38de2c4d72abd28d2f3ff59f3209fd2200ee7ecf6065330832d3987f3b39a15"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-4/bold.ttf",
+          "sha256": "a4f74df93e9ae3388270bab976e11728995d955a0c619bf35fdd136df86e8ba3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-3/italic.ttf",
+          "sha256": "06b4a9f9384645012ef16644a38ad3d11dcf6a4a3c0211691ace5e35d5a70776"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-3/regular.ttf",
+          "sha256": "7be18c66b21677f0f483032107555f4225be7cc6d614c2a0a55dd13764906882"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-3/boldItalic.ttf",
+          "sha256": "0146db0c7e68de0ee31a00302737d7ca53b07a614d2e79f6f14678aa79c84d30"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "ded62fcdc715a3ced4220aa01f2398f0641aaf02e1c0a92b63443352789e416f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "5a766b7948303d02a26d0668135c0a1dffd9de1144eb84d4a9878c40eac3f0ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "fe01ca5f37a4b081de676fd20f5c8c012e26a2b214d0d62968fc7e16fe32e8ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "c5339306a6137b7ec1c89ed0e4723d5c56c73f80030e159f2bd5b28f6ac9928c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "f85a6ad9f8b34b3e17ecc9053113e937c4c3cf3fe10a7fb89a0f0649165503d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "3d091376a822e43460f6446af1bcc9e59b8db6c8f827c1aecabd2cb9c21e9940"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "f36c0c677bce4fb6d5536616f8d2b5f4c443767129e4994737e11aa655fa5a0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "4f97d10d2351b5b5405f93365d2afcd8ddeb577539a6ebc897cfb6bd7487a7fd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "ba542ad5cb0346c63fb92f6cdd3232ce1b8973bc88b15a813c5b30d03dd7fc62"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/pdf-png-1x/reconstruction.png",
+          "sha256": "f275996a60d077964c93d899567bfa91a7e70689a033103906e7942ce0ce6034"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/pdf-png-2x/reconstruction.png",
+          "sha256": "0db0945ea6b73be109f4b5ead6b812e9d8a72279c7dd44e6e79ba7dfb0472994"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "bc379bbea27aacfd803192a6dd42b9236ee782ac05afb6a560355668ccff9259"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "4a689298b5640d0be6f71160aaa4431c7222e1908972ba3fb69642c4217723e8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "02f6439a9d129f9d89096257fe8158d199815526a49751b8965045139430127d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/12.ttf",
+          "sha256": "7be18c66b21677f0f483032107555f4225be7cc6d614c2a0a55dd13764906882"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/19.ttf",
+          "sha256": "e38de2c4d72abd28d2f3ff59f3209fd2200ee7ecf6065330832d3987f3b39a15"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "ba542ad5cb0346c63fb92f6cdd3232ce1b8973bc88b15a813c5b30d03dd7fc62"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/15.ttf",
+          "sha256": "0146db0c7e68de0ee31a00302737d7ca53b07a614d2e79f6f14678aa79c84d30"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "9cbe5623d7dbc0b53dc2fcd15915a049a987b799d80d74f2fbc85bdad03cd021"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/9.ttf",
+          "sha256": "f85a6ad9f8b34b3e17ecc9053113e937c4c3cf3fe10a7fb89a0f0649165503d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/13.ttf",
+          "sha256": "ded62fcdc715a3ced4220aa01f2398f0641aaf02e1c0a92b63443352789e416f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/10.ttf",
+          "sha256": "5a766b7948303d02a26d0668135c0a1dffd9de1144eb84d4a9878c40eac3f0ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "3d091376a822e43460f6446af1bcc9e59b8db6c8f827c1aecabd2cb9c21e9940"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/7.ttf",
+          "sha256": "4f97d10d2351b5b5405f93365d2afcd8ddeb577539a6ebc897cfb6bd7487a7fd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "f36c0c677bce4fb6d5536616f8d2b5f4c443767129e4994737e11aa655fa5a0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "f6a81590be43ac73428c90706fd5f1517210e7f2e463fba622dabb5752f233fc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "15bb1a77329fbb1409c6610fb0404ec83c1fbbc09b70bb138d88e88151e4f7d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/16.ttf",
+          "sha256": "af537faa7d089170d140186f9535679b3cd4a0a4189c89c36766b29af2238482"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/11.ttf",
+          "sha256": "c5339306a6137b7ec1c89ed0e4723d5c56c73f80030e159f2bd5b28f6ac9928c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/8.ttf",
+          "sha256": "fe01ca5f37a4b081de676fd20f5c8c012e26a2b214d0d62968fc7e16fe32e8ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "3c7f5d1726aee842007ec25967889e253ae5e48d43fde18a27c57da6b2c6260d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/18.ttf",
+          "sha256": "a88c02930b0b4219cf9bcb67df558d3e4d4144b6035770ea88189e7a680a0442"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/14.ttf",
+          "sha256": "06b4a9f9384645012ef16644a38ad3d11dcf6a4a3c0211691ace5e35d5a70776"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/fonts/17.ttf",
+          "sha256": "a4f74df93e9ae3388270bab976e11728995d955a0c619bf35fdd136df86e8ba3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/font-cache/68b8c3133c7a05d8eed185b7bc11bc04-le64.cache-9",
+          "sha256": "ba623c039010e25318e5e3fe3e7e782706ed859e0f925f75f96aa3ca84d3aec4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/pdf-png-4x/reconstruction.png",
+          "sha256": "2845579889424dad0d438c2dd4df33e4dcd5ab659d309db464538f6cae43eeb9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "be72558812e79ce21ad9767f3ea432d8f648726783ded22d99f57159ca086a76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/sources/original.png",
+          "sha256": "14f32cd2a31936e38dea1578b074831fdb1f8433bf793899304a30c237fdfba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/assets/source-image-00000.png",
+          "sha256": "693b07e967eebc80d82a621fa7b65bba518403d88f0d4649619e5e12defb1ce4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/assets/source-image-00001.png",
+          "sha256": "34be4437fb70c3573fc000cc49fc3c73f586721963f7ce88d7065defbaeac264"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/assets/source-image-00004.png",
+          "sha256": "9ec05e5578f151aa04a9bc06ba3aa15bc4875596674c93cdda62be69bdd98d3c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/assets/source-image-00003.png",
+          "sha256": "8d20365b530643bdba96d0954027622afa7fa98f0b408dfd52cfe7e6daf5e8b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-photo-pdf-previews-001/jobs/ccf-2021-02-f01/build/run-001/assets/assets/source-image-00002.png",
+          "sha256": "6cc3d00e24c9f764bfbd899d509795097dab72f0f7730d9acb41ca0de34f4ed9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-02-f01/output-review-native-photo-237.json",
+          "sha256": "ce205631065ae77675e0462018e01f5609c9425c8236eb9ee05fa18dc22c804a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-02-f01/readback.json",
+          "sha256": "8eb1d0c02c8a70239f7efd0147f5b20bd6105980e2a0883026903d1d6a07ccee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-readback-235/ccf-2021-02-f01/output-review-native-photo-238.json",
+          "sha256": "6adb510a297d88d850c61f482707b486ffc6837891a58ecfd54483e713112f67"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-1x.png",
+          "sha256": "105ad5bb5511e9eeb4bfb9d1c96b42e53eb6a0056fd9e4433fdc145be87edecf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/zero-shot-dog-4x.png",
+          "sha256": "d3f2b323034bc38e0e8e76afcef41c558531ea4fff0e40d2ffa8741f0142d12f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/source-1x.png",
+          "sha256": "14f32cd2a31936e38dea1578b074831fdb1f8433bf793899304a30c237fdfba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-640-246.png",
+          "sha256": "5218742f9c322288eb45b9c54a8535749f038cf3af1f58698b4c02a5ba9419be"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-0-246.png",
+          "sha256": "e7a62e67a9f94b9e8f20ed7c1170059a33506c25a4001a83eb30f6e140cc3e93"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-320-246.png",
+          "sha256": "30b19c276b7c3210eab8d76ad3514e3c37dd553a70669ae1610a6d678aa2c451"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/pretraining-photo-stack-4x.png",
+          "sha256": "f55a5ca308ef33a9987eb0b9bd8e0dc05b428bbb6d87255aa0999a87f7832061"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-320-0.png",
+          "sha256": "e1d7df10a83d2ed29ca95357fda851f79b957626af72c99aa05ef6a7ae646b19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-0-0.png",
+          "sha256": "4a3231528fc8274ba12e75d1407af4a5d659d26071e1bfbe34449554ddd3d561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-640-0.png",
+          "sha256": "a036c3b117fd91d3c775c1a263c4d33bf6d9897fcbd9bfd65f0bb6af9889153d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/visual-review-238.json",
+          "sha256": "35a6261b738b4b5f3e02c1e8d632b091376b5ea77536dbdd1cae65e21db06934"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/source-2x.png",
+          "sha256": "55b0fffc8622e82f2050c2aa8e0f6a4ad7a88d0aaabd10d0acbd5cffd59cc326"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-960-246.png",
+          "sha256": "f71cb3c8dafc1308f8228a9dc81a416b4e8711f02b9e41dc53f67f08c7daf435"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/visual-review-237.json",
+          "sha256": "9d8fa55681e3b33634e248c911f0dcef664a0d447e41869b035a1b71d29674b7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/source-4x.png",
+          "sha256": "466da90ee315de333be493245d6b2891f929be65d7754aa8e3aa754fddbe3a6f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/bindings.json",
+          "sha256": "9f152fd080ebacefa8b77bbcf4f32a205604e4528adb3fcbc95a08093ed49721"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/native-photo-pdf-preview-galleries-235/ccf-2021-02-f01/whole-2x-960-0.png",
+          "sha256": "c919c4e92fc4f08e60664f849ee48ec0a4260cdeb0024cba0e3766d3173710bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.stderr",
+          "sha256": "9b2fbfa564935b5786e80585cc4821378f21a3f8dcbbd20275f25e68b7e924ce"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.json",
+          "sha256": "43bb496f2295ee5047a3831f7e1509ecdcf82b32990538d1e86ae203dc841946"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.stdout",
+          "sha256": "e231aac2ba171afebbf460886a04f55c7ee6d1f672030a964a37db757bf8b41c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.stderr",
+          "sha256": "c12081fd8da6eeda2fa379b40c676cdc9c7d0d218b79af62a897212f8c72d111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.stdout",
+          "sha256": "318c86d4e18d761178dc9d3e59580cdc84311bb7ab37dcb7544e5627e9155dfa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/installed-full.json",
+          "sha256": "48a13e7753a4c87ecf95fd0fe2d2b794b5d7d54e7325450ce2fde749fda302b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.stdout",
+          "sha256": "906524fee284b0b9177ef4db1e3c366bf3a58e041af7c43ebc8c3016739654df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.json",
+          "sha256": "d3b0eb4ba191ac2a2b67dd0267633c39ff1bf895bc4413b79b092478192e68d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/install.stderr",
+          "sha256": "db1c320252546d819cc189405b40a2d905c724b220b033171e071a08a0317932"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/figure_rebuild-0.6.0.tar.gz",
+          "sha256": "33a158a04d4ec88759e0b7c49b8ea36b7d2876219e407dc3ac34b93a3b93fbc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/figure_rebuild-0.6.0-py3-none-any.whl",
+          "sha256": "6896913e7b73c47d2450b1acbe588c777c6e09325669b74e078a749ed86e9f1b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/check-distribution.stdout",
+          "sha256": "15f14383ea112f3a80673c1a361f1a16b2053d96fad9f585f5dc0e7561c4184c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/proof.json",
+          "sha256": "6ec38d814cf37872574e4128fbe84daca0c732ee79f044ab582df351b719f9db"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-native-pdf-json-223/build.json",
+          "sha256": "12d23b6d5a3486fc7771079549c4f6fdc8fd9f7a97056f1bcc9515fc01629063"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/build-native-photo-pdf-previews-232.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/build-native-photo-pdf-previews-232.stdout",
+          "sha256": "245fef15ca9e507cea99d647816a42ee97d139fab152cc02c90bd22a938e51ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-234.stderr",
+          "sha256": "9024ffdc18a577ca2c77c5c06a0760aee16d04d8d5c6c32ba03953ae485361bf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-234.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-235.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-235.stdout",
+          "sha256": "ab5c26c49993eee01a2916d3abbebc03732ec0b3244603515cb4a119dd8e483c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-233.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback-native-photo-pdf-previews-233.stderr",
+          "sha256": "2dbaadc607d9098dbc845c9426993086a088b2640ed96d2d3a6906e6e6d44f19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-native-pdf-json-222.stderr",
+          "sha256": "d930de10172c45f2f08f13a8f0970f16f795b254054d1b5eabe31dc123272524"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/python-full-native-pdf-json-222.stdout",
+          "sha256": "16e76f5a30aaca36acddb84dfaf214c783fe795199976ef9b5663585334b885a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-native-pdf-json-222.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/node-full-native-pdf-json-222.stdout",
+          "sha256": "201ef5c9b75eaa92dcb716921bd9510fcd51e169deddebebf602b9a5e14b366e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-native-pdf-json-223.stdout",
+          "sha256": "7c32d9939181ca84a166eae1ab0c96dd83737f16e11154a289c641aac78f89b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/package-native-pdf-json-223.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_native_photo_pdf_previews232.py",
+          "sha256": "d0742068b4b45d2dc1cb4b1d8841cf9c4b4ef48badf27d7a0a14208753bc4c1e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews234.py",
+          "sha256": "b716b5af3679f9686ec9a61af148ea83235c7818923c40b2aef48f45dc070574"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews235.py",
+          "sha256": "a750d2cb39b3043fab571e22a17931dabdda54f34800ab62642b4e563cee44ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_native_photo_pdf_previews233.py",
+          "sha256": "0def88dfc07828ef599874d467a0d60852f3ecca9c8260d925f00204457f1001"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_photo_pdf_previews238.py",
+          "sha256": "c5f6b52110a915f7d7c10dbdbcdd3964d3901c649a71e9ee6ce9bbfb18d57d13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_native_photo_pdf_previews237.py",
+          "sha256": "a91a991c6c8e469bb5ef62f260756fbbd4c40bb1b5736db46d003e299d4d0366"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace020.py",
+          "sha256": "cd4b7dc07d53f4cf184eb1aac0c4c7fce7e3bd209fe16cc436f66c6a647dc5d5"
+        }
+      ],
+      "resolution": "Resolve the stated direct-PNG preview sampling mismatch for CLIP dog photos, grass, foliage and rear image tiles. The maintained explicitly selected libreoffice-pdf backend samples the unmodified actual final native PDF at1x/2x/4x using independently recomputed bounded plans, actual physical page/canvas ratios, DeviceRGB output and fixed lossless native-export options. Every original source bitmap remains at its original intrinsic dimensions, media bytes, placement, crop and source paint order; no reference pixels, image replacement, resampling of delivered media or new rasterized vector body is used. Actual embedded final and parent media are independently relationship-resolved and hash-equal to author assets for all 5 images. Arbitrary regenerated r:embed identifiers are excluded only after both sides resolve to the same actual media; all other picture frame, geometry, effects, fill and crop properties compare exactly. All 966 manifest objects, source, canvas and actual native paint properties equal the source-verified parent; all source path controls are independently read back under the unchanged0.001canvas-px guard. No fill normalizations, glyph conversion, object deletion or source-policy/budget changes occur. Strict output review independently replays actual native PDF receipt/matrix/PNG bytes and retains all three separate direct Impress PNGs. CLIP finite padded image-support RGB diagnostics at1x/2x/4x change from12.127244/9.758971/5.444924 to0.078216/2.138745/1.487916. All 11 complete whole1x, complete2x and original-size4x source/parent-direct-PNG/canonical-native-PDF comparison boards were actually viewed. The stated source stepped glyph/border pixels or grass/foliage/photo-tile texture is restored in this finite visual review; small4x phase/filtering residuals remain disclosed. Finite metrics are diagnostics only, without thresholds or general RGB/alpha/filtering bounds. Frozen020/commit637d9fc public runtime and installed bytes remain exact:214 tested inputs,83 modules, Python1276(8 optional skips), real CPU Node67(0 skips),90/294-file wheel/sdist and installed-wheel1276(8 optional skips); no public code changed and no redundant test rerun is claimed. Exact-head28b7b9f has16 successful GitHub checks. Earlier readback assumptions about relationship identifiers and partially copied source-assignment metadata failed and are retained; final source assignment is hash-bound to the actual source-verified parent metadata and source PDF. Only this stated preview-sampling finding closes. Bitmap interiors and source outline labels retain their existing editability limitations; general source pixel/filter/group equivalence, ordinary live text, automatic semantics, font delivery, PowerPoint/WPS and user acceptance remain unverified. All prior outputs, original source and failed probes remain retained.",
+      "closed_at": "2026-10-05T18:36:42.791215+00:00"
     },
     {
       "severity": "minor",
