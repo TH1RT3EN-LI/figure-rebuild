@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 84 张图的来源修复及实际成品复查，关闭 126 项原问题：55 项字体、字距、基线、数学字形或活动文字问题，以及 71 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 27 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 31 项开放。原始 296 项现在 288 项关闭、8 项开放；83 项后续发现中 60 项解决、23 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 126 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 84 张图的来源修复及实际成品复查，关闭 128 项原问题：55 项字体、字距、基线、数学字形或活动文字问题，以及 73 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 25 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 29 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 61 项解决、22 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 128 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -74,13 +74,15 @@
 
 - SAM 2 图 1 的 D02 活动文字问题关闭。源图没有对应的文字层或字体程序；24 条标签路径按原图人工确认 Unicode、大小写、分行与空格，恢复 40 个普通活动片段、424 个字符，其中 381 个可见字形来自真实源墨迹。全部 384 次原生绘制顺序及 24 条路径的实际非零填充、颜色、无作用裁剪独立绑定；仅规范等价的填充闭合弦。五个共用 CFF 墨迹字体通过重复字形求物理基线，381 个字形的 28185 个原始原生控制点与实际保存字形在固定 0.001 px 界内，最大 0.000659704999093 px；不是拿接近的 Times 字体替代来源。43 个空格和字体度量明确为人工/合成；未使用的 Mg 度量探针来自供应字体，实际当前文本均不使用这些补充字形。早期压缩 CFF 的可选曲线末端被 LibreOffice26.2.5.2 转整数，严格读回失败；最终保留同一源控制与 advance，以完整曲线指令绕开该分支。全部 115 个使用字体/Unicode 对按该版本相对操作数 1/1024 design unit 舍入核验，424 个真实字体 handle、子集字节、f32 轮廓和原生颜色独立读取，无伪粗/斜或替代。源派生/终态原点差最大横向 0.246 px、纵向 0.508 px，单列应用排版残差。其余 291 个原生对象精确保持，包括 31 张图片的真实媒体、裁剪和位置、260 条路径；8351 个路径控制点最大 0.000101972913399 px，固定守卫不变。全图 1×、完整 2× 六片及全部 24 条标签 4×，31 张原尺寸对照实际查看。源墨迹普通字形、粗细、数值与布局保持；图片滤波、自动识别、未见字形扩展编辑、字体嵌入/交付及 PowerPoint/WPS 仍开放，共用字体交付关联 40 张图。失败版本完整保留，公开代码未改，不重复宣称新测试；前一提交bc5eb5a的16项检查通过。对应整数转换由[LibreOffice26.2.5.2上游代码](https://github.com/LibreOffice/core/blob/libreoffice-26.2.5.2/vcl/source/fontsubset/cff.cxx#L1300-L1317)支持。
 
+- SimCLR 照片重采样 D03 和 MAE 原 Artifact 1× 图片锯齿问题关闭。新预览从实际最终原生 PDF 的有界采样回执生成，图片原字节、位置、裁剪和顺序保留，三份直接 Impress PNG 另存。两图全部 724 个 manifest/原生属性及 26122 个源控制点读回，固定 0.001 px 守卫下最大差 0.000104855 px；123/501 个实际 PDF 路径绘制与父版相同。SimCLR 82 个活动文字对象、416 个实际字形与 109 个使用的 font/GID 对，位置/矩阵/颜色和 f32 轮廓/advance 均与已验证父版一致；九份实际 Type1 子集原始 hash 因 UniqueID 改变而不同，两端实际程序保留，其他字体/Private 字段、encoding、所有字形和 subroutine operands 精确比较。未用别名声称原字体身份。MAE 另与原开放项的 Artifact 预览直接实看；其 1× 图片区域 RGB 诊断从 9.055535 降至 3.992731，照片/网格采样恢复。两图全部 69 张原尺寸对照实看，4× 仍有相位/滤波残差，没有一般像素误差界。BLIP 三张的 31 张对照也全部实看：照片的均值改善掩盖了白色雪花内部变空的回归，候选均未选用，三项继续开放。上次文档提交6faf170的8项检查通过、8项因托管 runner 无法接单取消，保留 GitHub annotation；未宣称全部通过。本批沿用冻结020已验证运行时，未改公开代码或重复宣称新测试；279/280 构建失败及283原字体 hash 假设失败均保留。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
 | --- | --- |
 | ccf-2020-01-f1-1 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2020-02-f02 | D01, D02 |
-| ccf-2020-03-f04 | D01, D02, D04 |
+| ccf-2020-03-f04 | D01, D02, D03, D04 |
 | ccf-2020-04-f01 | D01, D02 |
 | ccf-2020-05-f01 | R01-PREVIEW-STROKE |
 | ccf-2020-05-f02 | R01-PREVIEW-STROKE |
@@ -120,7 +122,7 @@
 | ccf-2021-18-f18 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2022-01-f03 | D01, D02 |
 | ccf-2022-02-f02 | D01, D02, D03, V3-R01 |
-| ccf-2022-05-f01 | R02-NATIVE-IMAGE-FRAME |
+| ccf-2022-05-f01 | R01-PREVIEW-IMAGE-MINIFICATION, R02-NATIVE-IMAGE-FRAME |
 | ccf-2022-07-f01 | D01, D02, D03 |
 | ccf-2022-10-f02 | R01-PREVIEW-STROKE-STYLE |
 | ccf-2022-12-f01 | D01, D02 |
@@ -404,3 +406,14 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/github-checks-bc5eb5a-001.json` | `4274ade7204d0a6784a5539a196868aa9ad917ef6287c6a0d54e84c6490b04ea` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-038.json` | `bc8afe3eac6bafcda23dc4bd6e51152325c7ef9603b1fdec5acd28e7374bbbc3` |
 | `reports/remaining-153-001/DISTILLATION-275.json` | `33fd029d3e01f3ac4af2587c644f6563a84a8917715cc497131cb44a7f421291` |
+| `reports/remaining-153-001/LEDGER-RESULT-039.json` | `e7c8c408a0d5b1f075384af5873240fb8dd9f0fb8ac5c01e050aa337d921ad66` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-REVIEW-RESULT-287.json` | `14a1b448c4807ca77d14b48753bb5f4db81d4b797cfbe6634f3919c5449adeed` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-BUILDS-281.json` | `533b13609c720e27407d5c6fa831bd15c7036017baa7a94bba419989e4153150` |
+| `reports/remaining-153-001/NATIVE-PHOTO-PDF-PREVIEW-READBACK-282.json` | `eebaab1456bb5c52b621988678e2f9dd25056f1e0d08a3e497686ae3ac31fb95` |
+| `reports/remaining-153-001/NATIVE-PHOTO-FINAL-BINDINGS-286.json` | `066c250930113b60c1cf866a1df6c1a99079fde851e236e9f31fd52471fb0781` |
+| `reports/remaining-153-001/actual-view-names-photo-284.json` | `0cdc4a43341f53d934530e789907a3776b37ee5fba80864d2f9888600e4b5e53` |
+| `reports/remaining-153-001/actual-view-MAE-original-Artifact-286.json` | `3d24b696fc35f03cc117764f92465f02e39a7e8560cdc969fc7f92fd498ab867` |
+| `reports/remaining-153-001/NATIVE-PHOTO-RETAINED-FAILURES-285.json` | `434019c23882d9e548ebaa091cf14779656d032f038a0a72dbcc5b9370382f13` |
+| `reports/remaining-153-001/github-checks-6faf170-004.json` | `431387016adb370b2d35baad66fb730739f92170abc199b216c02cd5356972e4` |
+| `reports/remaining-153-001/github-check-6faf170-cancel-reason-285.json` | `f3c4260a3c74af3069ae9a2c1d8ffd7909525ab400f60e8014d1cfd9324cdd44` |
+| `reports/remaining-153-001/NATIVE-PHOTO-LEDGER-GUARD-288.json` | `e673be97fac8fe077d23fbf27fb4d93d3890224f91d226f5e6f09899eb5ce200` |

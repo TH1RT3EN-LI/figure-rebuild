@@ -54,3 +54,9 @@ the source and final DrawingML specify miter limit 10, while the exported PDF
 uses about 3.8637 and clips arrowhead wings. A canonical PDF preview exposes
 that exported result. Better image diagnostics alone do not close the finding;
 source-sized visual inspection and actual paint-state readback remain required.
+
+Inspect transparent raster symbols separately from photographs. In retained
+BLIP candidates, the canonical PDF preview improved some photo diagnostics but
+made light snowflake interiors visibly hollow. The actual original PPT media
+and frames were unchanged. Those candidates remain unselected; overall mean
+RGB improvement cannot establish that each image or alpha edge is preserved.

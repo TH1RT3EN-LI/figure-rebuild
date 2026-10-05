@@ -224,3 +224,11 @@ integer. An explicitly derived font can retain the same target controls while
 encoding full move/line/cubic operators. Verify saved input contours, actual
 subset operands and advances, actual native font handles, and matched-scale
 layout again; do not widen a source-fidelity tolerance to accept truncation.
+
+Raw exported Type1 hashes can also change with the exporter's `UniqueID`. Keep
+both actual programmes and the observed values. Before treating this as a
+metadata change, compare every other font/private dictionary field, encoding,
+all glyph and subroutine operands, and the used native-handle controls and
+advances. Matching names or a removed `UniqueID` alone is insufficient. Such a
+comparison preserves a verified parent result; it does not establish identity
+with the original source font programme.
