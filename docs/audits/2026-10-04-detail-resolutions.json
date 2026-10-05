@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T04:22:17.025230+00:00",
+  "updated_at": "2026-10-05T04:56:18.606262+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 263,
-    "open": 32,
+    "closed_model_visual_review": 266,
+    "open": 29,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -9985,6 +9985,395 @@
           "sha256": "098fe301341cef69788c2c85e34848bb5580a55b7ed564862bea7913f72b5a64"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2023-01-f01",
+      "issue_id": "ccf-2023-01-f01-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Bind the complete real native paint kinds, bboxes and order before extracting image occurrences; ordinary image-info order and matrices are separately verified. The three horse layers retain their distinct source matrices, original offsets and rear left/top slivers; the two other input photographs are also restored from actual occurrences. All actual source image instances are sampled at explicit8x using the unchanged strict native image policy, with integer transparent frames and native full affine/clip context. No whole-figure flattening, independent text/path/shade rasterization or universal filtering/RGB/alpha error bound is claimed. Every other native object, text object and font profile is byte preserved. The final native PPT full object order, transforms, path/cubic/winding/stroke/text receipts and exact embedded media hashes are independently replayed from original authoring against frozen012. The two source-font figures additionally verify every current actual native glyph contour, advance, origin and ordered Unicode against the previously verified source-bound deliveries at exact f32, with prior closure evidence hashes checked. Fresh source whole1x, final native whole1x/2x and all4 matched4x crops were actually viewed at original pixels. Source image geometry, cropping, layer slivers and rounded corners now match. Source-font delivery and extended editing repertoire, ordinary outlined wording in SAM3D, automatic semantics, PowerPoint/WPS and user acceptance remain open/unverified.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-01-f01-geometry-readback-024/native-readback.json",
+          "sha256": "96269d2b50ca897e2e44b6744e98d7450d04627a4952a603318f6e29321aab9c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2023-01-f01-geometry-readback-024/output-review-027.json",
+          "sha256": "e70faff6cffd11af16d182c4755a6e19d030c53ce2c1b2f0cc4252dd734d9b6a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2023-01-f01/bindings.json",
+          "sha256": "b793ba81d84dc78c962a1c83f026a635acd166e770d9ad93caac57ce7678501e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2023-01-f01/visual-review-027.json",
+          "sha256": "2538b5a735318aead9b5f719cc2c744d09868c48a02f26752078aa34a0d20dcb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/output-review-027.json",
+          "sha256": "e70faff6cffd11af16d182c4755a6e19d030c53ce2c1b2f0cc4252dd734d9b6a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "15e69d736e686b17face4cdc4bc5ec727043bf8290961f83349fdf2ee5239592"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/render-audit.json",
+          "sha256": "9eef5c7bf32b3c15c6784fb62c4d50757b306d43d46b29305150c20d2b4ba7d2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/font-audit.json",
+          "sha256": "9809990341f4bbd57e22f14e0c81425a7cc610d791aee3d539459c55f66234c0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/editability.json",
+          "sha256": "ffea05e291fb89b7fd253e0bb6fc64e15a3e2f50226193a5237d35c8871c8f76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/build/run-001/delivery.json",
+          "sha256": "0610b64403735d12b951c16ad4a33d60978effa5119e994a4f3c74eb1e29e52c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/repair-proof.json",
+          "sha256": "72a68b38f060a62c9eff12910927c0dc1c0ed32d9d0e7151950932cb9e5bf7cf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/font-profile.json",
+          "sha256": "9e4a416f1cf78d541c8e80c9c70eeb8f32fd87ae4e3ecfb8034d3fecc1d201e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2023-01-f01/source-evidence/manifest-before-repair.json",
+          "sha256": "b1e003f65fdae6f838c0d794ec342a1f636121046df5ea70b9d42705c94f3594"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-source-inspection-021/ccf-2023-01-f01/proof.json",
+          "sha256": "85b166c41634a42b0b6af11c4fcaa6d31b8a9d6e07fdede59773368d7bda55a7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2023-01-f01/proof.json",
+          "sha256": "c9aa3af31cd70b9f9dfa9da2dbe7299c761cd425095076589157717638bb1f75"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2023-01-f01/extraction.json",
+          "sha256": "7d3c2bca6158f018d3e35ebeb4e44af17ac4fde466ba56b5eb4e171d7f22022c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PHOTO-PROCESS-ATTEMPTS-027.json",
+          "sha256": "815e67508d58130350072fa2645ba873014c2cecc700785a2661fd8c12fb9759"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/inspect_photo_sources021.py",
+          "sha256": "1346bc14c9d44692354e565fb0eddbb96f44ecc949c5451bf16f0e7d145c0b5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/extract_photos022.py",
+          "sha256": "243c9e352dc6619db29794b0361576beee3672b960c214c7aa5fe2f104c9cc3b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_photos023.py",
+          "sha256": "157285c0adec3d34a0c4c45823a4e9759c43dd51a8df2420f4a403aa59fbbe20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_photos024.py",
+          "sha256": "7ac04eb6ecd6604936b48f9bc4e22c93a2b804a59dd6c916eb0c4877ffcd1a14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/photo_galleries025.py",
+          "sha256": "6afb4e1b74a7c2a5eead938f73393b3fe1c4e5cc38f6e6b727fd77deae74f40b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_preserved_fonts026.py",
+          "sha256": "4471a6bf71d6233e203f788a797d0de28d253effd96cbc0bef87e8c3314f0b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_photos027.py",
+          "sha256": "ae1de7b5d056d74b2e4322ce0b5414514536f54e08d72670fe287bf8e40b685f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/maxflow_workspace001.py",
+          "sha256": "8ded02364574b4ba60a9295c0ae5c90095db422f31a9547d1d7fd557abaf6177"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2023-01-f01/proof.json",
+          "sha256": "611af33ed61c23bb2e96f359687f82b15e9e3a56662301e8f404de1a0ae96db6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2023-01-f01/before/native-font-trace.json",
+          "sha256": "b82335026127e3581fab43cf9bf015ea67b7cc00ed5f7f5e9d566b9d03f1cfc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2023-01-f01/after/native-font-trace.json",
+          "sha256": "d4d6f1f072e67f0c8fc9cae355fd02b32f2b6338d6d3bfd56494647111dbc444"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+          "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2024-06-f02",
+      "issue_id": "ccf-2024-06-f02-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Bind the complete real native paint kinds, bboxes and order before extracting image occurrences; ordinary image-info order and matrices are separately verified. The source input close crop and all nine distinct patch slices are restored. Their original paint order is preserved, including non-spatial source ordering and intentional source gaps, rather than sorting or duplicating full-image thumbnails. All actual source image instances are sampled at explicit8x using the unchanged strict native image policy, with integer transparent frames and native full affine/clip context. No whole-figure flattening, independent text/path/shade rasterization or universal filtering/RGB/alpha error bound is claimed. Every other native object, text object and font profile is byte preserved. The final native PPT full object order, transforms, path/cubic/winding/stroke/text receipts and exact embedded media hashes are independently replayed from original authoring against frozen012. The two source-font figures additionally verify every current actual native glyph contour, advance, origin and ordered Unicode against the previously verified source-bound deliveries at exact f32, with prior closure evidence hashes checked. Fresh source whole1x, final native whole1x/2x and all3 matched4x crops were actually viewed at original pixels. Source image geometry, cropping, layer slivers and rounded corners now match. Source-font delivery and extended editing repertoire, ordinary outlined wording in SAM3D, automatic semantics, PowerPoint/WPS and user acceptance remain open/unverified.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-06-f02-geometry-readback-024/native-readback.json",
+          "sha256": "f6a977e94b98ea73ecd033629d4788b3c8b53269c55773ec398f15b0889ab30a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2024-06-f02-geometry-readback-024/output-review-027.json",
+          "sha256": "6592a67ab72db7fb93bbbc1c9a6d69a4dfbdef2254feab9538dc8a01e25a841f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2024-06-f02/bindings.json",
+          "sha256": "fce43fc7a05410388bee362c3e541b20ae0f229f7fc36fe88b913e4ffac931b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2024-06-f02/visual-review-027.json",
+          "sha256": "3e64f315ea12c72da3c475d7bb3c6c56a482d2e3d4e0b53b80a35a3dffe13bb1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/output-review-027.json",
+          "sha256": "6592a67ab72db7fb93bbbc1c9a6d69a4dfbdef2254feab9538dc8a01e25a841f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "7f8ef54f10815352006b07fea9116df94595393b0effff5c13498875c46cca0c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/render-audit.json",
+          "sha256": "3f48beb72fe3ec7107e17e82af05e1eafc05dc2adf9d4bd005563c7b44bf5cb8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/font-audit.json",
+          "sha256": "0844b772a488397b0bc2675578eefd0a78b16c883fe1309ca30275bd681e96fc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/editability.json",
+          "sha256": "aa9659288e5cafdc49d7be89542cd83296c9cf0de32c134ec664e8dcec6abdf7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/build/run-001/delivery.json",
+          "sha256": "6e68aba1f432b54b7b4f702e18b44e7d0f1ffaec8373c1c8dd0910c6f55f67b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/repair-proof.json",
+          "sha256": "e30c5662d2dd3ffc9419517beb280888374c670dc09009843333de4f2250cc92"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/font-profile.json",
+          "sha256": "6f52e87ac70af9b6a1e6bc8c0098309193f38e5d337c528d37397a6548e10f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2024-06-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "dc83c241bf220adfc53c39e51594fe358f375dd57db21a86993f15b8d25296d5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-source-inspection-021/ccf-2024-06-f02/proof.json",
+          "sha256": "1d0e2d9cea0f965cf01d3f829eb5b60fc60c615949d2837bcd0312b0ee46a754"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2024-06-f02/proof.json",
+          "sha256": "8b9d61341b95706b2d2290838a949a482712b832514e1db5d9c263b77e8a9a65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2024-06-f02/extraction.json",
+          "sha256": "ff05b1b14afd594f32d76c68a65cbd081cf3a88f668dfb415b14a7e79e72b376"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PHOTO-PROCESS-ATTEMPTS-027.json",
+          "sha256": "815e67508d58130350072fa2645ba873014c2cecc700785a2661fd8c12fb9759"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/inspect_photo_sources021.py",
+          "sha256": "1346bc14c9d44692354e565fb0eddbb96f44ecc949c5451bf16f0e7d145c0b5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/extract_photos022.py",
+          "sha256": "243c9e352dc6619db29794b0361576beee3672b960c214c7aa5fe2f104c9cc3b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_photos023.py",
+          "sha256": "157285c0adec3d34a0c4c45823a4e9759c43dd51a8df2420f4a403aa59fbbe20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_photos024.py",
+          "sha256": "7ac04eb6ecd6604936b48f9bc4e22c93a2b804a59dd6c916eb0c4877ffcd1a14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/photo_galleries025.py",
+          "sha256": "6afb4e1b74a7c2a5eead938f73393b3fe1c4e5cc38f6e6b727fd77deae74f40b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_preserved_fonts026.py",
+          "sha256": "4471a6bf71d6233e203f788a797d0de28d253effd96cbc0bef87e8c3314f0b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_photos027.py",
+          "sha256": "ae1de7b5d056d74b2e4322ce0b5414514536f54e08d72670fe287bf8e40b685f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/maxflow_workspace001.py",
+          "sha256": "8ded02364574b4ba60a9295c0ae5c90095db422f31a9547d1d7fd557abaf6177"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2024-06-f02/proof.json",
+          "sha256": "cb8d1ddaa9dff06662509f7285cb950e4de3aebe907a9ec523d51b7220d546d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2024-06-f02/before/native-font-trace.json",
+          "sha256": "18deba38cd903d819c31a8a8a41a9e9b948b2acec6553dd533bb1debb95b7ad5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-preserved-fonts-026/ccf-2024-06-f02/after/native-font-trace.json",
+          "sha256": "d13a84c0faa68ec73c21fc05cb891c79780afbca5b8d29176e9474019248826a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+          "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2026-01-f05",
+      "issue_id": "ccf-2026-01-f05-D01",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Bind the complete real native paint kinds, bboxes and order before extracting image occurrences; ordinary image-info order and matrices are separately verified. The actual source rounded clip paths remain active on the input photograph, Stage1 mask and both Stage3 photographs; all seven images preserve source transform, alpha, clips and painter order. All ordinary workflow wording remains outlined and D02 stays open. All actual source image instances are sampled at explicit8x using the unchanged strict native image policy, with integer transparent frames and native full affine/clip context. No whole-figure flattening, independent text/path/shade rasterization or universal filtering/RGB/alpha error bound is claimed. Every other native object, text object and font profile is byte preserved. The final native PPT full object order, transforms, path/cubic/winding/stroke/text receipts and exact embedded media hashes are independently replayed from original authoring against frozen012. The two source-font figures additionally verify every current actual native glyph contour, advance, origin and ordered Unicode against the previously verified source-bound deliveries at exact f32, with prior closure evidence hashes checked. Fresh source whole1x, final native whole1x/2x and all3 matched4x crops were actually viewed at original pixels. Source image geometry, cropping, layer slivers and rounded corners now match. Source-font delivery and extended editing repertoire, ordinary outlined wording in SAM3D, automatic semantics, PowerPoint/WPS and user acceptance remain open/unverified.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2026-01-f05-geometry-readback-024/native-readback.json",
+          "sha256": "7e073aee6d89b1c753df8f34863f0e6323694ca17f4d072a6965c1fc89b62d14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2026-01-f05-geometry-readback-024/output-review-027.json",
+          "sha256": "73c8902e6aabbf60e383d348c87d52fa8105f1e871c51fe30441433f0cf6094b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2026-01-f05/bindings.json",
+          "sha256": "85338df4ddb2dc2e16bf949fcb2ea893daa81ef32d4c9446b63f5c32fb768f5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-galleries-025/ccf-2026-01-f05/visual-review-027.json",
+          "sha256": "fa7168c408edb1c4e9bdb17ea4d8e9584507f0876dd2b092591540d50ce882c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/output-review-027.json",
+          "sha256": "73c8902e6aabbf60e383d348c87d52fa8105f1e871c51fe30441433f0cf6094b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/manifest-snapshot.json",
+          "sha256": "a0b9397ad9bf012128e9616aa97a024ca9ea2651512c0860af96d49658be0e32"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/render-audit.json",
+          "sha256": "5299ed773d406f7d0f13df591926e5341df034e9029eb5388c6a4b03bb262427"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/font-audit.json",
+          "sha256": "1cbb80ea2ed58c4b9eadc01dbe33472c7d458fa62258822c2b32245bf449eac3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/editability.json",
+          "sha256": "037d5b7102888a5a1f6bb96bb4f67d12d76557ceac67d8248f6e6a8f95e6bd7a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/build/run-001/delivery.json",
+          "sha256": "658afb8bd640ccc470127aee9271d172b8b5ed3aae2b86639c06e55f8c97d8ec"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/repair-proof.json",
+          "sha256": "e4f432c574b6d09284658f108087a91b9db8e6db48a94e7887ca34d9d9cca163"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/font-profile.json",
+          "sha256": "4c3d445f2c5f4ffa3c88e0508702f54b232b218f650c5382aa4d7575bf9ca2ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-native-geometry-042/jobs/ccf-2026-01-f05/source-evidence/manifest-before-repair.json",
+          "sha256": "18d725b75d5c8e7389fa701b2e4e2b325f25c0fecf4cfd0ac02862772ed40413"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/photo-source-inspection-021/ccf-2026-01-f05/proof.json",
+          "sha256": "8c072f4cf9db69ba92d03adfa978ecd545debaa8a001a16648904892cb300b15"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2026-01-f05/proof.json",
+          "sha256": "a29c9adf8030d722ca71b3be7bebda24ab2404849a2859ee995586ab0fbe3f4f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-photo-extraction-022/ccf-2026-01-f05/extraction.json",
+          "sha256": "c6705224bcf8fc8c146e42f1329d12d27c66df84b745352a0d9b68696920aae3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PHOTO-PROCESS-ATTEMPTS-027.json",
+          "sha256": "815e67508d58130350072fa2645ba873014c2cecc700785a2661fd8c12fb9759"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/inspect_photo_sources021.py",
+          "sha256": "1346bc14c9d44692354e565fb0eddbb96f44ecc949c5451bf16f0e7d145c0b5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/extract_photos022.py",
+          "sha256": "243c9e352dc6619db29794b0361576beee3672b960c214c7aa5fe2f104c9cc3b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_photos023.py",
+          "sha256": "157285c0adec3d34a0c4c45823a4e9759c43dd51a8df2420f4a403aa59fbbe20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_photos024.py",
+          "sha256": "7ac04eb6ecd6604936b48f9bc4e22c93a2b804a59dd6c916eb0c4877ffcd1a14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/photo_galleries025.py",
+          "sha256": "6afb4e1b74a7c2a5eead938f73393b3fe1c4e5cc38f6e6b727fd77deae74f40b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_preserved_fonts026.py",
+          "sha256": "4471a6bf71d6233e203f788a797d0de28d253effd96cbc0bef87e8c3314f0b28"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_photos027.py",
+          "sha256": "ae1de7b5d056d74b2e4322ce0b5414514536f54e08d72670fe287bf8e40b685f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/maxflow_workspace001.py",
+          "sha256": "8ded02364574b4ba60a9295c0ae5c90095db422f31a9547d1d7fd557abaf6177"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
@@ -10003,11 +10392,9 @@
     "ccf-2022-07-f01-D03",
     "ccf-2022-12-f01-D01",
     "ccf-2022-12-f01-D02",
-    "ccf-2023-01-f01-D02",
     "ccf-2023-08-f02-D03",
     "ccf-2023-13-f07-D05",
     "ccf-2024-03-f02-D02",
-    "ccf-2024-06-f02-D01",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f08-D01",
     "ccf-2025-01-f11-D03",
@@ -10015,7 +10402,6 @@
     "ccf-2025-06-f02-D05",
     "ccf-2025-07-f03-D02",
     "ccf-2025-07-f04-D04",
-    "ccf-2026-01-f05-D01",
     "ccf-2026-01-f05-D02",
     "ccf-2026-02-f01-D07",
     "ccf-2026-02-f01-D08",
@@ -15718,6 +16104,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
           "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+          "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
         }
       ],
       "user_acceptance": "pending",
