@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 46 张图的来源修复及实际成品复查，关闭 77 项原问题：51 项字体、字距、基线、数学字形或活动文字问题，以及 26 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 76 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 79 项开放。原始 296 项现在 270 项关闭、26 项开放；82 项后续发现中 29 项解决、53 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 77 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 55 张图的来源修复及实际成品复查，关闭 86 项原问题：51 项字体、字距、基线、数学字形或活动文字问题，以及 35 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 67 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 70 项开放。原始 296 项现在 270 项关闭、26 项开放；82 项后续发现中 38 项解决、44 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 86 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -43,6 +43,8 @@
 
 - DeepSpeed-Inference 图 1 恢复 132 个真实 Calibri/Calibri Light 标签，九组实际源程序/GID 与完整供给字体逐字形核验。X/Y 相邻描边原宽 0.401140 需乘真实外层均匀缩放 0.280632；旧 SVG 扩张墨迹漏乘该项。两条厚填充轮廓替换为真实原生三次曲线描边，保留 miter 10、顺序和三层裁剪的包络 no-op 证明。Office 的 tt/ti/ft 连字不在源编码字形中，逐字符 run 仍可能被合并；五份完整字体副本只删除 GSUB 并改别名，其余轮廓/度量/hint 表保持字节相同。初始负字距方案仍有约 1 px 累积差，最终四份度量变体为 91 个标签显式声明 90% hmtx，并用非负字距补偿真实源起点，41 个其他标签保留源度量。557 个实际原生字形的源轮廓在 f32 下相同，advance 分别与声明的原始或合成字体匹配；132 标签起点的最大观察差为 0.333/0.541 px，不宣称一般 hinting/像素界。全部 1420 个对象、194 条活动文字和 1226 条路径的几何、文字框、描边和顺序重放通过。源 1×、原生 1×/2×及全部十组同网格 4× 局部实看后关闭 D01/D02；另外 62 条原文字未升级来源身份。完整 cmap 保留，跨应用嵌入与编辑验收继续开放。
 
+- 九张图的 237 个二值 alpha 图片支持被证明恰好为实心矩形，显式裁掉全部透明存储像素并同步映射图片框，保留每个可见 RGB 字节和 dpi 元数据。新公开 helper 由安装的 wheel 独立重放，得到完全相同的资产和对象框；不合成背景，不按白色删边。全部 3205 个最终对象及图片媒体、crop、框和顺序读回；未变路径直接对照已验证父成品的全部原生属性，有差异才独立重放。实际原生 PDF 的 237 份 RGB 样本数组均相同且无软蒙版，236 份尺寸相同；一份纯色 CPU 块的 126 个相同颜色样本被原生导出复用为 9×14，原为 14×9，单独证明相同常量颜色场与完整放置框。PPT 框差小于 2 EMU，原生 PDF 框的观察差最大 0.057 canvas px，低于预先指定的 0.15 检查界。实看九张源 1×、原生 1×/2×、独立 PDF 1×及全部 23 组匹配 4× 局部后，Fawkes 括号、触发数字/DNN、CoCoNuT 训练小网络、FlashAttention2、AST 示例、ZeRO 表、MAE 图片、CodaMosa 图底边及 CPU tile grid 的九项新增灰框/灰线问题关闭。调色板编码、custom-picture 裁剪和纯色尺寸严格相等的失败均保留。半透明或非矩形图片、原始采样/滤波、文字活动性、Artifact 采样及跨应用验收没有升级。公开 helper 的十项控制测试与安装 wheel 重放通过，分发检查为 wheel 84 / sdist 277 文件；完整工作区 1188 项测试曾通过（8 跳过），最终 filename/大整数守卫另由十项安装测试覆盖。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -55,20 +57,26 @@
 | ccf-2020-11-f02 | D01, D02 |
 | ccf-2020-11-f03 | D01, D02 |
 | ccf-2020-12-f03 | D01 |
+| ccf-2020-13-f01 | R02-NATIVE-ALPHA-EDGE |
 | ccf-2020-14-f01 | D01 |
+| ccf-2020-16-f02 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2020-17-f02 | D01 |
 | ccf-2020-18-f01 | D01, D02, XC01 |
+| ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2021-01-f01 | D01 |
 | ccf-2021-03-f03 | D01 |
 | ccf-2021-09-f02 | D01 |
 | ccf-2021-10-f01 | D01, D02 |
 | ccf-2021-12-f02 | D01, D02, D03 |
+| ccf-2021-12-f04 | R03-NATIVE-PDF-TILE-GRID |
 | ccf-2021-13-f01 | D02 |
 | ccf-2021-13-f08 | D01, D02 |
 | ccf-2021-17-f02 | D01 |
 | ccf-2021-17-f05 | D02 |
+| ccf-2021-18-f18 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2022-01-f03 | D01 |
 | ccf-2022-02-f02 | D01, D02, D03, V3-R01 |
+| ccf-2022-05-f01 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2022-07-f01 | D01, D02 |
 | ccf-2022-12-f01 | D01, D02 |
 | ccf-2022-12-f04 | D01 |
@@ -79,6 +87,9 @@
 | ccf-2023-05-f02 | D01, D02 |
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
+| ccf-2023-14-f01 | R02-NATIVE-ALPHA-EDGE |
+| ccf-2023-14-funnumbered-p5 | R02-NATIVE-IMAGE-FRAME |
+| ccf-2024-02-f01 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2024-03-f01 | D01, D02 |
 | ccf-2024-03-f02 | D01 |
 | ccf-2024-03-f12 | D01 |
@@ -199,3 +210,14 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/DEEPSPEED-REVIEW-RESULT-045.json` | `407a4324755638a657ca4b3a90e87c76e8b53e64726dc63814f0cb2649419253` |
 | `reports/remaining-153-001/DEEPSPEED-PROCESS-ATTEMPTS-045.json` | `23e070afacb9963d8da540c1c561ee320a90192b6d560e6ce94ef05e19d83b5f` |
 | `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json` | `a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912` |
+| `reports/remaining-153-001/LEDGER-RESULT-024.json` | `6dbdcfdcb31af09d502271b04f907784c3d5834503a7bcab4c732970f0b9bc87` |
+| `reports/remaining-153-001/OPAQUE-RECTANGLE-REVIEW-RESULT-058.json` | `13619b9b5f07d91e12285d653b45f4465c0c3152a232558603e0ccb8db6d0b6c` |
+| `reports/remaining-153-001/OPAQUE-RECTANGLE-SOURCE-NATIVE-PROOF-057v2.json` | `f61637903b26507cbf2d0d46313cc00690688bc18e7d2d5c1086b08a532908b1` |
+| `reports/remaining-153-001/OPAQUE-RECTANGLE-PROCESS-ATTEMPTS-058.json` | `54e83e188d421f7cf6d191508dbe9f8613166977ce704ca4d1576d1d39ee54f1` |
+| `reports/remaining-153-001/public-image-alpha-checks-058/checks.json` | `48a95909b46a61c1a6f8ae470fff25ce1bc181c09b41342f7a106d51380621d7` |
+
+一致性复核 024：1512 份唯一已绑定证据和 92 条既有总结引用全部通过；来源构建的 190 份运行时/测试输入与已验证的 `2dab218` 冻结字节一致。新裁切 helper 由安装 wheel 独立核验，未将当前工作区运行时误当作源构建运行时。
+
+| 证据 | SHA256 |
+| --- | --- |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-024.json` | `d8752700b25e90dbd63f1b049e089bd501955400c98fa6f423d8b197e26b3785` |

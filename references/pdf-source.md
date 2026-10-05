@@ -97,6 +97,12 @@ images = extract_pdf_images(
 
 每个源图片资产仍是位图；派生 PNG 也不是作者原始编码字节或可编辑矢量。原 PDF 字节保持不变，不能以整页截图替代未处理的文字和路径。
 
+### 精确裁掉矩形图片的全透明存储边缘
+
+若原生导出在透明图片框边缘出现额外灰线，可显式调用 `figure_rebuild.image_alpha.derive_opaque_rect_image(image_object, job_dir, new_relative_png_path)`。接口仅接受无旋转、无 crop、`fit="stretch"` 的 RGBA PNG：alpha 必须只有 0/255，全部不透明像素必须恰好组成一个实心矩形。它生成新的 RGB PNG 和修改后的图片对象，并返回绑定原/新资产、原/新框及像素支持的回执。只删除 alpha=0 的存储像素，不按颜色删白边、不合成背景；保留全部可见 RGB 字节及 PNG 的 dpi 元数据。其他元数据、色彩配置、部分透明度、孔洞和不连续支持继续拒绝。
+
+原图与旧清单保留；保存回执，将返回对象放入新版本清单后重新 `review → build → review-output`。裁后框由原像素比例计算，像素到画布的浮点编码误差限定为 1e-9 canvas px；实际 PPT 的 EMU 量化及原生图片变换还须独立核验。这只是已声明位图的精确支持裁切，不证明作者 PDF、采样滤波或跨应用像素等价，也不会自动处理其他图片。
+
 转换之后继续执行[细节保真与输出审阅](fidelity.md)：逐字、逐连接记录源证据，保留未知项，检查实际导出的 PPT 及其预览，再记录本次文件哈希绑定的审查。
 
 受支持的来源配置可另运行 [verify-source-fidelity](source-fidelity-cli.md)，从原 PDF 重新核验清单、resolved scene 和实际 PPT。退出码 0 仅表示声明范围内的来源保真；它不替代语义、视觉或用户验收。规范化路径、裁切及其他尚无完整重放证明的配置可能返回 `UNRESOLVED`，不能通过缩小报告内容改称整图通过。
