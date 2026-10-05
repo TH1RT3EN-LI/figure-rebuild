@@ -1,6 +1,7 @@
 """Postbuild review must describe the exact inspected and delivered bytes."""
 import copy
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -77,6 +78,70 @@ class OutputReviewChecks(unittest.TestCase):
                 'description': 'Return arrow points the wrong way.',
                 'region': 'Top-right feedback edge',
                 'artifacts': ['source', 'preview_2x']}
+
+    def add_image_preview_provenance(self):
+        from figure_rebuild.artifact_image_preview import prepare_image_preview
+        from figure_rebuild.artifact_image_preview import NS
+        pptx = self.run / 'validated-output/reconstruction.pptx'
+        with ZipFile(pptx, 'w') as z:
+            z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/></p:spTree></p:cSld></p:sld>')
+            z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"/>')
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        Path(delivery['output']).write_bytes(pptx.read_bytes())
+        delivery['sha256'] = digest(pptx.read_bytes()); self.write_json(self.run / 'delivery.json', delivery)
+        self.add_preview_provenance()
+        config = json.loads((self.run / 'build-config.json').read_text())
+        config['artifact_image_preview_version'] = 1
+        self.write_json(self.run / 'build-config.json', config)
+        d = prepare_image_preview(self.run / 'validated-output/reconstruction.pptx',
+                                  json.loads((self.run / 'resolved-scene.json').read_text()))
+        definition = self.run / 'artifact-image-preview.json'; self.write_json(definition, d)
+        audit = json.loads((self.run / 'render-audit.json').read_text())
+        audit['evidence']['image_preview_definition'] = review._binding(definition)
+        audit['artifact_image_preview'] = {'schema_version': 1, 'policy': d['policy'],
+            'preview_only': True, 'native_delivery_modified': False, 'reference_pixels_used': False,
+            'renderer': d['renderer'], 'renderer_version': d['renderer_version'], 'mupdf_version': d['mupdf_version'],
+            'applications': [{'scale': s, 'applied_object_ids': [], 'complete_mixed_paint_order_preserved': True} for s in (1,2,4)],
+            'unsupported': [], 'source_pixel_equivalence': False, 'application_playback_verified': False}
+        self.write_json(self.run / 'render-audit.json', audit)
+        delivery = json.loads((self.run / 'delivery.json').read_text())
+        delivery['render_audit_sha256'] = digest((self.run / 'render-audit.json').read_bytes())
+        self.write_json(self.run / 'delivery.json', delivery)
+        return audit
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_binds_actual_definition_with_user_and_playback_pending(self):
+        self.add_image_preview_provenance(); record = review.prepare_output_review(self.run)
+        self.assertIn('image_preview_definition', record['bindings'])
+        self.assertFalse(record['model_review']['performed'])
+        self.assertEqual(record['user_acceptance'], {'status': 'pending'})
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_forged_definition_rejected_even_after_its_hash_is_updated(self):
+        audit = self.add_image_preview_provenance(); path = self.run / 'artifact-image-preview.json'
+        d = json.loads(path.read_text()); d['paint_order'] = [{'id': 'fake', 'type': 'image'}]
+        self.write_json(path, d); audit['evidence']['image_preview_definition'] = review._binding(path)
+        self.write_json(self.run / 'render-audit.json', audit)
+        with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_order_and_reference_playback_claims_are_not_accepted(self):
+        good = self.add_image_preview_provenance()
+        for change in (lambda a: a['applications'].reverse(), lambda a: a.update(reference_pixels_used=True),
+                       lambda a: a.update(application_playback_verified=True), lambda a: a.update(source_pixel_equivalence=True)):
+            audit = copy.deepcopy(good); change(audit['artifact_image_preview'])
+            self.write_json(self.run / 'render-audit.json', audit)
+            with self.assertRaisesRegex(ValueError, 'receipt disagrees'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_picture_preview_unrequested_or_bad_version_is_rejected(self):
+        self.add_image_preview_provenance(); config = json.loads((self.run / 'build-config.json').read_text())
+        for value in (None, True, 2):
+            edited = copy.deepcopy(config)
+            if value is None: edited.pop('artifact_image_preview_version')
+            else: edited['artifact_image_preview_version'] = value
+            self.write_json(self.run / 'build-config.json', edited)
+            with self.assertRaisesRegex(ValueError, 'picture preview'): review.prepare_output_review(self.run)
 
     def test_unrequested_pdf_derivation_cannot_be_added_to_artifact_or_legacy_delivery(self):
         for provenance in (False, True):

@@ -161,6 +161,54 @@ class NativeImageTests(unittest.TestCase):
         self.assert_matches_page(record, page, (4, 8), (14, 18))
         self.assert_matches_page(record, page, (16, 8), (26, 18))
 
+    def test_explicit_device_rgb_page_wrapper_and_straight_mask_keep_intrinsic_bytes(self):
+        doc, page = self.document()
+        source = Image.new('RGBA', (20,20), (47, 113, 199, 17))
+        source.putpixel((5,5), (213, 29, 91, 231))
+        # Construct the original PDF resources directly. Inserting an RGBA
+        # PNG through MuPDF would itself introduce a premultiply round trip
+        # before the tested source callback ever receives the native samples.
+        mask = doc.get_new_xref(); doc.update_object(mask, '<< /Type /XObject /Subtype /Image /Width 20 /Height 20 /BitsPerComponent 8 /ColorSpace /DeviceGray >>')
+        doc.update_stream(mask, source.getchannel('A').tobytes())
+        image = doc.get_new_xref(); doc.update_object(image, f'<< /Type /XObject /Subtype /Image /Width 20 /Height 20 /BitsPerComponent 8 /ColorSpace /DeviceRGB /SMask {mask} 0 R >>')
+        doc.update_stream(image, source.convert('RGB').tobytes())
+        doc.xref_set_key(page.xref, 'Resources', f'<< /XObject << /Pic {image} 0 R >> >>')
+        stream = doc.get_new_xref(); doc.update_object(stream, '<< >>')
+        doc.update_stream(stream, b'q 20 0 0 20 10 30 cm /Pic Do Q'); page.set_contents(stream)
+        doc.xref_set_key(page.xref, 'Group', '<< /S /Transparency /CS /DeviceRGB /I true >>')
+        reopened = fitz.open(stream=doc.tobytes(), filetype='pdf'); self.addCleanup(reopened.close); page = reopened[0]
+        with self.assertRaisesRegex(PdfImageNativeError, 'transparency group'): self.capture(page)
+        record, = capture_native_pdf_images(page, page.get_bboxlog(), None,
+            allow_device_rgb_page_wrapper=True, preserve_straight_mask_colors=True).values()
+        self.assertEqual(record['pixels'].tobytes(), source.tobytes())
+        self.assertTrue(record['receipt']['explicit_device_rgb_page_wrapper'])
+        self.assertTrue(record['receipt']['straight_attached_mask_rgb_preserved'])
+        self.assertFalse(record['receipt']['straight_rgba_via_native_png_roundtrip'])
+        # The output can be filtered again from intrinsic data; it is not a
+        # fixed-resolution source render masquerading as original image pixels.
+        self.assertEqual(record['pixels'].size, (20,20)); self.assert_matches_page(record, page, (4,4), (14,14), 2)
+
+    def test_explicit_wrapper_does_not_admit_cmyk_or_blend_children_or_bad_flags(self):
+        doc, page = self.document()
+        page.insert_image(fitz.Rect(10,10,30,30), stream=encode(Image.new('RGBA',(20,20),(47,113,199,17))))
+        doc.xref_set_key(page.xref, 'Group', '<< /S /Transparency /CS /DeviceCMYK /I true >>')
+        reopened = fitz.open(stream=doc.tobytes(),filetype='pdf'); self.addCleanup(reopened.close)
+        with self.assertRaisesRegex(PdfImageNativeError, 'transparency group'):
+            capture_native_pdf_images(reopened[0], reopened[0].get_bboxlog(), None, allow_device_rgb_page_wrapper=True)
+        for value in (1, None, 'true'):
+            with self.assertRaisesRegex(PdfImageNativeError, 'boolean'):
+                capture_native_pdf_images(page, page.get_bboxlog(), None, allow_device_rgb_page_wrapper=value)
+        # A canonical RGB root must not authorize an active blending child.
+        doc.xref_set_key(page.xref, 'Group', '<< /S /Transparency /CS /DeviceRGB /I true >>')
+        resources = int(doc.xref_get_key(page.xref, 'Resources')[1].split()[0])
+        doc.xref_set_key(resources, 'ExtGState', '<< /Blend << /BM /Multiply >> >>')
+        stream = page.get_contents()[0]
+        doc.update_stream(stream, b'q /Blend gs\n' + doc.xref_stream(stream) + b'\nQ')
+        reopened = fitz.open(stream=doc.tobytes(), filetype='pdf'); self.addCleanup(reopened.close)
+        with self.assertRaisesRegex(PdfImageNativeError, 'transparency group'):
+            capture_native_pdf_images(reopened[0], reopened[0].get_bboxlog(), None,
+                                     allow_device_rgb_page_wrapper=True, preserve_straight_mask_colors=True)
+
 
 if __name__ == '__main__':
     unittest.main()

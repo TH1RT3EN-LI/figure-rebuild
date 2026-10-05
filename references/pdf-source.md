@@ -97,6 +97,8 @@ images = extract_pdf_images(
 
 仅在 `native_occurrence_rendering=True` 时可显式设置 `native_sampling_scale=4`；允许值为 4 或 8，默认仍为 8。两档保留相同源实例、原生上下文及整数存储框，采样倍率写入回执。更高倍率并不保证更接近源 PDF 的特定显示倍率；选择另一档后须新建资产与完整候选，分别检查实际 1×/2×/4×输出，不能沿用旧图的验收结果。
 
+固有像素解码可显式设置 `allow_device_rgb_page_wrapper=True`，仅接受原生 canonical DeviceRGB、相同 default RGB、覆盖整页的 isolated/Normal/alpha=1 根组，图片上下文中仍不允许子组。`preserve_straight_mask_colors=True` 将实际解码后的 RGB 与同尺寸单通道附属蒙版直接组合，避免再次预乘及反预乘的字节舍入。两项只用于固有解码，不能与 `native_occurrence_rendering=True` 混用；默认准入和预算不变。这不证明原作者编码字节、图片过滤或跨渲染器像素等价。图片成品可另选[显式设备网格预览](preview-image-sampling.md#explicit-native-picture-device-grid-previews)，仍须逐倍率复查。
+
 每个源图片资产仍是位图；派生 PNG 也不是作者原始编码字节或可编辑矢量。原 PDF 字节保持不变，不能以整页截图替代未处理的文字和路径。
 
 ### 精确裁掉矩形图片的全透明存储边缘

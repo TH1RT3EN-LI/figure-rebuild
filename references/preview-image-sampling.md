@@ -65,3 +65,35 @@ Ansor report was 583.32 MiB with indentation and exceeded Node's single-string
 limit; compact serialization removes whitespace and an extra full serialized
 copy in Python. This addresses that observed report size, not arbitrary-size
 JSON, total interpreter memory or every external renderer limit.
+
+## Explicit native picture device-grid previews
+
+`build --artifact-image-preview` opts a standalone Artifact build into
+`delivered-native-picture-mupdf-device-grid-v1`. The adapter reads the actual
+validated PPT's embedded PNG/JPEG bytes and integer EMU picture coordinates.
+MuPDF samples each supported picture into a transparent device-aligned frame
+at 1x, 2x and 4x; Artifact renders the complete mixed scene with those transient
+picture assets. Each scale starts from a fresh import of the delivered PPT.
+The complete native paint order is restored, including foreground shapes,
+text and the existing stroke preview adapter. The delivered PPT is not
+re-exported from this transient presentation. References never supply pixels.
+Ordinary builds retain the existing sampling policy.
+
+Support is restricted to plain top-level rectangular pictures with zero crop,
+rotation and reflection, no painted border, effects or embedded color profile.
+Unsupported pictures retain ordinary Artifact sampling and an explicit audit
+limitation. Grouped slides fail this opt-in request. Package, decoded-image,
+device-grid and combined rendering budgets are checked before allocation.
+
+MuPDF can filter color and mask separately, dimming both RGB and alpha. This
+is a finite renderer policy, not equivalence to premultiplied Skia filtering,
+an RGB/alpha error bound or independence from hidden RGB. PNG decoding can
+also quantize color through premultiplication and unpremultiplication. Retain
+the actual source decode receipts and inspect the delivered result at every
+scale before accepting a source-derived asset selection.
+
+The definition binds final media bytes, native picture and slide XML, actual
+frames, sampled PNGs and PyMuPDF/MuPDF versions. Output review independently
+recomputes it from the final PPT and checks all three applications and complete
+paint order. This verifies the declared preview procedure; source appearance,
+semantic editability and PowerPoint/WPS playback remain separate checks.

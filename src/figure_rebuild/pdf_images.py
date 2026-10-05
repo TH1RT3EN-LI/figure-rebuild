@@ -507,7 +507,8 @@ def _svg_images(svg, selection=None):
 def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, image_indices=None,
                        allow_affine_rasterization=False, native_occurrence_rendering=False,
                        allow_native_rgb_group_sampling=False, native_sampling_scale=8,
-                       allow_native_matte_sampling=False):
+                       allow_native_matte_sampling=False, allow_device_rgb_page_wrapper=False,
+                       preserve_straight_mask_colors=False):
     """Return visible image occurrences with PNG bytes and explicit placement.
 
     ``page`` is one-based; ``region`` is x0/y0/x1/y1 in unrotated top-left PDF
@@ -572,6 +573,15 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
     indices (never xrefs). Any selected unsupported occurrence fails the whole
     operation, including one outside the region. No approximate fallback is
     returned. With no selection, all occurrences must be supported.
+
+    For intrinsic decoding, ``allow_device_rgb_page_wrapper=True`` explicitly
+    admits only the full-page canonical DeviceRGB isolated Normal alpha-one
+    wrapper with canonical default RGB, without child groups. The default
+    remains strict. ``preserve_straight_mask_colors=True`` retains converted
+    RGB bytes and the co-registered attached mask without a premultiplied byte
+    round trip. Both require intrinsic decoding and reject native occurrence
+    rendering. Placement, clipping, source resources and budgets are unchanged;
+    this does not establish renderer or shared-group pixel equivalence.
     """
     try:
         import pymupdf
@@ -579,6 +589,12 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
         raise ValueError('PDF image extraction requires the optional source dependencies') from error
     if not isinstance(native_occurrence_rendering, bool):
         raise ValueError('native_occurrence_rendering must be a boolean')
+    for value, name in ((allow_device_rgb_page_wrapper, 'allow_device_rgb_page_wrapper'),
+                        (preserve_straight_mask_colors, 'preserve_straight_mask_colors')):
+        if type(value) is not bool:
+            raise ValueError(name + ' must be a boolean')
+        if value and native_occurrence_rendering:
+            raise ValueError(name + ' requires intrinsic image decoding')
     if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
             or native_sampling_scale not in (4, 8)):
         raise ValueError('native_sampling_scale must be the integer 4 or 8')
@@ -643,7 +659,9 @@ def extract_pdf_images(pdf_path, *, page=1, region=None, source_transform=None, 
                 # Keep original pixel decoding independent of those APIs too.
                 with pymupdf.open(stream=source_bytes, filetype='pdf') as pixel_document:
                     native_images = capture_native_pdf_images(
-                        pixel_document[page-1], bboxlog, {paint[0] for paint in paint_order.values()})
+                        pixel_document[page-1], bboxlog, {paint[0] for paint in paint_order.values()},
+                        allow_device_rgb_page_wrapper=allow_device_rgb_page_wrapper,
+                        preserve_straight_mask_colors=preserve_straight_mask_colors)
         except PdfImageNativeError as error:
             raise UnsupportedPdfImageError(str(error)) from error
         blocks = {block['number']: block for block in sheet.get_text('dict')['blocks'] if block['type'] == 1}

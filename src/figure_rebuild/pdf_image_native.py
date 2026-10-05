@@ -17,7 +17,9 @@ class PdfImageNativeError(ValueError):
 MAX_NATIVE_IMAGE_PIXELS = 64_000_000
 
 
-def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
+def capture_native_pdf_images(sheet, bboxlog, selected_seqnos, *,
+                              allow_device_rgb_page_wrapper=False,
+                              preserve_straight_mask_colors=False):
     """Return selected ``fill-image`` paints keyed by their bboxlog sequence.
 
     Every paint's type and bbox is checked in order, including unselected
@@ -27,8 +29,17 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
 
     ``selected_seqnos=None`` selects every ordinary image paint. Stencil
     image paints and external transparency/group compositing are unsupported;
-    an image's own co-registered native mask is supported.
+    an image's own co-registered native mask is supported. Explicitly allowing
+    a DeviceRGB page wrapper only admits the actual canonical DeviceRGB handle,
+    identical default RGB, a full-page isolated Normal alpha-one root, and no
+    children. It does not admit general RGB/ICC groups. Straight-mask mode keeps
+    converted RGB samples and the co-registered mask separately, avoiding a
+    premultiply/unpremultiply byte round trip; it does not prove filter equality.
     """
+    for value, name in ((allow_device_rgb_page_wrapper, 'allow_device_rgb_page_wrapper'),
+                        (preserve_straight_mask_colors, 'preserve_straight_mask_colors')):
+        if type(value) is not bool:
+            raise PdfImageNativeError(name + ' must be a boolean')
     try:
         import pymupdf as fitz
     except ImportError as error:
@@ -40,6 +51,8 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
                        'll_fz_keep_default_colorspaces', 'll_fz_get_unscaled_pixmap_from_image',
                        'fz_convert_pixmap', 'fz_device_rgb', 'fz_new_pixmap_from_color_and_mask',
                        'fz_run_page', 'fz_close_device')
+    if allow_device_rgb_page_wrapper:
+        required_native += ('fz_default_rgb',)
     callbacks = ('set_default_colorspaces', 'begin_mask', 'end_mask', 'begin_group',
                  'end_group', 'clip_image_mask', 'clip_path', 'clip_stroke_path',
                  'clip_text', 'clip_stroke_text', 'pop_clip', 'begin_tile', 'end_tile')
@@ -106,16 +119,22 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
         def begin_group(self, ctx, area, cs, isolated, knockout, blendmode, alpha):
             bounds = tuple(float(getattr(area, key)) for key in ('x0', 'y0', 'x1', 'y1'))
             # pdf-run.c wraps transparent pages in this exact neutral group.
-            # A colorspace, nested group, opacity or blend mode is not neutral.
+            # The explicit exception is the canonical DeviceRGB full-page
+            # wrapper with identical default RGB. Child groups stay unsupported.
+            actual_rgb_root = bool(allow_device_rgb_page_wrapper and cs and
+                                   int(cs.this) == int(m.fz_device_rgb().m_internal.this) and
+                                   int(m.fz_default_rgb(self.default_colorspaces).m_internal.this)
+                                   == int(m.fz_device_rgb().m_internal.this))
             neutral_root = (not self.root_group_seen and not self.groups and not self.result
                             and not self.clips and not self.mask_definitions and not self.tiles
-                            and not cs and isolated == 1 and knockout == 0
+                            and (not cs or actual_rgb_root) and isolated == 1 and knockout == 0
                             and blendmode == 0 and alpha == 1
                             and bounds == tuple(sheet.rect))
             self.root_group_seen = True
             self.groups.append({'isolated': isolated, 'knockout': knockout,
                                 'blendmode': blendmode, 'alpha': alpha,
-                                'neutral_page_wrapper': neutral_root})
+                                'neutral_page_wrapper': neutral_root,
+                                'explicit_device_rgb_page_wrapper': bool(neutral_root and actual_rgb_root)})
 
         def end_group(self, ctx):
             if self.groups:
@@ -169,6 +188,10 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
         def capture(self, image, ctm, alpha, color_params, seqno):
             if any(not group['neutral_page_wrapper'] for group in self.groups):
                 raise PdfImageNativeError('PDF transparency group requires explicit compositing')
+            if any(group['explicit_device_rgb_page_wrapper'] for group in self.groups) and (
+                    int(m.fz_default_rgb(self.default_colorspaces).m_internal.this)
+                    != int(m.fz_device_rgb().m_internal.this)):
+                raise PdfImageNativeError('DeviceRGB page wrapper has a changed default RGB')
             if self.tiles:
                 raise PdfImageNativeError('PDF pattern tile requires explicit compositing')
             if not math.isfinite(alpha) or alpha != 1:
@@ -208,6 +231,7 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
             rgb = m.fz_convert_pixmap(pix, m.fz_device_rgb(), m.FzColorspace(),
                                      self.default_colorspaces, m.FzColorParams(color_params), 1)
             mask_receipt = None
+            straight_pixels = None
             if image.mask:
                 if image.mask.mask:
                     raise PdfImageNativeError('Nested attached image masks are unsupported')
@@ -225,14 +249,21 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
                                 'native_alpha_channel': bool(mask.alpha),
                                 'use_decode': bool(image.mask.use_decode),
                                 'xref_used': False}
-                rgb = m.fz_new_pixmap_from_color_and_mask(rgb, maskpix)
+                if preserve_straight_mask_colors:
+                    color = fitz.Pixmap('raw', rgb)
+                    if color.alpha or color.n != 3:
+                        raise PdfImageNativeError('Straight mask composition requires unassociated RGB samples')
+                    straight_pixels = Image.frombytes('RGB', (color.width, color.height), color.samples).convert('RGBA')
+                    straight_pixels.putalpha(Image.frombytes('L', (mask.width, mask.height), mask.samples))
+                else:
+                    rgb = m.fz_new_pixmap_from_color_and_mask(rgb, maskpix)
 
             output = fitz.Pixmap('raw', rgb)
             # Native RGBA samples are premultiplied. MuPDF's PNG encoder
             # unpremultiplies them; direct Image.frombytes would darken edges.
             encoded = output.tobytes('png')
             with Image.open(io.BytesIO(encoded)) as decoded:
-                pixels = decoded.convert('RGBA')
+                pixels = straight_pixels if straight_pixels is not None else decoded.convert('RGBA')
             receipt = {
                 'identity': 'actual_mupdf_fill_image_callback',
                 'paint_seqno': seqno,
@@ -260,7 +291,10 @@ def capture_native_pdf_images(sheet, bboxlog, selected_seqnos):
                 'neutral_page_transparency_wrapper': bool(self.groups),
                 'draw_alpha': alpha,
                 'external_group_or_mask_compositing': False,
-                'straight_rgba_via_native_png_roundtrip': True,
+                'explicit_device_rgb_page_wrapper': any(group['explicit_device_rgb_page_wrapper'] for group in self.groups),
+                'straight_attached_mask_rgb_preserved': straight_pixels is not None,
+                'mask_composition': 'straight_RGB_plus_co_registered_mask' if straight_pixels is not None else 'native_premultiplied_pixmap_PNG_unpremultiply',
+                'straight_rgba_via_native_png_roundtrip': straight_pixels is None,
                 'native_rgb_png_sha256': hashlib.sha256(encoded).hexdigest(),
                 'pymupdf_version': fitz.VersionBind,
             }

@@ -480,9 +480,21 @@ def build(a):
     from .native_preview import validate_backend, validate_pdf_alpha_policy
     preview_backend = validate_backend(getattr(a, 'preview_backend', 'artifact'))
     pdf_alpha_policy = validate_pdf_alpha_policy(getattr(a, 'pdf_alpha_derivation', None), preview_backend)
+    image_preview = getattr(a, 'artifact_image_preview', False)
+    if image_preview and (preview_backend != 'artifact' or a.base):
+        raise ValueError('Native picture preview requires a standalone Artifact build')
     if preview_backend == 'libreoffice' and a.base:
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
     rt = runtime()
+    if image_preview:
+        try:
+            subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'artifact_image_preview',
+                            '--preflight'], check=True, capture_output=True, text=True, timeout=45,
+                           env=python_environment())
+        except subprocess.TimeoutExpired as exc:
+            raise ValueError('Native picture preview dependency check timed out') from exc
+        except subprocess.CalledProcessError as exc:
+            raise ValueError('Native picture preview dependency check failed: ' + (exc.stderr or '').strip()) from exc
     if preview_backend == 'libreoffice':
         # Probe the configured interpreter, not the interpreter running this CLI.
         with tempfile.TemporaryDirectory(prefix='figure-rebuild-native-check-') as temp:
@@ -533,6 +545,8 @@ def build(a):
                   'diagnostic_provenance_version': 1}
         if preview_backend == 'artifact' and not base_config:
             config['artifact_stroke_preview_version'] = 1
+        if image_preview:
+            config['artifact_image_preview_version'] = 1
         if pdf_alpha_policy:
             config['pdf_alpha_derivation'] = pdf_alpha_policy
         if 'source_canvas_clip' in data:
@@ -605,6 +619,7 @@ def main():
     c.set_defaults(func=validate_reviewed)
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
     c.add_argument('--preview-backend', choices=['artifact', 'libreoffice'], default='artifact', help='Renderer for the exact finalized PPTX; LibreOffice currently supports single-slide builds only')
+    c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
     c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')

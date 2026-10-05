@@ -94,11 +94,15 @@ def _preview_provenance(run, config, paths):
     """New runs bind renderer identity and its actual input/output evidence."""
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
+        _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
         if (run / 'render-audit.json').exists():
             legacy_audit = _json_record(run / 'render-audit.json')
             _require('artifact_stroke_preview' not in legacy_audit and
                      'stroke_preview_definition' not in legacy_audit.get('evidence', {}),
                      'Unrequested native stroke preview adapter')
+            _require('artifact_image_preview' not in legacy_audit and
+                     'image_preview_definition' not in legacy_audit.get('evidence', {}),
+                     'Unrequested native picture preview adapter')
         return None  # Keep immutable legacy v1 review bindings unchanged.
     from .native_preview import validate_backend, validate_pdf_alpha_policy
     _require(type(config.get('preview_provenance_version')) is int and
@@ -153,6 +157,28 @@ def _preview_provenance(run, config, paths):
                  'PDF derivation was not requested in the immutable config')
     if backend == 'artifact':
         _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
+        image_version = config.get('artifact_image_preview_version')
+        if image_version is None:
+            _require('artifact_image_preview' not in audit and 'image_preview_definition' not in evidence,
+                     'Unrequested native picture preview adapter')
+        else:
+            _require(type(image_version) is int and image_version == 1 and not config.get('base'),
+                     'Unsupported native picture preview provenance')
+            _require('image_preview_definition' in evidence, 'Native picture preview definition is missing')
+            from .artifact_image_preview import prepare_image_preview
+            definition = _json_record(paths['image_preview_definition'], strict_numbers_and_keys=True)
+            replay = prepare_image_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True))
+            _require(_same_json(definition, replay), 'Native picture preview definition disagrees with actual delivered PPTX')
+            expected_images = {'schema_version': 1, 'policy': replay['policy'], 'preview_only': True,
+                               'native_delivery_modified': False, 'reference_pixels_used': False,
+                               'renderer': replay['renderer'], 'renderer_version': replay['renderer_version'],
+                               'mupdf_version': replay['mupdf_version'],
+                               'applications': [{'scale': scale, 'applied_object_ids': [o['id'] for o in replay['objects']],
+                                                 'complete_mixed_paint_order_preserved': True} for scale in (1, 2, 4)],
+                               'unsupported': replay['unsupported'], 'source_pixel_equivalence': False,
+                               'application_playback_verified': False}
+            _require(_same_json(audit.get('artifact_image_preview'), expected_images),
+                     'Native picture preview application/order receipt disagrees with actual native definition')
         stroke_version = config.get('artifact_stroke_preview_version')
         if stroke_version is None:
             _require('artifact_stroke_preview' not in audit and 'stroke_preview_definition' not in evidence,
@@ -172,6 +198,8 @@ def _preview_provenance(run, config, paths):
             _require(_same_json(audit.get('artifact_stroke_preview'), expected_strokes),
                      'Native stroke preview application/order receipt disagrees with actual native definition')
     else:
+        _require('artifact_image_preview_version' not in config and 'artifact_image_preview' not in audit and
+                 'image_preview_definition' not in evidence, 'Native picture preview adapter requires Artifact')
         _require('artifact_stroke_preview_version' not in config and 'artifact_stroke_preview' not in audit and
                  'stroke_preview_definition' not in evidence, 'Native stroke preview adapter requires Artifact')
         _require(not config.get('base') and audit.get('renderer') == 'LibreOffice Impress' and

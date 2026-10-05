@@ -12,6 +12,7 @@ import {fitImagePlacement} from './image_placement.mjs';
 import {linearGradientFill} from './linear_gradient.mjs';
 import {configureCpuRenderer} from './cpu_renderer.mjs';
 import {applyStrokePreview} from './stroke_preview.mjs';
+import {applyImagePreview} from './image_preview.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -20,6 +21,7 @@ if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown pre
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
+if(config.artifact_image_preview_version!==undefined&&(config.artifact_image_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
 if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
@@ -179,29 +181,52 @@ if(previewBackend==='libreoffice'){
  previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
  previewAudit.preview_limitations.push(...previewLimitations.filter(item=>['fractional_percent_multiline_spacing_requires_application_verification','character_spacing_requires_application_verification'].includes(item.code)));
 }else{
- const rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
+ let rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));
  let targetSlide=rendered.slides.items[0];
  if(config.base){
   const info=JSON.parse(runPython('package',['inspect',checkedOutput],{encoding:'utf8'}));
   const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
  }
- let nativeStrokePreview,strokeDefinition;
+ let nativeStrokePreview,strokeDefinition,strokeData,imageData,imageDefinition;
+ const imageApplications=[];
+ if(config.artifact_image_preview_version===1){
+  const file=path.join(run,'artifact-image-preview.json');
+  runPython('artifact_image_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file],{stdio:'pipe'});
+  imageData=JSON.parse(await fs.readFile(file,'utf8'));imageDefinition=await bindFile(file);
+ }
  if(config.artifact_stroke_preview_version===1){
   const file=path.join(run,'artifact-stroke-preview.json');
   runPython('artifact_stroke_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file],{stdio:'pipe'});
   const definition=JSON.parse(await fs.readFile(file,'utf8'));
-  nativeStrokePreview=applyStrokePreview(targetSlide,definition);strokeDefinition=await bindFile(file);
+  strokeData=definition;strokeDefinition=await bindFile(file);
+  if(!imageData)nativeStrokePreview=applyStrokePreview(targetSlide,definition);
   const unsupported=new Set(definition.unsupported.map(o=>o.id));
   for(const limitation of previewLimitations)if(limitation.code==='native_stroke_geometry_requires_application_verification'){
    limitation.object_ids=limitation.object_ids.filter(id=>unsupported.has(id));
    limitation.detail='Unsupported native path strokes retain ordinary Artifact rendering; eligible strokes use transient SVGs decoded from final native coordinates/cap/join. Final PowerPoint/WPS appearance still requires application verification.';
   }
  }
- for(const s of [1,2,4]){const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));}
+ for(const s of [1,2,4]){
+  if(imageData){
+   // Each scale starts from the actual immutable delivery. A prior scale's
+   // device-grid pictures or SVG strokes never seed this import.
+   rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));targetSlide=rendered.slides.items[0];
+   imageApplications.push(applyImagePreview(targetSlide,imageData,s));
+   if(strokeData){const receipt=applyStrokePreview(targetSlide,strokeData);if(nativeStrokePreview&&JSON.stringify(nativeStrokePreview)!==JSON.stringify(receipt))throw Error('Stroke preview changed across image sampling scales');nativeStrokePreview=receipt;}
+  }
+  const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));
+ }
  const imageSamplingAudit=previewImageSampling.audit();
  if(imageSamplingAudit.cropped_minification_calls_unfiltered)previewLimitations.push({code:'cropped_image_minification_requires_visual_verification',draw_calls:imageSamplingAudit.cropped_minification_calls_unfiltered,detail:'Staged minification covers complete source windows. Cropped source windows retain native interpolation to avoid mixing excluded pixels into crop edges.'});
  previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,image_sampling:{...imageSamplingAudit,scope:'artifact_process_through_raw_preview_exports'},svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
  if(nativeStrokePreview){previewAudit.artifact_stroke_preview=nativeStrokePreview;previewAudit.evidence.stroke_preview_definition=strokeDefinition;}
+ if(imageData){
+  previewAudit.artifact_image_preview={schema_version:1,policy:imageData.policy,preview_only:true,native_delivery_modified:false,reference_pixels_used:false,
+   renderer:imageData.renderer,renderer_version:imageData.renderer_version,mupdf_version:imageData.mupdf_version,applications:imageApplications,
+   unsupported:imageData.unsupported,source_pixel_equivalence:false,application_playback_verified:false};
+  previewAudit.evidence.image_preview_definition=imageDefinition;
+  if(imageData.unsupported.length)previewLimitations.push({code:'unsupported_native_picture_sampling_requires_visual_verification',objects:imageData.unsupported,detail:'These actual native pictures retain ordinary Artifact image sampling; the MuPDF device-grid picture adapter does not cover their native state.'});
+ }
 }
 // Keep the raw 1x preview for comparison diagnostics. The viewing aide uses
 // supersampling so thin mathematical strokes are filtered rather than dropped.
