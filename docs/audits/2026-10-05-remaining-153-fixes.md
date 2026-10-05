@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 57 张图的来源修复及实际成品复查，关闭 90 项原问题：52 项字体、字距、基线、数学字形或活动文字问题，以及 38 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 63 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 66 项开放。原始 296 项现在 272 项关闭、24 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 90 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 59 张图的来源修复及实际成品复查，关闭 92 项原问题：52 项字体、字距、基线、数学字形或活动文字问题，以及 40 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 61 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 64 项开放。原始 296 项现在 274 项关闭、22 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 92 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -52,6 +52,8 @@
 
 - LightGCN 六个 Layer 层名从实际 Cambria Math 程序/GID和缺失 ToUnicode 中恢复为普通 ASCII 活动文字。完整供给字体和源使用墨迹比较相同，原始源度量保留，定位别名明确声明 90% 合成 hmtx及非负字符间距；源没有编码空格，仅保留物理词间隙。终态 36 个新活动字形的原墨迹/声明 advance 核对，字符起点最大观察差 0.235/0.095 px。324 个其他对象及原有 322 个实际字形控制、advance、矩阵和 RGBA不变。其余 104 个数学字形独立列为 64 组来源轮廓，明确原 Unicode/方程源与语义编辑限制；四个源绑定反例检出改层名、删数学字形、移字形和变色。全图及七组 4× 局部实看后按原清单允许的明确轮廓限制关闭 D03；D02、通用自动识别与字体交付仍开放。
 
+- MTGNN 与 Ansor 的来源诊断门禁接入维护代码。独立从原 PDF/SVG 重新生成的 952/2755 个对象与原核对场景完全一致，原图 1× 像素也相同；所有对象、绘制顺序、几何和样式参与来源比较，不受 256 对象局部边缘预算限制。各六个反例在结构校验仍 PASS 时被来源门禁拒绝。原生全对象读回的源控制点最大观察误差均约 0.000105 canvas px；885/2630 个其他原生对象属性不变，67/125 次已应用填充改写的原/终态真实路径摘要逐项匹配。字形轮廓和代码/数学语义编辑限制保留，清单仍为 REVIEW；空 formula 数组或 text-fit 不再代替来源覆盖。全图、原生 2× 与七/十七组原尺寸匹配 4× 局部实看后关闭两项 D03。新增 Python 全量 1214 项、Node 58 项与已安装 wheel 52 项检查通过；包装 85/280 文件。首次 8 MiB 参考 JSON 限额误用、显式零 transform guard 失败及过宽图注被缩放的查看记录均保留，后继使用既有 32 MiB 场景限额与原尺寸分片；对象和几何证明预算不变。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -65,9 +67,11 @@
 | ccf-2020-09-f02 | D01, D03 |
 | ccf-2020-11-f02 | D01, D02 |
 | ccf-2020-11-f03 | D01, D02 |
+| ccf-2020-12-f02 | D03 |
 | ccf-2020-12-f03 | D01 |
 | ccf-2020-13-f01 | R02-NATIVE-ALPHA-EDGE |
 | ccf-2020-14-f01 | D01 |
+| ccf-2020-15-f05 | D03 |
 | ccf-2020-16-f02 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2020-17-f02 | D01 |
 | ccf-2020-18-f01 | D01, D02, XC01 |
@@ -248,3 +252,18 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/LIGHTGCN-CONTENT-CONTROLS-077.json` | `98cc64cd8c8af78d49eb0fe901e1bc1264511206c0c67c01b9e99eda654f0df2` |
 | `reports/remaining-153-001/github-checks-2bdff8c-001.json` | `09c4851fe8ebc11c409a39a3974771937ee8cf11aa1abd003d18fd45697b7636` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-027.json` | `d927d9066a5cb8e027895087bfdcb2c37c5a2520b32f9d9fa246bccbff0828a6` |
+| `reports/remaining-153-001/LEDGER-RESULT-028.json` | `4184158ed57a813564251a9f27036a8a7edff686171e6e2ed2e89af3ffdd71cb` |
+| `reports/remaining-153-001/SOURCE-INVENTORY-REVIEW-RESULT-090.json` | `4135fad7d2fbf010e3bc7ccfc60c535c5bdca8ca4dabd599b468f8a32e1422d4` |
+| `reports/remaining-153-001/SOURCE-INVENTORY-ATTEMPT-083.json` | `57f7902cce0ebabd1e812e3a9e75c32359b4d6791ad7ac529670c396ef70a817` |
+| `reports/remaining-153-001/SOURCE-INVENTORY-READBACK-ATTEMPT-085.json` | `58982040a6ea59c1834017d59726bcba9419c6018910fa1a6b21f8ffa2b31559` |
+| `reports/remaining-153-001/FREEZE-013.json` | `d8246a419191ce93ea778d294ec8759ea7cb999028317f6cd0460cc35c507874` |
+| `reports/remaining-153-001/FREEZE-014.json` | `54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b` |
+| `reports/remaining-153-001/public-source-inventory-checks-079/report.json` | `aedf8b45fa20cd36301a7f1550390bfb77c8b054474e964369167afeaa298c9a` |
+| `reports/remaining-153-001/public-source-inventory-checks-084/report.json` | `e3d987fa22664dbcc69f39af87732b7efdfa4815938d06d256276189c7165355` |
+| `reports/remaining-153-001/packages-source-inventory-080/proof.json` | `581ea3aebd40d70be858d0871cc8812c928e6593dae2634671407f4d829c8b53` |
+| `reports/remaining-153-001/packages-source-inventory-084/proof.json` | `07d141b3d21c3b34c1099dcb1ad7b73340673cb5b8780d7737a850fee027a749` |
+| `reports/remaining-153-001/github-checks-481a70a-001.json` | `2896b962c8794b12574c9673904a3e6fd62c4ebc394e261c3dca8f4213bc9c46` |
+| `reports/remaining-153-001/github-checks-78fbafa-001.json` | `1dca11740ffb10f978a22bd9a76f13444488c0459f1fc94053c8d4efeb8c9c54` |
+
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-028.json` | `ccaa4ed204e91f024bb870fee9ffac5ee6bb722d80d9537db01b7d587e2806cd` |
+| `reports/remaining-153-001/github-checks-c60fe9d-001.json` | `00322a932117aba01f5e138f358a9f5233bdc6ae6d86acc0fd5d0736e047cbbf` |

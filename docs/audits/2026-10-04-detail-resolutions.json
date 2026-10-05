@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T08:55:21.499764+00:00",
+  "updated_at": "2026-10-05T10:13:10.351452+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 271,
-    "open": 24,
+    "closed_model_visual_review": 273,
+    "open": 22,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -11541,14 +11541,274 @@
           "sha256": "18d3a11e9cd50f102fcc07ad069896d14808069fbcf7a71b3b4f191a79cf771d"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-12-f02",
+      "issue_id": "ccf-2020-12-f02-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Add the maintained optional source-inventory gate and apply it to this immutable source fixture. The independently regenerated original PDF/SVG reference matches all 952 authoring objects exactly, with zero unresolved source conversions and an independently pixel-identical source crop. The source-bound inventory compares every object, painter order, geometry, style, and source evidence hash; it has no 256-object edge-diagnostic cutoff. Named ordinary glyph/code, mathematics/operator and directed graphic components remain explicit caller-reviewed source regions. Six retained controls delete a math glyph, shift it, recolor it, replace its source shape, delete a directed component and reverse a directed arrow; every altered scene still passes ordinary structural validation and fails the new source-content gate. Actual native source coordinates were read back for all original paths, maximum observed error 0.000104945099906 canvas px under the unchanged 0.001 px guard. 885 other actual native spPr properties equal the prior independently reviewed product; 67 applied fill normalizations bind both original and actual final native path hashes, preserving the frame and paint. All fill receipt statuses, including rejected/budget/not-applicable, remain reported; a receipt alone is not an applied-geometry claim. Source-inventory evidence is frozen with the build, included in semantic/diagnostic delivery reports and rebound during actual-output review against the authoring and resolved scenes. Source/native/PDF whole1x, actual native2x and all 7 original-size matched4x crops were actually viewed. Ordinary/mathematical/code glyphs remain outlines with no recovered live Unicode or semantic equation/code editability; the inventory stays REVIEW despite complete object comparison. This fixes the requested diagnostic coverage gap, without claiming generic automatic recognition, global pixel sampling equivalence or user/PowerPoint/WPS acceptance.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001/output-review.json",
+          "sha256": "ae43b5d3f373dab70b2d2f552f4e262cad9c929e72daec41890a89d6e6505be4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-native-086/ccf-2020-12-f02/readback.json",
+          "sha256": "c8b29c8643f83704bbc6e9d7da1d66f6d3154965e52f626edceb05cfdb499a39"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/visual-review-090.json",
+          "sha256": "a8ac9b33d6f6b5cd4de1085ec6045c8ae2588cee24db72d34afc752e71ca5aff"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/bindings.json",
+          "sha256": "2ed9971b92ca9b1397877d07f7bdbaef5cbadb249c7d8f5f2922d0cc4dc5a209"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/content-controls.json",
+          "sha256": "a611d9cb58d8cc8dbe4c0339c88a27a01c81999938ec3f7f9f3a5a6c80ebea79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "14bf24fbab6835c77afce1928bc6a7a88b7946499164034fce4da165e33d3443"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001/semantic-audit.json",
+          "sha256": "a6eca3c3a790aa53866897238682f819ac378f27fb430cc67dbae2a140402fd1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001/delivery.json",
+          "sha256": "7a5207060de5b38fb34b672f57d31592215a52ee2cb51e0a817f176150c6edf9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/source-evidence/inventory.json",
+          "sha256": "58b56caa08eaed81678bc817bcf3a09df44ee4ca3fd54a41bfe89fa553fcf994"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/source-evidence/reviewed-source-reference.json",
+          "sha256": "3ba9d5cb4d1eb19fcb006b39e2a8844855552b49542cd68133bc7c7c4a2a412e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-replay-081/ccf-2020-12-f02/report.json",
+          "sha256": "99b773e0f2bdd42ad13900126b19cdc26d5a2ab8d6dcba574d9f82927be47b20"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/whole-1x.png",
+          "sha256": "f2fe6e2aa08415cd428aaec3e1b11ef299279f419841d343db68c6f2e99e3695"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-12-f02/build/run-001/preview-2x.png",
+          "sha256": "90f5a132aa0b83a2feb8ff78d38a3d670eec1a3037c0a737f5b96adc4b1a107f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/input-math-4x.png",
+          "sha256": "39d22162fee6a827cca927e20f7667ab12f54ac4f4fb7c89816f200896ab2ab5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/dilation-zero-4x.png",
+          "sha256": "a723c965f508e99412adafbb83d3ee91e2d3d8f30361362f0701e2daf74cab1e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/dilation-one-4x.png",
+          "sha256": "589ad95de19f379df59669a171d9a766bfc4b7f4f12f66d92bb3c146360f73c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/dilation-m-4x.png",
+          "sha256": "9e32453a82cfbf8c95a393e17edce3409074b503a5a290f821470c0da6602d79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/output-math-4x.png",
+          "sha256": "e3359ac4c55c7d6ed45bcabe65aaa9da567c6bdf20a002d1239d3fdd2c3e6a1a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/directed-branches-4x.png",
+          "sha256": "f412993a91b2b19956bfac2e5e452b47ca09818075dedc8f0188b0e1ecfd7140"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-086/ccf-2020-12-f02/skip-connection-4x.png",
+          "sha256": "be7887d6fbc6b5533cb13da613a477467459a91f26c78ac71413f910374784a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-013.json",
+          "sha256": "d8246a419191ce93ea778d294ec8759ea7cb999028317f6cd0460cc35c507874"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-inventory-checks-084/report.json",
+          "sha256": "e3d987fa22664dbcc69f39af87732b7efdfa4815938d06d256276189c7165355"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-inventory-084/proof.json",
+          "sha256": "07d141b3d21c3b34c1099dcb1ad7b73340673cb5b8780d7737a850fee027a749"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-15-f05",
+      "issue_id": "ccf-2020-15-f05-D03",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "Add the maintained optional source-inventory gate and apply it to this immutable source fixture. The independently regenerated original PDF/SVG reference matches all 2755 authoring objects exactly, with zero unresolved source conversions and an independently pixel-identical source crop. The source-bound inventory compares every object, painter order, geometry, style, and source evidence hash; it has no 256-object edge-diagnostic cutoff. Named ordinary glyph/code, mathematics/operator and directed graphic components remain explicit caller-reviewed source regions. Six retained controls delete a math glyph, shift it, recolor it, replace its source shape, delete a directed component and reverse a directed arrow; every altered scene still passes ordinary structural validation and fails the new source-content gate. Actual native source coordinates were read back for all original paths, maximum observed error 0.000104866403717 canvas px under the unchanged 0.001 px guard. 2630 other actual native spPr properties equal the prior independently reviewed product; 125 applied fill normalizations bind both original and actual final native path hashes, preserving the frame and paint. All fill receipt statuses, including rejected/budget/not-applicable, remain reported; a receipt alone is not an applied-geometry claim. Source-inventory evidence is frozen with the build, included in semantic/diagnostic delivery reports and rebound during actual-output review against the authoring and resolved scenes. Source/native/PDF whole1x, actual native2x and all 17 original-size matched4x crops were actually viewed. Ordinary/mathematical/code glyphs remain outlines with no recovered live Unicode or semantic equation/code editability; the inventory stays REVIEW despite complete object comparison. This fixes the requested diagnostic coverage gap, without claiming generic automatic recognition, global pixel sampling equivalence or user/PowerPoint/WPS acceptance.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001/output-review.json",
+          "sha256": "1915f3a9b3f8ab366a28da7e6ff0d6a974e29c42252abbea51235222ff2840ee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-native-087/ccf-2020-15-f05/readback.json",
+          "sha256": "b584d64a9ab3ca24b2c74104c9331c3e404c1095b7cd2d37e19e28ee31d97bd7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/visual-review-090.json",
+          "sha256": "ececdd38f248cb30ee8c3b4f83f77afc5e13c7033c735821e228ac27e4b3089a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/bindings.json",
+          "sha256": "27bf4b1a4c4f1ec5ff87486583caf614f32aba6df0bb6be9777773d04fdf7d0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/bindings.json",
+          "sha256": "6d50e012f0cca17d3f7cf07f60182223ad746628b255c025bcfbd7f8e516e896"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-089/ccf-2020-15-f05/bindings.json",
+          "sha256": "836b4404eaf6a6a5496fbc39a3b7e8a73994efe955c8ff5ca0000ca513817fcb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/content-controls-084.json",
+          "sha256": "f6248432e893801b9f6ed621b42ca98738aec0a3e1206461744344a57fe3583c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001/source-inventory-audit.json",
+          "sha256": "d426ea8ac820465acb8f9d5f30fbdbea5e9e5d55c97c3e2abf403ab74ce1eb0a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001/semantic-audit.json",
+          "sha256": "70670252c79f400fbdefd14652b20e8d7086245455a7271a3d1e309e7da24e1a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001/delivery.json",
+          "sha256": "7e3363fb04c5db7e4fe3403850fb2307212d7668d2cf5791f10f3f4b0868c3f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/source-evidence/inventory.json",
+          "sha256": "c8ec5d23f3845c62a63a75f8e610abaf900f531317714bddd63b5722af38187f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/source-evidence/reviewed-source-reference.json",
+          "sha256": "0b9ef273e583fae9868893e2a24c9d0f566ed7c88d7d75782e847e6a79b6b24c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-replay-081/ccf-2020-15-f05/report.json",
+          "sha256": "32873f308c00deb8560586f35a01780a5d16aa6e132443b5b1432aa85f1482ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/whole-1x.png",
+          "sha256": "609c270ab3594d54a9a34598fa7921cd1f79caa57b7c72352f2e2ea54b6f653e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-inventory-001/jobs/ccf-2020-15-f05/build/run-001/preview-2x.png",
+          "sha256": "a89883361adfc2facdb5c7993f535cbf36e54443eaf321e8eff8ca0b260fdc95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/input-1-equations-4x.png",
+          "sha256": "ee4f10520d2114915132df2d02b6387276f4efce71ad5c638ea0353b42961b2a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/input-2-equations-4x.png",
+          "sha256": "d2bef108642fd7a2a7464041227d27d2ce437e514fd8dbcde5f8ea9d9df0d525"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/input-1-DAG-4x.png",
+          "sha256": "b941c4749a949ce18b8cf7a52aa8ddb7502838960626d1f97444442212e976bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/input-2-DAG-4x.png",
+          "sha256": "3716fec52888e48aa250158decf20a215a24d1e8fb0aef8454f651f3b8c2d1de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/generated-sketch-1-4x.png",
+          "sha256": "55669d35ad074a891acca1b44fcde3e6809182ed8f393ca087b184e27982fe08"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/generated-sketch-2-4x.png",
+          "sha256": "7490ef5d1621006210f5ca02086af2e92e81ef1010cb937b3a8d0516c76e56f6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/sampled-program-1-4x.png",
+          "sha256": "b7533ac6c849b0e001912fc1e8ed608305a83a34bb5338d4e56b15986d5980e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-087/ccf-2020-15-f05/sampled-program-4-4x.png",
+          "sha256": "31e9821aa3d5e95e7951938265c04ad07ea98a7bae06013f4c83b63f4cdab065"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/input-1-naive-code-4x.png",
+          "sha256": "43a0342bf4d57eb7746b6847efe5c093484eafce153b9470cd7d8030a4866640"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/input-2-naive-code-4x.png",
+          "sha256": "3d8addc5ef375873fff3987dd28088eaa124c2103b8df171d962478754426e5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/generated-sketch-3-4x.png",
+          "sha256": "ce6b3087f1ca01b01beed5aae0749776c69fa4b12e87605e760586863bc355c5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/sampled-program-2-4x.png",
+          "sha256": "0f2832622b4f1b696ed954431477f04c267d1339c3405c605edd04d606427ebd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-088/ccf-2020-15-f05/sampled-program-3-4x.png",
+          "sha256": "dbd6595c06a0ba73c07955ac84c2fcb19f0c6e12182a210f2373c953e7d51b43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-089/ccf-2020-15-f05/caption-quarter-1-4x.png",
+          "sha256": "162e8166f401decc9b4b1417b1d528b66dd3fc6fce164186eb499d30743850ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-089/ccf-2020-15-f05/caption-quarter-2-4x.png",
+          "sha256": "47890fea4ec639790651c8cd4b44695f726c3dff8022c5d8d8bae9e978b8f191"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-089/ccf-2020-15-f05/caption-quarter-3-4x.png",
+          "sha256": "be3cd3a6062977a7b24efd308b7286177922c0bafb5dc7b63fe06ed92c8e381b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-inventory-galleries-089/ccf-2020-15-f05/caption-quarter-4-4x.png",
+          "sha256": "5000a49800bde50daf5fa6507e8e601c15ddf500ab466090362e4a272a871d32"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-013.json",
+          "sha256": "d8246a419191ce93ea778d294ec8759ea7cb999028317f6cd0460cc35c507874"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-014.json",
+          "sha256": "54dc92c2944e0e0e9b7c90ad73ff161e0824476560bb8ce03e79fca7dbbf122b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-inventory-checks-084/report.json",
+          "sha256": "e3d987fa22664dbcc69f39af87732b7efdfa4815938d06d256276189c7165355"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-inventory-084/proof.json",
+          "sha256": "07d141b3d21c3b34c1099dcb1ad7b73340673cb5b8780d7737a850fee027a749"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
     "ccf-2020-03-f04-D03",
     "ccf-2020-09-f02-D02",
     "ccf-2020-11-f02-D03",
-    "ccf-2020-12-f02-D03",
-    "ccf-2020-15-f05-D03",
     "ccf-2020-18-f01-D03",
     "ccf-2021-11-f01-D06",
     "ccf-2021-13-f01-D01",
