@@ -199,3 +199,28 @@ user requires retypeset formulas, transcribe and verify the expression, render
 it with an actual TeX engine, retain its source and vector PDF, and insert a
 transparent high-resolution asset. Do not use source-text screenshots as the
 formula asset.
+
+For manually transcribed ordinary labels with no source text layer or font
+programme, an explicit source-specific driver may derive used Unicode glyphs
+from the original visible paths. Bind the complete native paint order, original
+contours, fill rule, colors and clip containment before partitioning. Similar
+font outlines may suggest a partition, but their diagnostic matching tolerance
+is separate from the fixed source-control guard. Preserve every source glyph
+contour and independently compare all occurrences to the actual saved font.
+Record manual Unicode, spaces, synthetic metrics and limited glyph coverage;
+this is neither original-font identity nor automatic text/formula recognition.
+
+Use shared glyphs only after verifying their control points and physical line
+origins. Keep measured text frames inside the source canvas and retain the
+authoring runtime's font-family limit. The renderer's `Mg` metric probe also
+needs explicit glyph coverage: any supplemental metric-only glyphs must be
+identified, and actual current labels must be independently proven not to use
+them. Font delivery and editing with unseen characters remain separate checks.
+
+Inspect the actual application's exported font programme as well as the input
+font. In the audited [LibreOffice 26.2.5.2 CFF converter](https://github.com/LibreOffice/core/blob/libreoffice-26.2.5.2/vcl/source/fontsubset/cff.cxx#L1300-L1317),
+the optional final-axis operand of compact `hvcurveto`/`vhcurveto` becomes an
+integer. An explicitly derived font can retain the same target controls while
+encoding full move/line/cubic operators. Verify saved input contours, actual
+subset operands and advances, actual native font handles, and matched-scale
+layout again; do not widen a source-fidelity tolerance to accept truncation.

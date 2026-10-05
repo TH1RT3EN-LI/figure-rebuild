@@ -48,3 +48,9 @@ hairline. Verify the actual exported PDF linewidth and matched-scale pixels.
 LibreOffice direct PNG, native PDF/MuPDF and PowerPoint/WPS can interpret
 minimum widths differently. No general linewidth, antialias, font, group or
 RGB/alpha equivalence follows from selecting this backend.
+
+Also read the actual exported joins and miter limit. In the retained BYOL audit,
+the source and final DrawingML specify miter limit 10, while the exported PDF
+uses about 3.8637 and clips arrowhead wings. A canonical PDF preview exposes
+that exported result. Better image diagnostics alone do not close the finding;
+source-sized visual inspection and actual paint-state readback remain required.
