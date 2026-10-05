@@ -9,10 +9,10 @@ from unittest.mock import patch
 
 from PIL import Image
 
-from figure_rebuild.image_alpha import derive_opaque_rect_image
+from figure_rebuild.image_alpha import derive_opaque_rect_image, derive_rgba_border_image
 
 
-class OpaqueRectangleCropTests(unittest.TestCase):
+class ImageAssetFixture:
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
@@ -31,6 +31,8 @@ class OpaqueRectangleCropTests(unittest.TestCase):
                        'path': 'source.png', 'sha256': sha256(self.source.read_bytes()).hexdigest(),
                        'fit': 'stretch', 'box': {'x': -12.375, 'y': 8.125, 'width': 203.75, 'height': 91.5}}
 
+
+class OpaqueRectangleCropTests(ImageAssetFixture, unittest.TestCase):
     def test_visible_rgb_and_every_pixel_center_keep_their_canvas_position(self):
         image, obj = self.fixture()
         before = deepcopy(obj)
@@ -110,3 +112,61 @@ class OpaqueRectangleCropTests(unittest.TestCase):
         for value in (True, float('inf'), -1, 10 ** 400):
             with self.subTest(value=value), self.assertRaises(ValueError):
                 derive_opaque_rect_image({**obj, 'box': {**obj['box'], 'width': value}}, self.root, 'crop.png')
+
+
+class RGBABorderCropTests(ImageAssetFixture, unittest.TestCase):
+    def test_partial_alpha_holes_and_hidden_rgb_are_kept_without_quantization(self):
+        def modify(image):
+            for i, alpha in enumerate([0, 1, 128, 253, 254]):
+                image.putpixel((5+i, 5), (201+i, 9+i, 77-i, alpha))
+        image, obj = self.fixture(modify, dpi=(120, 144))
+        original, before = self.source.read_bytes(), deepcopy(obj)
+        result, receipt = derive_rgba_border_image(obj, self.root, 'rgba.png')
+        self.assertEqual(obj, before)
+        self.assertEqual(self.source.read_bytes(), original)
+        with Image.open(self.source) as source, Image.open(self.root/result['path']) as derived:
+            self.assertEqual(derived.mode, 'RGBA')
+            self.assertEqual(derived.size, (12, 8))
+            self.assertEqual(derived.info, source.info)
+            self.assertEqual(derived.tobytes(), image.crop((3, 2, 15, 10)).tobytes())
+        self.assertEqual(receipt['source_alpha_values'], [0, 1, 128, 253, 254, 255])
+        self.assertTrue(receipt['all_retained_RGBA_bytes_identical'])
+        self.assertFalse(receipt['opaque_rectangle_proved'])
+        self.assertFalse(receipt['source_PDF_or_filtering_equivalence_claimed'])
+        self.assertEqual(receipt['policy'], 'exact-rgba-transparent-border-trim-v1')
+
+    def test_disconnected_nonopaque_support_keeps_every_pixel_center(self):
+        def modify(image):
+            image.putalpha(0)
+            for point, alpha in [((3, 2), 1), ((14, 9), 254), ((7, 7), 128)]:
+                image.putpixel(point, (111, 31, 201, alpha))
+        image, obj = self.fixture(modify)
+        result, receipt = derive_rgba_border_image(obj, self.root, 'rgba.png')
+        with Image.open(self.root/result['path']) as derived:
+            self.assertEqual(derived.tobytes(), image.crop((3, 2, 15, 10)).tobytes())
+        for axis, extent, offset, count, old_count in [('x', 'width', 3, 12, 17), ('y', 'height', 2, 8, 11)]:
+            for i in range(count):
+                old = Fraction(obj['box'][axis]) + Fraction(obj['box'][extent]) * (Fraction(i)+offset+Fraction(1, 2))/old_count
+                new = Fraction(result['box'][axis]) + Fraction(result['box'][extent]) * (Fraction(i)+Fraction(1, 2))/count
+                self.assertLessEqual(abs(new-old), Fraction(1, 1_000_000_000))
+        self.assertEqual(receipt['nonzero_alpha_pixel_cell_bounds'], [3, 2, 15, 10])
+
+    def test_no_border_and_empty_support_are_refused_before_writing(self):
+        for alpha in [0, 1, 254, 255]:
+            _, obj = self.fixture(lambda image: image.putalpha(alpha))
+            with self.subTest(alpha=alpha), self.assertRaises(ValueError):
+                derive_rgba_border_image(obj, self.root, 'rgba.png')
+            self.assertFalse((self.root/'rgba.png').exists())
+
+    def test_rgba_policy_keeps_the_shared_hash_context_and_resource_guards(self):
+        _, obj = self.fixture()
+        for change in [{'fit': 'contain'}, {'rotation': 1}, {'sha256': '0'*64},
+                       {'crop': {'left': .1, 'right': 0, 'top': 0, 'bottom': 0}},
+                       {'style': {'opacity': .5}}, {'path': '../source.png'}]:
+            with self.subTest(change=change), self.assertRaises(ValueError):
+                derive_rgba_border_image({**obj, **change}, self.root, 'rgba.png')
+        with patch('figure_rebuild.image_alpha.MAX_PIXELS', 180), self.assertRaises(ValueError):
+            derive_rgba_border_image(obj, self.root, 'rgba.png')
+        with self.assertRaises(ValueError):
+            derive_rgba_border_image(obj, self.root, '../rgba.png')
+        self.assertFalse((self.root/'rgba.png').exists())

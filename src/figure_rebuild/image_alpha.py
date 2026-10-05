@@ -1,7 +1,7 @@
-"""Explicit, lossless crop of a solid rectangular binary-alpha image support.
+"""Explicit crops of fully transparent image storage borders.
 
-This creates a new RGB asset and adjusts its declared stretch frame. It never
-flattens against a background, changes visible pixels, or infers a PDF clip.
+The binary rectangle policy creates RGB; the RGBA policy keeps every retained
+channel. Neither flattens a background, changes visible pixels or infers a clip.
 Actual application filtering and exported geometry require separate review.
 """
 from copy import deepcopy
@@ -13,6 +13,7 @@ from pathlib import Path
 
 
 POLICY = 'exact-opaque-rectangle-crop-v1'
+RGBA_POLICY = 'exact-rgba-transparent-border-trim-v1'
 MAX_PIXELS = 64_000_000
 MAX_DIMENSION = 32768
 MAX_INPUT_BYTES = 128_000_000
@@ -37,6 +38,22 @@ def derive_opaque_rect_image(obj, asset_root, output_relative_path):
     partial alpha, disconnected support and holes are explicitly rejected.
     The caller saves the receipt and reviews/builds the revised manifest.
     """
+    return _derive_image(obj, asset_root, output_relative_path, opaque_rectangle=True)
+
+
+def derive_rgba_border_image(obj, asset_root, output_relative_path):
+    """Trim only zero-alpha outer rows/columns and keep all remaining RGBA.
+
+    Accept the same unrotated, uncropped PNG stretch placement. Partial alpha,
+    holes and disconnected support are preserved, including hidden RGB within
+    the retained rectangle. A new RGBA asset retains dpi and every nonzero-alpha
+    sample. This policy does not establish a solid opaque rectangle or flatten
+    alpha. It needs a removable storage border and a nonempty visible support.
+    """
+    return _derive_image(obj, asset_root, output_relative_path, opaque_rectangle=False)
+
+
+def _derive_image(obj, asset_root, output_relative_path, *, opaque_rectangle):
     from PIL import Image
 
     if (not isinstance(obj, dict) or obj.get('kind') != 'image'
@@ -90,23 +107,28 @@ def derive_opaque_rect_image(obj, asset_root, output_relative_path):
         image.load()
         alpha = image.getchannel('A')
         histogram = alpha.histogram()
-        if sum(histogram[1:255]) or not histogram[0] or not histogram[255]:
-            raise ValueError('Alpha must contain both 0 and 255, with no intermediate values')
         bounds = alpha.getbbox()
-        if alpha.crop(bounds).getextrema() != (255, 255):
-            raise ValueError('Opaque support must be exactly one solid rectangle')
+        if opaque_rectangle:
+            if sum(histogram[1:255]) or not histogram[0] or not histogram[255]:
+                raise ValueError('Alpha must contain both 0 and 255, with no intermediate values')
+            if alpha.crop(bounds).getextrema() != (255, 255):
+                raise ValueError('Opaque support must be exactly one solid rectangle')
+        elif bounds is None or bounds == (0, 0, image.width, image.height):
+            raise ValueError('No removable zero-alpha border around a nonempty support')
         x0, y0, x1, y1 = bounds
         width, height = image.size
-        cropped = image.crop(bounds).convert('RGB')
+        cropped = image.crop(bounds)
+        if opaque_rectangle:
+            cropped = cropped.convert('RGB')
         buffer = BytesIO()
         cropped.save(buffer, format='PNG', **metadata)
         encoded = buffer.getvalue()
         with Image.open(BytesIO(encoded)) as decoded:
-            if (decoded.info != metadata or decoded.mode != 'RGB'
+            if (decoded.info != metadata or decoded.mode != cropped.mode
                     or decoded.size != cropped.size or decoded.tobytes() != cropped.tobytes()):
-                raise ValueError('Derived RGB pixels or metadata changed')
+                raise ValueError('Derived pixels or metadata changed')
         rgba_digest = sha256(image.tobytes()).hexdigest()
-        rgb_digest = sha256(cropped.tobytes()).hexdigest()
+        cropped_digest = sha256(cropped.tobytes()).hexdigest()
     original = {key: Fraction(value) for key, value in box.items()}
     exact = {
         'x': original['x'] + original['width'] * x0 / width,
@@ -132,13 +154,16 @@ def derive_opaque_rect_image(obj, asset_root, output_relative_path):
     result = deepcopy(obj)
     result.update(path=output_relative_path, sha256=sha256(encoded).hexdigest(), box=mapped)
     receipt = {
-        'policy': POLICY,
+        'policy': POLICY if opaque_rectangle else RGBA_POLICY,
         'source': {'path': str(source), 'sha256': digest, 'decoded_RGBA_sha256': rgba_digest},
-        'derived': {'path': str(target), 'sha256': result['sha256'], 'decoded_RGB_sha256': rgb_digest},
+        'derived': {'path': str(target), 'sha256': result['sha256'],
+                    ('decoded_RGB_sha256' if opaque_rectangle else 'decoded_RGBA_sha256'): cropped_digest},
         'before': deepcopy(obj), 'after': deepcopy(result),
-        'source_pixel_dimensions': [width, height], 'opaque_pixel_cell_bounds': list(bounds),
-        'source_PNG_metadata_preserved': metadata, 'source_alpha_values': [0, 255],
-        'opaque_rectangle_proved': True, 'all_retained_RGB_bytes_identical': True,
+        'source_pixel_dimensions': [width, height],
+        ('opaque_pixel_cell_bounds' if opaque_rectangle else 'nonzero_alpha_pixel_cell_bounds'): list(bounds),
+        'source_PNG_metadata_preserved': metadata,
+        'source_alpha_values': [i for i, count in enumerate(histogram) if count],
+        'opaque_rectangle_proved': opaque_rectangle,
         'only_fully_transparent_pixels_removed': True, 'source_image_changed': False,
         'exact_new_box_rational': {key: [value.numerator, value.denominator]
                                    for key, value in exact.items()},
@@ -148,4 +173,6 @@ def derive_opaque_rect_image(obj, asset_root, output_relative_path):
         'source_PDF_or_filtering_equivalence_claimed': False,
         'actual_application_verification_required': True,
     }
+    receipt['all_retained_RGB_bytes_identical' if opaque_rectangle
+            else 'all_retained_RGBA_bytes_identical'] = True
     return result, receipt

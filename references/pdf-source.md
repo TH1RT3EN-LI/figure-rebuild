@@ -103,6 +103,8 @@ images = extract_pdf_images(
 
 原图与旧清单保留；保存回执，将返回对象放入新版本清单后重新 `review → build → review-output`。裁后框由原像素比例计算，像素到画布的浮点编码误差限定为 1e-9 canvas px；实际 PPT 的 EMU 量化及原生图片变换还须独立核验。这只是已声明位图的精确支持裁切，不证明作者 PDF、采样滤波或跨应用像素等价，也不会自动处理其他图片。
 
+部分透明度或非矩形支持可另行显式调用 `derive_rgba_border_image(image_object, job_dir, new_relative_png_path)`。该接口只裁掉外层 alpha=0 的完整行列，生成 RGBA PNG；裁后矩形内的所有 RGBA 字节（包括透明像素的 RGB）、非零 alpha 像素及 dpi 都原样保留，孔洞和不连续支持也不改变。空支持、没有可删除边缘、未知元数据/色彩配置及原有放置限制继续拒绝。回执使用 `exact-rgba-transparent-border-trim-v1`，不声称不透明矩形或 RGB 形式，也不降低原二值 helper 的准入要求。采用同一像素放置编码预算，实际原生图像边缘仍须单独复查。
+
 转换之后继续执行[细节保真与输出审阅](fidelity.md)：逐字、逐连接记录源证据，保留未知项，检查实际导出的 PPT 及其预览，再记录本次文件哈希绑定的审查。
 
 受支持的来源配置可另运行 [verify-source-fidelity](source-fidelity-cli.md)，从原 PDF 重新核验清单、resolved scene 和实际 PPT。退出码 0 仅表示声明范围内的来源保真；它不替代语义、视觉或用户验收。规范化路径、裁切及其他尚无完整重放证明的配置可能返回 `UNRESOLVED`，不能通过缩小报告内容改称整图通过。
