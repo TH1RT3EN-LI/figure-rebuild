@@ -17,12 +17,13 @@ import {applyImagePreview} from './image_preview.mjs';
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
 const previewBackend=config.preview_backend??'artifact';
-if(!['artifact','libreoffice'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
+if(!['artifact','libreoffice','libreoffice-pdf'].includes(previewBackend))throw Error('Unknown preview backend: '+String(previewBackend));
 if(config.preview_provenance_version!==undefined&&config.preview_provenance_version!==1)throw Error('Unsupported preview provenance version');
+if(previewBackend==='libreoffice-pdf' ? config.native_pdf_preview_version!==1 : config.native_pdf_preview_version!==undefined)throw Error('Unsupported native PDF preview version or backend');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
 if(config.artifact_image_preview_version!==undefined&&(![1,2].includes(config.artifact_image_preview_version)||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
-if(previewBackend==='libreoffice'&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
+if(['libreoffice','libreoffice-pdf'].includes(previewBackend)&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
 const runPython=(module,args,options={})=>runPythonModule(runtime,packageRoot,module,args,options);
@@ -93,6 +94,7 @@ function position(box,rotation=0){return {left:placement[0]+box.x*scale,top:plac
 function paint(color='none',opacity=1){return color==='none'?'none':`${color}/${opacity*100}`;}
 for(const o of ordered){
  const s=o.style??{};
+ if(s.stroke_hairline===true&&previewBackend!=='libreoffice-pdf')throw Error('Explicit device hairlines require the libreoffice-pdf preview backend');
  if(o.kind==='path'){
   const bounds=pathBounds(o.commands);
   const left=bounds.x,top=bounds.y,right=left+bounds.width,bottom=top+bounds.height;
@@ -177,7 +179,7 @@ if(config.diagnostic_provenance_version===1){
  }
 }
 let previewAudit;
-if(previewBackend==='libreoffice'){
+if(['libreoffice','libreoffice-pdf'].includes(previewBackend)){
  previewAudit=JSON.parse(runPython('native_preview',['--config',process.argv[2]],{encoding:'utf8'}));
  previewAudit.preview_limitations.push(...previewLimitations.filter(item=>['fractional_percent_multiline_spacing_requires_application_verification','character_spacing_requires_application_verification'].includes(item.code)));
 }else{

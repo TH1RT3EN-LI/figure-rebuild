@@ -281,10 +281,11 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
                 if angle_correction is not None:
                     gradient_record['angle_serialization_correction'] = angle_correction
                 gradient_records.append(gradient_record)
-            from .stroke_style import apply_stroke_style
+            from .stroke_style import apply_stroke_style, verify_hairline_xml
             stroke_record = apply_stroke_style(element, obj)
             if stroke_record is not None:
                 stroke_styles.append(stroke_record)
+            verify_hairline_xml(element, obj)
         if obj['kind'] == 'path' and (obj['id'] in canvas_clip_ids or any('cubicTo' in command for command in obj.get('commands', []))):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
         if obj['kind'] == 'path' and obj['id'] in canvas_clip_ids:

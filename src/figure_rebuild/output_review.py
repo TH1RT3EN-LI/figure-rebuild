@@ -95,6 +95,7 @@ def _preview_provenance(run, config, paths):
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
         _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
+        _require('native_pdf_preview_version' not in config, 'Native PDF preview requires preview provenance')
         if (run / 'render-audit.json').exists():
             legacy_audit = _json_record(run / 'render-audit.json')
             _require('artifact_stroke_preview' not in legacy_audit and
@@ -103,12 +104,17 @@ def _preview_provenance(run, config, paths):
             _require('artifact_image_preview' not in legacy_audit and
                      'image_preview_definition' not in legacy_audit.get('evidence', {}),
                      'Unrequested native picture preview adapter')
+            _require('native_pdf_preview' not in legacy_audit and
+                     not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt'
+                             for k in legacy_audit.get('evidence', {})), 'Unrequested native PDF preview')
         return None  # Keep immutable legacy v1 review bindings unchanged.
     from .native_preview import validate_backend, validate_pdf_alpha_policy
     _require(type(config.get('preview_provenance_version')) is int and
              config['preview_provenance_version'] == 1, 'Unsupported preview provenance version')
     backend = validate_backend(config.get('preview_backend'))
     alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), backend)
+    if backend != 'libreoffice-pdf':
+        _require('native_pdf_preview_version' not in config, 'Native PDF preview requires its explicit backend')
     audit_path = _inside(run, run / 'render-audit.json')
     audit = _json_record(audit_path)
     _require(type(audit.get('schema_version')) is int and audit['schema_version'] == 1 and
@@ -156,6 +162,9 @@ def _preview_provenance(run, config, paths):
                  not {'native_pdf_derived', 'native_pdf_alpha_receipt'} & set(evidence),
                  'PDF derivation was not requested in the immutable config')
     if backend == 'artifact':
+        _require('native_pdf_preview' not in audit and
+                 not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt' for k in evidence),
+                 'Unrequested native PDF preview')
         _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
         image_version = config.get('artifact_image_preview_version')
         if image_version is None:
@@ -202,10 +211,23 @@ def _preview_provenance(run, config, paths):
                  'image_preview_definition' not in evidence, 'Native picture preview adapter requires Artifact')
         _require('artifact_stroke_preview_version' not in config and 'artifact_stroke_preview' not in audit and
                  'stroke_preview_definition' not in evidence, 'Native stroke preview adapter requires Artifact')
-        _require(not config.get('base') and audit.get('renderer') == 'LibreOffice Impress' and
-                 audit.get('renderer_backend') == 'headless_direct_png' and audit.get('raw_preview_format') == 'impress_png_Export' and
-                 audit.get('pdf_inspector') == 'PyMuPDF' and audit.get('pdf_role') == 'font_and_image_evidence_only' and
-                 'rasterizer' not in audit, 'Invalid native preview renderer identity')
+        pdf_preview = backend == 'libreoffice-pdf'
+        if pdf_preview:
+            _require(type(config.get('native_pdf_preview_version')) is int and config['native_pdf_preview_version'] == 1 and
+                     not alpha_policy and audit.get('renderer') == 'LibreOffice Impress + MuPDF' and
+                     audit.get('renderer_backend') == 'headless_pdf_mupdf' and audit.get('raw_preview_format') == 'native_pdf_MuPDF' and
+                     audit.get('pdf_role') == 'canonical_preview_and_font_and_image_evidence' and audit.get('rasterizer') == 'PyMuPDF',
+                     'Invalid native PDF preview renderer identity')
+            _require({'native_pdf_preview_receipt', 'native_pdf_png_1x', 'native_pdf_png_2x', 'native_pdf_png_4x'} <= set(evidence),
+                     'Native PDF preview evidence is incomplete')
+        else:
+            _require('native_pdf_preview' not in audit and
+                     not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt' for k in evidence),
+                     'Unrequested native PDF preview')
+            _require(audit.get('renderer') == 'LibreOffice Impress' and audit.get('renderer_backend') == 'headless_direct_png' and
+                     audit.get('raw_preview_format') == 'impress_png_Export' and audit.get('pdf_role') == 'font_and_image_evidence_only' and
+                     'rasterizer' not in audit, 'Invalid native preview renderer identity')
+        _require(not config.get('base') and audit.get('pdf_inspector') == 'PyMuPDF', 'Invalid native preview page or inspector')
         _require({'native_pdf', 'native_commands', 'native_fontconfig', 'native_command_executable', 'native_png_1x', 'native_png_2x', 'native_png_4x'} <= set(evidence), 'Native preview evidence is incomplete')
         _text(audit.get('libreoffice_version'), 'LibreOffice version')
         _text(audit.get('pdf_inspector_version'), 'PDF inspector version')
@@ -257,8 +279,12 @@ def _preview_provenance(run, config, paths):
             _require(type(index) is int and 0 <= index < len(commands) and commands[index]['argv'] ==
                      conversion_command(profile, directory, f'png-{scale}x', 'png:impress_png_Export', expected_options, paths['pptx']),
                      'Direct PNG command disagrees with the final PPTX, scale, filter, or output directory')
-            _require(paths[role] == directory / f'png-{scale}x/reconstruction.png' and
-                     evidence[role]['sha256'] == preview['sha256'], 'Raw preview must retain the exact direct-export PNG bytes')
+            _require(paths[role] == directory / f'png-{scale}x/reconstruction.png', 'Invalid direct PNG export path')
+            with Image.open(paths[role]) as png:
+                _require(png.format == 'PNG' and png.size == (preview['width'], preview['height']), 'Invalid direct PNG export dimensions')
+                png.verify()
+            if not pdf_preview:
+                _require(evidence[role]['sha256'] == preview['sha256'], 'Raw preview must retain the exact direct-export PNG bytes')
         from .package import inspect_pptx
         deck = inspect_pptx(paths['pptx'])
         _require(len(deck['slides']) == 1 and native.get('slide_id') == deck['slides'][0]['slide_id'] and
@@ -278,6 +304,19 @@ def _preview_provenance(run, config, paths):
                      'Native PDF image encodings or resolutions disagree with render audit')
             actual_fonts = sorted({item[3] for item in pdf[0].get_fonts(full=True)})
             _require(native.get('pdf_fonts') == actual_fonts, 'Native PDF font declarations disagree with actual resources')
+        if pdf_preview:
+            from .native_pdf_preview import sample_pdf_previews
+            outputs, receipt = sample_pdf_previews(paths['native_pdf'], deck['slide_size_emu'])
+            _require(_same_json(audit.get('native_pdf_preview'), receipt) and
+                     _same_json(_json_record(paths['native_pdf_preview_receipt']), receipt) and
+                     paths['native_pdf_preview_receipt'] == directory / 'pdf-preview-receipt.json',
+                     'Native PDF preview receipt disagrees with actual PDF replay')
+            for scale in (1, 2, 4):
+                role = f'native_pdf_png_{scale}x'
+                _require(paths[role] == directory / f'pdf-png-{scale}x/reconstruction.png' and
+                         paths[role].read_bytes() == outputs[scale] and
+                         evidence[role]['sha256'] == previews[f'preview_{scale}x']['sha256'],
+                         'Native PDF preview pixels disagree with actual PDF replay')
         if alpha_policy:
             from .pdf_binary_alpha import verify_binary_alpha_pdf
             _require({'native_pdf_derived', 'native_pdf_alpha_receipt'} <= set(evidence), 'Derived PDF evidence is incomplete')
@@ -314,6 +353,12 @@ def _preview_provenance(run, config, paths):
         emu = deck['slide_size_emu']
         _require(all(dimensions[str(s)] == [round(emu['cx'] / 9525 * s), round(emu['cy'] / 9525 * s)] for s in (1, 2, 4)),
                  'Native pixel dimensions do not correspond to final PPTX and declared DPI')
+    if 'resolved_scene' in paths:
+        from .stroke_style import verify_native_hairlines
+        declared = _json_record(paths['resolved_scene'], strict_numbers_and_keys=True)
+        if any(o.get('style', {}).get('stroke_hairline') is True for o in declared.get('objects', [])):
+            _require(backend == 'libreoffice-pdf', 'Device hairlines require native PDF preview provenance')
+            verify_native_hairlines(paths['pptx'], declared)
     return audit
 
 

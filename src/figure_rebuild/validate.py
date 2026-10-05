@@ -234,7 +234,9 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     if active:
                         previous = subpath_start
             check(bool(points) and drawable, 'Path needs a drawable segment: ' + label)
-            if opacity == 0 or (style.get('fill', 'none') == 'none' and 'fill_gradient' not in style and (style.get('stroke', 'none') == 'none' or stroke_width == 0)):
+            if style.get('stroke_hairline') is True:
+                warnings.append('Device hairline requires actual native PDF linewidth and visual verification: ' + label)
+            if opacity == 0 or (style.get('fill', 'none') == 'none' and 'fill_gradient' not in style and (style.get('stroke', 'none') == 'none' or (stroke_width == 0 and style.get('stroke_hairline') is not True))):
                 warnings.append('Path has no visible paint: ' + label)
         elif kind == 'text':
             if 'font_family' in obj:

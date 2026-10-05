@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 
-BACKENDS = ('artifact', 'libreoffice')
+BACKENDS = ('artifact', 'libreoffice', 'libreoffice-pdf')
 PROVENANCE_VERSION = 1
 
 
@@ -248,11 +248,18 @@ def conversion_command(profile, directory, token, format_name, options, source):
 
 
 def render(config):
-    """Export direct native PNGs; inspect a separate PDF for font/image evidence."""
+    """Retain direct native exports; explicitly selected PDF previews are separate."""
     if config.get('base'):
         raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
-    if validate_backend(config.get('preview_backend')) != 'libreoffice':
-        raise ValueError('Native renderer requires explicit libreoffice preview backend')
+    backend = validate_backend(config.get('preview_backend'))
+    if backend not in ('libreoffice', 'libreoffice-pdf'):
+        raise ValueError('Native renderer requires explicit LibreOffice preview backend')
+    pdf_preview = backend == 'libreoffice-pdf'
+    version = config.get('native_pdf_preview_version')
+    if (pdf_preview and (type(version) is not int or version != 1)) or (not pdf_preview and version is not None):
+        raise ValueError('Unsupported native PDF preview version or backend')
+    if pdf_preview and config.get('pdf_alpha_derivation') is not None:
+        raise ValueError('Native PDF previews use the unmodified exported PDF')
     alpha_policy = validate_pdf_alpha_policy(config.get('pdf_alpha_derivation'), 'libreoffice')
     profile, fitz = preflight(config['runtime'])
     run = Path(config['run']).resolve()
@@ -330,6 +337,13 @@ def render(config):
                 'rgb_alpha_filtering_error_bound_proved': False}
         from PIL import Image
         sizes, png_exports = {}, {}
+        pdf_outputs, pdf_receipt = {}, None
+        if pdf_preview:
+            from .native_pdf_preview import sample_pdf_previews
+            pdf_outputs, pdf_receipt = sample_pdf_previews(pdf_path, dimensions)
+            receipt_path = directory / 'pdf-preview-receipt.json'
+            _save(receipt_path, pdf_receipt)
+            evidence['native_pdf_preview_receipt'] = binding(receipt_path)
         for scale in (1, 2, 4):
             expected = (round(dimensions['cx'] / 9525 * scale), round(dimensions['cy'] / 9525 * scale))
             token = f'png-{scale}x'
@@ -350,8 +364,15 @@ def render(config):
                     raise ValueError(f'Native preview pixel dimensions differ from the PPTX: {png.size}, expected {expected}')
                 png.verify()
             destination = run / f'preview-{scale}x.png'
-            destination.write_bytes(png_path.read_bytes())
-            if binding(destination)['sha256'] != exported['sha256']:
+            canonical = png_path
+            if pdf_preview:
+                pdf_png_dir = directory / f'pdf-png-{scale}x'
+                pdf_png_dir.mkdir()
+                canonical = pdf_png_dir / 'reconstruction.png'
+                canonical.write_bytes(pdf_outputs[scale])
+                evidence[f'native_pdf_png_{scale}x'] = binding(canonical)
+            destination.write_bytes(canonical.read_bytes())
+            if binding(destination)['sha256'] != binding(canonical)['sha256']:
                 raise ValueError('Native preview differs from actual exported PNG bytes')
             role = f'native_png_{scale}x'
             evidence[role] = exported
@@ -367,13 +388,19 @@ def render(config):
             if binding(item['path']) != item:
                 raise ValueError('Native preview evidence changed during rendering')
         _save(commands_path, commands)
-        return {**derivation, 'renderer': 'LibreOffice Impress', 'renderer_backend': 'headless_direct_png',
+        identity = ({'renderer': 'LibreOffice Impress + MuPDF', 'renderer_backend': 'headless_pdf_mupdf',
+                     'raw_preview_format': 'native_pdf_MuPDF', 'pdf_role': 'canonical_preview_and_font_and_image_evidence',
+                     'rasterizer': 'PyMuPDF', 'native_pdf_preview': pdf_receipt} if pdf_preview else
+                    {'renderer': 'LibreOffice Impress', 'renderer_backend': 'headless_direct_png',
+                     'raw_preview_format': 'impress_png_Export', 'pdf_role': 'font_and_image_evidence_only'})
+        limitation = ('Canonical previews sample the unmodified native PDF with MuPDF. All direct Impress PNG exports are retained separately. PDF hairlines and other appearance remain renderer-specific; this does not verify PowerPoint/WPS or source pixel equality.' if pdf_preview else
+                      'This is LibreOffice direct PNG export appearance, not PowerPoint/WPS verification. PDF evidence is a separate export and is not the source of raw previews. Native miter limits, default joins, text spacing and other application differences remain subject to actual visual review.')
+        return {**derivation, **identity,
                 'libreoffice_version': version, 'libreoffice_command': profile['command'],
                 'pdf_export_options': export_options,
                 'command_executable': command_identity,
-                'raw_preview_format': 'impress_png_Export',
                 'pdf_inspector': 'PyMuPDF', 'pdf_inspector_version': fitz.__version__,
-                'pdf_role': 'font_and_image_evidence_only', 'pixel_density_dpi': [96, 192, 384], 'source_media_bytes_modified': False,
+                'pixel_density_dpi': [96, 192, 384], 'source_media_bytes_modified': False,
                 'preview_scales': [1, 2, 4], 'raw_diagnostic_scale': 1,
                 'application_playback_verified': False,
                 'native_render': {'input_before': before, 'input_after': binding(source),
@@ -385,7 +412,7 @@ def render(config):
                 'image_audit': image_audit,
                 'evidence': {**evidence, 'native_commands': binding(commands_path)},
                 'preview_limitations': [{'code': 'native_application_specific_rendering', 'status': 'needs_review',
-                                        'detail': 'This is LibreOffice direct PNG export appearance, not PowerPoint/WPS verification. PDF evidence is a separate export and is not the source of raw previews. Native miter limits, default joins, text spacing and other application differences remain subject to actual visual review.'}]}
+                                        'detail': limitation}]}
     finally:
         _save(commands_path, commands)
 

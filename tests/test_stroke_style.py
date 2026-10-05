@@ -6,7 +6,7 @@ import unittest
 from pathlib import Path
 from xml.etree import ElementTree as ET
 
-from figure_rebuild.stroke_style import A, P, NS, apply_stroke_style, validate_stroke_style, svg_stroke_attributes
+from figure_rebuild.stroke_style import A, P, NS, apply_stroke_style, validate_stroke_style, svg_stroke_attributes, verify_hairline_xml, verify_native_hairlines
 from figure_rebuild.export_svg import export
 
 
@@ -24,6 +24,81 @@ class StrokeStyleTests(unittest.TestCase):
         self.assertIsNone(apply_stroke_style(self.shape, self.obj))
         self.assertEqual(ET.tostring(self.shape), original)
         self.assertEqual(svg_stroke_attributes(self.obj['style']), {})
+
+    def test_explicit_hairline_restores_paint_zero_width_and_native_stroke_state(self):
+        line = self.shape.find('p:spPr/a:ln', NS)
+        line.remove(line.find('a:solidFill', NS)); line.insert(0, ET.Element(f'{{{A}}}noFill'))
+        path = self.shape.find('p:spPr/a:custGeom/a:pathLst/a:path', NS); path.set('stroke', '0')
+        points = [ET.tostring(c) for c in path]
+        style = {'fill': 'none', 'stroke': '#abcdef', 'stroke_width': 0, 'stroke_hairline': True,
+                 'opacity': .5, 'stroke_linecap': 'butt', 'stroke_linejoin': 'miter'}
+        report = apply_stroke_style(self.shape, {**self.obj, 'style': style})
+        self.assertEqual(line.get('w'), '0'); self.assertEqual(path.get('stroke'), '1')
+        self.assertEqual(line.find('a:solidFill/a:srgbClr', NS).get('val'), 'ABCDEF')
+        self.assertEqual(line.find('a:solidFill/a:srgbClr/a:alpha', NS).get('val'), '50000')
+        self.assertEqual(points, [ET.tostring(c) for c in path])
+        self.assertTrue(report['native_zero_width_written']); self.assertEqual(report['pdf_linewidth_and_pixel_verification'], 'required')
+        self.assertEqual(svg_stroke_attributes(style)['data-figure-rebuild-device-hairline'], 'native-zero-width')
+
+    def test_invalid_hairline_never_mutates_native_shape(self):
+        style = {'stroke': '#123456', 'stroke_width': 0, 'stroke_hairline': True}
+        bad = [dict(style, stroke_hairline=v) for v in (False, 1, 'true', None)]
+        bad += [dict(style, stroke_width=v) for v in (True, '0', None, 1)]
+        bad += [dict(style, stroke=v) for v in ('none', '#GGGGGG')]
+        bad += [dict(style, opacity=v) for v in (True, 0, .000001, float('nan'), 10**1000)]
+        bad += [dict(style, fill='magenta')]
+        original = ET.tostring(self.shape)
+        for candidate in bad:
+            with self.subTest(candidate=candidate), self.assertRaises(ValueError):
+                apply_stroke_style(self.shape, {**self.obj, 'style': candidate})
+            self.assertEqual(ET.tostring(self.shape), original)
+
+    def test_actual_hairline_width_color_alpha_and_stroke_are_verified_independently(self):
+        style = {'stroke':'#123456','stroke_width':0,'stroke_hairline':True,'opacity':.5}
+        obj={**self.obj,'style':style};props=self.shape.find('p:spPr',NS)
+        props.insert(1,ET.Element(f'{{{A}}}noFill'))
+        apply_stroke_style(self.shape,obj)
+        self.assertEqual(verify_hairline_xml(self.shape,obj)['native_line_width_emu'],0)
+        self.assertFalse(verify_hairline_xml(self.shape,obj)['pdf_linewidth_verified'])
+        for failure in ('width','color','alpha','stroke','effect'):
+            changed=copy.deepcopy(self.shape);line=changed.find('p:spPr/a:ln',NS)
+            if failure=='width':line.set('w','1')
+            elif failure=='color':line.find('a:solidFill/a:srgbClr',NS).set('val','654321')
+            elif failure=='alpha':line.find('a:solidFill/a:srgbClr/a:alpha',NS).set('val','100000')
+            elif failure=='stroke':changed.find('p:spPr/a:custGeom/a:pathLst/a:path',NS).set('stroke','0')
+            else:ET.SubElement(changed.find('p:spPr',NS),f'{{{A}}}effectLst')
+            with self.subTest(failure=failure),self.assertRaises(ValueError):verify_hairline_xml(changed,obj)
+
+    def test_hairline_on_filled_path_retains_fill_bytes_and_control_coordinates(self):
+        props=self.shape.find('p:spPr',NS);fill=ET.Element(f'{{{A}}}solidFill');ET.SubElement(fill,f'{{{A}}}srgbClr',{'val':'92E285'});props.insert(1,fill)
+        before=ET.tostring(fill);geometry=ET.tostring(props.find('a:custGeom',NS))
+        obj={**self.obj,'style':{'fill':'#92E285','stroke':'#000000','stroke_width':0,'stroke_hairline':True}}
+        apply_stroke_style(self.shape,obj)
+        self.assertEqual(ET.tostring(fill),before)
+        path=props.find('a:custGeom/a:pathLst/a:path',NS);path.attrib.pop('stroke')
+        self.assertEqual(ET.tostring(props.find('a:custGeom',NS)),geometry)
+        path.set('stroke','1');self.assertEqual(verify_hairline_xml(self.shape,obj)['native_line_width_emu'],0)
+
+    def test_actual_packaged_hairline_is_read_back_and_changed_width_is_refused(self):
+        if __package__:
+            from .test_package import fixture,slide,write_archive
+        else:
+            from test_package import fixture,slide,write_archive
+        props=self.shape.find('p:spPr',NS);props.insert(1,ET.Element(f'{{{A}}}noFill'))
+        nv=ET.Element(f'{{{P}}}nvSpPr');ET.SubElement(nv,f'{{{P}}}cNvPr',{'id':'2','name':'line'});self.shape.insert(0,nv)
+        obj={**self.obj,'style':{'stroke':'#123456','stroke_width':0,'stroke_hairline':True}};apply_stroke_style(self.shape,obj)
+        with tempfile.TemporaryDirectory() as directory:
+            ppt=Path(directory)/'final.pptx';files=fixture([(1001,'ppt/slides/odd.xml',slide([self.shape]))]);write_archive(ppt,files)
+            before=ppt.read_bytes();records=verify_native_hairlines(ppt,{'objects':[obj]})
+            self.assertEqual(records[0]['native_line_width_emu'],0);self.assertEqual(ppt.read_bytes(),before)
+            self.shape.find('p:spPr/a:ln',NS).set('w','1')
+            files=fixture([(1001,'ppt/slides/odd.xml',slide([self.shape]))]);write_archive(ppt,files)
+            with self.assertRaisesRegex(ValueError,'width'):verify_native_hairlines(ppt,{'objects':[obj]})
+
+    def test_ordinary_zero_width_does_not_acquire_hairline_paint(self):
+        original=ET.tostring(self.shape);obj={**self.obj,'style':{'stroke':'#123456','stroke_width':0}}
+        self.assertIsNone(apply_stroke_style(self.shape,obj));self.assertIsNone(verify_hairline_xml(self.shape,obj))
+        self.assertEqual(ET.tostring(self.shape),original)
 
     def test_native_cap_mapping_preserves_all_other_content(self):
         for cap, native in [('butt', 'flat'), ('round', 'rnd'), ('square', 'sq')]:

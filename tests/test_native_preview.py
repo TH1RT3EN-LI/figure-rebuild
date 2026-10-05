@@ -91,6 +91,10 @@ class NativeRenderTests(unittest.TestCase):
                         for _ in range(2 if self.mode == 'two_pages' else 1):
                             page = document.new_page(width=150, height=75.01 if self.mode == 'rounding' else 75)
                             page.draw_line((20, 30), (80, 30), width=6)
+                            if self.mode == 'zero_hairline':
+                                xref = page.get_contents()[0]
+                                document.update_stream(xref, document.xref_stream(xref).replace(b'6 w', b'0 w'))
+                                self.assertEqual(page.get_drawings()[0]['width'], 0)
                             if self.mode == 'binary':
                                 rgba = Image.new('RGBA', (4, 2), (0, 0, 0, 0))
                                 rgba.putpixel((1, 0), (30, 90, 150, 255))
@@ -144,6 +148,62 @@ class NativeRenderTests(unittest.TestCase):
         self.assertEqual(result['raw_preview_format'], 'impress_png_Export')
         self.assertNotIn('rasterizer', result)
         self.assertEqual(result['native_render']['pixel_dimensions']['4'], [800, 400])
+
+    def test_explicit_pdf_preview_replays_actual_pixels_and_retains_direct_exports(self):
+        self.config.update(preview_backend='libreoffice-pdf', native_pdf_preview_version=1)
+        self.mode = 'zero_hairline'; before = self.pptx.read_bytes(); result = self.render()
+        from figure_rebuild.native_pdf_preview import sample_pdf_previews
+        outputs, receipt = sample_pdf_previews(result['evidence']['native_pdf']['path'], {'cx':200*9525,'cy':100*9525})
+        self.assertEqual(result['native_pdf_preview'], receipt)
+        self.assertEqual(result['renderer_backend'], 'headless_pdf_mupdf')
+        self.assertEqual(self.pptx.read_bytes(), before)
+        for scale in (1, 2, 4):
+            self.assertEqual((self.run / f'preview-{scale}x.png').read_bytes(), outputs[scale])
+            self.assertNotEqual(outputs[scale], (self.run / f'native-preview/png-{scale}x/reconstruction.png').read_bytes())
+            with Image.open(self.run / f'native-preview/png-{scale}x/reconstruction.png') as direct:
+                self.assertEqual(direct.getpixel((0, 0)), (255,165,0))
+        self.assertFalse(result['application_playback_verified'])
+
+    def test_pdf_preview_version_and_backend_are_validated_before_exports(self):
+        for backend, version in [('libreoffice-pdf', None), ('libreoffice-pdf', True),
+                                 ('libreoffice-pdf', 2), ('libreoffice', 1)]:
+            config = dict(self.config, preview_backend=backend)
+            if version is not None: config['native_pdf_preview_version'] = version
+            with patch.object(native, '_execute') as execute, self.assertRaisesRegex(ValueError, 'version'):
+                native.render(config)
+            execute.assert_not_called(); self.assertFalse((self.run / 'native-preview').exists())
+
+    def test_pdf_preview_review_rejects_rebound_pixels_receipt_and_backend(self):
+        from figure_rebuild.output_review import _preview_provenance
+        self.config.update(preview_backend='libreoffice-pdf', native_pdf_preview_version=1, preview_provenance_version=1)
+        result = self.render(); previews = {}
+        for scale in (1, 2, 4):
+            previews[f'preview_{scale}x'] = {**native.binding(self.run/f'preview-{scale}x.png'), 'width':200*scale, 'height':100*scale, 'scale':scale}
+        smooth = self.run/'preview-smooth-1x.png'
+        with Image.open(self.run/'preview-4x.png') as img: img.resize((200,100),Image.Resampling.LANCZOS).save(smooth)
+        previews['preview_smooth_1x'] = {**native.binding(smooth),'width':200,'height':100,'scale':1,
+            'derivation':{'source_role':'preview_4x','source_sha256':previews['preview_4x']['sha256'],'kernel':'lanczos3','target_size':[200,100],'is_raw_preview':False}}
+        result.update(schema_version=1, preview_backend='libreoffice-pdf', input_pptx=native.binding(self.pptx), previews=previews)
+        audit_path=self.run/'render-audit.json';audit_path.write_text(json.dumps(result))
+        _preview_provenance(self.run,self.config,{'pptx':self.pptx})
+        for failure in ('policy','matrix','version','backend','pixels'):
+            changed=copy.deepcopy(result);config=copy.deepcopy(self.config)
+            receipt_path=Path(changed['evidence']['native_pdf_preview_receipt']['path']);original=receipt_path.read_bytes()
+            if failure=='policy':changed['native_pdf_preview']['policy']='source-reference-raster'
+            elif failure=='matrix':
+                changed['native_pdf_preview']['scales']['1']['matrix'][0]=1
+                receipt_path.write_text(json.dumps(changed['native_pdf_preview']))
+                changed['evidence']['native_pdf_preview_receipt']=native.binding(receipt_path)
+            elif failure=='version':config['native_pdf_preview_version']=True
+            elif failure=='backend':config['preview_backend']='libreoffice'
+            else:
+                actual=Path(changed['evidence']['native_pdf_png_1x']['path']);before=actual.read_bytes()
+                Image.new('RGB',(200,100),'white').save(actual);(self.run/'preview-1x.png').write_bytes(actual.read_bytes())
+                changed['evidence']['native_pdf_png_1x']=native.binding(actual);changed['previews']['preview_1x'].update(native.binding(self.run/'preview-1x.png'))
+            audit_path.write_text(json.dumps(changed))
+            with self.subTest(failure=failure),self.assertRaises(ValueError):_preview_provenance(self.run,config,{'pptx':self.pptx})
+            receipt_path.write_bytes(original)
+            if failure=='pixels':actual.write_bytes(before);(self.run/'preview-1x.png').write_bytes(before)
 
     def test_explicit_pdf_derivation_keeps_raw_pdf_and_png_exports_separate(self):
         self.config['pdf_alpha_derivation'] = 'binary-alpha-white-matte-v1'

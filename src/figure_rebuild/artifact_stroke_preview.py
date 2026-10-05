@@ -181,6 +181,9 @@ def prepare_stroke_preview(pptx, manifest):
     for obj in manifest['objects']:
         if obj.get('kind') != 'path' or not validate_stroke_style(obj.get('style', {}), 'path', obj['id']):
             continue
+        if obj.get('style', {}).get('stroke_hairline') is True:
+            skipped.append({'id': obj['id'], 'reason': 'Device hairline requires native PDF sampling'})
+            continue
         if obj.get('style', {}).get('stroke', 'none') == 'none' or not obj['style'].get('stroke_width', 0):
             continue
         try:
