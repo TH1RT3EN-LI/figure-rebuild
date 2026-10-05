@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "id": "creation-parallel-fusion",
+  "brief": "Synthetic multimodal authoring example. Images and text are processed by separate encoders. Each encoder produces a feature tensor. Both tensors enter a fusion module, then a prediction head, then the output. The fusion module is the visual focus. The two branches have equal status. Do not invent a cross-encoder connection, a training objective or performance claims. This is an original test graph unrelated to a specific paper.",
+  "title": "Dual-stream representation fusion",
+  "caption": "Illustrative architecture. Parallel branches meet at the fusion module; stacked cards represent tensors, without implying a particular tensor shape.",
+  "nodes": [
+    {"id": "images", "label": "Images", "detail": "Visual input", "kind": "input", "stage": 0, "lane": 0},
+    {"id": "text", "label": "Text", "detail": "Language input", "kind": "input", "stage": 0, "lane": 1},
+    {"id": "visual-encoder", "label": "Visual encoder", "detail": "Visual representation", "stage": 1, "lane": 0},
+    {"id": "text-encoder", "label": "Text encoder", "detail": "Text representation", "stage": 1, "lane": 1},
+    {"id": "visual-features", "label": "Visual features", "kind": "tensor", "stage": 2, "lane": 0},
+    {"id": "text-features", "label": "Text features", "kind": "tensor", "stage": 2, "lane": 1},
+    {"id": "fusion", "label": "Feature fusion", "detail": "Joint representation", "stage": 3, "lane": 0.5, "emphasis": true},
+    {"id": "head", "label": "Prediction head", "detail": "Task-specific mapping", "stage": 4, "lane": 0.5},
+    {"id": "output", "label": "Predictions", "kind": "output", "stage": 5, "lane": 0.5}
+  ],
+  "edges": [
+    {"id": "images-encoder", "from": "images", "to": "visual-encoder"},
+    {"id": "text-encoder", "from": "text", "to": "text-encoder"},
+    {"id": "visual-features", "from": "visual-encoder", "to": "visual-features"},
+    {"id": "text-features", "from": "text-encoder", "to": "text-features"},
+    {"id": "visual-fusion", "from": "visual-features", "to": "fusion"},
+    {"id": "text-fusion", "from": "text-features", "to": "fusion"},
+    {"id": "fusion-head", "from": "fusion", "to": "head"},
+    {"id": "head-output", "from": "head", "to": "output"}
+  ],
+  "groups": [{"id": "representations", "label": "Modality-specific representations", "members": ["visual-encoder", "text-encoder", "visual-features", "text-features"]}]
+}

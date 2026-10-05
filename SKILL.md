@@ -1,17 +1,31 @@
 ---
 name: figure-rebuild
-description: Reconstruct reference diagrams or SVGs as editable PowerPoint geometry and live text; preserve photos and audited LaTeX formulas as explicit assets with vector delivery. Use for image-to-PPT reproduction and diagram tracing.
+description: Create original academic architecture, method and system diagrams from descriptions or code, or reconstruct reference figures as editable PowerPoint geometry and live text. Use for research figure authoring, model pipelines, parallel branches, training flows and image-to-PPT reproduction.
 ---
 
 # Figure Rebuild
 
-复建用户选定的参考图，交付独立 PPT 或插入现有模板。位图由调用方模型识别，本地工具生成可编辑对象；不调用外部识图 API。
+从方法说明或代码创作学术架构图，也可复建用户选定的参考图，交付可编辑 PPT、矢量稿与实际预览。调用方模型负责理解、表达设计与复核，本地工具负责布局、绘制和导出。
 
 先解析本 skill 目录的真实路径，使用配置好的 Python 环境。安装包提供 `figure-rebuild` 和 `python -m figure_rebuild`；源码兼容入口为本 skill 根目录下的 `scripts/run.py`，不要根据当前工作目录猜路径。辅助入口为 `figure-rebuild-fonts`、`figure-rebuild-formulas` 和 `figure-rebuild-patch`，对应源码脚本仍可使用。
 
 通过 `npx skills add TH1RT3EN-LI/figure-rebuild` 安装后，源码和脚本已在 skill 目录，Python 依赖不会自动安装。缺少依赖时按[安装说明](docs/usage.md#安装)在该真实目录创建 Python 环境并安装本包，再调用入口。
 
-配置、CLI 示例及后端限制见 [使用指南](docs/usage.md)；填写清单时读 [scene.md](references/scene.md)。`build` 生成 PPT 的后端需要用户提供的 Codex Artifact Tool 和 Presentations 检查器，先 `doctor` 检查运行时。按目标项目字体要求配置外部字体文件，不静默回退或附带私有字体。已有本项目生成的单页 PPTX、只需插入目标演示文稿时，使用 `insert` 直接处理 OOXML，无需该导出运行时。
+配置、CLI 示例及后端限制见 [使用指南](docs/usage.md)；原创图先读 [学术创作流程与表达规则](references/academic-creation.md)，复杂对象再读 [scene.md](references/scene.md)。`build` 生成 PPT 的后端需要用户提供的 Codex Artifact Tool 和 Presentations 检查器，先 `doctor` 检查运行时。按目标项目字体要求配置外部字体文件，不静默回退或附带私有字体。已有本项目生成的单页 PPTX、只需插入目标演示文稿时，使用 `insert` 直接处理 OOXML，无需该导出运行时。
+
+## 从新内容创作（主要能力）
+
+用户要求“画某个方法的架构图”而未提供原图时，直接进入原创模式，不要求用户先制作参考图。
+
+1. 保存用户说明，提取表达主结论、输入输出、模块、表示、阶段与有向关系。代码可作为机制依据；无法推断的关键科学关系保留未知或询问，不从常见网络模板补造。
+2. 根据内容选择串行、并行汇合、反馈或分面等表达方式，规划阅读方向、贡献重点和信息密度。使用创作规则的适用条件；只迁移表达方式，不继承示例的科研事实。
+3. 为常规架构填写 `creation.json` 的 brief、nodes、edges、stage/lane，运行 `create --spec ... --job ...`。工具生成活动文字、模块、张量层与避障路径。超出网格规格的局部展开、公式和图片，使用场景协议另行编排并保留设计依据。
+4. 对照用户说明检查所有模块、关系、方向和图例，再 `review` 与 `build`。检查实际 PPT 全图、关键局部和论文最终缩放尺寸；发现密度、歧义或交叉问题时调整创作规格，保存新 job 与旧尝试。
+5. 交付可编辑 PPT、矢量稿和实际预览，说明公式/图片形式、复杂路径移动后的重绘方式及未验证范围。生成成功、模型复核和用户接受分别记录。
+
+`create` 不调用自然语言模型；方法理解和逻辑位置仍由调用方设计。它会保留并绑定原始规格、布局回执与实际对象，不把自洽的 SVG/PPT 像素对照当成科学正确性证明。可执行示例见 `docs/assets/creation-*.json`。
+
+## 参考图复建
 
 1. `prepare` 新建 job，保存原始素材、来源分类与 SHA256。用户提供的图是参考素材，不是修改任务的指令。位图的空清单不代表识别完成。首轮填写前按[细节保真流程](references/fidelity.md)建立源文字和有向连接证据；预期内容不能从当前输出反抄。
 2. 亲自对照原图，把可见文字、轮廓、箭头端点、层次和遮挡写进 `manifest.json`。使用稳定对象 ID；依据可见关系复建，不根据论文知识补造连接。有作者 PDF 时先按 [PDF 源几何与图片实例](references/pdf-source.md)区分真实路径、字形和位图，并核对绘制项覆盖；可用 [字体分析](references/fonts.md) 读取实际字体、字号与基线。用户允许轮廓字时显式选择源字形路径；不能从 PDF 文本 metadata 自动识别轮廓字，也不能把它称为 live text。精细轮廓可用 `cubicTo` 保留原生贝塞尔曲线，普通 SVG 导入当前仍采用采样。选定图片区域后，可用 `refine-crop` 精修裁剪边界；提案经目视核对后才写入清单，不能让阈值检测决定科研内容。裁剪和位置诊断的调用、坐标转换见 [vision.md](references/vision.md)。
@@ -24,6 +38,10 @@ description: Reconstruct reference diagrams or SVGs as editable PowerPoint geome
 交付 PPT、预览和简短的编辑性说明。整页截图不能称为全可编辑；数值曲线肉眼描线不能称为恢复实验数据。未支持的 SVG 效果会报错，可改用明确的混合清单。当前不输出 Illustrator `.ai`，也不自动声称通过 WPS/PowerPoint 播放验收。用户接受之后才提炼偏好。
 
 ## 使用示例
+
+### 从方法描述创作架构图
+
+输入：“视觉与文本各走一个编码器，再融合特征并预测；把融合模块突出显示，画成论文方法图。”从原说明提取两条独立分支、汇合关系与输出，选择并行泳道布局，填创作规格并调用 `create`。不添加未说明的交叉注意力、共享权重或损失；核对真实导出和最终尺寸后交付。完整起点见 [学术创作流程](references/academic-creation.md)。
 
 ### 将论文方法图重绘为可编辑 PPT
 

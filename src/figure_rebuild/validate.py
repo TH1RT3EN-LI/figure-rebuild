@@ -304,6 +304,12 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     for dx, dy in ((-box['width']/2, -box['height']/2), (-box['width']/2, box['height']/2), (box['width']/2, -box['height']/2), (box['width']/2, box['height']/2)):
                         in_canvas(cx+co*dx-si*dy, cy+si*dx+co*dy, 'Object box ' + label)
     check(not ids.intersection(groups), 'Group ids must differ from member ids')
+    if 'authoring' in manifest and not errors:
+        try:
+            from .authoring import verify_creation_inputs
+            verify_creation_inputs(manifest, root)
+        except (ValueError, OSError, KeyError, TypeError) as exc:
+            errors.append('Creation inputs: ' + str(exc))
     result = report()
     if not errors:
         from .content_audit import audit_source_content

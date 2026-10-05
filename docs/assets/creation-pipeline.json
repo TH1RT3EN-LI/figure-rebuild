@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "id": "creation-pipeline",
+  "brief": "Synthetic authoring example, not a claimed research method. Show a five-stage feature processing pipeline: observations are normalized, encoded into features, passed to a prediction head, and returned as predictions. Preserve exactly these four directed dependencies. Emphasize the encoder. Use a compact left-to-right academic diagram.",
+  "title": "Feature processing pipeline",
+  "caption": "Illustrative architecture. Solid arrows denote forward computation; the highlighted block is the feature encoder.",
+  "nodes": [
+    {"id": "input", "label": "Observations", "detail": "Input samples", "kind": "input", "stage": 0},
+    {"id": "normalize", "label": "Normalization", "detail": "Shared preprocessing", "stage": 1},
+    {"id": "encoder", "label": "Feature encoder", "detail": "Learned representation", "stage": 2, "emphasis": true},
+    {"id": "head", "label": "Prediction head", "detail": "Task-specific mapping", "stage": 3},
+    {"id": "output", "label": "Predictions", "detail": "Output estimates", "kind": "output", "stage": 4}
+  ],
+  "edges": [
+    {"id": "input-normalize", "from": "input", "to": "normalize"},
+    {"id": "normalize-encoder", "from": "normalize", "to": "encoder"},
+    {"id": "encoder-head", "from": "encoder", "to": "head"},
+    {"id": "head-output", "from": "head", "to": "output"}
+  ]
+}

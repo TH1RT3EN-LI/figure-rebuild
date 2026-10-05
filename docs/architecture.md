@@ -1,6 +1,6 @@
 # 架构与数据流
 
-Figure Rebuild 用可审阅的场景清单连接参考图和 PowerPoint 导出。位图识别由调用方模型完成；Python 负责输入、清单、素材与交付审计，JavaScript 负责调用外部 PPT 运行时构建画布。
+Figure Rebuild 用可审阅的场景清单连接原创设计、参考图和 PowerPoint 导出。方法理解、结构设计和位图识别由调用方模型完成；Python 负责输入、布局、清单、素材与交付审计，JavaScript 负责调用外部 PPT 运行时构建画布。
 
 ## 目录职责
 
@@ -9,8 +9,8 @@ Figure Rebuild 用可审阅的场景清单连接参考图和 PowerPoint 导出�
 | `src/figure_rebuild/` | Python 包，处理清单、素材、配置、几何、审计与命令行流程 |
 | `src/figure_rebuild/powerpoint/` | 随 wheel 分发的 JavaScript PPT 构建、预检、曲线与文字测量代码 |
 | `scripts/` | Codex skill 的源码入口和安装辅助脚本 |
-| `SKILL.md`、`agents/` | 调用方模型的复建流程与 Codex 技能元数据 |
-| `references/` | 场景协议、字体、公式、连线、视觉诊断与录制说明 |
+| `SKILL.md`、`agents/` | 调用方模型的学术创作、复建流程与 Codex 技能元数据 |
+| `references/` | 学术表达规则、场景协议、字体、公式、连线、视觉诊断与录制说明 |
 | `tests/` | 便携 Python / Node 测试和附带许可说明的测试素材 |
 | `docs/` | 使用、架构、更新记录和第三方说明 |
 | `docs/i18n/` | 英语、韩语和西班牙语 README |
@@ -21,6 +21,8 @@ Figure Rebuild 用可审阅的场景清单连接参考图和 PowerPoint 导出�
 | `.local/` | 被 Git 忽略的本地配置、任务与集成输出 |
 
 ## 从识别到交付
+
+原创模式先由调用方保存创作 brief 与明确的节点、关系、阶段/泳道。`authoring.py` 经 `create` 测量注册字体、生成布局和正交避障路径；保存规格原字节、SVG、清单与布局回执，然后进入相同的 `review → build → 实际输出检查`。创作输入和布局绑定场景并随构建冻结，不覆盖旧 job。自然语言解析、科研正确性和审美判断不由布局器完成。
 
 ```mermaid
 flowchart LR

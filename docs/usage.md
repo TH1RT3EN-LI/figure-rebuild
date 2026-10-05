@@ -2,7 +2,7 @@
 
 以下命令均在仓库根目录执行。项目介绍和最短开始方式见 [README](../README.md)。
 
-把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或在生成时、生成后按稳定 slide ID 等比插入已有模板的指定区域。
+从方法说明创作或把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或在生成时、生成后按稳定 slide ID 等比插入已有模板的指定区域。
 
 位图由使用者或调用方智能体对照参考图填写清单，SVG 的受支持几何可自动导入。运行时、审阅与交付之间的关系见 [架构说明](architecture.md)。
 
@@ -107,6 +107,20 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 `FIGURE_REBUILD_CONFIG` 可指定配置文件。未指定时，Linux / macOS 使用 `${XDG_CONFIG_HOME:-~/.config}/figure-rebuild/runtime.json`，Windows 使用 `%APPDATA%/figure-rebuild/runtime.json`。源码 checkout 中已有的 `.local/figure-rebuild/runtime.json` 继续兼容读取，用户文件不会自动迁移。
 
 运行时会检查包、适配器、字体及字形覆盖；无法满足要求时报错，不静默换字体。目标项目可以指定微软雅黑等具体字体，通用 skill 不硬编码个人排版偏好。
+
+## 原创学术架构图
+
+调用方模型先从用户的方法说明或代码设计明确的模块、依赖与逻辑布局，不需要参考图。规则、创作规格与限制见[学术创作指南](../references/academic-creation.md)。可先复用合成示例：
+
+```bash
+.venv/bin/figure-rebuild create --spec docs/assets/creation-parallel-fusion.json --job .local/jobs/my-original-figure
+.venv/bin/figure-rebuild review --manifest .local/jobs/my-original-figure/manifest.json --note '已对照创作说明核对模块与有向关系'
+.venv/bin/figure-rebuild build --manifest .local/jobs/my-original-figure/manifest.json
+```
+
+`create` 使用实际常规/粗体字体测量文字，计算阶段/泳道布局，生成模块、张量层、平面组与避开模块的正交路径。输入 brief/结构、生成 SVG 与布局回执绑定为 `generated_diagram`，默认尚未审阅；构建保存输入快照。该命令不解析自然语言或判断科研意义。
+
+单独传 `--font-profile /path/to/fonts.json` 时，创建 SVG/清单不需要 PPT 后端。`build` 仍需配置导出运行时。方法结构、布局或文字需要修改时，编辑规格并创建新 job，保留旧版；生成后实际复查文字、方向、交叉与最终尺寸，不能仅凭布局检查宣称论文质量已验收。
 
 ## 复建
 

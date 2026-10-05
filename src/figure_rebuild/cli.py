@@ -257,6 +257,14 @@ def freeze_assets(job, run, manifest):
     asset_root.mkdir()
     source = manifest['source']
     assets = {source['path']: source['sha256']}
+    if 'authoring' in manifest:
+        from .authoring import verify_creation_inputs
+        verify_creation_inputs(manifest, job)
+        for role in ('spec', 'audit'):
+            entry = manifest['authoring'][role]
+            if entry['path'] in assets and assets[entry['path']] != entry['sha256']:
+                raise ValueError('Conflicting creation asset checksums')
+            assets[entry['path']] = entry['sha256']
     if 'source_canvas_clip' in manifest:
         declaration = manifest['source_canvas_clip']
         if not isinstance(declaration, dict):
@@ -323,6 +331,11 @@ def prepare(a):
     if imported: manifest['recognition']['curve_tolerance_px'] = a.tolerance
     save(job / 'manifest.json', manifest)
     print(json.dumps({'job': str(job), 'manifest': str(job / 'manifest.json'), 'source_sha256': manifest['source']['sha256'], 'next': 'Inspect the original, fill/review objects and text; then review and build. No external recognition API is called.'}, ensure_ascii=False))
+
+def create(a):
+    from .authoring import create_job
+    fonts = read_font_profile(a.font_profile) if a.font_profile else runtime(check_dependencies=False)['fonts']
+    print(json.dumps(create_job(a.spec, a.job, fonts), ensure_ascii=False, indent=2))
 
 def review(a):
     p = Path(a.manifest).resolve()
@@ -552,6 +565,11 @@ def main():
     c.add_argument('--reference', required=True); c.add_argument('--rebuilt', required=True)
     c.add_argument('--output', required=True); c.add_argument('--max-shift', type=float, default=32)
     c.set_defaults(func=diagnose_command)
+    c = sub.add_parser('create', help='Author an original academic figure from an explicit graph and saved brief')
+    c.add_argument('--spec', required=True, help='Creation spec JSON: brief, nodes, stages/lanes and directed edges')
+    c.add_argument('--job', required=True, help='New job directory; existing jobs are preserved')
+    c.add_argument('--font-profile', help='Portable font profile; defaults to configured runtime fonts')
+    c.set_defaults(func=create)
     c = sub.add_parser('prepare')
     c.add_argument('--input', required=True); c.add_argument('--job', required=True); c.add_argument('--id')
     c.add_argument('--kind', required=True, choices=['research_original', 'user_original', 'retrieved_original', 'generated_diagram'])
