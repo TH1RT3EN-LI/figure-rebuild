@@ -53,6 +53,18 @@ class NativePdfPreviewTests(unittest.TestCase):
         for scale, data in outputs.items():
             self.assertEqual(Image.open(io.BytesIO(data)).size, (200 * scale, 100 * scale))
 
+    def test_receipt_numeric_tokens_survive_node_json_without_rounding(self):
+        self.write(height=75.01)
+        _, receipt = sample_pdf_previews(self.path, self.dimensions)
+        self.assertIs(type(receipt['page_rect_points'][0]), int)
+        self.assertIs(type(receipt['scales']['1']['matrix'][1]), int)
+        self.assertIs(type(receipt['scales']['1']['width']), int)
+        self.assertIs(type(receipt['scales']['1']['alpha']), bool)
+        with pymupdf.open(self.path) as pdf:
+            expected = 100 / pdf[0].rect.height
+        self.assertIs(type(receipt['scales']['1']['matrix'][3]), float)
+        self.assertEqual(receipt['scales']['1']['matrix'][3], expected)
+
     def test_surface_and_integer_budgets_fail_before_opening_pdf(self):
         for dimensions in ({'cx': True, 'cy': 100}, {'cx': 0, 'cy': 100}, {'cx': 100},
                            {'cx': 20000 * 9525, 'cy': 20000 * 9525}):

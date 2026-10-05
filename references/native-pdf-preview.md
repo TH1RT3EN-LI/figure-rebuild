@@ -1,5 +1,10 @@
 # Explicit final-PDF previews and device hairlines
 
+Receipt numbers use the same integral-number tokens as Node's JSON output.
+Nonintegral matrix coefficients retain their exact floating-point values. The
+output review still distinguishes integer counts, booleans and floating-point
+counts when independently comparing the actual final PDF and preview bytes.
+
 `build --preview-backend libreoffice-pdf` exports the finalized standalone PPTX
 with the existing isolated font environment and lossless LibreOffice PDF
 options. MuPDF samples that unmodified PDF at 1x, 2x and 4x. These are the

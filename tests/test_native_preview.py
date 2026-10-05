@@ -184,14 +184,29 @@ class NativeRenderTests(unittest.TestCase):
         previews['preview_smooth_1x'] = {**native.binding(smooth),'width':200,'height':100,'scale':1,
             'derivation':{'source_role':'preview_4x','source_sha256':previews['preview_4x']['sha256'],'kernel':'lanczos3','target_size':[200,100],'is_raw_preview':False}}
         result.update(schema_version=1, preview_backend='libreoffice-pdf', input_pptx=native.binding(self.pptx), previews=previews)
+        # Exercise the real build's Python -> Node -> JSON boundary. JS emits
+        # integral doubles as integer tokens, including page origins and AA
+        # state. The actual independent receipt must match without weakening
+        # the review's strict type checks.
+        def node_numbers(value):
+            if type(value) is float and value.is_integer(): return int(value)
+            if isinstance(value, dict): return {k:node_numbers(v) for k,v in value.items()}
+            if isinstance(value, list): return [node_numbers(v) for v in value]
+            return value
+        result = node_numbers(result)
         audit_path=self.run/'render-audit.json';audit_path.write_text(json.dumps(result))
         _preview_provenance(self.run,self.config,{'pptx':self.pptx})
-        for failure in ('policy','matrix','version','backend','pixels'):
+        for failure in ('policy','matrix','typed_count','boolean_matrix','version','backend','pixels'):
             changed=copy.deepcopy(result);config=copy.deepcopy(self.config)
             receipt_path=Path(changed['evidence']['native_pdf_preview_receipt']['path']);original=receipt_path.read_bytes()
             if failure=='policy':changed['native_pdf_preview']['policy']='source-reference-raster'
             elif failure=='matrix':
                 changed['native_pdf_preview']['scales']['1']['matrix'][0]=1
+                receipt_path.write_text(json.dumps(changed['native_pdf_preview']))
+                changed['evidence']['native_pdf_preview_receipt']=native.binding(receipt_path)
+            elif failure in ('typed_count', 'boolean_matrix'):
+                if failure=='typed_count': changed['native_pdf_preview']['scales']['1']['width']=200.0
+                else: changed['native_pdf_preview']['scales']['1']['matrix'][1]=False
                 receipt_path.write_text(json.dumps(changed['native_pdf_preview']))
                 changed['evidence']['native_pdf_preview_receipt']=native.binding(receipt_path)
             elif failure=='version':config['native_pdf_preview_version']=True

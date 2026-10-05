@@ -12,6 +12,19 @@ MAX_SURFACE_PIXELS = 16_000_000
 MAX_COMBINED_PIXELS = 64_000_000
 
 
+def _json_numbers(value):
+    # The Node build orchestrator writes JSON.stringify output. Integral
+    # floating-point values must have the same representation on both sides;
+    # preserve every nonintegral coefficient exactly, with no rounding.
+    if type(value) is float and value.is_integer():
+        return int(value)
+    if isinstance(value, dict):
+        return {key: _json_numbers(item) for key, item in value.items()}
+    if isinstance(value, list):
+        return [_json_numbers(item) for item in value]
+    return value
+
+
 def sample_pdf_previews(pdf_path, dimensions):
     """Return deterministic PNG bytes and their independently replayable plan."""
     if (type(dimensions) is not dict or set(dimensions) != {'cx', 'cy'} or
@@ -51,7 +64,7 @@ def sample_pdf_previews(pdf_path, dimensions):
                                    'alpha': False, 'colorspace': 'DeviceRGB', 'dpi': 96 * scale,
                                    'png_sha256': hashlib.sha256(data).hexdigest()}
         page_rect = list(page.rect)
-    return outputs, {'schema_version': 1, 'policy': POLICY,
+    return outputs, _json_numbers({'schema_version': 1, 'policy': POLICY,
                      'input_pdf': {'path': str(path), 'sha256': hashlib.sha256(payload).hexdigest()},
                      'slide_size_emu': dimensions, 'page_index': 0, 'page_count': 1,
                      'page_rect_points': page_rect, 'renderer': 'PyMuPDF',
@@ -59,4 +72,4 @@ def sample_pdf_previews(pdf_path, dimensions):
                      'antialias_levels': fitz.TOOLS.show_aa_level(),
                      'scales': records, 'reference_pixels_used': False,
                      'native_delivery_modified': False, 'direct_png_exports_retained': True,
-                     'source_pixel_equivalence': False, 'application_playback_verified': False}
+                     'source_pixel_equivalence': False, 'application_playback_verified': False})
