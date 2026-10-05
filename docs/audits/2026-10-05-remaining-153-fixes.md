@@ -1,8 +1,8 @@
 # 原有 153 项的继续修复记录
 
-2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
+2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 74 张图的来源修复及实际成品复查，关闭 112 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 58 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 41 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 45 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 48 项解决、35 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 112 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 80 张图的来源修复及实际成品复查，关闭 120 项原问题：54 项字体、字距、基线、数学字形或活动文字问题，以及 66 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 33 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 37 项开放。原始 296 项现在 286 项关闭、10 项开放；83 项后续发现中 56 项解决、27 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 120 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -64,6 +64,8 @@
 
 - GCC 两图和近线性流算法图的三项采样描边问题关闭。六条原描边恢复为独立原生曲线路径，三图成品均无图片；其他 794 个源对象及 191 个真实活动字形保持。显式有界曲线接口以精确导数细分、细分控制包络和局部斜接支撑核算，固定 256/128/32/4096 预算不变，默认自动裁剪和组策略未放宽。三条完整源支撑包含于所有裁剪，另三条真实跨界；四个局部白底框仅在源白底及所有其他路径/实际字形不相交证明后保留源边缘。实际 Normal/alpha1/RGB 隔离组仅作本源实例的代数复合核对，未宣称通用 RGB/alpha 或像素等价。正虚线在原用户空间保留相位，输出真实 cubic 子曲线，弧位置误差最多 0.0001 目标 px。实际源/最终 PPT 控制点固定 0.001 px 守卫、最大约 0.0001043 px；69 次填充改写实际原/终态摘要核验。全部 804 个对象原生读回，源/终态/PDF 1×、终态 2×和全部十四组匹配 4× 实看，本次未发现新增可见裁剪接缝。源实际回调的虚线数组通过已安装 SWIG floats_getitem 读取，保留首次指针下标失败；空导数、全局斜接包络及预算耗尽探针均保留。公开 Python 1242、Node 62、wheel/sdist 87/287 文件及安装后 1242 项通过，冻结016含 281 文件/208个运行测试构建输入。活动文字、方程 AST、自动语义、字体交付与跨应用验收继续保留各自问题。
 
+- Swin 两图、ZeRO、DPO、CodaMosa、Titans、SAM3D 和 NitroGen 的八项 Artifact 图片采样问题关闭。显式原生解码保留实际 RGB、同尺寸附加蒙版和浮点位置；允许完整 canonical DeviceRGB 隔离根组的政策仍为 opt-in，默认严格政策与资源预算不变。以前 Swin 资产来自原生图片实例 8× 采样，早期图库172的 SVG 标签误记在本回执纠正，原记录保留。维护预览适配器仅从最终 PPTX 媒体、EMU 图片框和绘制顺序计算，在 1×/2×/4× 分别用 MuPDF 采样，并恢复 Artifact 全部混合遮挡顺序；不读取参考图像素、不重导出瞬态场景。全部 1783 个原生对象读回，八个真实作者图片和 1775 个其他 manifest 对象保留；1763 个其他对象的原生属性相同，DPO 一次、NitroGen 十一次填充改写实际双端摘要及完整证明重放，其他样式与位置相同，控制点仍受固定 0.001 px 守卫。八图源/Artifact/独立原生 PDF 的全图 1×、完整 2× 分片及 4× 图片支持区，共 165 张原尺寸对照全部实看。有限图片区域 RGB 数值改善仅作诊断，未宣称整体像素相同、通用 RGB/alpha 界或 Office 滤波等价。MAE 的 4× 诊断未改善，继续开放；DPO 手工原生路径候选的 native-sampling-residual 也继续开放，未用作者位图候选替代其独立编辑能力声明。公开 Python 1254（8 跳过）、Node 66（0 跳过，真实 CPU 像素/蒙版/遮挡控制）、wheel/sdist 89/291 文件及安装后 1254（8 跳过）检查通过，冻结017绑定 212 个运行测试构建输入及 82 个安装/归档模块。图片内部活动文字、自动语义、ICC/组、裁剪和跨应用验收仍保留各自限制。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -81,7 +83,7 @@
 | ccf-2020-11-f03 | D01, D02 |
 | ccf-2020-12-f02 | D03 |
 | ccf-2020-12-f03 | D01 |
-| ccf-2020-13-f01 | R02-NATIVE-ALPHA-EDGE |
+| ccf-2020-13-f01 | R01-PREVIEW-SAMPLING, R02-NATIVE-ALPHA-EDGE |
 | ccf-2020-14-f01 | D01 |
 | ccf-2020-14-f02 | SAMPLED-STROKES-001 |
 | ccf-2020-14-f03 | SAMPLED-STROKES-001 |
@@ -92,6 +94,8 @@
 | ccf-2020-18-f01 | D01, D02, XC01 |
 | ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2021-01-f01 | D01 |
+| ccf-2021-03-f01 | R01-PREVIEW-IMAGE-SAMPLING |
+| ccf-2021-03-f02 | R01-PREVIEW-IMAGE-SAMPLING |
 | ccf-2021-03-f03 | D01 |
 | ccf-2021-09-f02 | D01 |
 | ccf-2021-10-f01 | D01, D02 |
@@ -116,12 +120,13 @@
 | ccf-2022-14-f02 | D01 |
 | ccf-2023-01-f01 | D01, D02 |
 | ccf-2023-03-f01 | D01 |
+| ccf-2023-04-f01 | R01-PREVIEW-SAMPLING |
 | ccf-2023-05-f02 | D01, D02 |
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
 | ccf-2023-08-f02 | D03 |
 | ccf-2023-13-f07 | D05 |
-| ccf-2023-14-f01 | R02-NATIVE-ALPHA-EDGE |
+| ccf-2023-14-f01 | R01-PREVIEW-SAMPLING, R02-NATIVE-ALPHA-EDGE |
 | ccf-2023-14-funnumbered-p5 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2023-15-f02 | R01-PREVIEW-STROKE |
 | ccf-2024-02-f01 | R02-NATIVE-IMAGE-FRAME |
@@ -138,10 +143,13 @@
 | ccf-2025-03-f02 | D01, D02 |
 | ccf-2025-05-f13 | D01 |
 | ccf-2025-06-f02 | D05 |
+| ccf-2025-06-f05 | R01-PREVIEW-SAMPLING |
 | ccf-2025-07-f04 | D04 |
+| ccf-2026-01-f02 | R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f05 | D01, D02 |
 | ccf-2026-03-f02 | D05 |
 | ccf-2026-05-f01 | D01, D02 |
+| ccf-2026-06-f01 | R01-PREVIEW-SAMPLING |
 
 ## 验证与证据
 
@@ -330,3 +338,15 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/SKILL-DISTILLATION-167.json` | `845c2d402bce49042553656d7b3b3aa35e7da00f9dafbfd8b20bc4cae66c907f` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-033.json` | `bbb35e7d581760fc8f8eb11bef857eb2f17c6dafa7b231c6b522c1566ac8bc13` |
 | `reports/remaining-153-001/AUDIT-SUMMARY-REFS-033b.json` | `8f6ab2c099932af9c97ba32500bbc3496e66c6538aade1c1136430955689e2a7` |
+| `reports/remaining-153-001/LEDGER-RESULT-034.json` | `4864ea3eee16f5150f67b734866da830ac8de149c8e84504db1af823b3f60e9a` |
+| `reports/remaining-153-001/INTRINSIC-IMAGE-PREVIEW-REVIEW-RESULT-195.json` | `56ee235db362aa50dd5158213cafcda8c3a0a30a246e665855c94b647e671378` |
+| `reports/remaining-153-001/FREEZE-017.json` | `e9196f41f4eb8572cf2b15d1fc97e486bd08ad04bfcbbedf82242f481710d67a` |
+| `reports/remaining-153-001/PUBLIC-IMAGE-PREVIEW-CHECKS-189.json` | `89d05521ebcf6e5812c7dcbba3d0ddda21bd8c90032dfa93f2fd95eb431b2792` |
+| `reports/remaining-153-001/INTRINSIC-IMAGE-SURVEY-190.json` | `9beaff457c0a3a2c5e215836294da762a6b74c043744918ea7e9a9270c93105b` |
+| `reports/remaining-153-001/INTRINSIC-IMAGE-PREVIEW-BUILDS-191.json` | `ea494cd52b9a4cc7b1e5341ad464664f1b055f9101c71ae25854533c7a20cca7` |
+| `reports/remaining-153-001/INTRINSIC-IMAGE-PREVIEW-READBACK-193.json` | `ef6bd283a95998cedb0cb918865c8b5d9b33f027cf69de6c7fa98dfe9a821c63` |
+| `reports/remaining-153-001/INTRINSIC-IMAGE-PREVIEW-MEASUREMENTS-194.json` | `b0a89eef226867c3d67c666ed5859c997691c0fd7967bf61d43c41619ad10403` |
+| `reports/remaining-153-001/github-checks-924cd94-001.json` | `ce59b8f1e7ae9ac244348678bbb9a027de1314c5c0a3868f2b3c8592126478f5` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-034.json` | `87515a5e08c35f9b594c1883f91484b849c1682ede21e32843fd3c1813ef3b59` |
+| `reports/remaining-153-001/tools/check_audit_consistency034.py` | `2babe3592b6de8842856c67feb6cbdafbdd12de2c48a068870129ff2fd845cbc` |
+| `reports/remaining-153-001/DISTILLATION-195.json` | `1f9e4696616fc331c4ec28b3317d155a6e9eab7e027177fc7bd7b102b8602174` |
