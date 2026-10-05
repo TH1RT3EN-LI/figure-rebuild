@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T08:26:41.634120+00:00",
+  "updated_at": "2026-10-05T08:55:21.499764+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 270,
-    "open": 25,
+    "closed_model_visual_review": 271,
+    "open": 24,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -11334,12 +11334,218 @@
           "sha256": "811cb0d2689d707e5811ef453cd0821c1a4a3956dd3a8d69131899fc8e40ee58"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2020-09-f02",
+      "issue_id": "ccf-2020-09-f02-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Restore the six ordinary Layer1/2/3 labels as live ASCII text from independently native-bound Cambria Math font/GID/matrix occurrences, verified complete Cambria Math glyphs, and exactly reconstructed source SVG commands after the adapter original six-decimal encoding. The source actual ToUnicode returns FFFD for every mathematical glyph; ASCII readings are explicitly recovered, not original encodings. The source contains no encoded space: physical word gap is preserved through declared nonnegative character spacing, without inventing a space character. Original glyph ink remains exact; the distinct private alias uses explicitly synthetic90percent horizontal advances, retaining original source metrics separately. All36actual new native glyphs match the original source contours and declared metric face in f32. Maximum observed character-origin difference is0.235339px horizontally and0.095450px vertically. All324other native object properties, all322original live glyph controls/advances/matrices/RGBA, and full330object order are unchanged. The remaining104source mathematical glyphs are independently mapped into64source trace groups and explicitly reported as editable glyph paths with missing reliable Unicode and no equation source or semantic formula editability. Four retained negative controls reject corrupted Layer9, deleted math glyph, shifted math glyph and altered math color, using fresh immutable source SVG geometry and maintained literal checking; these math checks are a private explicit source fixture, not generic recognition. Whole source/native/PDF1x, native2x and all seven matched4x regions were actually viewed. The original expectation allows a declared outline limitation; this closes ordinary-label activity and exposes the residual mathematical representation. Dotted-boundary D02, general automatic semantics, font delivery and user/application acceptance remain independent.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-native-076/proof.json",
+          "sha256": "2d9ae759d0bae913952434602e95b71a9fc0be7dcf1c3dec8fa8c5840b12f513"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-native-076/output-review-078.json",
+          "sha256": "c277fa3124952aafdd06ab969f09629591caa68ec78211f5b6f49452a946d14a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/output-review-078.json",
+          "sha256": "c277fa3124952aafdd06ab969f09629591caa68ec78211f5b6f49452a946d14a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/visual-review-078.json",
+          "sha256": "94cb43f246577d4db56158a9185914f09d8fc759f34231cd7a8c9f43a54e5316"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/bindings.json",
+          "sha256": "8357628e4fe0f4653684cb40fec4e95168b8d6fe66cf3f108b3992c181590e51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/whole-1x.png",
+          "sha256": "8bf837af1d6534771bcc75c70388304eac3072467ad11c99fe20541b5e2d1624"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/label-recovery-proof.json",
+          "sha256": "a3b49f71efe040b4110930a0aec15675ae962b78882c242031bb3a284c9ffbf0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/outlined-math-inventory.json",
+          "sha256": "a7bed7853edea21fce0404e49ed315401a1bf783d93fe343c6076b4dc3aa69cc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/font-profile.json",
+          "sha256": "00d4ad43c6630dfff69802d35e07a418dce1ca9b1372f7efbca7c9871bdd22fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LIGHTGCN-CONTENT-CONTROLS-077.json",
+          "sha256": "98cc64cd8c8af78d49eb0fe901e1bc1264511206c0c67c01b9e99eda654f0df2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/LIGHTGCN-LABEL-ATTEMPTS-078.json",
+          "sha256": "3aa7c035f47fa99935933b8a1170b41825af89094704afaa57d93e714954696b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+          "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-2bdff8c-001.json",
+          "sha256": "09c4851fe8ebc11c409a39a3974771937ee8cf11aa1abd003d18fd45697b7636"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "554c425f393228150153adc08416eb882db0340b6f7cfc13bc31cce65185a95e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/resolved-scene.json",
+          "sha256": "554c425f393228150153adc08416eb882db0340b6f7cfc13bc31cce65185a95e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/object-map.json",
+          "sha256": "606a923f39a98ca4bcdef54a86b5879141d37cdf06966fd09a784e7c5717d9c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/asset-snapshot.json",
+          "sha256": "99f0a5eeeb6d14d78d1dc04496f03d742d0852d1717b44400ffef4674aba49f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/render-audit.json",
+          "sha256": "22febb3798296525d5fbc08329e12172e2bb9621f2db965aae38b6ad18d6e404"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/editability.json",
+          "sha256": "428e237e4cfa6e90825068e40d31b0402a54772a40f30d9d8092c580bb939b36"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/delivery.json",
+          "sha256": "a56c85cc2911c119da91de68f719eb3a4a3bc2c6ea53152e6cfa9a8ee86e9688"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "a4d99eb5ee32f49a976854476cfbeee5e85cdd86fce82df44074fb2c98b461e6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "a45c5e101966759cc665f4d4ea9a4e43783cfdce27f31ba3ad42b0ad2d251ee9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/right-dot-boundary-4x.png",
+          "sha256": "3014c34cae85b14227d218b5f5e5cd5b9ebc7f320c821f7a824fe24089aa8050"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/left-dot-boundary-4x.png",
+          "sha256": "9ea1777dec7a597b5b7a36e5db7817e2b82188da6a6cca2eb593b65194990fcd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/right-layers-4x.png",
+          "sha256": "3ca26dfd2de33144b2e6a37b62fe5de97aa895b475f18b442ba308549f4de88f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/math-neighbors-4x.png",
+          "sha256": "0e61952310f69102c1199b613c5c2bc5da2ae2ea106679daea3303c6dbbd7263"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/left-math-4x.png",
+          "sha256": "18596cb270597e1abb4f46f34981d5dcff373f1b1a217311d8717692b7f27230"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/native-PDF-4x.png",
+          "sha256": "3e1eb21df3ca0a3b0c6063d88da18bbcadbb036023226b86bcdb3d862680b117"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/left-layers-4x.png",
+          "sha256": "d2ad89c8aed30cfbc5dacc9508b995cd0236b41c2cbeec9cc5d14402fc7058a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-galleries-076/right-math-4x.png",
+          "sha256": "713d65f2ea82cf2d3a5927a92d4bd9eaf9afca4309e0e6e271e47d56a9219cad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-1x.png",
+          "sha256": "6d08f863b7849c1aa7dc3ee0558060107d8f30f1f5a50f39eece1544460321b1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/eight-glyph-full-face-proof.json",
+          "sha256": "626c776739f7900270768ff6443127bb259a7aed830de8c4619cc718fd5b82e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/label-binding.json",
+          "sha256": "d7ded1fffa7b2e615baf1f206da521775f7f2588ee905c9e2122dfec0f7c94f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-CambriaMath.ttf",
+          "sha256": "5c6a9ade33d98415136d4217d1686a21a0cef39ec68ee0e8a71bad1d1613d6a8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-texttrace.json",
+          "sha256": "b99be7c64d6e17e8e81e4ffd09854cb711b0ced58a4c566f7d223e32173974bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-2x.png",
+          "sha256": "c8195dcd5bea0790b426618b716497f3fbd98893ae8e605e76e726f5b44b469f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-page-outlined.svg",
+          "sha256": "4414e13e93c608dcd7f386190f8f1b4a9c73937fa9e485daf3ef0f604f857e58"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/native-font-trace.json",
+          "sha256": "df3ceb27d01fac7097e6c2692ba20d523e636c232ce0ab668088ddad4d8b9237"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-source-labels-074v3/source-4x.png",
+          "sha256": "4258ba17c3c9e1c265c13d696f336f50925102d8bb5e3ec06f85359595a3ffbb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/source-fonts/layers-original-metrics.ttf",
+          "sha256": "504ed4fd0c0b68820e162f9e8c64e09fefcfc02d09afd9f2aaa1fbbd68f33144"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-live-text-007/jobs/ccf-2020-09-f02/source-fonts/layers-positioned.ttf",
+          "sha256": "a12085bd7cc1d09dba5395883fe9ad00202d57ce7bfd350d3c1f9691ce64fb2d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_lightgcn_labels074.py",
+          "sha256": "4152da21f8bb4d6fb5093112b71a17ee491cfb5df718befd882c4e7ac69346d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_lightgcn_labels074v2.py",
+          "sha256": "285038ff095e3ded5d95c3fbbb527a29e14eff14cdcbeb78716ac9511662c3f8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_lightgcn_labels074v3.py",
+          "sha256": "4d4a6175e664e7f43e7312ba864ac044aa7448137ac8d8492d8605965ec8d24b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/rebuild_lightgcn_labels075.py",
+          "sha256": "418f01eebd1bb77620bb3aecd8d431b29b051c61fa44c25ff1e6920137f8f542"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_lightgcn_labels076.py",
+          "sha256": "f72951b911965cc3b0d13dec979321b1fab75ced4129861db1e42f200d663800"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_lightgcn_content077.py",
+          "sha256": "15df3f2b6ba9bd822336ce2746b2eaec9aecbe5c0ced99d154302b006fce6774"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_lightgcn_content077v2.py",
+          "sha256": "b665d9fad4784e0eb164092d0ef743bf1c29e45c872ab8cc6e9176614b879a31"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_lightgcn_labels078.py",
+          "sha256": "18d3a11e9cd50f102fcc07ad069896d14808069fbcf7a71b3b4f191a79cf771d"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
     "ccf-2020-03-f04-D03",
     "ccf-2020-09-f02-D02",
-    "ccf-2020-09-f02-D03",
     "ccf-2020-11-f02-D03",
     "ccf-2020-12-f02-D03",
     "ccf-2020-15-f05-D03",

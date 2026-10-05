@@ -2,7 +2,7 @@
 
 2026-10-05，基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 57 张图的来源修复及实际成品复查，关闭 89 项原问题：51 项字体、字距、基线、数学字形或活动文字问题，以及 38 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 64 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 67 项开放。原始 296 项现在 271 项关闭、25 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 89 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 57 张图的来源修复及实际成品复查，关闭 90 项原问题：52 项字体、字距、基线、数学字形或活动文字问题，以及 38 项渐变、箭头、图片、图注、边框、括号或省略号问题。原 153 项中仍有 63 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝及 InstructGPT 圆形边框独立编辑三项开放问题，共 66 项开放。原始 296 项现在 272 项关闭、24 项开放；82 项后续发现中 40 项解决、42 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 90 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -50,6 +50,8 @@
 
 - BYOL 两块不透明底色和三条灰框按完整原生绘制上下文的实际 f32 颜色绑定，用明确的乘 255 后截断编码修正 PDF→SVG 的一个色阶舍入误差。全 394 路径及顺序不变，实际 PPT 的 389 个其他对象属性相同，全部 408 条原生 PDF 绘制除五处颜色外相同。五个内部颜色控制与源图相同，全图 1×/2×和七组匹配 4× 实看通过后关闭 FLAT-COLOR；透明合成、灰线 AA 和虚线弧端点继续开放。原初 tuple/根路径选择证明失败保留；没有采用整体 RGB 减一。
 
+- LightGCN 六个 Layer 层名从实际 Cambria Math 程序/GID和缺失 ToUnicode 中恢复为普通 ASCII 活动文字。完整供给字体和源使用墨迹比较相同，原始源度量保留，定位别名明确声明 90% 合成 hmtx及非负字符间距；源没有编码空格，仅保留物理词间隙。终态 36 个新活动字形的原墨迹/声明 advance 核对，字符起点最大观察差 0.235/0.095 px。324 个其他对象及原有 322 个实际字形控制、advance、矩阵和 RGBA不变。其余 104 个数学字形独立列为 64 组来源轮廓，明确原 Unicode/方程源与语义编辑限制；四个源绑定反例检出改层名、删数学字形、移字形和变色。全图及七组 4× 局部实看后按原清单允许的明确轮廓限制关闭 D03；D02、通用自动识别与字体交付仍开放。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -60,7 +62,7 @@
 | ccf-2020-04-f01 | D01, D02 |
 | ccf-2020-06-f01 | D01, D02 |
 | ccf-2020-07-f02 | BYOL-FLAT-COLOR-001 |
-| ccf-2020-09-f02 | D01 |
+| ccf-2020-09-f02 | D01, D03 |
 | ccf-2020-11-f02 | D01, D02 |
 | ccf-2020-11-f03 | D01, D02 |
 | ccf-2020-12-f03 | D01 |
@@ -240,3 +242,9 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/BYOL-COLOUR-ATTEMPTS-073.json` | `0745450cc143c8216b872e2a7dea0604fabe2002b1c3d6dbc1ee48d717903d82` |
 | `reports/remaining-153-001/github-checks-95a2b45-001.json` | `1cfed2063db09ea1410f01bd7030e6ad22147130ed1390b769b86797dd172fa0` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-026.json` | `b44ce61823b97e411cbdab4b20965d9b4ec9d3b590288c371aa17ffed9850a80` |
+| `reports/remaining-153-001/LEDGER-RESULT-027.json` | `2d744fc46a7d5a2da27f0c5b78b63487b2a719ca2332e9951c79a40952262baa` |
+| `reports/remaining-153-001/LIGHTGCN-LABEL-REVIEW-RESULT-078.json` | `92f4b89102e4d58a6b8c4d2d5183d10e90fab1ddc069db466c5ab1e7c25515e3` |
+| `reports/remaining-153-001/LIGHTGCN-LABEL-ATTEMPTS-078.json` | `3aa7c035f47fa99935933b8a1170b41825af89094704afaa57d93e714954696b` |
+| `reports/remaining-153-001/LIGHTGCN-CONTENT-CONTROLS-077.json` | `98cc64cd8c8af78d49eb0fe901e1bc1264511206c0c67c01b9e99eda654f0df2` |
+| `reports/remaining-153-001/github-checks-2bdff8c-001.json` | `09c4851fe8ebc11c409a39a3974771937ee8cf11aa1abd003d18fd45697b7636` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-027.json` | `d927d9066a5cb8e027895087bfdcb2c37c5a2520b32f9d9fa246bccbff0828a6` |
