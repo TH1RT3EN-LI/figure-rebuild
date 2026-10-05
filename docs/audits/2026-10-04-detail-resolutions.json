@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-05T12:16:41.293755+00:00",
+  "updated_at": "2026-10-05T13:30:31.013319+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 282,
-    "open": 13,
+    "closed_model_visual_review": 285,
+    "open": 10,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -14146,16 +14146,1166 @@
           "sha256": "b9d5757a3f372d166ebaf9e6a9595268b5278a922eadedab79f1f88e84a4837f"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2022-07-f01",
+      "issue_id": "ccf-2022-07-f01-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "FlashAttention source diagnostic now checks all 259 real live text fragments (965 characters), 45 explicit short Q/K/V/dimension tokens and 139 source paths in complete source order against the independently source-verified reference. Seven structurally valid wrong/missing/shifted Q, wrong color, deleted directed/frame component, shifted source box and incorrect native stroke cap controls fail the maintained source-inventory gate. All 123 real original PDF cap/join/miter states are restored, including round purple dash ends, square caps and miter frames. Explicit readings and math/directed inventory are declarations with full object/style/geometry checking; they do not grant semantic formula or automatic topology recognition. The entire checklist remains REVIEW. Actual final native PPT/PDF preserves all 398 objects and every live text frame/font/inset, with 965 actual glyph outlines/advances/matrices/RGBA independently equal to the source-verified parent. Every actual authored control is read back under the unchanged 0.001 canvas px guard, maximum 0.000102149606334; actual original/final native fill normalization hashes are recomputed rather than inferred. Whole source/final/independent-PDF1x, final-native2x and all 6 matched4x views were actually inspected. Original fonts, full relative paint order, tiny raster-fitted dot primitives and all unrelated geometry are retained. Exact cap/join/miter comes from fresh original PDF stroke callbacks, not renderer defaults. No pixel/AA equivalence, automatic recognition, equation AST, font delivery/editing repertoire or PowerPoint/WPS acceptance is granted.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2022-07-f01/readback.json",
+          "sha256": "b40ba891553e4e7a755036fe7621e55e8d0b8e2fb301eb909a68b529be47bc6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2022-07-f01/actual-native-glyphs.json",
+          "sha256": "dc1bdf385123a08950a8dd06d32ef44167ef4928008a22e73bb4e99bdd12a336"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2022-07-f01/output-review-source-brush-curves-146.json",
+          "sha256": "732128b28f0d4d200bce318ec20ceb5b5dcc269c696d1646fd804079727e01aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/output-review-source-brush-curves-146.json",
+          "sha256": "732128b28f0d4d200bce318ec20ceb5b5dcc269c696d1646fd804079727e01aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/visual-review-146.json",
+          "sha256": "03b11a9e44b901d70b7a2e529be07495521332445a34a3fe31bf83d48df5bc79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/bindings.json",
+          "sha256": "280964a94aacf38e2d5ccae0894edbf2326678ac7f5fe0121acf3574443bd05a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/parent-binding.json",
+          "sha256": "ca619a7106300dbf688d2b782e0360ff243690bcf20181f5b201ac9dbb7f2867"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/manifest.json",
+          "sha256": "a732c785f75b8affcb7b5c1c037aed0d684f493722d76d94a249d795f622c00e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/whole-1x.png",
+          "sha256": "a3b4e64468a2fd1eb95a3b33c4aadd72b5e21fcf81ddab083b3f6c63df0e66a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/preview-2x.png",
+          "sha256": "8472dc485313e34006c3b12c351d37ff4dd3ea0bb97c5d376e6472dd7c8f2658"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/memory-and-bandwidth-4x.png",
+          "sha256": "d59ae85e10228c1e39529b74de1ea9ae10b541944a833bc33e3e98933d56790a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/QKV-and-tiling-4x.png",
+          "sha256": "78bb5e7a8816da06efb4866fc0449c2c139392cb227907cbb9e98fe01d52d0e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/attention-and-memory-access-4x.png",
+          "sha256": "21b253bddf8fe8773d4b22a62cff39bd57485ce11a803e1a0ee0f1427cefe51a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/timing-chart-4x.png",
+          "sha256": "d38184410db57e6ea3f79a3d5f05910f916c6354d5027af62f7dcb3654f00dd5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/caption-left-4x.png",
+          "sha256": "3963871a49b6206e406438faf261c76a028dd9c54a36308a55464c1af4587ff6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2022-07-f01/caption-right-4x.png",
+          "sha256": "ce74c1f69b6e1a69c3ddcb00564d102f9058a8eb894b00a1f362f4d53f4794e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "a732c785f75b8affcb7b5c1c037aed0d684f493722d76d94a249d795f622c00e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/resolved-scene.json",
+          "sha256": "a732c785f75b8affcb7b5c1c037aed0d684f493722d76d94a249d795f622c00e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/render-audit.json",
+          "sha256": "b181e03e00523dddda36fc7d6a9c285935a80895df66c9443bf943bb48b5cec2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/asset-snapshot.json",
+          "sha256": "593c77be13c20e44ce457f5450d68ea2fd94753988d0dc0e36e91396b66a72f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/object-map.json",
+          "sha256": "39502966981c2a22e2bc009da3e17afdba4ce09eacd3116d1c3a6cc7739c3b2c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/editability.json",
+          "sha256": "b2adf25f47d189cbc626e39abe7731b210d52436f16bcb37303908c66ae11725"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/delivery.json",
+          "sha256": "0a16737c364818b7845f608e0392b832dac655f96c8999f93300cc936f2b0108"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/font-audit.json",
+          "sha256": "b48bb0ab4320351239ec96f0770e743d394446cbd4c1be178c97219128378c1f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "ebd21b1ed9ccd36f682f8e883d09b7f6ad55f73b4626898e4681ce3410cfe590"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "ddd7c81b400c6d85244b95d55741d7b2a44c213aee28949bb1f43cee0b992ccd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "e2383913c108644f29d0c0a47abbda011038f1e5e5ea728feeac9061cf025127"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/actual-source-native-brush.json",
+          "sha256": "bcebdd001af8df88e7ef320e0bdb92449adca3ce63a414feea4b5ad43682ad0a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/manifest-before-repair.json",
+          "sha256": "e0a588abd16d211c4a3adb7b8ffeda8cb9cb82e5f842c72cb8de9fc7977d9f7f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/inventory.json",
+          "sha256": "c0aae62d32656cfc7c2365f2dbf8b3f4a074fbc4ecfc3fd498755c7f1d95f0c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/source.pdf",
+          "sha256": "315f252a8c791dd051ae84b531e4549465279c2a7264606a9cfe1f3495d9dfc8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/independently-reviewed-parent-reference.json",
+          "sha256": "04119fc29704ad70d4d1f5b01b47c74fa19197635a88233b181520f80d91fc55"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/independent-source-brush-reference.json",
+          "sha256": "31da69ee9b139d0751340b54fb847dc2262e5a4e69c62f170deb56af9d710a5b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/independent-parent-native-source-font-readback.json",
+          "sha256": "d3878fd7482e4ff3dfec423859392d1c44c0920d5d17fb1d57846283161e4bfb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/font-recovery.json",
+          "sha256": "b6377d668b1cd7d23fff410886be9e30677567a44b0489842118949a787dabca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/inventory-native-brush.json",
+          "sha256": "e54f925aaddac2a8b6d8d88c64214a804f17e322d480d211ffd83d61a55dabdf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "d5c598b2f8172e0f4175f86932af8804a934d151bf21b924d9382393fb473154"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/source-inventory-controls-native-brush.json",
+          "sha256": "b45e67c868b7ef87bac0491daae04319fc593958f3dfb6d9f90c9d2fb6cf0b78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/build/run-001/source-inventory-audit.json",
+          "sha256": "fbd5ef47e6363c9e9ea15d04e5fecf30e7aa8f922a0c50fd9161ef58cd52dd91"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2022-07-f01-legacy-006/native-readback.json",
+          "sha256": "d3878fd7482e4ff3dfec423859392d1c44c0920d5d17fb1d57846283161e4bfb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/missing-Q-symbol.json",
+          "sha256": "5da6809ce71e602a46279f4da2ca470c44d2fc86279816fb86195b5532d980b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/shifted-neighboring-box.json",
+          "sha256": "f4ad7ea8dabff8249e409b0935c834f8e05702c2f538d805536f9ef519631247"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/wrong-symbol-color.json",
+          "sha256": "0fcac511311f1d00c6ba056c2a68305cce7b4fce5114fb9db9085c1efedba39d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/shifted-Q-symbol.json",
+          "sha256": "c58519cc7ad1a6002086efe3057e00348acd8fcdc024bf467c85fd7a157ec120"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/wrong-Q-symbol.json",
+          "sha256": "54d9f66e9d087e628bf13c18283c350b30900b0e633157763cda47e3d032cfcd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/wrong-source-stroke-cap.json",
+          "sha256": "e9a3951b7d8850e5e2949c13013eb506463cee3f1423f343e704db6b15896145"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2022-07-f01/negative-controls-native-brush/deleted-directed-or-frame-component.json",
+          "sha256": "4d3f5c3ea526c13e4a1d0c1b67522ad2d3e8a846b01ad65308700a79558a4c84"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-138.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-129.json",
+          "sha256": "3de99bc599beb54e4887df965bb4961f30204b6d304f0fca5c4341e737ad208b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138.json",
+          "sha256": "404708e2d6ff84c4dcc5f008ac9929d8e8db338bdc37bb2ed963751b4f99097a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-139.json",
+          "sha256": "70cfccbe93b5746733dd7209c34065a05278a6d293046afbc8ec9a75554fc7d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-126.json",
+          "sha256": "6ee0b6a78456ff864153dfe6f758e4ddb5bfbd3cec19e9c15c4eb1936f92d102"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-136-execution.json",
+          "sha256": "fda66ccb6b07986674f997566c04832bbe71bfa8df2c9fe35268ed0564ed4a4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138-execution.json",
+          "sha256": "f851dfa2f4c7775965e334c23718a44457a42a3e54dafafed363053b07271bb1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137.json",
+          "sha256": "677986d89ea14539a1555299a481d0ae4cca01e10f4fb9fe66fed1306c1b41e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-NATIVE-ATTEMPT-131.json",
+          "sha256": "a0616d587b387ea367a07d26d939e4aaddeeaeb97f1d3cca32f50c1d09be22ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-143.json",
+          "sha256": "be939143e831249ad4b04900cf472959708e0e47bfdf441227daccd0df7331e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-GLYPH-PROBE-144.json",
+          "sha256": "5e072c8328542e656890c58424b01ed4fc8318d44eebfdc3dc6a12f86e24880a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-140.json",
+          "sha256": "7afb8b1e7c2fcee3bfaec8b5df6967f1ab20a3f2c67cd2967034b0d604ee3704"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-135.json",
+          "sha256": "faa94efb0cd7340c5b31025af49e062d3ca49df57ddf47601913f813eaabbe07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-ATTEMPT-128.json",
+          "sha256": "ff3b2d8021128c82e3ec9c90aa2542978f6ac4d366e7d6ba9442713010baeffe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137-execution.json",
+          "sha256": "b112cf3b20ed97070f3414a3a7c27eb81d7e7bfdfa1d99ca9d84823f4b721a6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-137.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-130.json",
+          "sha256": "e1c23743cd3279b4f18aebdcc33a2c33c7271df11f2004658ceef605a8d6f95b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FLASHATTENTION-INVENTORY-ATTEMPT-121.json",
+          "sha256": "51ea65ad41619a40f1ecb51e3f69bb091d40af8ed73cab938ddb8736a13eb649"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-141.json",
+          "sha256": "6c02d4d2032dcce06d57cc3f6d79d707359d3b57d1128a6b18a605b46250b968"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-124.json",
+          "sha256": "4c2d47d29a4dd087200047380f547b32c005d4db7e2d71832911a538a0aeaeb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-PAINT-CONTEXT-134.json",
+          "sha256": "d5fa2534e305403271341c740b182eb3d95c9af8d92327faf667f9114648b25c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-142.json",
+          "sha256": "fe09b075e2642dbb72f5ae2897211e1d51fc39c70362d456c190022ac8ae085a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves139.py",
+          "sha256": "780554943ef34330e1340bfb6df50469180cea735520c1487afb459cb09843cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_source_brush_and_curves146.py",
+          "sha256": "6e8228d3d3601b10bb7ea5b59d99429071c14642cdb2988bd02a71aff3acf431"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves142.py",
+          "sha256": "5015e8ca6158dfcfbe730484ca85a1baab616d9850b0b5c857e52afa5bc53214"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves141.py",
+          "sha256": "0f9a4b7ca030e4f0e0cdbce56a9166a09795be99179d99ea4e83dd4addd48901"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves137.py",
+          "sha256": "4d91341efd63acd9b200b8ee9055de7ab63d7825a240cb522853d3a52e277d5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves135.py",
+          "sha256": "d32b411f9c826616b17d3046806d9838c9dc48c67e6f42d598ce227011cbdfe2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes124.py",
+          "sha256": "474466414753d5717270ec6c506115b504ca2e0f9ea39cd993c311482fce38f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves138.py",
+          "sha256": "1913602650ba95a4b4cfd50e67971b28aa1f408f77d1b15ab7ffcad5e5ded0f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves145.py",
+          "sha256": "b66609424978b801f05464071f5b1db1ed6653ec6bb01d9e0d28efc0762b7e60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves140.py",
+          "sha256": "457633693e39357d718c841c8e136fd31381deb2eac9066a9f5cb5ed16421e6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_brush130.py",
+          "sha256": "de1a35b97ec91b57e400ad383c2ee663b7b83de91519526287ffebdb064e381f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush132.py",
+          "sha256": "d7c11b464b129e8815f3f7d8d5f977c14d512598a90b43513295863046d74a05"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves136.py",
+          "sha256": "7fbdb14b99c06dcc307d279c0b0810e0e2aa6ae9d14ac7f26ca3d2936698a28e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush128.py",
+          "sha256": "fb7afd9f77cbcd55c2040bcdd5a8880fe389d07adc20addc886b9c2571d2e3eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory122.py",
+          "sha256": "d1500235584562d99e764d1dd6378baf5d18414e1e9e72142ac7eb3904b875a3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes126.py",
+          "sha256": "c03580b00c2517a823a5aad55296fee128be59780d1e513870ed4056dbbe90e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes127.py",
+          "sha256": "ba0fe648713d8da69eea94527150b9941fd083e9f33eecdc3971dca3d46d015a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush129.py",
+          "sha256": "4c2edf72ff906fdafa0faec87796df4cf2f0ca7f56d8ffa51bc426ec526f9006"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush131.py",
+          "sha256": "cc03cfdc14f6b06094765a88f0b8b0f37d03d528651e22c14f8808876cfe6977"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves143.py",
+          "sha256": "14fd732194fba3a196de148ba20345ea33b29c4d3c4b2b7d326b3ec8ed14cfdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory121.py",
+          "sha256": "b810a802f7ce7b777306f92e5c817c3c13c66cab2a256bcfa2bd4994f6234f17"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-09-f02",
+      "issue_id": "ccf-2020-09-f02-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "LightGCN thin grey dotted embedding/layer outlines restore all 73 real source cap/join/miter states at the original widths/colors and original cubic controls. The original frozen review expected round dots, but independent native PDF callback and get_drawings both prove the actual source uses butt caps; the historic expectation is retained and corrected explicitly, never manufactured as rounded dots. Six Layer labels, all mathematical source glyphs, yellow loop arrows and Normalized Sum are retained. Two initial top-boundary crops were mostly outside the target and do not prove the layer outline; both full three-layer outlines are covered in additional actual-viewed4x panels. Actual final native PPT/PDF preserves all 330 objects and every live text frame/font/inset, with 358 actual glyph outlines/advances/matrices/RGBA independently equal to the source-verified parent. Every actual authored control is read back under the unchanged 0.001 canvas px guard, maximum 0.000104070866129; actual original/final native fill normalization hashes are recomputed rather than inferred. Whole source/final/independent-PDF1x, final-native2x and all 9 matched4x views were actually inspected. Original fonts, full relative paint order, tiny raster-fitted dot primitives and all unrelated geometry are retained. Exact cap/join/miter comes from fresh original PDF stroke callbacks, not renderer defaults. No pixel/AA equivalence, automatic recognition, equation AST, font delivery/editing repertoire or PowerPoint/WPS acceptance is granted.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2020-09-f02/readback.json",
+          "sha256": "ef843001f3434775a158d4b567b4d54d1bcb1810317ce007f465c290beb91e84"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2020-09-f02/actual-native-glyphs.json",
+          "sha256": "4b2dbe1aecc6bb4318a8abf49d339f2df69755c5bdf6fee60a229aa5b902adc2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-native-132/ccf-2020-09-f02/output-review-source-brush-curves-146.json",
+          "sha256": "722e8aa2680b425d0ffe74f7d5e497749b3b1ab9d181df6e794f5419cd36e357"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/output-review-source-brush-curves-146.json",
+          "sha256": "722e8aa2680b425d0ffe74f7d5e497749b3b1ab9d181df6e794f5419cd36e357"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/visual-review-146.json",
+          "sha256": "1cac8dbcf33e03d366b7ef8bc2b8dd9c40c4714d7873c48955c36de1ce718456"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/bindings.json",
+          "sha256": "bae4f6e60434aeec5db38d2ec3f5a9c9e18a97756cf561e0208fe11d1f88a699"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/parent-binding.json",
+          "sha256": "ddd6e91facd3414ebdb52a90288931c90efdc61e775ca428e16bd5109f78c3fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/manifest.json",
+          "sha256": "1522e4d8755b705dd2b569ab2515fa204c941b8d1eb7c83262996fbde3ad7697"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/whole-1x.png",
+          "sha256": "5e6b343d4b42ff4ee4547798afe6378dffa3b0eb85bd814a86f7e8588224be81"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/preview-2x.png",
+          "sha256": "eab027a4dd1bcc2b1f1df5de78b6aa6d3ba8a46b67b773c9a201444c874e80a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/left-slanted-top-boundary-4x.png",
+          "sha256": "99bd1ef43847f90753c3e47d02212ea81b2249558de21ff5018d46b17163ef13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/right-slanted-top-boundary-4x.png",
+          "sha256": "a34bf8b989ed062e69fd975f70ca05da84f3cac8099a41a14b498201c9a7bad6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/left-dot-boundary-4x.png",
+          "sha256": "bebea989b7d4ccae9c34e0dbeb7a9cc817a381ab187878a4d2efb736ffe85171"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/right-dot-boundary-4x.png",
+          "sha256": "af6b2033498411479b88c893906e86b6ba16def330eed5be84c6a08c9b9bffbd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/left-bottom-outline-4x.png",
+          "sha256": "73504809f36cea0fd622cf0057f08bd275c203c8362fc7842bfc6c2befa6321b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/right-bottom-outline-4x.png",
+          "sha256": "db15749539f1cd674998760c5c311565904451ecdb0941c43599eaa336cb037f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/source-brush-galleries-132/ccf-2020-09-f02/source-outline-bottom-4x.png",
+          "sha256": "594399e77617a1c05e2d1fd4286b245b73885beb9cbc43838641882b6002bd7f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/additional-source-brush-galleries-133/left-layer-outline-4x.png",
+          "sha256": "a3707c11dac72d1070cc1125901b1dc0a6037dfa852565e0f3c7ded0f16d14d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/additional-source-brush-galleries-133/right-layer-outline-4x.png",
+          "sha256": "fec2418195b8284fcb913ecafacaf2e14bb59fd5471e70d7eb495c8f5ea2eae8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "1522e4d8755b705dd2b569ab2515fa204c941b8d1eb7c83262996fbde3ad7697"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/resolved-scene.json",
+          "sha256": "1522e4d8755b705dd2b569ab2515fa204c941b8d1eb7c83262996fbde3ad7697"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/render-audit.json",
+          "sha256": "92571b929e22942397aa2e51fbdd54c0a442d64e95d6c11f44465ce0b8257fe5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/asset-snapshot.json",
+          "sha256": "a36fbd84a0512704e5aaef7bf4be6ca7ff55a44645cc8fd1508f83a512e488fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/object-map.json",
+          "sha256": "606a923f39a98ca4bcdef54a86b5879141d37cdf06966fd09a784e7c5717d9c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/editability.json",
+          "sha256": "c89eb4e525f9eb48fc7bf0cd722f6f9b815d57c3fa6a414be6de2cce5f954044"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/delivery.json",
+          "sha256": "7e6f11f290cdfd7eca2835c26a9f78c5d9c2eb99b13ca9d295c61b754bd61c60"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/font-audit.json",
+          "sha256": "fa1cf94f0a67874dfbffce8cc96691274e3fe8f9b49d339eb6ef15afaaeee17a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "973604cf4fded9ef4fefef3364946036f0036407e2703aae318b048b56ce485e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "dd7c731a40ac4a8cee837bba546f2f314e9db6a9edad485204e876f6280d8cd3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "32bfecdc294d4b64e9657d1acfb281aeb904d2f33c728758feac716371891ff3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/source-evidence/actual-source-native-brush.json",
+          "sha256": "9a08510781be2ec65705fbee50eb182423e7943b012d6e82f05fd263bd00879e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "ebe847c4adf04ae5aacacaae06e8b0bb9020d571045de629cfb469d20ee27793"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/source-evidence/source.pdf",
+          "sha256": "e48e4c27e4dc9ffd50f531b69682da0a500ae9a8190c629aeff223b40b555306"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/source-evidence/independent-source-brush-reference.json",
+          "sha256": "3614f39b0674f606c73dd4eb37ec8e7c0e25c7df930d0772b1483ba2925c1057"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-source-brush-002/jobs/ccf-2020-09-f02/source-evidence/font-recovery.json",
+          "sha256": "1299bbdc41bd64a962c2db7ba31139dba7571b0c7021a3f602af6f53564df858"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/lightgcn-labels-native-076/proof.json",
+          "sha256": "2d9ae759d0bae913952434602e95b71a9fc0be7dcf1c3dec8fa8c5840b12f513"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/additional-source-brush-galleries-133/bindings.json",
+          "sha256": "be0c8e48d06ae95a899fea2572065933e761d0ce25e8c930f8076d6eb30b4de8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-138.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-129.json",
+          "sha256": "3de99bc599beb54e4887df965bb4961f30204b6d304f0fca5c4341e737ad208b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138.json",
+          "sha256": "404708e2d6ff84c4dcc5f008ac9929d8e8db338bdc37bb2ed963751b4f99097a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-139.json",
+          "sha256": "70cfccbe93b5746733dd7209c34065a05278a6d293046afbc8ec9a75554fc7d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-126.json",
+          "sha256": "6ee0b6a78456ff864153dfe6f758e4ddb5bfbd3cec19e9c15c4eb1936f92d102"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-136-execution.json",
+          "sha256": "fda66ccb6b07986674f997566c04832bbe71bfa8df2c9fe35268ed0564ed4a4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138-execution.json",
+          "sha256": "f851dfa2f4c7775965e334c23718a44457a42a3e54dafafed363053b07271bb1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137.json",
+          "sha256": "677986d89ea14539a1555299a481d0ae4cca01e10f4fb9fe66fed1306c1b41e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-NATIVE-ATTEMPT-131.json",
+          "sha256": "a0616d587b387ea367a07d26d939e4aaddeeaeb97f1d3cca32f50c1d09be22ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-143.json",
+          "sha256": "be939143e831249ad4b04900cf472959708e0e47bfdf441227daccd0df7331e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-GLYPH-PROBE-144.json",
+          "sha256": "5e072c8328542e656890c58424b01ed4fc8318d44eebfdc3dc6a12f86e24880a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-140.json",
+          "sha256": "7afb8b1e7c2fcee3bfaec8b5df6967f1ab20a3f2c67cd2967034b0d604ee3704"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-135.json",
+          "sha256": "faa94efb0cd7340c5b31025af49e062d3ca49df57ddf47601913f813eaabbe07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-ATTEMPT-128.json",
+          "sha256": "ff3b2d8021128c82e3ec9c90aa2542978f6ac4d366e7d6ba9442713010baeffe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137-execution.json",
+          "sha256": "b112cf3b20ed97070f3414a3a7c27eb81d7e7bfdfa1d99ca9d84823f4b721a6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-137.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-130.json",
+          "sha256": "e1c23743cd3279b4f18aebdcc33a2c33c7271df11f2004658ceef605a8d6f95b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FLASHATTENTION-INVENTORY-ATTEMPT-121.json",
+          "sha256": "51ea65ad41619a40f1ecb51e3f69bb091d40af8ed73cab938ddb8736a13eb649"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-141.json",
+          "sha256": "6c02d4d2032dcce06d57cc3f6d79d707359d3b57d1128a6b18a605b46250b968"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-124.json",
+          "sha256": "4c2d47d29a4dd087200047380f547b32c005d4db7e2d71832911a538a0aeaeb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-PAINT-CONTEXT-134.json",
+          "sha256": "d5fa2534e305403271341c740b182eb3d95c9af8d92327faf667f9114648b25c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-142.json",
+          "sha256": "fe09b075e2642dbb72f5ae2897211e1d51fc39c70362d456c190022ac8ae085a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves139.py",
+          "sha256": "780554943ef34330e1340bfb6df50469180cea735520c1487afb459cb09843cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_source_brush_and_curves146.py",
+          "sha256": "6e8228d3d3601b10bb7ea5b59d99429071c14642cdb2988bd02a71aff3acf431"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves142.py",
+          "sha256": "5015e8ca6158dfcfbe730484ca85a1baab616d9850b0b5c857e52afa5bc53214"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves141.py",
+          "sha256": "0f9a4b7ca030e4f0e0cdbce56a9166a09795be99179d99ea4e83dd4addd48901"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves137.py",
+          "sha256": "4d91341efd63acd9b200b8ee9055de7ab63d7825a240cb522853d3a52e277d5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves135.py",
+          "sha256": "d32b411f9c826616b17d3046806d9838c9dc48c67e6f42d598ce227011cbdfe2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes124.py",
+          "sha256": "474466414753d5717270ec6c506115b504ca2e0f9ea39cd993c311482fce38f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves138.py",
+          "sha256": "1913602650ba95a4b4cfd50e67971b28aa1f408f77d1b15ab7ffcad5e5ded0f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves145.py",
+          "sha256": "b66609424978b801f05464071f5b1db1ed6653ec6bb01d9e0d28efc0762b7e60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves140.py",
+          "sha256": "457633693e39357d718c841c8e136fd31381deb2eac9066a9f5cb5ed16421e6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_brush130.py",
+          "sha256": "de1a35b97ec91b57e400ad383c2ee663b7b83de91519526287ffebdb064e381f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush132.py",
+          "sha256": "d7c11b464b129e8815f3f7d8d5f977c14d512598a90b43513295863046d74a05"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves136.py",
+          "sha256": "7fbdb14b99c06dcc307d279c0b0810e0e2aa6ae9d14ac7f26ca3d2936698a28e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush128.py",
+          "sha256": "fb7afd9f77cbcd55c2040bcdd5a8880fe389d07adc20addc886b9c2571d2e3eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory122.py",
+          "sha256": "d1500235584562d99e764d1dd6378baf5d18414e1e9e72142ac7eb3904b875a3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes126.py",
+          "sha256": "c03580b00c2517a823a5aad55296fee128be59780d1e513870ed4056dbbe90e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes127.py",
+          "sha256": "ba0fe648713d8da69eea94527150b9941fd083e9f33eecdc3971dca3d46d015a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush129.py",
+          "sha256": "4c2edf72ff906fdafa0faec87796df4cf2f0ca7f56d8ffa51bc426ec526f9006"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush131.py",
+          "sha256": "cc03cfdc14f6b06094765a88f0b8b0f37d03d528651e22c14f8808876cfe6977"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves143.py",
+          "sha256": "14fd732194fba3a196de148ba20345ea33b29c4d3c4b2b7d326b3ec8ed14cfdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory121.py",
+          "sha256": "b810a802f7ce7b777306f92e5c817c3c13c66cab2a256bcfa2bd4994f6234f17"
+        }
+      ]
+    },
+    {
+      "figure_id": "ccf-2020-11-f02",
+      "issue_id": "ccf-2020-11-f02-D03",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "ColBERT score circles, S/MLP/CNN/MaxSim pills and colored node borders restore the actual native PDF cubic fill and stroke paints separately for all 88 pairs. Fill-only closure versus original open Σ-circle stroke closure is preserved. Real source width, RGB/opacity, butt cap, miter join and miter limit are restored; dense black links are not duplicated or widened. All original user-space joins receive exact tangent support certificates, transported through the exact similarity. 85 pairs have complete source clip/ROI containment. The other three blue node strokes cross the real right source clip edge: three native white rectangles preserve that edge only after proving every source paint touching the strip is clipped away, every other parent path support is disjoint and all actual glyph control hulls are disjoint. A fresh independent glyph reproof uses the actual native PDF canvas ratios, superseding the private assembler 0.75 assumption. It is local restoration of a proved-empty opaque white source background, not generic clipping or transparency support. All 486 original leaves and 14 identity dot groups retain relative order, with only the three local clip overlays inserted, numeric z indexes re-enumerated. The earlier path readback matched wrong flattened parent polygons, so it was not used to close this issue; actual4x review found facets and triggered this original curve recovery. All four score circles are now smooth in actual final native4x views. A fine light antialias rim at the three clipped blue right edges remains separately open as ccf-2020-11-f02-E01-CLIP-AA. Actual final native PPT/PDF preserves all 489 objects and every live text frame/font/inset, with 324 actual glyph outlines/advances/matrices/RGBA independently equal to the source-verified parent. Every actual authored control is read back under the unchanged 0.001 canvas px guard, maximum 0.000104524934386; actual original/final native fill normalization hashes are recomputed rather than inferred. Whole source/final/independent-PDF1x, final-native2x and all 13 matched4x views were actually inspected. Original fonts, full relative paint order, tiny raster-fitted dot primitives and all unrelated geometry are retained. Exact cap/join/miter comes from fresh original PDF stroke callbacks, not renderer defaults. No pixel/AA equivalence, automatic recognition, equation AST, font delivery/editing repertoire or PowerPoint/WPS acceptance is granted.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/readback.json",
+          "sha256": "062927792337a4bf16d44dffa50af3581c2fb5cc431c1c41cf793cdab072d2b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/actual-native-glyphs.json",
+          "sha256": "bcc8465fdc0722a8193273998fcf697ebe0c3770331dd01fd80bbaf0a3ccaa37"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/output-review-source-brush-curves-146.json",
+          "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/output-review-source-brush-curves-146.json",
+          "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/visual-review-146.json",
+          "sha256": "841c8fa8b2f7e1a90248ad7f98d01ebf1f9066b0e21efc11ee1ac12124cca975"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/bindings.json",
+          "sha256": "9ee397c1f295132bcae1fcbeffa67720ef3026cf770cd0265f5e60d5c12486e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/parent-binding.json",
+          "sha256": "65c727b8dc5dc19c158cc7ee757f42c1fe64d3504ab5b6262f07b47f2dc4c351"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/manifest.json",
+          "sha256": "3a9b3e61cc8e185b456d4bacc7f8538dae482bdda799a89af262b75d06f67904"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-015.json",
+          "sha256": "5c887d77cb550e048506785b1a36432ed444bc5c370a7115adf9d6f1d69b976b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/whole-1x.png",
+          "sha256": "8aead795903002791aaecdd6abd5dfd640ca6496f59f2e21cbf7a2ca15990476"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/preview-2x.png",
+          "sha256": "744a82619186b015e396df4c46be5c40e6cd8280b1afb149ed03dba0c1c8499f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/query-networks-and-token-frames-4x.png",
+          "sha256": "1ca7ba3917b29951cbe5037856041509fbde7b50b75649ae1a28e12ef98c64de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/document-network-and-crossed-lines-4x.png",
+          "sha256": "c045a7bfda4abb6951b51f84f5bacb22f320aa5e02d4e1bf33b96b6ad955d682"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/ColBERT-frame-top-4x.png",
+          "sha256": "34e59d7ae19869557e89891e22e256804f0b82cdbbc0ea479f6a81c52cc1d293"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/score-and-map-4x.png",
+          "sha256": "78fe97bafcbcd6a994e61673dc762252a5b3d79e70425bed466689d8f98edf6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/source-clipped-right-blue-nodes-4x.png",
+          "sha256": "c110649c3e6fbee409648f3f66e393d001580b65defb794c1ae3c9f7bfe3ee61"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/separate-panel-captions-left-4x.png",
+          "sha256": "a8c4e023d264b1adad3430a5b01d75d11c130f71d247056e50df6558aef3a3b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/separate-panel-captions-right-left-4x.png",
+          "sha256": "13e02d33e1e56068349e1e2aab4664fef54401c4acc770e02a8cba2043576269"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/separate-panel-captions-right-right-4x.png",
+          "sha256": "8d2dec687ea28fda65928d2ffb7de8abb02398326a9e23e7b4683755b1b5068a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/score-circle-a-4x.png",
+          "sha256": "44dff690d69d0e9926cd1f4e65ec845674c460be7509195ea565225c458153fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/score-circle-b-4x.png",
+          "sha256": "49c878dd83a7c8dc0f2386144dbf024fa670fc5130025c63a034913afd78b338"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/score-circle-c-4x.png",
+          "sha256": "38b9887f1a814b9fb0540ac2d76d1d0b3ae616dd6cd3c80538c1932061793383"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/score-circle-d-4x.png",
+          "sha256": "ad53d62f11e804e52e7c2381bf638fdf0523d829286e7cd57356c1b2ea187250"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/middle-dense-connections-4x.png",
+          "sha256": "db1723f1e176a0abb10bcf02c732be133de7271eee1425a39d50aa464fefb9ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "3a9b3e61cc8e185b456d4bacc7f8538dae482bdda799a89af262b75d06f67904"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/resolved-scene.json",
+          "sha256": "3a9b3e61cc8e185b456d4bacc7f8538dae482bdda799a89af262b75d06f67904"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/render-audit.json",
+          "sha256": "0ac7fe777c6691bfc1e51e2b43a601791a3b4e3e8507ab825c9cf0b118841c69"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/asset-snapshot.json",
+          "sha256": "0a4fa4b72202518acf183181d11960caa1c1a2fce73399bd7085a9facf4e3b61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/object-map.json",
+          "sha256": "63b8ac85ec64b7a81cafd5e4a4d39ec909b8fa086dfeffc74c9d59957851a691"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/editability.json",
+          "sha256": "6047484475aea8f5134c652ee2d2c15771db358126f109910eca25ae15d7a20e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/delivery.json",
+          "sha256": "bd62f305f5551da821ae1c9e9ba9b552aeeac0f7a54b914799fa2ea59488ba0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/font-audit.json",
+          "sha256": "2ca25301c5ef100caaaaeb6d249daa43c618dcfcc7b5df2fa1136481aa372db4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "8e45d8fae4345e04e2a72b90b4c24f18ac93e8486fd6187753e98b5f46e8ee70"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "8c77847d73e4fc0e50da9be873ce84600ef2ccb88993c1ed3532f07582a43d6a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "e2cba8d79b0f46e02df03fc97fab8ff62d3075d8ca372a488975d0e40daafdb8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/actual-source-native-brush.json",
+          "sha256": "0e3321a985356b063ddcd099fa8d1efbebd5a7571c652bc5152885a40097af7f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-010.png",
+          "sha256": "5bae109536b4e6eb5a9106d7aa540f0c10dd20db864c1985c7cd658dd5d37b2e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-000.png",
+          "sha256": "e49fc0b48deed1aa654a184fa19bbd3bd0c0ec7d10a8e973972a456f867bd6e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-001.png",
+          "sha256": "44f6b9c75f0fad8737a387ab83c800459354be842c4709b02185bf3a7509614e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-013.png",
+          "sha256": "1d4230bda46f0d9e28d84632a08a19aea1ecc54f734a72133de06734386a54c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/original-native-curve-recovery.json",
+          "sha256": "8588f9323fd9d9c3f8ab260761582a4fead84160c5f06b70959ce08d5bbab3ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/manifest-before-repair.json",
+          "sha256": "b5cfde16a42c4250c585da4a30100b92c06ead658cef9f2d5f382dfc6787313d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/source.pdf",
+          "sha256": "2e487d9b96e3c2e5e286d843e98a066adc0442faa3a6e8ddbd1771221bf9ae14"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-012.png",
+          "sha256": "99c2c0e5499d9b3ce5d500603f8d18d162bf9b90c3e6ba7f5068bc8d9ba52175"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/independent-source-brush-reference.json",
+          "sha256": "35081cdfbf104993b07e0b4025afc067e50b2f6ac46c0d35f244599392a967ac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-009.png",
+          "sha256": "d657e04aa43246585734733251533297589a4bd4069c0994b7d21666c71b8b31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-011.png",
+          "sha256": "bf502fdc95b0f633d678dc9d6cc201eb72ddbddcee60068d2e14ff5626abba86"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-007.png",
+          "sha256": "5cafc4bd1eb73dea696de616bb8d92ef52e6b5b77c6c7a0ca51fbf44f51b118d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-002.png",
+          "sha256": "a0de65a3600d508c3d4d84d8326a9430e694b78561365b31b0f7761fe0a745b1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/dot-reconstruction.json",
+          "sha256": "df8cbc0ab786c20445150c93083021a9e74db95353532eb13f359f9eadfe3382"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-003.png",
+          "sha256": "4b587c6fe612213afac1c49817d698cb80962412aacfdefe664ff31a2146aa10"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/font-recovery.json",
+          "sha256": "7af48cbeaaa29bf37472c273f0313a5da559e5bee907c74ebdaf2e78b21824b7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-005.png",
+          "sha256": "610c3e0443c7d7a96c0e70052262ba56075a0284fe0d5e7ce20414d1e9a61342"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/manifest-before-geometry.json",
+          "sha256": "ed21018aefcbe2c34e92175867f48c3c67cb7ed7f3c9832ce1f2b481e09b8876"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-004.png",
+          "sha256": "d517d5fa554669245b3a8f309f843c066a6df91867f133cdf323fb42ab10697f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-006.png",
+          "sha256": "7eb1e7328de7d7b83b0f5190b083e81baeb22512a35c650c66cc1ab5541917d3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/source-evidence/native-dot-bitmap-008.png",
+          "sha256": "4340a2c613992a3324626b16397650a267b504eb5602b4bf3c0104dc802b0f18"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/actual-white-strip-glyph-reproof.json",
+          "sha256": "9aec507095fef6ebdf7aa2cf5af84da4157ee380a241e297392408124d8b4bfb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/ccf-2020-11-f02-dots-010v2/native-readback.json",
+          "sha256": "96c3117cec99544d36e10e4abdc61ee9b6915a51d6f5b50cd83b6d88041ce51d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-138.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-129.json",
+          "sha256": "3de99bc599beb54e4887df965bb4961f30204b6d304f0fca5c4341e737ad208b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138.json",
+          "sha256": "404708e2d6ff84c4dcc5f008ac9929d8e8db338bdc37bb2ed963751b4f99097a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-139.json",
+          "sha256": "70cfccbe93b5746733dd7209c34065a05278a6d293046afbc8ec9a75554fc7d0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-126.json",
+          "sha256": "6ee0b6a78456ff864153dfe6f758e4ddb5bfbd3cec19e9c15c4eb1936f92d102"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-140.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-136-execution.json",
+          "sha256": "fda66ccb6b07986674f997566c04832bbe71bfa8df2c9fe35268ed0564ed4a4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-138-execution.json",
+          "sha256": "f851dfa2f4c7775965e334c23718a44457a42a3e54dafafed363053b07271bb1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137.json",
+          "sha256": "677986d89ea14539a1555299a481d0ae4cca01e10f4fb9fe66fed1306c1b41e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-NATIVE-ATTEMPT-131.json",
+          "sha256": "a0616d587b387ea367a07d26d939e4aaddeeaeb97f1d3cca32f50c1d09be22ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-143.json",
+          "sha256": "be939143e831249ad4b04900cf472959708e0e47bfdf441227daccd0df7331e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-GLYPH-PROBE-144.json",
+          "sha256": "5e072c8328542e656890c58424b01ed4fc8318d44eebfdc3dc6a12f86e24880a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-140.json",
+          "sha256": "7afb8b1e7c2fcee3bfaec8b5df6967f1ab20a3f2c67cd2967034b0d604ee3704"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-ATTEMPT-135.json",
+          "sha256": "faa94efb0cd7340c5b31025af49e062d3ca49df57ddf47601913f813eaabbe07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-ATTEMPT-128.json",
+          "sha256": "ff3b2d8021128c82e3ec9c90aa2542978f6ac4d366e7d6ba9442713010baeffe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-PROBE-137-execution.json",
+          "sha256": "b112cf3b20ed97070f3414a3a7c27eb81d7e7bfdfa1d99ca9d84823f4b721a6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-RAW-CALLBACKS-137.json",
+          "sha256": "4964f3b402b98e492630ecaae6e0ada9aa935e6489f369edab454965de9b560e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-BRUSH-BUILD-RESULT-130.json",
+          "sha256": "e1c23743cd3279b4f18aebdcc33a2c33c7271df11f2004658ceef605a8d6f95b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FLASHATTENTION-INVENTORY-ATTEMPT-121.json",
+          "sha256": "51ea65ad41619a40f1ecb51e3f69bb091d40af8ed73cab938ddb8736a13eb649"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-BUILD-141.json",
+          "sha256": "6c02d4d2032dcce06d57cc3f6d79d707359d3b57d1128a6b18a605b46250b968"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-TEXT-STROKE-ATTEMPT-124.json",
+          "sha256": "4c2d47d29a4dd087200047380f547b32c005d4db7e2d71832911a538a0aeaeb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-PAINT-CONTEXT-134.json",
+          "sha256": "d5fa2534e305403271341c740b182eb3d95c9af8d92327faf667f9114648b25c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/COLBERT-NATIVE-CURVE-VERIFY-ATTEMPT-142.json",
+          "sha256": "fe09b075e2642dbb72f5ae2897211e1d51fc39c70362d456c190022ac8ae085a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves139.py",
+          "sha256": "780554943ef34330e1340bfb6df50469180cea735520c1487afb459cb09843cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_source_brush_and_curves146.py",
+          "sha256": "6e8228d3d3601b10bb7ea5b59d99429071c14642cdb2988bd02a71aff3acf431"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves142.py",
+          "sha256": "5015e8ca6158dfcfbe730484ca85a1baab616d9850b0b5c857e52afa5bc53214"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves141.py",
+          "sha256": "0f9a4b7ca030e4f0e0cdbce56a9166a09795be99179d99ea4e83dd4addd48901"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves137.py",
+          "sha256": "4d91341efd63acd9b200b8ee9055de7ab63d7825a240cb522853d3a52e277d5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves135.py",
+          "sha256": "d32b411f9c826616b17d3046806d9838c9dc48c67e6f42d598ce227011cbdfe2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes124.py",
+          "sha256": "474466414753d5717270ec6c506115b504ca2e0f9ea39cd993c311482fce38f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves138.py",
+          "sha256": "1913602650ba95a4b4cfd50e67971b28aa1f408f77d1b15ab7ffcad5e5ded0f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves145.py",
+          "sha256": "b66609424978b801f05464071f5b1db1ed6653ec6bb01d9e0d28efc0762b7e60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_native_curves140.py",
+          "sha256": "457633693e39357d718c841c8e136fd31381deb2eac9066a9f5cb5ed16421e6d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_colbert_brush130.py",
+          "sha256": "de1a35b97ec91b57e400ad383c2ee663b7b83de91519526287ffebdb064e381f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush132.py",
+          "sha256": "d7c11b464b129e8815f3f7d8d5f977c14d512598a90b43513295863046d74a05"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_colbert_native_curves136.py",
+          "sha256": "7fbdb14b99c06dcc307d279c0b0810e0e2aa6ae9d14ac7f26ca3d2936698a28e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush128.py",
+          "sha256": "fb7afd9f77cbcd55c2040bcdd5a8880fe389d07adc20addc886b9c2571d2e3eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory122.py",
+          "sha256": "d1500235584562d99e764d1dd6378baf5d18414e1e9e72142ac7eb3904b875a3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes126.py",
+          "sha256": "c03580b00c2517a823a5aad55296fee128be59780d1e513870ed4056dbbe90e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_text_and_strokes127.py",
+          "sha256": "ba0fe648713d8da69eea94527150b9941fd083e9f33eecdc3971dca3d46d015a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_source_brush129.py",
+          "sha256": "4c2edf72ff906fdafa0faec87796df4cf2f0ca7f56d8ffa51bc426ec526f9006"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_brush131.py",
+          "sha256": "cc03cfdc14f6b06094765a88f0b8b0f37d03d528651e22c14f8808876cfe6977"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_colbert_native_curves143.py",
+          "sha256": "14fd732194fba3a196de148ba20345ea33b29c4d3c4b2b7d326b3ec8ed14cfdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_flashattention_inventory121.py",
+          "sha256": "b810a802f7ce7b777306f92e5c817c3c13c66cab2a256bcfa2bd4994f6234f17"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
     "ccf-2020-03-f04-D03",
-    "ccf-2020-09-f02-D02",
-    "ccf-2020-11-f02-D03",
     "ccf-2020-18-f01-D03",
     "ccf-2021-13-f01-D01",
     "ccf-2021-17-f05-D01",
-    "ccf-2022-07-f01-D03",
     "ccf-2025-01-f01-D02",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
@@ -24314,6 +25464,39 @@
       "user_acceptance": "pending",
       "discovered_during_remaining_153_request": true,
       "part_of_original_frozen_153": false
+    },
+    {
+      "figure_id": "ccf-2020-11-f02",
+      "issue_id": "ccf-2020-11-f02-E01-CLIP-AA",
+      "severity": "minor",
+      "status": "open",
+      "category": "native_clip_antialias_compositing",
+      "description": "Three restored source-cubic blue node strokes cross the actual right source clip. Their rigorously source-bound native white background restoration preserves geometry but shows a fine light antialias rim in actual native4x raster views. Recover original clip raster behavior while retaining source curves and independent native editability.",
+      "region": "Right edge of three blue nodes in ColBERT panel(d)",
+      "resolution": null,
+      "latest_verified_attempt": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/source-clipped-right-blue-nodes-4x.png",
+          "sha256": "c110649c3e6fbee409648f3f66e393d001580b65defb794c1ae3c9f7bfe3ee61"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/visual-review-146.json",
+          "sha256": "841c8fa8b2f7e1a90248ad7f98d01ebf1f9066b0e21efc11ee1ac12124cca975"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/bindings.json",
+          "sha256": "9ee397c1f295132bcae1fcbeffa67720ef3026cf770cd0265f5e60d5c12486e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/readback.json",
+          "sha256": "062927792337a4bf16d44dffa50af3581c2fb5cc431c1c41cf793cdab072d2b9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/output-review-source-brush-curves-146.json",
+          "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+        }
+      ]
     }
   ]
 }
