@@ -23,6 +23,19 @@ complete figure, photographs, fonts, or slide assets. The cases and reduced
 example are source-derived geometry, not authored synthetic cases.
 The repository's MIT license does not grant rights to the original figure.
 
+## Original PDF stroke regression geometry
+
+The six cases in `tests/fixtures/sampled-native-strokes.json` are small original
+PDF stroke excerpts: three circles and a rounded frame from figures 2/3 of
+[GCC: Graph Contrastive Coding for Graph Neural Network Pre-Training](https://arxiv.org/abs/2006.09963),
+and two curved dashed strokes from figure 1 of
+[Maximum Flow and Minimum-Cost Flow in Almost-Linear Time](https://arxiv.org/abs/2203.00671).
+The fixture records source PDF hashes, pages, native paint identities, actual
+control points, stroke states and rectangular clipping callbacks. It contains
+no complete figure, paper, image, font or slide asset. These are source-derived
+geometry excerpts; the repository's MIT license does not grant rights to the
+original paper figures.
+
 ## MambaVO reconstruction demonstration
 
 `docs/assets/mambavo-figure1-original.png` is a crop of the original Figure 1.
