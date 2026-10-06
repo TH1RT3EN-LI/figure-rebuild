@@ -147,3 +147,57 @@ Each group allows at most 256 pictures; both axes together allow 131072 pair
 constraints. No reference pixels enter rendering, and the editable PPT media
 and coordinates are retained. Source appearance and application playback still
 require separate visual verification.
+
+## Explicit source image interval grids
+
+`build --artifact-image-source-sampling request.json` selects version 4 for a
+standalone Artifact preview. This separate policy is for native pictures made
+by sampling known original PDF images at 4x or 8x. It requires an explicit recipe:
+
+```json
+{
+  "schema_version": 1,
+  "source_pdf": {"path": "sources/original.pdf", "sha256": "<64 lowercase hex characters>"},
+  "page_index": 0,
+  "source_transform": [1, 0, 0, 1, 0, 0],
+  "user_clip_pdf": [0, 0, 120, 90],
+  "objects": [
+    {"id": "photo", "paint_seqnos": [3, 4], "source_bounds": [10, 5, 41, 32], "delivery_sampling_scale": 4}
+  ]
+}
+```
+
+The source PDF path is relative to the job's asset root. Its bytes and the
+request are frozen with the build. The zero-based page, actual native paint
+sequence numbers, complete PDF-to-canvas mapping and original PDF clip are
+declared explicitly. The clip must map exactly onto the integral native canvas.
+Every actual delivered picture must be declared once in native paint order;
+its integral frame, zero crop and media dimensions must agree with the recipe.
+Rotation, effects, inset, tile and nonrectangular pictures remain unsupported.
+
+Each interval has 1 to 64 consecutive image paints, with no intervening text,
+path or shading. Original handles, color programs, CTMs, clips, image/mask
+contexts and painter order are forwarded together through one draw device.
+Source transparency groups, external masks, overprint and Matte are rejected;
+an image which causes an actual page group is also rejected. This policy does
+not extend the existing source group admission rules.
+
+Before making target previews, the declared local 4x/8x procedure must reproduce
+the actual embedded PNG bytes exactly. A different source, source recipe,
+sampling encoder, crop or native frame fails instead of silently replacing the
+native image. The verified resources are then sampled afresh at 1x/2x/4x using
+global canvas coordinates and integral device bounds. Artifact draws these
+transient window assets in the complete imported native scene, preserving live
+text, paths and occlusion. No complete reference render enters pixel generation.
+
+All storage surfaces and combined delivery/target pixel costs are checked
+before source rendering. Existing 16-million-pixel surface and 64 Mi-pixel
+combined limits remain, with at most 256 recipes and 100000 source page paints.
+Each interval additionally permits at most 64 million decoded resource bytes.
+Source PDF input is bounded to 128 MiB and 4096 pages. Output review independently
+replays actual media bytes and every target recipe and binds the frozen PDF.
+
+This is a finite renderer procedure. It does not prove universal RGB/alpha
+equivalence, group decomposition, font identity or application playback.
+Transparent asset edges and the complete scene require matched-scale visual
+review. The delivered PPT media, geometry and editability remain unchanged.

@@ -36,6 +36,12 @@ test('version3 shared-grid windows retain native front occlusion and reject poli
   assert.deepEqual(s.elements.items.map(e=>e.id),['replacement','native-front']);assert.equal(s.elements.items[1],front);
   d.policy='delivered-native-picture-mupdf-device-grid-v2';assert.throws(()=>applyImagePreview(fake(),d,1),/Invalid/);
 });
+test('version4 source interval samples retain all mixed paint identities and reject policy downgrade',()=>{
+  const d=definition();d.schema_version=4;d.policy='delivered-native-picture-mupdf-device-grid-v4';
+  const s=fake(),front=s.elements.items[1];applyImagePreview(s,d,1);
+  assert.deepEqual(s.elements.items.map(e=>e.id),['replacement','native-front']);assert.equal(s.elements.items[1],front);
+  d.policy='delivered-native-picture-mupdf-device-grid-v3';assert.throws(()=>applyImagePreview(fake(),d,1),/Invalid/);
+});
 test('changed native identity, position, order, PNG or target grid fails before mutation',()=>{
   for(const change of [d=>d.paint_order.reverse(),d=>d.objects[0].id='missing',
     d=>d.objects[0].native_position.left+=.01,d=>d.objects[0].previews[0].png_sha256='0'.repeat(64),
@@ -60,7 +66,7 @@ test('actual Artifact CPU copies the sampled grid and preserves alpha and front 
     const p=Presentation.create({slideSize:{width:40,height:30}}),s=p.slides.add();s.background.fill='#ffffff';
     const image=s.images.add({blob:new Uint8Array(original),contentType:'image/png',position:{...position},geometry:'rect'});image.name='picture';
     s.shapes.add({name:'front',geometry:'rect',position:{left:6,top:5,width:2,height:2},fill:'#0000ff',line:{fill:'none',width:0}});
-    const d=definition();d.schema_version=2;d.policy='delivered-native-picture-mupdf-device-grid-v2';
+    const d=definition();d.schema_version=4;d.policy='delivered-native-picture-mupdf-device-grid-v4';
     d.objects[0].native_source_crop_units={l:21234,t:12345,r:20123,b:15432};
     d.objects[0].previews[0]={scale:1,width:10,height:10,position:{...position},png_base64:sampled.toString('base64'),png_sha256:hash(sampled)};
     const snapshot=Buffer.from(original);applyImagePreview(s,d,1);

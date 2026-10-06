@@ -115,6 +115,34 @@ class BuildInputChecks(unittest.TestCase):
         self.args.preview_backend='libreoffice-pdf'
         with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'standalone Artifact'):cli.build(self.args)
         runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+
+    def source_image_request(self):
+        source=self.job/'source-pictures.pdf';source.write_bytes(b'%PDF-1.7\nexplicit preview input')
+        request={'schema_version':1,'source_pdf':{'path':source.name,'sha256':cli.digest(source)},
+                 'page_index':0,'source_transform':[1,0,0,1,0,0],'user_clip_pdf':[0,0,20,20],
+                 'objects':[{'id':'photo','paint_seqnos':[0],'source_bounds':[0,0,20,20],'delivery_sampling_scale':4}]}
+        path=self.job/'source-sampling.json';cli.save(path,request);self.args.artifact_image_source_sampling=str(path)
+        return source,path,request
+
+    def test_source_image_request_and_actual_pdf_bytes_are_frozen_with_asset_snapshot(self):
+        source,path,request=self.source_image_request();before=source.read_bytes()
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        run=self.job/'build/run-001';config=json.loads((run/'build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],4)
+        self.assertEqual(config['artifact_image_source_sampling'],request)
+        source.write_bytes(b'changed');cli.save(path,{'changed':True})
+        self.assertEqual((run/'assets'/source.name).read_bytes(),before)
+        records=json.loads((run/'asset-snapshot.json').read_text())['assets']
+        self.assertEqual(next(r['sha256']for r in records if r['path']==source.name),request['source_pdf']['sha256'])
+
+    def test_source_image_policy_requires_standalone_artifact_and_cannot_mix_shared_grid(self):
+        self.source_image_request();self.args.preview_backend='libreoffice-pdf'
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'standalone Artifact'):cli.build(self.args)
+        runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+        self.args.preview_backend='artifact';path=self.job/'shared.json';cli.save(path,{'schema_version':1,'groups':[]})
+        self.args.artifact_image_shared_grid=str(path)
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'one explicit'):cli.build(self.args)
+        runtime.assert_not_called()
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())

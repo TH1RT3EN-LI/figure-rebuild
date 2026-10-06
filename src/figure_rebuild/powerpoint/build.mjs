@@ -25,8 +25,9 @@ if(['libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend) ? c
 if(previewBackend==='libreoffice-pdf-photos' ? config.pdf_native_photo_placement!=='native-opaque-photo-matrix-v1' : config.pdf_native_photo_placement!==undefined)throw Error('Unsupported native photo placement policy or backend');
 if(config.diagnostic_provenance_version!==undefined&&config.diagnostic_provenance_version!==1)throw Error('Unsupported diagnostic provenance version');
 if(config.artifact_stroke_preview_version!==undefined&&(config.artifact_stroke_preview_version!==1||previewBackend!=='artifact'||config.base))throw Error('Unsupported native stroke preview provenance');
-if(config.artifact_image_preview_version!==undefined&&(![1,2,3].includes(config.artifact_image_preview_version)||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
+if(config.artifact_image_preview_version!==undefined&&(![1,2,3,4].includes(config.artifact_image_preview_version)||previewBackend!=='artifact'||config.base))throw Error('Unsupported native picture preview provenance');
 if((config.artifact_image_preview_version===3)!==Object.hasOwn(config,'artifact_image_shared_grid'))throw Error('Shared native image grid requires explicit version-3 request');
+if((config.artifact_image_preview_version===4)!==Object.hasOwn(config,'artifact_image_source_sampling'))throw Error('Source image sampling requires explicit version-4 request');
 if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend)&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
@@ -200,6 +201,9 @@ if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photo
   const args=['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file,'--version',String(config.artifact_image_preview_version)];
   if(config.artifact_image_preview_version===3){
    const request=path.join(run,'shared-image-grid-request.json');await fs.writeFile(request,JSON.stringify(config.artifact_image_shared_grid));args.push('--shared-grid',request);
+  }
+  if(config.artifact_image_preview_version===4){
+   const request=path.join(run,'source-image-sampling-request.json');await fs.writeFile(request,JSON.stringify(config.artifact_image_source_sampling));args.push('--source-sampling',request,'--asset-root',assetRoot);
   }
   runPython('artifact_image_preview',args,{stdio:'pipe'});
   imageData=JSON.parse(await fs.readFile(file,'utf8'));imageDefinition=await bindFile(file);

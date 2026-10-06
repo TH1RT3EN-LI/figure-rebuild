@@ -251,7 +251,7 @@ def diagnose_command(a):
     return 1 if report['status'] in ('unavailable', 'failure') else 0
 
 
-def freeze_assets(job, run, manifest):
+def freeze_assets(job, run, manifest, *, extra_sources=()):
     """Archive every declared source byte for this run without altering originals."""
     asset_root = Path(run) / 'assets'
     asset_root.mkdir()
@@ -289,6 +289,11 @@ def freeze_assets(job, run, manifest):
             if previous is not None and previous != item['sha256']:
                 raise ValueError('Conflicting checksums for asset: ' + item['path'])
             assets[item['path']] = item['sha256']
+    for item in extra_sources:
+        previous = assets.get(item['path'])
+        if previous is not None and previous != item['sha256']:
+            raise ValueError('Conflicting checksums for preview source asset: '+item['path'])
+        assets[item['path']] = item['sha256']
     records = []
     for relative, expected in sorted(assets.items()):
         original = confined(job, relative)
@@ -486,7 +491,18 @@ def build(a):
         from .source_inventory import _load_json
         from .artifact_image_preview import MAX_DEFINITION_BYTES
         shared_grid = _load_json(Path(shared_grid_path).resolve(), MAX_DEFINITION_BYTES)
-    image_preview = getattr(a, 'artifact_image_preview', False) or shared_grid_path is not None
+    source_sampling_path = getattr(a, 'artifact_image_source_sampling', None)
+    source_sampling, preview_sources = None, []
+    if source_sampling_path:
+        if shared_grid_path:
+            raise ValueError('Choose one explicit native image sampling policy')
+        from .source_inventory import _load_json
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        from .artifact_source_image_preview import source_request_assets
+        source_sampling = _load_json(Path(source_sampling_path).resolve(), MAX_DEFINITION_BYTES)
+        preview_sources = source_request_assets(source_sampling)
+    image_preview = (getattr(a, 'artifact_image_preview', False) or shared_grid_path is not None or
+                     source_sampling_path is not None)
     if image_preview and (preview_backend != 'artifact' or a.base):
         raise ValueError('Native picture preview requires a standalone Artifact build')
     if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos') and a.base:
@@ -544,7 +560,7 @@ def build(a):
     with allocation_lock(job / 'build'):
         check_revision_history(job / 'build', data)
         run = allocate_run(job / 'build')
-        assets = freeze_assets(job, run, data)
+        assets = freeze_assets(job, run, data, extra_sources=preview_sources) if preview_sources else freeze_assets(job, run, data)
         snapshot = run / 'manifest-snapshot.json'
         save(snapshot, data)
         save(run / 'manifest-validation.json', report)
@@ -554,9 +570,11 @@ def build(a):
         if preview_backend == 'artifact' and not base_config:
             config['artifact_stroke_preview_version'] = 1
         if image_preview:
-            config['artifact_image_preview_version'] = 3 if shared_grid_path else 2
+            config['artifact_image_preview_version'] = 4 if source_sampling_path else 3 if shared_grid_path else 2
             if shared_grid_path:
                 config['artifact_image_shared_grid'] = shared_grid
+            if source_sampling_path:
+                config['artifact_image_source_sampling'] = source_sampling
         if preview_backend == 'libreoffice-pdf':
             config['native_pdf_preview_version'] = 1
         if preview_backend in ('libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
@@ -641,6 +659,7 @@ def main():
     c.add_argument('--preview-backend', choices=['artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'], default='artifact', help='Renderer for the exact finalized PPTX; libreoffice-pdf samples the raw PDF; libreoffice-pdf-rgb derives zero-alpha RGB; libreoffice-pdf-photos also restores eligible opaque photo coordinates on fontless slides; all native exports are retained; standalone LibreOffice slides only')
     c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
     c.add_argument('--artifact-image-shared-grid', help='JSON request declaring opaque integer source windows sampled together on a common native media grid; standalone Artifact preview only')
+    c.add_argument('--artifact-image-source-sampling', help='JSON source image-only interval recipes which byte-replay delivered picture media before target-grid previews; standalone Artifact only')
     c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')

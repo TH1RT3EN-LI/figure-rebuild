@@ -230,8 +230,13 @@ def _native_picture_inputs(pptx, manifest):
     return pptx, payload, xml, names, package, relationships, pictures, order
 
 
-def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None):
-    """Deterministically sample delivered media; never read reference pixels."""
+def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None, source_sampling=None, asset_root=None):
+    """Sample delivered media or an explicit byte-replayed source recipe."""
+    if source_sampling is not None:
+        if type(version) is not int or version != 4 or shared_grid is not None:
+            raise ValueError('Source image sampling requires explicit version 4 without a shared media grid')
+        from .artifact_source_image_preview import prepare_source_image_preview
+        return prepare_source_image_preview(pptx, manifest, source_sampling, asset_root)
     if type(version) is int and version == 3 and shared_grid is not None:
         from .artifact_shared_image_preview import prepare_shared_image_preview
         return prepare_shared_image_preview(pptx, manifest, shared_grid)
@@ -278,8 +283,10 @@ def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pptx'); p.add_argument('--manifest'); p.add_argument('--output'); p.add_argument('--preflight', action='store_true')
-    p.add_argument('--version', type=int, choices=(1, 2, 3), default=1)
+    p.add_argument('--version', type=int, choices=(1, 2, 3, 4), default=1)
     p.add_argument('--shared-grid', help='Explicit integer source windows grouped on one common native grid')
+    p.add_argument('--source-sampling', help='Explicit source image recipes which replay actual native media bytes')
+    p.add_argument('--asset-root', help='Immutable root containing the declared source PDF')
     a = p.parse_args(argv)
     if a.preflight:
         import pymupdf
@@ -287,7 +294,9 @@ def main(argv=None):
     if not all((a.pptx, a.manifest, a.output)): p.error('--pptx, --manifest and --output are required')
     from .source_inventory import _load_json
     shared_grid = _load_json(Path(a.shared_grid), MAX_DEFINITION_BYTES) if a.shared_grid else None
-    result = prepare_image_preview(a.pptx, _load_json(Path(a.manifest), MAX_DEFINITION_BYTES), version=a.version, shared_grid=shared_grid)
+    source_sampling = _load_json(Path(a.source_sampling), MAX_DEFINITION_BYTES) if a.source_sampling else None
+    result = prepare_image_preview(a.pptx, _load_json(Path(a.manifest), MAX_DEFINITION_BYTES), version=a.version,
+                                   shared_grid=shared_grid, source_sampling=source_sampling, asset_root=a.asset_root)
     Path(a.output).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 
 

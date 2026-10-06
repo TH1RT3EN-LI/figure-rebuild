@@ -148,6 +148,8 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 独立 Artifact 成品可显式使用 `build --artifact-image-preview`，按最终 PPT 的实际图片字节与坐标生成设备网格采样，再绘制完整混合场景。默认预览方式保留；不支持的图片状态记录限制，输出审阅重算采样证据。支持域和验证要求见[图片预览采样](../references/preview-image-sampling.md#explicit-native-picture-device-grid-previews)。 需要共同采样的整数图片窗口可使用 `--artifact-image-shared-grid request.json`；请求会冻结，实际图片字节、裁切和共同坐标必须通过核验。
 
+由原始 PDF 图片片段生成的 4x/8x 媒体可使用 `--artifact-image-source-sampling request.json`，先逐字节重放最终 PPT 的实际媒体，再按目标 1x/2x/4x 全图坐标直接采样。原始 PDF 和请求会冻结；仅支持无透明组的连续纯图片片段，文字、路径和遮挡仍由完整原生场景绘制。该预览方式不改变交付 PPT；来源、坐标、媒体或合成状态不符会拒绝。请求格式与限制见[原始图片片段采样](../references/preview-image-sampling.md#explicit-source-image-interval-grids)。
+
 ## 裁剪精修与位置诊断
 
 ```bash

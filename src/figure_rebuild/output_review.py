@@ -94,6 +94,8 @@ def _preview_provenance(run, config, paths):
     """New runs bind renderer identity and its actual input/output evidence."""
     _require((config.get('artifact_image_preview_version') == 3) == ('artifact_image_shared_grid' in config),
              'Shared native picture preview grid requires explicit version-3 provenance')
+    _require((config.get('artifact_image_preview_version') == 4) == ('artifact_image_source_sampling' in config),
+             'Source image sampling requires explicit version-4 provenance')
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
         _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
@@ -191,13 +193,21 @@ def _preview_provenance(run, config, paths):
             _require('artifact_image_preview' not in audit and 'image_preview_definition' not in evidence,
                      'Unrequested native picture preview adapter')
         else:
-            _require(type(image_version) is int and image_version in (1, 2, 3) and not config.get('base'),
+            _require(type(image_version) is int and image_version in (1, 2, 3, 4) and not config.get('base'),
                      'Unsupported native picture preview provenance')
             _require('image_preview_definition' in evidence, 'Native picture preview definition is missing')
             from .artifact_image_preview import prepare_image_preview
             definition = _json_record(paths['image_preview_definition'], strict_numbers_and_keys=True)
+            if image_version == 4:
+                from .artifact_source_image_preview import source_request_assets
+                source = source_request_assets(config['artifact_image_source_sampling'])[0]
+                paths['image_sampling_source_pdf'] = _inside(run/'assets', run/'assets'/source['path'])
+                _require(_binding(paths['image_sampling_source_pdf'])['sha256'] == source['sha256'],
+                         'Source image sampling PDF disagrees with its frozen checksum')
             replay = prepare_image_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True),
-                                           version=image_version, shared_grid=config.get('artifact_image_shared_grid'))
+                                           version=image_version, shared_grid=config.get('artifact_image_shared_grid'),
+                                           source_sampling=config.get('artifact_image_source_sampling'),
+                                           asset_root=_inside(run, run/'assets') if image_version == 4 else None)
             _require(_same_json(definition, replay), 'Native picture preview definition disagrees with actual delivered PPTX')
             expected_images = {'schema_version': image_version, 'policy': replay['policy'], 'preview_only': True,
                                'native_delivery_modified': False, 'reference_pixels_used': False,

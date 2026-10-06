@@ -14,7 +14,8 @@ from .pdf_image_native import PdfImageNativeError
 def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                             source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
                             native_sampling_scale=8, allow_native_matte_sampling=False,
-                            _paint_kind='fill-image'):
+                            _paint_kind='fill-image', _image_seqnos=None,
+                            _global_device_grid=False):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
     ``source_bounds`` is the declared storage x0/y0/x1/y1 in source pixels.
@@ -53,9 +54,20 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
         raise ValueError('allow_native_matte_sampling must be a boolean')
     if allow_native_matte_sampling and _paint_kind != 'fill-image':
         raise ValueError('allow_native_matte_sampling requires an image paint')
+    interval = _image_seqnos is not None
+    if interval:
+        if (_paint_kind != 'fill-image' or allow_native_rgb_group_sampling or allow_native_matte_sampling or
+                type(_image_seqnos) is not list or not 1 <= len(_image_seqnos) <= 64 or
+                any(type(i) is not int or not 0 <= i < len(bboxlog) or bboxlog[i][0] != 'fill-image'
+                    for i in _image_seqnos) or
+                _image_seqnos != list(range(_image_seqnos[0], _image_seqnos[-1] + 1))):
+            raise PdfImageNativeError('Image interval requires 1 to 64 consecutive actual image paints')
+        paint_seqno = _image_seqnos[0]
+    if type(_global_device_grid) is not bool or (_global_device_grid and not interval):
+        raise ValueError('Global device grid requires an explicit image interval')
     if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
-            or native_sampling_scale not in (4, 8)):
-        raise ValueError('native_sampling_scale must be the integer 4 or 8')
+            or native_sampling_scale not in ((1, 2, 4, 8) if interval else (4, 8))):
+        raise ValueError('native_sampling_scale must be an integer '+('1, 2, 4 or 8' if interval else '4 or 8'))
     try:
         import pymupdf as fitz
     except ImportError as error:
@@ -84,6 +96,8 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
     if (isinstance(paint_seqno, bool) or not isinstance(paint_seqno, int) or
             not 0 <= paint_seqno < len(bboxlog) or bboxlog[paint_seqno][0] != _paint_kind):
         raise PdfImageNativeError('Selected sequence must equal the requested actual paint kind')
+    selected_seqnos = set(_image_seqnos) if interval else {paint_seqno}
+    last_selected = max(selected_seqnos)
 
     def finite(values, length):
         return (isinstance(values, (tuple, list)) and len(values) == length and
@@ -107,6 +121,11 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
     mapping = [source_transform[0]*sampling, 0, 0, source_transform[3]*sampling,
                (source_transform[4]-frame[0])*sampling,
                (source_transform[5]-frame[1])*sampling]
+    device_bbox = [0, 0, width, height]
+    if _global_device_grid:
+        mapping = [source_transform[0]*sampling, 0, 0, source_transform[3]*sampling,
+                   source_transform[4]*sampling, source_transform[5]*sampling]
+        device_bbox = [v*sampling for v in frame]
     if not all(math.isfinite(v) for v in mapping):
         raise PdfImageNativeError('Source-to-sample matrix overflows finite coordinates')
     expected = [(row[0], tuple(row[1])) for row in bboxlog]
@@ -142,6 +161,10 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                                          == int(m.fz_device_rgb().m_internal.this))
             self.selected = None
             self.selected_image = None
+            self.interval_receipts = []
+            self.interval_images = []
+            self.interval_seqnos = []
+            self.interval_resource_bytes = 0
             if _paint_kind == 'stroke-path':
                 self.use_virtual_stroke_path()
             for name in ('clip_path', 'clip_stroke_path', 'clip_text', 'clip_stroke_text',
@@ -236,7 +259,8 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
             # A later, unrelated alpha clip can recomposite the existing
             # backdrop even if its image paint is suppressed. Forward only
             # contexts which can contain the selected paint, then unwind them.
-            forward = self.selected is None and (kind != 'clip_image_mask' or len(self.result) == paint_seqno)
+            pending = len(self.result) <= last_selected if interval else self.selected is None
+            forward = pending and (kind != 'clip_image_mask' or len(self.result) in selected_seqnos)
             self.clips.append({'clip_event_id': self.clip_count, 'kind': kind,
                                'matrix': [float(getattr(matrix, key)) for key in 'abcdef'],
                                'paint_count': len(self.result), 'forwarded': forward, **(extra or {})})
@@ -310,7 +334,7 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
         def fill_image(self, ctx, image, ctm, alpha, color_params):
             seqno = len(self.result)
             fitz.jm_bbox_fill_image(self, ctx, image, ctm, alpha, color_params)
-            if seqno != paint_seqno or _paint_kind != 'fill-image':
+            if seqno not in selected_seqnos or _paint_kind != 'fill-image':
                 return
             try:
                 self.capture_and_forward(image, ctm, alpha, color_params, seqno)
@@ -318,6 +342,8 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                 self.error(f'Paint {seqno}: {type(error).__name__}: {error}')
 
         def capture_and_forward(self, image, ctm, alpha, params, seqno):
+            if interval and self.groups:
+                raise PdfImageNativeError('Image intervals require group-free source paints')
             if any(not group['supported'] for group in self.groups):
                 raise PdfImageNativeError('Unsupported PDF group: requires Normal alpha1 RGB with no knockout')
             # A nested Form need not start a group to change default spaces.
@@ -339,6 +365,10 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                     raise PdfImageNativeError('Native Matte sampling requires 8-bit DeviceRGB and an 8-bit mask without Decode changes')
             if image.w <= 0 or image.h <= 0 or image.w*image.h > 64_000_000:
                 raise PdfImageNativeError('Native image dimensions exceed rendering budget')
+            if interval:
+                self.interval_resource_bytes += image.w*image.h*(image.n + (1 if image.mask else 0))
+                if self.interval_resource_bytes > 64_000_000:
+                    raise PdfImageNativeError('Image interval decoded resource byte budget')
             transform = [float(getattr(ctm, key)) for key in 'abcdef']
             if not all(math.isfinite(v) for v in transform):
                 raise PdfImageNativeError('Non-finite native image transform')
@@ -378,12 +408,16 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                     decoded_alpha_manually_recombined=False,
                     matte_handling='actual_image_and_bound_mask_forwarded_unchanged' if matte else 'not_present')
             self.forward('fill_image', image, ctm, alpha, params)
+            if interval:
+                self.interval_receipts.append(self.selected)
+                self.interval_images.append(self.selected_image)
+                self.interval_seqnos.append(seqno)
 
     try:
         render_matrix = m.FzMatrix(*mapping)
         if not all(math.isfinite(getattr(render_matrix, key)) for key in 'abcdef'):
             raise PdfImageNativeError('Source-to-sample matrix exceeds native float range')
-        pix = m.fz_new_pixmap_with_bbox(m.fz_device_rgb(), m.FzIrect(0, 0, width, height),
+        pix = m.fz_new_pixmap_with_bbox(m.fz_device_rgb(), m.FzIrect(*device_bbox),
                                        m.FzSeparations(), 1)
         m.fz_clear_pixmap(pix)
         target = m.fz_new_draw_device(render_matrix, pix)
@@ -413,24 +447,29 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
     selected = device.selected
     if _paint_kind == 'fill-image':
         try:
-            image = device.selected_image.m_internal
-            native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
-            if (native.width, native.height) != (selected['width'], selected['height']):
-                raise PdfImageNativeError('Native receipt decoder unexpectedly changed dimensions')
-            attached = None
-            if image.mask:
-                mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
-                if (mask.width, mask.height, mask.n) != (image.w, image.h, 1):
-                    raise PdfImageNativeError('Native receipt mask dimensions or channels disagree')
-                attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
-                            'actual_handle_and_matrix_and_sequence_bound': True}
-            selected.update({'native_digest': native.digest.hex(),
-                             'native_colorspace': native.colorspace.name if native.colorspace else None,
-                             'attached_mask': attached})
+            captures = list(zip(device.interval_receipts, device.interval_images)) if interval else [(selected, device.selected_image)]
+            if interval and device.interval_seqnos != _image_seqnos:
+                raise PdfImageNativeError('Actual image interval differs from declared sequence')
+            for captured, handle in captures:
+                image = handle.m_internal
+                native = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image)))
+                if (native.width, native.height) != (captured['width'], captured['height']):
+                    raise PdfImageNativeError('Native receipt decoder unexpectedly changed dimensions')
+                attached = None
+                if image.mask:
+                    mask = fitz.Pixmap('raw', m.FzPixmap(m.ll_fz_get_unscaled_pixmap_from_image(image.mask)))
+                    if (mask.width, mask.height, mask.n) != (image.w, image.h, 1):
+                        raise PdfImageNativeError('Native receipt mask dimensions or channels disagree')
+                    attached = {'native_digest': mask.digest.hex(), 'width': mask.width, 'height': mask.height,
+                                'actual_handle_and_matrix_and_sequence_bound': True}
+                captured.update({'native_digest': native.digest.hex(),
+                                 'native_colorspace': native.colorspace.name if native.colorspace else None,
+                                 'attached_mask': attached})
         except Exception as error:
             raise PdfImageNativeError('Native post-render receipt capture failed: '+str(error)) from error
         finally:
             device.selected_image = None
+            device.interval_images.clear()
     if allow_native_rgb_group_sampling:
         for group in selected['groups']:
             start, end = group['begin_paint_seqno'], group['end_paint_seqno_exclusive']
@@ -462,6 +501,13 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                'sampling_bound_scope': 'grid spacing only; not a bound on RGB, alpha, filtering or numerical error',
                'raster_size': [width, height], 'native_png_sha256': hashlib.sha256(encoded).hexdigest(),
                'pixel_metadata_capture_phase': 'after_all_native_draw_devices_closed_and_png_encoded'}
+    if interval:
+        receipt.update(method='native_contiguous_images_and_original_context_forwarding',
+            image_paints_forwarded=len(_image_seqnos), actual_complete_contiguous_image_interval=_image_seqnos,
+            all_selected_image_receipts=[dict(row, paint_seqno=seqno) for row, seqno in
+                                         zip(device.interval_receipts, device.interval_seqnos)],
+            source_groups='none', global_device_grid=_global_device_grid, device_bbox=device_bbox,
+            exact_group_decomposition_claimed=False, rgb_alpha_error_bound=None)
     if allow_native_rgb_group_sampling:
         receipt.update({'allow_native_rgb_group_sampling': True,
                         'sampled_group_extension_used': any(g['sampled_group_extension_used'] for g in selected['groups']),
@@ -501,3 +547,20 @@ def render_native_pdf_image(sheet, bboxlog, paint_seqno, *, source_transform,
         allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
         native_sampling_scale=native_sampling_scale,
         allow_native_matte_sampling=allow_native_matte_sampling)
+
+
+def render_native_pdf_image_interval(sheet, bboxlog, paint_seqnos, *, source_transform,
+                                     source_bounds, user_clip_pdf, sampling_scale,
+                                     global_device_grid=True):
+    """Sample a declared group-free image-only interval on an integral grid.
+
+    All original image handles, CTMs, clips, color programs and painter order
+    are forwarded together. No text/path/shading paint enters the output. This
+    contract admits no source transparency groups, external masks or Matte.
+    It supplies finite sampled pixels, never a general color/alpha error bound.
+    Use a fresh source document for every call.
+    """
+    return _render_native_pdf_paint(sheet, bboxlog, 0, source_transform=source_transform,
+        source_bounds=source_bounds, user_clip_pdf=user_clip_pdf,
+        native_sampling_scale=sampling_scale, _image_seqnos=paint_seqnos,
+        _global_device_grid=global_device_grid)

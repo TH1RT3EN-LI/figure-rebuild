@@ -84,10 +84,31 @@ class OutputReviewChecks(unittest.TestCase):
         from figure_rebuild.artifact_image_preview import NS
         pptx = self.run / 'validated-output/reconstruction.pptx'
         pic, rel, media = '', '', None
+        source_request = None
+        if version == 4:
+            import pymupdf as fitz
+            from figure_rebuild.pdf_image_render import render_native_pdf_image_interval
+            from PIL import Image
+            from io import BytesIO
+            image=BytesIO();Image.new('RGB',(19,17),(0,255,0)).save(image,format='PNG')
+            source_pdf=self.run/'assets/source-pictures.pdf'
+            with fitz.open()as doc:
+                page=doc.new_page(width=200,height=100)
+                page.insert_image(fitz.Rect(1,1,11,11),stream=image.getvalue(),keep_proportion=False)
+                doc.save(source_pdf)
+            source_request={'schema_version':1,'source_pdf':{'path':source_pdf.name,'sha256':digest(source_pdf.read_bytes())},
+                'page_index':0,'source_transform':[1,0,0,1,0,0],'user_clip_pdf':[0,0,200,100],
+                'objects':[{'id':'photo','paint_seqnos':[0],'source_bounds':[1,1,11,11],'delivery_sampling_scale':4}]}
+            with fitz.open(source_pdf)as doc:
+                page=doc[0];media=render_native_pdf_image_interval(page,page.get_bboxlog(),[0],
+                    source_transform=[1,0,0,1,0,0],source_bounds=[1,1,11,11],user_clip_pdf=[0,0,200,100],
+                    sampling_scale=4,global_device_grid=False)['asset_bytes']
+            picture_crop='l="0" t="0" r="0" b="0"'
         if picture_crop:
             from PIL import Image
             from io import BytesIO
-            image = BytesIO(); Image.new('RGB', (20,20), (0,255,0)).save(image, format='PNG'); media = image.getvalue()
+            if media is None:
+                image = BytesIO(); Image.new('RGB', (20,20), (0,255,0)).save(image, format='PNG'); media = image.getvalue()
             pic = ('<p:pic><p:nvPicPr><p:cNvPr id="2" name="photo"/></p:nvPicPr>'
                    '<p:blipFill><a:blip r:embed="image"/><a:srcRect '+picture_crop+'/>'
                    '<a:stretch/></p:blipFill><p:spPr><a:xfrm><a:off x="9525" y="9525"/>'
@@ -95,12 +116,12 @@ class OutputReviewChecks(unittest.TestCase):
                    '<a:avLst/></a:prstGeom></p:spPr></p:pic>')
             rel = '<Relationship Id="image" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/photo.png"/>'
             scene = json.loads((self.run / 'resolved-scene.json').read_text()); scene['objects'] = [{'id':'photo','kind':'image'}]
-            if version == 3: scene['canvas'] = {'width': 200, 'height': 100}
+            if version in (3,4): scene['canvas'] = {'width': 200, 'height': 100}
             self.write_json(self.run / 'resolved-scene.json', scene)
         with ZipFile(pptx, 'w') as z:
             z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}" xmlns:r="{NS["r"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/>{pic}</p:spTree></p:cSld></p:sld>')
             z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+rel+'</Relationships>')
-            if version == 3: z.writestr('ppt/presentation.xml', f'<p:presentation xmlns:p="{NS["p"]}"><p:sldSz cx="1905000" cy="952500"/></p:presentation>')
+            if version in (3,4): z.writestr('ppt/presentation.xml', f'<p:presentation xmlns:p="{NS["p"]}"><p:sldSz cx="1905000" cy="952500"/></p:presentation>')
             if media is not None: z.writestr('ppt/media/photo.png', media)
         delivery = json.loads((self.run / 'delivery.json').read_text())
         Path(delivery['output']).write_bytes(pptx.read_bytes())
@@ -109,10 +130,12 @@ class OutputReviewChecks(unittest.TestCase):
         config = json.loads((self.run / 'build-config.json').read_text())
         config['artifact_image_preview_version'] = version
         if version == 3: config['artifact_image_shared_grid'] = {'schema_version': 1, 'groups': [{'objects': [{'id': 'photo', 'window': [5,5,15,15]}]}]}
+        if version == 4: config['artifact_image_source_sampling'] = source_request
         self.write_json(self.run / 'build-config.json', config)
         d = prepare_image_preview(self.run / 'validated-output/reconstruction.pptx',
                                   json.loads((self.run / 'resolved-scene.json').read_text()), version=version,
-                                  shared_grid=config.get('artifact_image_shared_grid'))
+                                  shared_grid=config.get('artifact_image_shared_grid'), source_sampling=source_request,
+                                  asset_root=self.run/'assets' if version == 4 else None)
         definition = self.run / 'artifact-image-preview.json'; self.write_json(definition, d)
         audit = json.loads((self.run / 'render-audit.json').read_text())
         audit['evidence']['image_preview_definition'] = review._binding(definition)
@@ -159,6 +182,24 @@ class OutputReviewChecks(unittest.TestCase):
         self.write_json(path, d); audit['evidence']['image_preview_definition'] = review._binding(path)
         self.write_json(self.run / 'render-audit.json', audit)
         with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_source_image_recipe_replays_frozen_source_bytes_and_binds_the_pdf(self):
+        self.add_image_preview_provenance(version=4);record=review.prepare_output_review(self.run)
+        self.assertIn('image_sampling_source_pdf',record['bindings'])
+        path=self.run/'assets/source-pictures.pdf';path.write_bytes(path.read_bytes()+b'changed')
+        with self.assertRaisesRegex(ValueError,'frozen checksum'):review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_source_image_forged_replay_proof_and_policy_downgrade_refuse(self):
+        audit=self.add_image_preview_provenance(version=4);path=self.run/'artifact-image-preview.json'
+        definition=json.loads(path.read_text());definition['source_sampling_proofs'][0]['delivery_media_replayed_byte_exactly']=False
+        self.write_json(path,definition);audit['evidence']['image_preview_definition']=review._binding(path)
+        self.write_json(self.run/'render-audit.json',audit)
+        with self.assertRaisesRegex(ValueError,'definition disagrees'):review.prepare_output_review(self.run)
+        config=json.loads((self.run/'build-config.json').read_text());config['artifact_image_preview_version']=2
+        self.write_json(self.run/'build-config.json',config)
+        with self.assertRaisesRegex(ValueError,'version-4'):review.prepare_output_review(self.run)
 
     @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
     def test_picture_preview_fractional_crop_is_replayed_and_forgery_rejected(self):
