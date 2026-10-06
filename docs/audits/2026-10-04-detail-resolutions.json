@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T10:04:28.022054+00:00",
+  "updated_at": "2026-10-06T10:59:02.549762+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -63091,7 +63091,7 @@
       "description": "Whole-source and individually sampled native images differ slightly in filtering/sharpness and fine texture at1x/2x/4x. Pristine resource rendering and unchanged647 assets are verified, but exact whole-page/group decomposition and a universal RGB/alpha error bound are not established. Sampling density is not claimed as a pixel-error bound.",
       "figure_id": "ccf-2025-01-f11",
       "issue_id": "ccf-2025-01-f11-SAM-IMAGE-SAMPLING-002",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "evidence": [
         {
           "audit_relative_path": "source-regeneration/sam2-complete-source-002/handoff.json",
@@ -63110,7 +63110,2626 @@
           "sha256": "bbabca7573de5e773c5e27ef02ace5f599e81aee40217ca78cf348efdc5806c1"
         }
       ],
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "latest_verified_attempt": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001",
+      "latest_reviewed_candidate": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001",
+      "candidate_selected": true,
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-TEST-INPUTS-800.json",
+          "sha256": "c2e2f53c1c3b868e3d9c3d6ce1751f38c36daf996e8a4dee5d1ed3501bfc17aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-821.json",
+          "sha256": "1118dd9b3bb80820d791f258a93ba766f4bc97b8bea54600a4ce8f7d107203ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-WORKSPACE-CHECKS-802.json",
+          "sha256": "5ae4e71ecbad87bd85ab7c222ab2b36da693b086b4ca0d3f6c90f88ea664f041"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-GALLERY-BINDINGS-816.json",
+          "sha256": "a5fdbef2025bd57e27099dae974ffcc942fad1b03fe56ecf298fb77970f38366"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-SOURCE-TARGET-GALLERY-796.json",
+          "sha256": "be628cb2c466ebc4ec749dcbb418aa7fcfc49db76b09a0bda728d3041d34a16e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-PREPARED-815.json",
+          "sha256": "c2e617aeaaa669658749af39f652bf5f5731993f745bca8c8c51f4f4277055ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-SOURCE-IMAGE-REQUEST-798.json",
+          "sha256": "e6ac5c829be3426d655ca0c6aaef2c97f0ac9ef94ae2134603037e0118f4de13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-PREPARED-816.json",
+          "sha256": "c2e617aeaaa669658749af39f652bf5f5731993f745bca8c8c51f4f4277055ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-026.json",
+          "sha256": "d14a28d73b864943b3ff16c7ac327c764aa8f4a6d31a490b8c72171e3c2c1f34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-VISUAL-821.json",
+          "sha256": "4f4c38092370677d022ac831480056c1058f08bb24edb14920171b285d73e663"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-CHECKS-805.json",
+          "sha256": "787640e236f72a7a82338d0a1c77ba155230993a1a9bf65c1b9d4bbf79b2e3d5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-TEST-INPUTS-802.json",
+          "sha256": "c3f178e1a68fd9a69b7218c7c627ae646c1a48c5a500dca6d888b20e6729e7b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-IMAGE-GRID-BUILD-807.json",
+          "sha256": "59bf912cb51ff437b57ab3ca71ec4f8dcead742f2cb6efff3e662a9a0b36a526"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-VISUAL-822.json",
+          "sha256": "216d67bf1ff36c97422dc60683ce39b9911a5744f319d3201118fe0e3aca6a7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-REVIEW-RESULT-822.json",
+          "sha256": "121ceb819f9aa7c220df58724ef39089afd34567047264d6d7fe5c61d781eec1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-sam11-target-grid-820.json",
+          "sha256": "3920ebbcd89767858b16ebd806483cb608801b3126bcc5a3e90af3d685357717"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-IMAGE-INTERVAL-PREVIEW-PROBE-794.json",
+          "sha256": "e31ab98793ad23789696d4eb8e6441c45830d199a3b20402e071040ae286adba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-NATIVE-READBACK-815.json",
+          "sha256": "4f1a6a6b970c584abf334b2e8a5099a5852dbf88b2779b21cd67a0770f6d03f1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-822.json",
+          "sha256": "d313bcaf4a2136b8ccaa0dacde1fdee642427b42be703c5e4cd1b1b5fb754957"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SAM11-GLOBAL-GRID-PROBE-793.json",
+          "sha256": "9c924fc2a13c86c947e19a00d25866fc19d4202336add9862356ef95df5ce4ae"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/manifest.json",
+          "sha256": "2b931b63dc5ea32c5e3cb15bc850992a235de7f6b1bdf109ebc644e6113465f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/figure.pptx",
+          "sha256": "94371703720cfeb93aa155a3749211e15230655f305466445f4fcbde9fd872ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/output-review-unperformed.json",
+          "sha256": "c2e617aeaaa669658749af39f652bf5f5731993f745bca8c8c51f4f4277055ec"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-image-request.json",
+          "sha256": "e6ac5c829be3426d655ca0c6aaef2c97f0ac9ef94ae2134603037e0118f4de13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/font-profile.json",
+          "sha256": "438c3802dad7a346304b09c9d23a540b919fc5f8ff907cfd8d5f1a86423002a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/sources/original.png",
+          "sha256": "2472117506bdaec2026a079a91a083de94450199fb81af90728ac5a907405e67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/01-review.json",
+          "sha256": "5a8f43ad50f579e853d2256a77ce3de05baf59ce927e54a7b282ef19fba901db"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/02-build.json",
+          "sha256": "a59a1cbdce98f438fd2a9ebf5ebf8f090b16daee45a995486be805f3b1aa47d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/02-build.stdout",
+          "sha256": "45eaffcfd1b547bf76a0b487617bfd447e136199bf6f131beeb37719be8b2d83"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/commands/01-review.stdout",
+          "sha256": "fad01efd9b1044edee63e4b8f90b96ce1d5622d68419a3011d70aab8ae703f41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/source-1x.png",
+          "sha256": "2472117506bdaec2026a079a91a083de94450199fb81af90728ac5a907405e67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/source-paints.json",
+          "sha256": "f66f4f4562f53317ee6c379589202b8f271793198b81bf86f3a9c5e4ce4eab07"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/source.pdf",
+          "sha256": "664f5c4254db441569ecfe36a2a2fa91a1ecec5f4d31b3bcc5d451193efc2c0d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/assignment.json",
+          "sha256": "531abc690dd2962f4aeef874977f7bd4340f31e1d045207687147eb16ef6e07f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/source-2x.png",
+          "sha256": "9c4cba4327cab580f50f44f4e3c11760ab7ed28011f2577f3f62d95fe073cc7f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/full-page-context.png",
+          "sha256": "3a9d7a5e60b1ecda62b7a4b41e3e961eaa3920752306d4e752487e10367adb5c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/pdf-bboxlog.json",
+          "sha256": "7c3778eb96b4f2ecb52f7cff63b7e5b14d1d2a40385cd25a6849d191b0666c41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/contiguous-image-recovery.json",
+          "sha256": "ffd75da0a0808dab1872ca0b682c4b04e0a37a34f7f46aa4e107584a90d44621"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/contiguous-source-image-proof.json",
+          "sha256": "3256ad57045a86e1bbbc008fe9311708990b2e0075b11d33a8abc12017d6cc6e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/page-outlined.svg",
+          "sha256": "9a839301016b1ab4a55ec5e79e9761d8f89be3fd20e688084b9f2d9cdbd0bf7d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/source-4x.png",
+          "sha256": "a21aab58fd68219dcb9b41283d036c85a3382177f4b9e18962ab3bb1835d06d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00573-00607-4x.png",
+          "sha256": "b9bce9eeb3145262eb3673ff2c828c076182790f42d421b5490b03e55eabeccc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00692-00701-4x.png",
+          "sha256": "63eba4f63004c51fccee6cbe6bf543ea548a5d5dc366065f6568ec374c2c366e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00339-00372-4x.png",
+          "sha256": "5874420a437e2364cbc584163e8462036ebf9230b1ed916c13c9c2e5341d7e2b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/source-image-00647.png",
+          "sha256": "dafe9ddb53e9e52971aa89106250fde7901a6ff34b01f96ff1dc9f8ecb3c71dd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00219-00251-4x.png",
+          "sha256": "65e874812056a0df622c3c6480452521f9f357eeeb578f5fcd03f455c3718b48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00262-00266-4x.png",
+          "sha256": "a6c0d2610c5db16be031b247a39c1a61c1336611a7052e149a748ecb2e7d652b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00716-00718-4x.png",
+          "sha256": "9771c1b3652a634fc25371a30fc98a66d4424b0eff216741379af6eced52309a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00375-00384-4x.png",
+          "sha256": "b29557a8b95305695732c019f3990041adb82190e5014372f0ccd1dece253882"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00212-00216-4x.png",
+          "sha256": "f892482298e9bb80fb92681e310f1dac4e09d357940dcb0f08d566223dc4c2fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00269-00301-4x.png",
+          "sha256": "a5f46887f8e228d8156ca2e8cb4e89b4bce6ae5a6d23e6459fda08ed9412c913"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00093-00097-4x.png",
+          "sha256": "ede7609a5877cff2a8b6791169286b15e48b8d2f6af5da6f55b90869068d294d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00304-00336-4x.png",
+          "sha256": "581a254663d436f5029ec86e857407c9c185e701c23b7bd395ab2cb9f68c5783"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00014-00018-4x.png",
+          "sha256": "504e5b50eb4c12638a1e78639ae4d62dc0c2af5a4fd02e9927a5ed89a32666d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00058-00090-4x.png",
+          "sha256": "f1d89b736883b44717f5664ef7879be1727c1b6a7fd47866ce0d64fddec2a4d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00514-00525-4x.png",
+          "sha256": "c83cb456b2f4fdebb83e5117de84fa0b1954d43f4c60f04f60d92b301f92d54b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00645-00689-4x.png",
+          "sha256": "23efa7715f1c3c8ebfc95944bbe8f85a0904df6a3b5958fe89cec95fae620f50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00538-00570-4x.png",
+          "sha256": "9beedb22f9d1060659f21ba78ccba398c15205d4f1e1be38d4f98d5347a8c3b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00177-00209-4x.png",
+          "sha256": "df3b16278bbe076671d94c65b48368958a55433cda3649286287c087e4906b7a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/source-image-00413.png",
+          "sha256": "69075c4a3b501538e2cb634d74a17bf17b328dad7dfa01bf054778eb4d1eb054"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00254-00259-4x.png",
+          "sha256": "23fdb8fd1505d337ff884321b2597d03851a10c83b88f534fd159f9c33d11788"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00021-00055-4x.png",
+          "sha256": "1f5b136cff439c7a6bf7a2df53aa621fee27ae71d646cf7e1526aea0dfe41dd9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00500-00511-4x.png",
+          "sha256": "8df6b2aec250371a304089d41946c7174d5808416dc891de460ce2ae9f0f2e4a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00425-00460-4x.png",
+          "sha256": "488b8e497dc251eb4837dcd127367ee59f8775318b9c509c729589635b59bacf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00531-00535-4x.png",
+          "sha256": "2ce8c3081e9a1047e379b7572d48fb43783599eb0839d1abfed49ddcc7bc8f7f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00135-00167-4x.png",
+          "sha256": "7ee23914157b0c7179a7d6239a35e68e27034b5ba084f4fee37ee4551cf78559"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00704-00713-4x.png",
+          "sha256": "f56e092e452b45fddbe5840764c55ffc13589b7bfc511ace7c936891a5027e21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00100-00132-4x.png",
+          "sha256": "e5858c09e01dc499694b01f7ab52a96f1e5f29237fc5c48699e74915e0dcf992"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00170-00174-4x.png",
+          "sha256": "35c4322fd3d6bbfb0023ef820c86aa9036522610be18ee78e6424687f18b03d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/source-image-00471.png",
+          "sha256": "1a075dcb48675c3d04fcc676f0431679d5a023fe847e38897722e216c41cbeac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00465-00497-4x.png",
+          "sha256": "551e4bc4094eb97b7ad8c9f697ca37f4fc83bce4f0a8dcc291147a653c29e47c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00610-00642-4x.png",
+          "sha256": "6ca07ec8637849f12f3aaf1dd32983e289d0e0978c0932b4a1aaf862616ade8a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/assets/interval-00387-00422-4x.png",
+          "sha256": "db86e78f8ef275796f952f92ce9211441bd8b93ea7f90ad9a36e45b9f8dbde3e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/artifact-authored.pptx",
+          "sha256": "ea26e7d08b48b5c5481b42727f67a1c582731a8eca40a0be1ca539e3d99be205"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/output-review-sam11-target-grid-821.json",
+          "sha256": "1118dd9b3bb80820d791f258a93ba766f4bc97b8bea54600a4ce8f7d107203ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/validation.json",
+          "sha256": "9108027a3ea91f04462b09e469cf33f55ef49f951a34bf47edca56e9ba648d72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/source-image-sampling-request.json",
+          "sha256": "0b1274b3cd83727137a38996d716bb43ce455939355f9a150f0361ef5f285933"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/delivery.json",
+          "sha256": "73f90c99ea72fb2f99e6fdd21edc5ad4b17fe26796515ca124b97e201ef3d994"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/preview-smooth-1x.png",
+          "sha256": "c7ae7a00960c5af3be1d3a7eba1ec632654371a844b3e5c3fe434b49e5c058a4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "18b3644bb37ba2e8eacbfa9807b1f8639c960761b5ccfe1483b6baf1053b6ccd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/font-audit.json",
+          "sha256": "12762c76cf5e3471df64284053af98d197850024732771110414d3deb64cfb68"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/object-map.json",
+          "sha256": "f3f9733134f043acb608c650e8888e24614c281a1db11d59fe7120cc8779a72a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/artifact-stroke-preview.json",
+          "sha256": "77ae8068e991cf29edcd96984f652228e30f42ecdc5ee2f90f246f7c75df7dda"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/comparison.png",
+          "sha256": "2eebf91e3fbc2b1a33c4b9738e268b46aa050aed0515db636d20b7c4386bdd44"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/manifest-validation.json",
+          "sha256": "f5177e4d9e9cefef51e70994c4011494c9b2b7c893ffec29d8fbc0f2bfbe592a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/reconstructed.svg",
+          "sha256": "20c0a8467f8ec15efe77e18c8ce058f8dbd317f06fa4f3288866cabc344d2ab0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/preview-2x.png",
+          "sha256": "a50d3f774414d14b983afe698f719cadec11d406e83f36184bf5cb5335310f5e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/asset-snapshot.json",
+          "sha256": "0c8bbad7bda019abaa672290793fdc40ca6d05f7ca11f6360bbe2d872891db6b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/output-review-sam11-target-grid-822.json",
+          "sha256": "d313bcaf4a2136b8ccaa0dacde1fdee642427b42be703c5e4cd1b1b5fb754957"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/preview-1x.png",
+          "sha256": "6c4e3991a4e6e040aad4e1df434fc6078170a7f0ac8fe0028ab83a8b03386393"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/delivery-candidate.json",
+          "sha256": "f2da4503a5e66979ea575437d105d0d0fd742c88bb026d66f5c583e866b2146b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/editability.json",
+          "sha256": "b0be4750224edca08b41127281a20e3d927b1eb0cae396d3a1c86857d34f3cc7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/artifact-image-preview.json",
+          "sha256": "daa0b398f111db4b52efa021c65bb64f1370dcd20400e59cea2ed0db05128912"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/resolved-scene.json",
+          "sha256": "2b931b63dc5ea32c5e3cb15bc850992a235de7f6b1bdf109ebc644e6113465f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/comparison-metrics.json",
+          "sha256": "8775003994e5ff116e234092fc1e8b03e84647f3198f5b58c766600e896d153f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/manifest-snapshot.json",
+          "sha256": "2b931b63dc5ea32c5e3cb15bc850992a235de7f6b1bdf109ebc644e6113465f3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/render-audit.json",
+          "sha256": "88b4f84ccf70b60a3bef8d4bb36276116290e6fec93d762b34f30bb04a8013f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/preview-4x.png",
+          "sha256": "f55041b8400142174571786cd191c2acdad970183128404d2a3d870703ed0bb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/build-config.json",
+          "sha256": "28fbb4ae87d9f69dfe9d7a092ef2925495e070d199cbc3b16af557eeeb7b74bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/text-fit.json",
+          "sha256": "3f4052e78f956b6001b497d607cc869a11104b021189d553bb7b2ddcd4b4822a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/grouped-overlay.pptx",
+          "sha256": "94371703720cfeb93aa155a3749211e15230655f305466445f4fcbde9fd872ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/candidate.pptx",
+          "sha256": "94371703720cfeb93aa155a3749211e15230655f305466445f4fcbde9fd872ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/text-manifest.json",
+          "sha256": "e3d4f08f0feac02a9e9b1baf3036f125db49d68e28a206cec417470e64614e37"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/comparison-scene.json",
+          "sha256": "0e8857ed02b096ca81a5837cf9eb319fbadda79bbc6d99fd34ab0a186272c683"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/italic.ttf",
+          "sha256": "4d455b6a0b77f58bafc132b12aaf66033c6fd1c17ad1de35e343bda35e13bc4f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/regular.ttf",
+          "sha256": "6cb4851988e7ea5ad15cfa22ad28c18f1ad19e6b022f225146f7082e4ec1966d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "2f22e52bb3ffa8473a37eca99cd35adfeed40c5191aa349a4ad5b7c6641d0143"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/bold.ttf",
+          "sha256": "1ac4ee7e4b1f8cfdb69dd219efe9e40c5c40eb00bd288e0c7c21a20bd9a9e544"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "94371703720cfeb93aa155a3749211e15230655f305466445f4fcbde9fd872ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-7/regular.otf",
+          "sha256": "a55384b38265875a7fac33c529fdbe9c21e3983710d2ac418d8577b124c5077a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-11/regular.otf",
+          "sha256": "82befd669d958c9b599f56b016013058a8e67209b98cbad0bbf0a31e7b393fb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-9/regular.otf",
+          "sha256": "889566d089f0d826eda5a26d1762750a9daa4d5e6496d49dd4f6d087a9c9c2f4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-10/regular.otf",
+          "sha256": "67734e9cb96fd7a81c043aaf3ac7f656e896b2d005c9dc6a6b2defe3b9fae74a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-4/italic.ttf",
+          "sha256": "2262989609f3de179e953f95eccc3fcb7021cd4a427a6beb1c65383c8fbab5e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-4/regular.ttf",
+          "sha256": "ea7123306f421354fb659d7310716214a03da0af6defea371e5d848fa71c9a3b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-4/boldItalic.ttf",
+          "sha256": "7e320ee72fe0c8e7556eb8436d80831ce2e0cd9f8320f6d8908af320f9518649"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-4/bold.ttf",
+          "sha256": "29e4b0760f98fe4b3cc351a0e5420712ff098b57ee80a8afa8b02652d3fb5147"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-12/bold.otf",
+          "sha256": "07cf0ec68dfda39f44755f2811ae34fcd7842ba5ffaa331ccea5f5a591f061d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-3/italic.ttf",
+          "sha256": "8cf27b40561ee07b695be42da5095bb6c15582ae217369423341e45d7aa53927"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-3/regular.ttf",
+          "sha256": "3fdf154dac14fae59f0112fa110bfbccf2864f856d7104a340f93f9fff9ddcf4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-3/boldItalic.ttf",
+          "sha256": "dcc784e0c041b8b657523a80c52abad570aa0eda98ea53711b84bc11063d3a71"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "8966f9eefcaf0bd2abf5ff45a516ba5690e4e4de5bbd012ec7c16f31344c4dd5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-6/regular.otf",
+          "sha256": "fc95ceee1e615e9b26f300447e6377ec7abbb565349cc150e3ebc23040dabb7d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "f7f63774de33293cd939955901764ae3bbf37f58b9c485490abc3dc520151185"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "cebf3548707660142307dd79df8e04045f2a95ec7efe4dda6a8cf97111d0a0bd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "d612d0fd7005d3c66c5c09cad623fbceb9d3c67b576e47a8a2c79500d7ab8b87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "125b5eae2e5226de3a2a51f86c3f41f5e92ba644b6a320f9d34bc47223dc67f2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "65e641dd2e85f74bb16af3702340de580884af557d7fdfa93a0b5751b531f693"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "75b94f3765b8bb9d9104906d6103d36e5afbb555afdfd026b5411c66c513c95e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "39717bf48d6c4011ec88a1c4225ee34cfafa670d4368d50789bd54c176f780c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "4534bfbd60866b21d53ae6728de4e0f1a0ed8ce283de959e0b5f85aef4d5876f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-5/bold.otf",
+          "sha256": "40db14eb6baa97a2be6957429a1f920dd65ef6900c8b9e82e3d4d6cffbb386ec"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/fonts/family-8/regular.otf",
+          "sha256": "46ab3b4fbd4a2746a2822218130e6914a353113dbb2c4bc35b170896ca418afa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/sources/original.png",
+          "sha256": "2472117506bdaec2026a079a91a083de94450199fb81af90728ac5a907405e67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/source-evidence/source.pdf",
+          "sha256": "664f5c4254db441569ecfe36a2a2fa91a1ecec5f4d31b3bcc5d451193efc2c0d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00573-00607-4x.png",
+          "sha256": "b9bce9eeb3145262eb3673ff2c828c076182790f42d421b5490b03e55eabeccc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00692-00701-4x.png",
+          "sha256": "63eba4f63004c51fccee6cbe6bf543ea548a5d5dc366065f6568ec374c2c366e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00339-00372-4x.png",
+          "sha256": "5874420a437e2364cbc584163e8462036ebf9230b1ed916c13c9c2e5341d7e2b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/source-image-00647.png",
+          "sha256": "dafe9ddb53e9e52971aa89106250fde7901a6ff34b01f96ff1dc9f8ecb3c71dd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00219-00251-4x.png",
+          "sha256": "65e874812056a0df622c3c6480452521f9f357eeeb578f5fcd03f455c3718b48"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00262-00266-4x.png",
+          "sha256": "a6c0d2610c5db16be031b247a39c1a61c1336611a7052e149a748ecb2e7d652b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00716-00718-4x.png",
+          "sha256": "9771c1b3652a634fc25371a30fc98a66d4424b0eff216741379af6eced52309a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00375-00384-4x.png",
+          "sha256": "b29557a8b95305695732c019f3990041adb82190e5014372f0ccd1dece253882"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00212-00216-4x.png",
+          "sha256": "f892482298e9bb80fb92681e310f1dac4e09d357940dcb0f08d566223dc4c2fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00269-00301-4x.png",
+          "sha256": "a5f46887f8e228d8156ca2e8cb4e89b4bce6ae5a6d23e6459fda08ed9412c913"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00093-00097-4x.png",
+          "sha256": "ede7609a5877cff2a8b6791169286b15e48b8d2f6af5da6f55b90869068d294d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00304-00336-4x.png",
+          "sha256": "581a254663d436f5029ec86e857407c9c185e701c23b7bd395ab2cb9f68c5783"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00014-00018-4x.png",
+          "sha256": "504e5b50eb4c12638a1e78639ae4d62dc0c2af5a4fd02e9927a5ed89a32666d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00058-00090-4x.png",
+          "sha256": "f1d89b736883b44717f5664ef7879be1727c1b6a7fd47866ce0d64fddec2a4d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00514-00525-4x.png",
+          "sha256": "c83cb456b2f4fdebb83e5117de84fa0b1954d43f4c60f04f60d92b301f92d54b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00645-00689-4x.png",
+          "sha256": "23efa7715f1c3c8ebfc95944bbe8f85a0904df6a3b5958fe89cec95fae620f50"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00538-00570-4x.png",
+          "sha256": "9beedb22f9d1060659f21ba78ccba398c15205d4f1e1be38d4f98d5347a8c3b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00177-00209-4x.png",
+          "sha256": "df3b16278bbe076671d94c65b48368958a55433cda3649286287c087e4906b7a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/source-image-00413.png",
+          "sha256": "69075c4a3b501538e2cb634d74a17bf17b328dad7dfa01bf054778eb4d1eb054"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00254-00259-4x.png",
+          "sha256": "23fdb8fd1505d337ff884321b2597d03851a10c83b88f534fd159f9c33d11788"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00021-00055-4x.png",
+          "sha256": "1f5b136cff439c7a6bf7a2df53aa621fee27ae71d646cf7e1526aea0dfe41dd9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00500-00511-4x.png",
+          "sha256": "8df6b2aec250371a304089d41946c7174d5808416dc891de460ce2ae9f0f2e4a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00425-00460-4x.png",
+          "sha256": "488b8e497dc251eb4837dcd127367ee59f8775318b9c509c729589635b59bacf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00531-00535-4x.png",
+          "sha256": "2ce8c3081e9a1047e379b7572d48fb43783599eb0839d1abfed49ddcc7bc8f7f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00135-00167-4x.png",
+          "sha256": "7ee23914157b0c7179a7d6239a35e68e27034b5ba084f4fee37ee4551cf78559"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00704-00713-4x.png",
+          "sha256": "f56e092e452b45fddbe5840764c55ffc13589b7bfc511ace7c936891a5027e21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00100-00132-4x.png",
+          "sha256": "e5858c09e01dc499694b01f7ab52a96f1e5f29237fc5c48699e74915e0dcf992"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00170-00174-4x.png",
+          "sha256": "35c4322fd3d6bbfb0023ef820c86aa9036522610be18ee78e6424687f18b03d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/source-image-00471.png",
+          "sha256": "1a075dcb48675c3d04fcc676f0431679d5a023fe847e38897722e216c41cbeac"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00465-00497-4x.png",
+          "sha256": "551e4bc4094eb97b7ad8c9f697ca37f4fc83bce4f0a8dcc291147a653c29e47c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00610-00642-4x.png",
+          "sha256": "6ca07ec8637849f12f3aaf1dd32983e289d0e0978c0932b4a1aaf862616ade8a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/build/run-001/assets/assets/interval-00387-00422-4x.png",
+          "sha256": "db86e78f8ef275796f952f92ce9211441bd8b93ea7f90ad9a36e45b9f8dbde3e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/shade-dual-order-binding/resource-chain.json",
+          "sha256": "5aecc0e5f0a52b46a76489c151cde347d1ac4dc5e8ec8a0b5a33beaa6254a824"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/shade-dual-order-binding/native-evidence.json",
+          "sha256": "74eb033a3aa8a8373715be081a5fd87a17cd050c419c1236f73821f0b412d450"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/shade-dual-order-binding/svg-occurrence-646.json",
+          "sha256": "a1002034a3488f3b0d367880031b55b8cf1ffae670fde8c44c7f0b8864e16aa7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/shade-dual-order-binding/clip-identity-comparison-normalized.json",
+          "sha256": "39d03b357f674c43c4729e7b60ea74257a3d8cd093a05065c768eff55273e5a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-sam11-target-image-grid-001/jobs/ccf-2025-01-f11/source-evidence/shade-dual-order-binding/svg-source-binding.json",
+          "sha256": "509238ff88adaf7e300ab8385b8495d08e803b3d6d1829813df8602cdada7ead"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-2x.png",
+          "sha256": "b42731d6b529ee01b0e48e9ff3ac2335605316f78780159d18fbdd6ea58c09c5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-2x.png",
+          "sha256": "a34ca8ed8f1dca91277600f31808ebf85ac18f019d17e2f75c146fbdbc6f9568"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-2x.json",
+          "sha256": "bda3328a1fb55d77114d2098193e78f3e042dc4d266a8cd17fa2a59375216281"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-2x.json",
+          "sha256": "1d13bc772206f7115a10ce44dfa54a9c15703f0ef840a0e2da20857adb2c27e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-4x.json",
+          "sha256": "38147e5d9edd941c6ab199a81c0631bb923035628184cb669abaa841127053f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-4x.png",
+          "sha256": "676bd82fe94affee8c8b968b93c295e1b9e88b218684fcbbe92fb523dc8b55eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-2x.json",
+          "sha256": "dea544f2a9206e3a85598be5cc9fdf584d2bc094656e44316148d2a971c4abe1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-2x.png",
+          "sha256": "77f8f0f13e4db05d9f1ef1b0fac9fff9ac6046ae0dbbefd88b6f08dcbbb28dfa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-4x.png",
+          "sha256": "f72d58efa1dec7a96a92deda2467b87aff885cd02b661cf709a240dcb784cc7f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-2x.png",
+          "sha256": "18373ed81baca468e9dd198f52fa137b36c46570aca2f7cc95f49fb4c6839d63"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-2x.json",
+          "sha256": "916d1c84b250b82dd0f50e5c3d0df02fb58282d6d4fef4090774688e8c279659"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-4x.json",
+          "sha256": "85b60cc8c545da0d2a9e616029e62e60513a388c8ee671eec01965b18b9e6506"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-1x.json",
+          "sha256": "0f306e14bae8cf7bcb7af880e34caa349b98a35f0851970ec6b4a8977e5c9875"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-2x.json",
+          "sha256": "629628f1ba40b6db5575795836d490c08843ca50423365eaf2a66cd30d3ac7fd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-4x.json",
+          "sha256": "d4ff35b7675eeb7926cfa9ac4585ea5346378cc4bc019e0e9c67778ff8497012"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-4x.json",
+          "sha256": "e5fe15e1380fc7268b3a01a2949c79facecdfb0eaba516cd5cd2fe6c299c4fa9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-4x.json",
+          "sha256": "4b04dd08259c56f5b1e296c0427cd451b31f70a0a9ba84c781c2b9031df7a41c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-1x.png",
+          "sha256": "873634ad4ac7aa26a941530349f2e0d0d2b26fde42d7fe6717326261fa38ca44"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-4x.png",
+          "sha256": "19ad6a405d1a6b681d2e07de1f827748ca3dc0d8cd29a05bd8de0e74c252d24a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-1x.json",
+          "sha256": "487b630479303a3f790c34315248c3ca13aa2adccd267ad4b02e695f5eef60a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-1x.png",
+          "sha256": "eb184a8e09ebebd70de64470b6771c6355b535a1d5cca813fc57a032108ad0de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-4x.json",
+          "sha256": "c2a0b7aa3f74e930ca1d77ea12a4990de15db43df5479b226dfe0c744972f111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-1x.json",
+          "sha256": "83be25ac018bc23f0b4e59d3c979e00ccf966ab2cb696d0d058fc503ea004df2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-4x.png",
+          "sha256": "904c4256f61e5169804d1a95701f96a7d055b0b9be1cd8fca9aaab71c11c4293"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-2x.json",
+          "sha256": "c44bfbbdca4a234891dc7f58b81aec2c514aed9a451a8de0ea3ab89d4f6e3047"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-1x.png",
+          "sha256": "ff97a1590d8fcca810785f9539aafbf6a7c3a7afb5429d67bb6d58d0e722a73b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-2x.png",
+          "sha256": "064a03827b99f7c39f017ee8c994a54e6be3f171cb3adc99d4edaf3d6c13f968"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-1x.json",
+          "sha256": "2af84da1b64a90596d36132adf40308cfca885ba96289988e159ce089a5210a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-2x.png",
+          "sha256": "caf37ae49890ebb38756a65744fe0664b0519903faf6c9307aa0975d98d1d28b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-2x.json",
+          "sha256": "b219e979b3effd54b28adf8c62088f67e817e42baa0b4528f8b92ce5d2e7ec1f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-1x.png",
+          "sha256": "e76774b98aa9c00ca7ae252c4db91a5841f8c7bc9f06c109a0bfe271feeca9c5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-1x.json",
+          "sha256": "ad128d5b919096c14f1bc822ac0ecd1f50de9de0763af752130c2679f1485097"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-2x.png",
+          "sha256": "8e7e780f2566fba07a394ec256bebcb438609a967458fe21eee176f860b6575c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-2x.json",
+          "sha256": "2b36034e9cc1f75dff1cc6fdc6170505f70b866fbe4a6c8583ebba258d57101a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-4x.json",
+          "sha256": "41cfafeba5c7ccd0684070a1763683faa941a7cc0134ff656c93f652dd7da09c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-4x.json",
+          "sha256": "843515d3da68acfe0ee0c63c1abe28713a6ea5c1a15d7539e7e3611bd5c1a26a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/candidate-1x.png",
+          "sha256": "6c4e3991a4e6e040aad4e1df434fc6078170a7f0ac8fe0028ab83a8b03386393"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/strokes.json",
+          "sha256": "6ec0b2ffbc8c36c13943467576c56c94bc2d75c7d3026589bfbcd3952f380f9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-4x.json",
+          "sha256": "3c401048ee88b4498fff9f0e8473e3c6a064a8cce0212ff68fb3095cd4de144f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-2x.png",
+          "sha256": "cc819ab44302c514c9fd3d7fefb36f84856f6d5c3a1478499233a1dde92c90a2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/receipts.json",
+          "sha256": "1c83bd566ec1ac6139ffb171e7472cac3d43fb37c69c433de47560871eef8a79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-4x.json",
+          "sha256": "bf54b610777656483b9e6ff7dacc83ba28f6551a45e329edcf0fb6479b80d0c0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-1x.png",
+          "sha256": "50cac36c2ec9936829adeb84096677d119b05c740a606bc882e15e6561d76027"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-1x.json",
+          "sha256": "5baeefe082582effe039255c85f923d1f27da6e48317db841a103a9ea04423de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-1x.json",
+          "sha256": "102ae0a30fce1e4da9b916d7a5360962928c6b42c92bbcf8a106b35ffadf6481"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-1x.png",
+          "sha256": "caf746ced72f2a3cbab6293e432346bb80144d6e4582c120bc97529b36eb1e01"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-1x.json",
+          "sha256": "99cb1897c926f12e78a959ffe40b65cf496edbd71e990b9da0dd7bcad06f4359"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-4x.png",
+          "sha256": "dafe9ddb53e9e52971aa89106250fde7901a6ff34b01f96ff1dc9f8ecb3c71dd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-1x.png",
+          "sha256": "fcb6fdcf24fe005677165567c40751168409baf2115ad8e6d624a4396fca8759"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-1x.json",
+          "sha256": "ecc31f4c0b834b76e61475a959e1ed8adb8c67a2f5477af5da7b12de7a696630"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-4x.png",
+          "sha256": "71dd02ce5cc5d661afd956b64875e5de05c017674f68224658449e601a99a40e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-1x.json",
+          "sha256": "7d146c5b755e7f05395b4c5846ccf685fb914c14feb0b330b2cd2139e96b1195"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-4x.json",
+          "sha256": "82134226d633e09f955b5aba8f9d02c6ce6859c5f997016ada3004bad66895ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-4x.png",
+          "sha256": "1d8ff5775b91464dc34c659ddce480604737311dc11646975838446b357632bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-1x.png",
+          "sha256": "858ed6bc47dbf8e9ad9a8261bb2d6fa85f3e8e444ebfdcb2d2c53f957977d58d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-1x.png",
+          "sha256": "bc4aa8fa3a3859133be4b40d35c1557dd1f982dca97b634ce2ea1cc0f089775d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-1x.json",
+          "sha256": "d8292b070bc50d671779d3d6b5f17ca0a483eafb681706b2b2f8b6997b129f4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-2x.png",
+          "sha256": "98a39387af3f0e8847d23dd9594551cae656652ed2eed57803ed739c3d025978"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-1x.json",
+          "sha256": "1a1098727c2134f6f95357653fa99163bb546d8ff03a51d471850d211026939f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-4x.png",
+          "sha256": "ede7609a5877cff2a8b6791169286b15e48b8d2f6af5da6f55b90869068d294d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-2x.json",
+          "sha256": "05444a36550a8939169469b177adb5ab41cd7da40b10fbe372308bc8aa87c10d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-4x.png",
+          "sha256": "537bf5f5ce1fdaa81d15178e2a21a485efb6c465610384a65cd6f68cce0cbf95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-4x.png",
+          "sha256": "12b4e612566c0499cce980d1ab63c29ad4aac65a32b9184229467beda5ff6c25"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-4x.json",
+          "sha256": "0b47b99b63c95baa8bb951842c204b9832a046a583ed0dc2a25dcb6bdafd675f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-4x.png",
+          "sha256": "35c4322fd3d6bbfb0023ef820c86aa9036522610be18ee78e6424687f18b03d8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-2x.json",
+          "sha256": "7c16ffedf0850c10a46766e464390cebaf5d2a068556f9f79628476af4235fcb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-1x.png",
+          "sha256": "7b186b60bb5c78a039dc78eb0f0bf75d8fac9b23490f8213e135502f1dc1a178"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-1x.png",
+          "sha256": "6f5c67b1c34596c2ad13a383a0843b7780f34c619ea5e1ca63f9b1a8cb7247e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/candidate-4x.png",
+          "sha256": "f55041b8400142174571786cd191c2acdad970183128404d2a3d870703ed0bb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-2x.png",
+          "sha256": "b15d0d48ac2fd705d86f08a971956047995fd4d88559084e4a2fcd3d3b30a780"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-2x.png",
+          "sha256": "9e3e9efacda16fcc89379ce74d1827ed840b09133f690e5020ed56dd3783502c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-1x.png",
+          "sha256": "68b87f9367290bdce9f43883b6d722b5e83204febd814cfb1cea8d2c883da3a4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-1x.png",
+          "sha256": "165835233558365f8282976104069452aff901249f0efb7291a13cd6ef594929"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-1x.json",
+          "sha256": "7e8d89079bad3cebf1d1b51db0bb4328109175029f7af577eaed61d79af80aeb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-1x.png",
+          "sha256": "fdfe378d0305d4a26db3ae557a16a6c50a86899add24453df40babfcc203f90d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-4x.png",
+          "sha256": "6f7422fb3e0eccb417146bac0ccbcf3c745b717576a73ae4e3e6fee7b7865433"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-4x.png",
+          "sha256": "f3b2dc956369548d57ddeda2fff843771e7c74b4ef03ff345ed7759782cd4a41"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-2x.png",
+          "sha256": "57237d9dada3b5506544a1318b4944e087c1a85f612511970a7adfd079dba56f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-2x.png",
+          "sha256": "46e35dee7deeac770bfefe7611a343081c1cedc40ba88649f9d3369c9ced5ee0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-2x.png",
+          "sha256": "9751458156e07f02057c971a9e2ac37698cf8f16550cdc3eefa96b15b255dec2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-2x.json",
+          "sha256": "3d2606e1d8e16b7d801a9198e3ea40216a79c2e4b499f0955d0e3d0d5c3c520a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-4x.png",
+          "sha256": "c91b75db8254032134e7d41e41a0c288a373a2c63cbc1fa6e9612353ff1ad629"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-2x.png",
+          "sha256": "723f52d3ed012e69aa7a5dc6459c38e3cb39cc7f586754f14fba2f255bbb15fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-4x.json",
+          "sha256": "9fb75bbb61a34ba7bf402da1dd0e2caf54a28c903847f892c0cc2fc7eeb6624b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-4x.png",
+          "sha256": "a6c0d2610c5db16be031b247a39c1a61c1336611a7052e149a748ecb2e7d652b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-2x.png",
+          "sha256": "7798a08ad3b2507052bc165fbd6277a56a995c82efd2e02530defac34f3b17f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-2x.png",
+          "sha256": "3e198c00145810b13fd84d553a0fcab085c1a830a5ba3508598e4475ec736234"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-2x.json",
+          "sha256": "ce99adb9c3b2d359bbd04d54692412d5a061d9c9401c46bcb851995b5db26614"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-1x.png",
+          "sha256": "6917443c7f23bac9adefbf2f7ab69ba6096d2bab9887dbb5e2e8bd8b17e8797d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-2x.json",
+          "sha256": "4654fe8358d1a65d33fb0c187872c76d7381341d2181ff6b8de93abf3cd48675"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-2x.json",
+          "sha256": "ca40eba42f29ffbebfc7429221c84e777fe0dcac4c147d7d89fda695bc96986b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-1x.json",
+          "sha256": "1578a62d26f5a1aec8bbd3ac2fef7d3299bcef2c04c93b117fe7aa92a4995142"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-1x.json",
+          "sha256": "7444af661237bbf601af35832742a0f7de7371c5d43f88e3468817d84753a941"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-4x.json",
+          "sha256": "8c78dd24b6cf8fb56e4ffc235a10a72a87cfbe8c06d006b4ea42fb0f9f94ab46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-2x.json",
+          "sha256": "a4bff8e80fe22b649a6c1acddcb02b1ccd0c91d52c905df1dd961db597d40b02"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-2x.png",
+          "sha256": "7f6c2e3d673426d27cd7eb00d4d8c235653d1358be43f5a9e0d80418bcc8e678"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-4x.png",
+          "sha256": "dbd76e6ea9b17f2009c2c9d4d4ef0b348b15972bd9ed7e39fb85e4ee0ed5120b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-2x.json",
+          "sha256": "2eafea8f179bb6af2a54f05e4ce304582ded66434b45ae397ed6324a9850aa50"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-4x.png",
+          "sha256": "7ee23914157b0c7179a7d6239a35e68e27034b5ba084f4fee37ee4551cf78559"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-4x.png",
+          "sha256": "1f5b136cff439c7a6bf7a2df53aa621fee27ae71d646cf7e1526aea0dfe41dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-1x.png",
+          "sha256": "2b1cd64006b9a05543e78380a9b497ed93c1bd16275c0a2812649526b6d24431"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-2x.json",
+          "sha256": "39d5a08edf35ae0a8e6f7a130ea272ca3e3502dc5d7dc4d6366b0d58bd5a1d48"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-1x.png",
+          "sha256": "3ea4f1e9a1dedbe26319c960ab8fab269c3935c406b0dc1ede239f90dabff841"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-4x.png",
+          "sha256": "902f950091eefa87980c4851c5ce4cda2d26f620e22baafdb64e4be690cfa47d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-4x.png",
+          "sha256": "581a254663d436f5029ec86e857407c9c185e701c23b7bd395ab2cb9f68c5783"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-1x.json",
+          "sha256": "f9bb2f416963826d719269667582ea12f31be9f51c9a5eb47b9a22a492e5feac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-4x.png",
+          "sha256": "7ba7a8bc3fe620eb1160ce14763f5f76dfa6392d89c6f690963db0102c8575c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-1x.json",
+          "sha256": "77ce2897aca85683de5f64ed881b464df76c6bedbc93aa26261300c6d1430756"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-4x.png",
+          "sha256": "61714b5f9eab291361a34ab196a8a9df7ae70e925c6a0ebb53f32a039627405b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-2x.json",
+          "sha256": "7205ce1b3c6c81a323eadd3b80058e5d65021168072bac22708905e51d648507"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-4x.json",
+          "sha256": "d4c1a4e1ddf1f8f99052278ca1f4a664322d97b3f84476d290e74526061ffe76"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-4x.json",
+          "sha256": "9e84674296e2fd0738995688885d8aceafb40e5970b78de9e3e6ce703cb6e184"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-2x.png",
+          "sha256": "bd9f0a85daf4143189d20df67cec7ffbd6dbc500822815170c11f4067c38b0dc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-4x.json",
+          "sha256": "210c8e659272ab4ab3678dc77973113edb45003290bc1c63ef32b4db5d6a4a24"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-2x.json",
+          "sha256": "161a5542fbadb862cba7744b6303e6e372aecb29f27a86343261ee695bb541c8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-1x.png",
+          "sha256": "af13ee72d4a68b0d91392613f07ccd4934dd3cab84e636c2d55502afba5ac915"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-2x.png",
+          "sha256": "65cc38a8bbce1c77bc7a9a576f527d338eb2c4662367377d9baa28dd4cb414c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-4x.json",
+          "sha256": "62d42582eaa6c7461d09289dcb415d8f4efb62bde4848995542c6ce0e23620c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-4x.json",
+          "sha256": "192eb518381d3c86b5205f1cc7d02a54c9ae50e74b8e2fe05d7cc7b7398f5443"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-1x.png",
+          "sha256": "276363f9b5ef6757a784029f89eb5b7f66252566c484a5b0bc2e1c586032d731"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-2x.json",
+          "sha256": "5ea2d652211904348441be1e0b9b4b88ce559e87fdd60475414b77f811a6dc41"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-4x.json",
+          "sha256": "699f3e8f60481bbeb16c4ed7b6542be1f8e2cde37d7a764ae6fd04f0bcd5407a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-1x.png",
+          "sha256": "7e3ad1e87602ac4f6b0e242b113cb3f7a4cc6c722c5f4c553a00257e6ff4e7b9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-4x.png",
+          "sha256": "aa69175f5b27b43a3bab148e81df5a6356aa6f2b0ef32c6b2d433cfce22ca881"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-1x.png",
+          "sha256": "de7ed2c3268af53e0fefe38b5e377bfa62634ac64ed83510add5495e47049a60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-2x.json",
+          "sha256": "f525cb8a3a313d0e2fc526b72b419cf018922b36ecb0815ac2face50292e3d53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-1x.json",
+          "sha256": "fecef2462dbd78918d15f84b26f1c2eab1ec43caa13b7c85f0e8d086d7424ab0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-2x.png",
+          "sha256": "1bf257b9f5b9bc47a8be7392c8e64f6cdb3642f3686a7ef34dd43c0b57cb2c7c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-2x.json",
+          "sha256": "9b9561d32e09450a7fddb754d040980b1bd431f2c1bc45850d637e468d526e01"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00538-00570-2x.png",
+          "sha256": "8acff78f0f4fe56cbc15042a41d9259fe5b6f933b8378a814d3ece9209741411"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-2x.png",
+          "sha256": "67091d10639aea5bd0b596851c2ac8ecbe3590edafcd56a2b8b7343637235975"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-2x.json",
+          "sha256": "ce1c279a75fc5cd099849788935ebc0f70865cf860feeab575167d356e9113f2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00716-00718-1x.png",
+          "sha256": "9f6910a4b9c9dcc88fc121e9eb85a530ba2b6f26ed92f9ffecb72ef9f9855404"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-1x.json",
+          "sha256": "b9d0b120cae3984f4744f8f7a49f518d544748aee4686dfdd987c05cc0b66723"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-2x.json",
+          "sha256": "341dfd47124d2103c478d3b20127792f5602cbb8bc884e798ee28280fb7fafdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-2x.json",
+          "sha256": "8deaada22754b1efbf4212dfcdb3f6730482f81704966bd924718b312e9c5dd2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-2x.png",
+          "sha256": "1fa92e3d8cbee7f012d6d665e85986dca0ec477441349e3929e02731112f1425"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-4x.png",
+          "sha256": "a850874ea2343a51b6eca5878682bf3780aa6b7091c8455a8b8995a11ff0875f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-4x.png",
+          "sha256": "25f2e8b32c959e1d32b30aeae21e63a9a14e00b2339fc331ed9ff160b81fef7d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-1x.png",
+          "sha256": "4dc94672bf47b48cafb92027d966be8aa4c7dff2ada1d31a267892873aadc5df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-2x.json",
+          "sha256": "59fa92bfda7638de760905d95359f02830edac415f2a1e306b01eadf89b17cee"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00500-00511-1x.json",
+          "sha256": "07f49607a3cfac756e8d61ea05c3679a118598b47be410d6c83ebd2d1f8baa15"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00135-00167-1x.json",
+          "sha256": "247681c40c8542e51b00b3be5a2ac5a20140eca67ac9c82d2499e1ee800bf492"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-4x.png",
+          "sha256": "2ce8c3081e9a1047e379b7572d48fb43783599eb0839d1abfed49ddcc7bc8f7f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-4x.png",
+          "sha256": "f892482298e9bb80fb92681e310f1dac4e09d357940dcb0f08d566223dc4c2fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-2x.json",
+          "sha256": "21b4e9d4f38ef45ca4fb1372e8b1aa43e4e92e71d8d0c26464d201f71cc9777f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-1x.png",
+          "sha256": "954360fafc63a7353ce7848e0b5b5257027d85228f44ee03b260274892c3ed81"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00014-00018-2x.json",
+          "sha256": "b42370738af96e66edb52b2c081a28c4ff84c8e2bba1d955ce1044743160c0d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-4x.json",
+          "sha256": "af588a284a6719f20c20b7feb391a5cf28415c1247cea8a085250aea171564f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00304-00336-4x.json",
+          "sha256": "1ca9adf04eb733ac0072a173b5d546e7dca3dc15f35d01379ba761b5a6ca04ba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-4x.png",
+          "sha256": "2cd229a4d13034d1542c666deadd1a837fdecd3a0a2421f9737acf1ce84ab52d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00093-00097-2x.png",
+          "sha256": "b200a53ff4d2a9388007dd2ba0d1d9d415c825f71b7ebb4e12f60bbecf52109b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/candidate-2x.png",
+          "sha256": "a50d3f774414d14b983afe698f719cadec11d406e83f36184bf5cb5335310f5e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-1x.png",
+          "sha256": "d20190c6bdb37ae8279e841b08a53011f1340b51bbeb8109873e18ec68c255eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-1x.json",
+          "sha256": "14096d606bb24b4170d46733ae13ffa8010f73868e1e66272721ae818f31786e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-4x.json",
+          "sha256": "54c0dec4e4f6fd66ed03122c8df4a40f4c6153aaaf0934cd1c03d90247bafdec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-1x.png",
+          "sha256": "10c4ac4405045ba4003f73fc78e55d66efca3b1c1ec1b84acab9b177d7d74034"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00514-00525-2x.json",
+          "sha256": "1f38e8c9db078739a5731ba704fb01eda21f721650dd4c77a93a1f4665952aef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-4x.png",
+          "sha256": "a3a8d1a91a93e5ed250733ec82bd521f37cc05c055c121dd3b0049f7358f408c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/render-request.json",
+          "sha256": "687552a389e687d22155c18346680a797451eae50a79ef1db4c442099c2662aa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-4x.json",
+          "sha256": "829184e91baf6bb25726ffb9c60de66e9929c6b12daa674345f6f3dfd4e54653"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/private-image-definition.json",
+          "sha256": "3a47badf1f7c594779c7e6d07934e483addaf3aac95893d772229a48459735e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-1x.json",
+          "sha256": "c67a21318bda61f6f7d6c3b2fb12f90063695a67a803d529e25bdfb2be4d7707"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00387-00422-1x.png",
+          "sha256": "a864c8a40d06cab25762081ae23695661aa26ef3dbe7a8c31e7abd3188ec9903"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-1x.png",
+          "sha256": "3909a2033459433c5287f1f495712613ffb32d16062a0ac6ecffe67774b566e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-2x.json",
+          "sha256": "2e3297f349eccfe2732372bf8232fea48cee915d6d84d5bdf1f4f19175bd3510"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00573-00607-1x.png",
+          "sha256": "f2f0de0b7c85fc1bb17397e82043e831eca2a45ccf8b292d5020138f7e3bf113"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00645-00689-2x.png",
+          "sha256": "b4ab7ce2cddb8bb3ad5787210e2441c44d55abd67c0b09a27835587098fa998f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00269-00301-1x.json",
+          "sha256": "116534500da5e24e27241ddcee1baa9b7ac99e456d70d63841f6d2e834fb5cfe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-4x.png",
+          "sha256": "1a075dcb48675c3d04fcc676f0431679d5a023fe847e38897722e216c41cbeac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00100-00132-4x.png",
+          "sha256": "e5858c09e01dc499694b01f7ab52a96f1e5f29237fc5c48699e74915e0dcf992"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00375-00384-4x.json",
+          "sha256": "aa66fd81bd94eb08a4cf6074a95efe773886f7489047fb16806475eff26a7cdb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-2x.png",
+          "sha256": "96fc884ebe6b665b28622b04e6d5c5f998adcc9f71681a47bc45e3e78dc7b531"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-1x.json",
+          "sha256": "3a348807940def448166dc818fba7317e727a507683515e4b173901bfe9d4575"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00531-00535-2x.png",
+          "sha256": "fa4a479c68cf84acb5dc88b13e192b67fa8da4ebb855e7e1dfa719089ad90361"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00212-00216-2x.png",
+          "sha256": "067b5a41629d0e843ca0943aee9b90bef7d71831d386df38c8070b033e89f6fd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00339-00372-4x.json",
+          "sha256": "564582329c6fb24cab0cff984b9ef7dadf6b000c023bf81b9dc3e1a5fc65624e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-1x.json",
+          "sha256": "86e2020ab958a558cc73112e8e74ee9e2535127539dd2513bca7b87a45c19624"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00058-00090-4x.json",
+          "sha256": "2ba4ed29602c31c73ce5cfc50d2eb3da8a26fcd36eacc0cfc58fa51e969fc0b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00021-00055-1x.json",
+          "sha256": "7b5c9fc8f800602c462e62d5791a695124a8571a195b55d978cf8c2007160870"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-4x.png",
+          "sha256": "77059c5ef1a110882dfb6eac50a3861e6b20683460df92f69f35662bb8afd98e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-4x.json",
+          "sha256": "317b98810489ed7d359916624c708205e040bb600ebb2aa06d02122cba8b7b3c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00177-00209-2x.json",
+          "sha256": "e8d86bddda81f2fd6e0cadafef379dfec1078a912e1bcb3e5e4cb7308a53ba00"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-1x.json",
+          "sha256": "7d936e0a873701e456652c94923f0a5275a7d3a6ea0a11a3d1fe9b78da94cfaf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00219-00251-1x.json",
+          "sha256": "592b611c8661e792a30be0c0c33a5e5dc75c570a79025d7c36781013b8fb0fe3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00425-00460-4x.json",
+          "sha256": "af5d56c182ef33a3898533aadeb243bc47abfb19c2d5b1242fdc8012cceaaf66"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00610-00642-4x.json",
+          "sha256": "69dd22c6979fc9bfc8e7952c59e16dc88a828e8fc81312ca822472b8043e17f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-495-0-0-2x.png",
+          "sha256": "448ed71d717f1d299902fe8030100bac962935f85b2adcc3927dfbae898f94e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-4x.json",
+          "sha256": "7e4ec4f53c8687abae14b04cf0aa7c382de30ad2b534386fd838c11265e9be7b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-2x.png",
+          "sha256": "907b4f46ba4d7cf7d702a8b4fc6b9efe7327e315283912dd0c8674277bbc485c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00704-00713-1x.json",
+          "sha256": "d644f72e7bfb2b54f6b3ab6ac015ea4f270ac7f52333cb03cea2ab01b0cdc560"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00170-00174-1x.json",
+          "sha256": "e469132560f16fa336c66275f8916cf04a3973f6ef9bbbd56ac98cbe77dd727f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-1x.png",
+          "sha256": "2e1a7f4a4437ff54bd614cdc89eb0e974cf643ebe422d5a24edfc285123af58f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00254-00259-1x.png",
+          "sha256": "67e1e75ba1360c4c29ce8e5239b86bc9424b796c69b32458b0267afa48084255"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00692-00701-1x.png",
+          "sha256": "406b8c3e4cf0e4af250a6b31d1e959ce9ca9063edf0c2328d3c2461250adfbc9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00465-00497-2x.json",
+          "sha256": "de0fa3af736bc9ce091b1741de7e6d1bc1d023ea73f62915dce165895d417cdc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-433-0-0-4x.json",
+          "sha256": "117fa0dff0c273270e9c9c5de91b4c151259c5328188975696d986806d781675"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/svg-paint-0-44-0-680-0-0-2x.png",
+          "sha256": "67c9b871dc5c2a05195ca08cb011b7a126c7d1b866e47b2370198dbeb36a77b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-interval-preview-794/source-contiguous-images-00262-00266-1x.json",
+          "sha256": "8cd188d2348c39701a2a3d540d96bf8260270e4d4cea1497bd0a01a82ee9ae7a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/4x-0.png",
+          "sha256": "c3469df498f3007b45d44481f4fe95cb002d8783fb3053c4b910c1c84e771782"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/source-1x.png",
+          "sha256": "df6e5cc5408f9a870e7b84782a0e0bb9dd4ee37541347a14a0c24a829f0ff4da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/4x-1.png",
+          "sha256": "6101f15cd3c7f7e0b60ed079223514ec1db9af01b111e8380dce03482fe6a637"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/1x-0.png",
+          "sha256": "72d6de6429c08c6bce87683c037cc486fbd6cc247d50afffe81902bc5ce5ba54"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/4x-2.png",
+          "sha256": "a5b61948e984158faa55cd74b42093109d717b2399313b0a04b1c67e433d6ab2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/source-2x.png",
+          "sha256": "8ef377179fcdf34d15c0f831c496cc99f8f2cb94c0c5c85b7a5e37991e6bdb97"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-image-grid-gallery-796/source-4x.png",
+          "sha256": "64d166e88a65b766f8704b194e0fd831481ea4ae0382adfb9ee48fb9b84ae02e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-source-public-probe-799/definition.json",
+          "sha256": "bcd24a991d46050aca90176ca13932d0e2e57b53a96cebef2ff35359bb15ea0f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-source-public-probe-799/immutable-assets/source-evidence/source.pdf",
+          "sha256": "664f5c4254db441569ecfe36a2a2fa91a1ecec5f4d31b3bcc5d451193efc2c0d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-picture-order-changed.pptx",
+          "sha256": "9af1bb93c0a69b357f36182cf0d2c3a81f7aac88c2fb12a4d022b7dfd68300ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-media-color-changed.pptx",
+          "sha256": "607b014868d2c7b04ce520d29e8602f3324e750b9d3db3a4e8f117c23c16bd05"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-media-alpha-changed.pptx",
+          "sha256": "69fe35757a8248fc2843abaa46298a6c939c334ab7fd68c7598b8fa7b3fa2183"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-origin-changed.pptx",
+          "sha256": "36be75cdc55f2a216d1d2cd8a117178858611d3325f62bd3160775b307d319b7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-effect-added.pptx",
+          "sha256": "4750e4425fb8d531550660e8cc3c81b7272d95e190e2a68b38bccb16379886d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/actual-PPT-mutants/native-crop-changed.pptx",
+          "sha256": "a9da6577ebbc51f4bf2d71b8c01bcabc5268e6d2db19a588b2cdf051ed3a4fb3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/full-postprocess-replay/reconstruction.pptx",
+          "sha256": "94371703720cfeb93aa155a3749211e15230655f305466445f4fcbde9fd872ba"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-grid-readback-815/full-postprocess-replay/editability.json",
+          "sha256": "b0be4750224edca08b41127281a20e3d927b1eb0cae396d3a1c86857d34f3cc7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-1x.png",
+          "sha256": "4b86a48b5b31a9c67e9a961cd1d8e100233b9688f6efad9717ac7e878ad660c0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/source-1x.png",
+          "sha256": "2472117506bdaec2026a079a91a083de94450199fb81af90728ac5a907405e67"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-476-228.png",
+          "sha256": "ebef207ed0d07f8bf05e840e709ebc42628cc804c785ea5463e9364a68352b91"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-714-228.png",
+          "sha256": "f6a5dfbd983c0147a59aa922257ef686790425ab8844edff1b9b7fd26bc38adb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-714-0.png",
+          "sha256": "e9d147cf88a54b8d4d48c942f54020008b30521f775128fe4d32b1a33c59c2c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-238-0.png",
+          "sha256": "f215f09d677277074a7904bff4dccee6bd3e4638634153dd66016f5b3e7806f6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-2x-477-0.png",
+          "sha256": "28fd66bc7e56427ed39a41b5a19e9adb09c7412ccee1e1ac48c4d67058181d29"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-476-456.png",
+          "sha256": "79a18f188ae46f9b3c3fdf8b345273cd414cba026d40499e901187d569c391cc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-0-0.png",
+          "sha256": "f620a9547c12a09eea363ae95b189e69c9b1d3982c9c6e8e2c6279a0bf862df9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-2x-0-0.png",
+          "sha256": "22d296815e680c595e9e78533a523ce38b6b78a8c4c53a7e00e5e8f5b1d68f30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/source-2x.png",
+          "sha256": "9c4cba4327cab580f50f44f4e3c11760ab7ed28011f2577f3f62d95fe073cc7f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-238-456.png",
+          "sha256": "e8b50714159945c2fb6fd552ccfecc7ff0ad26ff8f5c4952c5f501d29a3fcdaf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-714-684.png",
+          "sha256": "b183bc818903f695f6e07e9d96f27cd86da6ea42e569003b48804a7afa059568"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-0-684.png",
+          "sha256": "720aef8d6704db7c6ca2b7311e5533277a9554f462da68304164415f40e6ad3d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-0-456.png",
+          "sha256": "3e82f32fa0d367a72094ba4b6da1a29f36de563cc81de7cc08515498e5233368"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-476-0.png",
+          "sha256": "a3ed36c8a4df93055b52de8484e47c9085daddfe3f326b01e08d7de6fe77a2e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-2x-477-457.png",
+          "sha256": "6286f30243a648ca2642e3dadef3d24460978aab770deda8dffd2da7dedae600"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-2x-0-457.png",
+          "sha256": "ca311d4e7950cfa3dccd8ce837f50957bb80dbe4576c47eeca70dacb60af44b7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-238-684.png",
+          "sha256": "c071cabb15306551bcbf0ab8822db71429dfa0ad5b201bbf03f38f2909b6c9c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-714-456.png",
+          "sha256": "3e2000983e8f15a5c1bc189d01102900a3a9ae86f1ba6f2eb11fb530991c7eb2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-476-684.png",
+          "sha256": "88f14197813be903db61e2571cb68c5fbf10d2d57068d5081f9c7b08c4400948"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-0-228.png",
+          "sha256": "c0b7e9f64a7a4f80d9b07d6a9676dcffa756cb2c3e5634b7c38f068bcfe5bbbf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/whole-4x-238-228.png",
+          "sha256": "fab862f4ab594a920009c8241de0dda21e7c5af2dc859e545d250f68f2160c6b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/sam11-target-image-grid-galleries-816/source-4x.png",
+          "sha256": "a21aab58fd68219dcb9b41283d036c85a3382177f4b9e18962ab3bb1835d06d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/python.stderr",
+          "sha256": "2fbcb98e3ff743313d501f79336d659f6196500e3b34508b54daae94fa3b8c3a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/python.stdout",
+          "sha256": "838fb9c309fd904e422feca58f877b8f882abb371c2a174815a4bdf683c9c679"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/node.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/node.json",
+          "sha256": "bd0b2f57ea696fa6ac76f80cad24b71386c7bbe2d47284c409b593cca5074c5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/python.json",
+          "sha256": "1bac53102fc4756021a66fede6bb996d21e371203e6ab3805f54ed75cbda81b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/public-source-image-checks-802/node.stdout",
+          "sha256": "c77092b68b736484d5cf6bf52fea3255e723b919fed17d51401cb046bb47765e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/installed-full.stderr",
+          "sha256": "966ba757d787e3eeaaa4e78eabd66a56df37c4222984fa0ce12b814f5762be3a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/install.json",
+          "sha256": "b391d2946c9ac90f9bbbf8c78a2259705db84e692eac5e4b1da0e4b20284cde3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/install.stdout",
+          "sha256": "dd1584a36496ea5414ff666da2fcf18d1bfd77733c3233d23102dc8fd0a17409"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/build.stderr",
+          "sha256": "c12081fd8da6eeda2fa379b40c676cdc9c7d0d218b79af62a897212f8c72d111"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/installed-full.stdout",
+          "sha256": "ea3b695d6f7f6518166a178c2f43e0ddbc01ae48ffe320ebd633d08778702422"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/installed-full.json",
+          "sha256": "48a13e7753a4c87ecf95fd0fe2d2b794b5d7d54e7325450ce2fde749fda302b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/build.stdout",
+          "sha256": "fa565283f7f6e93c6c5a417cf16b85043b3fbb69b3e1e477b635a8fa0db8d2d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/check-distribution.json",
+          "sha256": "66a972feca56a2cf851e0adb9f3a94089eef5b04757594aa6ab41a0db067fce8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/install.stderr",
+          "sha256": "db1c320252546d819cc189405b40a2d905c724b220b033171e071a08a0317932"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/figure_rebuild-0.6.0.tar.gz",
+          "sha256": "1a0a0fa1a06c75bff91baa08751ccb30c0184df9d8421e6629c532d84c4a3053"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/figure_rebuild-0.6.0-py3-none-any.whl",
+          "sha256": "27471872669b4e10565e15225d6f8619a0888ac0222160fffc07b83994623a66"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/check-distribution.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/check-distribution.stdout",
+          "sha256": "dbb569136b806ded8d12ad844e8ac435a8e2c5930c29d9c86f9e448ce97dd7ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/proof.json",
+          "sha256": "0d5be172ffc40d8265d4688babb0f6fc2ef81f98d7a45d5b630e28ffb1e5a594"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-source-image-803/build.json",
+          "sha256": "33fb475244a674036f69750436bb97bf7e9681622946b017cb776bbf6e0cf91e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/output_review.py",
+          "sha256": "9f3692728342de06e4a4a29a7a05a05f1eba20842b614b7159a4271e894cfb04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_fill.py",
+          "sha256": "b9b927e95f2d98197b12a1da5f5ad3a72b277df81e096551647e6e64b6bf22b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_winding.py",
+          "sha256": "45d8d02a9e411c37e99c1576d9fbc7d47841bb79a2dca2f3a0c29c5b7a2735f2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/scene_compile.py",
+          "sha256": "e32c817ce08352a9a1c2aa9c7d17613499f4eae3afa5388d31db1030bae3d6fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_clip.py",
+          "sha256": "7d852cdcde711d6502d904c58a7e664b17a52dfbd414d08d46642e5dbd532458"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/_bootstrap.py",
+          "sha256": "6b57b397197600b5a50f28ae12b2ebfa3be772d5a85b1b7b8d1c16b7591ca5e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/formula_render.py",
+          "sha256": "cf3d3fae63b2eb7ebbee331fbf7620d1d4840f870590f54ca4f0f392b9474474"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/compare.py",
+          "sha256": "b9eb604df559e8b4357a1a3425f85c6898fed00d4ce088eb2cf0456baf1f04f4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_rect_clip.py",
+          "sha256": "8e76c69c010dcbce00cde668ff566d312cb166113a30c5e9741112e128abe52b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/postprocess.py",
+          "sha256": "d17dafb671a88fef8564cccb47ea52514c6948e1df517f1492a46c058858af83"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_dash.py",
+          "sha256": "f10044e29252da999deaa0edc5601497ce4dc8454823ebedec427c704788a94c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_convex_clip.py",
+          "sha256": "280934273a24f9272a8100bd76b3c71e02c8eed5734703118702dfbc8da7ac6f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_cubic_winding.py",
+          "sha256": "1ca5e71938255fcfbf74688e1ee2c984b26088e6c1f5bf278df996421da36f2f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/font_prepare.py",
+          "sha256": "527eb5ced04aa3003faa5ca5e01a8e6335dde97f021b8dcd3f893f1eb11f22bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_winding.py",
+          "sha256": "92385200ac80fe307a61822085cb36cf4e314ae8cd940d4b4e752b81cabe1b14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pptx_fidelity.py",
+          "sha256": "d9ab4f295aab817098ac7dbd3e79d92350e856f5a60a572f569f873b43406153"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_preview.py",
+          "sha256": "2a478701139533efebda69832620ef67213d2f09cd71b0d312e34ccc327ec08c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/placement.py",
+          "sha256": "d9dc342be848d73351af7ac9ec4f52331e5b587c7758f1fa6a43bda42adfa101"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/artifact_shared_image_preview.py",
+          "sha256": "072428ced97e5364d86a11826246ef0cd019c6c022ebc29b7fff43cfdb72f128"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/connections.py",
+          "sha256": "e7ba9db6b4b91344ec141f8e043651a1f11225e9b46ae3d70e8d5920cfbc6955"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_image_native.py",
+          "sha256": "e6a5fd5023be55f3f2fbc554f7de29061821f14ca12fd937419d55c0168c6f98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/__main__.py",
+          "sha256": "46e4bee5986c515045c7bcb40f3ce8688e67c81245bb172b2bacd69f185f8eac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/source_inventory.py",
+          "sha256": "2d8b26949e2b005a4d8cdfc51a5602e71af46a4118d8ff4daf54dc7f859970e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/source_canvas_clip.py",
+          "sha256": "ed28f139b7c1563bb28ac6cbf0efff41b995505766825e7ffb82fa39caa1725d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_stroke_sampling.py",
+          "sha256": "bb21e86f706608a12c493d4ba95e84853238e49ab21da38a87881f349b3f0dad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_cubic_transverse_winding.py",
+          "sha256": "94c3385c08bc1b6644b50ebfa3b2109545c5b9a2a44b47e5d571a3d2300f6181"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/export_svg.py",
+          "sha256": "73bb32ce21ac926f5ab598fc4969c6ca74e7bcb2af427fa28331f84f26823b37"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/cli.py",
+          "sha256": "443678bd35c57a8fe85382ab84fcd655a37abc9bae120fdd652f3b3fd85a0382"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/text_spacing.py",
+          "sha256": "a478afa5033c72ab1ad12937bbbd8042eda7b53e2179a31cfcd6e534a3e4c6b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/review.py",
+          "sha256": "11453fd98ca5e207b3e847502e530c2ba41fa8355091762e6309b992e9c62b10"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_images.py",
+          "sha256": "fae8069d074e5bffdbc7ca3bb9862cac369a7442960c0bf2e62dc44db505862c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_connections.py",
+          "sha256": "387362685b964585ef25a1db6bc601218c9bfb10af2886afbb3cdbb5072b003a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/font_analysis.py",
+          "sha256": "01e0a4491b8698912ff8120298a0523feba466de415395ab9ee7b77f1c550a89"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/artifact_image_preview.py",
+          "sha256": "3041f1049a01ed3b2d8b8bd1a46c8d92284d239cc1c779bfbb550033c822e378"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_line_clip.py",
+          "sha256": "40326e62ce1d09a20bb115ceefed63ae013bbab25cbe576b7aba7c5bae5d4161"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/image_hidden_rgb.py",
+          "sha256": "fc65c6af4d89548f9a80714571247c1179ae7954c0eaf188fb9455c226d2d26b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/linear_gradient.py",
+          "sha256": "f237538da11213e20d8c39a3bab96fed49324bd3182effb44a3426f12f91fff7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_stroke_bounds.py",
+          "sha256": "30f9afc89f7bb3fb4fb99dd9e3f2ae08a263497ebd20890eab60c09452e7895d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/validate.py",
+          "sha256": "22b2c6e692ebb221b373017d098b4b926eaffef10d5d051421ddd47611ea75e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/content_audit.py",
+          "sha256": "8852c7b25f51a2c3f955769b960efb921cb91876611d25644c5c92b9fa140e9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/semantic_ooxml.py",
+          "sha256": "811c1c50cf4bba160d0e2a6a345e043aa8ee15c563e74f709c8449aaafc3e203"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/font_unicode.py",
+          "sha256": "58d7d44fdfd578317a98965dcc325132356afa21f8656701a6f2360fea490e4c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/paths.py",
+          "sha256": "c6c76719fc9c9bd90735a948783a97a1bff5da456e7237c698d107936a32ef5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_source.py",
+          "sha256": "1b7dab985007b8dda1700e520c898750bd24a8e9ebd90168f31f8908018f2872"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_shading.py",
+          "sha256": "ba6865db637ae070419c15895ee2065e7a21e36026666ee6c4091f3d84c2f92c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_binary_alpha.py",
+          "sha256": "f154acfb8a3e19842e1814f5b2c01cbe283a09601dd1bc7f6fa4fa4d0e4bc196"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/_pdf_selected_glyph_context_worker.py",
+          "sha256": "7c453badb8fd0ba601f451cbb259f40a5590c3478bedbc6ee8dd700e63a603f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_zero_alpha_rgb.py",
+          "sha256": "4fd3743b1d73f4c2a87f55f653f86af60d488d2e851b7e229d86cf625239e79f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/source_font.py",
+          "sha256": "5dc6edbf6680982130accf3bc78f6af1a05be86bb5598de7f7af4aab9c2bbc4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_cubic_contact_winding.py",
+          "sha256": "1191572076c3c2a82a22a5797793f57c4d64ad80c3d43a5fd559447ea4c06b13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_selected_glyph_context.py",
+          "sha256": "b4fba6367525f5d4cad01178ccad0c301328bd26657d6fbe6c89da124836f062"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/authoring.py",
+          "sha256": "10d54c860432650edaa627b04cf2bf8e85e8f52c1b5b5c40d383e7c65d198cbd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_image_clips.py",
+          "sha256": "3ce820eeb88646759a54c33549572a213a8e4b4f775ecc9d85cee325ddf6a6e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_source_replay.py",
+          "sha256": "090a27b93de065f00318ee30b611c2fc42773f2c2e2e8b643cdc907879eb0742"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/registration.py",
+          "sha256": "6eae83f123a08de4621f3410c169f376a063cfd122da67efefdbf881029356e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_native_photos.py",
+          "sha256": "152c6056c6c360d66d9d72c06d5f6ac12ae6f084c47827bdc61318d336b47e61"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/package.py",
+          "sha256": "f6380d0b3a5227478c742967a38174703d0d7b5d9f5ee5431c232e06f29f5070"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_cubic_geometry.py",
+          "sha256": "97e3300c434935833c9bf369ca8eb1418c34028e14decb3a61c05607eaaf60b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_cubic_winding.py",
+          "sha256": "8076b88dfca148cc17cbc898aadd58d75de5f067550f22d45caeee9a01b128e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_visibility.py",
+          "sha256": "e063aa6f1a5d51a102e6c705cba32f57ffd304121d29883bb520d69d6513bcec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/source_fidelity.py",
+          "sha256": "ade55fbb84b419b65630ab0ec962b4c6ce9fe5c0fb976e2c5b1dc896f797afa2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/crop_refine.py",
+          "sha256": "4f189f09cb473602bacb5fa1a9d37979e2446e5360a690ff04c56691a7db2059"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/svg_import.py",
+          "sha256": "9a289ecea61a58f3a81c0bf4146603816dc58aebc0bb7ac1d2bad5a6845e403e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/geometry.py",
+          "sha256": "5b9ac59e7bb2ac07ff724c0325183a034ef83bad2ba41844dcb72ca8bfad66e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/artifact_stroke_preview.py",
+          "sha256": "26503e3f66a76c751c788d0a90d40fe25bede57e41fec194dc2b0d5f98229e0a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_paint_context.py",
+          "sha256": "5270bdfa23735ac349a28dbfe020986e0fc333f4a31ad6c6e826c86d5044a80f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/publish.py",
+          "sha256": "5cf60b5245df7ff54364bbbbc58602da2d97c2b46ec97d2528ba18e163042e8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/formula_asset.py",
+          "sha256": "77599d757e711ab7f5edaeb202709cbf08d85d7f3122cd7770917feb87880d9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_fill_clip.py",
+          "sha256": "193adef9cb87c87f6d5c5bda766baae54bfb70e1b59e9b09bc6c6275b35eff5e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/__init__.py",
+          "sha256": "4768e12d9ad5b36ab5de7bf27442c3c9012f81237299dfdc99fa38aa4752a961"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/native_pdf_preview.py",
+          "sha256": "3c2e36c9a66c4331c0124dfc1a4e652ba2d47071bc150beb01876b75f8a9a679"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/artifact_source_image_preview.py",
+          "sha256": "0171ee3b30e4f78bb6fd2b2e8dd2e670d380535ec813d4a31768666f40ed1798"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/stroke_style.py",
+          "sha256": "78c019248a0778d1ec1a094a3860d91580c2abfbaeb04b1d7abfac343c0de7e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/pdf_image_render.py",
+          "sha256": "c507c23cf63d2ab9254b291130aebcb296236c404cc68a213dd12395c1160b98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/runtime_probe.py",
+          "sha256": "5697805024be6f7763e1536084e9a85cba0b85873220495f618fa3e48569fea0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/image_alpha.py",
+          "sha256": "8e730c88a5163f66e97ba74fc304b459f5ce732de682c2aff7a9dc0451cdd3fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/bin/figure-rebuild-formulas",
+          "sha256": "4f801f3f1b21862d74587d0aa536a0a9cd715c37fabf28bf7968fe718036c970"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/bin/figure-rebuild-fonts",
+          "sha256": "30e8237e0c5f7c21656363dac5a451ce00b9816c52915e5dc93517141efcf88f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/bin/figure-rebuild",
+          "sha256": "753098c2aae4ce179cbf685620a914487204f5028c0f843b1bcdc81af791f12e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/bin/figure-rebuild-patch",
+          "sha256": "7c2d6c35cedc4da5da82a6b5071894aa8607209ac5febff4bbd70ae3a3b94200"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/RECORD",
+          "sha256": "9445839979f9665f21703cd97e0394f103914622f8d08cbdf5b83460a3a42cad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/REQUESTED",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/top_level.txt",
+          "sha256": "a37a7d19f621d2844d67ae6db3a7f2a93dfb2fd55b9f225a0dd7384a9f83b844"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/METADATA",
+          "sha256": "def44a6c593f00089a928ec88b6577e101ca5ea725c8ac4861efe5e09511babb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/direct_url.json",
+          "sha256": "d11a3ce3709c533b8056f27fd60fe25586b25ec61a647de91400aa35d4db2e72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/WHEEL",
+          "sha256": "61532836a2b3111b7ec23519c09df7c41180c27165fb872a6d8913b566b88ad1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/entry_points.txt",
+          "sha256": "caaa072e12940e4423ce9b39981752e1ce29c40e52715611e947093028d338b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/INSTALLER",
+          "sha256": "ceebae7b8927a3227e5303cf5e0f1f7b34bb542ad7250ac03fbcde36ec2f1508"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/image_preview.mjs",
+          "sha256": "ab7572c7d747fc709037cf4b66ff3caf0e30605dae927b0ae3384c8be74648f2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/text_fit.mjs",
+          "sha256": "0ec34232b3d0177fd93ff19ff1ef5be17ab5b5a5ead6ac81c0708f983b54f885"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/curves.mjs",
+          "sha256": "bf29ecfd723602fff9212ef7605d9a0f0abef02502a0afa444ef2111f528a5bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/cpu_renderer.mjs",
+          "sha256": "e5ede28d59b95f1ec3d2ceda8c12742dca0d710e177ccb8f2e419916afea6ce3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/runtime.mjs",
+          "sha256": "b8bac985f2c81d0ac4d7f1e2ca2039c4902d1f57d7065dea5925e0aee232cc95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/image_sampling.mjs",
+          "sha256": "bee108a538752d01c0bd6e76397f865d11a9437675deaf878684cc507953d745"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/linear_gradient.mjs",
+          "sha256": "6e0cb7c283fa16ec171912ab33344459504861a224d4fdf6715f4b9a560c15d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/image_placement.mjs",
+          "sha256": "64211c1c479682485dce7b13df1660d5a9917b1189cce6912092eb0467afe470"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/placement.mjs",
+          "sha256": "fdde41e8f544842992ac11689e4d6046e20948b27c08c0d39b6c02dcaccff371"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/preflight.mjs",
+          "sha256": "4fce255330e13367769edeb6715ef1934c729e2efbe67c09564219187fe0ebe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/build.mjs",
+          "sha256": "a6bfc73d06c50b2bf3276f7c5a914c1b114dad29046a392c8595dfbf69169222"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/stroke_preview.mjs",
+          "sha256": "3ba8706ff6a21726031e3f3424266957ab539f4b363ceefe1d302082bd903365"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild/powerpoint/__init__.py",
+          "sha256": "67aa04bfde85ba36f1988e31fc5ad9524fd7fc7f2eec05e983d13b32a6a3975c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/licenses/LICENSE",
+          "sha256": "5bef3870822cee7941ae8c337ef043aa6b0864f8c512f78cda9a2ba642f521e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/wheel-source-image-installed-803/figure_rebuild-0.6.0.dist-info/licenses/docs/THIRD_PARTY_NOTICES.md",
+          "sha256": "ca81ef56161fb358568e921d8d5718d84bb8dc4fa2b6024f515b7ed78e6f3d57"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/output_review.py",
+          "sha256": "9f3692728342de06e4a4a29a7a05a05f1eba20842b614b7159a4271e894cfb04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_fill.py",
+          "sha256": "b9b927e95f2d98197b12a1da5f5ad3a72b277df81e096551647e6e64b6bf22b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_winding.py",
+          "sha256": "45d8d02a9e411c37e99c1576d9fbc7d47841bb79a2dca2f3a0c29c5b7a2735f2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/scene_compile.py",
+          "sha256": "e32c817ce08352a9a1c2aa9c7d17613499f4eae3afa5388d31db1030bae3d6fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_clip.py",
+          "sha256": "7d852cdcde711d6502d904c58a7e664b17a52dfbd414d08d46642e5dbd532458"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/_bootstrap.py",
+          "sha256": "6b57b397197600b5a50f28ae12b2ebfa3be772d5a85b1b7b8d1c16b7591ca5e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/formula_render.py",
+          "sha256": "cf3d3fae63b2eb7ebbee331fbf7620d1d4840f870590f54ca4f0f392b9474474"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/compare.py",
+          "sha256": "b9eb604df559e8b4357a1a3425f85c6898fed00d4ce088eb2cf0456baf1f04f4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_rect_clip.py",
+          "sha256": "8e76c69c010dcbce00cde668ff566d312cb166113a30c5e9741112e128abe52b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/postprocess.py",
+          "sha256": "d17dafb671a88fef8564cccb47ea52514c6948e1df517f1492a46c058858af83"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_dash.py",
+          "sha256": "f10044e29252da999deaa0edc5601497ce4dc8454823ebedec427c704788a94c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_convex_clip.py",
+          "sha256": "280934273a24f9272a8100bd76b3c71e02c8eed5734703118702dfbc8da7ac6f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_cubic_winding.py",
+          "sha256": "1ca5e71938255fcfbf74688e1ee2c984b26088e6c1f5bf278df996421da36f2f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/font_prepare.py",
+          "sha256": "527eb5ced04aa3003faa5ca5e01a8e6335dde97f021b8dcd3f893f1eb11f22bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_winding.py",
+          "sha256": "92385200ac80fe307a61822085cb36cf4e314ae8cd940d4b4e752b81cabe1b14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pptx_fidelity.py",
+          "sha256": "d9ab4f295aab817098ac7dbd3e79d92350e856f5a60a572f569f873b43406153"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_preview.py",
+          "sha256": "2a478701139533efebda69832620ef67213d2f09cd71b0d312e34ccc327ec08c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/placement.py",
+          "sha256": "d9dc342be848d73351af7ac9ec4f52331e5b587c7758f1fa6a43bda42adfa101"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/artifact_shared_image_preview.py",
+          "sha256": "072428ced97e5364d86a11826246ef0cd019c6c022ebc29b7fff43cfdb72f128"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/connections.py",
+          "sha256": "e7ba9db6b4b91344ec141f8e043651a1f11225e9b46ae3d70e8d5920cfbc6955"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_image_native.py",
+          "sha256": "e6a5fd5023be55f3f2fbc554f7de29061821f14ca12fd937419d55c0168c6f98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/__main__.py",
+          "sha256": "46e4bee5986c515045c7bcb40f3ce8688e67c81245bb172b2bacd69f185f8eac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/source_inventory.py",
+          "sha256": "2d8b26949e2b005a4d8cdfc51a5602e71af46a4118d8ff4daf54dc7f859970e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/source_canvas_clip.py",
+          "sha256": "ed28f139b7c1563bb28ac6cbf0efff41b995505766825e7ffb82fa39caa1725d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_stroke_sampling.py",
+          "sha256": "bb21e86f706608a12c493d4ba95e84853238e49ab21da38a87881f349b3f0dad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_cubic_transverse_winding.py",
+          "sha256": "94c3385c08bc1b6644b50ebfa3b2109545c5b9a2a44b47e5d571a3d2300f6181"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/export_svg.py",
+          "sha256": "73bb32ce21ac926f5ab598fc4969c6ca74e7bcb2af427fa28331f84f26823b37"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/cli.py",
+          "sha256": "443678bd35c57a8fe85382ab84fcd655a37abc9bae120fdd652f3b3fd85a0382"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/text_spacing.py",
+          "sha256": "a478afa5033c72ab1ad12937bbbd8042eda7b53e2179a31cfcd6e534a3e4c6b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/review.py",
+          "sha256": "11453fd98ca5e207b3e847502e530c2ba41fa8355091762e6309b992e9c62b10"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_images.py",
+          "sha256": "fae8069d074e5bffdbc7ca3bb9862cac369a7442960c0bf2e62dc44db505862c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_connections.py",
+          "sha256": "387362685b964585ef25a1db6bc601218c9bfb10af2886afbb3cdbb5072b003a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/font_analysis.py",
+          "sha256": "01e0a4491b8698912ff8120298a0523feba466de415395ab9ee7b77f1c550a89"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/artifact_image_preview.py",
+          "sha256": "3041f1049a01ed3b2d8b8bd1a46c8d92284d239cc1c779bfbb550033c822e378"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_line_clip.py",
+          "sha256": "40326e62ce1d09a20bb115ceefed63ae013bbab25cbe576b7aba7c5bae5d4161"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/image_hidden_rgb.py",
+          "sha256": "fc65c6af4d89548f9a80714571247c1179ae7954c0eaf188fb9455c226d2d26b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/linear_gradient.py",
+          "sha256": "f237538da11213e20d8c39a3bab96fed49324bd3182effb44a3426f12f91fff7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_stroke_bounds.py",
+          "sha256": "30f9afc89f7bb3fb4fb99dd9e3f2ae08a263497ebd20890eab60c09452e7895d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/validate.py",
+          "sha256": "22b2c6e692ebb221b373017d098b4b926eaffef10d5d051421ddd47611ea75e8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/content_audit.py",
+          "sha256": "8852c7b25f51a2c3f955769b960efb921cb91876611d25644c5c92b9fa140e9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/semantic_ooxml.py",
+          "sha256": "811c1c50cf4bba160d0e2a6a345e043aa8ee15c563e74f709c8449aaafc3e203"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/font_unicode.py",
+          "sha256": "58d7d44fdfd578317a98965dcc325132356afa21f8656701a6f2360fea490e4c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/paths.py",
+          "sha256": "c6c76719fc9c9bd90735a948783a97a1bff5da456e7237c698d107936a32ef5a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_source.py",
+          "sha256": "1b7dab985007b8dda1700e520c898750bd24a8e9ebd90168f31f8908018f2872"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_shading.py",
+          "sha256": "ba6865db637ae070419c15895ee2065e7a21e36026666ee6c4091f3d84c2f92c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_binary_alpha.py",
+          "sha256": "f154acfb8a3e19842e1814f5b2c01cbe283a09601dd1bc7f6fa4fa4d0e4bc196"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/_pdf_selected_glyph_context_worker.py",
+          "sha256": "7c453badb8fd0ba601f451cbb259f40a5590c3478bedbc6ee8dd700e63a603f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_zero_alpha_rgb.py",
+          "sha256": "4fd3743b1d73f4c2a87f55f653f86af60d488d2e851b7e229d86cf625239e79f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/source_font.py",
+          "sha256": "5dc6edbf6680982130accf3bc78f6af1a05be86bb5598de7f7af4aab9c2bbc4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_cubic_contact_winding.py",
+          "sha256": "1191572076c3c2a82a22a5797793f57c4d64ad80c3d43a5fd559447ea4c06b13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_selected_glyph_context.py",
+          "sha256": "b4fba6367525f5d4cad01178ccad0c301328bd26657d6fbe6c89da124836f062"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/authoring.py",
+          "sha256": "10d54c860432650edaa627b04cf2bf8e85e8f52c1b5b5c40d383e7c65d198cbd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_image_clips.py",
+          "sha256": "3ce820eeb88646759a54c33549572a213a8e4b4f775ecc9d85cee325ddf6a6e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_source_replay.py",
+          "sha256": "090a27b93de065f00318ee30b611c2fc42773f2c2e2e8b643cdc907879eb0742"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/registration.py",
+          "sha256": "6eae83f123a08de4621f3410c169f376a063cfd122da67efefdbf881029356e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_native_photos.py",
+          "sha256": "152c6056c6c360d66d9d72c06d5f6ac12ae6f084c47827bdc61318d336b47e61"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/package.py",
+          "sha256": "f6380d0b3a5227478c742967a38174703d0d7b5d9f5ee5431c232e06f29f5070"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_cubic_geometry.py",
+          "sha256": "97e3300c434935833c9bf369ca8eb1418c34028e14decb3a61c05607eaaf60b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_cubic_winding.py",
+          "sha256": "8076b88dfca148cc17cbc898aadd58d75de5f067550f22d45caeee9a01b128e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_visibility.py",
+          "sha256": "e063aa6f1a5d51a102e6c705cba32f57ffd304121d29883bb520d69d6513bcec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/source_fidelity.py",
+          "sha256": "ade55fbb84b419b65630ab0ec962b4c6ce9fe5c0fb976e2c5b1dc896f797afa2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/crop_refine.py",
+          "sha256": "4f189f09cb473602bacb5fa1a9d37979e2446e5360a690ff04c56691a7db2059"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/svg_import.py",
+          "sha256": "9a289ecea61a58f3a81c0bf4146603816dc58aebc0bb7ac1d2bad5a6845e403e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/geometry.py",
+          "sha256": "5b9ac59e7bb2ac07ff724c0325183a034ef83bad2ba41844dcb72ca8bfad66e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/artifact_stroke_preview.py",
+          "sha256": "26503e3f66a76c751c788d0a90d40fe25bede57e41fec194dc2b0d5f98229e0a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_paint_context.py",
+          "sha256": "5270bdfa23735ac349a28dbfe020986e0fc333f4a31ad6c6e826c86d5044a80f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/publish.py",
+          "sha256": "5cf60b5245df7ff54364bbbbc58602da2d97c2b46ec97d2528ba18e163042e8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/formula_asset.py",
+          "sha256": "77599d757e711ab7f5edaeb202709cbf08d85d7f3122cd7770917feb87880d9e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_fill_clip.py",
+          "sha256": "193adef9cb87c87f6d5c5bda766baae54bfb70e1b59e9b09bc6c6275b35eff5e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/__init__.py",
+          "sha256": "4768e12d9ad5b36ab5de7bf27442c3c9012f81237299dfdc99fa38aa4752a961"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/native_pdf_preview.py",
+          "sha256": "3c2e36c9a66c4331c0124dfc1a4e652ba2d47071bc150beb01876b75f8a9a679"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/artifact_source_image_preview.py",
+          "sha256": "0171ee3b30e4f78bb6fd2b2e8dd2e670d380535ec813d4a31768666f40ed1798"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/stroke_style.py",
+          "sha256": "78c019248a0778d1ec1a094a3860d91580c2abfbaeb04b1d7abfac343c0de7e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/pdf_image_render.py",
+          "sha256": "c507c23cf63d2ab9254b291130aebcb296236c404cc68a213dd12395c1160b98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/runtime_probe.py",
+          "sha256": "5697805024be6f7763e1536084e9a85cba0b85873220495f618fa3e48569fea0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/image_alpha.py",
+          "sha256": "8e730c88a5163f66e97ba74fc304b459f5ce732de682c2aff7a9dc0451cdd3fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/image_preview.mjs",
+          "sha256": "ab7572c7d747fc709037cf4b66ff3caf0e30605dae927b0ae3384c8be74648f2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/text_fit.mjs",
+          "sha256": "0ec34232b3d0177fd93ff19ff1ef5be17ab5b5a5ead6ac81c0708f983b54f885"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/curves.mjs",
+          "sha256": "bf29ecfd723602fff9212ef7605d9a0f0abef02502a0afa444ef2111f528a5bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/cpu_renderer.mjs",
+          "sha256": "e5ede28d59b95f1ec3d2ceda8c12742dca0d710e177ccb8f2e419916afea6ce3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/runtime.mjs",
+          "sha256": "b8bac985f2c81d0ac4d7f1e2ca2039c4902d1f57d7065dea5925e0aee232cc95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/image_sampling.mjs",
+          "sha256": "bee108a538752d01c0bd6e76397f865d11a9437675deaf878684cc507953d745"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/linear_gradient.mjs",
+          "sha256": "6e0cb7c283fa16ec171912ab33344459504861a224d4fdf6715f4b9a560c15d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/image_placement.mjs",
+          "sha256": "64211c1c479682485dce7b13df1660d5a9917b1189cce6912092eb0467afe470"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/placement.mjs",
+          "sha256": "fdde41e8f544842992ac11689e4d6046e20948b27c08c0d39b6c02dcaccff371"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/preflight.mjs",
+          "sha256": "4fce255330e13367769edeb6715ef1934c729e2efbe67c09564219187fe0ebe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/build.mjs",
+          "sha256": "a6bfc73d06c50b2bf3276f7c5a914c1b114dad29046a392c8595dfbf69169222"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/stroke_preview.mjs",
+          "sha256": "3ba8706ff6a21726031e3f3424266957ab539f4b363ceefe1d302082bd903365"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/code-026/src/figure_rebuild/powerpoint/__init__.py",
+          "sha256": "67aa04bfde85ba36f1988e31fc5ad9524fd7fc7f2eec05e983d13b32a6a3975c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_sam11_image_interval_preview794.py",
+          "sha256": "78b515a13c8d261cb49b06a4ea43821e725fe63e83f6460175909638e5a70a5c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_sam11_global_grid793.py",
+          "sha256": "8d5529f24c4cd49b44e65b59d3a0f68ff4d46c35ee49d8085c50b2895593e164"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/sam11_native_materialization811.py",
+          "sha256": "404739dae49e4452d9628ff42c16271bb41bd9d3972a12ace5ffc403d6f299c3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_sam11_target_image807.py",
+          "sha256": "fad023069bbb82ca42390942a47521c4e84afc5516ec5117d3a93c4a0c96af91"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_sam11_target_grid815.py",
+          "sha256": "7005232a26d8f89ce220e4e435ae9ce7bcddb0065a9363fe3c9f264e6b72a838"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_sam11_target_grid810.py",
+          "sha256": "0d8451565d3b4d812e48224cbb423a71adc7005d4cc3a459cecef494dd79724c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_sam11_target_grid822.py",
+          "sha256": "e03180851d9430f8bf9a9f2e530d1f8867f3e45dd2cfb344e7162ba876ca5ef6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_sam11_target_grid808.py",
+          "sha256": "f08c8b218f45f491416d68abbbc1e45d71d9770a142d1127beb42e048d66fd42"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_source_image802.py",
+          "sha256": "5104193bd079c2bed4d37f452d1ae9c175e7249f407e7d24caa788878cbc36e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/sam11_target_grid_galleries816.py",
+          "sha256": "a0b25cffab95b091ed55711ec27344aafc76221492c443dca0a949361218c91a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_source_image801.py",
+          "sha256": "198b17dfe302750fe0f6d4dc56ef26477c9ba7d102b86a6403ecd2be65a38b06"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/private_source_image_adapter795.mjs",
+          "sha256": "c68c6c467587ed027b08c67ac9fcf88226e0e9f9d32711118c853589efc5cb30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/source_interval_global_grid792.py",
+          "sha256": "09c741203f806826a001b6bae758c49c4a513c1542f2a143b9fbdd7f5851da75"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/check_source_image800.py",
+          "sha256": "f92db8af6ccb3d58322051ead514fb24f45d56dfcac00b764f2a5ab1d698f8a5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_sam11_target_grid812.py",
+          "sha256": "c05bb45aef19b700a557d5bb08fa2b3f7e9c9a63f792880f3ac4b3d4dc400054"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/package_source_image803.py",
+          "sha256": "50d2d56d884b38236caaf69641c5d0755a7a17f1123fa66285df39eedd21ed02"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_sam11_target_grid821.py",
+          "sha256": "73a8d3d50c0087f418a92981d510a1190f18c9781b1b2da630c96259d1b0639d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_sam11_source_image_artifact795.mjs",
+          "sha256": "138b298f3519af219a9120c03ffac0e7ee32aa36bdd3c4c00d4c8f7e675c74ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/freeze_source_image805.py",
+          "sha256": "d9d9e2e14349c145a98afbcf4c67b09169d85ee3eb9e33d5b87c32639b8ef2dd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace026.py",
+          "sha256": "f70931537dbef3d7f7869178c6e0a2645d4c2e7349b3f9f02551332a585c34c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_inventory086.py",
+          "sha256": "284892c9e584d3efe2236e7b0e6eb8c3d052f16b980532e5d0a5d25a2115cf09"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/skill_delivery_diagnostics691.py",
+          "sha256": "b5c0082d15c278c41e5c0fa946f6a852f75a29bbf2689ccbd25b9e7ae65ad36d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/AUTHOR-SOURCE-RETRIEVAL-700.json",
+          "sha256": "8ba3feefdb79f62a0ae5ce45a0badfc246058ab4ed9e795868c0172a50493175"
+        }
+      ],
+      "resolution": "Close the finite selected SAM11 source-image sampling finding. The final editable PPT retains all1025 native objects:894 manually transcribed source live text objects,99 source paths and32 original delivered picture occurrences. Full native paint properties, picture frames/crops and all32 encoded media bytes are unchanged from the reviewed parent. All13 family/source face programs and1038 live characters remain unchanged. Explicit version4 recipes bind the actual source PDF SHA, original page/diagonal CTM/ROI and29 contiguous image-only intervals plus3 singletons covering all647 actual original image paints exactly once. Each local4x recipe first reproduces its actual delivered PNG bytes exactly. Each1x/2x/4x sample then uses the full global device matrix and integral global pixmap bounds, forwarding only the original admitted image handles in actual source order with their complete CTM, clips, interpolation and color programs. All96 RGBA windows equal independent fresh whole-canvas interval samples; all3 complete final Artifact mixed scenes equal the independent private prototype. The source whole-figure reference is used only for validation, never output generation. Actual all1025 native properties/media and complete postprocess receipts replay exactly; image relationship IDs are bound through actual complete target parts/media SHA and all other attributes, normalizing only nonpaint creation UUID/numeric shape IDs. All3759 source path controls remain below fixed0.001canvas-px guard. Six real actual-PPT crop,origin,effect,alpha,color and picture-order mutants fail the independent sampling and complete native readback checks. All21 original-size complete1x, four complete2x and sixteen complete4x tiles were actually viewed after formal prepared output binding; bell texture, joined fragments, masks, image overlays and preserved live labels/arrows/borders were inspected throughout. The selected explicit Artifact preview corrects the finite source-image detail; standard native PDF filtering remains a retained comparison and cross-application equivalence is unverified. Version4 retains strict group-free image-only admission, original source group/font/control/resource budgets and legacy1/2/3 policies. No arbitrary source groups, whole-scene/all-scale pixel identity, universal RGB-alpha filter error bound, automatic scientific semantics, portable font delivery or PowerPoint/WPS result is claimed. Frozen026 is byte bound to1352 workspace and installed Python tests with8 optional skips each,69 actual CPU Node tests with0 skips and96/310-file wheel/sdist. User acceptance remains pending.",
+      "closed_at": "2026-10-06T10:59:02.549762+00:00"
     },
     {
       "severity": "minor",

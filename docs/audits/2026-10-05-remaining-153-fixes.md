@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 93 张图的来源修复及实际成品复查，关闭 147 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 82 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 6 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 10 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 73 项解决、10 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 147 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 93 张图的来源修复及实际成品复查，关闭 148 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 83 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 5 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 9 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 74 项解决、9 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 148 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -108,6 +108,8 @@
 
 - Skill Library 图1 NATIVE-SAMPLING-002 的有限成品采样问题关闭：选定89活动文字＋32原生路径＋19原icon成品，先前整幅body位图继续保留为未选参考。新增显式共享设备网格v3，调用者给出整数source windows，实际PPT裁切单位逐项重编码一致；同媒体全部字节一致，共用source-pixel→EMU有理约束保持每个origin/extent误差≤0.5EMU。先采样完整media后提取19窗口，所有源及设备窗口alpha=255，不从reference读像素生成输出。最终完整Artifact混合场景19icon×1/2/4共57RGB窗口与新渲染原source均零差；之前单图grid、二次grid-fit、失败custom picture clipping及所有候选原样保留。Task q2先前少量窗差来自后画文字，按原bitmap独立dark-ink中心只平移三个text anchor，其余137对象、89全部文字literal/family/style/size及32path不变；实际19图片EMU/crop/media字节保持。相同输入140原生成品属性、media、全部后处理receipt完整重放，parent比较仅排除无paint影响creation UUID/numeric shape ID，图片relationship ID以真实目标part/字节SHA和其余relationship属性完整绑定；未跳过图片属性。315源控制最大0.000100975331747577px低于固定0.001px；四真实成品crop/origin/effect/alpha突变由独立采样诊断与完整属性重放拒绝。14完整1x/四完整2x/六完整4x平铺及三image/Task细节正式绑定后原尺寸实看。代码和reward为原已审活动文字，不再缩放body字像素；原Screenshot font/hinting身份不可得仍单列限制，不宣称整图/任意倍率像素等价或通用RGB-alpha界。关闭选择显式共享网格Artifact preview，保留标准LibreOffice PDF对照的滤波差异，不冒充跨应用结果。公共冻结025有1338 Python/安装后（各8可选skip）、68真实CPU Node零skip及95/308-file wheel/sdist字节绑定；首次Node缺一个环境路径的1 skip记录保留，补跑777为68全通过。原v1/v2分数crop缺省、原source group/font/control/资源准入不变；新增完整grid和提取窗口合计10840166px低于既有64Mi预算，每surface≤16M/32768、每group≤256、pair constraints≤131072。字体交付关联48图、extended editing、PowerPoint/WPS与用户验收未证。
 
+- SAM11 图11 SAM-IMAGE-SAMPLING-002 的有限照片采样问题关闭：选定894活动文字＋99原生路径＋32照片；相同输入1025完整成品属性、全部后处理receipt、32媒体字节与parent完全一致。显式v4绑定原source PDF SHA/page/CTM/ROI，29连续image-only区间和3单图覆盖647原image paints；先以local4x准确重放实际PNG字节，再按目标1/2/4全局设备矩阵和整数全局pixmap bbox采样完整原image handles/CTM/clip/interpolation/color程序。96RGBA窗口与独立fresh whole-canvas interval逐字节一致，三幅完整Artifact混合成图与独立原型一致，不用reference整图生成输出；全部13family字体程序、1038字符、32图片EMU/crop保持。3759源控制最大0.00010232398949483468px低于固定0.001；六真实PPT crop/origin/effect/alpha/color/order突变被独立采样与完整属性重放拒绝。21完整1x/四完整2x/十六完整4x分块在正式绑定后原尺寸实看，照片细节、拼接、mask、文字/箭头/边框覆盖。旧采样成品和失败诊断808/810/812/821原样保留；821仅结果补充文件误假定存在source-inventory，已正确记录NOT_PROVIDED，822保留成功正式成品审查。关闭只选择显式原source目标网格Artifact preview，标准native PDF滤波与跨应用未证；group-free准入、既有v1/2/3策略和source/font/control/资源界保持，不宣称通用RGB-alpha界、整图任意倍率像素等价、自动科学语义、字体交付或PowerPoint/WPS。公共冻结026有1352 workspace/installed Python（各8可选skip）、69真实CPU Node零skip及96/310-file wheel/sdist字节绑定。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -192,7 +194,7 @@
 | ccf-2025-01-f03 | D01 |
 | ccf-2025-01-f07 | D01, D02 |
 | ccf-2025-01-f08 | D01, D02 |
-| ccf-2025-01-f11 | D03, D04 |
+| ccf-2025-01-f11 | D03, D04, SAM-IMAGE-SAMPLING-002 |
 | ccf-2025-03-f02 | D01, D02 |
 | ccf-2025-05-f13 | D01 |
 | ccf-2025-06-f02 | D05 |
@@ -1013,3 +1015,28 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/SKILL-SHARED-GRID-LEDGER-GUARD-789.json` | `44cbb4188972ab25de25d2d3814932ce8ae6abfba0482c74b743ee43e7786389` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-056a.json` | `3a276537ee6267e27c6b3915cd068f1b23e7b3ca311b7d6b6524d95d3cd46765` |
 | `reports/remaining-153-001/SHARED-NATIVE-GRID-DISTILLATION-790.json` | `c44bc260a7a633d5f29463d244ba9179168b87ecf073ceb7b302f9b8d0f8c3be` |
+| `reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-TEST-INPUTS-800.json` | `c2e2f53c1c3b868e3d9c3d6ce1751f38c36daf996e8a4dee5d1ed3501bfc17aa` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-821.json` | `1118dd9b3bb80820d791f258a93ba766f4bc97b8bea54600a4ce8f7d107203ca` |
+| `reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-WORKSPACE-CHECKS-802.json` | `5ae4e71ecbad87bd85ab7c222ab2b36da693b086b4ca0d3f6c90f88ea664f041` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-GALLERY-BINDINGS-816.json` | `a5fdbef2025bd57e27099dae974ffcc942fad1b03fe56ecf298fb77970f38366` |
+| `reports/remaining-153-001/SAM11-SOURCE-TARGET-GALLERY-796.json` | `be628cb2c466ebc4ec749dcbb418aa7fcfc49db76b09a0bda728d3041d34a16e` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-PREPARED-815.json` | `c2e617aeaaa669658749af39f652bf5f5731993f745bca8c8c51f4f4277055ec` |
+| `reports/remaining-153-001/SAM11-SOURCE-IMAGE-REQUEST-798.json` | `e6ac5c829be3426d655ca0c6aaef2c97f0ac9ef94ae2134603037e0118f4de13` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-PREPARED-816.json` | `c2e617aeaaa669658749af39f652bf5f5731993f745bca8c8c51f4f4277055ec` |
+| `reports/remaining-153-001/FREEZE-026.json` | `d14a28d73b864943b3ff16c7ac327c764aa8f4a6d31a490b8c72171e3c2c1f34` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-VISUAL-821.json` | `4f4c38092370677d022ac831480056c1058f08bb24edb14920171b285d73e663` |
+| `reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-CHECKS-805.json` | `787640e236f72a7a82338d0a1c77ba155230993a1a9bf65c1b9d4bbf79b2e3d5` |
+| `reports/remaining-153-001/PUBLIC-SOURCE-IMAGE-TEST-INPUTS-802.json` | `c3f178e1a68fd9a69b7218c7c627ae646c1a48c5a500dca6d888b20e6729e7b6` |
+| `reports/remaining-153-001/SAM11-TARGET-IMAGE-GRID-BUILD-807.json` | `59bf912cb51ff437b57ab3ca71ec4f8dcead742f2cb6efff3e662a9a0b36a526` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-VISUAL-822.json` | `216d67bf1ff36c97422dc60683ce39b9911a5744f319d3201118fe0e3aca6a7b` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-REVIEW-RESULT-822.json` | `121ceb819f9aa7c220df58724ef39089afd34567047264d6d7fe5c61d781eec1` |
+| `reports/remaining-153-001/actual-view-names-sam11-target-grid-820.json` | `3920ebbcd89767858b16ebd806483cb608801b3126bcc5a3e90af3d685357717` |
+| `reports/remaining-153-001/SAM11-IMAGE-INTERVAL-PREVIEW-PROBE-794.json` | `e31ab98793ad23789696d4eb8e6441c45830d199a3b20402e071040ae286adba` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-NATIVE-READBACK-815.json` | `4f1a6a6b970c584abf334b2e8a5099a5852dbf88b2779b21cd67a0770f6d03f1` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-OUTPUT-REVIEW-822.json` | `d313bcaf4a2136b8ccaa0dacde1fdee642427b42be703c5e4cd1b1b5fb754957` |
+| `reports/remaining-153-001/SAM11-GLOBAL-GRID-PROBE-793.json` | `9c924fc2a13c86c947e19a00d25866fc19d4202336add9862356ef95df5ce4ae` |
+| `reports/remaining-153-001/AUTHOR-SOURCE-RETRIEVAL-700.json` | `8ba3feefdb79f62a0ae5ce45a0badfc246058ab4ed9e795868c0172a50493175` |
+| `reports/remaining-153-001/LEDGER-RESULT-057.json` | `4e438ef0845b853362620a15e6583ff57537be7bd284e0e83e9064dbb753ae75` |
+| `reports/remaining-153-001/SAM11-TARGET-GRID-LEDGER-GUARD-825.json` | `adaffb619e5cb8acc9a2a50067345ad82dbf553076216090cf28f2851ec08f45` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-057.json` | `b86a7e6f3ab694df4841037d7e21fa36b8cc6cff539bd7556020a70017bbcb6f` |
+| `reports/remaining-153-001/github-checks-5105a7c-002.json` | `7b27e8fc737601604ce0bfe530a62beea773b7e0f0f85ca468d68e3c9f23f7b8` |
