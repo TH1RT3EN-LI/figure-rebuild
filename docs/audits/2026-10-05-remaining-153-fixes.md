@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 95 张图的来源修复及实际成品复查，关闭 152 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 87 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 1 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 5 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 78 项解决、5 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 152 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 95 张图的来源修复及实际成品复查，关闭 153 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 88 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项已全部关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 4 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 79 项解决、4 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 153 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -64,7 +64,7 @@
 
 - GCC 两图和近线性流算法图的三项采样描边问题关闭。六条原描边恢复为独立原生曲线路径，三图成品均无图片；其他 794 个源对象及 191 个真实活动字形保持。显式有界曲线接口以精确导数细分、细分控制包络和局部斜接支撑核算，固定 256/128/32/4096 预算不变，默认自动裁剪和组策略未放宽。三条完整源支撑包含于所有裁剪，另三条真实跨界；四个局部白底框仅在源白底及所有其他路径/实际字形不相交证明后保留源边缘。实际 Normal/alpha1/RGB 隔离组仅作本源实例的代数复合核对，未宣称通用 RGB/alpha 或像素等价。正虚线在原用户空间保留相位，输出真实 cubic 子曲线，弧位置误差最多 0.0001 目标 px。实际源/最终 PPT 控制点固定 0.001 px 守卫、最大约 0.0001043 px；69 次填充改写实际原/终态摘要核验。全部 804 个对象原生读回，源/终态/PDF 1×、终态 2×和全部十四组匹配 4× 实看，本次未发现新增可见裁剪接缝。源实际回调的虚线数组通过已安装 SWIG floats_getitem 读取，保留首次指针下标失败；空导数、全局斜接包络及预算耗尽探针均保留。公开 Python 1242、Node 62、wheel/sdist 87/287 文件及安装后 1242 项通过，冻结016含 281 文件/208个运行测试构建输入。活动文字、方程 AST、自动语义、字体交付与跨应用验收继续保留各自问题。
 
-- Swin 两图、ZeRO、DPO、CodaMosa、Titans、SAM3D 和 NitroGen 的八项 Artifact 图片采样问题关闭。显式原生解码保留实际 RGB、同尺寸附加蒙版和浮点位置；允许完整 canonical DeviceRGB 隔离根组的政策仍为 opt-in，默认严格政策与资源预算不变。以前 Swin 资产来自原生图片实例 8× 采样，早期图库172的 SVG 标签误记在本回执纠正，原记录保留。维护预览适配器仅从最终 PPTX 媒体、EMU 图片框和绘制顺序计算，在 1×/2×/4× 分别用 MuPDF 采样，并恢复 Artifact 全部混合遮挡顺序；不读取参考图像素、不重导出瞬态场景。全部 1783 个原生对象读回，八个真实作者图片和 1775 个其他 manifest 对象保留；1763 个其他对象的原生属性相同，DPO 一次、NitroGen 十一次填充改写实际双端摘要及完整证明重放，其他样式与位置相同，控制点仍受固定 0.001 px 守卫。八图源/Artifact/独立原生 PDF 的全图 1×、完整 2× 分片及 4× 图片支持区，共 165 张原尺寸对照全部实看。有限图片区域 RGB 数值改善仅作诊断，未宣称整体像素相同、通用 RGB/alpha 界或 Office 滤波等价。MAE 的 4× 诊断未改善，继续开放；DPO 手工原生路径候选的 native-sampling-residual 也继续开放，未用作者位图候选替代其独立编辑能力声明。公开 Python 1254（8 跳过）、Node 66（0 跳过，真实 CPU 像素/蒙版/遮挡控制）、wheel/sdist 89/291 文件及安装后 1254（8 跳过）检查通过，冻结017绑定 212 个运行测试构建输入及 82 个安装/归档模块。图片内部活动文字、自动语义、ICC/组、裁剪和跨应用验收仍保留各自限制。
+- Swin 两图、ZeRO、DPO、CodaMosa、Titans、SAM3D 和 NitroGen 的八项 Artifact 图片采样问题关闭。显式原生解码保留实际 RGB、同尺寸附加蒙版和浮点位置；允许完整 canonical DeviceRGB 隔离根组的政策仍为 opt-in，默认严格政策与资源预算不变。以前 Swin 资产来自原生图片实例 8× 采样，早期图库172的 SVG 标签误记在本回执纠正，原记录保留。维护预览适配器仅从最终 PPTX 媒体、EMU 图片框和绘制顺序计算，在 1×/2×/4× 分别用 MuPDF 采样，并恢复 Artifact 全部混合遮挡顺序；不读取参考图像素、不重导出瞬态场景。全部 1783 个原生对象读回，八个真实作者图片和 1775 个其他 manifest 对象保留；1763 个其他对象的原生属性相同，DPO 一次、NitroGen 十一次填充改写实际双端摘要及完整证明重放，其他样式与位置相同，控制点仍受固定 0.001 px 守卫。八图源/Artifact/独立原生 PDF 的全图 1×、完整 2× 分片及 4× 图片支持区，共 165 张原尺寸对照全部实看。有限图片区域 RGB 数值改善仅作诊断，未宣称整体像素相同、通用 RGB/alpha 界或 Office 滤波等价。MAE 的 4× 诊断未改善，继续开放；DPO 手工原生路径候选的 native-sampling-residual 当时保持开放；本轮后续以可编辑单元路径及不透明 native-prefix 采样完成有限问题关闭，作者位图候选仍未选用。公开 Python 1254（8 跳过）、Node 66（0 跳过，真实 CPU 像素/蒙版/遮挡控制）、wheel/sdist 89/291 文件及安装后 1254（8 跳过）检查通过，冻结017绑定 212 个运行测试构建输入及 82 个安装/归档模块。图片内部活动文字、自动语义、ICC/组、裁剪和跨应用验收仍保留各自限制。
 
 - TPU 和 Moon 两项 Artifact 图片采样问题关闭。v2 维护适配器从实际最终 PPT 媒体、EMU 框和原生百分比裁剪推导完整图片矩阵，再按真实浮点可见框裁剪采样；不把裁剪舍入为源图片整数像素框、不改交付图片。22 张图的原生位置与 crop 元素均和父版本相同。800 个对象完整读回，778 个其他 manifest 对象未变；616 个其他原生属性相同，162 处填充改写双端摘要及精确证明重放，控制点仍受固定 0.001 px 守卫。全部 48 张源/Artifact/独立原生 PDF 全图 1×、完整 2× 和 4× 图片支持区实看。TPU 的原问题为 2×/4× 平滑错误，这两级有限区域 RGB 诊断明显改善；1× 诊断从 2.5368 增至 3.9271，作为残差保留，不宣称各尺度均更优。Moon 三尺度诊断改善，仅作诊断，没有阈值或通用误差界。裁剪边缘可能仍在滤波中引用邻近存储样本。Python 1260（8 跳过）、真实 CPU Node 67（0 跳过）、wheel/sdist 89/291 文件、安装后 1260 检查通过，冻结018绑定 212 输入和 82 运行模块；旧八图 v1 完整定义和 PNG 字节重放相同，提交0c7b970的16项 GitHub 检查通过。内部位图文字、自动语义、普通 Office 滤波、字体交付及跨应用验收限制继续保留。
 
@@ -113,6 +113,8 @@
 - SAM1 图1 NATIVE-SAMPLING-003 的有限照片采样问题关闭：31实际照片在原source完整CTM/clip/color/interpolation上下文恢复local4x资产，93份目标1/2/4全局网格RGBA与独立fresh whole-canvas image interval逐字节一致。Artifact忽略run字距造成的紧挤标签，以381原source字形cluster保留424有序普通Unicode和五份源墨迹字体程序；四个手工leading空格明确转由前一个同face圆点cluster携带为trailing whitespace，防止native exporter删掉前导空格。全部672完整成品属性和后处理receipt重放，291非文字对象、260路径、31照片frame/crop/media不变；8351源控制最大0.00010197291339864023px保持固定0.001。六真实PPT突变拒绝；实际native PDF的115font-program/glyph对、381可见字形和424字符独立核验。实际应用可见origin最大x/y观察差为[0.05438413636356643, 0.5083187180129869]canvas px，与源控制/轮廓守卫分别记录。正式prepared绑定后完整1x、两完整2x及四完整4x原尺寸对照共7张实看，照片纹理、标签词距、原箭头/虚线/边框保持。813–847全部失败与未选候选、846诊断器旧647字段误引用原样保留；842私有猜测的0.05应用位置断言不作为源控制界，源设计控制/字体程序守卫没有放宽。关闭选定显式目标Artifact采样；原作者font/hinting身份、整图/任意倍率像素等价、标准native PDF/PowerPoint/WPS滤波、自动科学语义及字体交付未证。026公共组/字体/控制/资源预算和legacy策略不变，1352 workspace/installed Python（各8可选skip）、69真实CPU Node零skip字节绑定沿用。
 
 - D4RT 两图与 BYOL 的三项有限预览问题关闭：D4RT 保留全部 35 实际图片的源 CTM、clip、mask、色彩和插值，先逐字节重放实际 8× 交付媒体，再生成 105 份 1×/2×/4× 全局网格 RGBA，全部与独立整画布实例探针一致。两图六个尺寸的 image-only 白底组复合穷尽比较最大为 3/255；这不包括穿插矢量/文字，也不证明任意组分解或 alpha 界。BYOL 的 394 原生路径不变，显式 native-svg 从实际活动 slide relationship、完整 fill/stroke/alpha/cap/join/miter/偶奇填充与顺序重建，三个完整 SVG/PNG 独立重算。三图 888 完整原生对象、35569 源控制点、全部后处理回执读回；固定 0.001 px 不变。57 个旧 D4RT 填充编码差异按隐式闭合、循环起点、全路径共同绕向和一整数舍入单位逐环有理数核对，其他绘制字段完全相同。20 个实际 PPT 或已绘制 child-Form 的负向控制通过；修改未执行 Form 或未观察页面 Group/K 的早期失败保留。正式绑定后的十二张完整原尺寸 1×/2×/4× 对照全部实看。私人诊断遗漏 devicePixelRatio=8 的整图 RGBA 差异明确保留，不当作整图像素等价。027 全量及安装 Python 1368（各 8 可选 skip）、真实 CPU Node 70（0 skip）、97/314 文件包装通过，dc748a9 的 16 项 GitHub 检查全通过。默认准入和组/字体/控制/资源限制不变；来源字体身份、跨应用、自动语义与用户验收仍未证。
+
+- DPO 最后一项 native-sampling-residual 关闭：保留 2 原面板、9 手工活动标签和 405 图注路径，606 旧主体近似路径换为 532 精确源单元填充路径；交付共 948 对象、939 路径、0 图片。17 个源区域和 364158 单元由原 PDF 实际 xref/CTM/RGB 重放，所有实际原生单元中心、配色与一次覆盖一致。灰度共享 64 色路径跨多个区域，误差 ≤3/255；彩色有限色板稀有最大 48/255，各区域均值/最大逐项记录，不宣称原作者矢量、独立活动轮廓文字或源像素等价。公开 opt-in 先合成实际前 534 填充路径和不透明底色，再按原采样框生成 1×/2×/4× 预览；零参考像素参与输出，瞬态采样图不写回原生文件。全部 948 原生属性及完整 fresh-process 后处理回执重放，151767 实际终态控制点最大 0.000104462 px，固定 0.001 px 不变；一处重复闭合点矩形逐原命令独立编码及完整绕向等价证明。实际 source-grid 滤波相对有限单元色板最大 26/255、均值 0.874186 单列，不当作源像素相等。三个完整独立 CPU 场景 PNG 字节及全部 RGBA 与交付预览完全一致；5 个真实成品变更及 20 EMU 控制点反例均触发既有拒绝或不可变绑定变化。全图 1×/2× 和 4× 三个输入分别原尺寸实看，4× 合板显示缩小明确记录。超命令/XML 预算、透明底黑边、旧 ordinary-AA 及原型候选全部保留且不选。028 全量及安装 Python 1378（各 8 可选 skip）、CPU Node 73（0 skip）、wheel/sdist 99/319 文件通过；233 输入和 92 模块绑定 e744f594，16 项 GitHub 检查成功。全部组/字体/控制/资源和默认准入保持；字体交付、自动语义、跨应用和用户验收限制继续明示。
 
 ## 本轮关闭项
 
@@ -173,7 +175,7 @@
 | ccf-2022-14-f02 | D01 |
 | ccf-2023-01-f01 | D01, D02 |
 | ccf-2023-03-f01 | D01 |
-| ccf-2023-04-f01 | R01-PREVIEW-SAMPLING |
+| ccf-2023-04-f01 | R01-PREVIEW-SAMPLING, dpo-native-sampling-residual |
 | ccf-2023-05-f02 | D01, D02 |
 | ccf-2023-05-f04 | D01 |
 | ccf-2023-06-f01 | D01, D02 |
@@ -1101,3 +1103,32 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/LEDGER-RESULT-059.json` | `fa61eb987209d5e82d333903f468f1713d1584bc1aa1dc3bede9d5945ea3827b` |
 | `reports/remaining-153-001/THREE-NATIVE-GRID-LEDGER-GUARD-889.json` | `c4037fe042bfd1b4139e735279dd2708255b2f03346b50422d688c0f65fb30a0` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-059.json` | `8d58d7166d7632e7f95ab35bd21272f9a32046f7cbb871652d5625847d59ddc6` |
+| `reports/remaining-153-001/DPO-SOURCE-CELL-PALETTE-REPLAY-920.json` | `c6945f8ecaabf54c94aa8282fc95d686252939ab35c351bea950590e141c5976` |
+| `reports/remaining-153-001/PUBLIC-PATH-PREFIX-CHECKS-904.json` | `433744102958b7b7ecf071ae9c60d6806b771b4138300dddb24f81c32290a58c` |
+| `reports/remaining-153-001/actual-view-names-dpo-native-prefix-909.json` | `cc40ada7e24ca8b1dd7294517be255afc3998378fb7815933cbb7cc5b412db75` |
+| `reports/remaining-153-001/PUBLIC-PATH-PREFIX-TEST-INPUTS-901.json` | `8a8a0ba13cd34b9e99e44bdc7b6e60b0f0ec7362a88b902c1a90f3dfe28967b0` |
+| `reports/remaining-153-001/DPO-OPAQUE-PREFIX-GRID-PROBE-895.json` | `9e77fcdc02acdc870014ad0a4e4f130482bc28e3f2c369c9334ab8390b813d16` |
+| `reports/remaining-153-001/DPO-DIAGNOSTIC-METRICS-867.json` | `ead4f1ca99d143d7c6fd101afa5831a928e35a64a4149e792e56129749fcff4d` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-REVIEW-RESULT-910.json` | `4a1aff537b21e4a4d33cf3d6815dbc8e3abee538df9782dccda6016c9c576dc4` |
+| `reports/remaining-153-001/DPO-SHARED-SOURCE-CELL-BUILD-888.json` | `42db1f0ef1669dbd8fb3a56e53fdc93a5802f8fd25e56ff484e7b0df1e37adbf` |
+| `reports/remaining-153-001/DPO-ACTUAL-SOURCE-CONTROL-NEGATIVE-921.json` | `86c77dbba20a2391d5e95cb4f5c3e1af5cabaef995d37f3afb7c474411f1c8aa` |
+| `reports/remaining-153-001/DPO-NATIVE-PROPERTIES-DIAGNOSTIC-912.json` | `dd883f4627e16f3db61068af1a796112d90030a25e505dd0572de145ba4d774d` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-INDEPENDENT-REPLAY-917.json` | `777dc3bf283e95d8a49b43ff75a6a71e65f18355a774a403376a2c91bb2a30cb` |
+| `reports/remaining-153-001/DPO-FINAL-SOURCE-CONTROL-DIAGNOSTIC-916.json` | `76ecbd6f1e9b9aba82de93f7af1002fcab99c79d9af8d13ceac854f0b345be11` |
+| `reports/remaining-153-001/NATIVE-PREFIX-DISTILLATION-922.json` | `313f1c299e8566ef013e7cc221db9fedf2ef7c11ff6bcf8dd4548811ff46e0f3` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-GALLERY-BINDINGS-908.json` | `e255da25dd30dde8e669fac6183e60faf517b742ad2ff7d49b392891aa4f600f` |
+| `reports/remaining-153-001/DPO-PATH-PIXEL-GRID-PROBE-865.json` | `cda10d2dee5fbe9118aa29a96748ab590f9592f69aec25c43b91b5f0f8ee46a9` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-READBACK-918.json` | `aafb282d053625197c250a48c30167137a46979053f11cf316efa93571482dd7` |
+| `reports/remaining-153-001/PUBLIC-PATH-PREFIX-TEST-INPUTS-902.json` | `05e839c9ee5d1f7300697969d8a00e53c191481a33411095da8074e28eff16f6` |
+| `reports/remaining-153-001/PUBLIC-PATH-PREFIX-WORKSPACE-CHECKS-903.json` | `63cfc0d3d3f9e021aa04244fbccb6d80e09e6c03633de7d1c861a79542b676be` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-OUTPUT-REVIEW-910.json` | `0a2747746c0b1612ff6c0bb0c86408c5dc4a145323eebca283dad0329d84c26f` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-VISUAL-910.json` | `230a916b8e855ab98b7b4e525823ab6be1177ac6b081dbfa65b305176ea5feab` |
+| `reports/remaining-153-001/DPO-SOURCE-CELLS-GALLERY-BINDINGS-892.json` | `8b9a35caa0c41f30f8543d47ec1a416ee02ecb24e8046e815553f8bbfd27e99f` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-BUILD-905.json` | `7489f6024adac5b2350e99f46116b24b6fa59b24750d993b2977f93462b93ee6` |
+| `reports/remaining-153-001/DPO-SHARED-CELL-GRID-PROBE-891.json` | `82c802a02df91265aeab771cf0a0331af35004e7557fd3f6855e9d1a75f880f1` |
+| `reports/remaining-153-001/FREEZE-028.json` | `0d96e7b4b0eb8913cea2d33fbd22ae2559ed8a66e6753e33a166bdace75e70a2` |
+| `reports/remaining-153-001/github-checks-e744f59-002.json` | `db9f796b6c4e7dbdffe4302551b77e70fff61ac2e4bd6909a428304ae02336fc` |
+| `reports/remaining-153-001/LEDGER-RESULT-060.json` | `03f7ffcc97893c618b419ed25806cbf404a1333f87adad9bdefd7f27439913ce` |
+| `reports/remaining-153-001/DPO-NATIVE-PREFIX-LEDGER-GUARD-911.json` | `0d6b758f8a3c3ef9fcd314ef0a8af4aed731155002844cf9b58fd70abcb0a962` |
+| `reports/remaining-153-001/DPO-COMPLETED-EVIDENCE-LOG-BINDING-923.json` | `d4738e0f7aa318badf24d874035c7deb80fdcc0fd5ce07f5686adb4d585ec0ac` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-060.json` | `d8318bb6710778d4dde3a18d07ec4b7beb788a7786f3ca983087c302db89f1bc` |
