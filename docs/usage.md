@@ -146,7 +146,7 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 需要用 LibreOffice 直接重渲最终 PPT 时，配置独立的[原生预览运行时](../references/native-preview.md)，并显式选择 `--preview-backend libreoffice`。若原始 PDF 的透明图片边缘出现额外灰框，可再指定 `--pdf-alpha-derivation binary-alpha-white-matte-v1` 生成单独命名的 PDF 派生件。原始 PDF 和直接 PNG 预览保留；半透明及不支持的上下文不改写，派生件也须另行复核。支持域、回执和预算见 [PDF 派生说明](../references/pdf-binary-alpha.md)。
 
-独立 Artifact 成品可显式使用 `build --artifact-image-preview`，按最终 PPT 的实际图片字节与坐标生成设备网格采样，再绘制完整混合场景。默认预览方式保留；不支持的图片状态记录限制，输出审阅重算采样证据。支持域和验证要求见[图片预览采样](../references/preview-image-sampling.md#explicit-native-picture-device-grid-previews)。
+独立 Artifact 成品可显式使用 `build --artifact-image-preview`，按最终 PPT 的实际图片字节与坐标生成设备网格采样，再绘制完整混合场景。默认预览方式保留；不支持的图片状态记录限制，输出审阅重算采样证据。支持域和验证要求见[图片预览采样](../references/preview-image-sampling.md#explicit-native-picture-device-grid-previews)。 需要共同采样的整数图片窗口可使用 `--artifact-image-shared-grid request.json`；请求会冻结，实际图片字节、裁切和共同坐标必须通过核验。
 
 ## 裁剪精修与位置诊断
 

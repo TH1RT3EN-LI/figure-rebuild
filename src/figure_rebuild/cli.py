@@ -480,7 +480,13 @@ def build(a):
     from .native_preview import validate_backend, validate_pdf_alpha_policy
     preview_backend = validate_backend(getattr(a, 'preview_backend', 'artifact'))
     pdf_alpha_policy = validate_pdf_alpha_policy(getattr(a, 'pdf_alpha_derivation', None), preview_backend)
-    image_preview = getattr(a, 'artifact_image_preview', False)
+    shared_grid_path = getattr(a, 'artifact_image_shared_grid', None)
+    shared_grid = None
+    if shared_grid_path:
+        from .source_inventory import _load_json
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        shared_grid = _load_json(Path(shared_grid_path).resolve(), MAX_DEFINITION_BYTES)
+    image_preview = getattr(a, 'artifact_image_preview', False) or shared_grid_path is not None
     if image_preview and (preview_backend != 'artifact' or a.base):
         raise ValueError('Native picture preview requires a standalone Artifact build')
     if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos') and a.base:
@@ -548,7 +554,9 @@ def build(a):
         if preview_backend == 'artifact' and not base_config:
             config['artifact_stroke_preview_version'] = 1
         if image_preview:
-            config['artifact_image_preview_version'] = 2
+            config['artifact_image_preview_version'] = 3 if shared_grid_path else 2
+            if shared_grid_path:
+                config['artifact_image_shared_grid'] = shared_grid
         if preview_backend == 'libreoffice-pdf':
             config['native_pdf_preview_version'] = 1
         if preview_backend in ('libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
@@ -632,6 +640,7 @@ def main():
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
     c.add_argument('--preview-backend', choices=['artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'], default='artifact', help='Renderer for the exact finalized PPTX; libreoffice-pdf samples the raw PDF; libreoffice-pdf-rgb derives zero-alpha RGB; libreoffice-pdf-photos also restores eligible opaque photo coordinates on fontless slides; all native exports are retained; standalone LibreOffice slides only')
     c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
+    c.add_argument('--artifact-image-shared-grid', help='JSON request declaring opaque integer source windows sampled together on a common native media grid; standalone Artifact preview only')
     c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')

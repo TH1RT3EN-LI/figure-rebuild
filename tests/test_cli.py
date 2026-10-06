@@ -101,6 +101,20 @@ class BuildInputChecks(unittest.TestCase):
         self.assertEqual(config['native_pdf_preview_version'],3)
         self.assertEqual(config['pdf_rgb_derivation'],'pdf-zero-alpha-rgb-white-v1')
         self.assertEqual(config['pdf_native_photo_placement'],'native-opaque-photo-matrix-v1')
+    def test_shared_native_image_request_is_frozen_in_build_config(self):
+        request={'schema_version':1,'groups':[{'objects':[{'id':'photo','window':[0,0,20,20]}]}]}
+        path=self.job/'shared.json';cli.save(path,request);self.args.artifact_image_shared_grid=str(path)
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],3)
+        self.assertEqual(config['artifact_image_shared_grid'],request)
+        cli.save(path,{'changed':True});self.assertEqual(config['artifact_image_shared_grid'],request)
+
+    def test_shared_native_grid_requires_standalone_artifact_before_runtime(self):
+        path=self.job/'shared.json';cli.save(path,{'schema_version':1,'groups':[]});self.args.artifact_image_shared_grid=str(path)
+        self.args.preview_backend='libreoffice-pdf'
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'standalone Artifact'):cli.build(self.args)
+        runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())

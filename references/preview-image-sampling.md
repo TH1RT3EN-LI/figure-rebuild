@@ -109,3 +109,41 @@ frames, sampled PNGs and PyMuPDF/MuPDF versions. Output review independently
 recomputes it from the final PPT and checks all three applications and complete
 paint order. This verifies the declared preview procedure; source appearance,
 semantic editability and PowerPoint/WPS playback remain separate checks.
+
+
+## Explicit shared native media grids
+
+`build --artifact-image-shared-grid request.json` selects version 3 for a
+standalone Artifact preview. The request declares integer source windows:
+
+```json
+{"schema_version":1,"groups":[{"objects":[
+  {"id":"icon-a","window":[10,5,30,25]},
+  {"id":"icon-b","window":[50,5,80,30]}
+]}]}
+```
+
+Windows use left, top, right and bottom source pixel boundaries. Every actual
+native picture must appear exactly once. Pictures in each group must contain
+identical embedded media bytes. Each window must re-encode to the actual PPT
+crop units. Exact rational constraints recover a common source-pixel-to-EMU
+transform while preserving every native origin and extent within half an EMU.
+An incompatible group fails instead of adjusting the declared geometry.
+
+MuPDF samples complete media once per group and scale, then extracts opaque
+windows at rounded native frame endpoints on that device grid. These transient
+windows retain their positions in the complete mixed paint order. This avoids
+changing the sampling phase by rendering each cropped image separately. The
+request is frozen in the build config; output review independently repeats the
+procedure using the delivered PPT and that frozen request.
+
+This policy explicitly interprets the supplied windows as integer boundaries;
+version 2 retains fractional crop semantics. Transparent windows, color
+profiles, effects and other unsupported native picture states are rejected.
+Integral canvas dimensions must agree with the actual native slide. Render
+surfaces remain bounded to 16 million pixels and 32768 pixels per axis, and
+complete grids plus extracted windows share the existing 64 Mi-pixel budget.
+Each group allows at most 256 pictures; both axes together allow 131072 pair
+constraints. No reference pixels enter rendering, and the editable PPT media
+and coordinates are retained. Source appearance and application playback still
+require separate visual verification.

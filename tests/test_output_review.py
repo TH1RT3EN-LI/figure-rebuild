@@ -95,10 +95,12 @@ class OutputReviewChecks(unittest.TestCase):
                    '<a:avLst/></a:prstGeom></p:spPr></p:pic>')
             rel = '<Relationship Id="image" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/photo.png"/>'
             scene = json.loads((self.run / 'resolved-scene.json').read_text()); scene['objects'] = [{'id':'photo','kind':'image'}]
+            if version == 3: scene['canvas'] = {'width': 200, 'height': 100}
             self.write_json(self.run / 'resolved-scene.json', scene)
         with ZipFile(pptx, 'w') as z:
             z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}" xmlns:r="{NS["r"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/>{pic}</p:spTree></p:cSld></p:sld>')
             z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+rel+'</Relationships>')
+            if version == 3: z.writestr('ppt/presentation.xml', f'<p:presentation xmlns:p="{NS["p"]}"><p:sldSz cx="1905000" cy="952500"/></p:presentation>')
             if media is not None: z.writestr('ppt/media/photo.png', media)
         delivery = json.loads((self.run / 'delivery.json').read_text())
         Path(delivery['output']).write_bytes(pptx.read_bytes())
@@ -106,9 +108,11 @@ class OutputReviewChecks(unittest.TestCase):
         self.add_preview_provenance()
         config = json.loads((self.run / 'build-config.json').read_text())
         config['artifact_image_preview_version'] = version
+        if version == 3: config['artifact_image_shared_grid'] = {'schema_version': 1, 'groups': [{'objects': [{'id': 'photo', 'window': [5,5,15,15]}]}]}
         self.write_json(self.run / 'build-config.json', config)
         d = prepare_image_preview(self.run / 'validated-output/reconstruction.pptx',
-                                  json.loads((self.run / 'resolved-scene.json').read_text()), version=version)
+                                  json.loads((self.run / 'resolved-scene.json').read_text()), version=version,
+                                  shared_grid=config.get('artifact_image_shared_grid'))
         definition = self.run / 'artifact-image-preview.json'; self.write_json(definition, d)
         audit = json.loads((self.run / 'render-audit.json').read_text())
         audit['evidence']['image_preview_definition'] = review._binding(definition)
@@ -136,6 +140,24 @@ class OutputReviewChecks(unittest.TestCase):
         self.assertFalse(review.prepare_output_review(self.run)['model_review']['performed'])
         config = json.loads((self.run / 'build-config.json').read_text()); config['artifact_image_preview_version'] = 1
         self.write_json(self.run / 'build-config.json', config)
+        with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_shared_picture_grid_is_replayed_from_frozen_request_and_actual_native_crop(self):
+        self.add_image_preview_provenance(version=3, picture_crop='l="25000" t="25000" r="25000" b="25000"')
+        record = review.prepare_output_review(self.run); self.assertIn('image_preview_definition', record['bindings'])
+        config = json.loads((self.run / 'build-config.json').read_text())
+        config['artifact_image_shared_grid']['groups'][0]['objects'][0]['window'][0] = 6
+        self.write_json(self.run / 'build-config.json', config)
+        with self.assertRaisesRegex(ValueError, 'actual native source crop'): review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')
+    def test_shared_picture_grid_forged_proof_rejected_after_rebinding_definition_hash(self):
+        audit = self.add_image_preview_provenance(version=3, picture_crop='l="25000" t="25000" r="25000" b="25000"')
+        path = self.run / 'artifact-image-preview.json'; d = json.loads(path.read_text())
+        d['shared_grid_proofs'][0]['quantization_proofs'][0]['maximum_left_or_extent_residual_EMU'] = '1'
+        self.write_json(path, d); audit['evidence']['image_preview_definition'] = review._binding(path)
+        self.write_json(self.run / 'render-audit.json', audit)
         with self.assertRaisesRegex(ValueError, 'definition disagrees'): review.prepare_output_review(self.run)
 
     @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency is unavailable')

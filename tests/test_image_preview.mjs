@@ -30,6 +30,12 @@ test('version2 transient window supports its own policy and rejects mixed proven
   d.policy='delivered-native-picture-mupdf-device-grid-v1';const s=fake(),original=[...s.elements.items];
   assert.throws(()=>applyImagePreview(s,d,1),/Invalid/);assert.deepEqual(s.elements.items,original);
 });
+test('version3 shared-grid windows retain native front occlusion and reject policy downgrade',()=>{
+  const d=definition();d.schema_version=3;d.policy='delivered-native-picture-mupdf-device-grid-v3';
+  const s=fake(),front=s.elements.items[1];applyImagePreview(s,d,1);
+  assert.deepEqual(s.elements.items.map(e=>e.id),['replacement','native-front']);assert.equal(s.elements.items[1],front);
+  d.policy='delivered-native-picture-mupdf-device-grid-v2';assert.throws(()=>applyImagePreview(fake(),d,1),/Invalid/);
+});
 test('changed native identity, position, order, PNG or target grid fails before mutation',()=>{
   for(const change of [d=>d.paint_order.reverse(),d=>d.objects[0].id='missing',
     d=>d.objects[0].native_position.left+=.01,d=>d.objects[0].previews[0].png_sha256='0'.repeat(64),

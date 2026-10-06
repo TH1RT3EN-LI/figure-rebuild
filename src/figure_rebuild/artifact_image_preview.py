@@ -181,14 +181,7 @@ def _render_picture(native, encoded, fitz, remaining_pixel_budget, crop):
     return outputs, total
 
 
-def prepare_image_preview(pptx, manifest, *, version=1):
-    """Deterministically sample delivered media; never read reference pixels."""
-    if type(version) is not int or version not in (1, 2):
-        raise ValueError('Unsupported native picture preview version')
-    try:
-        import pymupdf as fitz
-    except ImportError as exc:
-        raise ValueError('Native picture preview requires the optional PyMuPDF source dependency') from exc
+def _native_picture_inputs(pptx, manifest):
     pptx = Path(pptx).resolve()
     if not isinstance(manifest, dict) or not isinstance(manifest.get('objects'), list) or len(manifest['objects']) > 10000:
         raise ValueError('Invalid native picture source object budget')
@@ -234,6 +227,23 @@ def prepare_image_preview(pptx, manifest, *, version=1):
     expected_images = {o['id'] for o in manifest['objects'] if o.get('kind') == 'image'}
     if set(pictures) != expected_images:
         raise ValueError('Declared pictures disagree with actual native picture identities')
+    return pptx, payload, xml, names, package, relationships, pictures, order
+
+
+def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None):
+    """Deterministically sample delivered media; never read reference pixels."""
+    if type(version) is int and version == 3 and shared_grid is not None:
+        from .artifact_shared_image_preview import prepare_shared_image_preview
+        return prepare_shared_image_preview(pptx, manifest, shared_grid)
+    if shared_grid is not None:
+        raise ValueError('Shared native image grid requires explicit version 3')
+    if type(version) is not int or version not in (1, 2):
+        raise ValueError('Unsupported native picture preview version')
+    try:
+        import pymupdf as fitz
+    except ImportError as exc:
+        raise ValueError('Native picture preview requires the optional PyMuPDF source dependency') from exc
+    pptx, payload, xml, names, package, relationships, pictures, order = _native_picture_inputs(pptx, manifest)
     objects, skipped, pixels = [], [], 0
     for name, pic in pictures.items():
         try:
@@ -268,14 +278,16 @@ def prepare_image_preview(pptx, manifest, *, version=1):
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pptx'); p.add_argument('--manifest'); p.add_argument('--output'); p.add_argument('--preflight', action='store_true')
-    p.add_argument('--version', type=int, choices=(1, 2), default=1)
+    p.add_argument('--version', type=int, choices=(1, 2, 3), default=1)
+    p.add_argument('--shared-grid', help='Explicit integer source windows grouped on one common native grid')
     a = p.parse_args(argv)
     if a.preflight:
         import pymupdf
         print(json.dumps({'PyMuPDF': pymupdf.VersionBind, 'MuPDF': pymupdf.VersionFitz})); return
     if not all((a.pptx, a.manifest, a.output)): p.error('--pptx, --manifest and --output are required')
     from .source_inventory import _load_json
-    result = prepare_image_preview(a.pptx, _load_json(Path(a.manifest), MAX_DEFINITION_BYTES), version=a.version)
+    shared_grid = _load_json(Path(a.shared_grid), MAX_DEFINITION_BYTES) if a.shared_grid else None
+    result = prepare_image_preview(a.pptx, _load_json(Path(a.manifest), MAX_DEFINITION_BYTES), version=a.version, shared_grid=shared_grid)
     Path(a.output).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 
 
