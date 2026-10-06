@@ -287,6 +287,55 @@ class OutputReviewChecks(unittest.TestCase):
         delivery=json.loads((self.run/'delivery.json').read_text());Path(delivery['output']).write_bytes(ppt.read_bytes());delivery.update(sha256=digest(ppt.read_bytes()),preview_backend='native-svg',render_audit_sha256=review._binding(self.run/'render-audit.json')['sha256']);self.write_json(self.run/'delivery.json',delivery)
         return audit
 
+    def add_path_prefix_provenance(self):
+        from figure_rebuild.artifact_path_prefix_preview import prepare_path_prefix_preview
+        if __package__:
+            from .test_native_svg_preview import fixture
+        else:
+            from test_native_svg_preview import fixture
+        self.add_preview_provenance();files,scene=fixture();ppt=self.run/'validated-output/reconstruction.pptx'
+        with ZipFile(ppt,'w') as z:
+            for name,data in files.items():z.writestr(name,data)
+        for name in ['manifest-snapshot.json','resolved-scene.json']:
+            old=json.loads((self.run/name).read_text());old.update(canvas=scene['canvas'],objects=scene['objects']);self.write_json(self.run/name,old)
+        request=dict(schema_version=1,object_ids=['ring'],frame_emu=[0,0,952500,762000],pixel_grid=[100,80])
+        config=json.loads((self.run/'build-config.json').read_text());config.update(artifact_path_prefix_preview_version=1,artifact_path_prefix_grid=request)
+        self.write_json(self.run/'build-config.json',config)
+        d=prepare_path_prefix_preview(ppt,scene,request);path=self.run/'artifact-path-prefix-preview.json';self.write_json(path,d)
+        audit=json.loads((self.run/'render-audit.json').read_text());audit['input_pptx']=review._binding(ppt)
+        audit['evidence']['path_prefix_preview_definition']=review._binding(path)
+        audit['artifact_path_prefix_preview']=dict(schema_version=1,policy=d['policy'],preview_only=True,native_delivery_modified=False,
+            reference_pixels_used=False,renderer=d['renderer'],renderer_version=d['renderer_version'],mupdf_version=d['mupdf_version'],
+            applications=[dict(scale=s,applied_object_ids=['ring'],complete_mixed_paint_order_preserved=True)for s in [1,2,4]],
+            source_pixel_equivalence=False,application_playback_verified=False)
+        self.write_json(self.run/'render-audit.json',audit)
+        delivery=json.loads((self.run/'delivery.json').read_text());Path(delivery['output']).write_bytes(ppt.read_bytes())
+        delivery.update(sha256=digest(ppt.read_bytes()),render_audit_sha256=review._binding(self.run/'render-audit.json')['sha256']);self.write_json(self.run/'delivery.json',delivery)
+        return audit
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'),'optional PyMuPDF source dependency')
+    def test_path_prefix_review_replays_actual_native_grid_and_leaves_user_acceptance_pending(self):
+        self.add_path_prefix_provenance();record=review.prepare_output_review(self.run)
+        self.assertIn('path_prefix_preview_definition',record['bindings'])
+        self.assertEqual(record['user_acceptance'],{'status':'pending'})
+        config=json.loads((self.run/'build-config.json').read_text());config.pop('artifact_path_prefix_preview_version');self.write_json(self.run/'build-config.json',config)
+        with self.assertRaisesRegex(ValueError,'version-1 provenance'):review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'),'optional PyMuPDF source dependency')
+    def test_rebound_path_prefix_pixels_and_forged_order_receipt_cannot_pass_review(self):
+        good=self.add_path_prefix_provenance();path=self.run/'artifact-path-prefix-preview.json'
+        original=json.loads(path.read_text());d=copy.deepcopy(original);d['opaque_grid_png_sha256']='0'*64;self.write_json(path,d)
+        audit=copy.deepcopy(good);audit['evidence']['path_prefix_preview_definition']=review._binding(path)
+        self.write_json(self.run/'render-audit.json',audit);delivery=json.loads((self.run/'delivery.json').read_text())
+        delivery['render_audit_sha256']=review._binding(self.run/'render-audit.json')['sha256'];self.write_json(self.run/'delivery.json',delivery)
+        with self.assertRaisesRegex(ValueError,'definition disagrees'):review.prepare_output_review(self.run)
+        self.write_json(path,original)
+        audit=copy.deepcopy(good);audit['evidence']['path_prefix_preview_definition']=review._binding(path)
+        audit['artifact_path_prefix_preview']['applications'][0]['complete_mixed_paint_order_preserved']=False
+        self.write_json(self.run/'render-audit.json',audit)
+        delivery['render_audit_sha256']=review._binding(self.run/'render-audit.json')['sha256'];self.write_json(self.run/'delivery.json',delivery)
+        with self.assertRaisesRegex(ValueError,'application/order receipt'):review.prepare_output_review(self.run)
+
     @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency')
     def test_native_svg_review_replays_actual_paths_and_raw_pixels_with_acceptance_pending(self):
         self.add_native_svg_provenance();record=review.prepare_output_review(self.run)

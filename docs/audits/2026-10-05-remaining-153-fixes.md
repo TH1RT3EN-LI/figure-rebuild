@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 93 张图的来源修复及实际成品复查，关闭 149 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 84 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 4 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 8 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 75 项解决、8 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 149 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 95 张图的来源修复及实际成品复查，关闭 152 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 87 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 1 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 5 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 78 项解决、5 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 152 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -112,6 +112,8 @@
 
 - SAM1 图1 NATIVE-SAMPLING-003 的有限照片采样问题关闭：31实际照片在原source完整CTM/clip/color/interpolation上下文恢复local4x资产，93份目标1/2/4全局网格RGBA与独立fresh whole-canvas image interval逐字节一致。Artifact忽略run字距造成的紧挤标签，以381原source字形cluster保留424有序普通Unicode和五份源墨迹字体程序；四个手工leading空格明确转由前一个同face圆点cluster携带为trailing whitespace，防止native exporter删掉前导空格。全部672完整成品属性和后处理receipt重放，291非文字对象、260路径、31照片frame/crop/media不变；8351源控制最大0.00010197291339864023px保持固定0.001。六真实PPT突变拒绝；实际native PDF的115font-program/glyph对、381可见字形和424字符独立核验。实际应用可见origin最大x/y观察差为[0.05438413636356643, 0.5083187180129869]canvas px，与源控制/轮廓守卫分别记录。正式prepared绑定后完整1x、两完整2x及四完整4x原尺寸对照共7张实看，照片纹理、标签词距、原箭头/虚线/边框保持。813–847全部失败与未选候选、846诊断器旧647字段误引用原样保留；842私有猜测的0.05应用位置断言不作为源控制界，源设计控制/字体程序守卫没有放宽。关闭选定显式目标Artifact采样；原作者font/hinting身份、整图/任意倍率像素等价、标准native PDF/PowerPoint/WPS滤波、自动科学语义及字体交付未证。026公共组/字体/控制/资源预算和legacy策略不变，1352 workspace/installed Python（各8可选skip）、69真实CPU Node零skip字节绑定沿用。
 
+- D4RT 两图与 BYOL 的三项有限预览问题关闭：D4RT 保留全部 35 实际图片的源 CTM、clip、mask、色彩和插值，先逐字节重放实际 8× 交付媒体，再生成 105 份 1×/2×/4× 全局网格 RGBA，全部与独立整画布实例探针一致。两图六个尺寸的 image-only 白底组复合穷尽比较最大为 3/255；这不包括穿插矢量/文字，也不证明任意组分解或 alpha 界。BYOL 的 394 原生路径不变，显式 native-svg 从实际活动 slide relationship、完整 fill/stroke/alpha/cap/join/miter/偶奇填充与顺序重建，三个完整 SVG/PNG 独立重算。三图 888 完整原生对象、35569 源控制点、全部后处理回执读回；固定 0.001 px 不变。57 个旧 D4RT 填充编码差异按隐式闭合、循环起点、全路径共同绕向和一整数舍入单位逐环有理数核对，其他绘制字段完全相同。20 个实际 PPT 或已绘制 child-Form 的负向控制通过；修改未执行 Form 或未观察页面 Group/K 的早期失败保留。正式绑定后的十二张完整原尺寸 1×/2×/4× 对照全部实看。私人诊断遗漏 devicePixelRatio=8 的整图 RGBA 差异明确保留，不当作整图像素等价。027 全量及安装 Python 1368（各 8 可选 skip）、真实 CPU Node 70（0 skip）、97/314 文件包装通过，dc748a9 的 16 项 GitHub 检查全通过。默认准入和组/字体/控制/资源限制不变；来源字体身份、跨应用、自动语义与用户验收仍未证。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -124,7 +126,7 @@
 | ccf-2020-05-f02 | R01-PREVIEW-STROKE |
 | ccf-2020-06-f01 | D01, D02 |
 | ccf-2020-06-f03 | SOURCE-OUTLINE-TEXT-001 |
-| ccf-2020-07-f02 | BYOL-FLAT-COLOR-001 |
+| ccf-2020-07-f02 | BYOL-FLAT-COLOR-001, BYOL-RASTER-DETAIL-001 |
 | ccf-2020-09-f02 | D01, D02, D03 |
 | ccf-2020-11-f02 | D01, D02, D03 |
 | ccf-2020-11-f03 | D01, D02 |
@@ -207,6 +209,8 @@
 | ccf-2026-01-f05 | D01, D02 |
 | ccf-2026-02-f01 | D07, D08, NATIVE-SAMPLING-002, RASTER-BODY-001 |
 | ccf-2026-03-f02 | D05, SOURCE-OUTLINE-TEXT-001 |
+| ccf-2026-04-f01 | R02-NATIVE-SAMPLING-GROUP-COMPOSITION |
+| ccf-2026-04-f02 | R02-NATIVE-SAMPLING-GROUP-COMPOSITION |
 | ccf-2026-05-f01 | D01, D02 |
 | ccf-2026-06-f01 | R01-PREVIEW-SAMPLING |
 
@@ -1071,3 +1075,29 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/SAM1-TARGET-GLYPH-GRID-LEDGER-GUARD-848.json` | `7c22341f7a7c826df2037c8ff39775f59860f4d12f91892caf3bf5fc4396cef8` |
 | `reports/remaining-153-001/github-checks-c504725-001.json` | `d7b9b42c48ee26de5a85da9371d796f33daf1504585e26ecf16bcf351f425c68` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-058.json` | `bbf1ff5e3582ef685fd6d6acdfd3936e5deaed40ac668044c7de612e4eb4362c` |
+| `reports/remaining-153-001/ccf-2026-04-f01-NATIVE-GRID-OUTPUT-REVIEW-886.json` | `b877458345c548e723420ad96f0d273083ad0911c34581fac2a70d4cc3f96e97` |
+| `reports/remaining-153-001/ccf-2026-04-f02-NATIVE-GRID-VISUAL-886.json` | `7ffe2ff0d0f68115931ea8d841c893ec3615c2b74643483e441990891f52ea54` |
+| `reports/remaining-153-001/THREE-NATIVE-DIFFERENCES-869.json` | `4487ef43b6401ddc94b0e74721c990bd960d919d602d58644dcc73d856967438` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-REVIEW-RESULT-886.json` | `8ecc2b9b307aa16633ac4a3bd3806252f11c44d1341ad98b6c112c79945292cd` |
+| `reports/remaining-153-001/ccf-2020-07-f02-NATIVE-GRID-OUTPUT-REVIEW-886.json` | `a57a6ab533f23742bf40da1deb8fcd0741b5d8279425a8233cb2d0b5488ae071` |
+| `reports/remaining-153-001/actual-view-names-three-native-grid-883.json` | `5538777bd2bedc22bb2a663ef9d8f802413162c4f4f2a0b9b040611c70a4299c` |
+| `reports/remaining-153-001/THREE-NATIVE-DIFFERENCES-868.json` | `4487ef43b6401ddc94b0e74721c990bd960d919d602d58644dcc73d856967438` |
+| `reports/remaining-153-001/BYOL-NATIVE-SVG-GRID-PROBE-854.json` | `1166c287add9376bb801205251859aaa2dc5c976fa8b3cb85fb046597afbac58` |
+| `reports/remaining-153-001/D4RT-PRIVATE-TARGET-GRID-853.json` | `1797730cea1d99580cb257d36a41aded2decbbf1434cab4f851fe877caaa01ce` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-BUILD-862.json` | `1b52cb63a50818ea0e0c178ccb754f54e28223219641cb551797d95a5305d864` |
+| `reports/remaining-153-001/ccf-2020-07-f02-NATIVE-GRID-VISUAL-886.json` | `a1439115e27395876f13a4cb9ed35f05027680d064cb46e393a077df1ca25779` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-READBACK-879.json` | `33d7f84f8f4447a374687367f82ef28fa95d493a52315d9546cb356a9fd8d7cf` |
+| `reports/remaining-153-001/D4RT-ORIGINAL-GROUP-PROBES-852.json` | `14d45385305a740aacb8cfae5d6332030658b5ca9b8d34fd744605e6378bf141` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-GALLERY-BINDINGS-871.json` | `8dd8943ac189cfc66c337f2f52fb076566a0ce21557e6819b69e54ac49d42553` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-GRID-CHECKS-861.json` | `9649b6c9790890891c33dc7aea8974da00d1dff7a470d14c6b24ce6f7a2f41bd` |
+| `reports/remaining-153-001/ccf-2026-04-f02-NATIVE-GRID-OUTPUT-REVIEW-886.json` | `082f5bc0a50d4e21eebc9b5918d9b2cb2494ff586a246bdb5601dcf34bef10b0` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-GRID-TEST-INPUTS-858.json` | `32a6c1d6447f99f54cac77996f5c232d6ca007cb40afad284fd2512de4f13fc2` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-GRID-TEST-INPUTS-856.json` | `076d6e5760e89aebcdee0ea61c4c1704c6e6af9da192caa6e6ecdf896a27fc16` |
+| `reports/remaining-153-001/ccf-2026-04-f01-NATIVE-GRID-VISUAL-886.json` | `6423c59a56a6bba554a996cc90620968f877ad0c335ebb7a19a5a059b86e9a6b` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-NEGATIVES-885.json` | `c92cec3abb23671fc1622606b1c4b7536913fd4d918dbcb7dd5ebd643cd4edb7` |
+| `reports/remaining-153-001/PUBLIC-NATIVE-GRID-WORKSPACE-CHECKS-859.json` | `5c72f712b5bd9e1a6e3f1ea88d1879650d9b14dc731a6d0cdca617e2eea74286` |
+| `reports/remaining-153-001/FREEZE-027.json` | `1fdeafd4a4020f158a750fae2944389d27aaa79260f90ba737ed7596af2d03f3` |
+| `reports/remaining-153-001/github-checks-dc748a9-001.json` | `73c3070f6ce0cb07ffb824d10db5f913aee3ac17c6b3d931fc37bfe2fbf007e1` |
+| `reports/remaining-153-001/LEDGER-RESULT-059.json` | `fa61eb987209d5e82d333903f468f1713d1584bc1aa1dc3bede9d5945ea3827b` |
+| `reports/remaining-153-001/THREE-NATIVE-GRID-LEDGER-GUARD-889.json` | `c4037fe042bfd1b4139e735279dd2708255b2f03346b50422d688c0f65fb30a0` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-059.json` | `8d58d7166d7632e7f95ab35bd21272f9a32046f7cbb871652d5625847d59ddc6` |

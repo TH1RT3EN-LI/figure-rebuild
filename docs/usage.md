@@ -154,6 +154,8 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 仅含平铺纯色原生路径的独立 PPT 可选择 `--preview-backend native-svg`，从最终 PPT 的实际控制点、颜色、线型和顺序生成 MuPDF 预览。输出审阅会重建 SVG 并重新渲染三份原始 PNG；支持域与验收边界见[原生路径 SVG 预览](../references/native-svg-preview.md)。
 
+源像素单元重建为多个独立颜色路径后，可用 `--artifact-path-prefix-grid request.json` 将实际填充路径前缀与不透明画布背景先共同采样，再生成 1×/2×/4× 预览。该显式策略限定从第一笔绘制开始的连续纯填充前缀；完整控制包络必须位于声明的整数 EMU 框内。后续标签与对象保留原有遮挡顺序，交付 PPT 的全部路径不变。请求、支持域和资源限制见[原生路径前缀网格](../references/native-path-prefix-grid.md)。
+
 ## 裁剪精修与位置诊断
 
 ```bash

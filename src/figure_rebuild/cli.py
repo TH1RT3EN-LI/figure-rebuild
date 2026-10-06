@@ -507,6 +507,16 @@ def build(a):
         preview_sources = source_request_assets(source_sampling, rgb_groups=bool(source_rgb_path))
     image_preview = (getattr(a, 'artifact_image_preview', False) or shared_grid_path is not None or
                      source_sampling_path is not None or source_rgb_path is not None)
+    path_prefix_path = getattr(a, 'artifact_path_prefix_grid', None)
+    path_prefix = None
+    if path_prefix_path:
+        if preview_backend != 'artifact' or a.base or image_preview or 'source_canvas_clip' in data:
+            raise ValueError('Native path-prefix grid requires a standalone Artifact build without another image sampling policy or source clipping')
+        from .source_inventory import _load_json
+        from .artifact_path_prefix_preview import validate_request
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        path_prefix = _load_json(Path(path_prefix_path).resolve(), MAX_DEFINITION_BYTES)
+        validate_request(path_prefix)
     if image_preview and (preview_backend != 'artifact' or a.base):
         raise ValueError('Native picture preview requires a standalone Artifact build')
     if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos') and a.base:
@@ -522,7 +532,7 @@ def build(a):
             raise ValueError('Native SVG dependency check timed out') from exc
         except subprocess.CalledProcessError as exc:
             raise ValueError('Native SVG dependency check failed: ' + (exc.stderr or '').strip()) from exc
-    if image_preview:
+    if image_preview or path_prefix_path:
         try:
             subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'artifact_image_preview',
                             '--preflight'], check=True, capture_output=True, text=True, timeout=45,
@@ -589,6 +599,9 @@ def build(a):
                 config['artifact_image_source_sampling'] = source_sampling
             if source_rgb_path:
                 config['artifact_image_source_rgb_groups'] = source_sampling
+        if path_prefix_path:
+            config['artifact_path_prefix_preview_version'] = 1
+            config['artifact_path_prefix_grid'] = path_prefix
         if preview_backend == 'libreoffice-pdf':
             config['native_pdf_preview_version'] = 1
         if preview_backend == 'native-svg':
@@ -676,6 +689,7 @@ def main():
     c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
     c.add_argument('--artifact-image-shared-grid', help='JSON request declaring opaque integer source windows sampled together on a common native media grid; standalone Artifact preview only')
     c.add_argument('--artifact-image-source-sampling', help='JSON source image-only interval recipes which byte-replay delivered picture media before target-grid previews; standalone Artifact only')
+    c.add_argument('--artifact-path-prefix-grid', help='JSON request for a filled native-path prefix sampled with the actual opaque background on a finite grid; standalone Artifact only; editable delivery unchanged')
     c.add_argument('--artifact-image-source-rgb-groups', help='JSON single-image recipes using the existing explicit RGB source-group policy; finite full-figure review required')
     c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)

@@ -159,6 +159,32 @@ class BuildInputChecks(unittest.TestCase):
         config=json.loads((self.job/'build/run-001/build-config.json').read_text());self.assertEqual(config['native_svg_preview_version'],1)
         self.assertNotIn('artifact_stroke_preview_version',config);self.assertNotIn('native_pdf_preview_version',config)
         self.assertTrue(any('native_svg_preview'in call.args[0]for call in command.call_args_list))
+
+    def test_path_prefix_request_is_explicitly_frozen_and_preflighted(self):
+        request = dict(schema_version=1, object_ids=['line'], frame_emu=[0,0,200*9525,100*9525], pixel_grid=[200,100])
+        path = self.job/'path-prefix.json'; cli.save(path, request); self.args.artifact_path_prefix_grid = str(path)
+        with patch.object(cli,'runtime',return_value=self.rt), patch.object(cli.subprocess,'run') as command, redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_path_prefix_grid'],request)
+        self.assertEqual(config['artifact_path_prefix_preview_version'],1)
+        self.assertNotIn('artifact_image_preview_version',config)
+        self.assertTrue(any('artifact_image_preview' in call.args[0] for call in command.call_args_list))
+
+    def test_path_prefix_conflicting_policies_and_unbounded_grid_fail_before_runtime(self):
+        path = self.job/'path-prefix.json'
+        request = dict(schema_version=1,object_ids=['line'],frame_emu=[0,0,200*9525,100*9525],pixel_grid=[200,100])
+        cli.save(path,request);self.args.artifact_path_prefix_grid=str(path)
+        for backend, image in [('libreoffice',False),('artifact',True)]:
+            self.args.preview_backend=backend;self.args.artifact_image_preview=image
+            with patch.object(cli,'runtime') as runtime, self.assertRaisesRegex(ValueError,'path-prefix'):
+                cli.build(self.args)
+            runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+        self.args.artifact_image_preview=False;self.args.preview_backend='artifact'
+        request['pixel_grid']=[32768,32768];cli.save(path,request)
+        with patch.object(cli,'runtime') as runtime, self.assertRaisesRegex(ValueError,'pixel budget'):
+            cli.build(self.args)
+        runtime.assert_not_called()
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())

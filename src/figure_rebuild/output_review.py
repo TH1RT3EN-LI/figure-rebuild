@@ -100,9 +100,16 @@ def _preview_provenance(run, config, paths):
              'Source image sampling requires explicit version-4 provenance')
     _require((config.get('artifact_image_preview_version') == 5) == ('artifact_image_source_rgb_groups' in config),
              'Source RGB group sampling requires explicit version-5 provenance')
+    _require((config.get('artifact_path_prefix_preview_version') == 1) == ('artifact_path_prefix_grid' in config),
+             'Native path-prefix grid requires explicit version-1 provenance')
+    if 'artifact_path_prefix_preview_version' in config:
+        _require(config.get('preview_backend') == 'artifact' and not config.get('base') and
+                 type(config['artifact_path_prefix_preview_version']) is int and config['artifact_path_prefix_preview_version'] == 1 and
+                 'artifact_image_preview_version' not in config, 'Unsupported native path-prefix preview provenance')
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
         _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
+        _require('artifact_path_prefix_preview_version' not in config, 'Native path-prefix preview requires preview provenance')
         _require('native_pdf_preview_version' not in config, 'Native PDF preview requires preview provenance')
         _require('pdf_rgb_derivation' not in config, 'PDF RGB derivation requires preview provenance')
         _require('pdf_native_photo_placement' not in config, 'Native photo placement requires preview provenance')
@@ -114,6 +121,9 @@ def _preview_provenance(run, config, paths):
             _require('artifact_image_preview' not in legacy_audit and
                      'image_preview_definition' not in legacy_audit.get('evidence', {}),
                      'Unrequested native picture preview adapter')
+            _require('artifact_path_prefix_preview' not in legacy_audit and
+                     'path_prefix_preview_definition' not in legacy_audit.get('evidence', {}),
+                     'Unrequested native path-prefix preview adapter')
             _require('native_pdf_preview' not in legacy_audit and
                      not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt'
                              for k in legacy_audit.get('evidence', {})), 'Unrequested native PDF preview')
@@ -195,6 +205,28 @@ def _preview_provenance(run, config, paths):
                  not any(k.startswith('native_pdf_png_') or k == 'native_pdf_preview_receipt' for k in evidence),
                  'Unrequested native PDF preview')
         _require(audit.get('renderer') == 'Codex Artifact Tool', 'Artifact preview has a different renderer identity')
+        if 'artifact_path_prefix_preview_version' not in config:
+            _require('artifact_path_prefix_preview' not in audit and 'path_prefix_preview_definition' not in evidence,
+                     'Unrequested native path-prefix preview adapter')
+        else:
+            _require('path_prefix_preview_definition' in evidence, 'Native path-prefix preview definition is missing')
+            from .artifact_path_prefix_preview import prepare_path_prefix_preview
+            definition = _json_record(paths['path_prefix_preview_definition'], strict_numbers_and_keys=True)
+            replay = prepare_path_prefix_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True),
+                                                 config['artifact_path_prefix_grid'])
+            _require(_same_json(definition, replay), 'Native path-prefix definition disagrees with actual delivered PPTX')
+            expected_prefix = dict(schema_version=1, policy=replay['policy'], preview_only=True,
+                native_delivery_modified=False, reference_pixels_used=False, renderer=replay['renderer'],
+                renderer_version=replay['renderer_version'], mupdf_version=replay['mupdf_version'],
+                applications=[dict(scale=scale, applied_object_ids=replay['request']['object_ids'],
+                                   complete_mixed_paint_order_preserved=True) for scale in (1, 2, 4)],
+                source_pixel_equivalence=False, application_playback_verified=False)
+            _require(_same_json(audit.get('artifact_path_prefix_preview'), expected_prefix),
+                     'Native path-prefix application/order receipt disagrees with actual native definition')
+    else:
+        _require('artifact_path_prefix_preview' not in audit and 'path_prefix_preview_definition' not in evidence,
+                 'Native path-prefix preview requires Artifact')
+    if backend == 'artifact':
         image_version = config.get('artifact_image_preview_version')
         if image_version is None:
             _require('artifact_image_preview' not in audit and 'image_preview_definition' not in evidence,

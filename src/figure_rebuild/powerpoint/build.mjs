@@ -13,6 +13,7 @@ import {linearGradientFill} from './linear_gradient.mjs';
 import {configureCpuRenderer} from './cpu_renderer.mjs';
 import {applyStrokePreview} from './stroke_preview.mjs';
 import {applyImagePreview} from './image_preview.mjs';
+import {applyPathPrefixPreview} from './path_prefix_preview.mjs';
 
 const config=JSON.parse(await fs.readFile(process.argv[2],'utf8'));
 const {job,run,runtime,output}=config;
@@ -30,6 +31,8 @@ if(config.artifact_image_preview_version!==undefined&&(![1,2,3,4,5].includes(con
 if((config.artifact_image_preview_version===3)!==Object.hasOwn(config,'artifact_image_shared_grid'))throw Error('Shared native image grid requires explicit version-3 request');
 if((config.artifact_image_preview_version===4)!==Object.hasOwn(config,'artifact_image_source_sampling'))throw Error('Source image sampling requires explicit version-4 request');
 if((config.artifact_image_preview_version===5)!==Object.hasOwn(config,'artifact_image_source_rgb_groups'))throw Error('Source RGB group sampling requires explicit version-5 request');
+if((config.artifact_path_prefix_preview_version===1)!==Object.hasOwn(config,'artifact_path_prefix_grid') ||
+   config.artifact_path_prefix_preview_version!==undefined&&(config.artifact_path_prefix_preview_version!==1||previewBackend!=='artifact'||config.base||config.artifact_image_preview_version!==undefined))throw Error('Unsupported native path-prefix preview provenance');
 if(['libreoffice','libreoffice-pdf','libreoffice-pdf-rgb','libreoffice-pdf-photos'].includes(previewBackend)&&config.base)throw Error('LibreOffice preview does not yet support base-deck slide mapping');
 if(config.pdf_alpha_derivation!==undefined&&(config.pdf_alpha_derivation!=='binary-alpha-white-matte-v1'||previewBackend!=='libreoffice'))throw Error('Unsupported PDF alpha derivation policy or backend');
 const packageRoot=config.package_root;
@@ -198,8 +201,14 @@ if(previewBackend==='native-svg'){
   const info=JSON.parse(runPython('package',['inspect',checkedOutput],{encoding:'utf8'}));
   const at=info.slides.findIndex(s=>String(s.slide_id??s.id)===config.base.slide_id);if(at<0)throw Error('Stable slide vanished');targetSlide=rendered.slides.items[at];
  }
- let nativeStrokePreview,strokeDefinition,strokeData,imageData,imageDefinition;
- const imageApplications=[];
+ let nativeStrokePreview,strokeDefinition,strokeData,imageData,imageDefinition,pathPrefixData,pathPrefixDefinition;
+ const imageApplications=[],pathPrefixApplications=[];
+ if(config.artifact_path_prefix_preview_version===1){
+  const request=path.join(run,'path-prefix-grid-request.json'),file=path.join(run,'artifact-path-prefix-preview.json');
+  await fs.writeFile(request,JSON.stringify(config.artifact_path_prefix_grid));
+  runPython('artifact_path_prefix_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--request',request,'--output',file],{stdio:'pipe'});
+  pathPrefixData=JSON.parse(await fs.readFile(file,'utf8'));pathPrefixDefinition=await bindFile(file);
+ }
  if(config.artifact_image_preview_version!==undefined){
   const file=path.join(run,'artifact-image-preview.json');
   const args=['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file,'--version',String(config.artifact_image_preview_version)];
@@ -220,7 +229,7 @@ if(previewBackend==='native-svg'){
   runPython('artifact_stroke_preview',['--pptx',checkedOutput,'--manifest',resolvedManifest,'--output',file],{stdio:'pipe'});
   const definition=JSON.parse(await fs.readFile(file,'utf8'));
   strokeData=definition;strokeDefinition=await bindFile(file);
-  if(!imageData)nativeStrokePreview=applyStrokePreview(targetSlide,definition);
+  if(!imageData&&!pathPrefixData)nativeStrokePreview=applyStrokePreview(targetSlide,definition);
   const unsupported=new Set(definition.unsupported.map(o=>o.id));
   for(const limitation of previewLimitations)if(limitation.code==='native_stroke_geometry_requires_application_verification'){
    limitation.object_ids=limitation.object_ids.filter(id=>unsupported.has(id));
@@ -228,11 +237,12 @@ if(previewBackend==='native-svg'){
   }
  }
  for(const s of [1,2,4]){
-  if(imageData){
+  if(imageData||pathPrefixData){
    // Each scale starts from the actual immutable delivery. A prior scale's
    // device-grid pictures or SVG strokes never seed this import.
    rendered=await PresentationFile.importPptx(await FileBlob.load(checkedOutput));targetSlide=rendered.slides.items[0];
-   imageApplications.push(applyImagePreview(targetSlide,imageData,s));
+   if(imageData)imageApplications.push(applyImagePreview(targetSlide,imageData,s));
+   if(pathPrefixData)pathPrefixApplications.push(applyPathPrefixPreview(targetSlide,pathPrefixData,s));
    if(strokeData){const receipt=applyStrokePreview(targetSlide,strokeData);if(nativeStrokePreview&&JSON.stringify(nativeStrokePreview)!==JSON.stringify(receipt))throw Error('Stroke preview changed across image sampling scales');nativeStrokePreview=receipt;}
   }
   const blob=await rendered.export({slide:targetSlide,format:'png',scale:s});await fs.writeFile(path.join(run,`preview-${s}x.png`),new Uint8Array(await blob.arrayBuffer()));
@@ -241,6 +251,14 @@ if(previewBackend==='native-svg'){
  if(imageSamplingAudit.cropped_minification_calls_unfiltered)previewLimitations.push({code:'cropped_image_minification_requires_visual_verification',draw_calls:imageSamplingAudit.cropped_minification_calls_unfiltered,detail:'Staged minification covers complete source windows. Cropped source windows retain native interpolation to avoid mixing excluded pixels into crop edges.'});
  previewAudit={renderer:'Codex Artifact Tool',renderer_backend:runtimeCheck.renderer_backend,cpu_renderer:runtimeCheck.cpu_renderer,image_sampling:{...imageSamplingAudit,scope:'artifact_process_through_raw_preview_exports'},svg_decode_device_pixel_ratio:8,source_media_bytes_modified:false,preview_scales:[1,2,4],raw_diagnostic_scale:1,application_playback_verified:false,preview_limitations:previewLimitations,evidence:{font_audit:await bindFile(path.join(run,'font-audit.json'))}};
  if(nativeStrokePreview){previewAudit.artifact_stroke_preview=nativeStrokePreview;previewAudit.evidence.stroke_preview_definition=strokeDefinition;}
+ if(pathPrefixData){
+  previewAudit.artifact_path_prefix_preview={schema_version:1,policy:pathPrefixData.policy,preview_only:true,native_delivery_modified:false,reference_pixels_used:false,
+   renderer:pathPrefixData.renderer,renderer_version:pathPrefixData.renderer_version,mupdf_version:pathPrefixData.mupdf_version,
+   applications:pathPrefixApplications,source_pixel_equivalence:false,application_playback_verified:false};
+  previewAudit.evidence.path_prefix_preview_definition=pathPrefixDefinition;
+  previewLimitations.push({code:'finite_native_path_prefix_grid_requires_visual_review',object_ids:pathPrefixData.request.object_ids,
+   detail:'An explicit filled native prefix and actual opaque background use a finite pixel grid for these previews. Editable paths are unchanged; source/Office pixel equivalence is unverified.'});
+ }
  if(imageData){
   previewAudit.artifact_image_preview={schema_version:imageData.schema_version,policy:imageData.policy,preview_only:true,native_delivery_modified:false,reference_pixels_used:false,
    renderer:imageData.renderer,renderer_version:imageData.renderer_version,mupdf_version:imageData.mupdf_version,applications:imageApplications,
