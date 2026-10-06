@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 89 张图的来源修复及实际成品复查，关闭 135 项原问题：59 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 18 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 22 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 68 项解决、15 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 135 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 90 张图的来源修复及实际成品复查，关闭 136 项原问题：60 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 17 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 21 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 69 项解决、14 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 136 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -32,7 +32,7 @@
 - InstructGPT 的八处箭杆由真实轴向渐变和透明蒙版恢复为可编辑渐变路径。实际 shade 绑定完整 PatternType2 资源，不能将 21 个 SVG/image-info 实例误认作 21 次普通图片绘制；原生流为五张图片和 16 次 shading。显式 Type4 符号证明限定源 RGB 常量和灰度输入分段函数，精确求相邻矩形并与蒙版交集；灰度输入代理误差不超过 1/10000，不涵盖 ICC、蒙版 alpha 或像素等价。旧蒙版定义 153 不再作为可见矩形输出，真实不透明蒙版另裁剪白底和右侧反馈曲线；该私有曲线见证用精确有理数隔离单调交点并记录控制/相位界，公共准入未变。五个小型 8× 来源合成图保留照片、笔、青蛙的原背景、圆形裁剪、Multiply 和圆形边界，不能称为仅提取图片。圆边框目前在这些位图内，独立编辑记为新增 E01 开放限制。71 个图注片段和 346 个字符不变，实际图注绘制 246 的 45 个字形从源程序、别名、应用子集及真实 native handle 重新核验；同一字体在页上其他正文中的使用被按原绘制身份排除。完整 306 个对象的文字、230 条路径、五个媒体和顺序读回；全图 1×/2×及 14 组同网格 4× 实看后关闭 D01/D02/V3-R01。
 - 最终 PPT 的字体、字符、源基线、frame/inset、曲线、图片字节和全部对象顺序均读回。曲线和绕向证明从原始 authoring 中间产物按完整生产前置条件重放，不重新处理终态。各图实看源全图 1×、最终原生 PPT 全图 1×/2×及匹配像素步长的 4× 局部；两批主要字体修复共实看 206 页 4× 对照。RAG 另实看源/旧/新渐变局部，白缝消失。
 
-源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 42 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或其他作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
+源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 45 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或其他作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
 
 
 - Maximum Flow 图 2 将 128 个活动片段、273 个字符绑定到 19 个实际嵌入的 Computer Modern/Latin Modern Type1 程序，并从原生矩阵区分 43 个横纵 em 变体。恢复真实粗体/斜体、纵向 em、独立下标基线及 ASCII 物理字距；UPM16000 私有别名仍分别限定 1/1024 原设计单位控制点与 1/32 advance 编码界，不宣称原轮廓、hinting 或像素相等。两处原清单中的箭头/成员符号保留正确 Unicode，但源 ToUnicode 实际错误返回 `!`/`2`，人工字形绑定与原始元数据分开记录。全部 116 个使用字体/Unicode 子集对及 273 个实际原生 font handle/GID 逐项核验；位置最大观察差为全图横向 0.905 px、纵向 0.511 px，主体数学标签为 0.156/0.464 px。外部后端单次字体策略仍上限 16；以四个连续绘制顺序的受限构建件和公开原生插入接口组装整图，逐件字体检查、所有 344 个最终对象的次序、变换、字形及 cubic/winding/stroke 回执分别重放，216 条其他路径逐字节保留。整页包/布局检查与实际字形核对通过，但未声称整页 43 字体族策略检查或单次整图构建通过。重复登记的同角色字体只在 SFNT head 保存时间/校验值上有差异，其余表及 head 字段相同后选择一个登记角色。曾误载入旧 helper 的组装/审阅失败及所有后继保留；最终实际加载的所有模块均绑定冻结 012。原图 1×、最终原生 1×/2×与十张同网格 4× 数学、编号和三行图注局部实际查看后关闭 D01。原有轮廓字和自动公式层级未升级；来源字体跨应用交付继续开放。
@@ -86,7 +86,7 @@
 
 - SimGCL 图 1 的源轮廓文字问题关闭：129 条字形路径自动恢复为 129 个普通 Unicode 活动文字对象，133 个原编码字符（含四个原空格）完整读回。原零活动文字状态及后继 22 段人工活动文字历史保留；新恢复不提供预设标签。两份实际源 TrueType 程序重新编码为作业本地别名，原 cmap/GID/UCS 直接一致，36 个当前使用的源/派生/实际原生字体字形对，归一化轮廓和 advance 精确相同。214 次源绘制、原中性双层 group、258 次完整字形 clip 证明另行复核，15659 个原字形控制点最大 0.000098004827 px；固定 0.001 px 守卫未变。应用原点偏差横向 0.071129、纵向 0.365002 px 单列。176 条其他图形的实际属性和顺序与已复核人工父版精确相同，55 个填充回执独立重放，1282 个控制点最大 0.000101169554 px。独立平面文字读取器只输入真实字符、advance、原点、em 和颜色/字体层级，不输入源 span 边界或字典，源与实际原生得到相同 22 个编码片段。10 支实际填充箭头保留倾斜尾端、非中点头尖和不等头高/底长，含两支斜箭和三段 U 弯箭；四次理想几何模板假设被实际源拒绝并保留，未改源图或放宽守卫。端口最大差 0.000046924935 px。有限流程读取独立得到三个各含八节点/十一灰边的原图簇、三个圆角编码器卡片、三个五横五竖网格及两个无命名圆盘，共 11 流程节点、10 有向关系，三个卡片标签和三个输入边标签一致。灰边唯一候选窗口为当前圆节点半径加半条实际线宽，有向关系窗口为一原 source-em；这些明确的有限适用窗口不是控制点容差或精确圆交点证明。13 个其他编码片段保留未关联，不凭邻近位置捏造任务含义。11 项拒绝检查含实际词距/基线歧义、缺失/重复箭头、重复节点/卡片字/网格线，以及当前真实成品改字和删字；图形输入倒序和箭头绕向重放通过。16 张全图、完整 2×、平铺 4×及完整流程 4× 实看，七个红标记、字重、布局、共享目标、网格 0.2 alpha 与图簇均保持。标准 source-content PASS 覆盖 22 字面量；未提供 source-inventory 时，真实公开 API 返回 NOT_PROVIDED，成品不创建该可选报告，也不凭空增加 semantic 字段；标准公式/连接数组仍空。自动读取以 hash-bound sidecar 提供，未宣称通用 OCR/拓扑、任务语义、原生公式/连接线或像素等价。字体未嵌入，共用交付限制继续开放并关联 44 图，完整 family/hinting/未见 Unicode、PowerPoint/WPS 和用户验收仍待验证。冻结024公开代码未改，既有1327 Python/安装后及67 CPU Node结果保持原运行身份；准确已推送 eaf7373 的16项 GitHub 检查通过。
 
-## 本轮关闭项
+- Swift 图 1 的源轮廓文字问题关闭：原 272 条路径中的 183 条字形自动恢复为 183 个普通 Unicode 活动文字对象，201 个原编码字符、14 个空格和四个原连字续符完整读回；89 条其他原图形实际属性及绘制顺序精确未变。三份真实源 TrueType 均无 cmap/GSUB，按实际 UCS/GID 生成作业本地映射和 rt/fl/ft 连字规则，全部原 glyf 编译字节、hmtx 和 hhea 保留；三个空白零 advance 分量仅用于缺失的独立 f/t 连字拼接，不据此宣称独立字符扩展编辑或恢复原 cmap/GSUB。54 个当前使用的源/实际原生字形对归一化轮廓及 advance 精确相同。185 次原绘制、两个中性 group、366 次完整字形 clip、9469 个源字形控制点均复核，控制点最大 0.000172729111 px；1499 个其他图形控制点最大 0.000104749052 px，19 个填充回执另行重放，固定 0.001 px 守卫未变。源底部 NIC 默认逻辑文字框越界的失败保留，使用现有支持的一原 em 单行段落行距后，所有原点/em/字符保留并读回实际百分比行距；越界负例仍拒绝。实际应用原点横向 0.049811、纵向 0.297255 px 偏差单列。相同 PPT 的实际后端诊断表明 PDF 栅格把开叉箭头尖端钝化，直接 Impress PNG 保留原尖端；最终选用既有直接 PNG 后端，未选 PDF 候选与三张诊断完整保留。平面读取不输入 23 个源 span 边界或字典，独立得到相同 22 段编码文字。八个原五段三次曲线圆角卡片逐整字墨迹包络证明内部关系；重叠前/后卡片按原绘制次序和唯一最高先前填充关联，后卡片遮挡文字仍是原编码元数据，不捏造为可见。九个箭头头部按六个真实四点凹口及三个最短底边三角形读取，唯一关联七条原弯曲/复合虚线箭杆；窗口为一原头高、末端方向与头底法向夹角不超过45°，明确独立于固定坐标守卫。原虚线相位的 1.058577 px 端口间隙和 0.933767 方向余弦保留；非理想源假设拒绝探针保留。端口/卡片界源与实际最大差 0.000053098739 px，两条直箭注释自动读回，12 个其他片段未关联。CWND 箭头投影未命中 flows 卡片，完整任务端点关系与 Pacing 标签归属不据邻近捏造。14 项歧义/损坏负例含词距、基线、续符原点/字体/对象/advance、退化/缺头/重复杆、重叠卡片绘制同序、卡片墨迹不完整、重复边注释和真实成品改字/删字；图形输入倒序及所有箭头头部旋转/绕向重放一致。16 张选定全图、完整2×、平铺4×及完整4×实看，标签、字重、原连字、圆环内孔/分割、队列/堆叠/颜色及曲线箭头均保持来源外观；14 张未选 PDF 比对不混计。标准 source-content PASS 仅覆盖23个原编码字面量，公式/连接数组仍空，真实公开 source-inventory 返回 NOT_PROVIDED。自动有限读取为 hash-bound 只读侧证，不宣称通用 OCR/拓扑、原生语义容器/公式/连接线、任务含义或像素等价。三字体未嵌入，共用字体交付开放限制现在关联45图；完整原 family/hinting/cmap/GSUB/未见编辑、PowerPoint/WPS 和用户验收仍待验证。冻结024公开代码未改，既有1327 Python/安装后及67 CPU Node结果保留原运行身份；准确前一已推送 c398c0c 的16项 GitHub 检查全部通过。\n\n## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
 | --- | --- |
@@ -111,6 +111,7 @@
 | ccf-2020-15-f05 | D03 |
 | ccf-2020-16-f02 | R02-NATIVE-IMAGE-FRAME |
 | ccf-2020-16-f03 | R01-PREVIEW-JOIN |
+| ccf-2020-17-f01 | SOURCE-OUTLINE-TEXT-001 |
 | ccf-2020-17-f02 | D01 |
 | ccf-2020-18-f01 | D01, D02, XC01 |
 | ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
@@ -601,3 +602,40 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-LEDGER-GUARD-439.json` | `30576004d3d292907659056021df72b65ebc612976705f2c8ef9f7b2ed8123bd` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-044.json` | `898b2a7588bd728935304c68d86023a835b64e3c6cac06028a7e8ce614a85543` |
 | `reports/remaining-153-001/DISTILLATION-440.json` | `6447a9a23d08cf84f77d894596e88b3745a2cd35a6862ee06691e8e0f51fe201` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-FINITE-READING-469.json` | `73fa249fe8e38802becf7dc69c63e7bd131ab6bcc0b5ccff14f2dcc1d0df5265` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-LIVE-REVIEW-RESULT-475.json` | `137a88e4922dc2a051ed37c30f368df960efc4f603866e95b80e5bc286326686` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-LIVE-VISUAL-475.json` | `700836007c3be22682830a695dbb2ac44bf70e5b31006a0db7df721db3000108` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-READING-NEGATIVES-470.json` | `f61d8ffb8c37c0c230e81ee2a066b33974170a8343aa1370461865800d6c5bf8` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-WORD-LAYOUT-464.json` | `d5a9e0e4ac783ef85154c0c465123df8cd5269ba6ce87bcde111be6c16ec1cdd` |
+| `reports/remaining-153-001/SWIFT1-FINITE-PORT-RETAINED-REFUSAL-466.json` | `090d92aea697b27a8829c7a33d4ed0c491dd19b042367edd54a24666b5354150` |
+| `reports/remaining-153-001/SWIFT1-FORMAL-HARNESS-RETAINED-FAILURE-474.json` | `e8ab15634f9118fff88f248f9e6fd4e9949ebac0179a87de88cda6af2948e042` |
+| `reports/remaining-153-001/SWIFT1-HEAD-TANGENT-RETAINED-REFUSAL-468.json` | `bcd2a056820b497e9485d96e0f99ab90a7700af3ba520d1167b2611e5e95f032` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-BUILD-RETAINED-FAILURE-451.json` | `255bcbfb7cf9c294be0e37011231c41d59ecfc9148ed474cab93ac2f57ff24be` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-FONT-DERIVATION-448.json` | `a382c4f70ab1ac51f134c77089f74616a2e0004dd02910f761d5fa4c6fbdb08e` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-GRAPHIC-PARENT-IDENTITY-457.json` | `daee85ac1f9ea6a7434613ea4baa43cafac877fd0f0292cb3f49b6e1fc42b073` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-PDF-PREVIEW-LIMITS-458.json` | `2677a22a5dcbde7a973b7163760ac0312a389c41a9ec80ba5449235b091f8181` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-SOURCE-INPUTS-445.json` | `7a36b8d5066eb0bbe928394f409cecebc47ddb3377912f738028361cc67a873e` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-BUILD-453.json` | `27fc1bcd3464e9b307a6aed532f30dcad01b2de6750a852ac4b02fa590db2140` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-BUILD-459.json` | `b9189ca9dc380d45c5ec3db435441163c5db7c39913d4d2514e967cb00839047` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-PROOF-454.json` | `003718afa1d0578ea76d87d0b13b695a1a103bf593078ac2b4c367bc83665200` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-PROOF-460.json` | `69046790fc82a4808a0f22e0638721f14a986b50b6caeb56bcd2d452b48871ac` |
+| `reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-READBACK-463.json` | `e81b7e76db5272f3bb897527018c7faa2737ae71df8f9cd647b5d37337a7b561` |
+| `reports/remaining-153-001/SWIFT1-SOURCE-CONTEXT-RETAINED-FAILURE-447.json` | `738450692cde73bfa832d1b36afd0628a79862a406753f11c18a606ad43736c9` |
+| `reports/remaining-153-001/SWIFT1-SOURCE-GLYPH-CONTEXT-449.json` | `a2a16403dcedf5529803ab5eef0a707de4cdede8a4306a930a3cf1ea0305bd48` |
+| `reports/remaining-153-001/SWIFT1-SOURCE-INPUTS-RETAINED-FAILURE-444.json` | `e169226dcfec7ab5202d533d788c63a9c53e1aa1573c3d9b7e5a60aa511f4b07` |
+| `reports/remaining-153-001/SWIFT1-SUPPORTED-SINGLE-LINE-FRAMES-452.json` | `ea4d8b8a8c221fd7e3be2b104215f112c64de5c570e18c653cb17c99c07c4bfc` |
+| `reports/remaining-153-001/SWIFT1-UNSUPPLIED-SOURCE-INVENTORY-472.json` | `35560ff9c92cedba2275a927d84a6e5581ee833940171201869c9e20f115da91` |
+| `reports/remaining-153-001/actual-view-names-swift1-complete-reading-472.json` | `23badb30abb8e3eb269448e8cebeff4aa33b86c0a83f258daed19493eb6a7fa1` |
+| `reports/remaining-153-001/actual-view-names-swift1-direct-native-462.json` | `1578b0d82606a8d5a58573353195d25d94f19b1da03e0bbc20cd763a36fec51f` |
+| `reports/remaining-153-001/actual-view-names-swift1-native-pdf-456.json` | `5bf2d300d179028101ebcff7d591948981f2514e80c21023efe0b63a6dfa84e3` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json` | `ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-c398c0c-001.json` | `530c900a578fb8d96e6d8fd42ada21ba4b34630efa8f2e75f9fb32d05dc6c382` |
+| `reports/remaining-153-001/LEDGER-RESULT-045.json` | `f4ffd247e733a08ffdb2cf7cb1e2ffa4d29c4f37f9399dc4582a7f12aa07d4d7` |
+| `reports/remaining-153-001/SWIFT1-AUTOMATIC-LIVE-LEDGER-GUARD-476.json` | `0faaaa15e421e99315b059d8690b3b7eeea7e9500200eadd590e4b564bda36d8` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-045.json` | `5f29bbc2f8cd293b747e72ef71995f21a66be6313961ba83b88f4595e93ca3d7` |
+| `reports/remaining-153-001/DISTILLATION-477.json` | `0803071c793a920e44f20e17f55c2bd92db5f0fd96e8ed0840d2b905d256d7ea` |

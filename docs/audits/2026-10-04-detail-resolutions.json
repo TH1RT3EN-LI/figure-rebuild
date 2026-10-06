@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T01:39:49.546777+00:00",
+  "updated_at": "2026-10-06T02:27:15.730473+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -60587,10 +60587,10 @@
     {
       "figure_id": "ccf-2020-17-f01",
       "issue_id": "ccf-2020-17-f01-SOURCE-OUTLINE-TEXT-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "major",
       "description": "183 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
-      "latest_verified_attempt": "source-regeneration/swift-maintained-source-002/job/build/run-001",
+      "latest_verified_attempt": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001",
       "evidence": [
         {
           "audit_relative_path": "source-regeneration/swift-maintained-source-002/VISUAL-RESULT.json",
@@ -60618,7 +60618,2330 @@
         }
       ],
       "output_review": "source-regeneration/swift-maintained-source-002/output-review.json",
-      "user_acceptance": "pending"
+      "user_acceptance": "pending",
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-06T02:27:15.730473+00:00",
+          "previous": {
+            "figure_id": "ccf-2020-17-f01",
+            "issue_id": "ccf-2020-17-f01-SOURCE-OUTLINE-TEXT-001",
+            "status": "open",
+            "severity": "major",
+            "description": "183 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
+            "latest_verified_attempt": "source-regeneration/swift-maintained-source-002/job/build/run-001",
+            "evidence": [
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/VISUAL-RESULT.json",
+                "sha256": "9a7ce21b78de79b147ba653b8f3ccfaeacc56855f026a5c9e2b8024d754130ea"
+              },
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/output-review.json",
+                "sha256": "61a6bd0a865c0fb6374396b49b59bb2bec723ed02a01c5d04ee41fae7bd03ce5"
+              },
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/native-verification-001/RESULT.json",
+                "sha256": "4b74ad049cf880943889fa2beb4db5e4e0454388f6f206f8aee08adff7c421e4"
+              },
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/bindings.json",
+                "sha256": "7e94e0a9635a8bf788582b677462a32e70af29c3dd8b9c3644c86e5447e9aa96"
+              },
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/comparison-001/individual-bindings.json",
+                "sha256": "c7d1b47b2a7e6c8986a46060522ef37785678feeabc16d5f4db1c9863ff38e0e"
+              },
+              {
+                "audit_relative_path": "source-regeneration/swift-maintained-source-002/job/diagnostics/source-conversion.json",
+                "sha256": "0d7d558a81a3722a4617a67fb7a2d01132b39c2eb8bf6010b6e05f7751857c70"
+              }
+            ],
+            "output_review": "source-regeneration/swift-maintained-source-002/output-review.json",
+            "user_acceptance": "pending"
+          }
+        }
+      ],
+      "latest_reviewed_candidate": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001",
+      "candidate_selected": true,
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-AUTOMATIC-FINITE-READING-469.json",
+          "sha256": "73fa249fe8e38802becf7dc69c63e7bd131ab6bcc0b5ccff14f2dcc1d0df5265"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-AUTOMATIC-LIVE-REVIEW-RESULT-475.json",
+          "sha256": "137a88e4922dc2a051ed37c30f368df960efc4f603866e95b80e5bc286326686"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-AUTOMATIC-LIVE-VISUAL-475.json",
+          "sha256": "700836007c3be22682830a695dbb2ac44bf70e5b31006a0db7df721db3000108"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-AUTOMATIC-READING-NEGATIVES-470.json",
+          "sha256": "f61d8ffb8c37c0c230e81ee2a066b33974170a8343aa1370461865800d6c5bf8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-AUTOMATIC-WORD-LAYOUT-464.json",
+          "sha256": "d5a9e0e4ac783ef85154c0c465123df8cd5269ba6ce87bcde111be6c16ec1cdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-FINITE-PORT-RETAINED-REFUSAL-466.json",
+          "sha256": "090d92aea697b27a8829c7a33d4ed0c491dd19b042367edd54a24666b5354150"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-FORMAL-HARNESS-RETAINED-FAILURE-474.json",
+          "sha256": "e8ab15634f9118fff88f248f9e6fd4e9949ebac0179a87de88cda6af2948e042"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-HEAD-TANGENT-RETAINED-REFUSAL-468.json",
+          "sha256": "bcd2a056820b497e9485d96e0f99ab90a7700af3ba520d1167b2611e5e95f032"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-BUILD-RETAINED-FAILURE-451.json",
+          "sha256": "255bcbfb7cf9c294be0e37011231c41d59ecfc9148ed474cab93ac2f57ff24be"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-FONT-DERIVATION-448.json",
+          "sha256": "a382c4f70ab1ac51f134c77089f74616a2e0004dd02910f761d5fa4c6fbdb08e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-GRAPHIC-PARENT-IDENTITY-457.json",
+          "sha256": "daee85ac1f9ea6a7434613ea4baa43cafac877fd0f0292cb3f49b6e1fc42b073"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-PDF-PREVIEW-LIMITS-458.json",
+          "sha256": "2677a22a5dcbde7a973b7163760ac0312a389c41a9ec80ba5449235b091f8181"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-SOURCE-INPUTS-445.json",
+          "sha256": "7a36b8d5066eb0bbe928394f409cecebc47ddb3377912f738028361cc67a873e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-BUILD-453.json",
+          "sha256": "27fc1bcd3464e9b307a6aed532f30dcad01b2de6750a852ac4b02fa590db2140"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-BUILD-459.json",
+          "sha256": "b9189ca9dc380d45c5ec3db435441163c5db7c39913d4d2514e967cb00839047"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-PROOF-454.json",
+          "sha256": "003718afa1d0578ea76d87d0b13b695a1a103bf593078ac2b4c367bc83665200"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-PROOF-460.json",
+          "sha256": "69046790fc82a4808a0f22e0638721f14a986b50b6caeb56bcd2d452b48871ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-NATIVE-UNICODE-READBACK-463.json",
+          "sha256": "e81b7e76db5272f3bb897527018c7faa2737ae71df8f9cd647b5d37337a7b561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-SOURCE-CONTEXT-RETAINED-FAILURE-447.json",
+          "sha256": "738450692cde73bfa832d1b36afd0628a79862a406753f11c18a606ad43736c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-SOURCE-GLYPH-CONTEXT-449.json",
+          "sha256": "a2a16403dcedf5529803ab5eef0a707de4cdede8a4306a930a3cf1ea0305bd48"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-SOURCE-INPUTS-RETAINED-FAILURE-444.json",
+          "sha256": "e169226dcfec7ab5202d533d788c63a9c53e1aa1573c3d9b7e5a60aa511f4b07"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-SUPPORTED-SINGLE-LINE-FRAMES-452.json",
+          "sha256": "ea4d8b8a8c221fd7e3be2b104215f112c64de5c570e18c653cb17c99c07c4bfc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWIFT1-UNSUPPLIED-SOURCE-INVENTORY-472.json",
+          "sha256": "35560ff9c92cedba2275a927d84a6e5581ee833940171201869c9e20f115da91"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-swift1-complete-reading-472.json",
+          "sha256": "23badb30abb8e3eb269448e8cebeff4aa33b86c0a83f258daed19493eb6a7fa1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-swift1-direct-native-462.json",
+          "sha256": "1578b0d82606a8d5a58573353195d25d94f19b1da03e0bbc20cd763a36fec51f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-swift1-native-pdf-456.json",
+          "sha256": "5bf2d300d179028101ebcff7d591948981f2514e80c21023efe0b63a6dfa84e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json",
+          "sha256": "ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-024.json",
+          "sha256": "88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json",
+          "sha256": "92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json",
+          "sha256": "aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json",
+          "sha256": "b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-font-unicode-325/proof.json",
+          "sha256": "d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-c398c0c-001.json",
+          "sha256": "530c900a578fb8d96e6d8fd42ada21ba4b34630efa8f2e75f9fb32d05dc6c382"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/manifest.json",
+          "sha256": "c2b9e0109ad3792a998aeefc9159bc830292bc5de8cb89acf74a2d5712ac5a0f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/figure.pptx",
+          "sha256": "c52ab4c510d70cb19aa4c33e379859cd632bdd1dd9d2a7f8c70209aaba96972c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/font-profile.json",
+          "sha256": "632ff90d1f4678514926d21cb8d002ec3fb6278dc161284403737cc81e7b2b00"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/7-reencoded.ttf",
+          "sha256": "4c087863242eb7b7904c5bfb7cf3126154c5592c7b066e97768a2850cf6d5a49"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/7-original.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/9-reencoded.ttf",
+          "sha256": "f82303e56c4eb6a7f729f6651bdcc519f26ee2bb3f53eefc63e8e606b446417f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/8-reencoded.ttf",
+          "sha256": "839847fefed4987599e7270b1f0bb7140d597d8265598763924a800c6dc5384f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/8-original.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-fonts/9-original.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/01-review.json",
+          "sha256": "301f2369e7d6110b40af36fb000c2d9696923ec2744493d18691f4e6b57fdfdf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/02-build.json",
+          "sha256": "bf2c4e60149cee2c478c58d41068febadcd4046cd65b8022256c044046f83773"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/02-build.stdout",
+          "sha256": "fce3020d17d5eedae2d17a6d702a1fc5fd701b8f4c34e997f532051863c4292c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/commands/01-review.stdout",
+          "sha256": "a3cc924c27b3c4085a61c651b6195c0b564b5e5e9bb7174c795dce083d215635"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-reading-provenance.json",
+          "sha256": "d464d3e9493d90bff79a99a29db66f87c5e2728992a7a18a6f84537467043018"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/pdf-native-paint-context.json",
+          "sha256": "a6e5a6580d1e29c362817c544a0088a95212278b0cdf7d5e89551b61eb587d21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-text-layout-source.json",
+          "sha256": "778258ff15a8dc6527fd0b63d6589b4bcf9ed391eb3f5d141961aa0288b94072"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-finite-reading-native.json",
+          "sha256": "92be94282986b9695bba51d4b0998a6020f89f59bd97503cdd656754a00763f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-finite-reading-source.json",
+          "sha256": "2f0a81bb68686aed45c63b667a8ca7b851c222fc6358abc8d9cefa61646031d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/source.pdf",
+          "sha256": "f583dd17460e0d0956a797a58469b230b3bbd986e721b25e46d2bb8e90e80085"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/assignment.json",
+          "sha256": "fe1fe13ed106ba694b38b0261ee9d52aeb56d956176d515bbbd44e5089e4a024"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-glyph-recovery.json",
+          "sha256": "23eb6818cb4a06ad4b3878a4a097d1137ebd0c9588fdf0fe194c661154f1d49e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/page-outlined.svg",
+          "sha256": "fefe7ca9af642243ff6067c8d4318b99671ba68d3847d642b19bde4e39dbebdf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/source-evidence/automatic-text-layout-native.json",
+          "sha256": "c44c965296c8c8bd0e58fcfb21e7e199bfe2cbc335d1e47b9967e9447bcd8859"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "3e9c754080d42c754a49a61213a71c076204a0093909b48d75268e2f3e6f69ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/validation.json",
+          "sha256": "13a52e122eac1872e7f8c71bb0b7998b28c76d85166d954c9d9c1bcd175d031b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/delivery.json",
+          "sha256": "96419305c4a989a1c50dbfc05f7e5b5f7dfc8954a7f47f95e2a3c4ac98f2e868"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "b704681994663caaf1cc3bb6452ae8e8ab5d7ad5d15cf62e6aaba1a105843323"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "d2d16dfbcf0e70ba0b3ed4f10c9fcbd4c79cc74434bff51aeb8209f10bc0ee4d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/font-audit.json",
+          "sha256": "f5df8dda40ff9fd77e52ee1a133185413b19287701eb57c735370283a81c90b6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/semantic-audit.json",
+          "sha256": "866e62768443ac3787dc1f44f255deda57bad8d31b0e2d4988432d8fa8feae01"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/object-map.json",
+          "sha256": "3961bbf078f0a810c33a82ae588169137ca1c766a14c52cd9f02adb682b51273"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/source-content-audit.json",
+          "sha256": "70b04f506ef07ab8b062c6d5fe3f92e74ebee3e18081c402b8f4b14b7c539f26"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/comparison.png",
+          "sha256": "cf51c32181f73c967c2b9c5f19f05953b0199eec6f0143e8f6d7811c3a9c2769"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/manifest-validation.json",
+          "sha256": "9c6bb19fb438eba6f3f61c307b4cf950da43f05b56d3ed9b28dd18cb5c0d777d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/reconstructed.svg",
+          "sha256": "5ca1219e1afd85e215dbe172e022374d715e754ea6afd74ad34d2481641df7ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/preview-2x.png",
+          "sha256": "d0a2077db4ff019662e55cecccc0d8561ad5e6e63853e6941e2586c72301dc76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/asset-snapshot.json",
+          "sha256": "67aff4927955842854830c866dfa66f269921c846fad3c0eb63ed2a90588d3c7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/preview-1x.png",
+          "sha256": "d4dfef2b2232eed669dce2acd4ac771db786333f6d7e6db7ef204436a5b0d7a3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/delivery-candidate.json",
+          "sha256": "32a356e5b6ea091f447dbf2feb4834fff4370cdfbddab4e540a8e3f1cf0272ff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/editability.json",
+          "sha256": "0d4743ba634c1ad4fc7b48ce95f77e73e4123a101205973c23ccac77efbc86eb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/resolved-scene.json",
+          "sha256": "c2b9e0109ad3792a998aeefc9159bc830292bc5de8cb89acf74a2d5712ac5a0f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/output-review-swift1-auto-live-475.json",
+          "sha256": "c8e131c19efc0e15e52078650ed95c6b55f51d024429cb850f791ca88b23bb58"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/comparison-metrics.json",
+          "sha256": "45f16da32f2fde49cdc0a60f1f0c4b9a644d7635134c788b51affd6dda8706ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "c2b9e0109ad3792a998aeefc9159bc830292bc5de8cb89acf74a2d5712ac5a0f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/render-audit.json",
+          "sha256": "96c6bb854089716829293d9a95861ad7e6d71d807698e4251e63790960bf84c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/preview-4x.png",
+          "sha256": "1bfecd0aca3b213ef7d6d3499dde8254124bc65f6c8f7c38aeb96b80ea9314bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/build-config.json",
+          "sha256": "cd8879312b8da5ee8b0ca542eecec2a2ba33553c52d053de60a310048d55c5ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/text-fit.json",
+          "sha256": "3c17914ef6afe9867b740a61001e010c5ae27a03d7d9fe838ef65b495bb91554"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "c52ab4c510d70cb19aa4c33e379859cd632bdd1dd9d2a7f8c70209aaba96972c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/candidate.pptx",
+          "sha256": "c52ab4c510d70cb19aa4c33e379859cd632bdd1dd9d2a7f8c70209aaba96972c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/text-manifest.json",
+          "sha256": "cccd6035f936bc16489c90e25f0c3c2fef1a946c04f63c98756237977477dfa9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/comparison-scene.json",
+          "sha256": "05d2ec3d6019a33bb28146d1000509fa817f1c6314c758436e0f86c295d805b1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "cd6143139cae67347cefa3ebab7eb8325c8df4d0f4a2a03dfa43b837de3b94e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "46ebc59f7ed0ca3a46fdd7507dc62f8460ea0ca6d2c1c3e87a2bb3c49dbc4c6c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "c7ad124cfaf56abf37f39a423dbbf628965c1526e0155b30c6244516e5f2ed0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "5d70564c5f8be93d6e10ce6bd6bc3ddebbf721a2d7bd5f8df36d24b5af55f7c6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts.conf",
+          "sha256": "b78c1c1188a38d83ddd1fbc7e4c96b59ae20caff740acc21bc2f451ebb07349e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/commands.json",
+          "sha256": "65859fbc828cbe47922ac0e0e58dafc0789e86220862f9cfa55c1e9ecee19124"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "c52ab4c510d70cb19aa4c33e379859cd632bdd1dd9d2a7f8c70209aaba96972c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "e9e1f65bcd356e8367836cd4d3eda85032cb6e194a64b4ec96cf5e897f175e64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "42dd073a5264530613212c7901c238b8d4dc2e824f2ba086596311e32cc07789"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "6904166bc792ffb471ff88f136ae4414c9f6c5e9fd36369e6925771c51ad0fad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "d4dfef2b2232eed669dce2acd4ac771db786333f6d7e6db7ef204436a5b0d7a3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "d0a2077db4ff019662e55cecccc0d8561ad5e6e63853e6941e2586c72301dc76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "56024c033754a88b7a318f87f9bb8e685beeeee692e839c4dc6cfa1ba5d237ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "42dd073a5264530613212c7901c238b8d4dc2e824f2ba086596311e32cc07789"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "5d70564c5f8be93d6e10ce6bd6bc3ddebbf721a2d7bd5f8df36d24b5af55f7c6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "e9e1f65bcd356e8367836cd4d3eda85032cb6e194a64b4ec96cf5e897f175e64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "6904166bc792ffb471ff88f136ae4414c9f6c5e9fd36369e6925771c51ad0fad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "46ebc59f7ed0ca3a46fdd7507dc62f8460ea0ca6d2c1c3e87a2bb3c49dbc4c6c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "cd6143139cae67347cefa3ebab7eb8325c8df4d0f4a2a03dfa43b837de3b94e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "c7ad124cfaf56abf37f39a423dbbf628965c1526e0155b30c6244516e5f2ed0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/6b5324342c97988bb53e36e60912a79e-le64.cache-9",
+          "sha256": "9dd0f71b52ba22cfdb32451deab629d0fc77d69d8cb70efbd0b008ae34829dfd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "1bfecd0aca3b213ef7d6d3499dde8254124bc65f6c8f7c38aeb96b80ea9314bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-003/jobs/ccf-2020-17-f01/build/run-001/assets/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-454/actual-native-font-trace.json",
+          "sha256": "d3d8f438efce9924b5dab634cb2fb6d2253be3b95040bd45d699d2446ca809c0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-454/69c44cf7d9bb6ab06498fac1b5e3094fe4c5fec0533056ed145f2f68e83831f3.font",
+          "sha256": "69c44cf7d9bb6ab06498fac1b5e3094fe4c5fec0533056ed145f2f68e83831f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-454/proof.json",
+          "sha256": "003718afa1d0578ea76d87d0b13b695a1a103bf593078ac2b4c367bc83665200"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-454/d51a4f5278665a7a85174ff47bf99bc395f84cae3ebb2e35e64d80fef1f22ee7.font",
+          "sha256": "d51a4f5278665a7a85174ff47bf99bc395f84cae3ebb2e35e64d80fef1f22ee7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-454/f6d865998419c67b60b5214470eb5008b39874455c06d6d52a87055c3dce12fb.font",
+          "sha256": "f6d865998419c67b60b5214470eb5008b39874455c06d6d52a87055c3dce12fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-readback-463/output-review-unperformed.json",
+          "sha256": "e3d4110ad1c7101c029c6c7f897d59dfef5382010759037d7b43ce5c3e0ce6cf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-readback-463/output-review-swift1-auto-live-475.json",
+          "sha256": "c8e131c19efc0e15e52078650ed95c6b55f51d024429cb850f791ca88b23bb58"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-readback-463/proof.json",
+          "sha256": "e81b7e76db5272f3bb897527018c7faa2737ae71df8f9cd647b5d37337a7b561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_triangle_head_degenerate.json",
+          "sha256": "175cd5186a4ac2ccb81a8e5d1b1880c23709f81c8ce94a7338d3bc3b2de93861"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_card_word_without_full_ink_containment.json",
+          "sha256": "fd680c05c1ecd4620481bd1f5ed25b9c7888a15ee90eb0e7991d3803b48bb007"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/change_actual_live_character.json",
+          "sha256": "314b9b044624444d4309b1d5eb3b94710c84d170af5ba577df7e3438cdc255a9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_missing_head.json",
+          "sha256": "d13eec8e1d6c41ecc9f46207c321c6acd9831e61f7d2e5984a084d97db6b277c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/ligature_changed_advance.json",
+          "sha256": "6102b767449e2cb4db6f8119512ce0cf8a924db8ce97d41b8c7e9e34519aac31"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_word_gray_zone_gap_0.10em.json",
+          "sha256": "be33e4be32e3bd296890fd7db1d4f70a365292b18ebf8ee965833d966b9be67e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/ligature_changed_origin.json",
+          "sha256": "be28340539005495784bc7f28c7e1d0a851ee846d2736764c70b427426f011c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/delete_actual_live_character.json",
+          "sha256": "614f73f5ae565614fd589d2a2433a9d75830cc2d812b9b751092cfc242f1239c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/negatives.json",
+          "sha256": "6afbf8ee9c3cf3b81f6c23be68ddaee4c04adb57cb2a24ddf1c4ae3d58023922"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/ligature_changed_object.json",
+          "sha256": "fce840ddc4d9c0b79bec1fcc31b9458dfa0d88c7b0572367c2521ecec5a85565"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_duplicate_eligible_shaft_endpoint.json",
+          "sha256": "0f8b09a940c481b2eebe85f9833a91947c9db6b0df403122cda2e18ab0469770"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_overlapping_cards_with_same_preceding_paint_order.json",
+          "sha256": "488356aa9a502d64d700f09e9e4e6b1ef7a0a396c72b999d6882a7fcf3b9f9fb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_duplicate_straight_edge_annotation.json",
+          "sha256": "487e1a708b7a501bf3d9ed4836e4df8285baf86599b10b48d75bd5719cc6bcc9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/proof.json",
+          "sha256": "f61d8ffb8c37c0c230e81ee2a066b33974170a8343aa1370461865800d6c5bf8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/actual_word_ambiguous_baseline_0.20em.json",
+          "sha256": "0fe1d44405aef4b13ea45e984de8cd71a70754e4b7ca89e81e95a402a7675e40"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-reading-negatives-470/ligature_changed_font.json",
+          "sha256": "1a8a6b7ed77eb9698d09ccc6f298a9c3ca81bdc157c8c75dfa1b73c8f0d9d31a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-complete-reading-galleries-471/source-complete-4x.png",
+          "sha256": "4cc5d46daa6cea5c7f5bc34ab6af3e3055ca387685fd69946199cd062ed3d2fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-complete-reading-galleries-471/native-complete-4x.png",
+          "sha256": "1bfecd0aca3b213ef7d6d3499dde8254124bc65f6c8f7c38aeb96b80ea9314bf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-complete-reading-galleries-471/bindings.json",
+          "sha256": "957afd652fe85279d064bd964baa4a4a8c97147fc9b5c21686c1a63a943872ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-backend-diagnostic-458/lower-fork-heads.png",
+          "sha256": "d05080384941a32f7dae641c3de6bff7182587508b17a085e5435b919d4935a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-backend-diagnostic-458/straight-fork-heads.png",
+          "sha256": "18e5cbd27e219167306caf8e695b21d7e42fcdb8112204ea6c61c1584acb7f71"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-backend-diagnostic-458/upper-fork-head.png",
+          "sha256": "c38741fd13ea5047d385cfad03ab75284f682bee8f0c50d7aafaf2d1d4681be5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-backend-diagnostic-458/bindings.json",
+          "sha256": "e2610e56abade1556c93ecbdd6e410ebc817ab1cb1b18770edfa62142d6d7733"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/7-reencoded.ttf",
+          "sha256": "4c087863242eb7b7904c5bfb7cf3126154c5592c7b066e97768a2850cf6d5a49"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/7-original.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/9-reencoded.ttf",
+          "sha256": "f82303e56c4eb6a7f729f6651bdcc519f26ee2bb3f53eefc63e8e606b446417f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/8-reencoded.ttf",
+          "sha256": "839847fefed4987599e7270b1f0bb7140d597d8265598763924a800c6dc5384f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/8-original.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/proof.json",
+          "sha256": "a382c4f70ab1ac51f134c77089f74616a2e0004dd02910f761d5fa4c6fbdb08e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-derived-native-fonts-448/9-original.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-finite-reading-469/actual-native-graphics.json",
+          "sha256": "f586a6333047be0a715199f3465f0dc5bf611037adb09db5d35c7f9c08ff7f66"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-finite-reading-469/actual-native.json",
+          "sha256": "92be94282986b9695bba51d4b0998a6020f89f59bd97503cdd656754a00763f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-finite-reading-469/source-graphics.json",
+          "sha256": "bfc81365b3d4f67a88a1d5b20e779ba1b25921d76eaf3c1b52b984e49a138383"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-finite-reading-469/proof.json",
+          "sha256": "73fa249fe8e38802becf7dc69c63e7bd131ab6bcc0b5ccff14f2dcc1d0df5265"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-finite-reading-469/source.json",
+          "sha256": "2f0a81bb68686aed45c63b667a8ca7b851c222fc6358abc8d9cefa61646031d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-source-glyph-context-449/proof.json",
+          "sha256": "a2a16403dcedf5529803ab5eef0a707de4cdede8a4306a930a3cf1ea0305bd48"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-1x.png",
+          "sha256": "2707bf99f5478de3af593097bbb934521b7d7562159787e9b2ff11164992f07a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/source-1x.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-330-170.png",
+          "sha256": "904979150ef46dfde36e7d66493d80a24939a97b1466c2a5ded2603dc262a7ab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-2x-247-127.png",
+          "sha256": "a6f2e188f3f5e3be0fff07964afbfc522655238f9b4bc18e832d48a22848c9eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-2x-247-0.png",
+          "sha256": "87623db2191da3cd334380e62907720da63b1de32aeb823f0a852e1cc7fdc9ab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-0-85.png",
+          "sha256": "7bfce5f29630601057c24cb3bd0efd307e402b272e4f357782eaf7eaf7f3a2eb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-0-170.png",
+          "sha256": "75a3710955979eb8b8808fe27437d4574e52c41ff370575a6011609004f4213a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-165-0.png",
+          "sha256": "31a84834f4869e1f09d94400ee8b2679d1b74ac83d36f75ff5d0eb096db76d71"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-0-0.png",
+          "sha256": "ef0629d2c9fcd39f67b9db878726d70b308495c590a9aedf7a6dae38ea149b68"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-2x-0-0.png",
+          "sha256": "73a4058d7d5f8a33edda39902e4edb9e0b0c109c204586573ce09bcf10a6e33a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-165-85.png",
+          "sha256": "049bf24f9d4b53cbc08385399f3de5661e0a3e4c729a1716545d5bde1183c5cc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/source-2x.png",
+          "sha256": "9036db5c0fb7a27b736bcea1b3fbcfd7c98f324b3ecde966cb956558a12df778"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-330-0.png",
+          "sha256": "e0901cb67a7b3429643a2b792831a0e572961d31aac5f5a114ae97c4aca62952"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-330-85.png",
+          "sha256": "e76e765d737b84b0d7bfa7d9710b043dc859b4ead0f4d6d01c3146de0f2bd880"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-2x-0-127.png",
+          "sha256": "80c8a906b3d4011ff26997cd10dd148e3f9a618c2ebc57e62d171dc52bd8c3a1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/whole-4x-165-170.png",
+          "sha256": "b54c6316dbcd1a91ff4dd0efba02d472218c87538a9c96aeaad9f1929ef48ebd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/source-4x.png",
+          "sha256": "4cc5d46daa6cea5c7f5bc34ab6af3e3055ca387685fd69946199cd062ed3d2fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-455/bindings.json",
+          "sha256": "588406f92dd1dbf7b2fc1f7e0c8b7a7232fce2718924ae2fcbe19141408c19fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-word-layout-464/actual-native.json",
+          "sha256": "c44c965296c8c8bd0e58fcfb21e7e199bfe2cbc335d1e47b9967e9447bcd8859"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-word-layout-464/actual-native-characters.json",
+          "sha256": "331543fedb79fc5de04df5614c54ab8d207060ed531b0ab6ce6f05f1c63f940a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-word-layout-464/proof.json",
+          "sha256": "d5a9e0e4ac783ef85154c0c465123df8cd5269ba6ce87bcde111be6c16ec1cdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-word-layout-464/source.json",
+          "sha256": "778258ff15a8dc6527fd0b63d6589b4bcf9ed391eb3f5d141961aa0288b94072"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-automatic-word-layout-464/source-characters.json",
+          "sha256": "5127788839b4bd030dd0f3c29340bec36ece43a7b69c91391066f5dfaac01dc6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/39b3dcabed461fe3d06e4caf5bc34a89a9899d6d50c7771485c4d5bff7fdfac8.font",
+          "sha256": "39b3dcabed461fe3d06e4caf5bc34a89a9899d6d50c7771485c4d5bff7fdfac8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/6fdb2b5730f376269278092c515f8d70f9b8f2f6f7505dae86ac89e4fc473bae.font",
+          "sha256": "6fdb2b5730f376269278092c515f8d70f9b8f2f6f7505dae86ac89e4fc473bae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/1e0a23ce2ff845ef1f961b6feaca7a18390cf3d4f84162452c0341fb9e94ad04.font",
+          "sha256": "1e0a23ce2ff845ef1f961b6feaca7a18390cf3d4f84162452c0341fb9e94ad04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/e1086ba6427dd36df99f610e36ce0c798856861fbda77c1e7cd6a21455b9abe6.font",
+          "sha256": "e1086ba6427dd36df99f610e36ce0c798856861fbda77c1e7cd6a21455b9abe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/2088083c04280b6dda72b481d470ef990d87b45a9c2d689791f0edf1d155a5b6.font",
+          "sha256": "2088083c04280b6dda72b481d470ef990d87b45a9c2d689791f0edf1d155a5b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/c486547d259f1549eef8f33aa7df41dcc5a5c090f33961d4eea833cb70c547df.font",
+          "sha256": "c486547d259f1549eef8f33aa7df41dcc5a5c090f33961d4eea833cb70c547df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/eb1c3885d784afd7c23e1d16159a7d9a098610faa810e996a377ea7ece731bcb.font",
+          "sha256": "eb1c3885d784afd7c23e1d16159a7d9a098610faa810e996a377ea7ece731bcb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/proof.json",
+          "sha256": "7a36b8d5066eb0bbe928394f409cecebc47ddb3377912f738028361cc67a873e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/64b9018934546b3decb1e95a1b78f0fb24e708e24ea773d274a1c1e55cf86909.font",
+          "sha256": "64b9018934546b3decb1e95a1b78f0fb24e708e24ea773d274a1c1e55cf86909"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/native-font-trace.json",
+          "sha256": "06388133648dcd1e2383e02b1d8d70ce9ee2ad459fee89797d8c4aefd15b7226"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-445/b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-1x.png",
+          "sha256": "ecb6f5ac5d5a14a8ec591858f2a9137ce3ee6ff3c9a2640de083d2aa580482e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/source-1x.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-330-170.png",
+          "sha256": "a103c1b20fee5c74602d221c19235275134775c0a54d021dfa15caab75535d9d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-2x-247-127.png",
+          "sha256": "bfad08cb7f85d1dabca67809d1260a0b4c2895ac8e6928f40e61d1a9c565b633"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-2x-247-0.png",
+          "sha256": "d9af2073439ac4f40d71fb98333b43759f7ab16d104b526346919b44fb9f922e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-0-85.png",
+          "sha256": "ccaa3da1b8de90c398c05d8944f39915c58638052f064230cb24064a1f346d72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-0-170.png",
+          "sha256": "39c7ea25952962e0d8ab1a81f04555e4edeaa74e720492ac30239be48a28f58d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-165-0.png",
+          "sha256": "99a2f98242c8934179a3ad5f0c2ece8555013ac35ad2c9957d3f3bb2a0f37e98"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-0-0.png",
+          "sha256": "39c7f7eb64f244ba622c5d27475b5aadcf865125c3ebf021abb1285bfcb107c0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-2x-0-0.png",
+          "sha256": "31b02049c505a57f103eea94b23653b22d2d80977c63976e7cf7d447a943853e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-165-85.png",
+          "sha256": "7ddcff593b6b15ad80d1e5d94d64970650b79d3e674ab70c1466490a80e5f9c8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/source-2x.png",
+          "sha256": "9036db5c0fb7a27b736bcea1b3fbcfd7c98f324b3ecde966cb956558a12df778"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-330-0.png",
+          "sha256": "b121fddbfe0ab985fdb08dce7b2ac5f9b9e580b35db00a7167c72065a916b590"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-330-85.png",
+          "sha256": "90ea6d6996d8f7fcd9a50497358015f134e3b710f470537184ff9ea26c488300"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-2x-0-127.png",
+          "sha256": "0350146f401df9f4b9e88298e040a9755e53ef68af61ab0d85b9124b45a19749"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/whole-4x-165-170.png",
+          "sha256": "690818950811913c189628eb928172378d0fa30fa2d23549abbb29bec0d719bb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/source-4x.png",
+          "sha256": "4cc5d46daa6cea5c7f5bc34ab6af3e3055ca387685fd69946199cd062ed3d2fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-galleries-461/bindings.json",
+          "sha256": "859ef3a26a523e27d39c8a24f9b2752b1688da97211a67268ed8209e5496b690"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/39b3dcabed461fe3d06e4caf5bc34a89a9899d6d50c7771485c4d5bff7fdfac8.font",
+          "sha256": "39b3dcabed461fe3d06e4caf5bc34a89a9899d6d50c7771485c4d5bff7fdfac8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/6fdb2b5730f376269278092c515f8d70f9b8f2f6f7505dae86ac89e4fc473bae.font",
+          "sha256": "6fdb2b5730f376269278092c515f8d70f9b8f2f6f7505dae86ac89e4fc473bae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/1e0a23ce2ff845ef1f961b6feaca7a18390cf3d4f84162452c0341fb9e94ad04.font",
+          "sha256": "1e0a23ce2ff845ef1f961b6feaca7a18390cf3d4f84162452c0341fb9e94ad04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/e1086ba6427dd36df99f610e36ce0c798856861fbda77c1e7cd6a21455b9abe6.font",
+          "sha256": "e1086ba6427dd36df99f610e36ce0c798856861fbda77c1e7cd6a21455b9abe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/2088083c04280b6dda72b481d470ef990d87b45a9c2d689791f0edf1d155a5b6.font",
+          "sha256": "2088083c04280b6dda72b481d470ef990d87b45a9c2d689791f0edf1d155a5b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/c486547d259f1549eef8f33aa7df41dcc5a5c090f33961d4eea833cb70c547df.font",
+          "sha256": "c486547d259f1549eef8f33aa7df41dcc5a5c090f33961d4eea833cb70c547df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/eb1c3885d784afd7c23e1d16159a7d9a098610faa810e996a377ea7ece731bcb.font",
+          "sha256": "eb1c3885d784afd7c23e1d16159a7d9a098610faa810e996a377ea7ece731bcb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/64b9018934546b3decb1e95a1b78f0fb24e708e24ea773d274a1c1e55cf86909.font",
+          "sha256": "64b9018934546b3decb1e95a1b78f0fb24e708e24ea773d274a1c1e55cf86909"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/native-font-trace.json",
+          "sha256": "8cdf6046ad09617bdaefc78fc3fccd1a0bc55017076c08b1becc84e10b1139b3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-source-inputs-443/b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-460/actual-native-font-trace.json",
+          "sha256": "0442161ac00ffbf84600009b06cfddaa4197e9f0bba158fabbb5fb4657c46ff8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-460/69c44cf7d9bb6ab06498fac1b5e3094fe4c5fec0533056ed145f2f68e83831f3.font",
+          "sha256": "69c44cf7d9bb6ab06498fac1b5e3094fe4c5fec0533056ed145f2f68e83831f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-460/proof.json",
+          "sha256": "69046790fc82a4808a0f22e0638721f14a986b50b6caeb56bcd2d452b48871ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-460/d51a4f5278665a7a85174ff47bf99bc395f84cae3ebb2e35e64d80fef1f22ee7.font",
+          "sha256": "d51a4f5278665a7a85174ff47bf99bc395f84cae3ebb2e35e64d80fef1f22ee7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/swift1-native-unicode-proof-460/f6d865998419c67b60b5214470eb5008b39874455c06d6d52a87055c3dce12fb.font",
+          "sha256": "f6d865998419c67b60b5214470eb5008b39874455c06d6d52a87055c3dce12fb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/manifest.json",
+          "sha256": "f7b23f9878244a9d78b616c2397c7760f949fb84e851934dfa5d40a95f5215dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/font-profile.json",
+          "sha256": "5490f58fa827b70bb46b49b6e89ed96732f703a3bc6fa545e2b5d9d8050f2f53"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/7-reencoded.ttf",
+          "sha256": "4c087863242eb7b7904c5bfb7cf3126154c5592c7b066e97768a2850cf6d5a49"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/7-original.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/9-reencoded.ttf",
+          "sha256": "f82303e56c4eb6a7f729f6651bdcc519f26ee2bb3f53eefc63e8e606b446417f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/8-reencoded.ttf",
+          "sha256": "839847fefed4987599e7270b1f0bb7140d597d8265598763924a800c6dc5384f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/8-original.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-fonts/9-original.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/01-review.json",
+          "sha256": "d2ebd18d52adfa7d38d77ce7ac519185edac208a6b5d32db0d38cff1872e72ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/02-build.json",
+          "sha256": "e01a73d8f6663a24b3bd931384e8d3be7a48c3d1162abccb84975f9f043dc3f1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/02-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/02-build.stderr",
+          "sha256": "22cff8052710f0bb3bfcc58e0ab7000129bbc5ba9bd32ef2e45426393e62760a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/commands/01-review.stdout",
+          "sha256": "8d2b8326d1f0403591fb3dfbe58743e2e5a4e243b4e3cf70168790336e45c318"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-evidence/pdf-native-paint-context.json",
+          "sha256": "a6e5a6580d1e29c362817c544a0088a95212278b0cdf7d5e89551b61eb587d21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-evidence/source.pdf",
+          "sha256": "f583dd17460e0d0956a797a58469b230b3bbd986e721b25e46d2bb8e90e80085"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-evidence/assignment.json",
+          "sha256": "fe1fe13ed106ba694b38b0261ee9d52aeb56d956176d515bbbd44e5089e4a024"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-evidence/automatic-glyph-recovery.json",
+          "sha256": "905e6ef362b852985b03987a76815aa36649ed6c7ccd8feb1721d0fa1caad585"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/source-evidence/page-outlined.svg",
+          "sha256": "fefe7ca9af642243ff6067c8d4318b99671ba68d3847d642b19bde4e39dbebdf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/font-audit.json",
+          "sha256": "72ef05ca54f952210b6de44df81cc5dd6c3e105764dbce671106f4357d55779d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/semantic-audit.json",
+          "sha256": "866e62768443ac3787dc1f44f255deda57bad8d31b0e2d4988432d8fa8feae01"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/source-content-audit.json",
+          "sha256": "70b04f506ef07ab8b062c6d5fe3f92e74ebee3e18081c402b8f4b14b7c539f26"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/manifest-validation.json",
+          "sha256": "9dcbc0a3ef31284ba9058dc9c6e4594db6f17b2713a778bb07aae5517fca5c11"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/asset-snapshot.json",
+          "sha256": "243f0476df7d9fff7d44866d46dcf47d66e1137dba1a196b3eb5eca86b1c7f4e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/resolved-scene.json",
+          "sha256": "f7b23f9878244a9d78b616c2397c7760f949fb84e851934dfa5d40a95f5215dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "f7b23f9878244a9d78b616c2397c7760f949fb84e851934dfa5d40a95f5215dc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/build-config.json",
+          "sha256": "bb3d3c04b3eb469c50d294216063209b742ebfb8e1a2888431cae1a4c61cf150"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "935adfac8a6904ebd9ad92628750c3b2331401b34802c253bb017bf593441a92"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "0418bf301e7e4978fbbf9f3884795ff6f96c1f178f754ee281a8bc20d09a9890"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "3c0f3a6c5a4c2b07aea3378822b1c7f550a4e713e7da29e91d8c8ce73c95fa79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "cc2f7972ff336c46023b89227147d91130c504bd41e5f0df619fdbc611b766d3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "ac3d734e51fca784aa71510404b8fa09f3476cd0932cf004ba3d1a14853ff26c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "190aa609830cad46d1c4e79ab30e4cbe5e74b49b02bfe8fbec78e8e6789772a4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "948d7c9b4fbf0c28191a943242a0909ce68b8b3aae03805dbfe596551ae5144c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-001/jobs/ccf-2020-17-f01/build/run-001/assets/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/manifest.json",
+          "sha256": "8ccc8f29297adac856c84148e51dc48e9e4c27277b347f3a00b23125869d686c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/figure.pptx",
+          "sha256": "b585f8a15d1428f8b6b5b63249955a1b7153340cdd6a671146ebaa6abd49504d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/font-profile.json",
+          "sha256": "ec4fd5c1075ad35e17ac7b7d3131f6ad1d34b3f9990b736fb5872bef14ccc149"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/7-reencoded.ttf",
+          "sha256": "4c087863242eb7b7904c5bfb7cf3126154c5592c7b066e97768a2850cf6d5a49"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/7-original.font",
+          "sha256": "067805dcacf0fed70dfee4abaf1d948142a4ea2e00ed78a8645d3594f50c6e8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/9-reencoded.ttf",
+          "sha256": "f82303e56c4eb6a7f729f6651bdcc519f26ee2bb3f53eefc63e8e606b446417f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/8-reencoded.ttf",
+          "sha256": "839847fefed4987599e7270b1f0bb7140d597d8265598763924a800c6dc5384f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/8-original.font",
+          "sha256": "1881381825d706e157ae1e090c9ef614b54295a04399a9d51edd542186eba97e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-fonts/9-original.font",
+          "sha256": "b567630f77a81b9c9842a8199385b925027966963f5f287e4f3127a439ab9a78"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/01-review.json",
+          "sha256": "c5be87771711bb528507080561cf5ba0473cd53fc3e5bac64f2fa639aeeb83cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/02-build.json",
+          "sha256": "faaa94bd4a8b30ecea16507e8c5e92c12280d449d217c31fd2afeaef2f17faaf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/02-build.stdout",
+          "sha256": "1bf64c185940f505a45ffdef0a7e7974d8476a2bd9044a1229353d9d4eed13c8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/commands/01-review.stdout",
+          "sha256": "a3cc924c27b3c4085a61c651b6195c0b564b5e5e9bb7174c795dce083d215635"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-evidence/pdf-native-paint-context.json",
+          "sha256": "a6e5a6580d1e29c362817c544a0088a95212278b0cdf7d5e89551b61eb587d21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-evidence/source.pdf",
+          "sha256": "f583dd17460e0d0956a797a58469b230b3bbd986e721b25e46d2bb8e90e80085"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-evidence/assignment.json",
+          "sha256": "fe1fe13ed106ba694b38b0261ee9d52aeb56d956176d515bbbd44e5089e4a024"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-evidence/automatic-glyph-recovery.json",
+          "sha256": "25538943ddbe7f0cfccab0aafb6b0e7863f2882da188ef1417eebe24af6dcc5a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/source-evidence/page-outlined.svg",
+          "sha256": "fefe7ca9af642243ff6067c8d4318b99671ba68d3847d642b19bde4e39dbebdf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "5b6f3c308ce8113c726de2b8e58c2ee530e61b620a6ef6689eb0ff22a5327d7e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/validation.json",
+          "sha256": "12e4092e5a59844c7ca721ac8c87360d29529b9ad82a1b6bce4c43115737de37"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/delivery.json",
+          "sha256": "9e347f2813f8624f69d161b7e9e2e4a69ba7ddc0f066e599ac84d42ae71ce2fd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "982b9f5923440b8b5022368c8df52a71b8218546a94ae28edfef5301ff653e63"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "0b514492810aaca41a19a4373081458832d6ebaa0f7b01ded759792c3e8b2298"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/font-audit.json",
+          "sha256": "e226c4f7f969b14065cbb98a900be39ddeec8c5f1e263b7561deba7a9d8cac0c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/semantic-audit.json",
+          "sha256": "866e62768443ac3787dc1f44f255deda57bad8d31b0e2d4988432d8fa8feae01"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/object-map.json",
+          "sha256": "3961bbf078f0a810c33a82ae588169137ca1c766a14c52cd9f02adb682b51273"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/source-content-audit.json",
+          "sha256": "70b04f506ef07ab8b062c6d5fe3f92e74ebee3e18081c402b8f4b14b7c539f26"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/comparison.png",
+          "sha256": "ee836e178ff25872d6fbcf260b5ad7b32d2d605002e4080f1ae08a902fc30372"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/manifest-validation.json",
+          "sha256": "f57df3427219933eec7c17698bea8a26bc2fb762a04a56f4e5fe7df60ad7f160"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/reconstructed.svg",
+          "sha256": "5ca1219e1afd85e215dbe172e022374d715e754ea6afd74ad34d2481641df7ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/preview-2x.png",
+          "sha256": "ba0b146b66d73d88248546dc74030fd6d805c3c4a75ce055e9d58e883d0fc899"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/asset-snapshot.json",
+          "sha256": "4d728ec7e4681d89b07f0f06956e8246d1045f901e5a155e590c7e5eb150aac3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/preview-1x.png",
+          "sha256": "752f3c1d5b6ac5ee95dffd6cdf486352148573b32e8abfaf8c4e6f314a508594"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/delivery-candidate.json",
+          "sha256": "96817bb800166097dc4e5189afd4ab0ad251c97f0cce4e6c72da92ee841a7441"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/editability.json",
+          "sha256": "19abe57ce17540cda064d37de199359af4cb21dbdb46c146016953bd86ab9f82"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/resolved-scene.json",
+          "sha256": "8ccc8f29297adac856c84148e51dc48e9e4c27277b347f3a00b23125869d686c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/comparison-metrics.json",
+          "sha256": "d7539f5c1eec0e474c8879ccc423176d464614c81e309b6812344461bd3c71f0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "8ccc8f29297adac856c84148e51dc48e9e4c27277b347f3a00b23125869d686c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/render-audit.json",
+          "sha256": "df2754fa74379c7d52d5fc778e1070baf2162aafbeb6f2f46714849d62182c09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/preview-4x.png",
+          "sha256": "84406c83c0deaf903537d904b42408a3e8020dac3e0eeaef4edaf4ecb0fe14ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/build-config.json",
+          "sha256": "4772ae95bb2328e3df7fe57b047b5018f7c4795098b87b98fd1d0707b0d259da"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/text-fit.json",
+          "sha256": "3c17914ef6afe9867b740a61001e010c5ae27a03d7d9fe838ef65b495bb91554"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "b585f8a15d1428f8b6b5b63249955a1b7153340cdd6a671146ebaa6abd49504d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/candidate.pptx",
+          "sha256": "b585f8a15d1428f8b6b5b63249955a1b7153340cdd6a671146ebaa6abd49504d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/text-manifest.json",
+          "sha256": "cccd6035f936bc16489c90e25f0c3c2fef1a946c04f63c98756237977477dfa9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/comparison-scene.json",
+          "sha256": "08e13ca746eea9d235d974595fb8a7dfbb6fd59b32e5a38470eed5226389ff37"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "c48ff9b0b118866ec083856a675b25a58bcfe47fe35f676888459d201a93a62e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "4353529e479d1e3116f13a8c63ee896f08ae7a33ff0b44989a6a64112c67372e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "39c8903fdd3ddb424853e0bf45172a8559f70b07a42a8878d23f7894f5a53b22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "982fb147f47e42d2f4e704c664110bf164cbce3aa49cc9ca33da163561747bbf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf-preview-receipt.json",
+          "sha256": "936777bcafd823ebca0a3951a4ffcf28ef6d8ed5ee9d13c5297d32b6873fa3df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts.conf",
+          "sha256": "debce80ec16ed2c9e11141fa100076325ae03029f4869d3647dfe4b784a0739a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/commands.json",
+          "sha256": "206d036091ef2d756bbad1c7fc46bf1d26213fedc3f38a3be1d78e71d5ad83b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "b585f8a15d1428f8b6b5b63249955a1b7153340cdd6a671146ebaa6abd49504d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "8020260dd3da14ea0cc265db26bd5e3e67074eb5f97dacfaa9d23cf9d45f21f7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "e2bf9ea57dbba49beb561b13f914028872d7e693e1e956c7b3d26b252f817248"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "d629878ed426faea50f3c555e1de5d674ffb636858f720e0d81f24e90d3a97e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf-png-1x/reconstruction.png",
+          "sha256": "752f3c1d5b6ac5ee95dffd6cdf486352148573b32e8abfaf8c4e6f314a508594"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf-png-2x/reconstruction.png",
+          "sha256": "ba0b146b66d73d88248546dc74030fd6d805c3c4a75ce055e9d58e883d0fc899"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "d4dfef2b2232eed669dce2acd4ac771db786333f6d7e6db7ef204436a5b0d7a3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "d0a2077db4ff019662e55cecccc0d8561ad5e6e63853e6941e2586c72301dc76"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "6dcad431178932ba1b34952871334be6f3685c68ffbc658eff5190abf95a9435"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "e2bf9ea57dbba49beb561b13f914028872d7e693e1e956c7b3d26b252f817248"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "982fb147f47e42d2f4e704c664110bf164cbce3aa49cc9ca33da163561747bbf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "8020260dd3da14ea0cc265db26bd5e3e67074eb5f97dacfaa9d23cf9d45f21f7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "d629878ed426faea50f3c555e1de5d674ffb636858f720e0d81f24e90d3a97e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "4353529e479d1e3116f13a8c63ee896f08ae7a33ff0b44989a6a64112c67372e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "c48ff9b0b118866ec083856a675b25a58bcfe47fe35f676888459d201a93a62e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "39c8903fdd3ddb424853e0bf45172a8559f70b07a42a8878d23f7894f5a53b22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/font-cache/d24827446cac36eb572b8a3f4413c18e-le64.cache-9",
+          "sha256": "793768faaef17f1a9ebe278f8542fdbb47d25819ba62c5b7d1d5ea07bef65613"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/pdf-png-4x/reconstruction.png",
+          "sha256": "84406c83c0deaf903537d904b42408a3e8020dac3e0eeaef4edaf4ecb0fe14ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "1bfecd0aca3b213ef7d6d3499dde8254124bc65f6c8f7c38aeb96b80ea9314bf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-swift1-native-unicode-002/jobs/ccf-2020-17-f01/build/run-001/assets/sources/original.png",
+          "sha256": "5b76da1585e5b2f8d3523c75b41f4e2b970318db3071ead54bbefb6e060bee82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_source_glyph_context446.py",
+          "sha256": "a14cbf59c7dae24db38b43a7c2ab2ee1fcabf6fff4f3c2a89d07e2a01371c609"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/swift1_native_unicode_galleries461.py",
+          "sha256": "75c5cb4d92b942f85dbdefff3ed49b2e878212e9d60cb460b0960da1eed07f8e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_actual_views472.py",
+          "sha256": "5b430807a3a3d98fda762e5f6d35c3c95e1a958bf1627e1dbf77af1176d27700"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_reading_negatives470.py",
+          "sha256": "23c54f609aecd0d6a34402fe74cef00775e4c2f5188c7ecb74db9b5567a3af88"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_actual_views456.py",
+          "sha256": "526682076ffc1bb8e09d699d28d940bb6919e2f5e0849d4f9460410e9083af30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_native_unicode460.py",
+          "sha256": "659fe61a9014f9acab5a0bb61c258c7d06da0d7f1b09e7ed6dc5a6f6851df7b7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/derive_swift1_native_fonts448.py",
+          "sha256": "724b53d83f75788d90bb2c267c5fde6e455a41710f4be4761bee2bf30c6d9d47"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_actual_views462.py",
+          "sha256": "6e1e14f1d0a82e6c75a03879c176fb139e3b7b9f12a159af82cb35e9a864f88c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_swift1_native_unicode450.py",
+          "sha256": "f6d75f79fb6aee65d59601c043864deeeabe0b4f688b8c3123b3e6bcea04a00b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_native_inputs445.py",
+          "sha256": "9092a252a2bf4cb1359ee25bdb2a3751f6840639993239a033b1c676c4de99f7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_auto_ledger476.py",
+          "sha256": "f85e39eb4bafbbff3a72d9207f060b0fa324f285e5284e864f292cb68372a078"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_finite_reading465.py",
+          "sha256": "fa393de4a79dc438e7783005760be0a6f7f1a3a311b6b0804d7a4367c0d17a6e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_native_unicode454.py",
+          "sha256": "2d7a3d63d322e67e4a491b68a5f9931976863a2bb2d282e44e0cbd4f9b1a99d8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_source_glyph_context449.py",
+          "sha256": "61302beec49467a245728f438464a627f3f9d944f0b002d15e16b0d11f5890d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_swift1_native_unicode453.py",
+          "sha256": "d0df417635969a68f1d8471131971e2984ed392e8ee8c2d4b3b6785f3519f865"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_auto_live_review473.py",
+          "sha256": "6e625ded55c16c18f8f6b08c955fdeb99ddd66b6680c2d67bb5197e695812790"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_swift1_native_unicode463.py",
+          "sha256": "213f3556700d63833bf7d53defd9a1afca0d03ddcf84b95ba7b635e3b65ec7de"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_swift1_native_unicode459.py",
+          "sha256": "7f3c4fd54767267352604e7fdc2cc926904e53657c6a5669a0f847d9917d2377"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_swift1_auto_live_review475.py",
+          "sha256": "486b0e87eea7c354161aba348be25a7f4fb8f82bcd9442d8dabbce14ad67b9bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_word_layout464.py",
+          "sha256": "bf0325713b066b63aca1a513eddf0d64cd0ee1cf823ce91c3775038946fa791c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/swift1_native_unicode_galleries455.py",
+          "sha256": "3b436cf4f8e7e4b1961acbb041459d6b67a7bbbceb13040289d2d7672946fc1f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_finite_reading467.py",
+          "sha256": "eda34e3c93f393c4c9c31dc0216aa59ec550b8fdb2e7fb909743f741c98fba59"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_swift1_native_inputs443.py",
+          "sha256": "d3bb2639fb09eea792ac8d47c28aa9815abd2b3327cb7a0838f0210823cd764c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_finite_reading469.py",
+          "sha256": "815ff06d346cb5a0d5bb78725e7604fdba80fff70d61c6178f8ba5b65759866b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_swift1_text_frames452.mjs",
+          "sha256": "53bd68d9c416e7ff380107be85404cf89e2684a3cf089c4ad3e5526448ce4c8c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace024.py",
+          "sha256": "d401b427a41c2aec5d0bc4e9c30a7f87c41c08c3fd056f2d9a613260f03a08cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_parent_semantics286.py",
+          "sha256": "04cf6fcaad840dc068d1ce90be3a691e246673de0341b3b5326586df09f86d47"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/reencode_source_truetype_ligature448.py",
+          "sha256": "1f77354885641da3ebfe3fede51e9dc2ca1334279cceee8b03741e02d4b97add"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_bart3_relations377.py",
+          "sha256": "2b67bcf03908b1b78e41a3246e55196960f208fe4cf8f2b3fbe0540b6403520d"
+        }
+      ],
+      "resolution": "Swift Figure1 source outlined-text finding closes in finite model visual review. Its reviewed maintained source parent has272 native paths including183 source glyph paths and89 other graphics, with zero live text. The selected candidate replaces only those183 glyph paths with183 ordinary original-PDF-Unicode text objects, retaining all201 source encoded characters,14 spaces and four GID-1 continuations. No expected labels, PUA or whole-word glyphs are supplied. All183 visible source occurrences bind uniquely to actual original font handles/GIDs/UCS/full f32 matrices over23 real source spans. Three actual embedded TrueType programs have no cmap/GSUB; original PDF UCS is preserved with independent original glyph identity but original cmap/GSUB semantic identity is not inferred. Explicit job-local cmap and liga rules preserve original rt/fl/ft combinations. Three new empty zero-advance component glyphs provide previously absent standalone f/t only inside current source ligature sequences. Every original glyf compiled byte, hmtx and hhea metric is retained. Isolated scaffold glyph editing and unseen Unicode are unproved. All185 native source paint types/bboxes/order, isolated DeviceRGB root and nonisolated neutral child at alpha1/blend0/no knockout, inactive overprint, absence of masks/patterns,201 complete source characters and366 full-glyph active clip proofs replay. All9469 original glyph controls satisfy unchanged .001canvas-px guard, maximum .000172729111px. A source regular-font encoded space has a one-point degenerate outline rather than no commands; zero ink is proved and preserved as metadata. The first auto build refused three bottom NIC paragraph frames under unchanged canvas containment. Public supported one-original-em single-line paragraph pitch resolves logical frame placement while retaining all actual source anchors/font em/Unicode. The outside-anchor negative still refuses. Actual centipoint font-size rounding and native line-spacing percentages are independently read back rather than assuming83333. Actual native export contains201 original UCS and four same-origin ligature continuations. All54 current used source/native font-GID pairs, including zero-ink spaces and continuation contexts, have exact normalized ink and advances. Actual origin residuals .049811px horizontal/.297255px vertical are separately disclosed; no hinting, physical source pixel or complete program/family equality is claimed. All89 other native path properties and painter order are exactly unchanged from the maintained source parent. Nineteen independent fill receipts replay. All1499 original graphic controls satisfy .001px, maximum .000104749052px. Ring inner hole/dividers, stack cards, queues, original curved/dashed shafts, forked/triangular tips and layer/boundary dashes remain intact. Same-PPT backend diagnostics show its native PDF raster blunts forked tips while direct Impress PNG preserves the actual source tips. The selected candidate uses the existing explicit direct PNG backend. The unselected PDF candidate and three actual diagnostic images are retained, and raw native PDF geometry is not presented as visually equivalent. An independent flat source/current reader, without23 original span boundaries or a dictionary, recovers the same22 encoded readings from real glyph advances, origins, em and font/paint tiers. The four original GID-1 continuations require matching original cluster font/object/origin/advance. No unencoded word spaces are invented. Independent source and current native geometry inventories recover eight chromatic rounded cards and their eight encoded labels. Every complete current word ink box has cubic containment. All original five-cubic card contours remain intact: four corners have one or two cubic segments and a source degenerate initial line; no four-cubic idealization is used. Overlapping back/front card membership requires an earlier fill paint and the unique highest preceding original z-index. Encoded occluded back-card labels are retained metadata; they are not declared visible text. All nine black source/current arrow heads are recovered: six real concave four-vertex notch heads and three shortest-base triangles. They match seven original open shafts, including source compound dashed curves, by unique endpoint eligibility within one original head height and a terminal tangent within45 degrees of actual head-base normal. These are disclosed finite eligibility windows, separate from unchanged .001px source/current coordinate checks. Original dashed phase leaves one head-to-shaft gap1.058577px and an actual normal/tangent cosine .933767; touching or ideal parallel geometry is not asserted. Port/card bounds agree at maximum .000053098739px. Two straight edge annotations are read automatically. Twelve other source readings remain unattached. Full workflow task endpoint relations and Pacing label binding are unprovided; the CWND arrow normal projection misses the flows card. Two finite ideal-assumption probes are retained: normalization of unrelated sub-.001px queue-dash tangents and an overly parallel .95 head-tangent requirement refused the actual source. No source geometry/native properties or .001 control/canvas/resource guards were changed. Fourteen negative fixtures reject actual ambiguous word gap/baseline, wrong ligature origin/font/object/advance, degenerate/missing heads, duplicate eligible shaft endpoint, tied card paint order, missing complete card ink, duplicate straight edge label and current materialized Unicode change/deletion. Geometry inventory reversal and all nine head rotations/winding reversals preserve readings; original text paint order remains required. All16 selected source/outlined-parent/current comparisons were actually inspected: whole1x, complete2x, overlapping4x and both original-size complete4x diagrams. All current labels, original bold/regular styles and source ligatures, ring hole/ticks, queue/card colors and original arrows retain reviewed source appearance. Fourteen unselected PDF comparisons and three backend diagnostic views remain separately recorded, not counted as selected review views. Standard source-content PASS covers23 original source encoded literals; standard formula/connection arrays remain empty. Actual public source-inventory API returns NOT_PROVIDED when unsupplied, with no optional report file or invented semantic field. Finite reading results are hash-bound read-only sidecars, not generic OCR/topology, native containers/equations/connectors or task-meaning inference. Three source aliases remain unembedded. The global font delivery issue stays open; full original cmap/GSUB/family/hinting/unseen editing, PowerPoint/WPS and user acceptance remain pending. Frozen024 public runtime is unchanged. Existing1327 Python/installed checks with8 optional skips and byte-bound67 CPU Node results retain their actual previous run identity; exact prior pushed c398c0c head has16 successful GitHub checks. All original sources, failed probes and unselected candidates are preserved.",
+      "closed_at": "2026-10-06T02:27:15.730473+00:00"
     },
     {
       "figure_id": "ccf-2021-12-f04",
@@ -63396,7 +65719,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "44 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. SimGCL1 adds two aliases reencoded from actual embedded TrueType programs: all36 current used source/derived/native normalized controls and advances agree exactly, with original cmap/GID/UCS directly verified. This finite used-ink proof does not establish full font family or unseen/hinting identity. Octo2 retains six actual TrueType subsets and eight normalized Type1 ink/em variants under unchanged .001px guards. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
+      "description": "45 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. Swift1 adds three actual stripped TrueType aliases with original-PDF rt/fl/ft shaping and three empty zero-advance component glyphs. All54 current used source/native normalized glyph controls and advances are exact; original cmap/GSUB identity and isolated scaffold f/t editing are unprovided. SimGCL1 retains two aliases with36 exact used pairs and directly verified original cmap/GID/UCS. Octo2 retains six actual TrueType subsets and eight Type1 ink/em variants under unchanged .001px guards. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -63406,6 +65729,7 @@
         "ccf-2020-09-f02",
         "ccf-2020-12-f03",
         "ccf-2020-14-f03",
+        "ccf-2020-17-f01",
         "ccf-2020-18-f01",
         "ccf-2021-01-f01",
         "ccf-2021-09-f02",
@@ -63547,6 +65871,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
           "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json",
+          "sha256": "ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449"
         }
       ],
       "user_acceptance": "pending",
@@ -64578,6 +66906,171 @@
               {
                 "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
                 "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-06T02:27:15.730473+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "44 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. SimGCL1 adds two aliases reencoded from actual embedded TrueType programs: all36 current used source/derived/native normalized controls and advances agree exactly, with original cmap/GID/UCS directly verified. This finite used-ink proof does not establish full font family or unseen/hinting identity. Octo2 retains six actual TrueType subsets and eight normalized Type1 ink/em variants under unchanged .001px guards. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f03",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-09-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-03-f02",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+                "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+                "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
               }
             ],
             "user_acceptance": "pending",
