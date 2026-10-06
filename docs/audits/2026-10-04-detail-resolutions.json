@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T04:02:27.624914+00:00",
+  "updated_at": "2026-10-06T04:27:01.686685+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 288,
-    "open": 7,
+    "closed_model_visual_review": 289,
+    "open": 6,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -22763,11 +22763,1105 @@
         }
       ],
       "closed_at": "2026-10-05T20:27:35.336104+00:00"
+    },
+    {
+      "figure_id": "ccf-2021-13-f01",
+      "issue_id": "ccf-2021-13-f01-D01",
+      "severity": "major",
+      "status": "closed_model_visual_review",
+      "resolution": "SwitchML Figure1 diagonal tile contour/palette finding closes in finite model visual review. All117 recorded actual-local color approximation paths are replaced by25 independent editable native linear-gradient paths. Actual source page5 has50 native axial shading paints and zero actual image/image-mask paints; its50 get_image_info rows are rendering proxies, not50 source image resources. Twenty-five complete original clip rectangles, actual shade/resource pointers, complete source paint order, f32 CTM/shade matrices, original no-background/no-extend settings, alpha1/no-overprint context and original ICCBased sRGB profile bind all50 paints. All50 original Type0,8-bit,Order1 functions retain1365 RGB sample triples, with encoded and decoded stream and dictionary hashes. Every original distinct encoded RGB8 sample roundtrips through actual source native ICC conversion. The original sampled functions retain their narrow white diagonal transitions and original orange/blue values; no source seam is erased or palette inferred from neighboring pixels. Complete source clip geometry is preserved as editable vector paths without color-contour sampling or curve flattening. For each clip, one uniquely selected original dominant source program spans the clip axis within1/100000. All other actual source paints are proved empty over the mathematical clip/domain intersection or constant over their complete actually intersecting polygons and equal to the dominant end run. Native f32 endpoint excursions are explicitly retained as a bounded support extension: maximum .000075447378canvas px, guard1/1024canvas px. Exact full source shading support equality is not claimed. Each sampled program is approximated by5,6 or9 native gradient stops; whole1365-sample component interpolation, integer stop encoding and complete-bbox axis phase have exact rational combined bound <=2/255. Only equal-color positions that collapse to the same native offset coalesce, and full original/encoded knot error is proved. This is an ICC-input component bound, not an ICC-to-sRGB interpolation or native renderer RGB/pixel error bound. Actual final PPT contains all305 objects in required painter order, including25 native gradients and exactly55 retained live text chunks. Independent readback verifies all25 angle/stops and exact native properties of all225 other paths and all55 original text frames/contents/styles. All2428 source path controls pass unchanged .001canvas-px guard, maximum .000102131234px;128 fill normalizations independently replay typed geometry/topology with original/final hashes. Six altered-native negative probes refuse angle, stop RGB, scaled axis, flip, missing stop and offset mutations. All14 whole1x, complete2x and overlapping4x source/maintained-parent/current comparisons were actually viewed without image resizing. Stair-stepped white diagonals, pale-blue lavender shift, missing tile fragments and wide gray switch seams are resolved. Tile gradients meet their original borders, and correct source painter order restores foreground tile/arrow overlaps. Source white transitions are preserved. Inherited small connector-dot contact sampling differences remain visible and unchanged from the maintained parent; this tile-fill closure does not assert whole-figure pixel equality. The original55 source font labels remain unchanged; their prior used-font/source-baseline proof is retained, without upgrading it to full actual native font-program identity or portable font acceptance. Standard source-content PASS checks55 declared literals only; built-in formula and connection arrays remain empty. Full automatic semantics, complete ICC/render sampling equality, PowerPoint/WPS and user acceptance remain unverified. Public frozen024 runtime, source controls and resource policies are unchanged; previous1327 Python/installed and67 CPU Node evidence retains its earlier run identity. Exact previously pushed fd32347 has16 successful GitHub checks. Failed guards, source probe/Node address-space inheritance failure and corrected independent2GiB source probe are retained with all original source bytes/candidates.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-576.json",
+          "sha256": "8ba0e56cb9b87000b2d86f5982cf9b349e58bd7f5980cbccb451d9a574d15a2c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-FAILED-570.json",
+          "sha256": "2d3e227a5e40c3bf559ced84e93aa2f8d4f0830321cf9c5698bfd8b55bee5a5d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-FAILED-575.json",
+          "sha256": "faffa84178f49a523a98802b9bb6ffb1ebaf6c8a5a5a4b4bd786a23d08fdcfa0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-579.json",
+          "sha256": "9fd64f3b0f1bd668eae2c9bb7202656ecd6e5dc9e5b21d5fec94558eb95cd934"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-FAILED-572.json",
+          "sha256": "686203bb4be2fdfc09e84bf3a71d270dc053e8676d6ab57a0e38edf35ca37a2d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-FAILED-578.json",
+          "sha256": "3eae67a63b5a97fa1787195847a26718cde2eb7461bc36fecad6ce724121fc27"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-569.json",
+          "sha256": "4c0d55d1253a1036475a02576a80add9f12e9375f78fee9edd9832c0cdd5a519"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-566.json",
+          "sha256": "ac7c837d7e8b50e9f3dc3c568e41544c058627f678f717acb960bd820d2c7c5b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-567.json",
+          "sha256": "29de25e20967ea9fab420784affbc996ae06081bf74617590d5e992757ee9206"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-568.json",
+          "sha256": "0448869a98c4a565ba01bff4a0ba0ac20a1808fb0185f7d249d1205914491b72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-REVIEW-FAILED-581.json",
+          "sha256": "b1cf3826138b54656261425825f62b862a3d3721346dd6ba02dfd8207c453c5d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-REVIEW-RESULT-582.json",
+          "sha256": "d17cf27749801b48d77f2a39b3e6be6c5fe753d5e49c7a8f16f7c116512090c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-VISUAL-582.json",
+          "sha256": "bce748b2839ff8759d401592a08984e42b5612b74cfae1444a62bd2881d079ef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SWITCHML1-NATIVE-SHADE-PROBE-565.json",
+          "sha256": "99ff5a87f56464752bde8c9f198c8b4dd1f5d4944cb4b30f32973b041b9c1bd2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-switchml1-native-gradient-580.json",
+          "sha256": "b8ce3465fd384195497028252b3ba06c5588ac694df4bcdbbfa79c04c7048828"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-024.json",
+          "sha256": "88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json",
+          "sha256": "92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json",
+          "sha256": "aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json",
+          "sha256": "b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-font-unicode-325/proof.json",
+          "sha256": "d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-fd32347-002.json",
+          "sha256": "42315348a2214af3a5b694b194c4085a417e200bbe22c9cae27cfd6eb33fe36a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/manifest.json",
+          "sha256": "214c91d77f4c580324a2f63cbd553052e0ec79f2e1838a80a4306874a5222aa9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/figure.pptx",
+          "sha256": "b12f0f5b88c992733abbc63bd023d37c2493187ca79f59701b9356533aab4c0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/font-profile.json",
+          "sha256": "4e02b34c354458b0754e49655e120459af0845cb5310b5fef4a8ee79864fc0d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/sources/original.png",
+          "sha256": "cc626cf778df1f630ddde82293f0972e44cac40026d194f3c99598405b3be453"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/01-review.json",
+          "sha256": "f55f9acea5e7e669d15b6d232ec17f1d8116c8595eb1a1ecd7e1ec8cc4d89221"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/02-build.json",
+          "sha256": "05950ec3adc05d0debcec5a3006ab2d0daa49c7070f2aa0825972e1ff6e5fecd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/02-build.stdout",
+          "sha256": "f90005c1ad64a393f2616a5b508a2c55c43e0841cc3c9cfa4ad81648cdf7f2d4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/commands/01-review.stdout",
+          "sha256": "d029dfd5f0ff90aafde5c21cec975e05b7bba11630acf62572d71a3f6c72ca18"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/source-evidence/tile-gradient-recovery.json",
+          "sha256": "ad3910a0d4c8adfbe70ee63eef76887e109944efefe5bea40b8429f9fcd1ecbc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/source-evidence/manifest-before-repair.json",
+          "sha256": "8d046ed3bb837493a0c6ed05eb54797fbdbfea37fd593ff0f025dac2e3dbc545"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/source-evidence/source.pdf",
+          "sha256": "789610a3c0f23d37c04c5a14aeb63c0a86601cbfba1ba8d2ab23b29696a78d79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/source-evidence/source-native-gradient-proof.json",
+          "sha256": "4c0d55d1253a1036475a02576a80add9f12e9375f78fee9edd9832c0cdd5a519"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/source-evidence/font-recovery.json",
+          "sha256": "9e58f74fcdafcbe4f0969456ebbf59d332259f085eb426485c3c2c5c086e7d21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "a44c23fbbaf189b4a8d2f0072802cf732b0f4204964fe7d7a3ebba8f2ad537ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/validation.json",
+          "sha256": "b272a5c59b7e2cca9eab2a4bd06a3d50f9df876ec1e34909de85f834b1e1123b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/delivery.json",
+          "sha256": "86f89245c57e25dbbb343b44fc2503a064cdc60860c1b4a53f6f4e214a9de374"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "3606f1c160a1a9bbec603f325b3f010359430b11c690d38f0b03c4972fea1835"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "e75681520eafe6a98248d987990fca0f2a8b1453b1851acfc17a9485a6b34d2a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/font-audit.json",
+          "sha256": "8532049001a3986d23b6fdc03c25c66af4817754acef2fadd4e10f1dfb77324a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/semantic-audit.json",
+          "sha256": "c3d7b80772914adc429503acec732ef180551179781949e388b4fab2893260f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/output-review-switchml1-native-gradients-582.json",
+          "sha256": "7adec5795e80f58d4394a446d7bdc491d4b43ae2be40046042d54b21dd70f7f9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/object-map.json",
+          "sha256": "1f813120fa9dc77f8bf4b75ad6501066dc4eb942944c8f93cac5ea2ba17aab9e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/source-content-audit.json",
+          "sha256": "7022ecb82aee4622835722b1cc384f569836397860d6d613141d5598c9a60802"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/comparison.png",
+          "sha256": "ce03c64d474739f77f62bf8879cc7a7635f1ce692b6bfad48cec9138e6747f31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/manifest-validation.json",
+          "sha256": "6c19a176b2ef5cd5e628c03d26837123bb8664d230239c6ebec769d438136831"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/reconstructed.svg",
+          "sha256": "0b3fe4015c71c05fa56365732182a883bf9c8be8e093c6d0630dbfc8ae24dee3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/preview-2x.png",
+          "sha256": "1c640702e8d10f0096c5321fa2f395d9c2ffcea5ff0568d14c1e6ef14b48cf41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/asset-snapshot.json",
+          "sha256": "c73554be0536f6053191c29cb2f313f8ff06946f75c8d70fb5f9140680b05a96"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/preview-1x.png",
+          "sha256": "95f6ffe41d9762b6ccf871bdbb2644ddcd57052653a59be28f11037e41543b0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/delivery-candidate.json",
+          "sha256": "cc5979f5f966b2b608b69698476d8b46ab388d7266f5f64a9d1b7a500d263de3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/editability.json",
+          "sha256": "de6053c36a6eb0c0f64b8ecadb5ca0af9eac9abe21f2903bd81f75f84a1bb330"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/resolved-scene.json",
+          "sha256": "214c91d77f4c580324a2f63cbd553052e0ec79f2e1838a80a4306874a5222aa9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/comparison-metrics.json",
+          "sha256": "9532e14c49ed1ebe09e769f12274f208c40004d452f865f23996fa4e4ce4d8a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "214c91d77f4c580324a2f63cbd553052e0ec79f2e1838a80a4306874a5222aa9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/render-audit.json",
+          "sha256": "625b9f8b6b6b227244830784ea515b01327d8edcf4b8d36b361df1aaaf1f3c44"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/preview-4x.png",
+          "sha256": "ff6d6ea99e651ae1b7225b5a841e9e947a156c007dcb7b6ad3f8477577558532"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/build-config.json",
+          "sha256": "dbd212c5f0e68fedadc043f16caa1d99604762c95b3b930672350ca0cc955e36"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/text-fit.json",
+          "sha256": "65b77c802830277b5a3fded9559d5263fa4477d83a18e8fd8861044cda37f350"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "b12f0f5b88c992733abbc63bd023d37c2493187ca79f59701b9356533aab4c0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/candidate.pptx",
+          "sha256": "b12f0f5b88c992733abbc63bd023d37c2493187ca79f59701b9356533aab4c0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/text-manifest.json",
+          "sha256": "808a955399f19dbb442cb048c169c05ae165ada929549e09b347045e5c3e8858"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/comparison-scene.json",
+          "sha256": "5e80a3c1696bc998990e93de5d32b31e3f6c448d0e0dbaea456a4dea772cbbc9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "6acca1547851c3170d6afa0757889a5b2eeb30e1ac748191194e62854fb9c382"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "9b8b539ec07b5feea111b757cb1183b0dff2de536705bc6410e4ffe5cd21d47c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "f900d1ed3b4801c12c33d7d9b1f05f6c9387003da7c97405c51a5f3eef50d915"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "c0c7e57be32a9536ed2ea0dc7c42ad9b568a7a8ea3fe5fdc75451e58ead7b5d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts.conf",
+          "sha256": "6e55f84d5fce91939910ead971390f0c209751891ebf803a82bca42a4f8066a4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/commands.json",
+          "sha256": "420de7f15f5bece65dc0d2ee7f435a15b47c4090d62d01f14aab19a635b2f6b2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "b12f0f5b88c992733abbc63bd023d37c2493187ca79f59701b9356533aab4c0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "9877a1b7addc33d4169395db1841015f80b748996143103474be7fb7464822e2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "c5d34fd88ea2e6d6d1875313d6d8eba8e4acba12625b41f286a130f2a715ad02"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "29103bf8ff92e6e797a5d1fc1ae21157c048205181c7de46530264742684cfe0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "756d386251ea6ac66517ca338001d8e76dbfad2fc6a91b6f15ec4a31a32e32b5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "f61bd084764d13d4b1423366f406500f0b83cc21dec84cef1b257d784ef1fb51"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "f899ba22d1fd591e8deb1fdb3f30a59e175bd33ad099d9564c56c856193bcb22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "150fcc56e8c59eaaedf86395551975a2d294024d828f2fb3c60cdb5e9ff1d56f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "f83593a8d71df8c62339f5a8c570fba6affceed248579af0a3f363bb8498a8c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "95f6ffe41d9762b6ccf871bdbb2644ddcd57052653a59be28f11037e41543b0e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "1c640702e8d10f0096c5321fa2f395d9c2ffcea5ff0568d14c1e6ef14b48cf41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "c5e6d46c471bbe65a86f1541ee70cec6ad4e8fd39bd1a7cec3b3f2f12e7fdb60"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "f83593a8d71df8c62339f5a8c570fba6affceed248579af0a3f363bb8498a8c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "c0c7e57be32a9536ed2ea0dc7c42ad9b568a7a8ea3fe5fdc75451e58ead7b5d8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/9.ttf",
+          "sha256": "756d386251ea6ac66517ca338001d8e76dbfad2fc6a91b6f15ec4a31a32e32b5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/10.ttf",
+          "sha256": "9877a1b7addc33d4169395db1841015f80b748996143103474be7fb7464822e2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "f61bd084764d13d4b1423366f406500f0b83cc21dec84cef1b257d784ef1fb51"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/7.ttf",
+          "sha256": "150fcc56e8c59eaaedf86395551975a2d294024d828f2fb3c60cdb5e9ff1d56f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "f899ba22d1fd591e8deb1fdb3f30a59e175bd33ad099d9564c56c856193bcb22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "9b8b539ec07b5feea111b757cb1183b0dff2de536705bc6410e4ffe5cd21d47c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "6acca1547851c3170d6afa0757889a5b2eeb30e1ac748191194e62854fb9c382"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/11.ttf",
+          "sha256": "29103bf8ff92e6e797a5d1fc1ae21157c048205181c7de46530264742684cfe0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/8.ttf",
+          "sha256": "c5d34fd88ea2e6d6d1875313d6d8eba8e4acba12625b41f286a130f2a715ad02"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "f900d1ed3b4801c12c33d7d9b1f05f6c9387003da7c97405c51a5f3eef50d915"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/font-cache/55970698254ce1de086acd1d266f459e-le64.cache-9",
+          "sha256": "ad06d495e63ef5334d6cc240bb6b6326a7ca2d2414c99ff29bd6134e74f595c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "ff6d6ea99e651ae1b7225b5a841e9e947a156c007dcb7b6ad3f8477577558532"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/ccf-2021-13-f01/build/run-001/assets/sources/original.png",
+          "sha256": "cc626cf778df1f630ddde82293f0972e44cac40026d194f3c99598405b3be453"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-shade-source-probe-565/probe.json",
+          "sha256": "99ff5a87f56464752bde8c9f198c8b4dd1f5d4944cb4b30f32973b041b9c1bd2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-readback-579/output-review-unperformed.json",
+          "sha256": "0865b511081e40c396b0044938fc2117481e3c49bf6c19db753205ce13863c13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-readback-579/output-review-switchml1-native-gradients-582.json",
+          "sha256": "7adec5795e80f58d4394a446d7bdc491d4b43ae2be40046042d54b21dd70f7f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-readback-579/proof.json",
+          "sha256": "9fd64f3b0f1bd668eae2c9bb7202656ecd6e5dc9e5b21d5fec94558eb95cd934"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-1x.png",
+          "sha256": "8e9c3f3723a08f586ea03cda4bd546b98257a7913a72eda9469e85d0d9d87d56"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/source-1x.png",
+          "sha256": "cc626cf778df1f630ddde82293f0972e44cac40026d194f3c99598405b3be453"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-0-322.png",
+          "sha256": "709932339c329bc26d7eec4be1c8ec9e0e0fa7b1691c1513df8aadff1a364e4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-2x-265-241.png",
+          "sha256": "5b4124401ee8b44979b97133c80c51971861829cc2c98f2e25e78a752623248e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-354-322.png",
+          "sha256": "54602bed60f19fc276df5d2c3aeb57e91326f686edfac3353dbb0194fe396d31"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-2x-265-0.png",
+          "sha256": "857ef8d26e5b83d7dfe1d895e83abe9971f084fd53bf36615def559791b13ea0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-177-322.png",
+          "sha256": "0724e83bfdf9c5280f8572328c25bbe5732448adc061893a720c922d224a3359"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-0-0.png",
+          "sha256": "b060965774d5a0580966ee5fb013a17dddc48ccd2bfe5820c2e4d8a11e5e5454"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-2x-0-0.png",
+          "sha256": "8c517179a3089b7ce8543062701c5dfb1fbd00cf28cf2d661ee3078b3c626bfc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/source-2x.png",
+          "sha256": "337733a31805d91e56b3a8e039b685a6130e0f44c4815be9b70d320b718a0ba6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-177-161.png",
+          "sha256": "0b142a85c740afa47d12d74da3a0ab5a1a01af0d9bc65d238722d63ed4c7bfe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-2x-0-241.png",
+          "sha256": "b34f28c9cda2e58192682ea58d6553ff8698a579fa850a21943af9fe68a421b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-354-0.png",
+          "sha256": "5585b806de6c0b306a9fcfc4c3e8d0ea522084a6c173371d19e1ed21b707899d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-354-161.png",
+          "sha256": "5574b4733523f6757a5761eabf51e9c866734d2bfe2cd58acb451d0b601cb28f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-0-161.png",
+          "sha256": "191fd45b42e5848fb46037426068130caf7efbb145763fa99865782e4ba33c7c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/whole-4x-177-0.png",
+          "sha256": "44b09d5ffba55c4512eef13ff656066a9821dcf2cdd5a38d918808af99c91735"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/source-4x.png",
+          "sha256": "3fd4f2b4f96e8f8c0b72d8ac2ddbfcdf12627b171b44fa818d755f44e799b557"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1-native-gradient-galleries-571/bindings.json",
+          "sha256": "4e3f9bf1d1fb1b37ec1ce65afc49ccfed9ec4cbed8f3884d7e32b90a2a359ce9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/commands/ccf-2021-13-f01-prepare.stdout",
+          "sha256": "80d5b8e8ecd12635548022c32cc2ffcfb58c7b1cdeaca1a5786fb0cbaf03a701"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/commands/ccf-2021-13-f01-prepare.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-002/jobs/commands/ccf-2021-13-f01-prepare.json",
+          "sha256": "3b482eadefb431c8c130cd3a0ffcead9d82257d89f1ade537732c0fcdcafd2f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/manifest.json",
+          "sha256": "1e4c1880233df097a1da4047a3228cb4ac52505dffa144a7918ba8030a003bdb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/font-profile.json",
+          "sha256": "4e02b34c354458b0754e49655e120459af0845cb5310b5fef4a8ee79864fc0d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/commands/ccf-2021-13-f01-prepare.stdout",
+          "sha256": "e1746c4f009409ebbd30fe81d83aab1c4ea6f47b8de91c84719b1db5b23174aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/commands/ccf-2021-13-f01-prepare.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/commands/ccf-2021-13-f01-prepare.json",
+          "sha256": "8929eeb97cca3853c10bf50b61f8b8c3b1dc4505fc1bbb0521f4cd39fb90ea6e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/sources/original.png",
+          "sha256": "cc626cf778df1f630ddde82293f0972e44cac40026d194f3c99598405b3be453"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/01-review.json",
+          "sha256": "b7fde984ba340393990eadbfea76d20aa04726cf0ab93afe9830c2cc11558e56"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/02-build.json",
+          "sha256": "d3c386bde044da38b2f1d54fe561b47814a8e9cf529368f3928de11a894ea2b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/02-build.stdout",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/02-build.stderr",
+          "sha256": "85374cd09f145f0052def93ee25e3a5fe8949f21121999007ee85b081f09090f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/commands/01-review.stdout",
+          "sha256": "53fdb456092ea77fef0ecd324b6b51eddce1ff3d2d0c1b771c7e5c74033cdaf1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/source-evidence/tile-gradient-recovery.json",
+          "sha256": "5a1ca1e612cc1e8e119af13a6ce005984c21409fea563ae0bacf21d1088e32ef"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/source-evidence/manifest-before-repair.json",
+          "sha256": "8d046ed3bb837493a0c6ed05eb54797fbdbfea37fd593ff0f025dac2e3dbc545"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/source-evidence/source.pdf",
+          "sha256": "789610a3c0f23d37c04c5a14aeb63c0a86601cbfba1ba8d2ab23b29696a78d79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/source-evidence/source-native-gradient-proof.json",
+          "sha256": "4c0d55d1253a1036475a02576a80add9f12e9375f78fee9edd9832c0cdd5a519"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/source-evidence/font-recovery.json",
+          "sha256": "9e58f74fcdafcbe4f0969456ebbf59d332259f085eb426485c3c2c5c086e7d21"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/semantic-audit.json",
+          "sha256": "c3d7b80772914adc429503acec732ef180551179781949e388b4fab2893260f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/source-content-audit.json",
+          "sha256": "7022ecb82aee4622835722b1cc384f569836397860d6d613141d5598c9a60802"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/manifest-validation.json",
+          "sha256": "9c5057931d7060ccc37f3698d58634b9dcb575e393224e8f3c44edeef18933ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/asset-snapshot.json",
+          "sha256": "c4f559239eddd7e7d3acdccd12078069c3bc034c1798d4d89e24a22eae5e3e8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/resolved-scene.json",
+          "sha256": "1e4c1880233df097a1da4047a3228cb4ac52505dffa144a7918ba8030a003bdb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "1e4c1880233df097a1da4047a3228cb4ac52505dffa144a7918ba8030a003bdb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/build-config.json",
+          "sha256": "98f1c78bb74f7913066a30f16746e6a01ce907cb95fa322cd0929dc9cdbc56d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-switchml1-native-gradients-001/jobs/ccf-2021-13-f01/build/run-001/assets/sources/original.png",
+          "sha256": "cc626cf778df1f630ddde82293f0972e44cac40026d194f3c99598405b3be453"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/switchml1_native_gradient_galleries571.py",
+          "sha256": "ddf4c5b7ab9c03d80ee0646d0f70088b9d7654f44a0853554a2a3306d75c9c17"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_switchml1_native_gradients577.py",
+          "sha256": "ad31c58847459ac8d6fe09f9603e3986eaa75bf54f4ed153d52fd97f69db400a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_switchml1_actual_views580.py",
+          "sha256": "3178d0fade9350bff6e7167adf0d2ae8ad721b75af314e310b1a053ef876cd81"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_switchml1_native_gradients568.py",
+          "sha256": "6cff93be41fd131919f0f685877c89f5b6d07982bdf91d888360ba7319ec8964"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_switchml1_native_gradients569.py",
+          "sha256": "475254c83c68266b70982a0e207a5bb18128c6447de16c41cef6992690257239"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_switchml1_native_shades565.py",
+          "sha256": "c150a13a990f57f724a4c62f1c5c742c2bb06e1391b465a0bb7862cf5c3cab38"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_switchml1_native_gradients574.py",
+          "sha256": "f51810727936ce9eeaa0ccff5123a4780cd5fd6d5f539d30fee3f62ec5bbaa53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_switchml1_native_gradients570.py",
+          "sha256": "720b65f5b9bcad3900620dc90ec023e9b5cf057fc556c5851903b3e21df73f5f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_switchml1_native_gradients566.py",
+          "sha256": "e9341be4052871a8882aee5e6cf161530e4d0ae2db5ae6a67808c8a3e40348c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_switchml1_native_gradients579.py",
+          "sha256": "0e5b3ddac8345cb77b4173b930a2464227645d280577dd72626e0c3812e54ca4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_switchml1_native_gradients576.py",
+          "sha256": "0a9b477b88751c5c991e6e20800dfcc2e60a8862fccb71b2c3c19734d83da6f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_switchml1_native_gradient_review581.py",
+          "sha256": "5e316e8b3159664415c0ec02146b2831240b4ee31d808ccd35b55f89373c2d4a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_switchml1_native_gradient_review582.py",
+          "sha256": "a1a12177917c0e997a13abfbe0d38e2a93e7e31f7fca8a8e87d136134c96992c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_switchml1_native_gradients567.py",
+          "sha256": "4bbb90ce42c9adced0c61e45204a2f63fb81a0f467e89551aff40481b059d040"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_switchml1_native_gradient_ledger583.py",
+          "sha256": "64a1fde94aaed4d55abb2f0ff900b929c5d15d5dacfb5b8b32bbbeb56f8b0ad3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_switchml1_native_gradients572.py",
+          "sha256": "f5ee793fcbc1206ef9e07143455e9999e2c9e889d3951a32e3f550575e72d7f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace024.py",
+          "sha256": "d401b427a41c2aec5d0bc4e9c30a7f87c41c08c3fd056f2d9a613260f03a08cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_inventory086.py",
+          "sha256": "284892c9e584d3efe2236e7b0e6eb8c3d052f16b980532e5d0a5d25a2115cf09"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback_switchml1_native_gradients572.py.before576.json",
+          "sha256": "ebce3dd84d5bb11a0043c8eb8c0d3746e55b1490de875a8f9ebea8dbf161419c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/readback_switchml1_native_gradients572.py.before574.json",
+          "sha256": "19c52e08c0509e445f8472c1a3ae84b02baba6267a69df886159e4fefb7c9a4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1_native_gradient_galleries571.py.before574.json",
+          "sha256": "f11ea457e6d5e5500d4156de775a0c347fdcee0547c38e965eb13bd9fa193846"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/switchml1_native_gradient_galleries571.py.before576.json",
+          "sha256": "f2f9146d63117b43ca595975f879f767095568b73698f296edf07b45b69d921a"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
     "ccf-2020-18-f01-D03",
-    "ccf-2021-13-f01-D01",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
     "ccf-2025-07-f03-D02",

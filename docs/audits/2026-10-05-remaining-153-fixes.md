@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 90 张图的来源修复及实际成品复查，关闭 138 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 15 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 19 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 138 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 90 张图的来源修复及实际成品复查，关闭 139 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 77 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 14 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 18 项开放。原始 296 项现在 290 项关闭、6 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 139 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -90,6 +90,8 @@
 
 - Maximum Flow 图 1 的源轮廓文字问题关闭：181 个源字形自动恢复为181个普通Unicode活动对象，没有输入预设标签或新增编码空格。28个实际源字体handle/23个程序绑定真实GID、完整f32矩阵和44条原trace，89次原绘制、两个中性隔离RGB组、94个完整clip及7904个源控制点逐项重放；控制最大0.000097876625px，固定0.001px守卫未变。30个CID CFF缺失正文字符由完整独立Unicode候选全部字形（含未编码字形）轮廓与advance唯一恢复；一个缺失求和号由完整精确CFF匹配和公开记录的[0,750]垂直原点差恢复；两处错误星号以真实源font cmap/GID纠正。33处更正均不输入预期词句；原148个正确编码，包括Delta8710、middledot183、hyphen45及一个FB00连字保留，未重标为Greek Delta或扩展连字。28个独立原生墨迹/横纵em别名保留当前字形、advance和源纵向metrics；27个UPM16384及一个扩展字体UPM8192，原始Type1设计控制、hinting、完整family和未见编辑未证明。字体角色归并虽然源墨迹不变，但实际PNG缺字、PDF多余描边；补默认字形覆盖和缩短族名也失败，全部候选保留，没有宣称通用字体名原因。按连续源绘制顺序分为15与13源字体族的两段，连默认Arial分别16与14个批准族，保持外部16族限制；公开原生插入保持237对象全部样式、坐标与顺序，整图包/布局及真实字形独立核验，未称29族整图策略PASS。实际PDF正好181个填充字符且零额外文字描边，95个使用源/派生/实际字形对的控制/advance最大0.000321918196/0.000660636733px，通过原0.001px守卫；全部181当前字形为黑色alpha1/no-overprint且完整clip内，原点横/纵差0.056067/0.580807px与字体编码界分开披露。56条其他图形的原生属性和顺序与维护父版完全相同；3284个控制最大0.000101701698px，20个既有填充规范化完整重放，没有改变验收父版图形。既有虚线箭头重叠的采样差异仍见于父版和新版，本次只关闭活动文字，不宣称该处像素等价。平面字形解释不输入44个原span边界或字典，源/当前得到同样45段文字；18处未编码词距仅在布局侧证推断为空格，成品仍181字符。有限数学解释从真实Unicode、位置、em和绘制顺序恢复五个Delta和一个求和基组、五个上标、四个下标起点、九个唯一父子关系；求和下标七字形包含一个嵌套Delta。逻辑基线只用独立精确CFF原点差，显示源矩阵不变，适用窗口与控制误差界分列。12个反例拒绝词距/基线歧义、补造空格、重复上标父/角色、移位下标、错误字号/基线、倒序文字及真实成品改星号/改求和为缺码/删字，后三者通过实际公开source-content审计拒绝。14张完整1×、完整2×及重叠4×实际检查，源字体粗斜、Delta内孔、星/e上下标、求和、括号、circled-plus、词距和ff连字保持来源外观。标准source-content PASS仅查44个原/恢复编码字面量；公式/连接数组仍空，实际source-inventory返回NOT_PROVIDED且未写报告。有限45段读取与六个数学组只为hash-bound只读侧证，不称通用OCR/公式AST/图拓扑或原生语义容器。28别名未嵌入，共用字体交付限制关联47图，完整family/hinting/未见编辑、PowerPoint/WPS与用户验收仍待验证。冻结024源码和资源预算未变；既有1327 Python/安装后及67 CPU Node结果保留原运行身份，准确前一已推送5d3d690的16项GitHub检查全通过。
 
+- SwitchML 图 1 的分色方块轮廓与颜色问题关闭：源页面实际有50次轴向渐变绘制、零图片绘制，50条image-info记录是渐变代理；117条旧调色板轮廓替换为25条独立原生渐变路径。逐项绑定实际shade资源、完整裁剪、f32矩阵、原ICC profile、每表1365个RGB采样、encoded/decoded字节摘要和源绘制顺序。原橙/蓝颜色及窄白色渐变斜缝保留；源额外shader在实际裁剪域内为空或为与主表端部相同的常色。明确保留浮点端部越界，完整裁剪支持扩展最大0.000075447378px，固定1/1024px守卫未变；不称完整source support精确等价。每块5/6/9个stops的全表分量代理、native offset与方向编码合计精确有理数界≤2/255；重复整数offset只在颜色完全相同时合并并复查全部knots。该界不是ICC插值或渲染器RGB/像素误差界。实际成品全部305对象按要求排序，25条渐变角度/stops核验；225条其他路径及55处活动文字原生属性与维护父版相同，2428个控制点最大0.000102131234px，固定0.001px守卫未变，128项填充规范化完整重放。6项真实native渐变改角度/颜色/缩放轴/flip/删stop/改offset反例均拒绝。完整1×、完整2×与重叠4×共14张对照实际查看，阶梯白缝、浅蓝偏紫、缺角片及交换机宽灰缝修正，底部双色格、边框及前后叠放恢复。既有连线小圆点接触采样差异仍在父版和新版，未宣称整图像素相等。55处旧源字体证明保留，不升级完整actual font identity；source-content PASS仅覆盖55个声明字面量，公式/连接数组仍空，通用语义与字体交付、PowerPoint/WPS和用户验收仍待验证。失败探针及源探针2GiB地址限制误传Node的失败构建均保留；后继在独立子进程保持原2GiB守卫，公开冻结024代码/资源策略未变。上一已推送fd32347的16项GitHub检查全部成功。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -129,7 +131,7 @@
 | ccf-2021-11-f01 | D06 |
 | ccf-2021-12-f02 | D01, D02, D03 |
 | ccf-2021-12-f04 | R03-NATIVE-PDF-TILE-GRID |
-| ccf-2021-13-f01 | D02 |
+| ccf-2021-13-f01 | D01, D02 |
 | ccf-2021-13-f08 | D01, D02 |
 | ccf-2021-14-f04 | D05 |
 | ccf-2021-16-f02 | CURE-IMAGE-SAMPLING-001 |
@@ -729,3 +731,28 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/MAXFLOW1-AUTOMATIC-LIVE-LEDGER-GUARD-559.json` | `03280941f000f9a8b275769dc27696e01a456dc0c119ab34a05f38381245115c` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-047.json` | `9e8fc1325f62e672a964448e51c1c2d51a9d0ad99cf7c9ec2c1c871f67de4dbb` |
 | `reports/remaining-153-001/DISTILLATION-560.json` | `7bd11c03e12ebcba13944e9e29fa75592c06cf1c3cf8bc23d9fe3b0acbae4f24` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-576.json` | `8ba0e56cb9b87000b2d86f5982cf9b349e58bd7f5980cbccb451d9a574d15a2c` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-FAILED-570.json` | `2d3e227a5e40c3bf559ced84e93aa2f8d4f0830321cf9c5698bfd8b55bee5a5d` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-BUILD-FAILED-575.json` | `faffa84178f49a523a98802b9bb6ffb1ebaf6c8a5a5a4b4bd786a23d08fdcfa0` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-579.json` | `9fd64f3b0f1bd668eae2c9bb7202656ecd6e5dc9e5b21d5fec94558eb95cd934` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-FAILED-572.json` | `686203bb4be2fdfc09e84bf3a71d270dc053e8676d6ab57a0e38edf35ca37a2d` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-READBACK-FAILED-578.json` | `3eae67a63b5a97fa1787195847a26718cde2eb7461bc36fecad6ce724121fc27` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-569.json` | `4c0d55d1253a1036475a02576a80add9f12e9375f78fee9edd9832c0cdd5a519` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-566.json` | `ac7c837d7e8b50e9f3dc3c568e41544c058627f678f717acb960bd820d2c7c5b` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-567.json` | `29de25e20967ea9fab420784affbc996ae06081bf74617590d5e992757ee9206` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-RECOVERY-FAILED-568.json` | `0448869a98c4a565ba01bff4a0ba0ac20a1808fb0185f7d249d1205914491b72` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-REVIEW-FAILED-581.json` | `b1cf3826138b54656261425825f62b862a3d3721346dd6ba02dfd8207c453c5d` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-REVIEW-RESULT-582.json` | `d17cf27749801b48d77f2a39b3e6be6c5fe753d5e49c7a8f16f7c116512090c9` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-VISUAL-582.json` | `bce748b2839ff8759d401592a08984e42b5612b74cfae1444a62bd2881d079ef` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-SHADE-PROBE-565.json` | `99ff5a87f56464752bde8c9f198c8b4dd1f5d4944cb4b30f32973b041b9c1bd2` |
+| `reports/remaining-153-001/actual-view-names-switchml1-native-gradient-580.json` | `b8ce3465fd384195497028252b3ba06c5588ac694df4bcdbbfa79c04c7048828` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-fd32347-002.json` | `42315348a2214af3a5b694b194c4085a417e200bbe22c9cae27cfd6eb33fe36a` |
+| `reports/remaining-153-001/LEDGER-RESULT-048.json` | `ea8256006b00414dabc7dbe25419204ab4b542947bfac7d9f7fa7cb599908698` |
+| `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-LEDGER-GUARD-583.json` | `264d1d454a518a094f7940d9f59efb91bd391a723200093741693a371d966dbb` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-048.json` | `719ff4bc1925930f25863792118f2cc96ec18a42ac270318e78fc13b08f90dd3` |
+| `reports/remaining-153-001/DISTILLATION-584.json` | `9b8438d4c9a8ebbc2b5b7ca2ed8090fadcc8deb9aa5c86ff95198a67812f4c7d` |
