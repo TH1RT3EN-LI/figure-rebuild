@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T00:19:24.040193+00:00",
+  "updated_at": "2026-10-06T00:58:15.512291+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -55121,7 +55121,7 @@
     {
       "figure_id": "ccf-2026-03-f02",
       "issue_id": "ccf-2026-03-f02-SOURCE-OUTLINE-TEXT-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "major",
       "description": "827 source glyph objects are paths and final native text_count is0; visual formatting matches source but live text is unavailable.",
       "user_acceptance": "pending",
@@ -55148,7 +55148,2158 @@
         }
       ],
       "output_review": "source-regeneration/octotools-maintained-source-001/output-review.json",
-      "latest_verified_attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001"
+      "latest_verified_attempt": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001",
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-06T00:58:15.512291+00:00",
+          "previous": {
+            "figure_id": "ccf-2026-03-f02",
+            "issue_id": "ccf-2026-03-f02-SOURCE-OUTLINE-TEXT-001",
+            "status": "open",
+            "severity": "major",
+            "description": "827 source glyph objects are paths and final native text_count is0; visual formatting matches source but live text is unavailable.",
+            "user_acceptance": "pending",
+            "evidence": [
+              {
+                "audit_relative_path": "source-regeneration/octotools-maintained-source-001/VISUAL-RESULT.json",
+                "sha256": "0d32fb55322d98a51b67901c0f80da4d4715ac3b04627c267d194cbce13a4516"
+              },
+              {
+                "audit_relative_path": "source-regeneration/octotools-maintained-source-001/output-review.json",
+                "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+              },
+              {
+                "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/RESULT.json",
+                "sha256": "abc9652e859483617e58f8106e15956c91640c51315eb8ad1d0d9731dfeb420e"
+              },
+              {
+                "audit_relative_path": "source-regeneration/octotools-maintained-source-001/native-verification-001/critical-relations.json",
+                "sha256": "3d2c617c9c7e7a61fbb52e0e5a78a41c12de66bc8eb1c2d691f5b9e8f0d8f005"
+              },
+              {
+                "audit_relative_path": "source-regeneration/octotools-maintained-source-001/comparison-001/bindings.json",
+                "sha256": "d118a261c7c2891a960d8a3cee3c5664530f5d723968409c2ab8b42d3c158671"
+              }
+            ],
+            "output_review": "source-regeneration/octotools-maintained-source-001/output-review.json",
+            "latest_verified_attempt": "source-regeneration/octotools-maintained-source-001/job/build/run-001"
+          }
+        }
+      ],
+      "latest_reviewed_candidate": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001",
+      "candidate_selected": true,
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-ARROW-PORTS-406.json",
+          "sha256": "2d7ffaa93e67b0ec25662c55e70e3e23dda3ea1b2e46104451d67e110f88f2e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-LIVE-REVIEW-RESULT-411.json",
+          "sha256": "0565072583bfbf07a0f372cbd0d1660d20b0ac17c45f2a228111a87b344e676c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-LIVE-REVIEW-RETAINED-FAILURE-410.json",
+          "sha256": "6ce2f02d81b345db771c4069695b19cb295bfcf84260fcb90bcc103a8d980f71"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-LIVE-VISUAL-411.json",
+          "sha256": "29c183069c7deb92428d5b2ffacd8069370d4d1307c5116dd0145e98b42c1720"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-READING-NEGATIVES-407.json",
+          "sha256": "d849b131bdc58ed0caf43a4e62c50d3b6f13b6b17a32cc19ad1d389f57a66f37"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-AUTOMATIC-WORD-LAYOUT-405.json",
+          "sha256": "383154b497eada73c47e81a6862495ac527becbfbb531efd505a39da01fa8377"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-FONT-DERIVATION-396.json",
+          "sha256": "64f80e43b2a6f482117240bd44bd999501ff2102ee74f1136b990ada5ab57756"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-FONTS-RETAINED-FAILURE-392.json",
+          "sha256": "dcf264c781c6d378bf7b906151b92a1cbdda0c0ba3ce242f9229a2821d4cacf2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-FONTS-RETAINED-FAILURE-394.json",
+          "sha256": "edf79bd26d231c89478b9ddf8503db8fbdc502ddc083af8bba5a671cb21652c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-INPUTS-RETAINED-FAILURE-387.json",
+          "sha256": "b2102fe6e6a01633a274b6991783364f426c459e88f58e4436b5cc2490ecff53"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-INPUTS-RETAINED-FAILURE-388.json",
+          "sha256": "cce0cf19383c3148406dab438e3485ad8f0ec32142c240adfda636a937e150bc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-READBACK-RETAINED-FAILURE-401.json",
+          "sha256": "6c91f2daeab6f9f3d50a27c0d0488e268be0bd32fb6fc56c865ce26a4975d606"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-READBACK-RETAINED-FAILURE-402.json",
+          "sha256": "45e73cd6d71bdd48c78a39c966841d4937e3c5f9a85a661c2ca1b80fc54eb1af"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-READBACK-RETAINED-FAILURE-403.json",
+          "sha256": "21b95275784183b3ed361a16d2335f63b4d920685b7f5e740a0a89adb213f377"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-SOURCE-INPUTS-389.json",
+          "sha256": "374a607bb376442626d15aeda6ce6650166688e02e18bc1597b3f68734fb750c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-UNICODE-BUILD-397.json",
+          "sha256": "49474659e5033d7fa1716b7189f660b8c21fad1a93ab4faf27feb8b54e9e0119"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-UNICODE-PROOF-399.json",
+          "sha256": "fe232df4e1544929397ceddbe3718dd83468d09142d09d4b32c642a70af89414"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-NATIVE-UNICODE-READBACK-404.json",
+          "sha256": "7dc47ab5c46fe1ec4789f71c4db499ea1ee224f95ad3b0d3e4977963d0969ac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/OCTO2-SOURCE-GLYPH-CONTEXT-390.json",
+          "sha256": "11831e3645f69cb035ae6f7d0ef3ea1fff01cbdbfe430f3b1acbd03c146ebb79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-octo2-complete-reading-409.json",
+          "sha256": "64b142c3ae42a9b6d9988879f77b1aa0eb6a4a4edb3bd264b293dee71fd0bb15"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-octo2-native-unicode-400.json",
+          "sha256": "3abdad38e517eb4d4bf2fc5a66e4125cd2e1ce38fb93e308242559bba59cd2c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+          "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-024.json",
+          "sha256": "88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json",
+          "sha256": "92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json",
+          "sha256": "aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json",
+          "sha256": "b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-font-unicode-325/proof.json",
+          "sha256": "d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-c88e737-001.json",
+          "sha256": "4fe937d6f429f7315f7e6abac4b35989f1ce2898bc8a1be46e371e26283ac9e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/manifest.json",
+          "sha256": "bec0c5747f7610e7120bf5f643a85bb8b1ffe9961a459d9d5d5621c89f019f8c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/figure.pptx",
+          "sha256": "bea4b83cddd28704a40418a6b60185b2b32d5f6611ffabfc483b78a10519f1d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/font-profile.json",
+          "sha256": "42f5870a2920521daafa0679678c31a9e019399d5b4ea8a5970234c52d8fe03b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/2-original.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/21-variant-9.otf",
+          "sha256": "9b9239dec15da5a6830c9cfa20685bbcc92b485d2c22d97f207a3b999e3dc019"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/21-variant-10.otf",
+          "sha256": "0bd48d05e2f26bc5d225fa536e7411d8c942c91f689391f553081eef92172b26"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/22-variant-14.otf",
+          "sha256": "2a5c7520dfb648dd4b1194db0a4167d54945f05fcaf8dd4fb5d0eec81cf019cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/3-original.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/4-original.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/0-original.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/1-variant-2.ttf",
+          "sha256": "6d0e143024da51bc68be3597e9fb06bb6e8440b50dbef5beda69ceb4471f8567"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/22-variant-11.otf",
+          "sha256": "31e8735d304c2ec6f59d76ee59a584a8ce53e99baa25d105a7cf0fdb524d4c30"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/21-variant-8.otf",
+          "sha256": "06d6041743b8a08f10eae4b0a631169252a129048a5cdec9beb40c9036e7a734"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/22-original.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/5-variant-6.ttf",
+          "sha256": "661596e90dea6bf4e8830d262bc786a9d4760a7249ec468079f9c5ea039e45c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/2-variant-3.ttf",
+          "sha256": "e40283c9b67e4044d35d10a43c99bb980786c1c3853f9caeb0599535cb7da79b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/21-original.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/3-variant-4.ttf",
+          "sha256": "2e7b71546f94d78bded094b11505e8c3caa93fb8e874bbe5d0dab54be8b1681e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/5-original.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/4-variant-5.ttf",
+          "sha256": "325a069aaf206aea4a15af99e4550bd411b74064a84297f77999e81dbea25c32"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/0-variant-1.ttf",
+          "sha256": "20afe8404723442a85163dc110db4a10df039cf9cbce60a38f1b0c7d63afa931"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/22-variant-12.otf",
+          "sha256": "517e703e979906892bdd052b92c1188fda66b08bf90aad6b85e4cb0cd7149773"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/22-variant-13.otf",
+          "sha256": "ce49603461852e267638c07f94ead55cb1d2091cdddd839e6cf268480cc37f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/21-variant-7.otf",
+          "sha256": "f0db0ed8a412ce1480426b14b19b1e44b43d8aae9dda675fa0f15ed96ff9a354"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-fonts/1-original.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/sources/original.png",
+          "sha256": "74f24748ae3b5553126599d21a664e0a763a1097fab2a0ca8c751475cee8d052"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/01-review.json",
+          "sha256": "ff536962341768fd599fa84ed563d75922768ec870aed281599c9d9581ff7d9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/02-build.json",
+          "sha256": "77b557a9477f813c33e1d696873398acf6a040b8d515aea251d70fc13b813215"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/02-build.stdout",
+          "sha256": "2db3d29d4377391d5994def3469f6e713aa26fe6d02472670561206d3419c8c2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/commands/01-review.stdout",
+          "sha256": "bc5222bdf6c0329b3a613a7ffaf7ca373d5ef68a10544e475d40620052d92b44"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/fresh-vector-replay.json",
+          "sha256": "158e4a2cca8ed8648df2d6e6a2c4ee6f9568f7d01a615c9a511d25010dacf7e3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-reading-provenance.json",
+          "sha256": "debab78c62d93da28ca7017017c8ef73bfc5736db97a114c8bb490ca2f2af30b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-arrow-ports-source.json",
+          "sha256": "165ce9d347e43cd81545c6379407c34e9f9f7c01b9d595ce88ee60c35ab4e439"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/source-paints.json",
+          "sha256": "fdc3e4c0b22cbfbe5da7db182110ab7af17699a390544a2a580b6fa40cc46913"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/source-parser-limits.json",
+          "sha256": "2ff9915f4468cd4b00f75a48c6b47df44ee818763b38be8072b78adee3850cf3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/pdf-native-paint-context.json",
+          "sha256": "547e7d13d32c9c7c0bcdc755b72c6af81d63c1c047d6a16a5fcf39e468392171"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/OCTO2-SOURCE-GLYPH-CONTEXT-390.json",
+          "sha256": "11831e3645f69cb035ae6f7d0ef3ea1fff01cbdbfe430f3b1acbd03c146ebb79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-full-caption-source.json",
+          "sha256": "bd5b2089e55b8943cdd8fd6634dfa48a681e64694c7ffe5d334cbcde8c88b84e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/independent-live-source-reference.json",
+          "sha256": "cd5d84c3be9a85fc22b1c81302b410a30a1f1de43eae44589474a6b800ef38b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/inventory-before-live-recovery.json",
+          "sha256": "b30fe20290ce4dd571288351c2fa162767835582870ce5fa1b960afae68a4fc6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/inventory.json",
+          "sha256": "82e3c468df594313cc9c44ae253d732e2ea4b7c64a2b3c8842145183922d6c24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-text-spans-source.json",
+          "sha256": "92eb0d59be25ea8e934dd28f0a9baf2c6fbc5302403e8740745a5b546beec7e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/source.pdf",
+          "sha256": "27a9f25e781a68e9be98415167feadc03fefcfe8418f7fbbc1fbfefcf91dc654"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/assignment.json",
+          "sha256": "815015d7ffe7c0e22d35e69a18f0ea32fd59f851e4a9513d11161d836fa919e1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-text-spans-native.json",
+          "sha256": "4f9a5a6b58a2c65ee8672335e1a86b82034b672cfcd87e1374655d738315d8ae"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-glyph-recovery.json",
+          "sha256": "446818ac01ab6ef587c64d6039190f744859c41b2084f271bbe49aa6d8d773d0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/source-recipe.json",
+          "sha256": "1564e136fbc469104a05e0c2439929c88145067e4e40cad7b02590b183ae5d05"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/pdf-bboxlog.json",
+          "sha256": "e114899f5153ce37979fc89ce762980e967dec6ca42986e300a329e917ec897a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-arrow-ports-native.json",
+          "sha256": "1dd480bb44fb21d156f5179e49c46a65329210411ec17c4a2f0dcbb1f1faa1ad"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/OCTO2-NATIVE-SOURCE-INPUTS-389.json",
+          "sha256": "374a607bb376442626d15aeda6ce6650166688e02e18bc1597b3f68734fb750c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/original-native-paint-context.json",
+          "sha256": "547e7d13d32c9c7c0bcdc755b72c6af81d63c1c047d6a16a5fcf39e468392171"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/page-outlined.svg",
+          "sha256": "5371052ed874e1709387e7b1c3bd5df89c4a72bc77b68c8584621ac00023cd57"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/fresh-source.svg",
+          "sha256": "ae2a3445361182a07ba41d92bcd4c391a6ee568a4b0ee50147ad08425c7d77c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/independent-source-reference.json",
+          "sha256": "0a6efb790a10eaa52e8b86466d75b546a8224483c798d2ef632ed18feb8b7dfe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/native-context-guard.json",
+          "sha256": "312b4267b143fc56416d448a7c4b1cb49f1dc73f45a352c904e593b3fce3d668"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/OCTO2-NATIVE-FONT-DERIVATION-396.json",
+          "sha256": "64f80e43b2a6f482117240bd44bd999501ff2102ee74f1136b990ada5ab57756"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/automatic-full-caption-native.json",
+          "sha256": "8bd7792dce4695780d66a894519c9fa7dc98f8ff575e6fd46be5ccfc2ff29576"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00000.png",
+          "sha256": "3731b5fcc1f15a8b75bfa98b6b09db0e7da6c8abf5e01d6ca6cea3de48875733"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00005.png",
+          "sha256": "4d12cf555698ea6a0eeeb6767dd4fda825e0539b162316603e74682f3fd41a58"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00008.png",
+          "sha256": "dbd39230fd53d8be866fd84030e5ff0c29e014e677696b54b151cf01c5b1853e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00001.png",
+          "sha256": "57d33df3941751cc38ac1be3817b8aacfaf6815185534a38e2a2009461a905f5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00012.png",
+          "sha256": "0cfbec9b2ac02c6c7f4ec874feb96d69b7a1a764d283cf620ecb190c382b0641"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00007.png",
+          "sha256": "7f19ea56b1f7e6d5132d9823928b45af415faba7c5a4ccec4f3a4674a5132db0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00013.png",
+          "sha256": "1238d509725b3748b539be70273cc713dbedfe023e0603afc5d6b17f98043b3f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00004.png",
+          "sha256": "64d11e44f2c0c16e06ea8cd7898b3a55a7dcb5454afe1d39f6dfc0c2c8d42854"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00009.png",
+          "sha256": "cb5d9bba29864be8745b1662d06eb317b45a69cea0ee132b686d3aff14267b61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00006.png",
+          "sha256": "6fd1c11753039fd09ab4c951612a1c9dc440a0660226bada67bf8181fdccc300"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00014.png",
+          "sha256": "4a5c3f115fe20787ad50c28b655e71dec1af377b3ded82f0804e73aa910c3d9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00011.png",
+          "sha256": "71c150f7c9a5f8ee60090caf4bca80def75d4855120b79b5bc054149779239fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00010.png",
+          "sha256": "6e89529d925fa89a28cd29b16bc2c5e4bdae4951eee6aa9f0511d817ee85214a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00016.png",
+          "sha256": "92ed714cb13704825588cda2dce98ab8b6f37114d2bd1d6b3b4ec4fa759b849c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00003.png",
+          "sha256": "2dde68b98b7bb8a12dee6b15356b3d6ec66199451e4279659b5454fec45faf47"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/assets/source-image-00002.png",
+          "sha256": "49cfaab77b43187e8458363dea2ddaeb6aac87d0136fd0da04847f8905ba9172"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/artifact-authored.pptx",
+          "sha256": "04c6df1377f5aed7334212b99321a90413bc1dc0863048a7deb4f2d4a3173353"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/validation.json",
+          "sha256": "0253320215c47f42a59563b368c646ce0f18ba0e838c2cca2fddda75979a1c71"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/delivery.json",
+          "sha256": "b32e0d0163180482bc42887f62ca71805b039d7a006a53321028b4d16f69cfc2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/preview-smooth-1x.png",
+          "sha256": "29499fbcbea57a580116ed867525928735e7b005a74f0a3473a87c51d3ecaa4f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/source-inventory-audit.json",
+          "sha256": "262df706baa1970b978bf6c42b1f64eb88ba8aca79d03c7e35bc13b013379a3f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "3f02b428ea1abfd53a357ce42df3d0f4536721b4b638dc24f8e9e88eaa64433c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/font-audit.json",
+          "sha256": "673d0b89750bded4b85567b3a296778448d9e1b44ba84aa95124f72ab706deb9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/semantic-audit.json",
+          "sha256": "408eeccfeec456326a6d795ac4e5da485cbcccaba7f62021e8c0ce67f3ae3be7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/object-map.json",
+          "sha256": "bd89ef9892d8b4a3e2735bab92ca58d89ff2dfe57a7a03579dc13f01be19d0f5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/source-content-audit.json",
+          "sha256": "084c163fd241c59d2b4c5a4f59783d436532c715c3559433603ff091680471df"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/comparison.png",
+          "sha256": "10a2deba631070d65a6459e2a431aea67d6a770de4208be010c75cb80c64da5c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/manifest-validation.json",
+          "sha256": "b2bb61ac20776b7acf466dd04849ec5e2eb0a24e099d415a8935347819d96482"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/reconstructed.svg",
+          "sha256": "57e21d04fdccef7f6cdef2236ebb1c1714089258b0200dfeab76693ab4eb20ee"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/output-review-octo2-auto-live-411.json",
+          "sha256": "c53bd0bbec1b2005c771c8cd57509661ef571ab4fc31033a68da0bbf7c8c9c31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/preview-2x.png",
+          "sha256": "d9c7cd1dbe10753cc93f03ef2b485adce3af1047fe23cc2e020ce3f4ed2c10ed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/asset-snapshot.json",
+          "sha256": "b433a1c785a448900ac699a62ef776c8295a8e2ff11e95f1c5c5e38f0673f2e0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/preview-1x.png",
+          "sha256": "b7e2ad3c1e2087d30fdd92640bd143455704e77fb51994f054d50dbd0dae5eb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/delivery-candidate.json",
+          "sha256": "0ea60bd24e7623152a68ce62c7ccf31981e526c9f98a6729899175262a396bce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/editability.json",
+          "sha256": "d81a4c253a95a9485b83dddd1375555e8a29e5c5f950a1c821301c85d71ba399"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/resolved-scene.json",
+          "sha256": "bec0c5747f7610e7120bf5f643a85bb8b1ffe9961a459d9d5d5621c89f019f8c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/comparison-metrics.json",
+          "sha256": "a3a20aad0f9e26639c7255e0886f6978498f47594e525189833992763ee9f5aa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/manifest-snapshot.json",
+          "sha256": "bec0c5747f7610e7120bf5f643a85bb8b1ffe9961a459d9d5d5621c89f019f8c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/render-audit.json",
+          "sha256": "af87b3ee57ab996bf5ba7b6dc4234aeacfc1ff36259dbb308cb722b3cf616319"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/preview-4x.png",
+          "sha256": "2096ec08a9a598da8ceb762ce0d1835a2508221793f153b33ebb82c0458e5886"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/build-config.json",
+          "sha256": "a02b9bef2b051dea2658d9acdcf89b129c66edf6e8dbf09deb889ae7ccd0d767"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/text-fit.json",
+          "sha256": "63cdb3d8f04dd799f2b4e67e776b069339ccfd1b36655b3e4cd65a5aa3c810c9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/grouped-overlay.pptx",
+          "sha256": "bea4b83cddd28704a40418a6b60185b2b32d5f6611ffabfc483b78a10519f1d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/candidate.pptx",
+          "sha256": "bea4b83cddd28704a40418a6b60185b2b32d5f6611ffabfc483b78a10519f1d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/text-manifest.json",
+          "sha256": "bb552d8a0adf45370430248196cf5518ded7bc62d40802c0ddcce4b976912441"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/comparison-scene.json",
+          "sha256": "1c4fbc37217fd56b7effe9466a312fcd0b6a9a016b8b3cf4eba403b0363ff4b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/italic.ttf",
+          "sha256": "6dc487f511fd265da41506318dce1f526e2c984a146dc403097f73148cfae99d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/regular.ttf",
+          "sha256": "84c7d8aaaaa65605849b4e5681aaba44f76adb5500962f2deafece46a335fce7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "378e4dd30b54bff97f6c0bab1dba1ffffe7f20efdbae08c22dcb7c700d3845b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/bold.ttf",
+          "sha256": "59a49615c020aee7b2fe94b029dd41bc465777dac39f31b6dda08acfd50dbd1b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf-preview-receipt.json",
+          "sha256": "50e9c9eed9f68db0ef291331d59df73be8125f6ae49c2321d4a573b8c2422543"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts.conf",
+          "sha256": "4b4358f03ecdcac2a03963cf7f7895aa6cf4a9743e8f4b328214d28a2ec737c4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/commands.json",
+          "sha256": "180a92c03756b1fede74a6e3446ee9619b548badfb39bb7cedddbbb24ec15154"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "bea4b83cddd28704a40418a6b60185b2b32d5f6611ffabfc483b78a10519f1d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-7/regular.otf",
+          "sha256": "bc711d024456826db1f203c80162640175d03576891f913403a3045b33683f5e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-11/italic.otf",
+          "sha256": "20660e16506c05e50d8284eb518d03dfa5725805a8b2d200f974a4d8884dcbe8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-9/regular.otf",
+          "sha256": "b13f0c06da280d5f511bd832383bdd79e2dc0aea82c062fa6927f0ba63b6ca2a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-10/regular.otf",
+          "sha256": "ca53846cd473f77714b90e7719a747ba948f33047ceb69515b5ded6f4f052cd1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-4/regular.ttf",
+          "sha256": "d3b1a8346d40d777bd8bb411f98ebe5ab860a385018d13c3ba1077e105a50244"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-12/italic.otf",
+          "sha256": "f89f0f7d59e0b3b88cc64bfe225a6ccdd3cf0691aab3218b306f111a73173ad5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-3/regular.ttf",
+          "sha256": "b4c4a10a83557f18d14f501a5fa33700efe56e0d06c5a37458c61dfdd441d537"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-6/regular.ttf",
+          "sha256": "f6e3aced0b3e20a38cfafe3e82438ac80a58040e66196d4f752fec5adfceefbd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "fc57337498afef1555509b405e39199d0cff3b06c427cc0e9c874e315ba79273"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-14/italic.otf",
+          "sha256": "f2437f11fb4c38710db86ca9dc99d30b5da1a33f70a4ddaa7f54bcfbe0863e1a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "4d3b25db6b869000bcfb1af27017d8611a07a2ae99d8b738a6c7de9deda2b9f9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-5/bold.ttf",
+          "sha256": "366825f65530e9ac9751d90ae99ff1137e35fb86f1458dc89d47fec80110cc89"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-13/italic.otf",
+          "sha256": "d630459c96047ae0efa7d4040b4d56fb13b1a461d1f7f6a10ce962b6fb9058b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/fonts/family-8/regular.otf",
+          "sha256": "f423d2ade8bb2fa0cf750fba88e72f5002b94cefe76a339ec26d50d6fd242fb4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf-png-1x/reconstruction.png",
+          "sha256": "b7e2ad3c1e2087d30fdd92640bd143455704e77fb51994f054d50dbd0dae5eb0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf-png-2x/reconstruction.png",
+          "sha256": "d9c7cd1dbe10753cc93f03ef2b485adce3af1047fe23cc2e020ce3f4ed2c10ed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "8d4d30dd148c1366b203c5c25f41aec2e29548e9d05d835a94f38a1fdace7383"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "e961569245b06a8b3e10687015e579ee3172bd75848aa89870febf6d91b1a755"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "087443fe95a5ec9d999bde11a378d68081d17ed73acbcbd2027ce86b301bc8cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/10.otf",
+          "sha256": "bc711d024456826db1f203c80162640175d03576891f913403a3045b33683f5e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/13.otf",
+          "sha256": "ca53846cd473f77714b90e7719a747ba948f33047ceb69515b5ded6f4f052cd1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/16.otf",
+          "sha256": "d630459c96047ae0efa7d4040b4d56fb13b1a461d1f7f6a10ce962b6fb9058b3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/15.otf",
+          "sha256": "f89f0f7d59e0b3b88cc64bfe225a6ccdd3cf0691aab3218b306f111a73173ad5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "fc57337498afef1555509b405e39199d0cff3b06c427cc0e9c874e315ba79273"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/17.otf",
+          "sha256": "f2437f11fb4c38710db86ca9dc99d30b5da1a33f70a4ddaa7f54bcfbe0863e1a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/12.otf",
+          "sha256": "b13f0c06da280d5f511bd832383bdd79e2dc0aea82c062fa6927f0ba63b6ca2a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "59a49615c020aee7b2fe94b029dd41bc465777dac39f31b6dda08acfd50dbd1b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/9.ttf",
+          "sha256": "f6e3aced0b3e20a38cfafe3e82438ac80a58040e66196d4f752fec5adfceefbd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "b4c4a10a83557f18d14f501a5fa33700efe56e0d06c5a37458c61dfdd441d537"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/11.otf",
+          "sha256": "f423d2ade8bb2fa0cf750fba88e72f5002b94cefe76a339ec26d50d6fd242fb4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/14.otf",
+          "sha256": "20660e16506c05e50d8284eb518d03dfa5725805a8b2d200f974a4d8884dcbe8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/7.ttf",
+          "sha256": "d3b1a8346d40d777bd8bb411f98ebe5ab860a385018d13c3ba1077e105a50244"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "4d3b25db6b869000bcfb1af27017d8611a07a2ae99d8b738a6c7de9deda2b9f9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "84c7d8aaaaa65605849b4e5681aaba44f76adb5500962f2deafece46a335fce7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "6dc487f511fd265da41506318dce1f526e2c984a146dc403097f73148cfae99d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/8.ttf",
+          "sha256": "366825f65530e9ac9751d90ae99ff1137e35fb86f1458dc89d47fec80110cc89"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "378e4dd30b54bff97f6c0bab1dba1ffffe7f20efdbae08c22dcb7c700d3845b0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/font-cache/8924a804b2a6d71235deb5c9aafa3bff-le64.cache-9",
+          "sha256": "49caa6e6b4fe48871fd009c44337a7c8dee75b96b4b3b7f17f7d74923c65a783"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/pdf-png-4x/reconstruction.png",
+          "sha256": "2096ec08a9a598da8ceb762ce0d1835a2508221793f153b33ebb82c0458e5886"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "86bb428ee367393aa7e10fe0ddd8c132d7e2d2d7e3066df68ef36e5dfbca8950"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/sources/original.png",
+          "sha256": "74f24748ae3b5553126599d21a664e0a763a1097fab2a0ca8c751475cee8d052"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/fresh-vector-replay.json",
+          "sha256": "158e4a2cca8ed8648df2d6e6a2c4ee6f9568f7d01a615c9a511d25010dacf7e3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/OCTO2-SOURCE-GLYPH-CONTEXT-390.json",
+          "sha256": "11831e3645f69cb035ae6f7d0ef3ea1fff01cbdbfe430f3b1acbd03c146ebb79"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/independent-live-source-reference.json",
+          "sha256": "cd5d84c3be9a85fc22b1c81302b410a30a1f1de43eae44589474a6b800ef38b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/inventory.json",
+          "sha256": "82e3c468df594313cc9c44ae253d732e2ea4b7c64a2b3c8842145183922d6c24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/source.pdf",
+          "sha256": "27a9f25e781a68e9be98415167feadc03fefcfe8418f7fbbc1fbfefcf91dc654"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/source-recipe.json",
+          "sha256": "1564e136fbc469104a05e0c2439929c88145067e4e40cad7b02590b183ae5d05"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/OCTO2-NATIVE-SOURCE-INPUTS-389.json",
+          "sha256": "374a607bb376442626d15aeda6ce6650166688e02e18bc1597b3f68734fb750c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/fresh-source.svg",
+          "sha256": "ae2a3445361182a07ba41d92bcd4c391a6ee568a4b0ee50147ad08425c7d77c1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/OCTO2-NATIVE-FONT-DERIVATION-396.json",
+          "sha256": "64f80e43b2a6f482117240bd44bd999501ff2102ee74f1136b990ada5ab57756"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/source-evidence/independently-reviewed-parent-output.json",
+          "sha256": "809886da5b3c30955767dd351f82fd28aeab9893dee1738851374bdd21dd808d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00000.png",
+          "sha256": "3731b5fcc1f15a8b75bfa98b6b09db0e7da6c8abf5e01d6ca6cea3de48875733"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00005.png",
+          "sha256": "4d12cf555698ea6a0eeeb6767dd4fda825e0539b162316603e74682f3fd41a58"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00008.png",
+          "sha256": "dbd39230fd53d8be866fd84030e5ff0c29e014e677696b54b151cf01c5b1853e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00001.png",
+          "sha256": "57d33df3941751cc38ac1be3817b8aacfaf6815185534a38e2a2009461a905f5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00012.png",
+          "sha256": "0cfbec9b2ac02c6c7f4ec874feb96d69b7a1a764d283cf620ecb190c382b0641"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00007.png",
+          "sha256": "7f19ea56b1f7e6d5132d9823928b45af415faba7c5a4ccec4f3a4674a5132db0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00013.png",
+          "sha256": "1238d509725b3748b539be70273cc713dbedfe023e0603afc5d6b17f98043b3f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00004.png",
+          "sha256": "64d11e44f2c0c16e06ea8cd7898b3a55a7dcb5454afe1d39f6dfc0c2c8d42854"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00009.png",
+          "sha256": "cb5d9bba29864be8745b1662d06eb317b45a69cea0ee132b686d3aff14267b61"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00006.png",
+          "sha256": "6fd1c11753039fd09ab4c951612a1c9dc440a0660226bada67bf8181fdccc300"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00014.png",
+          "sha256": "4a5c3f115fe20787ad50c28b655e71dec1af377b3ded82f0804e73aa910c3d9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00011.png",
+          "sha256": "71c150f7c9a5f8ee60090caf4bca80def75d4855120b79b5bc054149779239fa"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00010.png",
+          "sha256": "6e89529d925fa89a28cd29b16bc2c5e4bdae4951eee6aa9f0511d817ee85214a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00016.png",
+          "sha256": "92ed714cb13704825588cda2dce98ab8b6f37114d2bd1d6b3b4ec4fa759b849c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00003.png",
+          "sha256": "2dde68b98b7bb8a12dee6b15356b3d6ec66199451e4279659b5454fec45faf47"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-octo2-native-unicode-001/jobs/ccf-2026-03-f02/build/run-001/assets/assets/source-image-00002.png",
+          "sha256": "49cfaab77b43187e8458363dea2ddaeb6aac87d0136fd0da04847f8905ba9172"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-readback-404/output-review-unperformed.json",
+          "sha256": "823729a7c5aede497a9cc4eb7e39fd27dc62c9c8b170c4d82c79f97845eda99f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-readback-404/output-review-octo2-auto-live-411.json",
+          "sha256": "c53bd0bbec1b2005c771c8cd57509661ef571ab4fc31033a68da0bbf7c8c9c31"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-readback-404/proof.json",
+          "sha256": "7dc47ab5c46fe1ec4789f71c4db499ea1ee224f95ad3b0d3e4977963d0969ac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/2-original.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/21-variant-9.otf",
+          "sha256": "9b9239dec15da5a6830c9cfa20685bbcc92b485d2c22d97f207a3b999e3dc019"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/21-variant-10.otf",
+          "sha256": "0bd48d05e2f26bc5d225fa536e7411d8c942c91f689391f553081eef92172b26"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/22-variant-14.otf",
+          "sha256": "2a5c7520dfb648dd4b1194db0a4167d54945f05fcaf8dd4fb5d0eec81cf019cd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/3-original.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/4-original.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/0-original.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/1-variant-2.ttf",
+          "sha256": "6d0e143024da51bc68be3597e9fb06bb6e8440b50dbef5beda69ceb4471f8567"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/22-variant-11.otf",
+          "sha256": "31e8735d304c2ec6f59d76ee59a584a8ce53e99baa25d105a7cf0fdb524d4c30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/21-variant-8.otf",
+          "sha256": "06d6041743b8a08f10eae4b0a631169252a129048a5cdec9beb40c9036e7a734"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/22-original.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/5-variant-6.ttf",
+          "sha256": "661596e90dea6bf4e8830d262bc786a9d4760a7249ec468079f9c5ea039e45c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/2-variant-3.ttf",
+          "sha256": "e40283c9b67e4044d35d10a43c99bb980786c1c3853f9caeb0599535cb7da79b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/21-original.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/3-variant-4.ttf",
+          "sha256": "2e7b71546f94d78bded094b11505e8c3caa93fb8e874bbe5d0dab54be8b1681e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/5-original.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/4-variant-5.ttf",
+          "sha256": "325a069aaf206aea4a15af99e4550bd411b74064a84297f77999e81dbea25c32"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/proof.json",
+          "sha256": "64f80e43b2a6f482117240bd44bd999501ff2102ee74f1136b990ada5ab57756"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/0-variant-1.ttf",
+          "sha256": "20afe8404723442a85163dc110db4a10df039cf9cbce60a38f1b0c7d63afa931"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/22-variant-12.otf",
+          "sha256": "517e703e979906892bdd052b92c1188fda66b08bf90aad6b85e4cb0cd7149773"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/22-variant-13.otf",
+          "sha256": "ce49603461852e267638c07f94ead55cb1d2091cdddd839e6cf268480cc37f13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/21-variant-7.otf",
+          "sha256": "f0db0ed8a412ce1480426b14b19b1e44b43d8aae9dda675fa0f15ed96ff9a354"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-396/1-original.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34.font",
+          "sha256": "336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d.font",
+          "sha256": "14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0.font",
+          "sha256": "39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d.font",
+          "sha256": "0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a.font",
+          "sha256": "6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0.font",
+          "sha256": "cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73.font",
+          "sha256": "ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4.font",
+          "sha256": "9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e.font",
+          "sha256": "de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/proof.json",
+          "sha256": "374a607bb376442626d15aeda6ce6650166688e02e18bc1597b3f68734fb750c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5.font",
+          "sha256": "5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc.font",
+          "sha256": "dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd.font",
+          "sha256": "123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/native-font-trace.json",
+          "sha256": "6dd7272fbe6ac4cdb7a0a75205abc7d515761518188db8558242a4a62d81616c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae.font",
+          "sha256": "a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400.font",
+          "sha256": "e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-389/9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7.font",
+          "sha256": "9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-1x.png",
+          "sha256": "e5afb76b0be60bcbaffe564649dec916935f0ad5873e7db84a66b4baea2a720e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/source-1x.png",
+          "sha256": "74f24748ae3b5553126599d21a664e0a763a1097fab2a0ca8c751475cee8d052"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-394-132.png",
+          "sha256": "4492a29e8a93a2c0eac98a52201bbd43c19ac7b47dd50e2f8c8048527416b9c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-2x-492-0.png",
+          "sha256": "f8323bfb584b60aad27c3948413a893734e38de38e6bfcb9036af5a17a5744ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-591-264.png",
+          "sha256": "c1cf0a33acf41f4911f06a51a953ecf1a3b6eec4157c71d2a7447282f2156b1f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-591-0.png",
+          "sha256": "5493cfdf8210c358cbcb6dd1b995a601eb0633fc67eae63c58af72ce2c9068e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-0-264.png",
+          "sha256": "93732bb29dbc5af0ef9c924b4b5c376b7ee930d0b24e24af59fa254588acda60"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-394-0.png",
+          "sha256": "44a9420312d320e90932b282583933811c10a945eae95a8476b91f59848f0cc2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-0-0.png",
+          "sha256": "c46c68558bd4d53af5e0068d34fc12f7ec6e630465d77fec6a060ff97655658f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-2x-0-0.png",
+          "sha256": "d487d52072bf8d0b6ee5cc63c671fb260ae88377361a77f695ad5adc6714f716"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-788-132.png",
+          "sha256": "35cb652be328ebcaf4b37ee035f9eacb39eed7812db2808db9e95587c4abb761"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/source-2x.png",
+          "sha256": "3ba8b8409539aac4d44cee755ff52c5bcc4b537d2c8e95f7fbbb7344798d0128"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-2x-0-197.png",
+          "sha256": "65104fd16d2ea4a212f57781621d96d0078a950fe062ebaeb73875517e172525"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-0-132.png",
+          "sha256": "58a20562f1ae516052041a5a31b9c03e38ce2e4ef63d588fefa8decbd1d5bc92"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-2x-492-197.png",
+          "sha256": "e1f8183d1ab2f30ff7a03198eb5e8e4fe6e80a2ccdb90a3de0906941d895b6ad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-591-132.png",
+          "sha256": "4e453014d016f1745487cb1ece29c9dcc84f0d713f6905b9f0018a1d551e426c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-197-264.png",
+          "sha256": "3c6baf52b17f892fb164bd5b807c0d5f1d7c727de9589df58fb3833286196551"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-197-0.png",
+          "sha256": "fd6fc242786f0c4fb0ff9c3765bcf848c17ff79d4d5799b312f9d97c39091f4a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-788-0.png",
+          "sha256": "2df12fac6edcdb472dc3fde97e13e23303d625728990aa60c61750c0be2df7c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-197-132.png",
+          "sha256": "756f45aa000443c2a3eefa20bcdc2cd7ed5a7592fc48e4dcfe7c4e8dc5233e36"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-394-264.png",
+          "sha256": "b42cec6ca3c19862072367d1ef33c4739c13ecc17bd0fae593173b1d18e0feab"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/whole-4x-788-264.png",
+          "sha256": "6a96ebd163657a4bb61da24b7a8d69dd06567cc98177f7f3544f6e9b8d0bf516"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/source-4x.png",
+          "sha256": "8e958ceedb43e77b5db53e51ae4f6b9a76df49eee78eb9879a4f853054fcefc1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-galleries-398/bindings.json",
+          "sha256": "35d198c661a0478073a2de3edaf21ae77663fe7aa9b847dc1ea847ad0b5b0567"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-complete-reading-galleries-408/full-caption-source-4x.png",
+          "sha256": "bdc8ec7a7f9a59e54de221f1003e0510184a993121711ee47df9b16e66c014b8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-complete-reading-galleries-408/full-workflow-source-4x.png",
+          "sha256": "0b2aa7c31230f154084849f565cc9781cce52fa4a37de399cdbc0f8ec4fad788"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-complete-reading-galleries-408/full-caption-actual-native-4x.png",
+          "sha256": "8433e72013561fd9d101eb470b173562a9e53f1fa1392f15f5fcf37d7cb3f70b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-complete-reading-galleries-408/full-workflow-actual-native-4x.png",
+          "sha256": "300f1b72b6a02e395fd3c0447083a04e411e4726223f4c1a9456185507d49f59"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-complete-reading-galleries-408/bindings.json",
+          "sha256": "ab83f898273489f40482061fbb6af5b416c65983e271f1fa9782b2dd05f6effb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34.font",
+          "sha256": "336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d.font",
+          "sha256": "14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0.font",
+          "sha256": "39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d.font",
+          "sha256": "0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a.font",
+          "sha256": "6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0.font",
+          "sha256": "cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73.font",
+          "sha256": "ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4.font",
+          "sha256": "9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e.font",
+          "sha256": "de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5.font",
+          "sha256": "5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc.font",
+          "sha256": "dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd.font",
+          "sha256": "123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/native-font-trace.json",
+          "sha256": "f1a40d185b406f8135c0a55fdabfbcb97b8073880964bd1905b56ed25233e971"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae.font",
+          "sha256": "a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400.font",
+          "sha256": "e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-388/9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7.font",
+          "sha256": "9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-reading-negatives-407/negatives.json",
+          "sha256": "570a44cec1ac5f35c8a37a0704a6c6a0c0929ccae56be7aed673198fb809a616"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-reading-negatives-407/proof.json",
+          "sha256": "d849b131bdc58ed0caf43a4e62c50d3b6f13b6b17a32cc19ad1d389f57a66f37"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34.font",
+          "sha256": "336543ee601edfd92253a3b121a57fe38893612cfdb5aec670011e6584a4fd34"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d.font",
+          "sha256": "14810428f29ec139137fbbc2e329557b7a557da6b9020d8f8ffe069ba340f49d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0.font",
+          "sha256": "39eff83c2af400edd679e98f4ca5216483f8ad6226acfbc44255985862fc6eb0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d.font",
+          "sha256": "0195d9cd59ae4b257b7536ccfa131115f8d518575a25eadb004acb609abfac4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a.font",
+          "sha256": "6d66c9648ff3e7487294e9edc5f16df8b6949cbdb64b83e8cc8c1e62b3a1048a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0.font",
+          "sha256": "cc6d1848f8b7b810b47850da19a7d6a490fb0e603ad1eeec243e7b2c07563da0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73.font",
+          "sha256": "ab60e9a22fc111025dbf8287ed528584b7e05ba3636c20a9d5670ca209ffbc73"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4.font",
+          "sha256": "9a6ef6e4a64eb648a78d2da215d7f0cf03760da970b39825bb8a100f4fa8fea4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e.font",
+          "sha256": "de3b142751da85d90807efbd9828de2d3d3141759ae6f9b53996c8d42e28b21e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5.font",
+          "sha256": "5209beda6eaf1e227e65e90496666fdc70113a33d3bb6c8bb42526f2335928b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc.font",
+          "sha256": "dd8bc2452537c05da05c232d09c3b6c0a14d1858d05f2251e46c065027d923dc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd.font",
+          "sha256": "123ad1dd09558fe41f74f67d5889e9fe420400508e16fd3affb5fabac23544cd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/native-font-trace.json",
+          "sha256": "69c9492e943fbe4a9098dce058f02e4cc12d4e406a98cd240368d5df9c3078e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae.font",
+          "sha256": "a7c760c5fe9a4c7f8cdf5d9967fbb8efea3fc1eb24c263b9c654adce4e79b3ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400.font",
+          "sha256": "e10d1d97010271456ea5f09b0a00b95ff7b1ae16e2f4a7023b74dc44677a1400"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-source-inputs-387/9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7.font",
+          "sha256": "9ffa5148d163eba43e67cdc59e242b41144f1ab3a817205e5182bf261450d1d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-arrow-ports-406/actual-native.json",
+          "sha256": "1dd480bb44fb21d156f5179e49c46a65329210411ec17c4a2f0dcbb1f1faa1ad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-arrow-ports-406/proof.json",
+          "sha256": "2d7ffaa93e67b0ec25662c55e70e3e23dda3ea1b2e46104451d67e110f88f2e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-arrow-ports-406/source.json",
+          "sha256": "165ce9d347e43cd81545c6379407c34e9f9f7c01b9d595ce88ee60c35ab4e439"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/2-original.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/21-variant-9.otf",
+          "sha256": "823dde94b8acfdf66d8e2f851a94d012a350002374fe217e2436ad8208be363c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/21-variant-10.otf",
+          "sha256": "845c068fb133d2a718d54f588adb41ea9b91d2da8c4f3294c3ff866522a6a357"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/3-original.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/4-original.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/0-original.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/1-variant-2.ttf",
+          "sha256": "61b3e544556000ba92b9591bac9635f0451533dcecd7c5f993bc2bd9ed758172"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/21-variant-8.otf",
+          "sha256": "54eb80432def0a31e6999312449d4a828ffe51a8a6dc18bae5f0caebef9cd905"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/22-original.font",
+          "sha256": "f5150aad923ef86f85055cfb27a00ce94de63dee5864c7ff6e6b60a7d979554a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/5-variant-6.ttf",
+          "sha256": "4d85d0f6c57d9a47230ea9bb49ab343e0ec74e8da804eb9fe88ccec12cc99b0b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/2-variant-3.ttf",
+          "sha256": "4a95197de3385776b9d5c5c25139717172b4bea2c0e4e2a18990563067fb242a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/21-original.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/3-variant-4.ttf",
+          "sha256": "f6c90f4687498add95922b01534d9750971977eb611fc50a9cd703f0d2a791a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/5-original.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/4-variant-5.ttf",
+          "sha256": "1f3b39b8664dcc8a7d91c107c46ea08805c6c393c9606af4ed9480ce09263759"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/0-variant-1.ttf",
+          "sha256": "fb9a6b83367cf987ad489bca037e81fb27c69ff07247fcaec65feaf03c156dc3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/21-variant-7.otf",
+          "sha256": "45af93ef3921822f2ff7e8a42252a88590854147a8257dfb230573ebd1af88b3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-394/1-original.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-word-layout-405/actual-native-full-caption.json",
+          "sha256": "8bd7792dce4695780d66a894519c9fa7dc98f8ff575e6fd46be5ccfc2ff29576"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-word-layout-405/source-spans.json",
+          "sha256": "92eb0d59be25ea8e934dd28f0a9baf2c6fbc5302403e8740745a5b546beec7e9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-word-layout-405/actual-native-spans.json",
+          "sha256": "4f9a5a6b58a2c65ee8672335e1a86b82034b672cfcd87e1374655d738315d8ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-word-layout-405/source-full-caption.json",
+          "sha256": "bd5b2089e55b8943cdd8fd6634dfa48a681e64694c7ffe5d334cbcde8c88b84e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-automatic-word-layout-405/proof.json",
+          "sha256": "383154b497eada73c47e81a6862495ac527becbfbb531efd505a39da01fa8377"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/cd35dc82ac3d8b9866aa07055e35700f9b0796eceb06120ea26d9a1638a2bc1f.font",
+          "sha256": "cd35dc82ac3d8b9866aa07055e35700f9b0796eceb06120ea26d9a1638a2bc1f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/b2f1e0bb27baeb8afa31979415094ed11ad47602519631dbc5d38c16b1f77f00.font",
+          "sha256": "b2f1e0bb27baeb8afa31979415094ed11ad47602519631dbc5d38c16b1f77f00"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/c36b72f0b2c3a571e4076afdf02fc8edf8d6660e6a4d65f1ee898584e6600835.font",
+          "sha256": "c36b72f0b2c3a571e4076afdf02fc8edf8d6660e6a4d65f1ee898584e6600835"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/68413848c15fb534166da3cbedd48bc82fef482770332d96c6e9d845a3cf37da.font",
+          "sha256": "68413848c15fb534166da3cbedd48bc82fef482770332d96c6e9d845a3cf37da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/actual-native-font-trace.json",
+          "sha256": "ea780e6dbf2b193246d46668c1135846875214f66d1bff918102366b0d5b1da4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/c60d0cfd29a8f050efe87751193058f71d3050179ec423cf8ca85e979d12edef.font",
+          "sha256": "c60d0cfd29a8f050efe87751193058f71d3050179ec423cf8ca85e979d12edef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/9380ff754c414fa240092c4af3b6a45c262b95a4bd811df809fcd12053928a2b.font",
+          "sha256": "9380ff754c414fa240092c4af3b6a45c262b95a4bd811df809fcd12053928a2b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/50f479b0c0e51f42b3e4a10c0717702010332f3c523bd5144150dcbdb62d534f.font",
+          "sha256": "50f479b0c0e51f42b3e4a10c0717702010332f3c523bd5144150dcbdb62d534f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/df343e900094b7bd316a6e2e5c48b6d88e6814c530676425c6659d4fe41bcd31.font",
+          "sha256": "df343e900094b7bd316a6e2e5c48b6d88e6814c530676425c6659d4fe41bcd31"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/c0fe298af749bca23efc1853d4670d1ed0703bef015371303504a8c6bd7d7d19.font",
+          "sha256": "c0fe298af749bca23efc1853d4670d1ed0703bef015371303504a8c6bd7d7d19"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/e19736fb8b2ea5c541bf485089d5c6d0b3f661848151bbd7ef3dabb6302a025d.font",
+          "sha256": "e19736fb8b2ea5c541bf485089d5c6d0b3f661848151bbd7ef3dabb6302a025d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/d5ee91ac90610d86a6c221bd1726dc755165d9961a1100c8be425bacf0c099f3.font",
+          "sha256": "d5ee91ac90610d86a6c221bd1726dc755165d9961a1100c8be425bacf0c099f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/b30787c567c2fff41ab94c6c42efcbd02ac1dc5627dabe20ca4b8ad3a0f7245b.font",
+          "sha256": "b30787c567c2fff41ab94c6c42efcbd02ac1dc5627dabe20ca4b8ad3a0f7245b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/proof.json",
+          "sha256": "fe232df4e1544929397ceddbe3718dd83468d09142d09d4b32c642a70af89414"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/737609378197d43279e06b421ded1f5122e6cdfe1a1aad449401f02724f4e1e9.font",
+          "sha256": "737609378197d43279e06b421ded1f5122e6cdfe1a1aad449401f02724f4e1e9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-native-unicode-proof-399/e403a9ab9f8e72332ef495550957ebb4b203dce427fa20f0be428ae65cf1f034.font",
+          "sha256": "e403a9ab9f8e72332ef495550957ebb4b203dce427fa20f0be428ae65cf1f034"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-source-glyph-context-390/proof.json",
+          "sha256": "11831e3645f69cb035ae6f7d0ef3ea1fff01cbdbfe430f3b1acbd03c146ebb79"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/2-original.font",
+          "sha256": "d117d1fdaf461b7fb0612fe9ef8b0ef05b4dfe71680bc29dd292ef58f89f174e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/3-original.font",
+          "sha256": "e4cee54787c152728185c9d17c904943a829fea8ccd2fd6aba6097e35af1300f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/4-original.font",
+          "sha256": "bcaa25c2147055e8f9819733bb0fffcc2c42168651a0eee69abe00c4d4c4bb94"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/0-original.font",
+          "sha256": "18a6734e3de77e47010faccf285b802d57bccb87a3eb63eccacb45e6ecff50c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/1-variant-2.ttf",
+          "sha256": "1f7dc4a3c69116b7d30bc3dcc48a961b39103a6d79f56585fbdd2ad5b2dd39df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/5-variant-6.ttf",
+          "sha256": "9d350fbd876b04666647011af3d1158b7e5c2282afbf36ed439379f5762df3b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/2-variant-3.ttf",
+          "sha256": "7cbb1494e6296aafdb23d0af5099bbaac8f456710e2c71555d12e28ecb690075"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/21-original.font",
+          "sha256": "6503f32c867ba3c76d106fa062a963ecf79aa2b0684b2ac0cca1130fc5af87da"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/3-variant-4.ttf",
+          "sha256": "84a5ff520fc9347313859034538cbedebc074be81815bd4e6dba1703af0a7bc6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/5-original.font",
+          "sha256": "95cd767bfc7284226f688d304193ad2eaff92b204d2915a27f2e15c607fdaa30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/4-variant-5.ttf",
+          "sha256": "5faac98aa3e5617d28f8d7522b2c41f3d4fb3342701061dd2d5134fb05b5d0f4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/0-variant-1.ttf",
+          "sha256": "67dafc387f1b61b0d0782b837d3373ddf75e80f79402db5f4d3baf82374ff6f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/21-variant-7.otf",
+          "sha256": "8083dd5a421cc84ef342817883e1ba7c057953858b6326a77dce302e4fcae9f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/octo2-derived-native-fonts-392/1-original.font",
+          "sha256": "03b6ff7481e372259a60ac1c34e978dcf721413bac70da638197937d6a885dd9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_octo2_auto_live_review411.py",
+          "sha256": "d4b7d5be5839c8dcf2972d5b702f309538a498618fccc57e46b988b5a78ed123"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/derive_octo2_native_fonts396.py",
+          "sha256": "8cda5027e815ded0fc6d1ea1562e8bdcf14a1946e6e5c5c6b93c31a117f363d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_octo2_native_unicode404.py",
+          "sha256": "69dcf6ba264d15fb33fff34611ddd12e463f13db9f1a98f3274ef378308eeae1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_octo2_native_unicode402.py",
+          "sha256": "fd905bff8b853c2fc0727e6d90603c5944c27ca07d99248e6b507f6d36f4ff4a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_octo2_native_inputs387.py",
+          "sha256": "535be4f4039bfed79e93fa3b9f2edc5833a41639382c5679d30c0fa38e91323b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/octo2_complete_reading_galleries408.py",
+          "sha256": "ba0633cbaab11d9881319a91c459d4a8ed7d51cf8e81fe2638522806115f8880"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_octo2_native_unicode397.py",
+          "sha256": "7d4ab81f4df20377fe669d0fdb48d421215dff688343465d80a1c40c1ded40e0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_octo2_native_inputs388.py",
+          "sha256": "1e0da0a3d1409b307d3951897528d348fb480b3b583dd73c4a6bd0694bed99c4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/derive_octo2_native_fonts394.py",
+          "sha256": "45e7598920756fad501cab0316f0ba32f3b0536780b4a8b9756dc385194b995f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_octo2_actual_views400.py",
+          "sha256": "53aa7719788d743f25ba8f13e7f2a97d40e53e69334050d042f09dd27ef769cc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/derive_octo2_native_fonts392.py",
+          "sha256": "ab3134a6298e9c0dea35107678a5d84dae2939896c773ec198dbaf37446e4963"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/octo2_native_unicode_galleries398.py",
+          "sha256": "750f38e27960e6e409017bd6ef7dbfadb47ec417778e29a747fd3b9ea7220b5c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_octo2_native_unicode403.py",
+          "sha256": "5ae4018876a891e9769d6763fb201d922679a40318a818e1dfffaf48a8f75640"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_octo2_word_layout405.py",
+          "sha256": "34ddfdc9f300d18b04018888556d7e8c130d4f3df781b351dfcbc493ca593d29"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_octo2_actual_views409.py",
+          "sha256": "fc5c2acd0e563eae45be75f32f3d396c9b35d6bb57c1c55523193c9ab68a80fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_octo2_reading_negatives407.py",
+          "sha256": "9dce4bc654452b035e6c52f403c09d2bb1e255c0326ed1aac0ee0fded577611f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_octo2_auto_ledger412.py",
+          "sha256": "b024cecddff08a8333e75ce490901dd980fd67ee5a807e89abbdfd914edf082a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_octo2_source_glyph_context390.py",
+          "sha256": "fe65bdaa922253d00069d6150da988a446fa789478f0f437ebf2dd850179708b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_octo2_native_inputs389.py",
+          "sha256": "8924c6c11e9d0a934a6609c665d19dae0edf1de0c044e73d1e1d20a946152dca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_octo2_native_unicode399.py",
+          "sha256": "49bef3565ab88bdb23ceacf371b9f1b52d1bd2415afa21dcf952d366f504ca46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_octo2_native_unicode401.py",
+          "sha256": "1f7b485753534f7087a4c16cce40a7e32a30b415fa124935e63ae295335d073e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_octo2_auto_live_review410.py",
+          "sha256": "ee03894ed9c89e4328c124f8b6d18bcb77acbdefbd733cae05c620c1b633f7a4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_octo2_arrow_ports406.py",
+          "sha256": "1e1e203cf6f0d4a9e6073a5e922f071548b7ffbbd5cff6a4ee34053b80953aad"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_type1_variant395.py",
+          "sha256": "6336c289843eab8be92d3ead9706b769cee99b1439e460df10bb8134eddd8846"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_type1_variant393.py",
+          "sha256": "cdf28132873ab47481093ffb6b9a1677fa8e4b43855942184a6bfecde4bc572d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_type1_variant391.py",
+          "sha256": "8028250a410aecdc67a862b33cf40a19d65ace27072448252426d83d1baa905f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace024.py",
+          "sha256": "d401b427a41c2aec5d0bc4e9c30a7f87c41c08c3fd056f2d9a613260f03a08cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_parent_semantics286.py",
+          "sha256": "04cf6fcaad840dc068d1ce90be3a691e246673de0341b3b5326586df09f86d47"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/reencode_subset-004.py",
+          "sha256": "7ce1c219ba8f9abc9a9ee45c55d210889ac82531e411bb73eca144ee303175d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/convert_type1-006.py",
+          "sha256": "de7c881fe3ff75b8a8ab642b1ee9e57109e2d44522bb1fce4eafeb1104fa2a45"
+        }
+      ],
+      "resolution": "OctoTools Figure2 originally retained827 outlined glyph paths and zero live text. Restore all827 visible glyphs as827 ordinary Unicode native text objects, with864 original encoded characters including32 original encoded spaces and five original fi continuations. Each fi is an original positive-ink f-mapped glyph followed by an original GID-1 i continuation at the same origin and matrix; bind it to the actual source ligature and retain the original two-character input through source-derived GSUB. No expected labels, whole-word or PUA glyphs are supplied. All827 original visible glyphs and54 selected native text traces bind uniquely to actual original embedded font handles/GIDs/UCS/full f32 matrices. Eight original programs yield14 job-local aliases: six reencoded TrueType subsets and eight regular/italic Type1 source-ink variants with four actual horizontal-to-vertical em ratios. Keep the actual original vertical em, x ratio and actual italic angle-15.5; scalar get_texttrace.size is not a square matrix. Type1 wrappers use explicit CFF operands, original native normalized ink and widths, UPM16384, fixed1/1024 original-design control and1/32 advance encoding guards. Rejected UPM16000 normalized ink exceeds the existing0.001canvas-px guard and remains retained; no guard is widened. Source-to-derived controls/advances pass0.001px at maxima0.000303742884/0.000603318295px. This is current source-ink preservation, not original raw program, full family or hinting identity. All1142 actual source paint types/bboxes/order match. The one original neutral isolated root group is explicitly verified; no masks or active overprint are substituted. All864 original source characters, real font bytes/GIDs/matrices, source eight-bit RGB and327 complete visible-glyph active clip containment proofs replay. All37389 actual original source/SVG glyph controls satisfy unchanged0.001canvas-px guard, maximum0.000175119834px. Actual delivery864 original Unicode characters,271 used source/actual font-GID pairs, colors and advances bind independently to actual exported font buffers. Current original-native versus actual-native normalized glyph controls pass unchanged0.001canvas-px at maximum0.000305428636px and advances at0.000603318295px. Actual visible origin residuals0.056967px horizontal and0.436691px vertical are separately recorded; current em/space placement is not described as source-control or general pixel equality. All78 remaining objects,62 paths and16 images, retain exact parent actual native properties and painter order. All16 original media bytes, declared native source crop and frames match the reviewed parent, including the original tiny nonzero crop. Sixteen fill receipts independently replay;2163 source path controls pass0.001px, maximum0.000102999422px. Independent finite source/native spatial readers recover all54 original encoded spans and the complete five-line mixed regular/italic caption. Its83 position-inferred word gaps are not source-encoded spaces; all five original fi continuations,500 positive caption glyphs and source/current complete readings agree without supplied dictionary or expected caption. A finite geometric reader recovers all12 source/native filled-arrow tails/tips/directions, including one L-bent shaft and separately retained overlapping destinations; current port error is at most0.000052356368px under unchanged0.001guard. This does not infer node-label relations, arbitrary curved topology or native connectors. Eleven refusal probes cover actual caption gap/baseline/paint-order ambiguity, malformed/missing/duplicate heads and five current live source-inventory mutations; every905 object is compared. Arrow contour/winding reversal is invariant, while caption reading explicitly requires original native paint order. All24 original-size source/native comparison images were actually inspected: whole1x, complete2x, tiled4x and separate complete4x workflows and five-line captions. Source labels, colors, bold/regular/italic styles, filenames, glyph spacing, all fi ligatures, media, paths and arrows retain the reviewed appearance with disclosed native AA/origin residuals. This finite source outlined-text finding closes in model visual review. Standard source-content PASS covers54 declared source-bound original encoded literals only; standard formula/connection arrays stay empty and complete905-object source-inventory remains REVIEW with original raster/semantic/font limits. Automatic caption and geometric ports are independent read-only sidecars, not generic OCR/semantic capability. All14 font aliases remain unembedded; unseen Unicode/full original family/hinting, PowerPoint/WPS editing and user acceptance remain pending under the open common font-delivery finding. Retained410 review harness wrongly assumed every gallery view used inputs. Actual398 uses inputs and408 uses input; the retained failure explanation incorrectly guessed source_and_native and is explicitly corrected here. No source pixels, candidate or guards were changed. Frozen024 public runtime, existing source control/resource guards and manifest/audit input bytes are unchanged. Prior1327 Python/installed tests with8 optional skips and byte-bound67 CPU Node tests remain their actual existing runs, not new runs. Exact previously pushedc88e737head has16 successful GitHub checks. All original inputs and failed source/font/readback candidates and probes are retained with hashes.",
+      "closed_at": "2026-10-06T00:58:15.512291+00:00"
     },
     {
       "figure_id": "ccf-2020-14-f03",
@@ -59918,7 +62069,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "42 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. BART3 adds three original TrueType subsets and one normalized-Type1-ink CFF wrapper. Its CFF-to-Type1 native export passes unchanged .001px ink controls; stronger raw design/program identity remains refused under retained372 limits.",
+      "description": "43 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. Octo2 adds six actual TrueType subsets and eight original regular/italic normalized Type1 ink variants at four actual horizontal-to-vertical em ratios. All actual used normalized controls/advances satisfy unchanged .001px guards; original raw program/family/hinting equivalence is not claimed. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -59961,6 +62112,7 @@
         "ccf-2025-03-f02",
         "ccf-2025-05-f13",
         "ccf-2026-01-f05",
+        "ccf-2026-03-f02",
         "ccf-2026-05-f01"
       ],
       "evidence": [
@@ -60059,6 +62211,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
           "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+          "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
         }
       ],
       "user_acceptance": "pending",
@@ -60775,6 +62931,161 @@
               {
                 "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
                 "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-06T00:58:15.512291+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "42 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. BART3 adds three original TrueType subsets and one normalized-Type1-ink CFF wrapper. Its CFF-to-Type1 native export passes unchanged .001px ink controls; stronger raw design/program identity remains refused under retained372 limits.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f03",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
               }
             ],
             "user_acceptance": "pending",
