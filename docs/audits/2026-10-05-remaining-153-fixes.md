@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 91 张图的来源修复及实际成品复查，关闭 140 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 78 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 13 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 17 项开放。原始 296 项现在 291 项关闭、5 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 140 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 92 张图的来源修复及实际成品复查，关闭 141 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 79 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 12 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 16 项开放。原始 296 项现在 292 项关闭、4 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 141 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -94,6 +94,8 @@
 
 - Mooncake 图3的细虚线与弯曲传输图标问题关闭：11条源路径绑定原PDF、页面、完整CTM、绘制顺序及实际完整裁剪；全部控制点与stroke-support bbox处于完整clip内，无需Boolean多边形化。三处27/28/27指令多边形填充恢复原3/4/3段贝塞尔及微小末段；原奇偶填充经完整接触域winding证明与场景nonzero等价。三个描边保留旋转/反射CTM两列，精确Gram验证等比例，而非仅matrix00。五围框从完整源起点、原dash数组与phase0分解，四圆框各107个开放run、增量矩形64个，共492个实际native run无强行close，弧长界最大0.000055493028px，固定0.0001px守卫未变。原butt/miter/source limit8写入native XML；实际Impress读回limit3.863703，明确不称source相等。完整源路径、分段后manifest及495次实际native描边的全部非零端点/闭合接点均以有理数dot/sign/square证明miter ratio低于3，两个阈值均不触发裁切。成品76对象、46路径、30活动文字、零raster；30处native文字位置/内容/样式与父版完全相同，原4-family16-face字节profile完整保留。35条其他manifest路径未改，native placement/paint保持；其中19条完整native属性相同、16条既有填充规范化完整重放。1694控制点最大0.000100136483px，固定0.001px守卫未变，6项真实XML闭合虚线/改cap/miter/width/color/删C反例均拒绝。14张完整1×、完整2×、重叠4×实际查看，图标平滑、虚线圆角接续/节奏正确，字号与基线未回退；既有fill规范化同步修正父版箭头空洞。旧Artifact预览与原PPT字节不变的native诊断单独标注。source-content仍NOT_PROVIDED、零声明字面量，公式/连接数组仍空；微小C转L、线宽量化、AA与字体墨迹差异未证明整图像素相等，完整字体身份、通用语义、PowerPoint/WPS与用户验收仍待验证。失败填充规则/单列CTM/强闭合run/缺父版Courier profile探针全部保留。公开冻结024运行时与资源/字体守卫未变，上一已推送ec74176的16项GitHub检查成功。
 
+- SAM2 图11圆角照片框及片段拼接裁剪问题关闭：完整原PDF/page21/ROI、791实际native paint绑定647原始image。get_image_info的第648项是shade代理，未误计原图片。32段无中间path/text的连续image序列经原顺序核对；29段含644原绘制，先在共同DrawDevice转发完整原handle/CTM/clip/default colorspace/CMYK颜色参数与插值，再读decoded摘要，保留3独立paint及Time渐隐。两个实际native身份回执schema逐一绑定原digest/transform；mask/group/非unit alpha/overprint拒绝，原2GiB/120CPU/64MP/32768维度守卫保持，未开放公共多图片或RGB group分解。全部29个RGBA资产及完整回执在独立限额子进程精确重放，无整图参考像素作为输出。最终167对象＝135原路径＋32图片＋0活动文字；135完整native属性和3独立图片media/frame/crop/effects与父版精确相同，29合成实际内嵌字节、4x尺寸、整数EMU坐标、零crop、无alpha/color effect及167顺序核验。68978控制点最大0.000103615119px，固定0.001px未变；整条native后处理在原mutable顺序完整重放全部回执字段及12个填充proof，9旧箭头接点未回退，6项改坐标/crop/alpha/media/order真实反例拒绝。原5-family20-face的program/role/index/SHA字节绑定保留；生成renderer副本路径/哈希及无comparison-label检查的实际差异单独记录，不称renderer字体字节相等。21张完整1x/2x与重叠4x实际查看，圆角及阴影连续、完成行照片白竖缝/水平错位消除，文字轮廓、Time渐隐和掩码颜色保留；单个3片段4x opaque probe RGB8最大差1只属测得夹具，8x缩小诊断更差且未选。SAM11 D04活动文字及SAM-IMAGE-SAMPLING-002通用RGB/alpha界仍开放；两Times候选面在固定0.001px下无完整outline文字匹配，未降阈值或近似替代。source-content仍NOT_PROVIDED、零声明字面量，formula/connection仍空；通用语义、完整字体身份、PowerPoint/WPS与用户验收未确认。失败私有身份schema/namespace/container/hash/context/font-audit/CI手录及syntax探针均留存，未改public源码或资源守卫；上一df4e395的16项GitHub检查成功。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -178,6 +180,7 @@
 | ccf-2025-01-f03 | D01 |
 | ccf-2025-01-f07 | D01, D02 |
 | ccf-2025-01-f08 | D01, D02 |
+| ccf-2025-01-f11 | D03 |
 | ccf-2025-03-f02 | D01, D02 |
 | ccf-2025-05-f13 | D01 |
 | ccf-2025-06-f02 | D05 |
@@ -785,3 +788,31 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/MOON3-SOURCE-CURVE-LEDGER-GUARD-608.json` | `9da3f00d7dbfa58db4ce44b4e3ca562dc50c10130797272c68c432de68f1ed66` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-049.json` | `9d7257641353b2755c3201396c69abf8598c6a1867a624f9c8553b68085c9691` |
 | `reports/remaining-153-001/DISTILLATION-609.json` | `d3dac3234b7aed2aeb850eb3255f38c718206e1c2ec2faac4d148d6c97b9c1f0` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-BUILD-619.json` | `e65d2a525c43c91ab668efc86581dcb9921687bfaa2b476d9d55273a327682de` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-PRIVATE-SAMPLER-613.json` | `fd99e1dc49166dc8f99d98f3720aa33f734ca3f6748278215127fa43187d923f` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-PROBE-614.json` | `5921c70980203b985e055e4e7af99ba5e3e79ffcc12e0d48b01e5cf6f2fcfdbe` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-READBACK-636.json` | `4fd09400a0c9a3473aa440192649de7e1a1a7a151a340c24c669c23b116c4c64` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-RECOVERY-618.json` | `3256ad57045a86e1bbbc008fe9311708990b2e0075b11d33a8abc12017d6cc6e` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-REVIEW-RESULT-639.json` | `64c57dd5345f75eae74dcc147d376be3807b6982d43fab49f819fe9f68d1654a` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-VISUAL-639.json` | `b74bc6d46b27c7272891b05fd5a280309b08065d6ce291b4772e179e468d3d99` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-622.json` | `19102ef91c3adab6179fb8d559135720196690b7f37ee9107c4cbed7c799dd43` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-624.json` | `8853e7092965b4915f66035fe16d8a01ee8c5635ee346700b465bb5b3d47df19` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-626.json` | `cfbc65b2055937a6c9d1a49be0a9d7e45e879221b41fd782ee1f33247d80893f` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-628.json` | `af7483704d667ff6190ba0abb8e050accb5b8d152a5cc6bde6d17434055c01e0` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-630.json` | `1254fae110a24075a2542e29283537b6014ac5cbf24b05c69210b4bc5af51d77` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-632.json` | `391a4b45e19a45d9c4afab1439dc36f3db6194f6dcb72de01ac3bd93f8cacfad` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-READBACK-HARNESS-REFUSAL-635.json` | `176eb203c391661ba3400a3c6ac5dd098caa66605d91d9796f4a666f8dd46594` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-RECEIPT-SCHEMA-REFUSAL-617.json` | `b27804c0c56eb0ff5a415177c337cffd5752798ee552038b6584586a846113ab` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-REVIEW-HARNESS-REFUSAL-638.json` | `3168baa329f3ae87cf6e5521097c0b41cd68f58c99fb48694d7fbb60a31921a3` |
+| `reports/remaining-153-001/SAM11-OUTLINE-FONT-PROBE-612.json` | `88ee7a75c37341213e23d2fc13e117e5eee846ef28a143081fb3c13c5f96d2b0` |
+| `reports/remaining-153-001/actual-view-names-sam11-contiguous-images-634.json` | `5acfdb5e3ba17ea27e5847240f40f656543bf157b02e6bdcf977debef2b9acb6` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-df4e395-002.json` | `1e1e147d0e1fb31ee4c65262fcd183458a547d7e0c449c6a433dd10af2115fb9` |
+| `reports/remaining-153-001/LEDGER-RESULT-050.json` | `c551e3e7f9745f8f2fb0b2f2240aaf2e64d8b21fcc77fdd66cc8a3a0d8a21374` |
+| `reports/remaining-153-001/SAM11-CONTIGUOUS-IMAGE-LEDGER-GUARD-640.json` | `d8e0b4f7229e1e2a7655519ad9ed677db54438cb3997f7b5ac5bb44a93d27629` |
+| `reports/remaining-153-001/DISTILLATION-641.json` | `75f9a1b6ff14693f3b15d7c728b73a4a646ef6fd3424b931eec8ca86cfa7c30a` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-050.json` | `008e268ee7b737b69774cbcae5a6fe3e4530bfed10cff2285a0e6157bbc1a252` |
