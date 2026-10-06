@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 93 张图的来源修复及实际成品复查，关闭 146 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 81 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 7 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 11 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 72 项解决、11 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 146 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 93 张图的来源修复及实际成品复查，关闭 147 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 82 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 6 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 10 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 73 项解决、10 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 147 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -106,6 +106,8 @@
 
 - ALEX 图1 D03原有紧凑标签与min/max排版问题关闭：原1905.08898v2公开源码kraska_li_architecture.png的完整RGB及alpha逐像素对应原PDF资源；原PDF ROI新渲染与retained原1x也相同，正文仍是位图，无可证原字体程序。九个标签改为黑色regular Calibri12并按有限原/实际native暗墨中心调整，最终9处4x观察中心最大0.125px；其余74对象完整manifest及native paint/frame/font/inset/path属性保持，仅排除两类无paint影响的creation UUID/numeric shape ID作parent比较。相同input完整重放仍逐项比较全部83 native属性、media和receipt，不用该排除。65源路径176controls最大0.000104986877px低于固定0.001px；167实际普通UCS含102改动label字，23重建字体glyf轮廓和advance均零差，无fake/substitute/Type3，仅证明当前注册Calibri，不冒充原bitmap font。图注33原字形的真实subset控制/advance保持，既有actual origin residual1.083502500x/0.320508751y原样记录。三实际PPT文字/灰色/字号故障由独立specific检测及完整属性重放拒绝，并实际再导出查看。12完整1x/2x、两全4x tile、五细节、三实际mutant对照正式绑定后实看，无遮挡/缺字/几何或图注回退。11component/83object inventory仍REVIEW；ROI下边缘相邻正文作为source context保留，不计入重建图内容。首轮位置校准及726/728失败、所有旧版原样保留，不声称原family/metrics/hinting/像素等价或通用OCR自动语义。冻结024、资源、family与源0.001px守卫不变；字体交付关联48图、PowerPoint/WPS与用户验收仍未验证。
 
+- Skill Library 图1 NATIVE-SAMPLING-002 的有限成品采样问题关闭：选定89活动文字＋32原生路径＋19原icon成品，先前整幅body位图继续保留为未选参考。新增显式共享设备网格v3，调用者给出整数source windows，实际PPT裁切单位逐项重编码一致；同媒体全部字节一致，共用source-pixel→EMU有理约束保持每个origin/extent误差≤0.5EMU。先采样完整media后提取19窗口，所有源及设备窗口alpha=255，不从reference读像素生成输出。最终完整Artifact混合场景19icon×1/2/4共57RGB窗口与新渲染原source均零差；之前单图grid、二次grid-fit、失败custom picture clipping及所有候选原样保留。Task q2先前少量窗差来自后画文字，按原bitmap独立dark-ink中心只平移三个text anchor，其余137对象、89全部文字literal/family/style/size及32path不变；实际19图片EMU/crop/media字节保持。相同输入140原生成品属性、media、全部后处理receipt完整重放，parent比较仅排除无paint影响creation UUID/numeric shape ID，图片relationship ID以真实目标part/字节SHA和其余relationship属性完整绑定；未跳过图片属性。315源控制最大0.000100975331747577px低于固定0.001px；四真实成品crop/origin/effect/alpha突变由独立采样诊断与完整属性重放拒绝。14完整1x/四完整2x/六完整4x平铺及三image/Task细节正式绑定后原尺寸实看。代码和reward为原已审活动文字，不再缩放body字像素；原Screenshot font/hinting身份不可得仍单列限制，不宣称整图/任意倍率像素等价或通用RGB-alpha界。关闭选择显式共享网格Artifact preview，保留标准LibreOffice PDF对照的滤波差异，不冒充跨应用结果。公共冻结025有1338 Python/安装后（各8可选skip）、68真实CPU Node零skip及95/308-file wheel/sdist字节绑定；首次Node缺一个环境路径的1 skip记录保留，补跑777为68全通过。原v1/v2分数crop缺省、原source group/font/control/资源准入不变；新增完整grid和提取窗口合计10840166px低于既有64Mi预算，每surface≤16M/32768、每group≤256、pair constraints≤131072。字体交付关联48图、extended editing、PowerPoint/WPS与用户验收未证。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -199,7 +201,7 @@
 | ccf-2025-07-f04 | D04, R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f02 | R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f05 | D01, D02 |
-| ccf-2026-02-f01 | D07, D08, RASTER-BODY-001 |
+| ccf-2026-02-f01 | D07, D08, NATIVE-SAMPLING-002, RASTER-BODY-001 |
 | ccf-2026-03-f02 | D05, SOURCE-OUTLINE-TEXT-001 |
 | ccf-2026-05-f01 | D01, D02 |
 | ccf-2026-06-f01 | R01-PREVIEW-SAMPLING |
@@ -968,3 +970,46 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/ALEX-TYPOGRAPHY-LEDGER-GUARD-740.json` | `f0a96aa7cc598405c06b15a02cffa1df37a37e9423efbcca80364dd30e3bfece` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-055.json` | `1f3d7c3c1ee2141eb289ea6de1357d147da05e41b82efc89e26fd7af5704a4e3` |
 | `reports/remaining-153-001/BITMAP-TYPOGRAPHY-DISTILLATION-741.json` | `d37ee70b8908a6922bec0dc06a73ec5496c709b2aad5373d9d603c5ceb4c874d` |
+| `reports/remaining-153-001/SKILL-NATIVE-CROP-MATRIX-REFUSAL-752.json` | `5a0c7634acb579e52a80a81239caafea1aac5b7f50b3797265ebaaa87769ce61` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-READBACK-REFUSAL-785.json` | `60ae07d85190e81686796fdd89c823b3d39b477c4b18a374dd8556aae55d1b5e` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-PROBE-770.json` | `a4a80f60a2cf771111f7ba38f8e42462387e81e244c41f6e789a7f9d67d89d5c` |
+| `reports/remaining-153-001/SKILL-NATIVE-PICTURE-CLIP-REFUSAL-757.json` | `d039e114d8a5a0867b280a30d1b6c01d6c9663a9d7e0bfc42ab965803f62ceef` |
+| `reports/remaining-153-001/PUBLIC-SHARED-GRID-NODE-CHECKS-777.json` | `23e46c600b0803853132f4f4c465e981a640c201852ffded30316d0acb742ef9` |
+| `reports/remaining-153-001/SKILL-FULL-MEDIA-SAMPLING-OBSERVATION-760.json` | `c6818d5f26ba44629762dd990d98df2b97d444fe8c64a35f943df11bf235e921` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-READBACK-REFUSAL-781.json` | `042377e66364f7bf9efc0076dd86f112035804632e8bb4a1c110e8fb4257b8fb` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-OUTPUT-REVIEW-788.json` | `d30d118cf5790940f1f717e45b37a624913f6584f6b44616cb91f2844e685886` |
+| `reports/remaining-153-001/SKILL-NATIVE-CROP-MATRIX-REFUSAL-750.json` | `a98d054485bb2003248079b968e253114529e3527a74c30a93c764bafce2fee4` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-OUTPUT-REVIEW-PREPARED-787.json` | `ddf073f955fba75738b8d4eb796454cb64849a355d06945eff29c182ab5f61d8` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-REFUSAL-767.json` | `24467599772d43217d3445aea0e71d24b3dd5bfa7c9d8dff0fee1fcf67269c06` |
+| `reports/remaining-153-001/SKILL-PUBLIC-SHARED-GRID-PROBE-774.json` | `16afcb410d7e7d6ace88779d8bb4b3f75f11b3b60ae755e992ec6779c639d4b4` |
+| `reports/remaining-153-001/SKILL-NATIVE-PICTURE-CLIP-READBACK-759.json` | `61ca2ec7c9212e454598e51af81a6860085916de9ca927f42da9ebb15846ffbf` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-PROBE-772.json` | `97ecba598ffae13770809c96c7a235867c71b7edd45a0846a7222a3087417c17` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-NATIVE-READBACK-786.json` | `dce709671920d7fec813e030c3a3ca0232d73d46283026e357ebf30c3743ed63` |
+| `reports/remaining-153-001/PUBLIC-SHARED-GRID-CHECKS-778.json` | `a7dee509eec5784fdc93634bd0fb78879119f7487a36d31d10bfd3d735284961` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-REQUEST-774.json` | `ccc38340cd40c067c29c9d8771a39a7986c39c755c9252c8fa1c7e9ffa3c825e` |
+| `reports/remaining-153-001/SKILL-NATIVE-CROP-MATRIX-REFUSAL-748.json` | `b797cda24974dae1a051eb09e7f3fd3cd9eb20080c5545b0495d4f7819a7c431` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-REFUSAL-765.json` | `ef63a4ea8105fb5ed627fb896aee84c3166a6103a18f6f1b22b1b5e428ef242e` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-REFUSAL-763.json` | `6b9491d45e2ada75311a7236b164d7ba26d790b2c06b4fbd72a1647f46bd6300` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-VISUAL-788.json` | `1635bd069ee9792e3ff1ce00513f8e4595d0f2ec8f4271c1da3d914a13868bbe` |
+| `reports/remaining-153-001/PUBLIC-SHARED-GRID-WORKSPACE-CHECKS-775.json` | `eedce7bc727a246054e04e11797f037b347190d736d3588264f32450ce8ecd5b` |
+| `reports/remaining-153-001/SKILL-FULL-MEDIA-SAMPLING-OBSERVATION-755.json` | `e7483527bc975718dc4b332daf6f61d6faacbe9aeaef9c02f4bf1f1408904793` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-OUTPUT-REVIEW-PREPARED-786.json` | `ddf073f955fba75738b8d4eb796454cb64849a355d06945eff29c182ab5f61d8` |
+| `reports/remaining-153-001/PUBLIC-SHARED-GRID-TEST-INPUTS-775.json` | `90d71a8d57e8b51e17eacb74a54aa2d1aca791248bab8fbe553e3fbea305c9d0` |
+| `reports/remaining-153-001/SKILL-NATIVE-PICTURE-CLIP-PROBE-758.json` | `28be569d0cda443c6a9b00dd24d7957e0bbd4c71c83d63061fa7033513de86ed` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-BUILD-779.json` | `3a467020ae79c0672e59107fc227d35e2963f78a288faf86767b0f7932335a5d` |
+| `reports/remaining-153-001/SKILL-NATIVE-NEUTRAL-ROOT-OMISSION-PROBE-771.json` | `dda1b9a2fd707d58e26b92663b5c37dce3658a19335af21e2c28aae682f0506d` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-GALLERY-BINDINGS-787.json` | `bc75302ebd7cc68d2f5fb1c3b464ff8b8effe89ad1a2dae312372ab0b3b1c172` |
+| `reports/remaining-153-001/SKILL-NATIVE-CROP-MATRIX-PROBE-753.json` | `4eaa5606e0c1652307f9e5d0666e571d19edb4624b08bd6db1e1c36f85c1f6e4` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-GRID-PROBE-761.json` | `968143c8966d6d842bac4dc228f7d6df39e90b94faa38b9f1c5721f4c5f48fce` |
+| `reports/remaining-153-001/actual-view-names-skill-shared-grid-788.json` | `2688ad358e8e7cf4a6de5524a342128a689c842a3974fad0b8af2204a75fe4d6` |
+| `reports/remaining-153-001/SKILL-NATIVE-PICTURE-CLIP-REFUSAL-759.json` | `1efd3a0827e9ded83c6cfb0d8761dc37468759c8c85e7268aab1e897569b0597` |
+| `reports/remaining-153-001/SKILL-NATIVE-CROP-FINITE-PIXEL-OBSERVATION-754.json` | `2ffa98d12da611c2ec986d6ea9d099a6fe46bbc76aaa604e2e3d43c816aea0af` |
+| `reports/remaining-153-001/SKILL-SHARED-MEDIA-NATIVE-SCENE-REFUSAL-769.json` | `369d325c1d8c4fff938c85961896ba680b190d95fe9faa9c16e72df53139fdbf` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-REVIEW-RESULT-788.json` | `6e8c31f8055e9e92449582f796c37f98dd49a98045e37e65bcd36256a3c7fe87` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-READBACK-REFUSAL-783.json` | `999f33d5df1780152337197c901ce1d4f0dfbb1f0d4fc0492246e74b4eefc3ed` |
+| `reports/remaining-153-001/FREEZE-025.json` | `b3fa089c60084e0d7f9a79a6ef65ffcd6815f2d3b612a85f4cdbf805df64f42f` |
+| `reports/remaining-153-001/AUTHOR-SOURCE-RETRIEVAL-700.json` | `8ba3feefdb79f62a0ae5ce45a0badfc246058ab4ed9e795868c0172a50493175` |
+| `reports/remaining-153-001/LEDGER-RESULT-056.json` | `c95361c8eeebe54d36d049ef06825590eacf1793decbe7baa0af5afa3dc4a5e1` |
+| `reports/remaining-153-001/SKILL-SHARED-GRID-LEDGER-GUARD-789.json` | `44cbb4188972ab25de25d2d3814932ce8ae6abfba0482c74b743ee43e7786389` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-056a.json` | `3a276537ee6267e27c6b3915cd068f1b23e7b3ca311b7d6b6524d95d3cd46765` |
+| `reports/remaining-153-001/SHARED-NATIVE-GRID-DISTILLATION-790.json` | `c44bc260a7a633d5f29463d244ba9179168b87ecf073ceb7b302f9b8d0f8c3be` |
