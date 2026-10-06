@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 87 张图的来源修复及实际成品复查，关闭 132 项原问题：56 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 21 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 25 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 65 项解决、18 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 132 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 88 张图的来源修复及实际成品复查，关闭 133 项原问题：57 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 20 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 24 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 66 项解决、17 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 133 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -32,7 +32,7 @@
 - InstructGPT 的八处箭杆由真实轴向渐变和透明蒙版恢复为可编辑渐变路径。实际 shade 绑定完整 PatternType2 资源，不能将 21 个 SVG/image-info 实例误认作 21 次普通图片绘制；原生流为五张图片和 16 次 shading。显式 Type4 符号证明限定源 RGB 常量和灰度输入分段函数，精确求相邻矩形并与蒙版交集；灰度输入代理误差不超过 1/10000，不涵盖 ICC、蒙版 alpha 或像素等价。旧蒙版定义 153 不再作为可见矩形输出，真实不透明蒙版另裁剪白底和右侧反馈曲线；该私有曲线见证用精确有理数隔离单调交点并记录控制/相位界，公共准入未变。五个小型 8× 来源合成图保留照片、笔、青蛙的原背景、圆形裁剪、Multiply 和圆形边界，不能称为仅提取图片。圆边框目前在这些位图内，独立编辑记为新增 E01 开放限制。71 个图注片段和 346 个字符不变，实际图注绘制 246 的 45 个字形从源程序、别名、应用子集及真实 native handle 重新核验；同一字体在页上其他正文中的使用被按原绘制身份排除。完整 306 个对象的文字、230 条路径、五个媒体和顺序读回；全图 1×/2×及 14 组同网格 4× 实看后关闭 D01/D02/V3-R01。
 - 最终 PPT 的字体、字符、源基线、frame/inset、曲线、图片字节和全部对象顺序均读回。曲线和绕向证明从原始 authoring 中间产物按完整生产前置条件重放，不重新处理终态。各图实看源全图 1×、最终原生 PPT 全图 1×/2×及匹配像素步长的 4× 局部；两批主要字体修复共实看 206 页 4× 对照。RAG 另实看源/旧/新渐变局部，白缝消失。
 
-源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 40 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或其他作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
+源字体别名依赖、扩展 Unicode 编辑范围及未嵌入字体记录为一项共用开放限制，关联 42 张已复核的图。PowerPoint/WPS 重开和播放未验收。普通文字显示修复不关闭自动公式、连接语义或其他作者轮廓的活动文字问题；同图中的箭头、照片、遮挡和诊断覆盖问题按原 ID 保留。
 
 
 - Maximum Flow 图 2 将 128 个活动片段、273 个字符绑定到 19 个实际嵌入的 Computer Modern/Latin Modern Type1 程序，并从原生矩阵区分 43 个横纵 em 变体。恢复真实粗体/斜体、纵向 em、独立下标基线及 ASCII 物理字距；UPM16000 私有别名仍分别限定 1/1024 原设计单位控制点与 1/32 advance 编码界，不宣称原轮廓、hinting 或像素相等。两处原清单中的箭头/成员符号保留正确 Unicode，但源 ToUnicode 实际错误返回 `!`/`2`，人工字形绑定与原始元数据分开记录。全部 116 个使用字体/Unicode 子集对及 273 个实际原生 font handle/GID 逐项核验；位置最大观察差为全图横向 0.905 px、纵向 0.511 px，主体数学标签为 0.156/0.464 px。外部后端单次字体策略仍上限 16；以四个连续绘制顺序的受限构建件和公开原生插入接口组装整图，逐件字体检查、所有 344 个最终对象的次序、变换、字形及 cubic/winding/stroke 回执分别重放，216 条其他路径逐字节保留。整页包/布局检查与实际字形核对通过，但未声称整页 43 字体族策略检查或单次整图构建通过。重复登记的同角色字体只在 SFNT head 保存时间/校验值上有差异，其余表及 head 字段相同后选择一个登记角色。曾误载入旧 helper 的组装/审阅失败及所有后继保留；最终实际加载的所有模块均绑定冻结 012。原图 1×、最终原生 1×/2×与十张同网格 4× 数学、编号和三行图注局部实际查看后关闭 D01。原有轮廓字和自动公式层级未升级；来源字体跨应用交付继续开放。
@@ -80,6 +80,8 @@
 
 - GCC 图 3 的轮廓文字/活动数学问题关闭。93 条源字形路径恢复为 93 个普通 Unicode 活动文字对象、95 个原编码字符（含两空格），未提供人工预设标签。真实字体 handle/GID/UCS/f32 矩阵唯一绑定；普通词沿用原 PDF Unicode。数学子集的错误 ToUnicode 把上下标当标点，新公开 `exact-static-truetype-candidate-unicode-v1` 在完整 7614 字形 Cambria 候选中，以完全相同的轮廓、UPM、advance、side bearing 和唯一 Unicode/MATH-ssty 别名恢复全部 13 个使用 GID，不用源 ToUnicode 或预设公式选字。完整 Times 候选严格失败并保留，实际原嵌入字形继续使用。304 次实际源绘制、95 个字符、原色/alpha/overprint/无 group-mask-pattern 及 93 个完整字形 clip 无作用证明另行核验；7759 个原控制点最大差 0.00016963106 px，固定 0.001 px 守卫不变。实际导出的 95 个 Unicode、42 个使用源/终态 font-GID 对的 f32 轮廓和 advance 精确读回，原点应用残差横向 0.064155、纵向 0.364656 px 单列。其余 263 条路径及已有描边修复的实际属性精确保持，43 个填充回执独立重放，3017 个路径控制点最大差 0.000102637102 px。有限坐标解释器自动恢复全部 24 数学字形为 8 个表达式，包含嵌套上下标与粗体 k 列表，源/实际原生 AST 相同；有限路径解释器从原矩形杆/中线三角头和实际七顶点并集边界独立读出三箭头，以方向约束唯一关联 q、k 列表到 Similarity、再到 Contrastive Loss，不用预设端点字符串。重复父项、脚本级别不符、孤立下标、错误标点和端点歧义五项拒绝验证通过；早期不区分方向的方法正确保持歧义，失败脚本/夹具完整保留。全部 51 张原尺寸全图/完整 2×、35 文字、8 完整公式和 3 箭头 4× 对照实看，字形、标签和图形布局保持。自动读取以独立回执/sidecar 交付；标准 source-content PASS 仅覆盖 35 个已声明字面量，标准 formula/connector 数组仍空，不宣称原生公式容器、原生连接线、任意 OCR/公式/曲线图拓扑、整个原 family/hinting 或一般像素等价。新三份源 TrueType 别名未嵌入，共用字体交付关联 41 图；扩展 Unicode、PowerPoint/WPS 和用户验收仍待验证。冻结024/提交3f9d7ab绑定222输入、87运行模块、94/306文件分发，Python及安装后1327（各8可选跳过）通过；67项真实CPU Node（0跳过）仅在全部220项先前 Node/测试/构建输入字节相同后复用，没有宣称新运行。该准确代码提交16项 GitHub 检查全部通过。
 
+- BART 图 3 的源轮廓文字问题关闭：440 条字形路径恢复为 440 个普通 Unicode 活动字符对象，实际原生导出 481 个编码字符（含 41 个原空格）；17 个纯空白源字符保留原字体/GID/矩阵位置元数据，原 498 字符均有记录。四份真实源字体和字形位置唯一绑定，未提供预设标签；三份 TrueType 保留轮廓/advance/hhea，Type1 以实际源原生 ink 用显式 CFF 曲线封装并保留原字宽。228 次源绘制、266 个完整字形 clip 证明、原黑正文和深灰希腊字母八位色复核，21096 个原控制点最大 0.000117623569 px。实际 481 Unicode、88 源/实际 font-GID 对、字宽和颜色读回，源/实际原生字形控制点最大 0.000304034417 px，固定 0.001 px 守卫通过。应用原点偏差横向 0.070209、纵向 0.469061 px 单列。CFF 导出转 Type1 的更强原始设计坐标/程序等价探针未通过（首字形设计差 0.0020751953125 超过尝试的 1/1024 设计单位），该声明拒绝并保留 372 限制；当前 native ink 证明不扩大该设计守卫或证明 family/hinting。142 个图形实际属性与父成品精确相同，53 个填充回执独立重放，753 控制点最大 0.000100045932 px。有限位置解释器自动读出 23 个非空编码片段和三个完整图注，54 个词间分隔明确为位置推断，原连字 U+FB01 和跨行连字符保留；源/实际读取相同。五个四曲线圆角卡片、40 个描边三角头箭头和两个七顶点块箭头独立读取，得到 42 方向、34 外部关系、8 内部方向；方向、法向投影、固定一 em 窗口唯一选端点，内部以完整曲线包围证明核验。六项歧义/缺失/非法切线/词距/基线拒绝和输入顺序重放通过。25 张原尺寸全图、2×、平铺 4×、两个完整工作流及三个完整图注 4× 均实看。标准 source-content PASS 仅覆盖 23 个已声明编码字面量，标准公式/连接数组仍空；自动读取以独立 sidecar 提供，不宣称通用 OCR/语义或原生公式/连接线。字体未嵌入，共用交付限制仍开放并关联 42 图；扩展编辑、原 ICC/像素等价、PowerPoint/WPS、用户验收仍待验证。公开冻结024运行代码未改动，既有1327 Python/安装后及67 CPU Node结果不重标为新跑；准确已推送382e4d9提交的16项 GitHub 检查全部通过。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -91,6 +93,7 @@
 | ccf-2020-05-f01 | R01-PREVIEW-STROKE |
 | ccf-2020-05-f02 | R01-PREVIEW-STROKE |
 | ccf-2020-06-f01 | D01, D02 |
+| ccf-2020-06-f03 | SOURCE-OUTLINE-TEXT-001 |
 | ccf-2020-07-f02 | BYOL-FLAT-COLOR-001 |
 | ccf-2020-09-f02 | D01, D02, D03 |
 | ccf-2020-11-f02 | D01, D02, D03 |
@@ -490,3 +493,41 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/GCC3-AUTOMATIC-LIVE-LEDGER-GUARD-349.json` | `82517133a19e232d7f7e06ac644996e6d4947caec6b34a24c774b879afa11aac` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-041.json` | `13e73d78408782c98bd84da10b192712acdd6fc75238c45ee8d06e1103c1efd8` |
 | `reports/remaining-153-001/DISTILLATION-350.json` | `b17651d391777d49844249d0556691219e01df2d408160351aad767737984fe7` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-LIVE-REVIEW-RESULT-382.json` | `e36b78684db80c6030391aed160a36618070b8fd7a0cc218df701e62fcd749f0` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-LIVE-VISUAL-382.json` | `8ec402e82b53b766676f1074974644ccda2af900c43a933a23fa451df5f49b6d` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-RELATIONS-377.json` | `6218003eed0425926b996357b474023bde69b62b7ad91c7ea05bc035a946eded` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-RELATIONS-RETAINED-FAILURE-374.json` | `59e7e54ccf4edf50e008e7d9cd8743a415a565b5448f55a7af307f0517f0df36` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-RELATIONS-RETAINED-FAILURE-375.json` | `98c286056febfe94b93440ace6e3890fb7ad5f981889959697209fcea75203a7` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-RELATIONS-RETAINED-FAILURE-376.json` | `1e7efa277f3674ab364d1ce9d37473b0467b976d7c3005c9a24b36cc90136623` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-SEMANTIC-NEGATIVES-380.json` | `0ae27abbd81a72f75eea9a7f8d436088031f970c98528685094fb6ea671b5a2c` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-WORD-LAYOUT-367.json` | `cec5e1b96d58d3e050d4f715bfd60122b7784721b1ab7a3899d5bf925bf6cf24` |
+| `reports/remaining-153-001/BART3-NATIVE-FONT-DERIVATION-357.json` | `a4626e6a5d49eb392e9e482a6dfa03c39ecb5419753cf836d73f49539815b619` |
+| `reports/remaining-153-001/BART3-NATIVE-FONT-RETAINED-FAILURE-354.json` | `19ab249e9447369989ce78a4c44a88ee7501e347e25d3162a69f022df6ac4329` |
+| `reports/remaining-153-001/BART3-NATIVE-FONT-RETAINED-FAILURE-355.json` | `9879285c578c0e6afc683bcea3b60ff86b1e5c23e43f54078646a46221af7ee3` |
+| `reports/remaining-153-001/BART3-NATIVE-FONT-RETAINED-FAILURE-356.json` | `eb070fbd814139533250a05ec553eed5f9ce7cd9d488d9317c3bbbcdf7c6ff01` |
+| `reports/remaining-153-001/BART3-NATIVE-PROGRAM-CONTROL-LIMIT-372.json` | `304c0a0ed5c15ed6d8937354fa80f5c30f6a76a29bda7b61b8c5319a285a23f1` |
+| `reports/remaining-153-001/BART3-NATIVE-PROGRAMS-RETAINED-CORRECTION-370.json` | `e864a4afb2cc0e569aa332f5944b1d195a53180e6e3d72303f4e2e7d6ebda253` |
+| `reports/remaining-153-001/BART3-NATIVE-PROGRAMS-RETAINED-FAILURE-366.json` | `a591b6028568198c8e22a5137c0e7f11dd436fdf250be0297d2f24f4c5daad66` |
+| `reports/remaining-153-001/BART3-NATIVE-READBACK-RETAINED-FAILURE-363.json` | `9fe2a3420e0e4a2fa0c8389f25e20fe0f9079e48d2c6d31fb369b25b5b997df3` |
+| `reports/remaining-153-001/BART3-NATIVE-SOURCE-INPUTS-353.json` | `bab9b2ed139f77d4e9149b0f8c4fc3322818da9be0e60f6e56b3d4e8eb3bbb1a` |
+| `reports/remaining-153-001/BART3-NATIVE-UNICODE-BUILD-362.json` | `75d9adc5a99979fb0e69bb348af92f77cfa441f23331e4942ab92b2c67b1ac28` |
+| `reports/remaining-153-001/BART3-NATIVE-UNICODE-PROOF-364.json` | `ba7c58b04bc19ae02966dfc6f89109a80b83294b9478c8dde60eea56df85a33a` |
+| `reports/remaining-153-001/BART3-NATIVE-UNICODE-READBACK-373.json` | `84c37f54b20713afc76e252ce2570bc7799e738d55454d58fe3bc27f72e975e8` |
+| `reports/remaining-153-001/BART3-NATIVE-UNICODE-RETAINED-FAILURE-361.json` | `45a959e4278c7c6aab5668e52f6d1d916da6d02f7539fa8f6a329eccf7c56000` |
+| `reports/remaining-153-001/BART3-SEMANTIC-NEGATIVE-HARNESS-RETAINED-378.json` | `dde891f10775416ee9cd7266e708710163805f288342752da5661c4a8fd6f7a2` |
+| `reports/remaining-153-001/BART3-SOURCE-CONTEXT-RETAINED-FAILURE-358.json` | `bc1a2b88cfa485c93a1dfea6624dc55976f88ae69fa5609d8ce0f62f0b8608d4` |
+| `reports/remaining-153-001/BART3-SOURCE-CONTEXT-RETAINED-FAILURE-359.json` | `d0cdd3d3bc3e37c09beb7643c50b3dee0fb78e9b5bce132db0c0cdea63f84cbe` |
+| `reports/remaining-153-001/BART3-SOURCE-GLYPH-CONTEXT-360.json` | `d166641b8a42600cb978e354642853ce3919763e1aa29f77459c4427f117300e` |
+| `reports/remaining-153-001/actual-view-names-bart3-complete-semantic-381.json` | `8833d8aa5c9196494ca56366801e79d315f863103c45396083dd3a091d03a517` |
+| `reports/remaining-153-001/actual-view-names-bart3-native-unicode-368.json` | `ad174e789ad1361a2776e4096c22fd484db231feea550b2bed4e9fb2b2d2093a` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json` | `bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-382e4d9-001.json` | `2647aeba03e311a80029606fea30be018068df612aec3b7939fcedaee8531087` |
+| `reports/remaining-153-001/LEDGER-RESULT-042.json` | `cce6d7b6806b469433ce8f20a6f3cb7aeb9c9b6feba5b72fa53ea321bd4343f2` |
+| `reports/remaining-153-001/BART3-AUTOMATIC-LIVE-LEDGER-GUARD-383.json` | `d12757e18ada719a9bda858814337264b40b6d28268d0de953a6de252ee56b12` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-042.json` | `29f88883f2e1e9c983203d2a9a7f7ac94d5c83266e0ebadb27166f9c8a28bc4d` |
+| `reports/remaining-153-001/DISTILLATION-384.json` | `5934995a7e5936e7a305f9e4fc2b651c30259988b21c8e108cd67e319a6f17e4` |
