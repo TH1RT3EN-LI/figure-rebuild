@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T04:27:01.686685+00:00",
+  "updated_at": "2026-10-06T04:56:15.426759+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
   "status_counts": {
-    "closed_model_visual_review": 289,
-    "open": 6,
+    "closed_model_visual_review": 290,
+    "open": 5,
     "closed_renderer_localization": 1
   },
   "closed_findings": [
@@ -23858,13 +23858,1767 @@
           "sha256": "f2f9146d63117b43ca595975f879f767095568b73698f296edf07b45b69d921a"
         }
       ]
+    },
+    {
+      "figure_id": "ccf-2025-07-f03",
+      "issue_id": "ccf-2025-07-f03-D02",
+      "severity": "minor",
+      "status": "closed_model_visual_review",
+      "resolution": "Mooncake Figure3 curved transfer icons and fine dashed enclosure finding closes in finite model visual review. Eleven editable native paths retain the exact original source PDF/page5/ROI binding, actual complete source path occurrence order, full original CTMs, source alpha1/no-overprint state and actual full clip stack. Original source stroke-support bboxlog bounds and all source control hulls are inside the complete rectangular clip/ROI, so no Boolean clipping of these curves is needed. Three black transfer icon fills retain their original cubic controls instead of27/28/27-command polygonal approximations. Original source fills are evenodd; complete endpoint/contact curve-domain winding proof establishes equivalence to scene nonzero and restores all3/4/3 original cubics, including the tiny final curve. Three associated outlines also restore full actual rotated/reflected similarity CTMs; exact Gram verification uses both CTM columns, never matrix00 alone. Original blue color, approximately1.11333canvas-px widths, butt caps, miter joins and source limit8 are recorded. Five dashed enclosures are lowered from complete original path origins, actual dash arrays and phase0 before any clipping. Four rounded frames retain107 open complete on-runs each, and the rectangular incremental-cache frame retains64. Original curve segments remain cubic; contiguous pieces and closed-contour seam adjacency are preserved. All492 actual DrawingML on-runs stay open, with zero added close commands. Fixed arc-position guard.0001canvas px is unchanged; maximum recorded bound.000055493028px. The failed closed-fill converter that added107/64 forced closes is retained and never built. Actual final PPT contains76 objects in inherited painter order,46 editable paths and30 live text objects, with zero raster crops. All30 native text placements, contents and styles match the maintained parent exactly, using its complete4-family16-face byte-bound font profile. All35 other manifest paths remain unchanged; placement/paint properties stay equal,19 complete native path property sets stay exact and16 existing fill normalizations independently replay original/final hashes and typed topology. All1694 source path controls pass unchanged.001canvas-px guard, maximum.000100136483px. Six real native XML mutations refuse a forced dash close, wrong cap, miter limit, width, color and missing cubic. Independent actual native PDF capture confirms27 fills,508 strokes and30 text paints, no added source reference image. All495 restored stroke paints use actual butt caps and miter joins; Impress width quantization equals the unmodified diagnostic parent. Impress reports miterlimit3.863703250885 rather than source8, although actual DrawingML contains8. Exact rational dot/sign/squared-norm predicates prove every nonzero line/cubic endpoint and actual closure join in the complete source paths, lowered manifest paths and all495 actual native paths requires a miter ratio below3. Both clipping thresholds are therefore inactive for these paths; equality of renderer and original source miterlimit is not claimed. Native Impress converts some short cubics to lines; whole native-PDF control equivalence is not claimed. All14 whole1x, complete2x and overlapping4x source/unmodified-parent-direct-native/new-direct-native comparisons were actually viewed without resizing. Fine dashed frames have correct original spacing, complete rounded-corner runs and rectangle seam continuity. All3 icon fills are smooth black silhouettes with thin blue outlines; labels, source font baseline repair and painter order remain consistent. Existing16 fill normalizations also remove the diagnostic parent arrowhead winding holes. Source/native antialiasing, glyph ink, short-curve conversion and line-width quantization residuals do not establish whole-figure pixel equality. Original parent Artifact preview and byte-identical native diagnostic are separately identified. Prior source font appearance/baseline proof is retained, without full native font-program identity or portable font upgrade. Public source-content remains NOT_PROVIDED with zero declared literal checks, and formula/connection arrays remain empty. Full automatic semantics, PowerPoint/WPS and user acceptance remain unverified. Frozen024 public runtime, control/resource/family guards are unchanged; previous1327 Python/installed and67 CPU Node checks retain their earlier run identity. Prior pushed ec74176 has16 successful GitHub checks. Failed source parity/CTM/dash/font-profile probes and all original candidates remain preserved.",
+      "user_acceptance": "pending",
+      "attempt": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001",
+      "evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-CURRENT-NATIVE-PATHS-602.json",
+          "sha256": "41022f8800015639644ae8d8ddfba04db6cd278e91db14d7ea39356599527caa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-DASH-OPEN-RUN-REFUSAL-596.json",
+          "sha256": "b837c6366c0582a97992511cc1508e7bf1defa57ed0e11686db3bb9c682a92e1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-FONT-PROFILE-REFUSAL-599.json",
+          "sha256": "6755167d626025941cc255c8257004703dc9c94649867c7f6de58ba327f2d735"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-LEDGER-FIGURE-COUNT-REFUSAL-607.json",
+          "sha256": "5d1b551d8aee41dfa63c1bea8181875e9d27ac2442ec353751806a455240724a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-NATIVE-SOURCE-CAPTURE-FAILED-588.json",
+          "sha256": "fdc7b155f59e943fa5ffa7d5e6e5f655165ba928ad0f1d7cafdd9be931dbbf54"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-NATIVE-SOURCE-PATHS-590.json",
+          "sha256": "87643659ba998390a800f6abc026e83d90daab329c0d544ac911877b4ccb56e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-PARENT-NATIVE-CONTROL-589.json",
+          "sha256": "4cbef062770818361e6f11094611a53792aaaf35098337746a7e61d2c3792445"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-BUILD-600.json",
+          "sha256": "8b846fd9d572181ac973fd0e9854119be8f0ddd4ed6ec27e3010efdb681ea852"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-RECOVERY-595.json",
+          "sha256": "6754fd099f2d505c0016ed0296621656d0ac4ae5cbb0e8cfcadfd75011232cf4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-RECOVERY-597.json",
+          "sha256": "83c0cca2b2dec16bc2550ffc91e5851edef121479fe683fbe180650200c7a50c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-REFUSAL-592.json",
+          "sha256": "79753a8b363a206fb1951136836579d8029d571a5b829d1020173408e1c65810"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-READBACK-603.json",
+          "sha256": "65b5cd11030a48cc71c11b8a2e20b4bc0d6ff94d58e58f4c8e0579a4d4adb4ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-REVIEW-RESULT-605.json",
+          "sha256": "70573886a81ce2aa7b37241c6f33df47661cc12e14e93b1f68cd5b27b6d122e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-CURVE-VISUAL-605.json",
+          "sha256": "5d34fe1cd5375356c843b5b263ae32eb53c153bbfd8e549568080f5cd97775e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/MOON3-SOURCE-STROKE-WIDTH-REFUSAL-594.json",
+          "sha256": "58d76256e12c8ffe0923b2e86e8a408134212767e20d5297496e1dbdd3abb1f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-moon3-source-curves-604.json",
+          "sha256": "502c2c290063df827c4bc24d09725dc996e497476f74ea8166480f3d633c19d2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-024.json",
+          "sha256": "88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json",
+          "sha256": "92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json",
+          "sha256": "aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json",
+          "sha256": "b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-font-unicode-325/proof.json",
+          "sha256": "d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-ec74176-001.json",
+          "sha256": "e0ee1a8dc8818fd6c94ad7f35f0fa7dbab54b2ff64bd0f5e6ad467d01f79ea23"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/manifest.json",
+          "sha256": "0dda276f7c7cae0325b5f46651e558c96696337eeba5263f7ae27938bdd77bb1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/figure.pptx",
+          "sha256": "5214d6d7d334f74da5783f43e6a0224277708d20b198ba4ca7ceb8d9e65428b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/font-profile.json",
+          "sha256": "4d6a0624e7728adf2cb115b825aa2e18b958607c34d0f71ff12d6437da52a979"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/sources/original.png",
+          "sha256": "b1281c7fe5fc10f56f21be96a6f46e9268e2806cdd23b534c8a6e8b67d1e45e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/01-review.json",
+          "sha256": "1a229fa6356ea7bd6df7e59bbe75d52313db3982c3a9f46ce3d6b500f94113b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/02-build.json",
+          "sha256": "b41c29354cdad189df5ee154d56cbd1c70ae9869bc0b881ffda57b51c7e8bf87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/02-build.stdout",
+          "sha256": "d3a25fa9eaa80331721e948fd7864fad2822fea70218fbcd7b842bfe46531c57"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/commands/01-review.stdout",
+          "sha256": "bfefbdd6220e5916c0130f7a3bd5fe005a89fd433e52a5ce3f2416832b926ffd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/source-curve-recovery.json",
+          "sha256": "f1a2efa088ccb005dfe435dd76a7a2d14cd4e458a4a5eece2fe5ef2203c16d8f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/source-paints.json",
+          "sha256": "5a4678cb1d17ab5b7411a622efe56ccf0efc4ad1f1e45590fa54d5621a81c039"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/source-parser-limits.json",
+          "sha256": "1650ac15a6dd451e4b63869771c82797af202650001975f26aad512a0e22028f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/pdf-native-paint-context.json",
+          "sha256": "7dd03c65338c2c8d1d49e2949408cdfdd3ad3e1351118f8f01f139f24c61f589"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/source.pdf",
+          "sha256": "543e56c541523c5e807d2231370f96749b2294bc901266397a7265b18ae2c130"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/assignment.json",
+          "sha256": "ff77461a3ae378b93e48f2e7d9dfe0cb1a51c1adda78516749bea28bbde292ed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/pdf-bboxlog.json",
+          "sha256": "25d1240a479f30083bcdffa40efd576f9df7ea307b2f3093d887a1bf00c533fb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/source-native-curves-proof.json",
+          "sha256": "83c0cca2b2dec16bc2550ffc91e5851edef121479fe683fbe180650200c7a50c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/page-outlined.svg",
+          "sha256": "8d0cad96a5db27fcb2bccd2e79d3cd7be44a0e9b78e0bcdb7c35c1e4248bdb7c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/source-evidence/native-context-guard.json",
+          "sha256": "28b7d20a239346fbffcb999be2a85e2fc19dd57348cfd92bc415e46aebeafc04"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/artifact-authored.pptx",
+          "sha256": "364560cd5db4134bfba296112be859e9f544da9a48334b24675e027b68ed53a1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/validation.json",
+          "sha256": "50990ee3a2c9491a671497d6487728c4274f89a3348f7da932f5e2c46c1f409b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/delivery.json",
+          "sha256": "9f7845002eaa4c4fe5af3d8493568c40bf69cc9d6dc04ab896aaa1be583a9adf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/preview-smooth-1x.png",
+          "sha256": "d61f363e3ae0f06f2a132f8bb346e13f66d2077b82c463892bd6fe13c6b03b02"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "93bdcaca9883a98810637c121bef9b591d031c254fd50537cd3b622bb1050d64"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/font-audit.json",
+          "sha256": "f84aefcce0e0f4c629f6f956cf778defc46484460ec48c79333caad3aa604905"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/object-map.json",
+          "sha256": "36c96dd814e11651ec54e578932a2d68fbd5f29b4896cbbe1c75bea30f6aef41"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/comparison.png",
+          "sha256": "de4190a39118c31b0b1f9bcf629cfea5867ec05f8e2f8fb332ed879f7fb7495a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/manifest-validation.json",
+          "sha256": "da6648fadb86ed954f484920b9759dd2108ceb79861152b9723ec996c875dddf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/reconstructed.svg",
+          "sha256": "82357d036cde4bedd8a7d2598d5150e8d6981e4637fe0ca473863844896ccc00"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/preview-2x.png",
+          "sha256": "f4d1176455efc7057f337993313b84c640b84b5d9a4bffb299e93c0decc2dd09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/asset-snapshot.json",
+          "sha256": "67835d57b2cc0c78478923a88f1c323b5b66664185e436eb3b9aa65cc98ccf3e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/preview-1x.png",
+          "sha256": "352ad901e031670f6f191b286f0d34078819a23c3c6e66b05dad3e2ca3202f22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/delivery-candidate.json",
+          "sha256": "a8fec3ac2eab92c7f44edff46ffbc60928aedd5ed11a31a1c0c3cf373410833c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/editability.json",
+          "sha256": "fa4be64531f57ae6fe601a4e87e310e5368c35b29a487ab6653b5172ac2aad67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/resolved-scene.json",
+          "sha256": "0dda276f7c7cae0325b5f46651e558c96696337eeba5263f7ae27938bdd77bb1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/comparison-metrics.json",
+          "sha256": "4ed06ce92cfaa141cd106189f7c68a39f52c420c4edd49879c37efbbcdf22c86"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/manifest-snapshot.json",
+          "sha256": "0dda276f7c7cae0325b5f46651e558c96696337eeba5263f7ae27938bdd77bb1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/render-audit.json",
+          "sha256": "a032d75f47c06c6b784c401811ff25807c941a2a874e7607ec16f758509c5379"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/preview-4x.png",
+          "sha256": "3d98baad2d9c671ea1eb1945cec54592fd9e2a6bf4115e72c4f8a71a61932904"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/build-config.json",
+          "sha256": "60186d12574edfd42e68ee6c5f92ad0f240b09bac1dac7c4f3a31e1f6e753279"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/text-fit.json",
+          "sha256": "e641fa745fcb23686d7e0e3028dea6fbeca8cd592d0cfe8dc5dc0a863c5791ca"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/output-review-moon3-source-curves-605.json",
+          "sha256": "57f13355539f50d343681ad71ca489155bda1c27856b798ab6e5e55231368e23"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/grouped-overlay.pptx",
+          "sha256": "5214d6d7d334f74da5783f43e6a0224277708d20b198ba4ca7ceb8d9e65428b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/candidate.pptx",
+          "sha256": "5214d6d7d334f74da5783f43e6a0224277708d20b198ba4ca7ceb8d9e65428b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/text-manifest.json",
+          "sha256": "2d7609e9fd1cba4f3c8aa2042cf737f8e3d6816f142ca734c3a993d3d91acb45"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/comparison-scene.json",
+          "sha256": "2b87c1758662c0116f7dff4b15c0bcff8edfd6d47230939834a8c727b860063e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/italic.ttf",
+          "sha256": "111f38198f04d051259d06782731a2055397a4a7878fd3f7004300a4f1f063a2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/regular.ttf",
+          "sha256": "39183cf0ed31d6f29061d0ccd1819673ea00c31451c57aaba4bac4052fca7c54"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "a0bd976278acde42b9d1db2bb275a4d1a61d0e31778c1a9f72afddfee35ebbff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/bold.ttf",
+          "sha256": "794c324323accb0664550171f25b00d1d888a8dba25e6c7e4604935820765336"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts.conf",
+          "sha256": "f8224b56b6de77f455309c108e0fef1d2b55f0fa24566b65bebd216f2ea3a8ba"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/commands.json",
+          "sha256": "0f81acb8f255c6f40718c786cf8032e0479584fe2c89f67af0834aa713a1ad65"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "5214d6d7d334f74da5783f43e6a0224277708d20b198ba4ca7ceb8d9e65428b8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-3/italic.ttf",
+          "sha256": "82cf55878ae81b6adfa0df911f711eb2ff3789f069d236473c7cc148ad4f1c24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-3/regular.ttf",
+          "sha256": "91c2acdd4bc9940bbcbdd89b9ba09e734929720772043468ac418a8d84728fff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-3/boldItalic.ttf",
+          "sha256": "46887e6496f1e867f49cd4106e280b1372a7f6566af539404ddd0601933a4cb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-3/bold.ttf",
+          "sha256": "bf0d9edc54dafe4128436daa853f2768cd307fda353efa80457cfeb94b119490"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-2/italic.ttf",
+          "sha256": "fbe409a32703ae9951fe186490aadc97f6ca759478c57fc722e127a36d7b9421"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-2/regular.ttf",
+          "sha256": "ddd8035d61990d2d842d8a25a43dc07cbe9f5176feb031b153dbe4a1d0548032"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-2/boldItalic.ttf",
+          "sha256": "23e46e370b3530e51c6633c771d6f455b89b1bd03a3befd7ad640daa20bbc8ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "dc0d72df150c6b3ae656d705b65a70fcdc2173bfb4a0959267c2ed3b799b606c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-1/italic.ttf",
+          "sha256": "35c8212f5a9c23445ac5fdd18b5cb3ef7fb312f447cc3678b24b42b8577eb034"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "59623bf37b4f2939f1584b9a3b280b6bc2633238d8820cc535b14e59c3be56bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-1/boldItalic.ttf",
+          "sha256": "c86ee8f24fd1ec6416974638089285fe9fef07710d7319b2156326038874d1ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/fonts/family-1/bold.ttf",
+          "sha256": "58304081b4300559202722119f6e460538413bbe21f61dd8d69adf1dd39b3481"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "352ad901e031670f6f191b286f0d34078819a23c3c6e66b05dad3e2ca3202f22"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "f4d1176455efc7057f337993313b84c640b84b5d9a4bffb299e93c0decc2dd09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "c0a1e944482c64b0eba6b4d05cf2828a90c0a4f9f52daedbed8753a557f253b9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/12.ttf",
+          "sha256": "91c2acdd4bc9940bbcbdd89b9ba09e734929720772043468ac418a8d84728fff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "58304081b4300559202722119f6e460538413bbe21f61dd8d69adf1dd39b3481"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/15.ttf",
+          "sha256": "46887e6496f1e867f49cd4106e280b1372a7f6566af539404ddd0601933a4cb6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "794c324323accb0664550171f25b00d1d888a8dba25e6c7e4604935820765336"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/9.ttf",
+          "sha256": "dc0d72df150c6b3ae656d705b65a70fcdc2173bfb4a0959267c2ed3b799b606c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/13.ttf",
+          "sha256": "bf0d9edc54dafe4128436daa853f2768cd307fda353efa80457cfeb94b119490"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/10.ttf",
+          "sha256": "fbe409a32703ae9951fe186490aadc97f6ca759478c57fc722e127a36d7b9421"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/6.ttf",
+          "sha256": "35c8212f5a9c23445ac5fdd18b5cb3ef7fb312f447cc3678b24b42b8577eb034"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/7.ttf",
+          "sha256": "c86ee8f24fd1ec6416974638089285fe9fef07710d7319b2156326038874d1ce"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "59623bf37b4f2939f1584b9a3b280b6bc2633238d8820cc535b14e59c3be56bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "39183cf0ed31d6f29061d0ccd1819673ea00c31451c57aaba4bac4052fca7c54"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "111f38198f04d051259d06782731a2055397a4a7878fd3f7004300a4f1f063a2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/11.ttf",
+          "sha256": "23e46e370b3530e51c6633c771d6f455b89b1bd03a3befd7ad640daa20bbc8ea"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/8.ttf",
+          "sha256": "ddd8035d61990d2d842d8a25a43dc07cbe9f5176feb031b153dbe4a1d0548032"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "a0bd976278acde42b9d1db2bb275a4d1a61d0e31778c1a9f72afddfee35ebbff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/fonts/14.ttf",
+          "sha256": "82cf55878ae81b6adfa0df911f711eb2ff3789f069d236473c7cc148ad4f1c24"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/font-cache/9548ea8fb0f0ed6a71d59cc24f35da6e-le64.cache-9",
+          "sha256": "2d0acbc53daa978e86e5d604b4836d6977f948606fd018c0af9f12f55b3de7a7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "3d98baad2d9c671ea1eb1945cec54592fd9e2a6bf4115e72c4f8a71a61932904"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/ccf-2025-07-f03/build/run-001/assets/sources/original.png",
+          "sha256": "b1281c7fe5fc10f56f21be96a6f46e9268e2806cdd23b534c8a6e8b67d1e45e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-readback-603/output-review-unperformed.json",
+          "sha256": "16ca951252f85a7c6615ee9451377db914c4a290896028025a943e692feabf4d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-readback-603/proof.json",
+          "sha256": "65b5cd11030a48cc71c11b8a2e20b4bc0d6ff94d58e58f4c8e0579a4d4adb4ca"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-readback-603/output-review-moon3-source-curves-605.json",
+          "sha256": "57f13355539f50d343681ad71ca489155bda1c27856b798ab6e5e55231368e23"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/config.json",
+          "sha256": "a5a3c204556f4ce92a4fdb10763095fa1867fa8e487969e1acbc585f7dceed05"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/artifact-authored.pptx",
+          "sha256": "71c398c4a7364a7772d569fd7ae885bfeac2284c947e9ea3d5ec1596dc35a688"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/validation.json",
+          "sha256": "008adede10e7fe858e9ca12a25e7964041a5e81db0a90eb7ebe56884e01c5265"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/delivery.json",
+          "sha256": "50ff1f0c934b8a7416cfbca0fcd6f9e587fae3206ecc3e2009dffab76e39d7c5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "209b08d96ac7df26972a13f296539f7698f133618e96b8a6967786eb8efa4cdd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/font-audit.json",
+          "sha256": "d20a4a6a1e8bd1d436193465c272a62e889e3c78705ce081fb9fb1a9df54ffaa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/semantic-audit.json",
+          "sha256": "5ca8c3b756541fcc0b1d1f5fb7cb3caef7ffda01c8b20ea3a05291e597d595f6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/object-map.json",
+          "sha256": "5521c95b44e999bd7488f2f3b6eb04b3f80ad15b89e26fd9e4d0da8a6f70bbe8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/source-content-audit.json",
+          "sha256": "3df9e695632b41c708c74ccb30da2d7979cfd99a1587d9de0d502c5716d1a9b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/comparison.png",
+          "sha256": "ae4e912a0b62a340506d424638c1f0588374814420a1c60228f10e56a3c0e513"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/manifest-validation.json",
+          "sha256": "da6648fadb86ed954f484920b9759dd2108ceb79861152b9723ec996c875dddf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/reconstructed.svg",
+          "sha256": "997b8ea487eccd7838596a9e49f146527b2cd757ea09c317e9cfd6ca5bc6c702"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/preview-2x.png",
+          "sha256": "15c12a955ba6596bbc7782e9cbe25b1cdf2e2be07f724fba386913ff42b65803"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/asset-snapshot.json",
+          "sha256": "983d623dcb24025c1123058511a6ba88377f8e4ffb1c089921565ee7e38eb819"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/preview-1x.png",
+          "sha256": "d1d3934dcecc820f518e388ad1272c27d51069b3602a90c5de69cef29bc1a1c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/delivery-candidate.json",
+          "sha256": "7b98575ea8347a8f3bece9a6a593e6bf8874958828b2425b83d6b470445d865a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/editability.json",
+          "sha256": "ddd89e7ecbdc93dbeaf92a818feeb8d482bd169da70cbb09daee8b02c3f57299"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/resolved-scene.json",
+          "sha256": "37825d30e66328862f5db8ae14fddf761c748c7c0dfbc278c5a9d04607480014"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/render-audit-native-control.json",
+          "sha256": "d0278752807573fd0982d8b055a99df6c0332bf370f451e7b1baef4b2aa84121"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/comparison-metrics.json",
+          "sha256": "38da9e45b21d45d703c410600b83f62d3c189f54aaa64211c589c327138a3412"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/manifest-snapshot.json",
+          "sha256": "37825d30e66328862f5db8ae14fddf761c748c7c0dfbc278c5a9d04607480014"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/preview-4x.png",
+          "sha256": "47b70f6f1c7c881362812a7f345834c1731d081dfce6baa70aed059230e0a9fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/build-config.json",
+          "sha256": "4d934667f76a7417eddd690a5b5970d525c77a6ee9658c44c185be6ca524c769"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/text-fit.json",
+          "sha256": "1c69f19ccefadcfcdd2771a22b64cfd6d6b253d85e7c6ad14c2e89a57019ba14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/grouped-overlay.pptx",
+          "sha256": "cc80bf1bf7d8ff9359cee91416226b4ef24f8c75190d997cf998bffa6bdf3731"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/candidate.pptx",
+          "sha256": "cc80bf1bf7d8ff9359cee91416226b4ef24f8c75190d997cf998bffa6bdf3731"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/text-manifest.json",
+          "sha256": "2d7609e9fd1cba4f3c8aa2042cf737f8e3d6816f142ca734c3a993d3d91acb45"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/comparison-scene.json",
+          "sha256": "2457804a720ec6690886dd4d7b2248f7d2df34f8310061203675e1e42d1ddf13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/italic.ttf",
+          "sha256": "45d1503834a299aae87b682e26bb9cfce95d6631fd0c0607c2dcbe02cdf5f1ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/regular.ttf",
+          "sha256": "65d855b65924c85a0fb9b28c00e6009c0a50aff235e5a194951683e56788ad66"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/boldItalic.ttf",
+          "sha256": "f9384a403a103c1f3585dddf0bf2c4300718f4806a980b631d2a98e7ba09e6f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/bold.ttf",
+          "sha256": "b69653bbc72fa5eacf90e17dab2c1149d0a40613009ff5854d5b27d4827227c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts.conf",
+          "sha256": "d52c8f39c39b937b9407d2bbaea127863d96422fb3e45b538c8832c34adc61d5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/commands.json",
+          "sha256": "91cd3f2b8e56a04dd5bff851e99c87f4e55cf83e9c3e02d20740fd898cb68efd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/validated-output/reconstruction.pptx",
+          "sha256": "cc80bf1bf7d8ff9359cee91416226b4ef24f8c75190d997cf998bffa6bdf3731"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-3/italic.ttf",
+          "sha256": "d8aac49eea0a034dcee35f542f165e439d3d678d7dcf7f98440b52d56624d136"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-3/regular.ttf",
+          "sha256": "3a00eaafe86f970df113d1a8174a5cfe99f58598270b799eaab1dc05b4a29dc9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-3/boldItalic.ttf",
+          "sha256": "9079899f3e3b7607788ac4213bb8260ca694796d009e39667a915203be006033"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-3/bold.ttf",
+          "sha256": "50df545eb99cde9e5845a5cdee59b48fd4b2ea477165bb0d0f9a97ec21e650c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-2/italic.ttf",
+          "sha256": "5dd88ba9b14332c7d9c0d0943e4d9d8936ac0976d896f60e36ad1649a248a73a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-2/regular.ttf",
+          "sha256": "1ff1736309b96fae1df455d473bbde50219da98218a42d30b97e4b549e0bb6e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-2/boldItalic.ttf",
+          "sha256": "b1542cb9c993ab5eac61d61bc2986300f5585ddf9559cdb0c33228ce9019cad2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-2/bold.ttf",
+          "sha256": "d917d256c6c6f91abb44c43aa6269a3c77a621b27f1b3c1cbe90f46db18c8c06"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-1/italic.ttf",
+          "sha256": "c07a0e34a18aa8a0d73b611bf6795422aab6c05084fc42788d07aeb95e79112b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-1/regular.ttf",
+          "sha256": "748621bd74f006640e98dd18814b7b672bb207118724b0c038d889c1f5c69969"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-1/boldItalic.ttf",
+          "sha256": "42231275dd7e1ed7a8f90b5634d5eab32038a2b70337b02ece992bc1a41b59ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/fonts/family-1/bold.ttf",
+          "sha256": "8062f0b10287588b1f3b1826d1ff596b7d149b1eb49d47cbcf15625d7654d702"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/png-1x/reconstruction.png",
+          "sha256": "d1d3934dcecc820f518e388ad1272c27d51069b3602a90c5de69cef29bc1a1c1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/png-2x/reconstruction.png",
+          "sha256": "15c12a955ba6596bbc7782e9cbe25b1cdf2e2be07f724fba386913ff42b65803"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/pdf/reconstruction.pdf",
+          "sha256": "e01541670ec2672f4450824223a478d3edae54d890e8134e6ab3af5616a28628"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/12.ttf",
+          "sha256": "3a00eaafe86f970df113d1a8174a5cfe99f58598270b799eaab1dc05b4a29dc9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/5.ttf",
+          "sha256": "8062f0b10287588b1f3b1826d1ff596b7d149b1eb49d47cbcf15625d7654d702"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/15.ttf",
+          "sha256": "9079899f3e3b7607788ac4213bb8260ca694796d009e39667a915203be006033"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/1.ttf",
+          "sha256": "b69653bbc72fa5eacf90e17dab2c1149d0a40613009ff5854d5b27d4827227c9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/9.ttf",
+          "sha256": "d917d256c6c6f91abb44c43aa6269a3c77a621b27f1b3c1cbe90f46db18c8c06"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/13.ttf",
+          "sha256": "50df545eb99cde9e5845a5cdee59b48fd4b2ea477165bb0d0f9a97ec21e650c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/10.ttf",
+          "sha256": "5dd88ba9b14332c7d9c0d0943e4d9d8936ac0976d896f60e36ad1649a248a73a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/6.ttf",
+          "sha256": "c07a0e34a18aa8a0d73b611bf6795422aab6c05084fc42788d07aeb95e79112b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/7.ttf",
+          "sha256": "42231275dd7e1ed7a8f90b5634d5eab32038a2b70337b02ece992bc1a41b59ac"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/4.ttf",
+          "sha256": "748621bd74f006640e98dd18814b7b672bb207118724b0c038d889c1f5c69969"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/0.ttf",
+          "sha256": "65d855b65924c85a0fb9b28c00e6009c0a50aff235e5a194951683e56788ad66"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/2.ttf",
+          "sha256": "45d1503834a299aae87b682e26bb9cfce95d6631fd0c0607c2dcbe02cdf5f1ae"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/11.ttf",
+          "sha256": "b1542cb9c993ab5eac61d61bc2986300f5585ddf9559cdb0c33228ce9019cad2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/8.ttf",
+          "sha256": "1ff1736309b96fae1df455d473bbde50219da98218a42d30b97e4b549e0bb6e3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/3.ttf",
+          "sha256": "f9384a403a103c1f3585dddf0bf2c4300718f4806a980b631d2a98e7ba09e6f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/fonts/14.ttf",
+          "sha256": "d8aac49eea0a034dcee35f542f165e439d3d678d7dcf7f98440b52d56624d136"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/font-cache/28ca2fe598cad5050a43f5c3fc1c2cf0-le64.cache-9",
+          "sha256": "6fc2df87efd351457c60f5e1c1fb87c711e45b0f16c98063c942a39781d0fe0c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/png-4x/reconstruction.png",
+          "sha256": "47b70f6f1c7c881362812a7f345834c1731d081dfce6baa70aed059230e0a9fa"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-parent-native-control-589/run/assets/sources/original.png",
+          "sha256": "b1281c7fe5fc10f56f21be96a6f46e9268e2806cdd23b534c8a6e8b67d1e45e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-1x.png",
+          "sha256": "c79ae303370b3207ae480ec8adad2b6bd878293aef3ca3fe01ef3889b22ac250"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/source-1x.png",
+          "sha256": "b1281c7fe5fc10f56f21be96a6f46e9268e2806cdd23b534c8a6e8b67d1e45e7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-502-316.png",
+          "sha256": "af988eee66f6a9b3a9fff8065562079eb863dada8ef4d81fa2ea2fda58130b54"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-0-158.png",
+          "sha256": "353c78253ec6749647aa66ec144db9061927353658280d0e8f219f030a399f30"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-0-316.png",
+          "sha256": "c3533d374a46bfa77639a15a1baea853412047041c83d7ebb5f9a9b81cd331f4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-502-158.png",
+          "sha256": "1cba03161522d5bbffab26a6c3983a2310ccf04bd5a18b6c977f646e19574a51"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-502-0.png",
+          "sha256": "3ec5d6b207d73c4b58128425a5746bc5d330613a4a6d5c46ea5885499297e415"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-251-316.png",
+          "sha256": "50ab83eaeefaa1429cef69614f40aefd93162c4f6fc194b0131cd254d7ccb516"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-0-0.png",
+          "sha256": "0b31027cb7257ffd8fb8659b2686220735c0a3fbb460d2b04e2ede5e7fb01b6a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-251-0.png",
+          "sha256": "54f6bedc6110228b7be338e7b8a4025eabd7a87809e705864807ef7a0aa6123b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-2x-0-0.png",
+          "sha256": "bdf392e8142cf7a765846377206e0c567f31e6dad6d674ab14ab4546dd213060"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/source-2x.png",
+          "sha256": "141acad3d60baed93887e4fde4fe98d12ce8d9767b06e9363a6ffa84302a9638"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-2x-377-237.png",
+          "sha256": "a00698d87265920116b8ccdafab8bc1ed2f1f0b8a80703d4037a57a3342190fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-2x-377-0.png",
+          "sha256": "36865a03c167791fb3ff2ea02b7c684fc3eafba5d4d0d6a1e0126bb1715a53a9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-2x-0-237.png",
+          "sha256": "441547d40bea1f68b81059cfd84831a0e6c739050efd8f9177e3283885fb0625"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/whole-4x-251-158.png",
+          "sha256": "8a10b77a311b7b945ec809daf360291af2c26f38b5aa19b0bff21f5884d4f6f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/source-4x.png",
+          "sha256": "0a46702cb679e863f7060468c9e82e4ed590eee9fff89a5d2fc220c566e86c14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/moon3-source-curve-galleries-601/bindings.json",
+          "sha256": "55ba360f991c8182012f052dca2ee0338a8709ccc73bea82e99ba960e92977eb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/commands/ccf-2025-07-f03-prepare.json",
+          "sha256": "0ccaa24f364517f06fdf73f3496cfd0fd04c4194c283a02de770e9586ff99fc2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/commands/ccf-2025-07-f03-prepare.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-002/jobs/commands/ccf-2025-07-f03-prepare.stdout",
+          "sha256": "46af0744238c9522a1ff2e3101b9e9708e2a795f927af3d1b4bb4156ac126651"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/manifest.json",
+          "sha256": "2852faae8d50f2c3e2ffca4de17abfb1f2e59199e365c9b7410020afbbd2581a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/font-profile.json",
+          "sha256": "4e02b34c354458b0754e49655e120459af0845cb5310b5fef4a8ee79864fc0d7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/commands/ccf-2025-07-f03-prepare.json",
+          "sha256": "181242fc69ac67ad42dede35fcd87460eb51a5c767c738efc666749f0d992a9b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/commands/ccf-2025-07-f03-prepare.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/commands/ccf-2025-07-f03-prepare.stdout",
+          "sha256": "43435ce2c9dbf9d1eccf3307d202ccba40cc7a350a79243af5604b4f83efb1f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/sources/original.png",
+          "sha256": "b1281c7fe5fc10f56f21be96a6f46e9268e2806cdd23b534c8a6e8b67d1e45e7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/source-paints.json",
+          "sha256": "5a4678cb1d17ab5b7411a622efe56ccf0efc4ad1f1e45590fa54d5621a81c039"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/source-parser-limits.json",
+          "sha256": "1650ac15a6dd451e4b63869771c82797af202650001975f26aad512a0e22028f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/pdf-native-paint-context.json",
+          "sha256": "7dd03c65338c2c8d1d49e2949408cdfdd3ad3e1351118f8f01f139f24c61f589"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/source.pdf",
+          "sha256": "543e56c541523c5e807d2231370f96749b2294bc901266397a7265b18ae2c130"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/assignment.json",
+          "sha256": "ff77461a3ae378b93e48f2e7d9dfe0cb1a51c1adda78516749bea28bbde292ed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/pdf-bboxlog.json",
+          "sha256": "25d1240a479f30083bcdffa40efd576f9df7ea307b2f3093d887a1bf00c533fb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/source-native-curves-proof.json",
+          "sha256": "83c0cca2b2dec16bc2550ffc91e5851edef121479fe683fbe180650200c7a50c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/page-outlined.svg",
+          "sha256": "8d0cad96a5db27fcb2bccd2e79d3cd7be44a0e9b78e0bcdb7c35c1e4248bdb7c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-moon3-native-curves-001/jobs/ccf-2025-07-f03/source-evidence/native-context-guard.json",
+          "sha256": "28b7d20a239346fbffcb999be2a85e2fc19dd57348cfd92bc415e46aebeafc04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_moon3_source_curve_ledger608.py",
+          "sha256": "ebb86ae3db70437647db07292304957bc563691a0ad558e8293f35837b105c40"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_moon3_source_curves598.py",
+          "sha256": "199e63c78cad175aa335d23bca019dd564188127cead76057c251a30e4265b95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_moon3_source_curves603.py",
+          "sha256": "6eb37f9e4b5bcfe12c30f661f1f7c018fd9824ed15d1153a02069c1f08a65c25"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_moon3_source_curves597.py",
+          "sha256": "3a82a56a813c3555240a0d275584679200bc161b9af6d9fa3cbaf52a640c6b3c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_moon3_native_paths587.py",
+          "sha256": "22c2fc336a532a6d390febb70044d020158b852257a8f4e7aeeb68cedbcd7300"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_moon3_source_curve_review605.py",
+          "sha256": "59db548ed22a6c665d8cf6dfdcf51adef21dc5a6b556a6332620435574e32620"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_moon3_source_curves591.py",
+          "sha256": "fc4f6716acec035b997af60ea691ce2528bd96c2814236928b77140e1f5938c0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_moon3_native_paths590.py",
+          "sha256": "467aa8c76c7088388f5e008fcfa737e4a825ce40e98c25d9c7b9a5949718774e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/moon3_source_curve_galleries601.py",
+          "sha256": "b42692c721d3ead86080179cc88bcb9fa66119a542ca1b1defcbf34babdb9f35"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_moon3_source_curves595.py",
+          "sha256": "6ef9f977fe6716299c544411e413b13d7db7c9f1b4cc454df554ddbefd573ff7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/render_moon3_parent_native589.py",
+          "sha256": "93bb9e0c5458852302ae4d5182339670f8f2582dc3dd47c1a1bd8b2613230bcc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/recover_moon3_source_curves593.py",
+          "sha256": "f80c5ebdabb7e1f2e26f2c6f8036aced2dc63e28aad401971fad5b7244add1ea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_moon3_source_curves600.py",
+          "sha256": "45828fa0c3d2e19662006ec2a4df08f9c73ee404a412883416a0acf53e8052d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/capture_moon3_current_native602.py",
+          "sha256": "e55f35ed4c8d84fc40e59003e8f0dfa925fcdc7d3b14814d70bd191700f4c11a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_moon3_source_curve_ledger606.py",
+          "sha256": "e3f4b2e04f5e08f1d0cfc27429fb9970b47965c03dae380e6b3edb5a25278ccf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace024.py",
+          "sha256": "d401b427a41c2aec5d0bc4e9c30a7f87c41c08c3fd056f2d9a613260f03a08cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/verify_source_inventory086.py",
+          "sha256": "284892c9e584d3efe2236e7b0e6eb8c3d052f16b980532e5d0a5d25a2115cf09"
+        }
+      ]
     }
   ],
   "open_issue_ids": [
     "ccf-2020-18-f01-D03",
     "ccf-2025-01-f11-D03",
     "ccf-2025-01-f11-D04",
-    "ccf-2025-07-f03-D02",
     "ccf-2026-02-f01-D07",
     "ccf-2026-02-f01-D08"
   ],

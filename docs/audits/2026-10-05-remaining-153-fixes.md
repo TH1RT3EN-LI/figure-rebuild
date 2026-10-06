@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 90 张图的来源修复及实际成品复查，关闭 139 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 77 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 14 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 18 项开放。原始 296 项现在 290 项关闭、6 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 139 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 91 张图的来源修复及实际成品复查，关闭 140 项原问题：62 项字体、字距、基线、数学字形或活动文字问题，以及 78 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 13 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 17 项开放。原始 296 项现在 291 项关闭、5 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 140 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -92,6 +92,8 @@
 
 - SwitchML 图 1 的分色方块轮廓与颜色问题关闭：源页面实际有50次轴向渐变绘制、零图片绘制，50条image-info记录是渐变代理；117条旧调色板轮廓替换为25条独立原生渐变路径。逐项绑定实际shade资源、完整裁剪、f32矩阵、原ICC profile、每表1365个RGB采样、encoded/decoded字节摘要和源绘制顺序。原橙/蓝颜色及窄白色渐变斜缝保留；源额外shader在实际裁剪域内为空或为与主表端部相同的常色。明确保留浮点端部越界，完整裁剪支持扩展最大0.000075447378px，固定1/1024px守卫未变；不称完整source support精确等价。每块5/6/9个stops的全表分量代理、native offset与方向编码合计精确有理数界≤2/255；重复整数offset只在颜色完全相同时合并并复查全部knots。该界不是ICC插值或渲染器RGB/像素误差界。实际成品全部305对象按要求排序，25条渐变角度/stops核验；225条其他路径及55处活动文字原生属性与维护父版相同，2428个控制点最大0.000102131234px，固定0.001px守卫未变，128项填充规范化完整重放。6项真实native渐变改角度/颜色/缩放轴/flip/删stop/改offset反例均拒绝。完整1×、完整2×与重叠4×共14张对照实际查看，阶梯白缝、浅蓝偏紫、缺角片及交换机宽灰缝修正，底部双色格、边框及前后叠放恢复。既有连线小圆点接触采样差异仍在父版和新版，未宣称整图像素相等。55处旧源字体证明保留，不升级完整actual font identity；source-content PASS仅覆盖55个声明字面量，公式/连接数组仍空，通用语义与字体交付、PowerPoint/WPS和用户验收仍待验证。失败探针及源探针2GiB地址限制误传Node的失败构建均保留；后继在独立子进程保持原2GiB守卫，公开冻结024代码/资源策略未变。上一已推送fd32347的16项GitHub检查全部成功。
 
+- Mooncake 图3的细虚线与弯曲传输图标问题关闭：11条源路径绑定原PDF、页面、完整CTM、绘制顺序及实际完整裁剪；全部控制点与stroke-support bbox处于完整clip内，无需Boolean多边形化。三处27/28/27指令多边形填充恢复原3/4/3段贝塞尔及微小末段；原奇偶填充经完整接触域winding证明与场景nonzero等价。三个描边保留旋转/反射CTM两列，精确Gram验证等比例，而非仅matrix00。五围框从完整源起点、原dash数组与phase0分解，四圆框各107个开放run、增量矩形64个，共492个实际native run无强行close，弧长界最大0.000055493028px，固定0.0001px守卫未变。原butt/miter/source limit8写入native XML；实际Impress读回limit3.863703，明确不称source相等。完整源路径、分段后manifest及495次实际native描边的全部非零端点/闭合接点均以有理数dot/sign/square证明miter ratio低于3，两个阈值均不触发裁切。成品76对象、46路径、30活动文字、零raster；30处native文字位置/内容/样式与父版完全相同，原4-family16-face字节profile完整保留。35条其他manifest路径未改，native placement/paint保持；其中19条完整native属性相同、16条既有填充规范化完整重放。1694控制点最大0.000100136483px，固定0.001px守卫未变，6项真实XML闭合虚线/改cap/miter/width/color/删C反例均拒绝。14张完整1×、完整2×、重叠4×实际查看，图标平滑、虚线圆角接续/节奏正确，字号与基线未回退；既有fill规范化同步修正父版箭头空洞。旧Artifact预览与原PPT字节不变的native诊断单独标注。source-content仍NOT_PROVIDED、零声明字面量，公式/连接数组仍空；微小C转L、线宽量化、AA与字体墨迹差异未证明整图像素相等，完整字体身份、通用语义、PowerPoint/WPS与用户验收仍待验证。失败填充规则/单列CTM/强闭合run/缺父版Courier profile探针全部保留。公开冻结024运行时与资源/字体守卫未变，上一已推送ec74176的16项GitHub检查成功。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -180,6 +182,7 @@
 | ccf-2025-05-f13 | D01 |
 | ccf-2025-06-f02 | D05 |
 | ccf-2025-06-f05 | R01-PREVIEW-SAMPLING |
+| ccf-2025-07-f03 | D02 |
 | ccf-2025-07-f04 | D04, R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f02 | R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f05 | D01, D02 |
@@ -756,3 +759,29 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/SWITCHML1-NATIVE-GRADIENT-LEDGER-GUARD-583.json` | `264d1d454a518a094f7940d9f59efb91bd391a723200093741693a371d966dbb` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-048.json` | `719ff4bc1925930f25863792118f2cc96ec18a42ac270318e78fc13b08f90dd3` |
 | `reports/remaining-153-001/DISTILLATION-584.json` | `9b8438d4c9a8ebbc2b5b7ca2ed8090fadcc8deb9aa5c86ff95198a67812f4c7d` |
+| `reports/remaining-153-001/MOON3-CURRENT-NATIVE-PATHS-602.json` | `41022f8800015639644ae8d8ddfba04db6cd278e91db14d7ea39356599527caa` |
+| `reports/remaining-153-001/MOON3-DASH-OPEN-RUN-REFUSAL-596.json` | `b837c6366c0582a97992511cc1508e7bf1defa57ed0e11686db3bb9c682a92e1` |
+| `reports/remaining-153-001/MOON3-FONT-PROFILE-REFUSAL-599.json` | `6755167d626025941cc255c8257004703dc9c94649867c7f6de58ba327f2d735` |
+| `reports/remaining-153-001/MOON3-LEDGER-FIGURE-COUNT-REFUSAL-607.json` | `5d1b551d8aee41dfa63c1bea8181875e9d27ac2442ec353751806a455240724a` |
+| `reports/remaining-153-001/MOON3-NATIVE-SOURCE-CAPTURE-FAILED-588.json` | `fdc7b155f59e943fa5ffa7d5e6e5f655165ba928ad0f1d7cafdd9be931dbbf54` |
+| `reports/remaining-153-001/MOON3-NATIVE-SOURCE-PATHS-590.json` | `87643659ba998390a800f6abc026e83d90daab329c0d544ac911877b4ccb56e4` |
+| `reports/remaining-153-001/MOON3-PARENT-NATIVE-CONTROL-589.json` | `4cbef062770818361e6f11094611a53792aaaf35098337746a7e61d2c3792445` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-BUILD-600.json` | `8b846fd9d572181ac973fd0e9854119be8f0ddd4ed6ec27e3010efdb681ea852` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-RECOVERY-595.json` | `6754fd099f2d505c0016ed0296621656d0ac4ae5cbb0e8cfcadfd75011232cf4` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-RECOVERY-597.json` | `83c0cca2b2dec16bc2550ffc91e5851edef121479fe683fbe180650200c7a50c` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-DASH-REFUSAL-592.json` | `79753a8b363a206fb1951136836579d8029d571a5b829d1020173408e1c65810` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-READBACK-603.json` | `65b5cd11030a48cc71c11b8a2e20b4bc0d6ff94d58e58f4c8e0579a4d4adb4ca` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-REVIEW-RESULT-605.json` | `70573886a81ce2aa7b37241c6f33df47661cc12e14e93b1f68cd5b27b6d122e5` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-VISUAL-605.json` | `5d34fe1cd5375356c843b5b263ae32eb53c153bbfd8e549568080f5cd97775e6` |
+| `reports/remaining-153-001/MOON3-SOURCE-STROKE-WIDTH-REFUSAL-594.json` | `58d76256e12c8ffe0923b2e86e8a408134212767e20d5297496e1dbdd3abb1f5` |
+| `reports/remaining-153-001/actual-view-names-moon3-source-curves-604.json` | `502c2c290063df827c4bc24d09725dc996e497476f74ea8166480f3d633c19d2` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-ec74176-001.json` | `e0ee1a8dc8818fd6c94ad7f35f0fa7dbab54b2ff64bd0f5e6ad467d01f79ea23` |
+| `reports/remaining-153-001/LEDGER-RESULT-049.json` | `910a5d7b22c760468fb4bd99d48f18f798e784d3e5fd8fa7e41159c51865a743` |
+| `reports/remaining-153-001/MOON3-SOURCE-CURVE-LEDGER-GUARD-608.json` | `9da3f00d7dbfa58db4ce44b4e3ca562dc50c10130797272c68c432de68f1ed66` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-049.json` | `9d7257641353b2755c3201396c69abf8598c6a1867a624f9c8553b68085c9691` |
+| `reports/remaining-153-001/DISTILLATION-609.json` | `d3dac3234b7aed2aeb850eb3255f38c718206e1c2ec2faac4d148d6c97b9c1f0` |
