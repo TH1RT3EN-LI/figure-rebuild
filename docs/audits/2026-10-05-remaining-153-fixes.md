@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 92 张图的来源修复及实际成品复查，关闭 142 项原问题：63 项字体、字距、基线、数学字形或活动文字问题，以及 79 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 11 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 15 项开放。原始 296 项现在 293 项关闭、3 项开放；83 项后续发现中 71 项解决、12 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 142 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 93 张图的来源修复及实际成品复查，关闭 146 项原问题：65 项字体、字距、基线、数学字形或活动文字问题，以及 81 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 7 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 11 项开放。原始 296 项现在 296 项关闭、0 项开放；83 项后续发现中 72 项解决、11 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 146 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -98,6 +98,14 @@
 
 - SAM2 图11 D04活动文字关闭：原PDF/page21/ROI及791真实native绘制绑定36轮廓文字路径。71行、大小写、粗细与114空格按原墨迹人工确认，保留原图“target object mask, show in”拼写，Times采样/未hint的hmtx只提分组建议，不作为字体身份或控制证明。全部1331原轮廓恰用一次，M/L/C、坐标、隐式闭合、实际RGB/alpha保持；同一compound paint内15082字形对，15013控制BBox分离、69个重叠BBox用双向精确有理数恒定winding和原Bezier控制包围证明填充不相交，外扩API浮点边界覆盖精确有理包围，细分仅用于证明。8个共用CFF面分别保留原L/C拓扑与数值控制变体，实际源控制有界minimax，固定0.001px与16-family不变；原20face/5-family加8面共13family。普通单字及真实两字接触用标准liga/rlig，零PUA/整词整行glyph/文字位图覆盖，人工空格/合成基线advance及未用base/metric补充明确，native实际当前墨迹不使用补充glyph。最终1025对象＝894活动文字＋99原路径＋32原图片；native回读1038普通Unicode＝894可见glyph＋114空space＋30标准GSUB负GID后续字符，8真实Type1子集/144program-glyph对完整核对全部实际源变体，1/1024相对operand转换及合成advance精确，最大源控制差0.000932093850px。1038实际native handle/program/f32轮廓/颜色/alpha/clip独立回读，无伪粗斜、替代、Type3、mask/stroke/忽略字；实际全页isolated normal alpha1输出group为null colorspace，只记录输出状态，未放宽原source group/composition守卫。只校准894已测原点，现native原点最大差横0.032230406932/纵0.031270521277px，FT网格、native字号及AA残差单列，未称像素相等或跨renderer上限。99完整native路径属性、32图片bytes/frame/crop/effects与已审D03父版精确相同；3759控制点最大0.000102323990px，完整后处理所有receipt及12fill重放、9旧箭头接点及29图片合成未回退，5删除接触字母/改family/bold/alpha/control真实反例拒绝。全部21张完整1x/2x与重叠4x实际查看，formal bindings准备后再次查看完整1x/2x；headline/body/button/callout普通墨迹、行距、粗细、大小写、接触字距保留，图片/箭头无回退。所有28原face字节role/path/index绑定保持，renderer副本路径/hash实际差异记录，不称renderer字节相等。source-content仍NOT_PROVIDED/零声明检查，formula/connection仍空，人工抄录不等于自动语义；SAM11通用采样仍开放，字体交付关联48图，完整font/hinting/扩展编辑/embedding/PowerPoint-WPS/用户验收未证。全部失败探针、原始输入、未选字体版本及缺省namespace、API有理输入、font-audit全记录比较等拒绝保留；公开源码与资源/控制/family守卫未改，之前1327 Python及67 CPU Node测试不冒充本轮新测，前一1186723提交16项GitHub检查成功。
 
+- Skill Library 图1 D08诊断漏报关闭：独立原PDF/page2/ROI、author RGB435/alpha439及人工source-ledger绑定82组件和全部140对象，保留89活动文字、32路径、19原位图icon，46逐字/代码/数学读取、16主要关系及围框/缩进/库spine完整清单零遗漏。公开source-content PASS只涵盖46人工声明、零内置connection；source-inventory完整比较140对象仍为REVIEW，raster/font/人工语义限制不删。原四种改API/改q条件/删填充尖端/移动奖励标签manifest反例均拒绝；另从实际PPT原生控制用七顶点、两reflex肩部和唯一tail cap读出14完整填充箭头，允许循环/反绕向及实际偏斜，无理想矩形/两倍head假设。全部315原路径控制最大0.000100975332px，固定0.001px守卫不变；完整后处理全部receipt、14fill、140对象完整native属性及所有media字节独立重放。1035文字组frame对检查，18保守框碰撞和2head-witness提示原样保留REVIEW，不伪称精确glyph面积。实际native PDF回读894普通Unicode，6个Calibri标准连字后续i为GID-1，810非空正BBox字形；1035文字组实际字符包围均分离，14真实PDF尖端颜色/alpha/方向完整且无字形witness遮挡。实际PDF物理比例及最大0.097162309367px坐标残差单列，不放宽原PPT源控制守卫。7个成品PPT实变反例独立触发文字/尖端拓扑/碰撞/alpha/后续遮挡/文字颜色检测，特定报警独立于全属性模板，并全被完整materialization核查拒绝；4核心反例实际同字体native再导出及实看，库标签与奖励文字真实碰撞被定位。17张完整1x、完整2x四tiles、6处4x、两个原尺寸4x caption半幅及4故障图均实际查看；超宽caption显示被缩小的证据保留但不计入选定未缩放视图。API视觉断行、上下q条件、14填充尖端、三处无箭头括号/spine、19icon无漏无新遮挡；字体粗细/metrics与raster过滤差异仍明示由D07及新增sampling/body问题开放。只关闭有限人工声明来源与实际成品诊断覆盖，不称通用OCR/图拓扑/任意精确occlusion、像素等价或原始字体身份；失败689结构审计已含source-evidence及692六个连字后续零BBox假设、旧false-PASS及所有父版/原输入均保留，未以整页bitmap替代活动文字。公开冻结024、资源/16family/0.001px均未改，之前1327 Python及67 CPU Node保留原运行身份，准确0406b9a提交16项GitHub检查成功。
+
+- Skill Library 图1新增RASTER-BODY-001交付退化关闭：明确选定690活动重建，全部140父版对象逐字节不变。成品实际89活动文字（87正文、2图注）、32可编辑路径（11围框、14填充箭头、3括号/spine、4缩进线）、19原始位图icon裁剪；native PDF894普通Unicode均读回，全属性/media/完整后处理已独立重放。19真实srcRect均有非零裁剪、在画布内且互不覆盖，实际frame并集仅占画布7.522224346%；每个icon虽保留完整作者RGBA字节，却仅画其声明局部，无整幅正文或整页位图、无轮廓文字覆盖。旧88对象（87图注轮廓、1正文位图、零活动文字）仅作未选定参考原样保留；原历史约81.84%描述保留，其908×434真实frame在934×514画布的精确面积为82.085336488%。正式绑定后新完整1x和四张完整2x原尺寸图实际查看，先前17局部/故障视图保留。不称原body矢量、全部icon原生、原字体身份、像素等价或自动科学语义；D07与native采样继续开放。失败702把不同URI误当像素元数据相等、704错误处理绝对OOXML关系、706把历史近似面积误作精确范围的探针保留；后继以原始像素SHA、正确package关系和精确原frame核验，公开冻结024及0.001px/资源/16family不变。
+
+- Skill Library 图1 D07原有排版问题关闭：作者2512.17102v2公开源码内intro.png的1730×826全部decoded RGBA与原author资源像素完全相同，仍明确为Screenshot，无原字体程序身份。12行代码38个活动token仅改bold=true为false，244普通字符对应实际单一regular Consolas subset；另102对象及38对象所有其他字段逐项不变，原断行、六种syntax色、四缩进guide、两section title尺度、八斜体q/独立下标组原样并实看。实际SFNT true native subset含36glyph，35当前使用字符/原重建字体字形完整glyf控制与advance均零差；head/name style真实Regular、源注册OS/2=400，subset无OS/2事实保留；无fake/substitute/Type3。真实成品bold实变由独立38对象字重检测及完整属性重放同时拒绝；原7故障检测及4核心实际再导出仍通过。源/实际PDF两title的4x暗像素BBox单独记为有限图像观察，不作原glyph控制或像素等价。全部140对象82component source-inventory仍REVIEW；894实际UCS、315源路径最大0.000100975332px、所有native属性/media/完整后处理保持固定守卫，1035文字字符BBox无碰撞，14尖端完整，20保守诊断REVIEW保留。17完整1x/四完整2x/six4x细节/two4x图注半幅/four故障图正式绑定后实际查看；不新增字体family/轮廓文字覆盖/整幅bodybitmap。仅关闭原title尺度、dense语法/缩进和斜体subscript缺陷，原Screenshot family/metrics/hinting/raster边缘身份和native sampling仍未证。失败717预设Type1、719漏掉Apple true、720假设native subset一定含OS/2原样保留，后继由真实格式及完整使用字形比较证明，不改公开字体准入。冻结024/0.001px/资源/16family不变，字体交付关联48张图与PowerPoint/WPS/用户验收仍未验证。
+
+- ALEX 图1 D03原有紧凑标签与min/max排版问题关闭：原1905.08898v2公开源码kraska_li_architecture.png的完整RGB及alpha逐像素对应原PDF资源；原PDF ROI新渲染与retained原1x也相同，正文仍是位图，无可证原字体程序。九个标签改为黑色regular Calibri12并按有限原/实际native暗墨中心调整，最终9处4x观察中心最大0.125px；其余74对象完整manifest及native paint/frame/font/inset/path属性保持，仅排除两类无paint影响的creation UUID/numeric shape ID作parent比较。相同input完整重放仍逐项比较全部83 native属性、media和receipt，不用该排除。65源路径176controls最大0.000104986877px低于固定0.001px；167实际普通UCS含102改动label字，23重建字体glyf轮廓和advance均零差，无fake/substitute/Type3，仅证明当前注册Calibri，不冒充原bitmap font。图注33原字形的真实subset控制/advance保持，既有actual origin residual1.083502500x/0.320508751y原样记录。三实际PPT文字/灰色/字号故障由独立specific检测及完整属性重放拒绝，并实际再导出查看。12完整1x/2x、两全4x tile、五细节、三实际mutant对照正式绑定后实看，无遮挡/缺字/几何或图注回退。11component/83object inventory仍REVIEW；ROI下边缘相邻正文作为source context保留，不计入重建图内容。首轮位置校准及726/728失败、所有旧版原样保留，不声称原family/metrics/hinting/像素等价或通用OCR自动语义。冻结024、资源、family与源0.001px守卫不变；字体交付关联48图、PowerPoint/WPS与用户验收仍未验证。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -125,7 +133,7 @@
 | ccf-2020-16-f03 | R01-PREVIEW-JOIN |
 | ccf-2020-17-f01 | SOURCE-OUTLINE-TEXT-001 |
 | ccf-2020-17-f02 | D01 |
-| ccf-2020-18-f01 | D01, D02, XC01 |
+| ccf-2020-18-f01 | D01, D02, D03, XC01 |
 | ccf-2020-19-f01 | R02-NATIVE-IMAGE-RECTANGLES |
 | ccf-2021-01-f01 | D01 |
 | ccf-2021-02-f01 | CLIP-IMAGE-SAMPLING-001 |
@@ -191,6 +199,7 @@
 | ccf-2025-07-f04 | D04, R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f02 | R01-PREVIEW-SAMPLING |
 | ccf-2026-01-f05 | D01, D02 |
+| ccf-2026-02-f01 | D07, D08, RASTER-BODY-001 |
 | ccf-2026-03-f02 | D05, SOURCE-OUTLINE-TEXT-001 |
 | ccf-2026-05-f01 | D01, D02 |
 | ccf-2026-06-f01 | R01-PREVIEW-SAMPLING |
@@ -888,3 +897,74 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/tools/check_audit_consistency051.py` | `69980303e7616509cfdc13006d036806f9cc52f83e3d86953ed185a9014a9136` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-051.json` | `124fcfa30a2422f9264bf7b009634a2f1b742db76db8653b8cdd5f4a76450a90` |
 | `reports/remaining-153-001/tools/check_audit_consistency051b.py` | `0db3589ed61bb4c38d2b276f3db6767b062c47f8c60af5a5a89d32af67c6d463` |
+| `reports/remaining-153-001/SKILL-ACTUAL-NATIVE-DIAGNOSTIC-PROBE-691.json` | `7527b51626e622504c888539b3324ad5bd643ee8a5f013ec4d3d7ba5334f6386` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-GALLERY-BINDINGS-696.json` | `e7d43c6cab9d976e4a47cf8b403d010c4b2187043b61c655f3d435b94b17366b` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-INVENTORY-BUILD-690.json` | `c9af7953b67508f2016bfda0ddc3407091b89eef672e74505e5650e3367ff4f9` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-INVENTORY-REFUSAL-689.json` | `52ef95df6bcf8901afa9441c621f9fe3221b0b6f4b1b1713d0cd6186f81bf43d` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-OUTPUT-REVIEW-697.json` | `ff2cdc61d26fc5e4b5b8ce29d6312155501403f7cf98ad769087eb17c89812ac` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-OUTPUT-REVIEW-PREPARED-695.json` | `b93fbd28489e49f5ca35ca223f34fba7ffcf39cdf58e1a319b6821d8b64e6d78` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-REVIEW-RESULT-697.json` | `899bfd5d0e181230e684cb7519bd3fdb70a90e1c39972d8cc5b12b5c93bd6fe2` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-VISUAL-697.json` | `a9c1725edfa23a3712ae4f08ac65063fa483137bc5296a1b66860ea243d7602e` |
+| `reports/remaining-153-001/SKILL-DISTILLATION-120.json` | `fafa362d4ce7910f5ab589a505af532bddc2128a27341a440fcf3a2f5b4b3cfd` |
+| `reports/remaining-153-001/SKILL-DISTILLATION-146.json` | `13768d9c42341704773e6920b85ab9ab24678d5bb15bac0f5a51ec317021cba9` |
+| `reports/remaining-153-001/SKILL-DISTILLATION-167.json` | `845c2d402bce49042553656d7b3b3aa35e7da00f9dafbfd8b20bc4cae66c907f` |
+| `reports/remaining-153-001/SKILL-NATIVE-DIAGNOSTIC-READBACK-693.json` | `b4b77fad50cb01762b2e40d33d7a6699a56865c97b7c884f70e6b608e196abb8` |
+| `reports/remaining-153-001/SKILL-NATIVE-READBACK-REFUSAL-692.json` | `0985885c35f03c755150b62f642f2f77ed88a8808e726f42929d379352a1ea14` |
+| `reports/remaining-153-001/actual-view-names-skill-diagnostics-697.json` | `2a6e7e384421a7dd457a7db6907c8ab17ab6481a7003ac5c9e3dd60967a4c869` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/github-checks-0406b9a-001.json` | `20647c72e8c6e9537616264ca38a6a47bb242535cab34dc97a765886d7546332` |
+| `reports/remaining-153-001/LEDGER-RESULT-052.json` | `2d6eaf9c170c3ebc1616d2d06a6a9dbc8969f5b2f5eb37744abde708603e28cc` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-LEDGER-GUARD-698.json` | `7f7923ea79b3bf08d94e769d6bd1aa8462f4380e61c949d5e93ed111c6436469` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-NATIVE-PROOF-708.json` | `5879b45beb08427bceb42af91ec5d4ba2f2e9ab0c60628c8fb20acf08077e287` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-OUTPUT-REVIEW-709.json` | `c11f87000128fb010d72600bf046d985036958f2d30b79b4d63e1e0aa7f515fd` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-OUTPUT-REVIEW-PREPARED-701.json` | `b93fbd28489e49f5ca35ca223f34fba7ffcf39cdf58e1a319b6821d8b64e6d78` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-REFUSAL-702.json` | `560c2ab45ad1837c7ddda92d5542de555256c0bbb891a8787700d262cbc504f4` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-REFUSAL-704.json` | `45f3dcd0a4591beebb0bd4231491e21157c114f383860293c2046fa90966fd55` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-REFUSAL-706.json` | `c30fb94fd20f774d7337e3fa9d2c0a2661322b02197d9179f7d2dce82ca9db69` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-REVIEW-RESULT-709.json` | `46f24114df4422ab967b2f1ccdc40b144ce5bcb189e26238aa095d900d39d8bb` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-VISUAL-709.json` | `4e5f93f952afe7693cceaf65376e8143bfa4f7b8a3fc5e5c62858034d435c989` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-VISUAL-697.json` | `a9c1725edfa23a3712ae4f08ac65063fa483137bc5296a1b66860ea243d7602e` |
+| `reports/remaining-153-001/SKILL-NATIVE-DIAGNOSTIC-READBACK-693.json` | `b4b77fad50cb01762b2e40d33d7a6699a56865c97b7c884f70e6b608e196abb8` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-REVIEW-RESULT-697.json` | `899bfd5d0e181230e684cb7519bd3fdb70a90e1c39972d8cc5b12b5c93bd6fe2` |
+| `reports/remaining-153-001/SKILL-DIAGNOSTIC-GALLERY-BINDINGS-696.json` | `e7d43c6cab9d976e4a47cf8b403d010c4b2187043b61c655f3d435b94b17366b` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/LEDGER-RESULT-053.json` | `a701c365f46339735bae52be1e9d50127685b3a45a18620b5d5a9df713392aac` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-LEDGER-GUARD-710.json` | `3aa7fb8cd6d0aca348e8c2a61e10701ac53c5aa17d04f336dbbd70a7aaba6a3c` |
+| `reports/remaining-153-001/SKILL-EDITABLE-BODY-DISTILLATION-711.json` | `281af56ce1162a0ec92858ef42d0778a92092a2b902567bfff8061317cccc0ad` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-ACTUAL-FONT-721.json` | `90d610c909e0cfa279fa408536fe37239b54137c9eaa62e72fc070839adc3ced` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-BOLD-MUTANT-722.json` | `9a2dcca43cbd9eaaebba39dd571f96989e4be20b4bc4d6392ecefb2c7cbc86d8` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-BUILD-712.json` | `9ca2e4518a5ab456a226ffc17d4420fd8447f10227fe8a21522e4557907cff71` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-GALLERY-BINDINGS-716.json` | `0acf3a9fabe992933093f6481f911f33e2f81d508085894177ba91de9d99b9c2` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-OUTPUT-REVIEW-722.json` | `4eec786bf862ad8ac2b2b6371cd571bec01623ee195385c70d3b49ffe01d0c9c` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-OUTPUT-REVIEW-PREPARED-715.json` | `92c3f3106dfeb5de692e7417e7a081a1f351d8aadef05d29374d65669bfc36f3` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-REFUSAL-717.json` | `4db7335be064592ffa4c863666ba73397f917e6abfdd0154009831e427a6ad40` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-REFUSAL-719.json` | `4c25e40279fad445dae716e2cb0d24c9ee5b633f93f7e72fcb21ddbd53a1ac75` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-REFUSAL-720.json` | `7346b8800f0fdac54693de976e0d059afdce3c1ce8783ce5ec0c302e7ada71e5` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-REVIEW-RESULT-722.json` | `3bf89156624fcff7b2b899de085377be2a2df44518ceaa3da7034f932ef7e52f` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-VISUAL-722.json` | `6aaee6d03b5dfc2b3385f9059ff59c7fc7df2fd87a3b428b953a6b9e114b9242` |
+| `reports/remaining-153-001/SKILL-NATIVE-DIAGNOSTIC-READBACK-713.json` | `b764094554c3bc0188e56dd19469a3713cc4417e41c2259c5b794a2a9c599127` |
+| `reports/remaining-153-001/actual-view-names-skill-typography-722.json` | `08777b5b178d1003defd06daff4b87ddd7cc021f2e137ce12bfb8331008a9451` |
+| `reports/remaining-153-001/AUTHOR-SOURCE-RETRIEVAL-700.json` | `8ba3feefdb79f62a0ae5ce45a0badfc246058ab4ed9e795868c0172a50493175` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/LEDGER-RESULT-054.json` | `a9ee9c60127422884ccf07dd1df3458984442e8a37290a7e9f3f6a319b77b5e5` |
+| `reports/remaining-153-001/SKILL-TYPOGRAPHY-LEDGER-GUARD-723.json` | `e90b6e19558797c14e20a17df1ebfb591c44767a761a7d40dc2578b17f640c80` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-BUILD-725.json` | `c9015c96dc5b796ca5950181feb491ec6f29eda3f3576e05ee630953355f9e43` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-BUILD-733.json` | `27858f8a11f872b3fa7328c1ac3a15b90351b9edf53a94f51ec6f0c9b5f361fe` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-FINAL-INK-OBSERVATION-739.json` | `e3eab5fac643903442566565a81a02ea1ebf896ee453e47d7f16b45eae094264` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-NATIVE-READBACK-730.json` | `577fbfc877a1d90ef4a293b0ab91bc90571d1bef2d674217f0bb37a4befa7cd7` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-NATIVE-READBACK-735.json` | `e00d6090088d95992f517bcd89ec2b7614d27a74cfba2c47d26a6039f50d598b` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-OUTPUT-REVIEW-739.json` | `6b92b480fb142a5d6c88e7ce56d9582b6e3003b7faaa8c19e194b5855e7b5a87` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-OUTPUT-REVIEW-PREPARED-729.json` | `a568770e8a77968846e8b1eadf8e6a129ab513bfe34d7c15f5d9fd4647a625b1` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-OUTPUT-REVIEW-PREPARED-738.json` | `553ad367891b6f076d57af809475b28f6bc4fe6d61b4310c93415b9caab123bc` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-REFUSAL-726.json` | `512bd34be1a434505088d8ddfc4bb064af8b5eb0544083c9cb8ac3931846a54e` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-REFUSAL-728.json` | `f88d46bbcfd803b1aaa99052647c4912c3fbb6e1f46bd7dba883d44a212d8e8f` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-REVIEW-RESULT-739.json` | `50b8d4c47fc5dd2cd7ba2ee91d7211384fa12c00817b41c1fbb99acea94a13d4` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-SOURCE-INK-CALIBRATION-732.json` | `ea0b1db596518b1f83b158906e1e36e1f3907782099a8c8b5031d3209fd8ed74` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-VISUAL-739.json` | `68363048fcc9cf992a95b9c27ce18d83cc4123fb4bca0fb32d5426f9636b45d5` |
+| `reports/remaining-153-001/actual-view-names-alex-typography-739.json` | `80fe82277184d01801bf146f04435c5a7d18ba7e674539c7c4e7ac7e8922bd39` |
+| `reports/remaining-153-001/AUTHOR-SOURCE-RETRIEVAL-700.json` | `8ba3feefdb79f62a0ae5ce45a0badfc246058ab4ed9e795868c0172a50493175` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/LEDGER-RESULT-055.json` | `8c48b89f96318a9b52c55ea09f1c997ccc33f51a39f46a4f9626dcf3225999d4` |
+| `reports/remaining-153-001/ALEX-TYPOGRAPHY-LEDGER-GUARD-740.json` | `f0a96aa7cc598405c06b15a02cffa1df37a37e9423efbcca80364dd30e3bfece` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-055.json` | `1f3d7c3c1ee2141eb289ea6de1357d147da05e41b82efc89e26fd7af5704a4e3` |
+| `reports/remaining-153-001/BITMAP-TYPOGRAPHY-DISTILLATION-741.json` | `d37ee70b8908a6922bec0dc06a73ec5496c709b2aad5373d9d603c5ceb4c874d` |
