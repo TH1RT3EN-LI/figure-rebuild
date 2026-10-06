@@ -43,6 +43,7 @@ npx skills add TH1RT3EN-LI/figure-rebuild
 | 从方法说明创作 | 调用方填写结构规格，`create --spec creation.json --job new-job`，无需参考图；审阅后用 `build` 导出 |
 | 导出独立 PPTX | `build --manifest manifest.json`，从审阅后的清单生成可编辑单页 |
 | 检查原生 PDF 预览 | `build --preview-backend libreoffice-pdf`，从最终 PPT 的 PDF 导出生成预览，并保留直接 PNG；[零宽细线及验收边界](references/native-pdf-preview.md) |
+| 检查原生路径预览 | `build --preview-backend native-svg`，按最终 PPT 的实际平铺纯色路径生成三尺寸预览；[支持域和独立重放](references/native-svg-preview.md) |
 | 检查透明图像的 PDF 预览 | `build --preview-backend libreoffice-pdf-rgb`，保留原始导出，并生成仅修改零透明度 RGB 的独立 PDF；[逐像素证明与验收边界](references/pdf-zero-alpha-rgb.md) |
 | 修复照片导出坐标舍入 | `build --preview-backend libreoffice-pdf-photos`，在独立 PDF 中恢复最终 PPT 的不透明照片坐标，原始导出和媒体保留；[精确样本匹配及验收边界](references/native-photo-matrices.md) |
 | 恢复缺失的字形 Unicode | `python -m figure_rebuild.font_unicode --spec glyphs.json --output receipt.json`，由精确轮廓及度量匹配唯一候选；[字体绑定与数学脚本范围](references/font-unicode-recovery.md) |

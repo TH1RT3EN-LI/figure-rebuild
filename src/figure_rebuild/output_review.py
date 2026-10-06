@@ -92,10 +92,14 @@ def _inside(root, path):
 
 def _preview_provenance(run, config, paths):
     """New runs bind renderer identity and its actual input/output evidence."""
+    _require((config.get('preview_backend') == 'native-svg') == ('native_svg_preview_version' in config),
+             'Native SVG preview requires explicit backend/version provenance')
     _require((config.get('artifact_image_preview_version') == 3) == ('artifact_image_shared_grid' in config),
              'Shared native picture preview grid requires explicit version-3 provenance')
     _require((config.get('artifact_image_preview_version') == 4) == ('artifact_image_source_sampling' in config),
              'Source image sampling requires explicit version-4 provenance')
+    _require((config.get('artifact_image_preview_version') == 5) == ('artifact_image_source_rgb_groups' in config),
+             'Source RGB group sampling requires explicit version-5 provenance')
     if 'preview_provenance_version' not in config and 'preview_backend' not in config:
         _require('artifact_stroke_preview_version' not in config, 'Native stroke preview requires preview provenance')
         _require('artifact_image_preview_version' not in config, 'Native picture preview requires preview provenance')
@@ -171,6 +175,9 @@ def _preview_provenance(run, config, paths):
         path = _inside(run, Path(item['path']))
         _require(item == _binding(path), 'Renderer evidence changed: ' + role)
         paths[role] = path
+    if backend != 'native-svg':
+        _require(not {'native_svg_definition', 'native_svg_source', 'native_svg_receipt'} & set(evidence),
+                 'Unrequested native SVG preview evidence')
     if alpha_policy is None:
         _require('pdf_alpha_derivation' not in audit and
                  'native_pdf_alpha_receipt' not in evidence and
@@ -193,21 +200,23 @@ def _preview_provenance(run, config, paths):
             _require('artifact_image_preview' not in audit and 'image_preview_definition' not in evidence,
                      'Unrequested native picture preview adapter')
         else:
-            _require(type(image_version) is int and image_version in (1, 2, 3, 4) and not config.get('base'),
+            _require(type(image_version) is int and image_version in (1, 2, 3, 4, 5) and not config.get('base'),
                      'Unsupported native picture preview provenance')
             _require('image_preview_definition' in evidence, 'Native picture preview definition is missing')
             from .artifact_image_preview import prepare_image_preview
             definition = _json_record(paths['image_preview_definition'], strict_numbers_and_keys=True)
-            if image_version == 4:
+            if image_version in (4, 5):
                 from .artifact_source_image_preview import source_request_assets
-                source = source_request_assets(config['artifact_image_source_sampling'])[0]
+                request_key = 'artifact_image_source_rgb_groups' if image_version == 5 else 'artifact_image_source_sampling'
+                source = source_request_assets(config[request_key], rgb_groups=image_version == 5)[0]
                 paths['image_sampling_source_pdf'] = _inside(run/'assets', run/'assets'/source['path'])
                 _require(_binding(paths['image_sampling_source_pdf'])['sha256'] == source['sha256'],
                          'Source image sampling PDF disagrees with its frozen checksum')
             replay = prepare_image_preview(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True),
                                            version=image_version, shared_grid=config.get('artifact_image_shared_grid'),
                                            source_sampling=config.get('artifact_image_source_sampling'),
-                                           asset_root=_inside(run, run/'assets') if image_version == 4 else None)
+                                           source_rgb_group_sampling=config.get('artifact_image_source_rgb_groups'),
+                                           asset_root=_inside(run, run/'assets') if image_version in (4, 5) else None)
             _require(_same_json(definition, replay), 'Native picture preview definition disagrees with actual delivered PPTX')
             expected_images = {'schema_version': image_version, 'policy': replay['policy'], 'preview_only': True,
                                'native_delivery_modified': False, 'reference_pixels_used': False,
@@ -237,6 +246,31 @@ def _preview_provenance(run, config, paths):
                                 'source_pixel_equivalence': False, 'application_playback_verified': False}
             _require(_same_json(audit.get('artifact_stroke_preview'), expected_strokes),
                      'Native stroke preview application/order receipt disagrees with actual native definition')
+    elif backend == 'native-svg':
+        _require(type(config.get('native_svg_preview_version')) is int and config['native_svg_preview_version'] == 1 and
+                 not config.get('base') and audit.get('renderer') == 'MuPDF native PPT SVG' and
+                 audit.get('renderer_backend') == 'delivered_native_flat_solid_paths' and audit.get('rasterizer') == 'PyMuPDF' and
+                 audit.get('native_delivery_modified') is False and audit.get('reference_pixels_used') is False,
+                 'Invalid native SVG preview identity')
+        _require('artifact_image_preview_version' not in config and 'artifact_stroke_preview_version' not in config and
+                 'artifact_image_preview' not in audit and 'artifact_stroke_preview' not in audit and
+                 'native_pdf_preview' not in audit and 'stroke_preview_definition' not in evidence and
+                 'image_preview_definition' not in evidence and
+                 not any(k.startswith('native_pdf') or k.startswith('native_png') for k in evidence),
+                 'Native SVG preview cannot claim another renderer')
+        _require({'native_svg_definition', 'native_svg_source', 'native_svg_receipt'} <= set(evidence),
+                 'Native SVG preview evidence is incomplete')
+        from .native_svg_preview import prepare_native_svg, sample_native_svg
+        replay = prepare_native_svg(paths['pptx'], _json_record(paths['resolved_scene'], strict_numbers_and_keys=True))
+        definition = _json_record(paths['native_svg_definition'], strict_numbers_and_keys=True)
+        _require(_same_json(definition, replay), 'Native SVG definition differs from actual delivered native paths')
+        _require(paths['native_svg_source'].read_bytes() == replay['svg'].encode(), 'Native SVG source bytes differ from actual paths')
+        outputs, receipt = sample_native_svg(replay)
+        _require(_same_json(_json_record(paths['native_svg_receipt'], strict_numbers_and_keys=True), receipt) and
+                 audit.get('rasterizer_version') == receipt['renderer_version'] and audit.get('mupdf_version') == receipt['mupdf_version'],
+                 'Native SVG renderer receipt differs from independent native replay')
+        for scale in (1, 2, 4):
+            _require(paths[f'preview_{scale}x'].read_bytes() == outputs[scale], 'Native SVG preview pixels differ from actual path replay')
     else:
         _require('artifact_image_preview_version' not in config and 'artifact_image_preview' not in audit and
                  'image_preview_definition' not in evidence, 'Native picture preview adapter requires Artifact')

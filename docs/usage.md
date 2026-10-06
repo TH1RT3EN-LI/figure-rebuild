@@ -150,6 +150,10 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 由原始 PDF 图片片段生成的 4x/8x 媒体可使用 `--artifact-image-source-sampling request.json`，先逐字节重放最终 PPT 的实际媒体，再按目标 1x/2x/4x 全图坐标直接采样。原始 PDF 和请求会冻结；仅支持无透明组的连续纯图片片段，文字、路径和遮挡仍由完整原生场景绘制。该预览方式不改变交付 PPT；来源、坐标、媒体或合成状态不符会拒绝。请求格式与限制见[原始图片片段采样](../references/preview-image-sampling.md#explicit-source-image-interval-grids)。
 
+单个原始图片需要沿用已有的受限 RGB 组上下文时，可显式选择 `--artifact-image-source-rgb-groups request.json`，并在请求中声明组策略。每次只采样一个图片出现；实际交付媒体仍须逐字节重放。共有组拆分后的合成误差须另行量化和逐尺寸复核，详见[单图片 RGB 组采样](../references/preview-image-sampling.md#explicit-single-image-rgb-group-grids)。
+
+仅含平铺纯色原生路径的独立 PPT 可选择 `--preview-backend native-svg`，从最终 PPT 的实际控制点、颜色、线型和顺序生成 MuPDF 预览。输出审阅会重建 SVG 并重新渲染三份原始 PNG；支持域与验收边界见[原生路径 SVG 预览](../references/native-svg-preview.md)。
+
 ## 裁剪精修与位置诊断
 
 ```bash

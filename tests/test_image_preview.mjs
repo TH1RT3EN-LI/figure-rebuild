@@ -42,6 +42,13 @@ test('version4 source interval samples retain all mixed paint identities and rej
   assert.deepEqual(s.elements.items.map(e=>e.id),['replacement','native-front']);assert.equal(s.elements.items[1],front);
   d.policy='delivered-native-picture-mupdf-device-grid-v3';assert.throws(()=>applyImagePreview(fake(),d,1),/Invalid/);
 });
+test('version5 explicit RGB group samples preserve mixed occlusion and reject policy downgrade',()=>{
+  const d=definition();d.schema_version=5;d.policy='delivered-native-picture-mupdf-device-grid-v5';
+  const s=fake(),front=s.elements.items[1];applyImagePreview(s,d,1);
+  assert.deepEqual(s.elements.items.map(e=>e.id),['replacement','native-front']);assert.equal(s.elements.items[1],front);
+  d.policy='delivered-native-picture-mupdf-device-grid-v4';const unchanged=fake(),original=[...unchanged.elements.items];
+  assert.throws(()=>applyImagePreview(unchanged,d,1),/Invalid/);assert.deepEqual(unchanged.elements.items,original);
+});
 test('changed native identity, position, order, PNG or target grid fails before mutation',()=>{
   for(const change of [d=>d.paint_order.reverse(),d=>d.objects[0].id='missing',
     d=>d.objects[0].native_position.left+=.01,d=>d.objects[0].previews[0].png_sha256='0'.repeat(64),
@@ -63,10 +70,11 @@ test('actual Artifact CPU copies the sampled grid and preserves alpha and front 
     const sharp=(await import(pathToFileURL(req.resolve('sharp')).href)).default;
     const original=await sharp({create:{width:80,height:80,channels:4,background:{r:0,g:255,b:0,alpha:1}}}).png().toBuffer();
     const sampled=await sharp({create:{width:10,height:10,channels:4,background:{r:255,g:0,b:0,alpha:.5}}}).png().toBuffer();
+    for(const version of [4,5]) {
     const p=Presentation.create({slideSize:{width:40,height:30}}),s=p.slides.add();s.background.fill='#ffffff';
     const image=s.images.add({blob:new Uint8Array(original),contentType:'image/png',position:{...position},geometry:'rect'});image.name='picture';
     s.shapes.add({name:'front',geometry:'rect',position:{left:6,top:5,width:2,height:2},fill:'#0000ff',line:{fill:'none',width:0}});
-    const d=definition();d.schema_version=4;d.policy='delivered-native-picture-mupdf-device-grid-v4';
+    const d=definition();d.schema_version=version;d.policy=`delivered-native-picture-mupdf-device-grid-v${version}`;
     d.objects[0].native_source_crop_units={l:21234,t:12345,r:20123,b:15432};
     d.objects[0].previews[0]={scale:1,width:10,height:10,position:{...position},png_base64:sampled.toString('base64'),png_sha256:hash(sampled)};
     const snapshot=Buffer.from(original);applyImagePreview(s,d,1);
@@ -74,4 +82,5 @@ test('actual Artifact CPU copies the sampled grid and preserves alpha and front 
     const pixel=(x,y)=>[...pixels.data.subarray((y*pixels.info.width+x)*4,(y*pixels.info.width+x)*4+4)];
     assert.deepEqual(pixel(4,5),[255,127,127,255]);assert.deepEqual(pixel(7,6),[0,0,255,255]);
     assert.deepEqual(pixel(1,5),[255,255,255,255]);assert.deepEqual(original,snapshot);
+    }
   });

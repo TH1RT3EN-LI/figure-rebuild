@@ -230,8 +230,14 @@ def _native_picture_inputs(pptx, manifest):
     return pptx, payload, xml, names, package, relationships, pictures, order
 
 
-def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None, source_sampling=None, asset_root=None):
+def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None, source_sampling=None,
+                          source_rgb_group_sampling=None, asset_root=None):
     """Sample delivered media or an explicit byte-replayed source recipe."""
+    if source_rgb_group_sampling is not None:
+        if type(version) is not int or version != 5 or shared_grid is not None or source_sampling is not None:
+            raise ValueError('Source RGB group sampling requires explicit version 5 without another sampling policy')
+        from .artifact_source_image_preview import prepare_source_image_preview
+        return prepare_source_image_preview(pptx, manifest, source_rgb_group_sampling, asset_root, rgb_groups=True)
     if source_sampling is not None:
         if type(version) is not int or version != 4 or shared_grid is not None:
             raise ValueError('Source image sampling requires explicit version 4 without a shared media grid')
@@ -283,9 +289,10 @@ def prepare_image_preview(pptx, manifest, *, version=1, shared_grid=None, source
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--pptx'); p.add_argument('--manifest'); p.add_argument('--output'); p.add_argument('--preflight', action='store_true')
-    p.add_argument('--version', type=int, choices=(1, 2, 3, 4), default=1)
+    p.add_argument('--version', type=int, choices=(1, 2, 3, 4, 5), default=1)
     p.add_argument('--shared-grid', help='Explicit integer source windows grouped on one common native grid')
     p.add_argument('--source-sampling', help='Explicit source image recipes which replay actual native media bytes')
+    p.add_argument('--source-rgb-group-sampling', help='Explicit single-image RGB group recipes; group decomposition remains unverified')
     p.add_argument('--asset-root', help='Immutable root containing the declared source PDF')
     a = p.parse_args(argv)
     if a.preflight:
@@ -295,8 +302,10 @@ def main(argv=None):
     from .source_inventory import _load_json
     shared_grid = _load_json(Path(a.shared_grid), MAX_DEFINITION_BYTES) if a.shared_grid else None
     source_sampling = _load_json(Path(a.source_sampling), MAX_DEFINITION_BYTES) if a.source_sampling else None
+    source_rgb = _load_json(Path(a.source_rgb_group_sampling), MAX_DEFINITION_BYTES) if a.source_rgb_group_sampling else None
     result = prepare_image_preview(a.pptx, _load_json(Path(a.manifest), MAX_DEFINITION_BYTES), version=a.version,
-                                   shared_grid=shared_grid, source_sampling=source_sampling, asset_root=a.asset_root)
+                                   shared_grid=shared_grid, source_sampling=source_sampling,
+                                   source_rgb_group_sampling=source_rgb, asset_root=a.asset_root)
     Path(a.output).write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 
 

@@ -18,7 +18,7 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 
-BACKENDS = ('artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos')
+BACKENDS = ('artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos', 'native-svg')
 PROVENANCE_VERSION = 1
 
 

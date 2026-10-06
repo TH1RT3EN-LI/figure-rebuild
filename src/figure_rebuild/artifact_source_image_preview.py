@@ -14,22 +14,30 @@ from io import BytesIO
 from pathlib import Path
 
 from . import artifact_image_preview as ordinary
-from .pdf_image_render import render_native_pdf_image_interval
+from .pdf_image_render import (render_native_pdf_image_interval, render_native_pdf_image,
+                               render_native_pdf_image_target_grid)
 from .validate import confined
 
 POLICY = 'delivered-native-picture-mupdf-device-grid-v4'
 MAX_OBJECTS = 256
 MAX_SOURCE_PAINTS = 100000
+RGB_GROUP_POLICY = 'native-neutral-root-plus-one-rgb-child-v1'
 
 
-def source_request_assets(request):
+def source_request_assets(request, *, rgb_groups=False):
     """Validate the explicit recipe and return its one immutable PDF input."""
-    if (type(request) is not dict or set(request) != {
-            'schema_version', 'source_pdf', 'page_index', 'source_transform', 'user_clip_pdf', 'objects'} or
+    fields = {'schema_version', 'source_pdf', 'page_index', 'source_transform', 'user_clip_pdf', 'objects'}
+    if type(rgb_groups) is not bool:
+        raise ValueError('RGB source group policy must be explicit')
+    if rgb_groups:
+        fields.add('group_sampling_policy')
+    if (type(request) is not dict or set(request) != fields or
             type(request['schema_version']) is not int or request['schema_version'] != 1 or
             type(request['page_index']) is not int or not 0 <= request['page_index'] < 4096 or
             type(request['objects']) is not list or not 1 <= len(request['objects']) <= MAX_OBJECTS):
         raise ValueError('Invalid explicit source image sampling request')
+    if rgb_groups and request['group_sampling_policy'] != RGB_GROUP_POLICY:
+        raise ValueError('Unsupported explicit source RGB group policy')
     source = request['source_pdf']
     if (type(source) is not dict or set(source) != {'path', 'sha256'} or
             type(source['path']) is not str or not source['path'] or
@@ -54,6 +62,7 @@ def source_request_assets(request):
             raise ValueError('Invalid source image sampling identity or delivery scale')
         seqnos, bounds = obj['paint_seqnos'], obj['source_bounds']
         if (type(seqnos) is not list or not 1 <= len(seqnos) <= 64 or
+                (rgb_groups and len(seqnos) != 1) or
                 any(type(v) is not int or not 0 <= v < MAX_SOURCE_PAINTS for v in seqnos) or
                 seqnos != list(range(seqnos[0], seqnos[-1] + 1)) or seqnos[0] <= previous):
             raise ValueError('Source image intervals must be consecutive, distinct and in native paint order')
@@ -64,8 +73,8 @@ def source_request_assets(request):
     return [dict(source)]
 
 
-def prepare_source_image_preview(pptx, manifest, request, asset_root):
-    source_request_assets(request)
+def prepare_source_image_preview(pptx, manifest, request, asset_root, *, rgb_groups=False):
+    source_request_assets(request, rgb_groups=rgb_groups)
     if asset_root is None:
         raise ValueError('Source image preview requires its immutable asset root')
     source = confined(Path(asset_root).resolve(), request['source_pdf']['path'])
@@ -129,6 +138,14 @@ def prepare_source_image_preview(pptx, manifest, request, asset_root):
             bboxlog = page.get_bboxlog()
             if len(bboxlog) > MAX_SOURCE_PAINTS:
                 raise ValueError('Source image sampling paint budget')
+            if rgb_groups:
+                if global_grid:
+                    return render_native_pdf_image_target_grid(page, bboxlog, recipe['paint_seqnos'][0],
+                        source_transform=t, source_bounds=recipe['source_bounds'], user_clip_pdf=clip,
+                        sampling_scale=scale, allow_native_rgb_group_sampling=True)
+                return render_native_pdf_image(page, bboxlog, recipe['paint_seqnos'][0],
+                    source_transform=t, source_bounds=recipe['source_bounds'], user_clip_pdf=clip,
+                    native_sampling_scale=scale, allow_native_rgb_group_sampling=True)
             return render_native_pdf_image_interval(page, bboxlog, recipe['paint_seqnos'],
                 source_transform=t, source_bounds=recipe['source_bounds'], user_clip_pdf=clip,
                 sampling_scale=scale, global_device_grid=global_grid)
@@ -155,7 +172,8 @@ def prepare_source_image_preview(pptx, manifest, request, asset_root):
                         'previews': previews})
         proofs.append({'id': id_, 'delivery_media_replayed_byte_exactly': True,
                        'delivery_replay': original['receipt'], 'target_grid_replays': receipts})
-    result = {'schema_version': 4, 'policy': POLICY, 'input_pptx': {'path': str(pptx), 'sha256': hashlib.sha256(payload).hexdigest()},
+    version = 5 if rgb_groups else 4
+    result = {'schema_version': version, 'policy': f'delivered-native-picture-mupdf-device-grid-v{version}', 'input_pptx': {'path': str(pptx), 'sha256': hashlib.sha256(payload).hexdigest()},
               'slide_part': names[0], 'native_slide_xml_sha256': hashlib.sha256(xml).hexdigest(), 'paint_order': order,
               'objects': objects, 'unsupported': [], 'scales': list(ordinary.SCALES),
               'source_sampling_request': request, 'source_sampling_proofs': proofs,
@@ -163,6 +181,11 @@ def prepare_source_image_preview(pptx, manifest, request, asset_root):
               'sampling': 'source_image_only_intervals_on_global_target_device_grid', 'render_pixels': pixels,
               'preview_only': True, 'native_delivery_modified': False, 'reference_pixels_used': False,
               'source_pixel_equivalence': False, 'application_playback_verified': False}
+    if rgb_groups:
+        result.update(sampling='source_single_image_with_original_rgb_groups_on_global_target_device_grid',
+                      source_group_sampling_policy=RGB_GROUP_POLICY, required_full_figure_visual_review=True,
+                      shared_group_split_unverified=True, exact_group_decomposition_claimed=False,
+                      rgb_alpha_error_bound=None)
     if len(json.dumps(result, separators=(',', ':')).encode()) > ordinary.MAX_DEFINITION_BYTES:
         raise ValueError('Native source picture definition byte budget')
     return result

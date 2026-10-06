@@ -15,7 +15,7 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                             source_bounds, user_clip_pdf, allow_native_rgb_group_sampling=False,
                             native_sampling_scale=8, allow_native_matte_sampling=False,
                             _paint_kind='fill-image', _image_seqnos=None,
-                            _global_device_grid=False):
+                            _global_device_grid=False, _single_target_grid=False):
     """Return one sampled PNG and its explicit, grid-aligned source frame.
 
     ``source_bounds`` is the declared storage x0/y0/x1/y1 in source pixels.
@@ -63,10 +63,12 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                 _image_seqnos != list(range(_image_seqnos[0], _image_seqnos[-1] + 1))):
             raise PdfImageNativeError('Image interval requires 1 to 64 consecutive actual image paints')
         paint_seqno = _image_seqnos[0]
-    if type(_global_device_grid) is not bool or (_global_device_grid and not interval):
+    if type(_single_target_grid) is not bool or (_single_target_grid and (interval or _paint_kind != 'fill-image')):
+        raise ValueError('Single target grid requires one explicit image occurrence')
+    if type(_global_device_grid) is not bool or (_global_device_grid and not (interval or _single_target_grid)):
         raise ValueError('Global device grid requires an explicit image interval')
     if (isinstance(native_sampling_scale, bool) or not isinstance(native_sampling_scale, int)
-            or native_sampling_scale not in ((1, 2, 4, 8) if interval else (4, 8))):
+            or native_sampling_scale not in ((1, 2, 4, 8) if interval or _single_target_grid else (4, 8))):
         raise ValueError('native_sampling_scale must be an integer '+('1, 2, 4 or 8' if interval else '4 or 8'))
     try:
         import pymupdf as fitz
@@ -365,7 +367,7 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                     raise PdfImageNativeError('Native Matte sampling requires 8-bit DeviceRGB and an 8-bit mask without Decode changes')
             if image.w <= 0 or image.h <= 0 or image.w*image.h > 64_000_000:
                 raise PdfImageNativeError('Native image dimensions exceed rendering budget')
-            if interval:
+            if interval or _single_target_grid:
                 self.interval_resource_bytes += image.w*image.h*(image.n + (1 if image.mask else 0))
                 if self.interval_resource_bytes > 64_000_000:
                     raise PdfImageNativeError('Image interval decoded resource byte budget')
@@ -517,6 +519,10 @@ def _render_native_pdf_paint(sheet, bboxlog, paint_seqno, *, source_transform,
                         'exact_group_decomposition_claimed': False,
                         'group_sampling_scope': 'original native callbacks; neutral page root plus at most one RGB child',
                         'mupdf_version': fitz.VersionFitz})
+    if _single_target_grid:
+        receipt.update(single_image_target_grid=True, global_device_grid=_global_device_grid,
+                       device_bbox=device_bbox, exact_group_decomposition_claimed=False,
+                       rgb_alpha_error_bound=None)
     if allow_native_matte_sampling:
         receipt.update(required_full_figure_visual_review=True,
             matte_sampling_rgb_alpha_error_bound=None,
@@ -564,3 +570,21 @@ def render_native_pdf_image_interval(sheet, bboxlog, paint_seqnos, *, source_tra
         source_bounds=source_bounds, user_clip_pdf=user_clip_pdf,
         native_sampling_scale=sampling_scale, _image_seqnos=paint_seqnos,
         _global_device_grid=global_device_grid)
+
+
+def render_native_pdf_image_target_grid(sheet, bboxlog, paint_seqno, *, source_transform,
+                                       source_bounds, user_clip_pdf, sampling_scale,
+                                       allow_native_rgb_group_sampling=False):
+    """Sample one source occurrence on the integral global target grid.
+
+    The explicit RGB-group opt-in retains the existing neutral page root plus
+    at most one Normal/unit-alpha RGB child policy. Original group, clip, mask
+    and color callbacks are retained. Per-occurrence assets do not establish
+    shared-group decomposition or any general RGB/alpha error bound.
+    Group-free interval admission and ordinary 4x/8x sampling are unchanged.
+    """
+    return _render_native_pdf_paint(sheet, bboxlog, paint_seqno,
+        source_transform=source_transform, source_bounds=source_bounds,
+        user_clip_pdf=user_clip_pdf, native_sampling_scale=sampling_scale,
+        allow_native_rgb_group_sampling=allow_native_rgb_group_sampling,
+        _global_device_grid=True, _single_target_grid=True)

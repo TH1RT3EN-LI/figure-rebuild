@@ -201,3 +201,29 @@ This is a finite renderer procedure. It does not prove universal RGB/alpha
 equivalence, group decomposition, font identity or application playback.
 Transparent asset edges and the complete scene require matched-scale visual
 review. The delivered PPT media, geometry and editability remain unchanged.
+
+## Explicit single-image RGB group grids
+
+`build --artifact-image-source-rgb-groups request.json` selects version 5.
+Use the version-4 request format with the additional exact field
+`"group_sampling_policy": "native-neutral-root-plus-one-rgb-child-v1"`.
+Each recipe must contain exactly one original image paint. It opts into the
+existing source renderer's bounded neutral page root and optional one RGB
+child group: normal blend, unit opacity, no knockout, and the already admitted
+RGB color programs. Other group nesting, external masks, overprint and Matte
+remain unsupported. Version 4 keeps its group-free interval admission.
+
+The original group, clip, image and attached mask callbacks are retained while
+that single occurrence is sampled on the complete canvas's target grid. Its
+declared local 4x/8x replay must still match the actual embedded media bytes
+exactly; every native picture, frame and mixed paint identity remains bound.
+Package, source, decoded-resource and combined delivery/target budgets are
+unchanged. Output review repeats the group admission, media replay and all
+three samples from the frozen source PDF.
+
+Sampling separate images does not establish equivalence to composing the
+complete original shared group. Receipts explicitly retain
+`shared_group_split_unverified: true`, no general RGB/alpha bound, and required
+whole-figure visual review. An exhaustive bound measured on a selected finite
+figure must be reported as that observation, with its source and sample hashes;
+it must not become an admission rule or a universal composition claim.

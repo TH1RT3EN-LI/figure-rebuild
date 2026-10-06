@@ -85,7 +85,7 @@ class OutputReviewChecks(unittest.TestCase):
         pptx = self.run / 'validated-output/reconstruction.pptx'
         pic, rel, media = '', '', None
         source_request = None
-        if version == 4:
+        if version in (4, 5):
             import pymupdf as fitz
             from figure_rebuild.pdf_image_render import render_native_pdf_image_interval
             from PIL import Image
@@ -99,6 +99,9 @@ class OutputReviewChecks(unittest.TestCase):
             source_request={'schema_version':1,'source_pdf':{'path':source_pdf.name,'sha256':digest(source_pdf.read_bytes())},
                 'page_index':0,'source_transform':[1,0,0,1,0,0],'user_clip_pdf':[0,0,200,100],
                 'objects':[{'id':'photo','paint_seqnos':[0],'source_bounds':[1,1,11,11],'delivery_sampling_scale':4}]}
+            if version == 5:
+                from figure_rebuild.artifact_source_image_preview import RGB_GROUP_POLICY
+                source_request['group_sampling_policy'] = RGB_GROUP_POLICY
             with fitz.open(source_pdf)as doc:
                 page=doc[0];media=render_native_pdf_image_interval(page,page.get_bboxlog(),[0],
                     source_transform=[1,0,0,1,0,0],source_bounds=[1,1,11,11],user_clip_pdf=[0,0,200,100],
@@ -116,12 +119,12 @@ class OutputReviewChecks(unittest.TestCase):
                    '<a:avLst/></a:prstGeom></p:spPr></p:pic>')
             rel = '<Relationship Id="image" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/image" Target="../media/photo.png"/>'
             scene = json.loads((self.run / 'resolved-scene.json').read_text()); scene['objects'] = [{'id':'photo','kind':'image'}]
-            if version in (3,4): scene['canvas'] = {'width': 200, 'height': 100}
+            if version in (3,4,5): scene['canvas'] = {'width': 200, 'height': 100}
             self.write_json(self.run / 'resolved-scene.json', scene)
         with ZipFile(pptx, 'w') as z:
             z.writestr('ppt/slides/slide1.xml', f'<p:sld xmlns:p="{NS["p"]}" xmlns:a="{NS["a"]}" xmlns:r="{NS["r"]}"><p:cSld><p:spTree><p:nvGrpSpPr/><p:grpSpPr/>{pic}</p:spTree></p:cSld></p:sld>')
             z.writestr('ppt/slides/_rels/slide1.xml.rels', '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships">'+rel+'</Relationships>')
-            if version in (3,4): z.writestr('ppt/presentation.xml', f'<p:presentation xmlns:p="{NS["p"]}"><p:sldSz cx="1905000" cy="952500"/></p:presentation>')
+            if version in (3,4,5): z.writestr('ppt/presentation.xml', f'<p:presentation xmlns:p="{NS["p"]}"><p:sldSz cx="1905000" cy="952500"/></p:presentation>')
             if media is not None: z.writestr('ppt/media/photo.png', media)
         delivery = json.loads((self.run / 'delivery.json').read_text())
         Path(delivery['output']).write_bytes(pptx.read_bytes())
@@ -131,11 +134,13 @@ class OutputReviewChecks(unittest.TestCase):
         config['artifact_image_preview_version'] = version
         if version == 3: config['artifact_image_shared_grid'] = {'schema_version': 1, 'groups': [{'objects': [{'id': 'photo', 'window': [5,5,15,15]}]}]}
         if version == 4: config['artifact_image_source_sampling'] = source_request
+        if version == 5: config['artifact_image_source_rgb_groups'] = source_request
         self.write_json(self.run / 'build-config.json', config)
         d = prepare_image_preview(self.run / 'validated-output/reconstruction.pptx',
                                   json.loads((self.run / 'resolved-scene.json').read_text()), version=version,
-                                  shared_grid=config.get('artifact_image_shared_grid'), source_sampling=source_request,
-                                  asset_root=self.run/'assets' if version == 4 else None)
+                                  shared_grid=config.get('artifact_image_shared_grid'), source_sampling=source_request if version == 4 else None,
+                                  source_rgb_group_sampling=source_request if version == 5 else None,
+                                  asset_root=self.run/'assets' if version in (4,5) else None)
         definition = self.run / 'artifact-image-preview.json'; self.write_json(definition, d)
         audit = json.loads((self.run / 'render-audit.json').read_text())
         audit['evidence']['image_preview_definition'] = review._binding(definition)
@@ -251,6 +256,51 @@ class OutputReviewChecks(unittest.TestCase):
             self.write_json(self.run / 'delivery.json', delivery)
             with self.subTest(provenance=provenance), self.assertRaisesRegex(ValueError, 'unrequested|not requested'):
                 review.prepare_output_review(self.run)
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency')
+    def test_source_rgb_group_preview_requires_explicit_version_and_bound_source(self):
+        self.add_image_preview_provenance(version=5);record=review.prepare_output_review(self.run)
+        self.assertIn('image_sampling_source_pdf',record['bindings']);self.assertFalse(record['model_review']['performed'])
+        config=json.loads((self.run/'build-config.json').read_text());config['artifact_image_preview_version']=4
+        self.write_json(self.run/'build-config.json',config)
+        with self.assertRaisesRegex(ValueError,'version-4|version-5'):review.prepare_output_review(self.run)
+
+    def add_native_svg_provenance(self):
+        from figure_rebuild import native_svg_preview as native
+        if __package__:
+            from .test_native_svg_preview import fixture
+        else:
+            from test_native_svg_preview import fixture
+        from PIL import Image
+        self.add_preview_provenance();files,scene=fixture();ppt=self.run/'validated-output/reconstruction.pptx'
+        with ZipFile(ppt,'w')as z:
+            for name,data in files.items():z.writestr(name,data)
+        for name in ['manifest-snapshot.json','resolved-scene.json']:
+            old=json.loads((self.run/name).read_text());old.update(canvas=scene['canvas'],objects=scene['objects']);self.write_json(self.run/name,old)
+        config=json.loads((self.run/'build-config.json').read_text());config.update(preview_backend='native-svg',native_svg_preview_version=1);self.write_json(self.run/'build-config.json',config)
+        audit=native.render(config);previews={}
+        for scale in [1,2,4]:
+            path=self.run/f'preview-{scale}x.png';previews[f'preview_{scale}x']={**review._binding(path),'width':100*scale,'height':80*scale,'scale':scale}
+        smooth=self.run/'preview-smooth-1x.png';Image.open(self.run/'preview-4x.png').resize((100,80),Image.Resampling.LANCZOS).save(smooth)
+        previews['preview_smooth_1x']={**review._binding(smooth),'width':100,'height':80,'scale':1,'derivation':dict(source_role='preview_4x',source_sha256=previews['preview_4x']['sha256'],kernel='lanczos3',target_size=[100,80],is_raw_preview=False)}
+        audit.update(schema_version=1,preview_backend='native-svg',input_pptx=review._binding(ppt),previews=previews);self.write_json(self.run/'render-audit.json',audit)
+        delivery=json.loads((self.run/'delivery.json').read_text());Path(delivery['output']).write_bytes(ppt.read_bytes());delivery.update(sha256=digest(ppt.read_bytes()),preview_backend='native-svg',render_audit_sha256=review._binding(self.run/'render-audit.json')['sha256']);self.write_json(self.run/'delivery.json',delivery)
+        return audit
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency')
+    def test_native_svg_review_replays_actual_paths_and_raw_pixels_with_acceptance_pending(self):
+        self.add_native_svg_provenance();record=review.prepare_output_review(self.run)
+        self.assertIn('native_svg_definition',record['bindings']);self.assertIn('native_svg_source',record['bindings'])
+        self.assertEqual(record['user_acceptance'],{'status':'pending'});self.assertFalse(record['model_review']['performed'])
+
+    @unittest.skipUnless(importlib.util.find_spec('pymupdf'), 'optional PyMuPDF source dependency')
+    def test_rebound_native_svg_pixel_and_definition_tampering_cannot_pass_review(self):
+        audit=self.add_native_svg_provenance();path=self.run/'preview-4x.png'
+        from PIL import Image
+        image=Image.open(path).convert('RGB');image.putpixel((100,100),(0,255,0));image.save(path)
+        audit['previews']['preview_4x'].update(review._binding(path));audit['previews']['preview_smooth_1x']['derivation']['source_sha256']=audit['previews']['preview_4x']['sha256']
+        self.write_json(self.run/'render-audit.json',audit);delivery=json.loads((self.run/'delivery.json').read_text());delivery['render_audit_sha256']=review._binding(self.run/'render-audit.json')['sha256'];self.write_json(self.run/'delivery.json',delivery)
+        with self.assertRaisesRegex(ValueError,'preview pixels differ'):review.prepare_output_review(self.run)
 
     def add_preview_provenance(self):
         from PIL import Image

@@ -31,7 +31,7 @@ class BuildInputChecks(unittest.TestCase):
             run.assert_not_called();self.assertFalse((self.job/'build').exists())
 
     def test_explicit_native_base_and_unknown_backend_fail_before_runtime(self):
-        for backend, base in [('libreoffice', 'missing.pptx'), ('libreoffice-pdf', 'missing.pptx'), ('libreoffice-pdf-rgb', 'missing.pptx'), ('libreoffice-pdf-photos', 'missing.pptx'), ('auto', None)]:
+        for backend, base in [('libreoffice', 'missing.pptx'), ('libreoffice-pdf', 'missing.pptx'), ('libreoffice-pdf-rgb', 'missing.pptx'), ('libreoffice-pdf-photos', 'missing.pptx'), ('native-svg','missing.pptx'), ('auto', None)]:
             self.args.preview_backend = backend; self.args.base = base
             with patch.object(cli, 'runtime') as runtime:
                 with self.assertRaises(ValueError): cli.build(self.args)
@@ -143,6 +143,22 @@ class BuildInputChecks(unittest.TestCase):
         self.args.artifact_image_shared_grid=str(path)
         with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'one explicit'):cli.build(self.args)
         runtime.assert_not_called()
+
+    def test_source_rgb_group_policy_freezes_distinct_version_and_source_bytes(self):
+        from figure_rebuild.artifact_source_image_preview import RGB_GROUP_POLICY
+        source,path,request=self.source_image_request();self.args.artifact_image_source_sampling=None
+        request['group_sampling_policy']=RGB_GROUP_POLICY;cli.save(path,request);self.args.artifact_image_source_rgb_groups=str(path)
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],5);self.assertEqual(config['artifact_image_source_rgb_groups'],request)
+        self.assertNotIn('artifact_image_source_sampling',config);self.assertEqual((self.job/'build/run-001/assets'/source.name).read_bytes(),source.read_bytes())
+
+    def test_native_svg_explicit_backend_and_version_freeze_without_other_preview_policies(self):
+        self.args.preview_backend='native-svg'
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run')as command,redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text());self.assertEqual(config['native_svg_preview_version'],1)
+        self.assertNotIn('artifact_stroke_preview_version',config);self.assertNotIn('native_pdf_preview_version',config)
+        self.assertTrue(any('native_svg_preview'in call.args[0]for call in command.call_args_list))
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())
