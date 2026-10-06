@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T00:58:15.512291+00:00",
+  "updated_at": "2026-10-06T01:39:49.546777+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -59207,10 +59207,10 @@
     {
       "figure_id": "ccf-2022-09-f01",
       "issue_id": "ccf-2022-09-f01-SOURCE-OUTLINE-TEXT-001",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "major",
       "description": "129 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
-      "latest_verified_attempt": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/build/run-001",
+      "latest_verified_attempt": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001",
       "evidence": [
         {
           "audit_relative_path": "reports/remaining-153-001/ccf-2022-09-f01/output-review.json",
@@ -59255,7 +59255,1334 @@
       ],
       "output_review": "source-regeneration/simgcl-maintained-source-001/output-review.json",
       "user_acceptance": "pending",
-      "resolution": "129 source glyphs have been restored as22 editable whole-text spans with source Calibri faces and baselines; source literal audit and actual final PPT readback pass. Automatic relation/formula recognition remains open; this composite finding is only partially resolved."
+      "resolution": "SimGCL Figure1 source outlined-text finding closes in finite model visual review. The older zero-live description is retained in history; the reviewed intermediate had22 manually confirmed whole spans. Its same176 graphical objects now accompany129 automatically source-bound ordinary Unicode native text objects containing all133 original encoded characters, including four source spaces. No expected label strings, PUA or whole-word glyphs are supplied. All129 source glyph occurrences and22 source spans bind uniquely to actual embedded font handles/GIDs/UCS/full f32 matrices. Both actual original TrueType programs are reencoded as job-local aliases without changing glyph contours, advances or hhea. Every original used UCS agrees directly with the original SFNT cmap/GID;36 used source/native pairs preserve exact current native normalized contours and advances. Source-to-derived controls/advances are exact as well. This verifies current used ink, not full original family/unseen editing, raw complete program or hinting identity. All214 source paint types/bboxes/order, the original isolated DeviceRGB root and nonisolated neutral child group at alpha1/blend0/no knockout, inactive overprint, absence of masks/patterns,129 complete glyph contexts and258 active full-glyph clip proofs replay. All15659 actual original source/SVG glyph controls satisfy unchanged0.001canvas-px guard, maximum0.000098004827px. Actual exported133 Unicode characters, source eight-bit red/black/dark-gray paint and original normalized used font ink are independently bound to actual exported font bytes and GIDs. Current origin residuals0.071129px horizontal and0.365002px vertical are separately recorded; no source physical pixel/filter or hinting equality is inferred. All176 other paths retain exact actual native properties and painter order from the reviewed22-live-text parent. Fifty-five independent native fill receipts replay;1282 original graphic controls satisfy unchanged0.001px, maximum0.000101169554px. All three graph clusters and their original solid/dashed edges, rounded cards, grid cells including source0.2alpha, two discs and ten arrow paths remain intact. A finite flat source/native paint-order interpreter independently segments the133 source/actual Unicode occurrences into the same22 readings using real glyph advances, origins, em and paint/font tiers. Original source span boundaries, dictionary or expected words are not parser inputs. Four originally encoded spaces remain encoded; no extra word spaces are invented. A finite filled-arrow reader independently recovers all ten source/native heads, tails and initial tangents, including two oblique shafts and the three-leg right U-bent shaft. It reads the real unique short tail cap and shortest triangular base, retaining actual cap skew, nonmedian tip offsets and unequal head height/base. Four false perfect-symmetry/rectangle/six-width-template probes426..429 are retained as refused; source/candidate geometry and the fixed0.001 coordinate guard were never changed. Source/current ports agree at maximum0.000046924935px. Independent source and actual native geometry inventories recover11 workflow nodes: three gray graph clusters, each with eight oval members and11 original undirected edges, three four-cubic rounded encoder cards, three five-horizontal/five-vertical grids with44 originally filled cells, and two unlabeled discs. The ten directed relations use actual initial/terminal tangents, normal projections and a fixed one-original-source-em distance window11.196180343628px. Graph gray-edge membership uses a unique bounding-box window of one current oval radius plus half its actual stroke width; it is not a nearest-node choice or exact circular-intersection proof. Every card word has full cubic containment. Three card labels and three input-edge labels are recovered automatically from actual source/native characters. All source/current node IDs, types, card/edge labels and relations agree; node bounds pass0.001px at maximum0.000101169554px. Thirteen other original encoded readings, including red marks and task/loss words, remain independently read and deliberately unattached; loss-disc names and joint-task meaning are not invented from proximity. Eleven refusal probes cover ambiguous actual word gaps/baselines, degenerate/missing/duplicate heads, duplicate gray ellipse and directed target, duplicate card word/grid line, and current materialized-scene real Unicode change/deletion. Geometry inventory/node/arrow input reversal and all ten arrow contour/winding reversals preserve results. Text reading explicitly consumes original native paint order. All16 source/accepted-manual-parent/new-native comparison images were actually inspected: whole1x, complete2x, all overlapping4x tiles and both complete4x workflows. Source labels, seven red marks, bold/regular styles, baselines, arrows, shared destination, grids/colors/alpha, graph states and cards retain the reviewed source content and appearance. Standard source-content PASS covers22 source-bound encoded literals only; standard formula/connection arrays remain empty and source-inventory remains NOT_PROVIDED. Finite text/typed-workflow readings are hash-bound separate read-only sidecars, not arbitrary OCR/topology, native equations/connectors or automatic task-meaning inference. Both aliases remain unembedded and global font delivery stays open; full family/hinting/unseen Unicode, PowerPoint/WPS editing and user acceptance are pending. Frozen024 public runtime and source/resource guards are unchanged. Earlier1327 Python/installed tests with8 optional skips and byte-bound67 CPU Node tests remain their actual existing runs. Exact previously pushedeaf7373head has16 successful GitHub checks. All original sources, intermediate manual build and failed automatic geometry probes are preserved with hashes.",
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-06T01:39:49.546777+00:00",
+          "previous": {
+            "figure_id": "ccf-2022-09-f01",
+            "issue_id": "ccf-2022-09-f01-SOURCE-OUTLINE-TEXT-001",
+            "status": "open",
+            "severity": "major",
+            "description": "129 source glyphs remain paths and final PPT has zero live text boxes. Automatic source-content and semantic reports are NOT_PROVIDED. Keep source text editability and automatic semantics separate from repaired visible typography; no text recognition or native live-text claim.",
+            "latest_verified_attempt": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/build/run-001",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-09-f01/output-review.json",
+                "sha256": "7d4cfcfe8700a35bf60282192fcd1a9214f5c820cd20aa135a2033621d8c6b4d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-09-f01/native-readback.json",
+                "sha256": "b3c36d70798d260ae0666c7194405c2c793f3744907dcf7382f83f5fed021f9d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-09-f01/source-pdf-4x.png",
+                "sha256": "babc6bbdf3351a8a47fc56decc491401400a3c7b373d3b095a794752444a5f95"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-09-f01/all-labels-source-final-4x.png",
+                "sha256": "2c6d95bb11a027a49109709ac892fff05db19439d054667139848b482c2f25f6"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/source-evidence/text-recovery.json",
+                "sha256": "6ba4755d51f8acd839092e6df90365e3c1ffa16649a94961560d09f75270d3ed"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/font-profile.json",
+                "sha256": "7bfe2770844da386e16e4e71fa6e90715228b885d60f7aaca3392fb132bb55b0"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/build/run-001/output-review.json",
+                "sha256": "7d4cfcfe8700a35bf60282192fcd1a9214f5c820cd20aa135a2033621d8c6b4d"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/build/run-001/manifest-snapshot.json",
+                "sha256": "7fb290d7c75e3d1ea3940600f95e04a069ac5149a3ceb95d6f253d44c7238fc0"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-live-text-002/jobs/ccf-2022-09-f01/build/run-001/render-audit.json",
+                "sha256": "b89d0212fe8c16dffbe2d1cc856e41b9da173458ca304c3fa0ed2a8d1e585ae1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FREEZE-002.json",
+                "sha256": "96f1ec89de56725a9303b6c3c288cf28f7d9ec070bfc99aa8390fbc12d972fab"
+              }
+            ],
+            "output_review": "source-regeneration/simgcl-maintained-source-001/output-review.json",
+            "user_acceptance": "pending",
+            "resolution": "129 source glyphs have been restored as22 editable whole-text spans with source Calibri faces and baselines; source literal audit and actual final PPT readback pass. Automatic relation/formula recognition remains open; this composite finding is only partially resolved."
+          }
+        }
+      ],
+      "latest_reviewed_candidate": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001",
+      "candidate_selected": true,
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-426.json",
+          "sha256": "63255c81c80a1cdce7e14bf663afeff294a602e239cdc8afae01aec373153c02"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-427.json",
+          "sha256": "d1f103e1343831d90f41b5db6f0f086a1cef7aa323ab7a483955756df96492d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-428.json",
+          "sha256": "99a203cc523fd2dad2f576a87a375f34836a8ae1b2e5949d6aef38412b169507"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-429.json",
+          "sha256": "6bccf050b73d6efd7363954593d65f41c4e34c57f9dcae2c5c06e4ae8e23580a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-ARROW-PORTS-430.json",
+          "sha256": "b9198d0cee602c2de722be501b9174af4b85bc770ba0f3a009dd58fdea146a0c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-REVIEW-RESULT-438.json",
+          "sha256": "ab0c3b38c216bf0b17eefee92b78bdcdb20c22a7db443d4a87420d4a98723803"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-REVIEW-RETAINED-FAILURE-436.json",
+          "sha256": "acc20e11fd952e04aa1e4e26dbefb96c421267c35318f9e699b066eaab66b24c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-VISUAL-438.json",
+          "sha256": "bd0e389b9bfd61be143ee3938dff764359a4468ddd7722ad313b43c88fb5b0a9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-READING-NEGATIVES-433.json",
+          "sha256": "00c73397f844e02d155fe383f70ae3fcbac2e98b968df57abe2325e0a9d0a505"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORD-LAYOUT-425.json",
+          "sha256": "7250cf75c2a6bf2fa821c986cb9ac16c9fe238c362286c6a6d12d79c193ff309"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORKFLOW-431.json",
+          "sha256": "f6f12debc92d460064e95ef85af9b178650e61a12789e501f00992766d5924f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORKFLOW-432.json",
+          "sha256": "a622e4b9a18619eb92965c4ebd14c2a3806860bc25858e25b5183a6f01fa4074"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-FONT-DERIVATION-418.json",
+          "sha256": "7fa338a6ce40c26a475ac704f7613741abea3c43b8c4543ed7011309e22a0561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-SOURCE-GRAPHICS-420.json",
+          "sha256": "e409983b8d49bbc473c643ffc4c2126218a3128a9453f5c3ee48948303033252"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-SOURCE-INPUTS-416.json",
+          "sha256": "f9cadf67c49068d24b96da85ff8162428799cc90bc8c860ddf785d4826c5c2b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-BUILD-419.json",
+          "sha256": "2dea6079060a9e8f321b78559d53c7ab5560290b5d2539c037e787cec25a657a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-PROOF-421.json",
+          "sha256": "8bb65beabd762888ae366932e5f270393eeb6a40ea4f9982ad65c022974faf99"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-READBACK-424.json",
+          "sha256": "6f8fa99fa0a6eab648050b7b377c9099dea0d2603e6179b18e7c2ec39ddb43bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-SOURCE-GLYPH-CONTEXT-417.json",
+          "sha256": "bf2301f4c908a749c0c9ef026f4499822ff6af284f8eac8eba464a1076fb5eaf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SIMGCL1-UNSUPPLIED-SOURCE-INVENTORY-REPLAY-437.json",
+          "sha256": "9d106c40a1cedf35d5450faf6c13022eef0c71f965c65cef26414b4ef1ecc0b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-simgcl1-complete-workflow-435.json",
+          "sha256": "24c900c8d316e19a16d98772408138b6b1f860db855bf4ac4203a875574f4157"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/actual-view-names-simgcl1-native-unicode-423.json",
+          "sha256": "3af1643fe20c897a57c231998f7b3520e8457fa3784dda66c6a7c06ed10d28e5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+          "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/FREEZE-024.json",
+          "sha256": "88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json",
+          "sha256": "92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json",
+          "sha256": "aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json",
+          "sha256": "b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/packages-font-unicode-325/proof.json",
+          "sha256": "d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/github-checks-eaf7373-001.json",
+          "sha256": "a2579d3d5988272e7a8ed894cd4422a68a3a542bd6efd93e523930553bd827e3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/manifest.json",
+          "sha256": "cd93aed20a378b3695f46734beaf6148e01ed50116628552b5d0766111726561"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/figure.pptx",
+          "sha256": "e4caa22379fac7ac1f3a8025f76693d580fb2e3d3d2f4fbd370b9f5c1a6fa0c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/font-profile.json",
+          "sha256": "260a2d4aa075f8c78dd59789838722bdb09f6c02f23d114bb117af52cd393160"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/.allocation.lock",
+          "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-fonts/0-original.font",
+          "sha256": "4b75ed95cb3fc680252a909d24a40b87c2a83230908a419c2471bba467d2acc0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-fonts/1-variant-2.ttf",
+          "sha256": "ad41e418e73fb038a05a04759261fc42dc9540382dc8546c31418d1ec7c6a776"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-fonts/0-variant-1.ttf",
+          "sha256": "3ce38da26e2f2a0a5768aac5146e03e0bb77164163a2607c1bb17bcbb4baeb8e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-fonts/1-original.font",
+          "sha256": "34eabc30158227043c250fbe74b3ccb0a01fa32f710b5e714e20795fbab176a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/sources/original.png",
+          "sha256": "8b242a7d7fbb56731586cb3dd08442b2215b5fe9ad2e9d7839b3eeca5791e00e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/01-review.json",
+          "sha256": "f235a2fb1862a5c30940b3e659110b5e78e7cbbc9fe28cf64ba6f261d4da0052"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/01-review.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/02-build.json",
+          "sha256": "302c3943165c2e26994fbc5301098185845814cbe80d94db4620bf9e4147326c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/02-build.stdout",
+          "sha256": "bb2577143672a47da0f84eed67fa5de36649764111eab363ea6a3fa2ed0f7869"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/02-build.stderr",
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/commands/01-review.stdout",
+          "sha256": "4bb90bb48560e2392e33760c2d788a89d9f22a36003f6fe34a366f6d7f56681c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-reading-provenance.json",
+          "sha256": "5c211f31ac0e6dc6c3cea99b4ad252b7af9e3ff1159008257210e253658cf50f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-arrow-ports-source.json",
+          "sha256": "c88170b215ea4ec6d931738011ee72c0028438395d03af75393b549028e0bec3"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/pdf-native-paint-context.json",
+          "sha256": "9f704b7e249d3c60471094c71dea2e005dcb0fa01345abb4652703d29ef4c107"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-text-layout-source.json",
+          "sha256": "a953917560ed53a52b729b2f1083ec50e8c14301195152ba7ab13d240e1757a0"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/source.pdf",
+          "sha256": "2694e7267f0c37869f1a62418f348539a202d41121f231e347e19b404c57447c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/assignment.json",
+          "sha256": "4a3e89a288569610f050db52d4c032e8f2c7a655cc7827f2ead5e77b09d405a5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-glyph-recovery.json",
+          "sha256": "df96858dde774db21a5954c17e050c8eee88e456d8821f254960b6658b720eff"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-arrow-ports-native.json",
+          "sha256": "ba0db94aa59a586abdb97c0244444fd8f3bcb0f0d8cb2b35eb46b9f8512631d2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/page-outlined.svg",
+          "sha256": "3a98aece4e4476f2ab10db2a4be0d1fb6e2d7d5d086f94fb720963411d5faf87"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-workflow-native.json",
+          "sha256": "083d3cfd6de10251b306178a64e1dd256d9835dc945b22831a98be66501c77d6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-text-layout-native.json",
+          "sha256": "3cd0eb71323edd1af6655123c9fa66c675ed60205873a16938a45140bfe4d7e2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/source-evidence/automatic-workflow-source.json",
+          "sha256": "3f81150bbe6727b94e6de3be9a6ade2e1bd607c126a8117348db8de6414ae611"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/artifact-authored.pptx",
+          "sha256": "344b2b9c1ef790a72829d039aaf10bfaf7e273ea2bfc8c891567132b19efa28f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/validation.json",
+          "sha256": "c9c3585f722deb14924e828657413189c0723aa5b16b85f5d10a7544efb56a38"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/delivery.json",
+          "sha256": "ddae3fb891b1e3a928ef855871d602aedaaa2470b3a11eab6c0bebf59807a970"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/preview-smooth-1x.png",
+          "sha256": "3cbe5c6fbb58a9b7b217829dcfb3ff3de4f1ac80a53ef392cfdd6da5f1ee11cd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/artifact-authored.pptx.inspect.ndjson",
+          "sha256": "9bbbd2a46e1b6e37cf84f6a6b7d056780345a40ffa36dc2cb53ce5c32a33ced7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/font-audit.json",
+          "sha256": "c86e19aa90e5628ca9a85ca61e76b84cc54f259d64e81400cea4a8fd53f0eafd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/semantic-audit.json",
+          "sha256": "bde15498adae56cba3bcdb6b81b55c05a6873fbf5948e432a7b5c4364f94a3e6"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/object-map.json",
+          "sha256": "5d3b187dd60045509c22202ceb66b0bb920e1d375328bb09f4d0c6581c405b14"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/source-content-audit.json",
+          "sha256": "7cfd85d76a3101cab746c396e8b32aa12c3be48c6cc4bb977037b62e75c506fe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/comparison.png",
+          "sha256": "e65c4b2ef386e84cb31aa3c7c5251bd8a1fe636e77f45d5f8d228b5bcdc77635"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/manifest-validation.json",
+          "sha256": "610e64b9d4b4db70f8f77a1545ff19abc63a267b970f44012d500d4ff6ea20be"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/reconstructed.svg",
+          "sha256": "77380e03ca13240e69e2d40a5c296e829a30378e37d5aaac2a361aebba5ac374"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/preview-2x.png",
+          "sha256": "7d6b6d759385cbd10bb4aebc3e03debde3bb8153a4732fdc82b635cba19c2a09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/asset-snapshot.json",
+          "sha256": "9015bf2221ef043b22f4d0d1b0bd686e779926f3bca39d9b55980bf988d22a1e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/preview-1x.png",
+          "sha256": "f9c8d3c03d35906faac39b03a974f14d59f159fa3a131e05771c624738ecac5d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/delivery-candidate.json",
+          "sha256": "cf8ef3d8824ba50bf87cc723e65600c71eaab373eed3327e006aa197a54b61eb"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/editability.json",
+          "sha256": "587a1752863dd0f25640ccaea46b43f101f70b5677c4ec32914b55316d4136cc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/output-review-simgcl1-auto-live-438.json",
+          "sha256": "6bdbf6409893214f3df3cfbfdd6fb2dbc5239c520774298935fecc7833ff10e4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/resolved-scene.json",
+          "sha256": "cd93aed20a378b3695f46734beaf6148e01ed50116628552b5d0766111726561"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/comparison-metrics.json",
+          "sha256": "9f317a272b15d3aea7693974f8cb13e93c34977824d31cbf696c43480ba0c599"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/manifest-snapshot.json",
+          "sha256": "cd93aed20a378b3695f46734beaf6148e01ed50116628552b5d0766111726561"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/render-audit.json",
+          "sha256": "bf036eedb1ebcf510d6298a692668a6c94d5aa07e6640adcc2d434188e33eedf"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/preview-4x.png",
+          "sha256": "8aa6f016e09f62e7251a95c07f1222daff2dcec2790cabf1aab1f5d355c1bb9a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/build-config.json",
+          "sha256": "d340858e86796e915decc50a89ad602ed25620b914301337a18e108a56ab99f8"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/text-fit.json",
+          "sha256": "84e413b2db875d99a5d567dcbee8d2276033c7c07bfa877704d9d6563d1b3c5f"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/grouped-overlay.pptx",
+          "sha256": "e4caa22379fac7ac1f3a8025f76693d580fb2e3d3d2f4fbd370b9f5c1a6fa0c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/candidate.pptx",
+          "sha256": "e4caa22379fac7ac1f3a8025f76693d580fb2e3d3d2f4fbd370b9f5c1a6fa0c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/text-manifest.json",
+          "sha256": "0354b9dde70c7589e4f48583b4f6a2b14439482097401812d55ad8a63f031f31"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/comparison-scene.json",
+          "sha256": "2a080ae9dede5f9eba8a16c9f2eb962002af46571f536dd27d459b963c8f3962"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/italic.ttf",
+          "sha256": "d6d3c4862a8be2167086ede5cd1e604ccf0d60dd0c2a09ef2c024bded122ce0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/regular.ttf",
+          "sha256": "302af00d6054f4a66db5791d99d3ad379ca988575821e4ff8debcb8831682401"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/boldItalic.ttf",
+          "sha256": "be8f4b6d42135ef46ac977ba8f4b60ae2290be3b7d3ed458127b261361ee0489"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/bold.ttf",
+          "sha256": "aab86c0596452eda83b78a1332a50116789733986d9d9e597fa8509f950feb23"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/pdf-preview-receipt.json",
+          "sha256": "e3ad51d43d436badbbe05063b503bb97fd96e48cf90702bf5afc13c6fb83c4a2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts.conf",
+          "sha256": "40c8d1528d37eb50ba18f9a12d27aadcc668c1a18ff18541ce5dd456ed2365c7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/command-executable.bin",
+          "sha256": "3d585422d7cdddf9bcc954e7064da24c7e44d43508a5abaeb11de9d918d24f13"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/commands.json",
+          "sha256": "1303a84aa0335e5703dc640b0a387fba1f1a90a90359974468bdb59e35ecbf67"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/validated-output/reconstruction.pptx",
+          "sha256": "e4caa22379fac7ac1f3a8025f76693d580fb2e3d3d2f4fbd370b9f5c1a6fa0c5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/family-2/bold.ttf",
+          "sha256": "7b079e060327d5b0aae388d452cf8a377678c39f92970dbf6879b527d93bf67c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/fonts/family-1/regular.ttf",
+          "sha256": "8a9c50716453d19ba458c17e75b5ce5999b51f5a33936421910076872e6c7ff5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/pdf-png-1x/reconstruction.png",
+          "sha256": "f9c8d3c03d35906faac39b03a974f14d59f159fa3a131e05771c624738ecac5d"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/pdf-png-2x/reconstruction.png",
+          "sha256": "7d6b6d759385cbd10bb4aebc3e03debde3bb8153a4732fdc82b635cba19c2a09"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/png-1x/reconstruction.png",
+          "sha256": "cbc5b44c3b438c363d58f8a200ce1cc5337d18839e49dfe9b86e0fb650ce3acd"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/png-2x/reconstruction.png",
+          "sha256": "65b5494daacbd8aa8d908d70d2596d302738a6406bda90d496b49eb3828b889c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/pdf/reconstruction.pdf",
+          "sha256": "ac8fdbe8eac73f8b97e858682f6b32a71f6b60986b72c512697cfb0dc83e036e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/5.ttf",
+          "sha256": "7b079e060327d5b0aae388d452cf8a377678c39f92970dbf6879b527d93bf67c"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/1.ttf",
+          "sha256": "aab86c0596452eda83b78a1332a50116789733986d9d9e597fa8509f950feb23"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/4.ttf",
+          "sha256": "8a9c50716453d19ba458c17e75b5ce5999b51f5a33936421910076872e6c7ff5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/0.ttf",
+          "sha256": "302af00d6054f4a66db5791d99d3ad379ca988575821e4ff8debcb8831682401"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/2.ttf",
+          "sha256": "d6d3c4862a8be2167086ede5cd1e604ccf0d60dd0c2a09ef2c024bded122ce0b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/fonts/3.ttf",
+          "sha256": "be8f4b6d42135ef46ac977ba8f4b60ae2290be3b7d3ed458127b261361ee0489"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/font-cache/3bb09b1332873155da8449e1f723dc32-le64.cache-9",
+          "sha256": "0500fbef9ab5351fb5dc0cf6a3a77010bbef6ba72b9eff2b698babb3c01434e9"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/font-cache/1014e0761c8c2f9228cb2fe7ca799536-le64.cache-9",
+          "sha256": "27ec9c0260ba16e597ec898abcbc53b60c64e35c429483c4bee84a9ad00aac72"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/font-cache/57fa4769467ed2210e5dfc30e9ef5b58-le64.cache-9",
+          "sha256": "98d9dda19e549e676fcb3385ba5ace32ff79e16e281928f14347fa718bb65ba7"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/pdf-png-4x/reconstruction.png",
+          "sha256": "8aa6f016e09f62e7251a95c07f1222daff2dcec2790cabf1aab1f5d355c1bb9a"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/png-4x/reconstruction.png",
+          "sha256": "82854d88cc2e04218d17d5b3d2590ee4f3712d6ac7887960d27f003b358126bc"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-4x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-pdf/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-2x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/registrymodifications.xcu",
+          "sha256": "1307fdf66a9ef1137add5daafc6e9162f326d5b5af04bed5f1a2c5a6552ff713"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.sdv",
+          "sha256": "65365530165a871772e21962a5d7dda107d8d010f329bf59c878eabc3465bbe4"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/gallery/sg30.thm",
+          "sha256": "f1f24dff4f58a716033bcf96ad175d3436bff0e0a233ab09f6215973ed843fed"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/config/autotbl.fmt",
+          "sha256": "713229151490c66f043cb4865147c97458b4f33e4eb5f2bb4133c58cbe77041e"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio.odb",
+          "sha256": "c3dd4e9008be33cdede3abf822e9b748a201704adf95aad92ab894dd98b3fe85"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/autotext/mytexts.bau",
+          "sha256": "0838dcc50958a758b463c8c55d61c31dcfb11e06a9a22f8c0a921ef3e3480d43"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/basic/dialog.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/basic/script.xlc",
+          "sha256": "5b72c4cc5130eccab44cbfb91270befaeaf8ee7ab97cf205ee2abb582fa4a9e5"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/buildid",
+          "sha256": "35fc38a20e7add57313d298ec9cf5db3099d64dea016b2ff9af104da9e4f3cbe"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/uno_packages/cache/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbf",
+          "sha256": "aefc2bb614c2e307870405e0fd72f4a22cf794c396a73ce0551f18a478e80ed2"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/database/biblio/biblio.dbt",
+          "sha256": "3ab142231d8075fdd02c95a691ddce590e0f81450744cb87ca610fd06d75cac1"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/script.xlb",
+          "sha256": "80cb10b100053f6e0b26bb009a2b8ccbdedb761901680500a4736f7afbf1f959"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/dialog.xlb",
+          "sha256": "85c83411f1285a0d0d9b511a7ea7dd06d5ac9b97f90d286adaca084212e3fe80"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/basic/Standard/Module1.xba",
+          "sha256": "b434faf21386064e2e81af758f307ae8bea72c0cb6c8510d55b1bc1bb38f8612"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/lastsynchronized",
+          "sha256": "6b86b273ff34fce19d6b804eff5a3f5747ada4eaa22f1d49c01e52ddb7875b4b"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/tmp/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/shared/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.help.PackageRegistryBackend/backenddb.xml",
+          "sha256": "845041424286d5b794c11ff0a59d3df289dcb1567fb448ef0b85297108675b46"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/native-preview/profile-png-1x/user/extensions/bundled/registry/com.sun.star.comp.deployment.configuration.PackageRegistryBackend/backenddb.xml",
+          "sha256": "ac6f585621eb04b34549a95c99e015ad5810a4156e021df46c46731e7a087698"
+        },
+        {
+          "audit_relative_path": "source-regeneration/remaining-153-simgcl1-native-unicode-001/jobs/ccf-2022-09-f01/build/run-001/assets/sources/original.png",
+          "sha256": "8b242a7d7fbb56731586cb3dd08442b2215b5fe9ad2e9d7839b3eeca5791e00e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-arrow-ports-430/actual-native.json",
+          "sha256": "ba0db94aa59a586abdb97c0244444fd8f3bcb0f0d8cb2b35eb46b9f8512631d2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-arrow-ports-430/proof.json",
+          "sha256": "b9198d0cee602c2de722be501b9174af4b85bc770ba0f3a009dd58fdea146a0c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-arrow-ports-430/source.json",
+          "sha256": "c88170b215ea4ec6d931738011ee72c0028438395d03af75393b549028e0bec3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-readback-424/output-review-unperformed.json",
+          "sha256": "9cbff66a5fe771ed08c11c1f102703d88f6b7ac31939abdb76930d6752a68c13"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-readback-424/output-review-simgcl1-auto-live-438.json",
+          "sha256": "6bdbf6409893214f3df3cfbfdd6fb2dbc5239c520774298935fecc7833ff10e4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-readback-424/proof.json",
+          "sha256": "6f8fa99fa0a6eab648050b7b377c9099dea0d2603e6179b18e7c2ec39ddb43bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-proof-421/c17913f6fe3cfabb650f97ae300212f794bafc418b492cb72410027db5574023.font",
+          "sha256": "c17913f6fe3cfabb650f97ae300212f794bafc418b492cb72410027db5574023"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-proof-421/actual-native-font-trace.json",
+          "sha256": "fa636fe0334acffae07d5cfce85c6744fb23f1d427737d8bee9a7db96f9963f9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-proof-421/proof.json",
+          "sha256": "8bb65beabd762888ae366932e5f270393eeb6a40ea4f9982ad65c022974faf99"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-proof-421/b1fc6d8559fb7ad3cea0976d6cbbadf48acf2bbe85f5a6ef482e5c33202c7a65.font",
+          "sha256": "b1fc6d8559fb7ad3cea0976d6cbbadf48acf2bbe85f5a6ef482e5c33202c7a65"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-source-glyph-context-417/proof.json",
+          "sha256": "bf2301f4c908a749c0c9ef026f4499822ff6af284f8eac8eba464a1076fb5eaf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-432/actual-native-graphics.json",
+          "sha256": "5d736a76fd145b2a34ac3017eb600c0c91c76478a8061bc56325daffa39aa6b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-432/actual-native.json",
+          "sha256": "083d3cfd6de10251b306178a64e1dd256d9835dc945b22831a98be66501c77d6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-432/source-graphics.json",
+          "sha256": "86d3cfe67fd874528f0ba8dfc67898e042c1b4d3abf0a914066879509804334a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-432/proof.json",
+          "sha256": "a622e4b9a18619eb92965c4ebd14c2a3806860bc25858e25b5183a6f01fa4074"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-432/source.json",
+          "sha256": "3f81150bbe6727b94e6de3be9a6ade2e1bd607c126a8117348db8de6414ae611"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-derived-native-fonts-418/0-original.font",
+          "sha256": "4b75ed95cb3fc680252a909d24a40b87c2a83230908a419c2471bba467d2acc0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-derived-native-fonts-418/1-variant-2.ttf",
+          "sha256": "ad41e418e73fb038a05a04759261fc42dc9540382dc8546c31418d1ec7c6a776"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-derived-native-fonts-418/proof.json",
+          "sha256": "7fa338a6ce40c26a475ac704f7613741abea3c43b8c4543ed7011309e22a0561"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-derived-native-fonts-418/0-variant-1.ttf",
+          "sha256": "3ce38da26e2f2a0a5768aac5146e03e0bb77164163a2607c1bb17bcbb4baeb8e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-derived-native-fonts-418/1-original.font",
+          "sha256": "34eabc30158227043c250fbe74b3ccb0a01fa32f710b5e714e20795fbab176a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-word-layout-425/actual-native.json",
+          "sha256": "3cd0eb71323edd1af6655123c9fa66c675ed60205873a16938a45140bfe4d7e2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-word-layout-425/actual-native-characters.json",
+          "sha256": "382ab4fd91a4391ff803ff9cf9d1c053aaa4a2159a06befea2e194feaabf0773"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-word-layout-425/proof.json",
+          "sha256": "7250cf75c2a6bf2fa821c986cb9ac16c9fe238c362286c6a6d12d79c193ff309"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-word-layout-425/source.json",
+          "sha256": "a953917560ed53a52b729b2f1083ec50e8c14301195152ba7ab13d240e1757a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-word-layout-425/source-characters.json",
+          "sha256": "0e16b0c7e6bd1cafe226a1a0d3068aa1c8ed330d82c1729f8881c6c12488480e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-431/actual-native-graphics.json",
+          "sha256": "5d736a76fd145b2a34ac3017eb600c0c91c76478a8061bc56325daffa39aa6b0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-431/actual-native.json",
+          "sha256": "b001aee560cd9acec451b0c0eb2cfef8b556099382749bdc4938993c4233a440"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-431/source-graphics.json",
+          "sha256": "86d3cfe67fd874528f0ba8dfc67898e042c1b4d3abf0a914066879509804334a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-431/proof.json",
+          "sha256": "f6f12debc92d460064e95ef85af9b178650e61a12789e501f00992766d5924f3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-workflow-431/source.json",
+          "sha256": "e859878f82d3851281c0cb81a7f8c090516c22bbcdf96b51c751c4b3bf6b5c5f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-complete-workflow-galleries-434/full-workflow-source-4x.png",
+          "sha256": "b6c0bed9252372018ebf6edcf5122f46c211efe279b2120158f9b87c1e966d72"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-complete-workflow-galleries-434/full-workflow-actual-native-4x.png",
+          "sha256": "e39b1f8c807769d0bfc9e999a264411c097cbe05e537e57b8360f6c69df8fe88"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-complete-workflow-galleries-434/bindings.json",
+          "sha256": "48db1ede8f7a56ed53eacf7785d31754949437d9c225ac0ba8a87242c4ece5a6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-328-0.png",
+          "sha256": "53107cf892874cb9d9398c06bd69132bd14d0de463c5732a46326592b9e1c1fe"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-0-104.png",
+          "sha256": "652d8e9184c746644b625774411ed768b6a6fe653c7cc345d9ba11a131a72708"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-1x.png",
+          "sha256": "bf965efb60d1f75b5ffb1136d87739a58ccebd1912195a57f0989f261f847bfd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/source-1x.png",
+          "sha256": "8b242a7d7fbb56731586cb3dd08442b2215b5fe9ad2e9d7839b3eeca5791e00e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-328-104.png",
+          "sha256": "89d1ff5326839cd64e2ac4168703010903bae01f2117a9038999e88b68222f7f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-0-208.png",
+          "sha256": "50367628fac95e09976a037673e56bc858604ce32ef698e827da02e292fbc2df"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-2x-0-155.png",
+          "sha256": "493dde0eaece7097fce39b37eadbfccdeb806c9c3978681552fdc0ad94fb421f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-2x-246-0.png",
+          "sha256": "246bb2354eb3087549445420dc1c8a738b5ea4e002bc8acd048311898e7d4635"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-0-0.png",
+          "sha256": "b5802c014c49c23899bfcdec31b612c26f69920d1997ddb2709610ba235b68a7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-2x-0-0.png",
+          "sha256": "d1ca63140152860c7ba1139648917998c3a2402dd84516a2c4f78a1f5bdc3c39"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-164-104.png",
+          "sha256": "bdc6144718a4e5fa3c2ad2220789f28d29a12177661b8826f68f220204f3e47f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/source-2x.png",
+          "sha256": "8988683ae584b33c710f2b1c1091a5d01e484bc0dc056829b74f7cc6e3b6a0dd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-164-208.png",
+          "sha256": "1b45c37fc889534de70ea853b8fb08947b5857d42c36c6aa36c030de9c00069c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-164-0.png",
+          "sha256": "8d005486a63b541a26f838963bbedb1d08229283a2b7a927eab6296ee85041be"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-2x-246-155.png",
+          "sha256": "8d4c399d017aa72c01f91cf95a6085e6722469e0f7ee716027c9cdd7f6504435"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/whole-4x-328-208.png",
+          "sha256": "db1de44abbabe01a65b6d56d780d7fe4afe4afd299887390f8034b7de21d70c7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/source-4x.png",
+          "sha256": "babc6bbdf3351a8a47fc56decc491401400a3c7b373d3b095a794752444a5f95"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-unicode-galleries-422/bindings.json",
+          "sha256": "2cab71c244ce8db37a635356932af3cbae4d3e2091448f1434346c05073462d7"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/change_actual_live_character.json",
+          "sha256": "cb084eb125a83892cf28b5b66bc86579113e5a3efe287c09951e483354bdcc7d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_word_gray_zone_gap_0.10em.json",
+          "sha256": "c849d5ef7f6caf0cc7f376c55d2d803c692295c5b21551e19225bfffa57c1120"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_converging_directed_target_ambiguous.json",
+          "sha256": "676b18e6d9a8dfd669be32decf3fed794e62231d5364bda48a6af495934b4509"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_arrow_duplicate_head.json",
+          "sha256": "d08618b8b3c1f7a8e929504ceaecebb5ed8f7fde3520ac9e77663d83a4cb10a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/delete_actual_live_character.json",
+          "sha256": "43f830a203753e7640f63359a1d4e977689b2f9dc205bd6388ed2d69bdb81057"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/negatives.json",
+          "sha256": "acf8c90c10b111aef2d6b6709ac2f5ab5a5cf0ade95bffe6cb3f126869ae53db"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_card_word_candidate_duplicate.json",
+          "sha256": "dcc47d62c52f8a96b204dfd5741728f8dc4476f199c922a3fbdfbd0de4497053"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_grid_line_duplicate.json",
+          "sha256": "bdb0386b045a03134c8a8196ade2752c15b229535b7ad832657479b1c777f6d4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_arrow_missing_head.json",
+          "sha256": "bb53a90c61539ec79c8999734a81a549c3d6ba6b43cdd1391d8e5eba3a6891c2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_arrow_degenerate_head.json",
+          "sha256": "c6fa2c4f3e70ebfb1d815ad909314d78168ba81f9bbf823e3dbc7dc610f78817"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/proof.json",
+          "sha256": "00c73397f844e02d155fe383f70ae3fcbac2e98b968df57abe2325e0a9d0a505"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_word_ambiguous_baseline_0.20em.json",
+          "sha256": "df2e8f27e1c38b1cdfa9327b97667b8cd5ce5c62e8869e33f38b427a68a1b812"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-automatic-reading-negatives-433/actual_gray_graph_endpoint_duplicate_ellipse.json",
+          "sha256": "836b0dd2cdf99398d892e68a1bb7f8dc78de4e87fc3282702eb7697eef9f18d2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/1a46991cab3cef33679f7ecc7c59edeb4d09d6b0001510916bfe7d88480449bd.font",
+          "sha256": "1a46991cab3cef33679f7ecc7c59edeb4d09d6b0001510916bfe7d88480449bd"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/c9d0c32a5c22a24164d535766e2995455c86514c47910a4c36d4f434544537d3.font",
+          "sha256": "c9d0c32a5c22a24164d535766e2995455c86514c47910a4c36d4f434544537d3"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/06f74188a55ccf04727970d88d69e334304a9b7cf7d8f693d9e07792f13930b6.font",
+          "sha256": "06f74188a55ccf04727970d88d69e334304a9b7cf7d8f693d9e07792f13930b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/ca1dd8b67575d03d24f200e951e44b6ae51f1e4973d1e882fbad0fd3bc00ab52.font",
+          "sha256": "ca1dd8b67575d03d24f200e951e44b6ae51f1e4973d1e882fbad0fd3bc00ab52"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/df56d56ec35abee2f3c4855c5a652e60fabe02d2d7439cd5d87c8dfc46295e54.font",
+          "sha256": "df56d56ec35abee2f3c4855c5a652e60fabe02d2d7439cd5d87c8dfc46295e54"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/bc7830d7a8522f0ac821abd9809ea2022d495a934d6185d50347bd1fb5bfa5b5.font",
+          "sha256": "bc7830d7a8522f0ac821abd9809ea2022d495a934d6185d50347bd1fb5bfa5b5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/34eabc30158227043c250fbe74b3ccb0a01fa32f710b5e714e20795fbab176a0.font",
+          "sha256": "34eabc30158227043c250fbe74b3ccb0a01fa32f710b5e714e20795fbab176a0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/e937d11282c49c5f32fef99a9aa746debe4138059b6ebcd0c99c7cd19ecdab8e.font",
+          "sha256": "e937d11282c49c5f32fef99a9aa746debe4138059b6ebcd0c99c7cd19ecdab8e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/bbdb8270eed48f8ceb537a4e6cb7259f63fb49a8be436302176421e8e47bc747.font",
+          "sha256": "bbdb8270eed48f8ceb537a4e6cb7259f63fb49a8be436302176421e8e47bc747"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/4b75ed95cb3fc680252a909d24a40b87c2a83230908a419c2471bba467d2acc0.font",
+          "sha256": "4b75ed95cb3fc680252a909d24a40b87c2a83230908a419c2471bba467d2acc0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/ba376004b1c22aec2521c2348cdeb7c6f135debc14ecd4521370ae506257e478.font",
+          "sha256": "ba376004b1c22aec2521c2348cdeb7c6f135debc14ecd4521370ae506257e478"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/8d924312f6ce34ac023e0b471a124fdd7fc3d68b67ec3aeabbb5574983ed3cd2.font",
+          "sha256": "8d924312f6ce34ac023e0b471a124fdd7fc3d68b67ec3aeabbb5574983ed3cd2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/proof.json",
+          "sha256": "f9cadf67c49068d24b96da85ff8162428799cc90bc8c860ddf785d4826c5c2b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/58769f984023ab66ebbf2f408e2095f4478511f6f65f4a1f59ccbff84a527455.font",
+          "sha256": "58769f984023ab66ebbf2f408e2095f4478511f6f65f4a1f59ccbff84a527455"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/native-font-trace.json",
+          "sha256": "73e646be5e2ccce4d21c86f8b5b595e0067017985e8edf9bfd482c3f64a53dea"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/simgcl1-native-source-inputs-416/bc7a129d008a427ab20a10144820bed0e6535f2bbe3f80f7197ab455ca427e78.font",
+          "sha256": "bc7a129d008a427ab20a10144820bed0e6535f2bbe3f80f7197ab455ca427e78"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_simgcl1_auto_ledger439.py",
+          "sha256": "98eaa71e7066104e0cb96393bf31550f5b6f589f8a03b55d19015e277f8c98f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_word_layout425.py",
+          "sha256": "e985c9c58f316c32ef9db00bbd0277c025d43e0b981ea6194a7ed4650afc9f70"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_arrow_ports426.py",
+          "sha256": "df328f7898dde2129b07ee151456df129702eb26c93a2f75271a1dbec30e8ea6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_workflow431.py",
+          "sha256": "1c511a85589b84747dc1e4a77e3303c865e41d104ec3750c9ea343b4a6c690b2"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_arrow_ports429.py",
+          "sha256": "3d64a23cde10c493d970911246d8b80628514db4f652af018bf9f1850230aac8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_simgcl1_source_glyph_context417.py",
+          "sha256": "1bcd43cf877a7d14c2201c430c155ba80143aafc09d094fb2c4af7279ecd25f0"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_workflow432.py",
+          "sha256": "8ec4a6fc6893e50acfc04720d873ecc6a70c81ebcbaf180f87f335457eb2605a"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_arrow_ports427.py",
+          "sha256": "445b17a2df80603fecb60500fbbec272fc37f3671b68cedf0d316dfc0e3038db"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/derive_simgcl1_native_fonts418.py",
+          "sha256": "e2b076263bfb47109bd97b7b5dab83f6059ec2b8c5384544659c78efcf4c1cf6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_simgcl1_auto_live_review438.py",
+          "sha256": "c97effd57e08f0c400f48e8a833f0f4af0da3c6c924ffc180a87ff409a1daf43"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/readback_simgcl1_native_unicode424.py",
+          "sha256": "0e6c148694c829db49e071dabc6997e9721857a9885ea14eee4b068b3e101c4e"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/simgcl1_native_unicode_galleries422.py",
+          "sha256": "19614341bd9075d8463e8e008c76860b2b2c6362a4f4924475b420015d0a670f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_simgcl1_actual_views423.py",
+          "sha256": "2c3cdc52410b1cb13308ac007e6b18bac2c05705c9284802cb182e0b5de24e82"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_simgcl1_native_inputs416.py",
+          "sha256": "f13a9588ec1e3e08eafa0ed0ce32e17c7c7d5a7eaca761464eace2b39968c7b4"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/prove_simgcl1_native_unicode421.py",
+          "sha256": "1c1e7c5dabf84cd773d60190d0c21a50d995a8bb84f25469d15440444cd8087d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_arrow_ports428.py",
+          "sha256": "ec0f8ff147e8a6ff8588f7f58194778c907caa79b52de387e92cb734b465e835"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/build_simgcl1_native_unicode419.py",
+          "sha256": "ec1a8bb292b449d1230965a6e73354094ab5bd5e5b1c38fdd789793f03bf597d"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_reading_negatives433.py",
+          "sha256": "5fcc2165832f607dfd4d3ea8d813b1c6a8c6a54b7b2adb56a61d4aaccf655543"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_simgcl1_actual_views435.py",
+          "sha256": "c654b7bbf9eb9e9f52b841e87c91f277bb85a57e0d18afaba82d2e985f3faf33"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/probe_simgcl1_arrow_ports430.py",
+          "sha256": "1877131039ef872402410a66beff58a78c62c94734fae27f59c545d7c54d76c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/record_simgcl1_auto_live_review436.py",
+          "sha256": "ba7ccd74a09178d47e9223546293bf09ba84cecd6e3cf796438d3fe49f7eb9ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/image_workspace024.py",
+          "sha256": "d401b427a41c2aec5d0bc4e9c30a7f87c41c08c3fd056f2d9a613260f03a08cb"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_trace-003.py",
+          "sha256": "73ae98e980495376dec6bcca84215b808f4ba873da4b5d5bd6ed5e492a03a1b6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/native_font_parent_semantics286.py",
+          "sha256": "04cf6fcaad840dc068d1ce90be3a691e246673de0341b3b5326586df09f86d47"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/reencode_subset-004.py",
+          "sha256": "7ce1c219ba8f9abc9a9ee45c55d210889ac82531e411bb73eca144ee303175d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/tools/convert_type1-006.py",
+          "sha256": "de7c881fe3ff75b8a8ab642b1ee9e57109e2d44522bb1fce4eafeb1104fa2a45"
+        }
+      ],
+      "closed_at": "2026-10-06T01:39:49.546777+00:00"
     },
     {
       "figure_id": "ccf-2020-17-f01",
@@ -62069,7 +63396,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "43 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. Octo2 adds six actual TrueType subsets and eight original regular/italic normalized Type1 ink variants at four actual horizontal-to-vertical em ratios. All actual used normalized controls/advances satisfy unchanged .001px guards; original raw program/family/hinting equivalence is not claimed. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
+      "description": "44 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. SimGCL1 adds two aliases reencoded from actual embedded TrueType programs: all36 current used source/derived/native normalized controls and advances agree exactly, with original cmap/GID/UCS directly verified. This finite used-ink proof does not establish full font family or unseen/hinting identity. Octo2 retains six actual TrueType subsets and eight normalized Type1 ink/em variants under unchanged .001px guards. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -62089,6 +63416,7 @@
         "ccf-2022-01-f03",
         "ccf-2022-02-f02",
         "ccf-2022-07-f01",
+        "ccf-2022-09-f01",
         "ccf-2022-12-f01",
         "ccf-2022-12-f04",
         "ccf-2022-13-f01",
@@ -62215,6 +63543,10 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
           "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+        },
+        {
+          "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+          "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
         }
       ],
       "user_acceptance": "pending",
@@ -63086,6 +64418,166 @@
               {
                 "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
                 "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-06T01:39:49.546777+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "43 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts are unembedded, and full original family/hinting/unseen Unicode and PowerPoint/WPS editing remain unverified. Octo2 adds six actual TrueType subsets and eight original regular/italic normalized Type1 ink variants at four actual horizontal-to-vertical em ratios. All actual used normalized controls/advances satisfy unchanged .001px guards; original raw program/family/hinting equivalence is not claimed. BART3 retains its separately refused stronger raw design/program identity under372 limits.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f03",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-03-f02",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+                "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
               }
             ],
             "user_acceptance": "pending",

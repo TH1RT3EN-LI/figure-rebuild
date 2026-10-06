@@ -2,7 +2,7 @@
 
 2026-10-05 开始，2026-10-06 更新。基于请求开始时冻结的 153 项开放问题。当前状态以 [逐项台账](2026-10-04-detail-resolutions.json) 为准。
 
-本轮完成 88 张图的来源修复及实际成品复查，关闭 134 项原问题：58 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 19 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 23 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 67 项解决、16 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 134 项关闭数。所有模型关闭项的用户验收仍为 pending。
+本轮完成 89 张图的来源修复及实际成品复查，关闭 135 项原问题：59 项字体、字距、基线、数学字形或活动文字问题，以及 76 项渐变、箭头、图片、图注、边框、括号、省略号、来源诊断或预览描边问题。原 153 项中仍有 18 项未关闭；本轮另发现字体交付限制、SAM 2 白色路径接缝、InstructGPT 圆形边框独立编辑及 ColBERT 原生裁剪白底细接缝四项开放问题，共 22 项开放。原始 296 项现在 289 项关闭、7 项开放；83 项后续发现中 68 项解决、15 项开放。新增发现中的白色填充透明缺口另已解决，不计入原 153 项的 135 项关闭数。所有模型关闭项的用户验收仍为 pending。
 
 ## 实现与复核
 
@@ -84,6 +84,8 @@
 
 - OctoTools 图 2 的源轮廓文字问题关闭：827 条字形路径恢复为 827 个普通 Unicode 活动文字对象，864 个原编码字符（32 个原空格、5 个原 fi 无轮廓后续字符）完整读回。54 段真实字体/GID/UCS/完整矩阵唯一绑定，不提供预设标签；6 个 TrueType 别名和 8 个 Type1 regular/italic 实际横纵 em 变体保留当前源 ink。原竖向 em 与四种横纵比例分开，源斜体真实 angle -15.5；fi 原 GID-1 后续 i 绑定前一真实连字，保留原 f+i 输入并用 GSUB 塑形。UPM16000 候选因实际字形控制差超过固定 0.001 px 被拒绝，UPM16384 后继在原设计/advance 守卫内通过，原始失败保留。1142 次源绘制及中性根组复核，327 个完整字形 clip 证明，37389 原字形控制点最大 0.000175119834 px；实际 271 源/导出 font-GID 对控制点最大 0.000305428636、advance 最大 0.000603318295 px，均低于不变的 0.001 px 守卫。原点偏差横向 0.056967、纵向 0.436691 px 单列。62 路径、16 图片的 78 个实际原生属性与父成品精确相同，原媒体 SHA、frame、微小非零 crop 保留；16 填充回执独立重放，2163 路径控制点最大 0.000102999422 px。独立位置读取 54 编码片段及完整五行混合字体图注，83 词间空格明确为位置推断；12 个直/L 弯曲填充箭头端口独立读取一致，保留重叠目标但不宣称自动标签关系。11 项拒绝探针包括真实词距/基线/绘制顺序、缺失/畸形/重复箭头及五项当前来源清单改字/删字/移位/改色/删箭头，905 对象仍全量比较。24 张全图、2×、平铺 4×、完整工作流和图注 4× 均实看。标准 source-content PASS 覆盖 54 编码字面量，905 对象 source-inventory 仍 REVIEW，标准公式/连接数组仍空；图注和几何端口为独立 sidecar。14 字体未嵌入，共用交付限制仍开放并关联 43 图；原完整 family/hinting、位图内部字可编辑、扩展 Unicode、原生公式/连接线、PowerPoint/WPS、像素等价及用户验收未宣称。冻结024公开代码与守卫未变；既有1327 Python/安装后与67 Node结果不重标新跑；准确已推送 c88e737 提交的16项 GitHub 检查通过。
 
+- SimGCL 图 1 的源轮廓文字问题关闭：129 条字形路径自动恢复为 129 个普通 Unicode 活动文字对象，133 个原编码字符（含四个原空格）完整读回。原零活动文字状态及后继 22 段人工活动文字历史保留；新恢复不提供预设标签。两份实际源 TrueType 程序重新编码为作业本地别名，原 cmap/GID/UCS 直接一致，36 个当前使用的源/派生/实际原生字体字形对，归一化轮廓和 advance 精确相同。214 次源绘制、原中性双层 group、258 次完整字形 clip 证明另行复核，15659 个原字形控制点最大 0.000098004827 px；固定 0.001 px 守卫未变。应用原点偏差横向 0.071129、纵向 0.365002 px 单列。176 条其他图形的实际属性和顺序与已复核人工父版精确相同，55 个填充回执独立重放，1282 个控制点最大 0.000101169554 px。独立平面文字读取器只输入真实字符、advance、原点、em 和颜色/字体层级，不输入源 span 边界或字典，源与实际原生得到相同 22 个编码片段。10 支实际填充箭头保留倾斜尾端、非中点头尖和不等头高/底长，含两支斜箭和三段 U 弯箭；四次理想几何模板假设被实际源拒绝并保留，未改源图或放宽守卫。端口最大差 0.000046924935 px。有限流程读取独立得到三个各含八节点/十一灰边的原图簇、三个圆角编码器卡片、三个五横五竖网格及两个无命名圆盘，共 11 流程节点、10 有向关系，三个卡片标签和三个输入边标签一致。灰边唯一候选窗口为当前圆节点半径加半条实际线宽，有向关系窗口为一原 source-em；这些明确的有限适用窗口不是控制点容差或精确圆交点证明。13 个其他编码片段保留未关联，不凭邻近位置捏造任务含义。11 项拒绝检查含实际词距/基线歧义、缺失/重复箭头、重复节点/卡片字/网格线，以及当前真实成品改字和删字；图形输入倒序和箭头绕向重放通过。16 张全图、完整 2×、平铺 4×及完整流程 4× 实看，七个红标记、字重、布局、共享目标、网格 0.2 alpha 与图簇均保持。标准 source-content PASS 覆盖 22 字面量；未提供 source-inventory 时，真实公开 API 返回 NOT_PROVIDED，成品不创建该可选报告，也不凭空增加 semantic 字段；标准公式/连接数组仍空。自动读取以 hash-bound sidecar 提供，未宣称通用 OCR/拓扑、任务语义、原生公式/连接线或像素等价。字体未嵌入，共用交付限制继续开放并关联 44 图，完整 family/hinting/未见 Unicode、PowerPoint/WPS 和用户验收仍待验证。冻结024公开代码未改，既有1327 Python/安装后及67 CPU Node结果保持原运行身份；准确已推送 eaf7373 的16项 GitHub 检查通过。
+
 ## 本轮关闭项
 
 | 图 | 问题 ID 后缀 |
@@ -133,6 +135,7 @@
 | ccf-2022-02-f02 | D01, D02, D03, V3-R01 |
 | ccf-2022-05-f01 | R01-PREVIEW-IMAGE-MINIFICATION, R02-NATIVE-IMAGE-FRAME |
 | ccf-2022-07-f01 | D01, D02, D03 |
+| ccf-2022-09-f01 | SOURCE-OUTLINE-TEXT-001 |
 | ccf-2022-10-f02 | R01-PREVIEW-STROKE-STYLE |
 | ccf-2022-12-f01 | D01, D02 |
 | ccf-2022-12-f04 | D01 |
@@ -565,3 +568,36 @@ DeepSpeed-Inference 后继再核对 1389 个唯一带摘要的关闭/新增发�
 | `reports/remaining-153-001/OCTO2-AUTOMATIC-LIVE-LEDGER-GUARD-412.json` | `892491637549cd173eff7fe2c216f2c80893e0947b5545350806694a93c41500` |
 | `reports/remaining-153-001/AUDIT-CONSISTENCY-043.json` | `c5720ae2c0ac0e73da207c9dd04b778d007d1eef484b873d61abfca911c3cc1d` |
 | `reports/remaining-153-001/DISTILLATION-413.json` | `bba897bc430157729a14079caf7828258b7e2eca2ca78cebcec8374c50bda02c` |
+| `reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-426.json` | `63255c81c80a1cdce7e14bf663afeff294a602e239cdc8afae01aec373153c02` |
+| `reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-427.json` | `d1f103e1343831d90f41b5db6f0f086a1cef7aa323ab7a483955756df96492d6` |
+| `reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-428.json` | `99a203cc523fd2dad2f576a87a375f34836a8ae1b2e5949d6aef38412b169507` |
+| `reports/remaining-153-001/SIMGCL1-ARROW-PORTS-RETAINED-FAILURE-429.json` | `6bccf050b73d6efd7363954593d65f41c4e34c57f9dcae2c5c06e4ae8e23580a` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-ARROW-PORTS-430.json` | `b9198d0cee602c2de722be501b9174af4b85bc770ba0f3a009dd58fdea146a0c` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-REVIEW-RESULT-438.json` | `ab0c3b38c216bf0b17eefee92b78bdcdb20c22a7db443d4a87420d4a98723803` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-REVIEW-RETAINED-FAILURE-436.json` | `acc20e11fd952e04aa1e4e26dbefb96c421267c35318f9e699b066eaab66b24c` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-VISUAL-438.json` | `bd0e389b9bfd61be143ee3938dff764359a4468ddd7722ad313b43c88fb5b0a9` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-READING-NEGATIVES-433.json` | `00c73397f844e02d155fe383f70ae3fcbac2e98b968df57abe2325e0a9d0a505` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORD-LAYOUT-425.json` | `7250cf75c2a6bf2fa821c986cb9ac16c9fe238c362286c6a6d12d79c193ff309` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORKFLOW-431.json` | `f6f12debc92d460064e95ef85af9b178650e61a12789e501f00992766d5924f3` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-WORKFLOW-432.json` | `a622e4b9a18619eb92965c4ebd14c2a3806860bc25858e25b5183a6f01fa4074` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-FONT-DERIVATION-418.json` | `7fa338a6ce40c26a475ac704f7613741abea3c43b8c4543ed7011309e22a0561` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-SOURCE-GRAPHICS-420.json` | `e409983b8d49bbc473c643ffc4c2126218a3128a9453f5c3ee48948303033252` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-SOURCE-INPUTS-416.json` | `f9cadf67c49068d24b96da85ff8162428799cc90bc8c860ddf785d4826c5c2b4` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-BUILD-419.json` | `2dea6079060a9e8f321b78559d53c7ab5560290b5d2539c037e787cec25a657a` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-PROOF-421.json` | `8bb65beabd762888ae366932e5f270393eeb6a40ea4f9982ad65c022974faf99` |
+| `reports/remaining-153-001/SIMGCL1-NATIVE-UNICODE-READBACK-424.json` | `6f8fa99fa0a6eab648050b7b377c9099dea0d2603e6179b18e7c2ec39ddb43bd` |
+| `reports/remaining-153-001/SIMGCL1-SOURCE-GLYPH-CONTEXT-417.json` | `bf2301f4c908a749c0c9ef026f4499822ff6af284f8eac8eba464a1076fb5eaf` |
+| `reports/remaining-153-001/SIMGCL1-UNSUPPLIED-SOURCE-INVENTORY-REPLAY-437.json` | `9d106c40a1cedf35d5450faf6c13022eef0c71f965c65cef26414b4ef1ecc0b0` |
+| `reports/remaining-153-001/actual-view-names-simgcl1-complete-workflow-435.json` | `24c900c8d316e19a16d98772408138b6b1f860db855bf4ac4203a875574f4157` |
+| `reports/remaining-153-001/actual-view-names-simgcl1-native-unicode-423.json` | `3af1643fe20c897a57c231998f7b3520e8457fa3784dda66c6a7c06ed10d28e5` |
+| `reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json` | `41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a` |
+| `reports/remaining-153-001/FREEZE-024.json` | `88f1d2976d1270275276b5d03ff041efa355652d75339ab78bf7b3ef2e2476ec` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-CHECKS-327.json` | `92e12428f4af4c3f21ff6bd3b19563ff8983bf72797b83c0cfafba4f1ead099b` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-TEST-INPUTS-324.json` | `aaf1fbf49952537addfedd67c39a1338db24acdec5a0a89c8466ca455cb4bbea` |
+| `reports/remaining-153-001/PUBLIC-FONT-UNICODE-WORKSPACE-CHECKS-324.json` | `b679721f3f00e5a0d10f91bfa691160c1c2f67a07619bd71168d8ddcb6a3471b` |
+| `reports/remaining-153-001/packages-font-unicode-325/proof.json` | `d912a50f1f9bd31110223b6c862a5c753fecc099ab5db38fc005f955155e5b9a` |
+| `reports/remaining-153-001/github-checks-eaf7373-001.json` | `a2579d3d5988272e7a8ed894cd4422a68a3a542bd6efd93e523930553bd827e3` |
+| `reports/remaining-153-001/LEDGER-RESULT-044.json` | `377fb6ab985587c724e1ce921006fd7ace13211371cb83b7a812c3fa985ecce4` |
+| `reports/remaining-153-001/SIMGCL1-AUTOMATIC-LIVE-LEDGER-GUARD-439.json` | `30576004d3d292907659056021df72b65ebc612976705f2c8ef9f7b2ed8123bd` |
+| `reports/remaining-153-001/AUDIT-CONSISTENCY-044.json` | `898b2a7588bd728935304c68d86023a835b64e3c6cac06028a7e8ce614a85543` |
+| `reports/remaining-153-001/DISTILLATION-440.json` | `6447a9a23d08cf84f77d894596e88b3745a2cd35a6862ee06691e8e0f51fe201` |
