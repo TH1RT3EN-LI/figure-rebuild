@@ -147,6 +147,13 @@ GSUB ligature shaping. A nominal cmap/outline comparison may pass while an
 application that does not use that ligature omits letters. Review complete
 rendered labels and shaped pairs separately from nominal glyph coverage.
 
+For explicitly declared donor components, bind the exact donor binary, its
+copyright notice and its release license sidecar. Scope added metadata to each
+face's imported characters; a notice from another font version is not evidence
+for this donor. Preserve original records and permissions, and keep retained
+source-subset rights separate from the new components' license. A metadata
+correction should have a new frozen successor and unchanged glyph/metric tables.
+
 ### Embed the registered fonts in an existing figure
 
 `embed-fonts` reads the final slide's explicit family/style runs and the build's
