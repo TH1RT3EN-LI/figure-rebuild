@@ -31,7 +31,7 @@ ColBERT 的首个去白边候选在大数值全局 EMU 坐标中展开描边，�
 
 前一批 49 份包在只有一个无关 DejaVu 启动字体、无源字体的全新 LibreOffice 26.2.5.2 环境中实际导入/导出，观察到全部嵌入角色且无替代字体。该结果绑定前一批包及相同登记字体字节；本批改变三张图的局部几何/来源标识，重新绑定实际包和嵌入回执，不把前一批的应用输出误记为本批完整重跑。
 
-Linux WPS 后续独立字体环境检查已观察到替代字体，不能宣称这些 EOT 包在 WPS 中无需安装源字体。前一批字体交付的独立环境检查为 0/49 份通过字体名称核对；临时配置登记字体后的原生稿为 46/49 份通过，剩余 3 份仍在继续排查。7 份仅使用可编辑/可安装字体的稿件，在临时源字体环境中通过了有限活动文字修改、保存、重开及实际字体程序读回。该证据不代替本批全套图形外观或完整原 family、hinting、未见 Unicode 及播放表现。Windows PowerPoint 与 macOS 尚未验收。不会通过修改字体权限获得编辑资格，字体主要问题继续开放。[发布时的 WPS 范围及证据绑定](/home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/reports/remaining-four-release-20261007/WPS-STATUS-AT-RELEASE.json)。
+Linux WPS 的独立字体环境检查已观察到替代字体，不能宣称这些 EOT 包在 WPS 中无需安装源字体。发布时独立环境为 0/49 份通过字体名称核对，安装原登记字体后为 46/49；[发布时的证据绑定](/home/th1rt3en/dev/forge/figure-build-data/work/detail-audit-20261003/reports/remaining-four-release-20261007/WPS-STATUS-AT-RELEASE.json) 保持不变。后续采用每图独立字体别名的原生稿为 49/49，独立实际字形核对确认旧三份九个可见 Arial 替换全部恢复；49 份的 300 个角色完成有限修改、保存和重开，实际 PPTX 文字独立读回通过。这是本地字体依赖型编辑结果，完整 WPS 版式、Swift 连字兼容、导出 PDF Unicode、Windows PowerPoint/macOS 和自包含交付仍未验收。字体权限不变，主要问题继续开放。详见[Linux 后继排查](2026-10-07-linux-font-followup.md)。
 
 ## 证据与交付
 

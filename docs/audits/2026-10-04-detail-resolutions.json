@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-07T04:55:18.819042+00:00",
+  "updated_at": "2026-10-07T06:10:51.068291+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -118217,7 +118217,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "48 associated figures embed296 used prepared static font roles, plus ColBERT4 roles in49 unified-release packages. Independent readback binds all300 EOT/SFNT payloads, original permission bits, current used Unicode, role relationships and unchanged slide/media/layout/notes bytes.237 roles are preview/print-only,48 editable and15 installable;42 files include preview/print-only roles. Prior49 packages passed clean-font LibreOffice26.2.5.2 actual imports with all registered font names observed; that application result is not mislabeled as a new complete final-package render. The API now deduplicates valid aliases sharing a font part and refuses reachable inherited layout/master live text or fields. Clean-font Linux WPS imports of the peer font delivery substituted fonts despite EOT embedding; provisioning registered fonts improves finite name checks, but is an external dependency. Seven eligible native documents with temporary source fonts passed finite text edit/save/reopen checks. Complete original family/hinting/unseen Unicode, whole-suite final appearance, Windows PowerPoint and macOS acceptance remain unverified. Keep native editing and embedded-preview variants separate. Font rights, original finite source-glyph proofs and16-family single-build policy are unchanged; this shared major issue remains open.",
+      "description": "48 associated figures plus ColBERT have49 embedded-preview packages and300 roles; 237 roles retain preview/print-only embedding permissions. Complete registered SFNT bytes, original rights and current used repertoire are preserved. The initial clean-font WPS import still requires external fonts. Three visible Arial substitutions from the prior mixed-subset installation are resolved in the per-figure-aliased Linux006 native successor: independent actual PDF handles/programs and nine glyph contours/advances confirm recovery. Root independently binds all49 native packages to the unified-release raw geometry with only declared font alias changes, all300 roles to exact prior cmap contours/metrics/rights, and actual saved PPTX Unicode after300 finite role edits in49 files.55 roles exercise previously unused but available characters. This is installed-font native editing, with no embedded font parts, not permission to edit preview-only embedded fonts. Peer 98 baseline/edited PDFs pass finite nominal-glyph comparisons, separately hash-bound by root; that comparison misses empty Swift components and is not a full source-layout or label-completeness proof. Swift018 adds three standalone components from a donor with verified OFL metadata, preserving other original glyphs/cmap/GSUB and fsType4; it is an explicit source-ligature approximation and its own edit/save/reopen and complete generator capture are pending. The historical donor014 remains rejected for open-license delivery. One WPS exported PDF loses non-BMP Unicode mappings(19/18 before/after), while saved PPTX Unicode remains exact. WPS size/spacing/baseline/caption corrections are still being verified. Full original family/hinting/unseen Unicode, self-contained WPS, Windows PowerPoint/macOS and source-subset redistribution provenance remain unverified. All source-font/geometry guards and the16-family single-build policy are unchanged; the shared major finding stays open.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -118416,6 +118416,34 @@
         {
           "audit_relative_path": "reports/remaining-four-release-20261007/WPS-STATUS-AT-RELEASE.json",
           "sha256": "d37a36496f4326e891b9d10d50a2e9cd32664321f8bc1880f75e1792ed0aa667"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/native-delivery-review-001/RESULT.json",
+          "sha256": "ebc6a4114b0b5107095f2472e93e4b4fbbbd7e674bc9dd87129c4b1ae4deefcb"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/native-delivery-review-001/SOURCE-FREEZE.json",
+          "sha256": "0c877563ba8f97b9abe61cad6eb4ee60d28a51a00d90ea22824545952039c317"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/independent-fallback-review/old-to-new-receipt.json",
+          "sha256": "d0301a3fec9262f6c182695431a55baef5ac6a1d056dc3c9d1581ebab65b8b62"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/independent-fallback-review/REPORT.md",
+          "sha256": "cb2b91da29c9db1d64e9588c0df9dead2878d353e112eb262ee9109b99d44a1e"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/independent-glyph-review/INDEPENDENT-GLYPH-REVIEW.md",
+          "sha256": "3c3c1a7531ee7f8fad746b00731bbc5e0dfda5000e2edfe6a2f9a737065e1012"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/independent-glyph-review/font-v18-byte-audit.json",
+          "sha256": "37c9f85c326f7cc9fcfbf2fcc4f3ddee01f5012f496c5a9f7e9ba4c1b646c491"
+        },
+        {
+          "audit_relative_path": "reports/font-followup-root-20261007/independent-glyph-review/license-v14-addendum.md",
+          "sha256": "3d07626e2a628fe1e7bd14c7a0d255684f03b379a574fe3228560eeb561d3178"
         }
       ],
       "user_acceptance": "pending",
@@ -120350,10 +120378,234 @@
             "PowerPoint_WPS_verified": false,
             "editing_permission_for_all_embedded_fonts": false
           }
+        },
+        {
+          "recorded_at": "2026-10-07T06:10:51.068291+00:00",
+          "context": "Independent Linux successor review, preserving the initial three real fallback failures.",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "48 associated figures embed296 used prepared static font roles, plus ColBERT4 roles in49 unified-release packages. Independent readback binds all300 EOT/SFNT payloads, original permission bits, current used Unicode, role relationships and unchanged slide/media/layout/notes bytes.237 roles are preview/print-only,48 editable and15 installable;42 files include preview/print-only roles. Prior49 packages passed clean-font LibreOffice26.2.5.2 actual imports with all registered font names observed; that application result is not mislabeled as a new complete final-package render. The API now deduplicates valid aliases sharing a font part and refuses reachable inherited layout/master live text or fields. Clean-font Linux WPS imports of the peer font delivery substituted fonts despite EOT embedding; provisioning registered fonts improves finite name checks, but is an external dependency. Seven eligible native documents with temporary source fonts passed finite text edit/save/reopen checks. Complete original family/hinting/unseen Unicode, whole-suite final appearance, Windows PowerPoint and macOS acceptance remain unverified. Keep native editing and embedded-preview variants separate. Font rights, original finite source-glyph proofs and16-family single-build policy are unchanged; this shared major issue remains open.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f02",
+              "ccf-2020-14-f03",
+              "ccf-2020-17-f01",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-09-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-01-f11",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-03-f02",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+                "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+                "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json",
+                "sha256": "ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-021.json",
+                "sha256": "b8895a63ecff59fe9933e435e3aa0c19a1c471eb378a1139792136bb86d3106c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-022.json",
+                "sha256": "5fbd74b34b66fbfce95b1c9fa3ab4f2b09f4ca9c8049e7a631c35b1e1824cc48"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-023.json",
+                "sha256": "b60aebfd0ea6b460cd2b18c3bd58a0500155bc89b4bfe3c2bc025b49481ed383"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-index.json",
+                "sha256": "e98d53b07d96ddc4cce3d2546c567846d8295e084b83c02f26e2be5bb57c12ed"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+                "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+                "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+                "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-release-20261007/WPS-STATUS-AT-RELEASE.json",
+                "sha256": "d37a36496f4326e891b9d10d50a2e9cd32664321f8bc1880f75e1792ed0aa667"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false,
+            "partial_resolution": "Complete registered-face EOT packaging and API boundary regressions are verified; finite prior LibreOffice font import and seven peer Linux WPS edit/save/reopen checks are recorded separately. Self-contained WPS use, full repertoire/family and Windows/macOS acceptance remain open.",
+            "font_embedding_verified": true,
+            "isolated_LibreOffice_import_verified": true,
+            "PowerPoint_WPS_verified": false,
+            "editing_permission_for_all_embedded_fonts": false,
+            "isolated_LibreOffice_import_scope": "Prior49 packages and their exact registered font programs; the unified release independently binds its new49 packages, without claiming a complete new app-render run.",
+            "Linux_WPS_self_contained_verified": false,
+            "Windows_PowerPoint_verified": false,
+            "macOS_verified": false,
+            "api_alias_and_inherited_text_regressions_verified": true
+          }
         }
       ],
       "aggregate_source_font_family_policy_over_16_verified": false,
-      "partial_resolution": "Complete registered-face EOT packaging and API boundary regressions are verified; finite prior LibreOffice font import and seven peer Linux WPS edit/save/reopen checks are recorded separately. Self-contained WPS use, full repertoire/family and Windows/macOS acceptance remain open.",
+      "partial_resolution": "EOT packaging and API guards verified; initial three visible WPS fallbacks resolved by per-figure aliases, and49 installed-font native files/300 roles passed finite actual PPTX edit/save/reopen readback. Whole-layout, Swift exactness, PDF Unicode semantics, full repertoire and cross-platform/self-contained acceptance remain open.",
       "font_embedding_verified": true,
       "isolated_LibreOffice_import_verified": true,
       "PowerPoint_WPS_verified": false,
@@ -120362,7 +120614,20 @@
       "Linux_WPS_self_contained_verified": false,
       "Windows_PowerPoint_verified": false,
       "macOS_verified": false,
-      "api_alias_and_inherited_text_regressions_verified": true
+      "api_alias_and_inherited_text_regressions_verified": true,
+      "Linux_WPS_font_dependency_check_verified": true,
+      "prior_three_Linux_WPS_visible_fallbacks_resolved": true,
+      "finite_Linux_WPS_native_edit_save_reopen_verified": {
+        "figures": 49,
+        "roles": 300,
+        "newly_exercised_roles": 55,
+        "external_installed_fonts_required": true,
+        "embedded_fonts_present": false
+      },
+      "Linux_WPS_layout_verified": false,
+      "Swift_source_ligature_exactness_verified": false,
+      "WPS_exported_PDF_Unicode_complete": false,
+      "latest_verified_attempt": "reports/font-followup-root-20261007/native-delivery-review-001"
     },
     {
       "figure_id": "ccf-2025-01-f02",

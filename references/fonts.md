@@ -135,6 +135,18 @@ and retain the exact profile/fonts with the job. A correct local rendering
 does not establish font embedding, extended editing repertoire or reopening
 in PowerPoint/WPS without those dependencies.
 
+Different jobs can carry different subsets under the same family and style
+name. Installing those together can make an office application select another
+job's subset and visibly substitute its missing characters. Keep font selection
+isolated per job, or derive explicitly audited per-job family aliases. Preserve
+prior glyph contours/metrics and permission bits when deriving an alias; a
+new family name is not a new source-font identity proof. Verify the actual
+application's selected program and painted glyphs, not only its reported names.
+An existing cmap entry can also have an empty letter component intended for
+GSUB ligature shaping. A nominal cmap/outline comparison may pass while an
+application that does not use that ligature omits letters. Review complete
+rendered labels and shaped pairs separately from nominal glyph coverage.
+
 ### Embed the registered fonts in an existing figure
 
 `embed-fonts` reads the final slide's explicit family/style runs and the build's
