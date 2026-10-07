@@ -5,6 +5,7 @@ import json
 import sys
 import tempfile
 import unittest
+from argparse import Namespace
 from pathlib import Path
 from unittest.mock import patch
 from contextlib import redirect_stdout
@@ -28,6 +29,162 @@ class BuildInputChecks(unittest.TestCase):
         with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run') as run:
             with self.assertRaisesRegex(ValueError,'placement requires'):cli.build(self.args)
             run.assert_not_called();self.assertFalse((self.job/'build').exists())
+
+    def test_explicit_native_base_and_unknown_backend_fail_before_runtime(self):
+        for backend, base in [('libreoffice', 'missing.pptx'), ('libreoffice-pdf', 'missing.pptx'), ('libreoffice-pdf-rgb', 'missing.pptx'), ('libreoffice-pdf-photos', 'missing.pptx'), ('native-svg','missing.pptx'), ('auto', None)]:
+            self.args.preview_backend = backend; self.args.base = base
+            with patch.object(cli, 'runtime') as runtime:
+                with self.assertRaises(ValueError): cli.build(self.args)
+                runtime.assert_not_called()
+            self.assertFalse((self.job/'build').exists())
+
+    def test_missing_native_dependency_fails_before_allocating_run(self):
+        self.args.preview_backend = 'libreoffice'
+        failure = cli.subprocess.CalledProcessError(2, ['python'], stderr='PyMuPDF is missing')
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run', side_effect=failure):
+            with self.assertRaisesRegex(ValueError, 'PyMuPDF'): cli.build(self.args)
+        self.assertFalse((self.job/'build').exists())
+
+    def test_parser_rejects_unknown_preview_backend(self):
+        with patch.object(sys, 'argv', ['figure-rebuild', 'build', '--manifest', str(self.manifest), '--preview-backend', 'auto']), patch('sys.stderr', io.StringIO()):
+            with self.assertRaises(SystemExit) as caught: cli.main()
+        self.assertEqual(caught.exception.code, 2)
+
+    def test_pdf_derivation_requires_explicit_native_backend_before_runtime(self):
+        self.args.pdf_alpha_derivation = 'binary-alpha-white-matte-v1'
+        with patch.object(cli, 'runtime') as runtime:
+            with self.assertRaisesRegex(ValueError, 'LibreOffice'):
+                cli.build(self.args)
+            runtime.assert_not_called()
+        self.assertFalse((self.job / 'build').exists())
+
+    def test_pdf_derivation_is_frozen_in_native_build_config(self):
+        self.args.pdf_alpha_derivation = 'binary-alpha-white-matte-v1'
+        self.args.preview_backend = 'libreoffice'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job / 'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['pdf_alpha_derivation'], self.args.pdf_alpha_derivation)
+        self.assertEqual(config['preview_backend'], 'libreoffice')
+
+    def test_pdf_preview_backend_and_version_are_frozen_in_build_config(self):
+        self.args.preview_backend = 'libreoffice-pdf'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job / 'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['preview_backend'], 'libreoffice-pdf')
+        self.assertEqual(config['native_pdf_preview_version'], 1)
+
+    def test_device_hairline_requires_pdf_backend_before_runtime_or_allocation(self):
+        self.m['objects'][0]['style'].update(stroke='#888888', stroke_width=0, stroke_hairline=True, fill='none')
+        cli.save(self.manifest, self.m); cli.review(Namespace(manifest=str(self.manifest), note='Verify source PDF hairline'))
+        for backend in ('artifact', 'libreoffice', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
+            self.args.preview_backend = backend
+            with patch.object(cli, 'runtime') as runtime, self.assertRaisesRegex(ValueError, 'hairlines'):
+                cli.build(self.args)
+            runtime.assert_not_called(); self.assertFalse((self.job / 'build').exists())
+
+    def test_rgb_pdf_backend_freezes_a_distinct_version_and_fixed_policy(self):
+        self.args.preview_backend = 'libreoffice-pdf-rgb'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job / 'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['native_pdf_preview_version'], 2)
+        self.assertEqual(config['pdf_rgb_derivation'], 'pdf-zero-alpha-rgb-white-v1')
+        self.assertNotIn('pdf_alpha_derivation', config)
+
+    def test_photo_pdf_backend_freezes_version_three_and_both_separate_policies(self):
+        self.args.preview_backend = 'libreoffice-pdf-photos'
+        with patch.object(cli, 'runtime', return_value=self.rt), patch.object(cli.subprocess, 'run'), redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['native_pdf_preview_version'],3)
+        self.assertEqual(config['pdf_rgb_derivation'],'pdf-zero-alpha-rgb-white-v1')
+        self.assertEqual(config['pdf_native_photo_placement'],'native-opaque-photo-matrix-v1')
+    def test_shared_native_image_request_is_frozen_in_build_config(self):
+        request={'schema_version':1,'groups':[{'objects':[{'id':'photo','window':[0,0,20,20]}]}]}
+        path=self.job/'shared.json';cli.save(path,request);self.args.artifact_image_shared_grid=str(path)
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],3)
+        self.assertEqual(config['artifact_image_shared_grid'],request)
+        cli.save(path,{'changed':True});self.assertEqual(config['artifact_image_shared_grid'],request)
+
+    def test_shared_native_grid_requires_standalone_artifact_before_runtime(self):
+        path=self.job/'shared.json';cli.save(path,{'schema_version':1,'groups':[]});self.args.artifact_image_shared_grid=str(path)
+        self.args.preview_backend='libreoffice-pdf'
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'standalone Artifact'):cli.build(self.args)
+        runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+
+    def source_image_request(self):
+        source=self.job/'source-pictures.pdf';source.write_bytes(b'%PDF-1.7\nexplicit preview input')
+        request={'schema_version':1,'source_pdf':{'path':source.name,'sha256':cli.digest(source)},
+                 'page_index':0,'source_transform':[1,0,0,1,0,0],'user_clip_pdf':[0,0,20,20],
+                 'objects':[{'id':'photo','paint_seqnos':[0],'source_bounds':[0,0,20,20],'delivery_sampling_scale':4}]}
+        path=self.job/'source-sampling.json';cli.save(path,request);self.args.artifact_image_source_sampling=str(path)
+        return source,path,request
+
+    def test_source_image_request_and_actual_pdf_bytes_are_frozen_with_asset_snapshot(self):
+        source,path,request=self.source_image_request();before=source.read_bytes()
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        run=self.job/'build/run-001';config=json.loads((run/'build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],4)
+        self.assertEqual(config['artifact_image_source_sampling'],request)
+        source.write_bytes(b'changed');cli.save(path,{'changed':True})
+        self.assertEqual((run/'assets'/source.name).read_bytes(),before)
+        records=json.loads((run/'asset-snapshot.json').read_text())['assets']
+        self.assertEqual(next(r['sha256']for r in records if r['path']==source.name),request['source_pdf']['sha256'])
+
+    def test_source_image_policy_requires_standalone_artifact_and_cannot_mix_shared_grid(self):
+        self.source_image_request();self.args.preview_backend='libreoffice-pdf'
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'standalone Artifact'):cli.build(self.args)
+        runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+        self.args.preview_backend='artifact';path=self.job/'shared.json';cli.save(path,{'schema_version':1,'groups':[]})
+        self.args.artifact_image_shared_grid=str(path)
+        with patch.object(cli,'runtime')as runtime,self.assertRaisesRegex(ValueError,'one explicit'):cli.build(self.args)
+        runtime.assert_not_called()
+
+    def test_source_rgb_group_policy_freezes_distinct_version_and_source_bytes(self):
+        from figure_rebuild.artifact_source_image_preview import RGB_GROUP_POLICY
+        source,path,request=self.source_image_request();self.args.artifact_image_source_sampling=None
+        request['group_sampling_policy']=RGB_GROUP_POLICY;cli.save(path,request);self.args.artifact_image_source_rgb_groups=str(path)
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run'),redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_image_preview_version'],5);self.assertEqual(config['artifact_image_source_rgb_groups'],request)
+        self.assertNotIn('artifact_image_source_sampling',config);self.assertEqual((self.job/'build/run-001/assets'/source.name).read_bytes(),source.read_bytes())
+
+    def test_native_svg_explicit_backend_and_version_freeze_without_other_preview_policies(self):
+        self.args.preview_backend='native-svg'
+        with patch.object(cli,'runtime',return_value=self.rt),patch.object(cli.subprocess,'run')as command,redirect_stdout(io.StringIO()):cli.build(self.args)
+        config=json.loads((self.job/'build/run-001/build-config.json').read_text());self.assertEqual(config['native_svg_preview_version'],1)
+        self.assertNotIn('artifact_stroke_preview_version',config);self.assertNotIn('native_pdf_preview_version',config)
+        self.assertTrue(any('native_svg_preview'in call.args[0]for call in command.call_args_list))
+
+    def test_path_prefix_request_is_explicitly_frozen_and_preflighted(self):
+        request = dict(schema_version=1, object_ids=['line'], frame_emu=[0,0,200*9525,100*9525], pixel_grid=[200,100])
+        path = self.job/'path-prefix.json'; cli.save(path, request); self.args.artifact_path_prefix_grid = str(path)
+        with patch.object(cli,'runtime',return_value=self.rt), patch.object(cli.subprocess,'run') as command, redirect_stdout(io.StringIO()):
+            cli.build(self.args)
+        config = json.loads((self.job/'build/run-001/build-config.json').read_text())
+        self.assertEqual(config['artifact_path_prefix_grid'],request)
+        self.assertEqual(config['artifact_path_prefix_preview_version'],1)
+        self.assertNotIn('artifact_image_preview_version',config)
+        self.assertTrue(any('artifact_image_preview' in call.args[0] for call in command.call_args_list))
+
+    def test_path_prefix_conflicting_policies_and_unbounded_grid_fail_before_runtime(self):
+        path = self.job/'path-prefix.json'
+        request = dict(schema_version=1,object_ids=['line'],frame_emu=[0,0,200*9525,100*9525],pixel_grid=[200,100])
+        cli.save(path,request);self.args.artifact_path_prefix_grid=str(path)
+        for backend, image in [('libreoffice',False),('artifact',True)]:
+            self.args.preview_backend=backend;self.args.artifact_image_preview=image
+            with patch.object(cli,'runtime') as runtime, self.assertRaisesRegex(ValueError,'path-prefix'):
+                cli.build(self.args)
+            runtime.assert_not_called();self.assertFalse((self.job/'build').exists())
+        self.args.artifact_image_preview=False;self.args.preview_backend='artifact'
+        request['pixel_grid']=[32768,32768];cli.save(path,request)
+        with patch.object(cli,'runtime') as runtime, self.assertRaisesRegex(ValueError,'pixel budget'):
+            cli.build(self.args)
+        runtime.assert_not_called()
     def test_build_uses_validated_snapshot_not_later_manifest_edits(self):
         def on_run(*args,**kwargs):
             config=json.loads((self.job/'build/run-001/build-config.json').read_text())
@@ -36,6 +193,9 @@ class BuildInputChecks(unittest.TestCase):
             self.assertNotEqual(snapshot,self.manifest)
             self.assertEqual(json.loads(snapshot.read_text())['revision'],1)
             self.assertEqual(Path(config['job']),self.job.resolve())
+            self.assertEqual(config['preview_backend'], 'artifact')
+            self.assertEqual(config['preview_provenance_version'], 1)
+            self.assertEqual(config['diagnostic_provenance_version'], 1)
             frozen=Path(config['asset_root'])/'original.png'
             self.assertEqual(cli.digest(frozen),self.m['source']['sha256'])
             (self.job/'original.png').write_bytes(b'changed after reservation')
@@ -141,6 +301,43 @@ class RuntimeChecks(unittest.TestCase):
         with patch.dict(cli.os.environ,{'FIGURE_REBUILD_CONFIG':str(self.config)},clear=True),patch.object(cli,'preflight') as check:
             loaded=cli.runtime()
             check.assert_called_once_with(loaded)
+
+    def test_additional_single_faces_survive_profile_and_runtime_normalization(self):
+        data = json.loads(self.profile.read_text())
+        data['fonts']['additional'] = [
+            {'family': 'Source Regular', 'regular': {'path': 'test-font.ttf', 'face_index': 0}},
+            {'family': 'Source Bold', 'bold': {'path': 'test-font.ttf', 'face_index': 0}},
+            {'family': 'Source Italic', 'italic': {'path': 'test-font.ttf', 'face_index': 0}}]
+        self.profile.write_text(json.dumps(data))
+        configured = self.configure()
+        with patch.dict(cli.os.environ, {'FIGURE_REBUILD_CONFIG': str(self.config)}, clear=True):
+            loaded = cli.runtime(check_dependencies=False)
+        self.assertEqual(loaded['fonts'], configured['fonts'])
+        for profile, role in zip(loaded['fonts']['additional'], ('regular', 'bold', 'italic')):
+            self.assertEqual(set(profile), {'family', role})
+            self.assertEqual(profile[role]['path'], str(self.font.resolve()))
+            self.assertEqual(profile[role]['sha256'], cli.digest(self.font))
+
+    def test_primary_and_empty_additional_faces_still_reject(self):
+        face = {'path': 'test-font.ttf', 'face_index': 0}
+        with self.assertRaisesRegex(ValueError, 'regular.path'):
+            cli.font_profile({'family': 'Primary', 'bold': face}, self.root)
+        with self.assertRaisesRegex(ValueError, 'bold.path'):
+            cli.font_profile({'family': 'Primary', 'regular': face}, self.root)
+        with self.assertRaisesRegex(ValueError, 'at least one real face'):
+            cli.font_profile({'family': 'Primary', 'regular': face, 'bold': face,
+                              'additional': [{'family': 'Empty'}]}, self.root)
+
+    def test_unselected_missing_native_executable_does_not_block_artifact_runtime(self):
+        data = self.configure()
+        data['native_preview'] = {'command': ['/missing/soffice'], 'fc_match': '/missing/fc-match'}
+        cli.save(self.config, data)
+        with patch.dict(cli.os.environ, {'FIGURE_REBUILD_CONFIG': str(self.config)}, clear=True):
+            loaded = cli.runtime(check_dependencies=False)
+        self.assertEqual(loaded['native_preview']['command'], ['/missing/soffice'])
+        from figure_rebuild.native_preview import preflight
+        with self.assertRaisesRegex(ValueError, 'executable is missing'):
+            preflight(loaded)
 
     def test_virtualenv_executable_symlink_path_is_not_dereferenced(self):
         invoked=self.root/'.venv/bin/python';invoked.parent.mkdir(parents=True)

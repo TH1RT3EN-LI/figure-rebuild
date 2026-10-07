@@ -58,11 +58,21 @@ def validate(manifest, root, require_review=True, _materialized=False):
             scene, audit = compile_scene(manifest, root)
             result = validate(scene, root, require_review, _materialized=True)
             result['semantic_counts'] = {'formula': len(audit['formulas']), 'connector': len(audit['connections'])}
+            if 'source_inventory' in audit:
+                result['source_inventory'] = audit['source_inventory']
+                if audit['source_inventory']['status'] == 'FAIL':
+                    result['errors'].extend('Source inventory: ' + item.get('code', 'unresolved')
+                        for item in audit['source_inventory']['mismatches'] + audit['source_inventory']['unresolved'])
+                    result['status'] = 'FAIL'
+                elif audit['source_inventory']['status'] == 'REVIEW':
+                    result['warnings'].append('Source component coverage or representation needs review; see source_inventory')
             return result
         except (ValueError, OSError, KeyError, TypeError, ImportError) as exc:
             return {'status': 'FAIL', 'errors': [str(exc)], 'warnings': [], 'object_counts': {},
                     'native_editable_count': 0, 'raster_count': 0, 'fully_native': False}
     errors, warnings = [], []
+    canvas_clip_proof = None
+    canvas_clip_ids = set()
     def check(ok, message):
         if not ok:
             errors.append(message)
@@ -79,9 +89,12 @@ def validate(manifest, root, require_review=True, _materialized=False):
         return isinstance(value, str) and ((allow_none and value == 'none') or bool(re.fullmatch(r'#[0-9A-Fa-f]{6}', value)))
     count = {k: 0 for k in KINDS}
     def report():
-        return {'status': 'PASS' if not errors else 'FAIL', 'errors': errors, 'warnings': warnings,
+        result = {'status': 'PASS' if not errors else 'FAIL', 'errors': errors, 'warnings': warnings,
                 'object_counts': count, 'native_editable_count': count['path'] + count['text'],
                 'raster_count': count['image'], 'fully_native': count['image'] == 0}
+        if canvas_clip_proof is not None:
+            result['source_canvas_clip'] = canvas_clip_proof
+        return result
     if not isinstance(manifest, dict):
         errors.append('Manifest must be a record')
         return report()
@@ -94,8 +107,8 @@ def validate(manifest, root, require_review=True, _materialized=False):
         check(finite(canvas.get(key)) and 0 < canvas[key] <= 20000, 'Invalid canvas ' + key)
     if 'background' in canvas:
         check(solid(canvas['background']), 'Canvas background must be a solid hex color or none')
-    def in_canvas(x, y, label):
-        if canvas_ok:
+    def in_canvas(x, y, label, object_id=None):
+        if canvas_ok and (not isinstance(object_id, str) or object_id not in canvas_clip_ids):
             check(-.001 <= x <= canvas['width'] + .001 and -.001 <= y <= canvas['height'] + .001,
                   label + ' is outside the canvas; clipping is unsupported')
     source = record(manifest.get('source'), 'Source')
@@ -127,6 +140,14 @@ def validate(manifest, root, require_review=True, _materialized=False):
     check(isinstance(objects, list) and 0 < len(objects) <= 10000, 'Objects must be a nonempty list, capped at 10000')
     if not isinstance(objects, list) or len(objects) > 10000:
         return report()
+    if 'source_canvas_clip' in manifest:
+        try:
+            from .source_canvas_clip import verify_source_canvas_clip
+            canvas_clip_proof = verify_source_canvas_clip(manifest, root)
+            canvas_clip_ids = set(canvas_clip_proof['object_ids'])
+            warnings.append('Explicit source canvas clipping: verified glyph outlines require standalone slide bounds and visual review')
+        except (ValueError, OSError, ImportError, RuntimeError, KeyError, TypeError, OverflowError) as exc:
+            errors.append(str(exc))
     ids, groups, total_vertices = set(), set(), 0
     for index, raw in enumerate(objects):
         if not isinstance(raw, dict):
@@ -138,6 +159,11 @@ def validate(manifest, root, require_review=True, _materialized=False):
             check(oid not in ids, 'Duplicate stable id: ' + oid); ids.add(oid)
         label = str(oid)
         kind = obj.get('kind')
+        from .text_spacing import validate_character_spacing
+        try:
+            validate_character_spacing(obj)
+        except ValueError as exc:
+            errors.append(str(exc))
         check(enum(kind, KINDS), 'Unsupported object kind: ' + str(kind))
         if isinstance(kind, str) and kind in count:
             count[kind] += 1
@@ -150,7 +176,14 @@ def validate(manifest, root, require_review=True, _materialized=False):
             check(finite(confidence) and 0 <= confidence <= 1, f'Invalid confidence: {label}')
             if finite(confidence) and confidence < .8: warnings.append(f'Approximate recognition: {label}')
         style = record(obj.get('style', {}), 'Style for ' + label)
-        check(not set(style).difference({'fill', 'stroke', 'stroke_width', 'opacity'}), 'Unsupported style property: ' + label)
+        from .stroke_style import STROKE_PROPERTIES, validate_stroke_style
+        check(not set(style).difference({'fill', 'fill_gradient', 'stroke', 'stroke_width', 'opacity'} | STROKE_PROPERTIES), 'Unsupported style property: ' + label)
+        try:
+            validate_stroke_style(style, kind, label)
+            from .linear_gradient import validate_linear_gradient
+            validate_linear_gradient(style, kind, label)
+        except ValueError as exc:
+            errors.append(str(exc))
         for channel in ('fill', 'stroke'):
             color = style.get(channel, '#000000' if kind == 'text' and channel == 'fill' else 'none')
             check(solid(color), f'Use a solid hex color or none: {label}.{channel}')
@@ -176,7 +209,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     good = isinstance(point, dict) and set(point) == {'x', 'y'} and finite(point.get('x')) and finite(point.get('y'))
                     check(good, 'Invalid path point: ' + label)
                     if good:
-                        in_canvas(point['x'], point['y'], 'Path geometry ' + label)
+                        in_canvas(point['x'], point['y'], 'Path geometry ' + label, oid)
                         points.append(point)
                         if op == 'lineTo' and previous is not None and point != previous: drawable = True
                         previous = point
@@ -190,7 +223,7 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     check(active and previous is not None, 'cubicTo before moveTo: ' + label)
                     if good:
                         for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]:
-                            in_canvas(point[xkey], point[ykey], 'Cubic control hull ' + label)
+                            in_canvas(point[xkey], point[ykey], 'Cubic control hull ' + label, oid)
                         points.append({'x': point['x'], 'y': point['y']})
                         if previous is not None and any({'x': point[xkey], 'y': point[ykey]} != previous for xkey, ykey in [('x1', 'y1'), ('x2', 'y2'), ('x', 'y')]):
                             drawable = True
@@ -201,7 +234,9 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     if active:
                         previous = subpath_start
             check(bool(points) and drawable, 'Path needs a drawable segment: ' + label)
-            if opacity == 0 or (style.get('fill', 'none') == 'none' and (style.get('stroke', 'none') == 'none' or stroke_width == 0)):
+            if style.get('stroke_hairline') is True:
+                warnings.append('Device hairline requires actual native PDF linewidth and visual verification: ' + label)
+            if opacity == 0 or (style.get('fill', 'none') == 'none' and 'fill_gradient' not in style and (style.get('stroke', 'none') == 'none' or (stroke_width == 0 and style.get('stroke_hairline') is not True))):
                 warnings.append('Path has no visible paint: ' + label)
         elif kind == 'text':
             if 'font_family' in obj:
@@ -234,9 +269,9 @@ def validate(manifest, root, require_review=True, _materialized=False):
                 good = isinstance(anchor, dict) and set(anchor) == {'x', 'y'} and finite(anchor.get('x')) and finite(anchor.get('y'))
                 check(good, 'Invalid text baseline anchor: ' + label)
                 if good: in_canvas(anchor['x'], anchor['y'], 'Text baseline ' + label)
-                check(obj.get('rotation', 0) == 0, 'Rotated text requires an explicit box: ' + label)
                 check(obj.get('vertical_alignment', 'top') == 'top', 'Baseline text requires top vertical alignment: ' + label)
         elif kind == 'image':
+            check(enum(obj.get('fit', 'contain'), {'contain', 'stretch'}), 'Invalid image fit: ' + label)
             check(obj.get('editable') is False, 'Raster assets must be marked editable=false')
             check(opacity == 1, 'Raster opacity is unsupported; preserve it in the raster asset: ' + label)
             check(style.get('fill', 'none') == 'none' and style.get('stroke', 'none') == 'none' and stroke_width == 0,
@@ -279,7 +314,34 @@ def validate(manifest, root, require_review=True, _materialized=False):
                     for dx, dy in ((-box['width']/2, -box['height']/2), (-box['width']/2, box['height']/2), (box['width']/2, -box['height']/2), (box['width']/2, box['height']/2)):
                         in_canvas(cx+co*dx-si*dy, cy+si*dx+co*dy, 'Object box ' + label)
     check(not ids.intersection(groups), 'Group ids must differ from member ids')
-    return report()
+    if 'authoring' in manifest and not errors:
+        try:
+            from .authoring import verify_creation_inputs
+            verify_creation_inputs(manifest, root)
+        except (ValueError, OSError, KeyError, TypeError) as exc:
+            errors.append('Creation inputs: ' + str(exc))
+    result = report()
+    if not errors:
+        from .content_audit import audit_source_content
+        content = audit_source_content(manifest)
+        result['source_content'] = content
+        if content['status'] == 'FAIL':
+            errors.extend('Source content: ' + item.get('code', 'unresolved')
+                          for item in content['mismatches'] + content['unresolved'])
+            result['status'] = 'FAIL'
+        if content['diagnostics']:
+            warnings.append('Possible duplicate live text requires source review; see source_content diagnostics')
+        if 'source_inventory' in manifest and not _materialized:
+            from .source_inventory import audit_source_inventory
+            inventory = audit_source_inventory(manifest, root)
+            result['source_inventory'] = inventory
+            if inventory['status'] == 'FAIL':
+                errors.extend('Source inventory: ' + item.get('code', 'unresolved')
+                              for item in inventory['mismatches'] + inventory['unresolved'])
+                result['status'] = 'FAIL'
+            elif inventory['status'] == 'REVIEW':
+                warnings.append('Source component coverage or representation needs review; see source_inventory')
+    return result
 
 def load_and_validate(path, require_review=True):
     path = Path(path)

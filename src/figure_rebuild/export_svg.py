@@ -58,6 +58,8 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
             raise ValueError('No configured SVG font face for ' + requested + '/' + role)
         return requested, faces[(requested, role)]
     c=m['canvas']; root=ET.Element('{'+SVG+'}svg',{'width':str(c['width']),'height':str(c['height']),'viewBox':f"0 0 {c['width']} {c['height']}"})
+    gradient_defs = ET.SubElement(root, '{'+SVG+'}defs') if any('fill_gradient' in o.get('style', {}) for o in m['objects']) else None
+    reserved_svg_ids = {'canvas-background'} | {o['id'] for o in m['objects']}
     ET.SubElement(root,'{'+SVG+'}rect',{'id':'canvas-background','width':str(c['width']),'height':str(c['height']),'fill':c.get('background','#FFFFFF')})
     rows=sorted(enumerate(m['objects']),key=lambda row:(row[1].get('z_index',row[0]),row[0]))
     for _,o in rows:
@@ -73,8 +75,18 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
                     key='moveTo' if 'moveTo' in command else 'lineTo'; p=command[key]
                     parts.append(('M' if key=='moveTo' else 'L')+f" {p['x']} {p['y']}")
             attrs.update(d=' '.join(parts),fill=s.get('fill','none'),stroke=s.get('stroke','none'))
+            if 'fill_gradient' in s:
+                from .linear_gradient import svg_linear_gradient, native_path_frame
+                gradient_id = 'fr-gradient-' + str(_)
+                while gradient_id in reserved_svg_ids: gradient_id += '-fill'
+                reserved_svg_ids.add(gradient_id)
+                attrs['fill'] = svg_linear_gradient(gradient_defs, gradient_id, s, native_path_frame(o['commands']))
+            from .stroke_style import svg_stroke_attributes
+            attrs.update(svg_stroke_attributes(s))
             attrs['stroke-width']=str(s.get('stroke_width',0)); ET.SubElement(root,'{'+SVG+'}path',attrs)
         elif o['kind']=='text':
+            from .text_spacing import validate_character_spacing
+            character_spacing = validate_character_spacing(o)
             size=o['font_size'];text_family,face=selected_face(o)
             font=ImageFont.truetype(str(face),max(1,round(size)));ascent,descent=font.getmetrics()
             inset={**dict(left=0,right=0,top=0,bottom=0),**o.get('insets',{})}
@@ -89,19 +101,35 @@ def export(manifest_path, output, font_path, asset_root=None, bold_font_path=Non
             attrs.update(x=str(x),y=str(y),fill=s.get('fill','#000000'))
             attrs['font-family']=text_family;attrs['font-size']=str(size);attrs['font-weight']='bold' if o.get('bold') else 'normal';attrs['font-style']='italic' if o.get('italic') else 'normal';attrs['text-anchor']={'left':'start','center':'middle','right':'end'}[o.get('alignment','left')]
             if o.get('rotation'):
-                b=o['box'];attrs['transform']=f"rotate({o['rotation']} {b['x']+b['width']/2} {b['y']+b['height']/2})"
+                if 'anchor' in o:
+                    attrs['transform']=f"rotate({o['rotation']} {x} {y})"
+                else:
+                    b=o['box'];attrs['transform']=f"rotate({o['rotation']} {b['x']+b['width']/2} {b['y']+b['height']/2})"
             node=ET.SubElement(root,'{'+SVG+'}text',attrs)
             node.set('{http://www.w3.org/XML/1998/namespace}space','preserve')
-            if len(lines)==1:node.text=lines[0]
+            if character_spacing is not None:
+                node.set('font-kerning', 'none'); node.set('font-variant-ligatures', 'none')
+                for index, char in enumerate(o['text']):
+                    ET.SubElement(node, '{'+SVG+'}tspan', {'dx': str(0 if index == 0 else character_spacing[index-1])}).text = char
+            elif len(lines)==1:node.text=lines[0]
             else:
                 for index,line in enumerate(lines):
                     ET.SubElement(node,'{'+SVG+'}tspan',{'x':str(x),'y':str(y+index*line_height)}).text=line
         elif o['kind']=='image':
-            file=Path(asset_root or manifest_path.parent)/o['path'];b=o['box'];ext=file.suffix.lower()[1:];ext='jpeg' if ext=='jpg' else ext
+            file=Path(asset_root or manifest_path.parent)/o['path'];b=dict(o['box']);ext=file.suffix.lower()[1:];ext='jpeg' if ext=='jpg' else ext
             uri=f"data:image/{ext};base64,"+base64.b64encode(file.read_bytes()).decode()
             with Image.open(file) as image: iw,ih=image.size
             crop=o.get('crop',{'left':0,'top':0,'right':0,'bottom':0})
-            attrs.update(x=str(b['x']),y=str(b['y']),width=str(b['width']),height=str(b['height']),viewBox=f"{iw*crop['left']} {ih*crop['top']} {iw*(1-crop['left']-crop['right'])} {ih*(1-crop['top']-crop['bottom'])}",preserveAspectRatio='xMidYMid meet')
+            fit=o.get('fit','contain')
+            if fit not in ('contain','stretch'): raise ValueError('Invalid image fit: '+o['id'])
+            cw,ch=iw*(1-crop['left']-crop['right']),ih*(1-crop['top']-crop['bottom'])
+            if cw<=0 or ch<=0: raise ValueError('Image crop has no source area: '+o['id'])
+            if fit=='contain':
+                scale=min(b['width']/cw,b['height']/ch);width,height=cw*scale,ch*scale
+                b.update(x=b['x']+(b['width']-width)/2,y=b['y']+(b['height']-height)/2,width=width,height=height)
+            # Clip to the actual fitted frame, not the larger requested box:
+            # otherwise cropped source pixels leak into contain's empty margins.
+            attrs.update(x=str(b['x']),y=str(b['y']),width=str(b['width']),height=str(b['height']),viewBox=f"{iw*crop['left']} {ih*crop['top']} {cw} {ch}",preserveAspectRatio='none',overflow='hidden')
             panel=ET.SubElement(root,'{'+SVG+'}svg',attrs)
             ET.SubElement(panel,'{'+SVG+'}image',{'width':str(iw),'height':str(ih),'href':uri})
     ET.ElementTree(root).write(output,encoding='utf-8',xml_declaration=True)

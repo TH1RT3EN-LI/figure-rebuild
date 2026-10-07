@@ -68,6 +68,24 @@ class ManifestChecks(unittest.TestCase):
                              'anchor': {'x': 20, 'y': 35}, 'style': {'fill': '#000000'}})
         return m
 
+    def test_source_literal_mismatch_blocks_review_without_changing_the_text(self):
+        m = self.text_manifest()
+        m['source_evidence'] = {'schema_version': 1, 'source_sha256': m['source']['sha256'],
+            'literals': [{'id': 'label-reading', 'status': 'confirmed', 'object_ids': ['label'],
+                          'text': 'Source text',
+                          'source_region': {'x': 10, 'y': 10, 'width': 150, 'height': 40}}]}
+        result = v.validate(m, self.root, require_review=False)
+        self.assertEqual(result['status'], 'FAIL')
+        self.assertEqual(result['source_content']['mismatches'][0]['code'], 'literal_mismatch')
+        self.assertEqual(m['objects'][-1]['text'], 'Visible text')
+        m['objects'][-1]['text'] = 'Source text'
+        self.assertEqual(v.validate(m, self.root)['source_content']['status'], 'PASS')
+
+    def test_absent_source_evidence_does_not_claim_content_verification(self):
+        result = v.validate(self.text_manifest(), self.root)
+        self.assertEqual(result['status'], 'PASS')
+        self.assertEqual(result['source_content']['status'], 'NOT_PROVIDED')
+
     def test_invisible_text_and_unsupported_text_stroke_fail(self):
         for style in ({'fill': 'none'}, {'fill': '#333333', 'opacity': 0}, {'fill': '#333333', 'stroke': '#FF0000', 'stroke_width': 2}):
             bad = self.text_manifest(); bad['objects'][-1]['style'] = style
@@ -75,11 +93,25 @@ class ManifestChecks(unittest.TestCase):
         valid = self.text_manifest(); valid['objects'][-1]['style'] = {}
         self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
 
+    def test_explicit_character_spacing_checks_literal_boundaries_and_object_kind(self):
+        valid = self.text_manifest(); valid['objects'][-1]['character_spacing'] = [0] * 11
+        self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
+        for patch in [{'character_spacing': [0]}, {'character_spacing': [True] * 11},
+                      {'wrap': 'square'}, {'text': '复杂文字'}, {'alignment': 'right'}]:
+            bad = copy.deepcopy(valid); bad['objects'][-1].update(patch)
+            self.assertFails(bad, 'Character spacing')
+        bad = copy.deepcopy(valid); bad['objects'][0]['character_spacing'] = []
+        self.assertFails(bad, 'Character spacing')
+
     def test_invalid_text_position_or_box_rotation_fails_before_renderer(self):
         bad = self.text_manifest(); bad['objects'][-1]['anchor']['x'] = -1
         self.assertFails(bad, 'clipping is unsupported')
-        bad = self.text_manifest(); bad['objects'][-1]['rotation'] = 90
-        self.assertFails(bad, 'requires an explicit box')
+        for rotation in (90, -90, 37):
+            valid = self.text_manifest(); valid['objects'][-1]['rotation'] = rotation
+            self.assertEqual(v.validate(valid, self.root)['status'], 'PASS')
+        for rotation in (True, float('nan'), '90'):
+            bad = self.text_manifest(); bad['objects'][-1]['rotation'] = rotation
+            self.assertFails(bad, 'Invalid text rotation')
         for box in ({'x': 1, 'y': 1, 'width': 0, 'height': 10}, {'x': 1, 'y': 1, 'width': -2, 'height': 10}, {'x': 190, 'y': 30, 'width': 20, 'height': 80}):
             bad = self.text_manifest(); text = bad['objects'][-1]; text.pop('anchor'); text.update(box=box, rotation=90)
             with self.subTest(box=box): self.assertFails(bad)

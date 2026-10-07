@@ -5,8 +5,8 @@ include .github/CONTRIBUTING.md
 recursive-include agents *.yaml
 recursive-include references *.md
 recursive-include scripts *.py
-recursive-include docs *.md *.png *.gif *.json
-recursive-include tests *.py *.mjs *.xml *.LICENSE *.NOTICE
+recursive-include docs *.md *.png *.gif *.json *.pptx
+recursive-include tests *.py *.mjs *.xml *.json *.LICENSE *.NOTICE
 global-exclude __pycache__ *.py[cod]
 prune .local
 prune .venv

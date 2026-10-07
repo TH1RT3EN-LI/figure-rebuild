@@ -33,15 +33,17 @@ def save(path, data):
         except FileNotFoundError: pass
 
 
-def font_profile(value, base):
+def font_profile(value, base, *, require_default_faces=True):
     """Normalize a portable profile; declared hashes bind configured font bytes."""
     if not isinstance(value, dict) or not isinstance(value.get('family'), str) or not value['family'].strip():
         raise ValueError('Font profile needs fonts.family and regular/bold records')
     if any(ord(character) < 32 or character in ('"', '\\') for character in value['family']):
         raise ValueError('Font family contains unsupported quote/control characters')
+    if not any(role in value for role in ('regular', 'bold', 'italic', 'boldItalic')):
+        raise ValueError('Font profile needs at least one real face: ' + value['family'])
     fonts = {'family': value['family'].strip()}
     for role in ('regular', 'bold', 'italic', 'boldItalic'):
-        if role in ('italic', 'boldItalic') and role not in value:
+        if role not in value and (not require_default_faces or role in ('italic', 'boldItalic')):
             continue
         face = value.get(role)
         if not isinstance(face, dict) or not isinstance(face.get('path'), str) or not face['path']:
@@ -68,7 +70,7 @@ def font_profile(value, base):
         for extra in additional:
             if not isinstance(extra, dict) or extra.get('additional'):
                 raise ValueError('Additional font profiles cannot be nested')
-            normalized = font_profile(extra, base)
+            normalized = font_profile(extra, base, require_default_faces=False)
             if normalized['family'].casefold() in names:
                 raise ValueError('Duplicate configured font family: ' + normalized['family'])
             names.add(normalized['family'].casefold())
@@ -103,6 +105,9 @@ def validate_runtime(data, base):
         elif not path.is_dir(): raise ValueError('Runtime directory is missing: ' + key)
         data[key] = str(path)
     data['fonts'] = font_profile(data.get('fonts'), base)
+    if 'native_preview' in data:
+        from .native_preview import validate_profile
+        data['native_preview'] = validate_profile(data['native_preview'], base, check_executables=False)
     return data
 
 
@@ -146,6 +151,10 @@ def configure(a):
             for key in ('node', 'python', 'node_modules', 'presentation_skill')}
     profile = Path(a.font_profile).expanduser().resolve()
     data.update(font_profile=str(profile), fonts=read_font_profile(profile))
+    if getattr(a, 'native_preview_profile', None):
+        from .native_preview import validate_profile
+        native_profile = Path(a.native_preview_profile).expanduser().resolve()
+        data['native_preview'] = validate_profile(json.loads(native_profile.read_text(encoding='utf-8')), native_profile.parent)
     data = validate_runtime(data, config_path().parent)
     save(config_path(), data)
     print(json.dumps({'configured': True, 'profile': str(config_path()), 'font_family': data['fonts']['family']}))
@@ -242,14 +251,36 @@ def diagnose_command(a):
     return 1 if report['status'] in ('unavailable', 'failure') else 0
 
 
-def freeze_assets(job, run, manifest):
+def freeze_assets(job, run, manifest, *, extra_sources=()):
     """Archive every declared source byte for this run without altering originals."""
     asset_root = Path(run) / 'assets'
     asset_root.mkdir()
     source = manifest['source']
     assets = {source['path']: source['sha256']}
+    if 'authoring' in manifest:
+        from .authoring import verify_creation_inputs
+        verify_creation_inputs(manifest, job)
+        for role in ('spec', 'audit'):
+            entry = manifest['authoring'][role]
+            if entry['path'] in assets and assets[entry['path']] != entry['sha256']:
+                raise ValueError('Conflicting creation asset checksums')
+            assets[entry['path']] = entry['sha256']
+    if 'source_canvas_clip' in manifest:
+        declaration = manifest['source_canvas_clip']
+        if not isinstance(declaration, dict):
+            raise ValueError('Source canvas clipping needs an explicit declaration')
+        for role in ('source_pdf', 'source_svg'):
+            record = declaration.get(role)
+            if not isinstance(record, dict) or not isinstance(record.get('path'), str) or not isinstance(record.get('sha256'), str):
+                raise ValueError('Source canvas clipping needs a bound ' + role)
+            previous = assets.get(record['path'])
+            if previous is not None and previous != record['sha256']:
+                raise ValueError('Conflicting checksums for canvas evidence: ' + record['path'])
+            assets[record['path']] = record['sha256']
     from .scene_compile import compile_scene
     _, semantic = compile_scene(manifest, job)
+    if semantic.get('source_inventory', {}).get('status') == 'FAIL':
+        raise ValueError('Source inventory has mismatches or unresolved source evidence')
     for record in semantic['hash_files']:
         assets[record['path']] = record['sha256']
     for item in manifest['objects']:
@@ -258,6 +289,11 @@ def freeze_assets(job, run, manifest):
             if previous is not None and previous != item['sha256']:
                 raise ValueError('Conflicting checksums for asset: ' + item['path'])
             assets[item['path']] = item['sha256']
+    for item in extra_sources:
+        previous = assets.get(item['path'])
+        if previous is not None and previous != item['sha256']:
+            raise ValueError('Conflicting checksums for preview source asset: '+item['path'])
+        assets[item['path']] = item['sha256']
     records = []
     for relative, expected in sorted(assets.items()):
         original = confined(job, relative)
@@ -303,6 +339,11 @@ def prepare(a):
     save(job / 'manifest.json', manifest)
     print(json.dumps({'job': str(job), 'manifest': str(job / 'manifest.json'), 'source_sha256': manifest['source']['sha256'], 'next': 'Inspect the original, fill/review objects and text; then review and build. No external recognition API is called.'}, ensure_ascii=False))
 
+def create(a):
+    from .authoring import create_job
+    fonts = read_font_profile(a.font_profile) if a.font_profile else runtime(check_dependencies=False)['fonts']
+    print(json.dumps(create_job(a.spec, a.job, fonts), ensure_ascii=False, indent=2))
+
 def review(a):
     p = Path(a.manifest).resolve()
     data, report = load_and_validate(p, require_review=False)
@@ -313,6 +354,113 @@ def review(a):
     data['recognition']['reviewed_digest'] = content_digest(data)
     save(p, data)
     print(json.dumps({'status': 'reviewed', 'counts': report['object_counts']}))
+
+def review_output(a):
+    """Record observations only after their original artifact bindings match."""
+    from .output_review import prepare_output_review, record_output_review, verify_output_review
+    if a.output and not a.record:
+        raise ValueError('--output is only used with --record')
+    if a.require_no_observed_issues and not a.verify:
+        raise ValueError('--require-no-observed-issues is only used with --verify')
+    if a.template:
+        result = prepare_output_review(a.run)
+        destination = Path(a.template).resolve()
+        destination.parent.mkdir(parents=True, exist_ok=True)
+        with destination.open('x', encoding='utf-8') as stream:
+            json.dump(result, stream, ensure_ascii=False, indent=2, allow_nan=False)
+            stream.write('\n')
+        print(json.dumps({'template': str(destination), 'review_performed': False}))
+    else:
+        record = json.loads(Path(a.record or a.verify).read_text(encoding='utf-8'))
+        result = (record_output_review(a.run, record, output=a.output) if a.record else
+                  verify_output_review(a.run, record, require_no_observed_issues=a.require_no_observed_issues))
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+
+def _source_fidelity_json(path, record_type):
+    """Read one bounded, unambiguous JSON record for the typed replay API."""
+    from dataclasses import fields, MISSING
+    import math
+    if not isinstance(path, str) or not path.strip():
+        raise ValueError('Source-fidelity JSON path must be nonempty')
+    path = Path(path).expanduser().resolve()
+    with path.open('rb') as stream:
+        raw = stream.read(1048577)
+    if len(raw) > 1048576:
+        raise ValueError('Source-fidelity JSON exceeds 1 MiB: ' + str(path))
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError('Duplicate JSON field: ' + key)
+            result[key] = value
+        return result
+    def constant(value):
+        raise ValueError('Non-finite JSON number is unsupported: ' + value)
+    def number(value):
+        parsed = float(value)
+        if not math.isfinite(parsed):
+            constant(value)
+        return parsed
+    def integer(value):
+        parsed = int(value)
+        try:
+            finite = math.isfinite(parsed)
+        except OverflowError:
+            finite = False
+        if not finite:
+            raise ValueError('JSON integer exceeds finite numeric range')
+        return parsed
+    try:
+        data = json.loads(raw.decode('utf-8'), object_pairs_hook=pairs, parse_constant=constant,
+                          parse_float=number, parse_int=integer)
+    except RecursionError as exc:
+        raise ValueError('Source-fidelity JSON nesting is too deep') from exc
+    if not isinstance(data, dict):
+        raise ValueError('Source-fidelity JSON must be an object: ' + str(path))
+    schema = {field.name: field for field in fields(record_type)}
+    unknown = sorted(set(data) - set(schema))
+    if unknown:
+        raise ValueError('Unknown ' + record_type.__name__ + ' fields: ' + ', '.join(unknown))
+    missing = [name for name, field in schema.items()
+               if name not in data and field.default is MISSING and field.default_factory is MISSING]
+    if missing:
+        raise ValueError('Missing ' + record_type.__name__ + ' fields: ' + ', '.join(missing))
+    return data, path
+
+
+def verify_source_fidelity(a):
+    """Expose the bounded source replay without changing semantic/visual review."""
+    from .source_fidelity import (PdfSourceDescriptor, SourceReplayPolicy,
+                                  ReplayLimits, audit_source_fidelity)
+    data, descriptor = _source_fidelity_json(a.source_descriptor, PdfSourceDescriptor)
+    for key in ('pdf_path', 'reference_png_path'):
+        value = data.get(key)
+        if key == 'reference_png_path' and value is None:
+            continue
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError(key + ' must be a nonempty filesystem path')
+        path = Path(value).expanduser()
+        data[key] = str((descriptor.parent / path).resolve() if not path.is_absolute() else path.resolve())
+    policy = SourceReplayPolicy(**_source_fidelity_json(a.policy, SourceReplayPolicy)[0]) if a.policy is not None else SourceReplayPolicy()
+    limits = ReplayLimits(**_source_fidelity_json(a.limits, ReplayLimits)[0]) if a.limits is not None else ReplayLimits()
+    paths = {}
+    for name in ('manifest', 'resolved_scene', 'asset_root', 'pptx', 'evidence_dir'):
+        value = getattr(a, name)
+        if not isinstance(value, str) or not value.strip():
+            raise ValueError('--' + name.replace('_', '-') + ' must be a nonempty filesystem path')
+        paths[name] = Path(value).expanduser().resolve()
+    try:
+        result = audit_source_fidelity(
+            PdfSourceDescriptor(**data), manifest_path=paths['manifest'],
+            resolved_scene_path=paths['resolved_scene'], asset_root=paths['asset_root'],
+            pptx_path=paths['pptx'], evidence_dir=paths['evidence_dir'],
+            policy=policy, limits=limits,
+        )
+    except OverflowError as exc:
+        raise ValueError('Source-fidelity numeric input exceeds the supported range') from exc
+    print(json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False))
+    return 0 if result.get('status') == 'VERIFIED_IN_DECLARED_SCOPE' else 1
+
 
 def insert(a):
     """Place an already generated native slide without an authoring runtime."""
@@ -329,10 +477,82 @@ def build(a):
     m = Path(a.manifest).resolve()
     data, report = load_and_validate(m)
     verify_review(data)
+    if 'source_canvas_clip' in data and (a.base or a.placement):
+        raise ValueError('Source canvas clipping requires a standalone slide; base decks and placement are unsupported')
     job = m.parent
     out = Path(a.output).resolve() if a.output else job / 'exports' / f"{data['id']}-r{data['revision']}.pptx"
     if out.exists(): raise ValueError('Output already exists; use a new revision or output name')
+    from .native_preview import validate_backend, validate_pdf_alpha_policy
+    preview_backend = validate_backend(getattr(a, 'preview_backend', 'artifact'))
+    pdf_alpha_policy = validate_pdf_alpha_policy(getattr(a, 'pdf_alpha_derivation', None), preview_backend)
+    if preview_backend == 'native-svg' and (a.base or 'source_canvas_clip' in data or
+            any(o.get('kind') != 'path' for o in data['objects'])):
+        raise ValueError('Native SVG preview requires a standalone flat path-only slide without source clipping')
+    shared_grid_path = getattr(a, 'artifact_image_shared_grid', None)
+    shared_grid = None
+    if shared_grid_path:
+        from .source_inventory import _load_json
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        shared_grid = _load_json(Path(shared_grid_path).resolve(), MAX_DEFINITION_BYTES)
+    source_sampling_path = getattr(a, 'artifact_image_source_sampling', None)
+    source_rgb_path = getattr(a, 'artifact_image_source_rgb_groups', None)
+    source_sampling, preview_sources = None, []
+    if source_sampling_path or source_rgb_path:
+        if shared_grid_path or (source_sampling_path and source_rgb_path):
+            raise ValueError('Choose one explicit native image sampling policy')
+        from .source_inventory import _load_json
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        from .artifact_source_image_preview import source_request_assets
+        source_sampling = _load_json(Path(source_sampling_path or source_rgb_path).resolve(), MAX_DEFINITION_BYTES)
+        preview_sources = source_request_assets(source_sampling, rgb_groups=bool(source_rgb_path))
+    image_preview = (getattr(a, 'artifact_image_preview', False) or shared_grid_path is not None or
+                     source_sampling_path is not None or source_rgb_path is not None)
+    path_prefix_path = getattr(a, 'artifact_path_prefix_grid', None)
+    path_prefix = None
+    if path_prefix_path:
+        if preview_backend != 'artifact' or a.base or image_preview or 'source_canvas_clip' in data:
+            raise ValueError('Native path-prefix grid requires a standalone Artifact build without another image sampling policy or source clipping')
+        from .source_inventory import _load_json
+        from .artifact_path_prefix_preview import validate_request
+        from .artifact_image_preview import MAX_DEFINITION_BYTES
+        path_prefix = _load_json(Path(path_prefix_path).resolve(), MAX_DEFINITION_BYTES)
+        validate_request(path_prefix)
+    if image_preview and (preview_backend != 'artifact' or a.base):
+        raise ValueError('Native picture preview requires a standalone Artifact build')
+    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos') and a.base:
+        raise ValueError('LibreOffice preview does not yet support base-deck slide mapping')
+    if any(o.get('style', {}).get('stroke_hairline') is True for o in data['objects']) and preview_backend != 'libreoffice-pdf':
+        raise ValueError('Explicit device hairlines require the libreoffice-pdf preview backend')
     rt = runtime()
+    if preview_backend == 'native-svg':
+        try:
+            subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'native_svg_preview', '--preflight'],
+                           check=True, capture_output=True, text=True, timeout=45, env=python_environment())
+        except subprocess.TimeoutExpired as exc:
+            raise ValueError('Native SVG dependency check timed out') from exc
+        except subprocess.CalledProcessError as exc:
+            raise ValueError('Native SVG dependency check failed: ' + (exc.stderr or '').strip()) from exc
+    if image_preview or path_prefix_path:
+        try:
+            subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'artifact_image_preview',
+                            '--preflight'], check=True, capture_output=True, text=True, timeout=45,
+                           env=python_environment())
+        except subprocess.TimeoutExpired as exc:
+            raise ValueError('Native picture preview dependency check timed out') from exc
+        except subprocess.CalledProcessError as exc:
+            raise ValueError('Native picture preview dependency check failed: ' + (exc.stderr or '').strip()) from exc
+    if preview_backend in ('libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
+        # Probe the configured interpreter, not the interpreter running this CLI.
+        with tempfile.TemporaryDirectory(prefix='figure-rebuild-native-check-') as temp:
+            native_config = Path(temp) / 'runtime.json'; save(native_config, rt)
+            try:
+                subprocess.run([rt['python'], '-B', str(PACKAGE_ROOT / '_bootstrap.py'), 'native_preview',
+                                '--config', str(native_config), '--preflight'], check=True,
+                               capture_output=True, text=True, timeout=45, env=python_environment())
+            except subprocess.TimeoutExpired as exc:
+                raise ValueError('Native preview dependency check timed out') from exc
+            except subprocess.CalledProcessError as exc:
+                raise ValueError('Native preview dependency check failed: ' + (exc.stderr or '').strip()) from exc
     base_config = None
     if a.placement and not a.base: raise ValueError('placement requires an existing base deck')
     if (a.slide_id or a.base_sha256 or a.replace_id) and not a.base: raise ValueError('Base-specific arguments require --base')
@@ -362,11 +582,42 @@ def build(a):
     with allocation_lock(job / 'build'):
         check_revision_history(job / 'build', data)
         run = allocate_run(job / 'build')
-        assets = freeze_assets(job, run, data)
+        assets = freeze_assets(job, run, data, extra_sources=preview_sources) if preview_sources else freeze_assets(job, run, data)
         snapshot = run / 'manifest-snapshot.json'
         save(snapshot, data)
         save(run / 'manifest-validation.json', report)
-        config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt}
+        config = {'manifest': str(snapshot), 'manifest_source': str(m), 'job': str(job), 'asset_root': str(assets), 'run': str(run), 'output': str(out), 'package_root': str(PACKAGE_ROOT), 'runtime': rt,
+                  'preview_backend': preview_backend, 'preview_provenance_version': 1,
+                  'diagnostic_provenance_version': 1}
+        if preview_backend == 'artifact' and not base_config:
+            config['artifact_stroke_preview_version'] = 1
+        if image_preview:
+            config['artifact_image_preview_version'] = 5 if source_rgb_path else 4 if source_sampling_path else 3 if shared_grid_path else 2
+            if shared_grid_path:
+                config['artifact_image_shared_grid'] = shared_grid
+            if source_sampling_path:
+                config['artifact_image_source_sampling'] = source_sampling
+            if source_rgb_path:
+                config['artifact_image_source_rgb_groups'] = source_sampling
+        if path_prefix_path:
+            config['artifact_path_prefix_preview_version'] = 1
+            config['artifact_path_prefix_grid'] = path_prefix
+        if preview_backend == 'libreoffice-pdf':
+            config['native_pdf_preview_version'] = 1
+        if preview_backend == 'native-svg':
+            config['native_svg_preview_version'] = 1
+        if preview_backend in ('libreoffice-pdf-rgb', 'libreoffice-pdf-photos'):
+            from .pdf_zero_alpha_rgb import POLICY
+            config['native_pdf_preview_version'] = 2
+            config['pdf_rgb_derivation'] = POLICY
+        if preview_backend == 'libreoffice-pdf-photos':
+            from .pdf_native_photos import POLICY
+            config['native_pdf_preview_version'] = 3
+            config['pdf_native_photo_placement'] = POLICY
+        if pdf_alpha_policy:
+            config['pdf_alpha_derivation'] = pdf_alpha_policy
+        if 'source_canvas_clip' in data:
+            config['source_canvas_clip_provenance_version'] = 1
         if base_config:
             snap = run / 'base-snapshot.pptx'
             shutil.copy2(base, snap)
@@ -386,6 +637,7 @@ def main():
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)
     c.add_argument('--font-profile', required=True)
+    c.add_argument('--native-preview-profile', help='Optional external LibreOffice/Fontconfig command profile JSON')
     c.set_defaults(func=configure)
     c = sub.add_parser('doctor'); c.set_defaults(func=doctor)
     c = sub.add_parser('refine-crop', help='Propose a source-pixel crop inside a selected region; never edits the manifest')
@@ -398,12 +650,33 @@ def main():
     c.add_argument('--reference', required=True); c.add_argument('--rebuilt', required=True)
     c.add_argument('--output', required=True); c.add_argument('--max-shift', type=float, default=32)
     c.set_defaults(func=diagnose_command)
+    c = sub.add_parser('create', help='Author an original academic figure from an explicit graph and saved brief')
+    c.add_argument('--spec', required=True, help='Creation spec JSON: brief, nodes, stages/lanes and directed edges')
+    c.add_argument('--job', required=True, help='New job directory; existing jobs are preserved')
+    c.add_argument('--font-profile', help='Portable font profile; defaults to configured runtime fonts')
+    c.set_defaults(func=create)
     c = sub.add_parser('prepare')
     c.add_argument('--input', required=True); c.add_argument('--job', required=True); c.add_argument('--id')
     c.add_argument('--kind', required=True, choices=['research_original', 'user_original', 'retrieved_original', 'generated_diagram'])
     c.add_argument('--source-uri'); c.add_argument('--tolerance', type=float, default=.35); c.set_defaults(func=prepare)
     c = sub.add_parser('review')
     c.add_argument('--manifest', required=True); c.add_argument('--note', required=True); c.set_defaults(func=review)
+    c = sub.add_parser('review-output', help='Bind supplied visual observations to exact built artifacts')
+    c.add_argument('--run', required=True)
+    action = c.add_mutually_exclusive_group(required=True)
+    action.add_argument('--template', help='Write an unperformed review template to a new JSON file')
+    action.add_argument('--record', help='Record a filled template without refreshing its artifact bindings')
+    action.add_argument('--verify', help='Verify a recorded review against the current artifact bytes')
+    c.add_argument('--output', help='New JSON destination for --record')
+    c.add_argument('--require-no-observed-issues', action='store_true')
+    c.set_defaults(func=review_output)
+    c = sub.add_parser('verify-source-fidelity', help='Replay source geometry and bind the actual PPTX; does not recognize semantics or perform visual acceptance')
+    c.add_argument('--source-descriptor', required=True, help='Strict PDF descriptor JSON; embedded relative paths resolve against its directory')
+    for name in ('manifest', 'resolved-scene', 'asset-root', 'pptx', 'evidence-dir'):
+        c.add_argument('--' + name, required=True, help='Filesystem path relative to the current directory; evidence directory must be new' if name == 'evidence-dir' else 'Filesystem path relative to the current directory')
+    c.add_argument('--policy', help='Optional strict SourceReplayPolicy JSON file; omitted fields use API defaults')
+    c.add_argument('--limits', help='Optional strict ReplayLimits JSON file; omitted fields use API defaults')
+    c.set_defaults(func=verify_source_fidelity)
     c = sub.add_parser('validate')
     c.add_argument('--manifest', required=True)
     def validate_reviewed(a):
@@ -412,6 +685,13 @@ def main():
         print(json.dumps(report, ensure_ascii=False))
     c.set_defaults(func=validate_reviewed)
     c = sub.add_parser('build', help='Generate a figure, optionally placing it in an existing deck')
+    c.add_argument('--preview-backend', choices=['artifact', 'libreoffice', 'libreoffice-pdf', 'libreoffice-pdf-rgb', 'libreoffice-pdf-photos', 'native-svg'], default='artifact', help='Renderer for the finalized PPTX; native-svg reads flat solid native paths; LibreOffice PDF backends retain all native exports and support standalone slides')
+    c.add_argument('--artifact-image-preview', action='store_true', help='Sample supported actual native picture media with MuPDF for Artifact previews; requires optional source dependencies and a standalone slide')
+    c.add_argument('--artifact-image-shared-grid', help='JSON request declaring opaque integer source windows sampled together on a common native media grid; standalone Artifact preview only')
+    c.add_argument('--artifact-image-source-sampling', help='JSON source image-only interval recipes which byte-replay delivered picture media before target-grid previews; standalone Artifact only')
+    c.add_argument('--artifact-path-prefix-grid', help='JSON request for a filled native-path prefix sampled with the actual opaque background on a finite grid; standalone Artifact only; editable delivery unchanged')
+    c.add_argument('--artifact-image-source-rgb-groups', help='JSON single-image recipes using the existing explicit RGB source-group policy; finite full-figure review required')
+    c.add_argument('--pdf-alpha-derivation', choices=['binary-alpha-white-matte-v1'], help='Also deliver a separately named PDF with exact binary-alpha sample re-encoding; requires LibreOffice')
     c.add_argument('--manifest', required=True); c.add_argument('--output'); c.add_argument('--base'); c.add_argument('--base-sha256'); c.add_argument('--slide-id'); c.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'), help='Target region in CSS pixels; fit uniformly and center'); c.add_argument('--replace-id', action='append'); c.add_argument('--marker-already-started', action='store_true'); c.set_defaults(func=build)
     c = sub.add_parser('insert', help='Fit an existing single-slide figure into a target deck; no authoring runtime needed')
     c.add_argument('--input', required=True, help='Generated single-slide PPTX')

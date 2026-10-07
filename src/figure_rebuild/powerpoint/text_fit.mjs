@@ -40,8 +40,99 @@ function metricWidth(metrics) {
   return Math.max(advance, right) + left;
 }
 
+/** Measure separate simple characters and their declared extra advances. */
+export function characterSpacedMeasurement(object, measure) {
+  if (!Object.hasOwn(object, 'character_spacing')) return undefined;
+  const text = object.text, extra = object.character_spacing;
+  if (typeof text !== 'string' || !text.trim() || text.length < 1 || text.length > 2000 || /[^\x20-\x7e]/u.test(text)
+      || (object.wrap ?? 'none') !== 'none' || (object.alignment ?? 'left') !== 'left') {
+    throw Error('Character spacing requires a single-line left-aligned ASCII text label: ' + object.id);
+  }
+  if (!Array.isArray(extra) || extra.length !== text.length - 1
+      || extra.some(v => typeof v !== 'number' || !Number.isFinite(v) || Math.abs(v) > 1000)) {
+    throw Error('Character spacing needs finite canvas pixel advances at every character boundary: ' + object.id);
+  }
+  const sample = measure('Mg');
+  let cursor = 0, left = 0, right = 0, ascent = 0, descent = 0;
+  for (let i = 0; i < text.length; i++) {
+    const metrics = measure(text[i]), advance = metrics.width;
+    if (!Number.isFinite(advance) || advance < 0) throw Error('Invalid character advance: ' + object.id);
+    const inkLeft = metrics.actualBoundingBoxLeft ?? 0, inkRight = metrics.actualBoundingBoxRight ?? advance;
+    if (![inkLeft, inkRight].every(Number.isFinite)) throw Error('Invalid character ink bounds: ' + object.id);
+    left = Math.min(left, cursor - inkLeft); right = Math.max(right, cursor + inkRight);
+    ascent = Math.max(ascent, metrics.actualBoundingBoxAscent ?? 0);
+    descent = Math.max(descent, metrics.actualBoundingBoxDescent ?? 0);
+    if (i < extra.length && advance + extra[i] <= 0) throw Error('Character spacing reverses an advance: ' + object.id);
+    cursor += advance + (extra[i] ?? 0);
+  }
+  return {...sample, width: cursor, actualBoundingBoxLeft: Math.max(0, -left),
+    actualBoundingBoxRight: right, actualBoundingBoxAscent: ascent, actualBoundingBoxDescent: descent};
+}
+
+/**
+ * Read the presentation renderer's metrics, separately from the source-font
+ * measurer. The two Canvas implementations do not include font line gaps in
+ * the same way. Values are returned in source pixels after PPT point rounding.
+ *
+ * Artifact presentation layout uses a 1.2-em natural line box. Encode explicit
+ * pitches as percentages of that box: the exact-point first-baseline branch
+ * differs substantially from native Impress. Percentage spacing preserves the
+ * editable paragraph and uses the renderer's percentage-baseline branch.
+ * The paint adjustment is also part of that renderer's exported metrics API;
+ * do not substitute a fitted constant or the visible ink height for it.
+ */
+export function measurePresentationBaseline(object, {context, fontMetricsProvider,
+  paintBaselineCompensation, scale = 1, defaultFamily}) {
+  if (typeof context?.measureText !== 'function'
+      || typeof fontMetricsProvider?.getMetricsForSize !== 'function'
+      || typeof paintBaselineCompensation !== 'function') {
+    throw Error('Configured Artifact Tool lacks the presentation font metrics/baseline API required for faithful text placement');
+  }
+  finiteMetric(scale, 'render scale');
+  const px = Math.round(object.font_size * scale * 75) / 75;
+  finiteMetric(px, 'rendered font size');
+  const family = object.font_family ?? defaultFamily;
+  if (typeof family !== 'string' || !family) throw Error('Renderer text requires a registered font family');
+  const font = {family: JSON.stringify(family), style: object.italic ? 'italic' : 'normal',
+    weight: object.bold ? '700' : '400'};
+  context.font = `${font.style} ${font.weight} ${px}px ${font.family}`;
+  context.textBaseline = 'alphabetic';
+  const metrics = fontMetricsProvider.getMetricsForSize(font, px);
+  const ascent = finiteMetric(metrics.ascentPx, 'renderer font ascent');
+  const naturalHeight = px * 1.2;
+  const requestedHeight = object.line_height === undefined ? naturalHeight
+    : finiteMetric(object.line_height, 'line_height') * scale;
+  const spacingPercent = object.line_height === undefined ? undefined
+    : Math.round(requestedHeight / naturalHeight * 100000);
+  if (spacingPercent !== undefined && (!Number.isSafeInteger(spacingPercent) || spacingPercent <= 0)) {
+    throw Error('Rendered line height cannot be represented as positive DrawingML percentage spacing');
+  }
+  const multiple = spacingPercent === undefined ? 1 : spacingPercent / 100000;
+  const lineHeight = naturalHeight * multiple;
+  finiteMetric(lineHeight, 'rendered line height');
+  let baseline = multiple < 1 ? lineHeight * .8 : px + lineHeight - naturalHeight;
+  if (Number.isFinite(metrics.officeAscentPx) && metrics.officeAscentPx > 0
+      && Number.isFinite(metrics.officeDescentPx) && metrics.officeDescentPx > 0) {
+    baseline = lineHeight * metrics.officeAscentPx / (metrics.officeAscentPx + metrics.officeDescentPx);
+  }
+  const ink = context.measureText(object.text.split(/\r\n?|\n/u)[0] || 'Mg');
+  // Artifact applies this correction only for a single resolved font face.
+  const runs = (ink.lines ?? []).flatMap(line => line.runs ?? []);
+  const families = new Set(runs.map(run => run.family?.trim().toLocaleLowerCase()).filter(Boolean));
+  const correction = families.size === 1 && Number.isFinite(ink.fontBoundingBoxAscent)
+    ? paintBaselineCompensation(ink.fontBoundingBoxAscent) : 0;
+  if (!Number.isFinite(correction)) throw Error('Renderer returned an invalid paint baseline correction');
+  return {model: 'artifact_presentation_v1', first_baseline_px: (baseline + correction) / scale,
+    line_height_px: lineHeight / scale, natural_line_height_px: naturalHeight / scale,
+    font_ascent_px: ascent / scale, paint_baseline_correction_px: correction / scale,
+    rendered_font_size_px: px / scale, scale,
+    requested_line_height_px: object.line_height ?? requestedHeight / scale,
+    ...(spacingPercent === undefined ? {} : {spacing_thousandths_percent: spacingPercent}),
+    spacing: object.line_height === undefined ? 'default' : 'percent_of_natural_line'};
+}
+
 export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lineHeight: explicitLineHeight,
-  baselineOffset: explicitBaselineOffset}, measure) {
+  baselineOffset: explicitBaselineOffset, rendererBaseline}, measure) {
   if (typeof text !== 'string' || !Number.isFinite(fontSize) || fontSize <= 0) throw Error('Invalid text measurement input');
   if (!(width > 0) || !['none', 'square'].includes(wrap)) throw Error('Invalid text wrapping bounds');
   const paragraphs = text.replace(/\r\n?/g, '\n').split('\n');
@@ -81,15 +172,26 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lin
                          ...measurements.map(item => item.actualBoundingBoxAscent ?? 0));
   const descent = Math.max(0, sample.actualBoundingBoxDescent ?? fontSize * 0.2,
                           ...measurements.map(item => item.actualBoundingBoxDescent ?? 0));
-  const lineHeight = explicitLineHeight === undefined ? Math.max(fontSize * 1.2, ascent + descent)
+  let lineHeight = explicitLineHeight === undefined ? Math.max(fontSize * 1.2, ascent + descent)
     : finiteMetric(explicitLineHeight, 'line_height');
-  // Native PPT's single-line baseline uses the font ascent plus half of its
-  // default 20% leading, rather than the visible ink ascent of this string.
+  // This is the source frame's default baseline contract, not the renderer's
+  // baseline. Keep it independent of explicit line pitch and preserve it with
+  // the measured native inset correction below.
   const defaultNativeBaselineAscent = Number.isFinite(sample.fontBoundingBoxAscent)
     ? sample.fontBoundingBoxAscent + fontSize * .1 : ascent + fontSize * .04;
   const nativeBaselineAscent = explicitBaselineOffset === undefined
     ? defaultNativeBaselineAscent
     : finiteMetric(explicitBaselineOffset, 'baseline_offset', true);
+  let rendererLayout = {};
+  if (rendererBaseline !== undefined) {
+    if (!rendererBaseline || rendererBaseline.model !== 'artifact_presentation_v1') {
+      throw Error('Text needs supported renderer baseline metrics');
+    }
+    const actualBaseline = finiteMetric(rendererBaseline.first_baseline_px, 'renderer first baseline', true);
+    lineHeight = finiteMetric(rendererBaseline.line_height_px, 'renderer line height');
+    rendererLayout = {renderer_baseline: rendererBaseline,
+      baseline_adjustment_px: nativeBaselineAscent - actualBaseline};
+  }
   const requiredHeight = explicitBaselineOffset === undefined ? lineHeight * lines.length
     : Math.max(lineHeight * lines.length, nativeBaselineAscent + descent + (lines.length - 1) * lineHeight);
   return {lines, line_count: lines.length, required_width: Math.max(0, ...measurements.map(metricWidth)),
@@ -98,16 +200,21 @@ export function layoutText(text, {fontSize, width = Infinity, wrap = 'none', lin
           default_native_baseline_ascent: defaultNativeBaselineAscent,
           baseline_basis: explicitBaselineOffset === undefined ? 'font_metrics_and_native_leading' : 'explicit_calibrated_offset',
           line_height_basis: explicitLineHeight === undefined ? 'default_measured_leading' : 'explicit_pixel_value',
+          ...rendererLayout,
           measurement_basis: 'registered font; approximate PPT line layout; actual preview still required'};
 }
 
-export function fittedTextBox(object, measure, canvas) {
+export function fittedTextBox(object, measure, canvas, {rendererBaseline} = {}) {
   const insets = textInsets(object.insets);
   const contentWidth = object.box ? object.box.width - insets.left - insets.right : Infinity;
   if (!(contentWidth > 0)) throw Error('Text insets leave no content width: ' + object.id);
+  const spaced = characterSpacedMeasurement(object, measure);
+  const lineMeasure = spaced === undefined ? measure : text => text === object.text ? spaced : measure(text);
   const layout = layoutText(object.text, {fontSize: object.font_size,
     width: contentWidth, wrap: object.box ? object.wrap ?? 'none' : 'none',
-    lineHeight: object.line_height, baselineOffset: object.baseline_offset}, measure);
+    lineHeight: object.line_height, baselineOffset: object.baseline_offset, rendererBaseline}, lineMeasure);
+  if (spaced !== undefined) layout.character_spacing = {extra_advances_canvas_px: [...object.character_spacing],
+    measurement_basis: 'individual registered-font characters; native character spacing needs application verification'};
   let box = object.box;
   if (!box) {
     const width = Math.max(1, layout.required_width + object.font_size * 0.12);
@@ -116,6 +223,17 @@ export function fittedTextBox(object, measure, canvas) {
     box = {x: object.anchor.x - insets.left - (alignment === 'center' ? width / 2 : alignment === 'right' ? width : 0),
       y: object.anchor.y - insets.top - layout.native_baseline_ascent,
       width: width + insets.left + insets.right, height: height + insets.top + insets.bottom};
+    // DrawingML rotates the complete frame around its center. An anchor is a
+    // source baseline point, so rotate the center's offset from that point;
+    // rotating an already positioned box would move the source baseline.
+    if (object.rotation) {
+      const angle = object.rotation * Math.PI / 180;
+      const dx = box.x + box.width / 2 - object.anchor.x;
+      const dy = box.y + box.height / 2 - object.anchor.y;
+      box = {...box,
+        x: object.anchor.x + Math.cos(angle) * dx - Math.sin(angle) * dy - box.width / 2,
+        y: object.anchor.y + Math.sin(angle) * dx + Math.cos(angle) * dy - box.height / 2};
+    }
   }
   const contentBox = {x: box.x + insets.left, y: box.y + insets.top,
     width: box.width - insets.left - insets.right, height: box.height - insets.top - insets.bottom};

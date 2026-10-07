@@ -62,7 +62,7 @@ def _transform(element, label):
 def _mapped_frames(object_map, manifest):
     if object_map is None:
         return None
-    data = json.loads(Path(object_map).read_text())
+    data = object_map if isinstance(object_map, dict) else json.loads(Path(object_map).read_text())
     if not isinstance(data, dict):
         raise ValueError('Object map must be a record')
     placement = data.get('placement')
@@ -92,7 +92,9 @@ def _mapped_frames(object_map, manifest):
                  box['height'] * scale * _EMU_PER_PX)
         if not all(math.isfinite(value) for value in frame):
             raise ValueError('Mapped frame exceeds numeric range: ' + entry['id'])
-        frames[entry['id']] = {**entry, 'frame': frame, 'source_box': box, 'scale': scale}
+        frames[entry['id']] = {**entry, 'frame': frame, 'source_box': box, 'scale': scale,
+                              'source_to_slide': {'translate_x': placement[0], 'translate_y': placement[1],
+                                                  'scale_numerator': placement[2], 'scale_denominator': canvas['width']}}
     return frames
 
 
@@ -201,12 +203,39 @@ def _visual_bounds(element, label):
             math.ceil(max(p[0] for p in corners)), math.ceil(max(p[1] for p in corners)))
 
 
-def process(source, output, manifest_path, receipt, object_map=None, asset_root=None):
+def _write_editability_receipt(path, data):
+    # Large classified-curve proofs can exceed Node's string limit when pretty
+    # indentation doubles their on-disk size. Keep every proof field, stream
+    # compact JSON, and avoid a second complete serialized copy in Python.
+    with Path(path).open('w', encoding='utf-8') as stream:
+        json.dump(data, stream, ensure_ascii=False, separators=(',', ':'))
+        stream.write('\n')
+
+
+def process(source, output, manifest_path, receipt, object_map=None, asset_root=None,
+            occupied_placement=None):
     source, output = Path(source), Path(output)
     if output.exists(): raise ValueError('Refusing to overwrite a PPTX')
     if Path(receipt).exists(): raise ValueError('Refusing to overwrite an editability receipt')
     manifest = json.loads(Path(manifest_path).read_text())
-    mapped_frames = _mapped_frames(object_map, manifest)
+    object_map_data = json.loads(Path(object_map).read_text()) if object_map is not None else None
+    if object_map is not None and not isinstance(object_map_data, dict):
+        raise ValueError('Object map must be a record')
+    mapped_frames = _mapped_frames(object_map_data, manifest)
+    canvas_clip_receipt = None
+    canvas_clip_ids = set()
+    if 'source_canvas_clip' in manifest:
+        if asset_root is None or mapped_frames is None:
+            raise ValueError('Source canvas clipping needs frozen assets and mapped standalone frames')
+        from .source_canvas_clip import verify_source_canvas_clip
+        canvas_clip_receipt = verify_source_canvas_clip(manifest, asset_root)
+        canvas_clip_ids = set(canvas_clip_receipt['object_ids'])
+        for label in canvas_clip_ids:
+            entry = mapped_frames.get(label, {})
+            placement = entry.get('source_to_slide', {})
+            if (placement.get('translate_x') != 0 or placement.get('translate_y') != 0 or
+                    placement.get('scale_numerator') != placement.get('scale_denominator')):
+                raise ValueError('Source canvas clipping requires identity placement: ' + label)
     objects = sorted(enumerate(manifest['objects']), key=lambda row: (row[1].get('z_index', row[0]), row[0]))
     objects = [o for _, o in objects]
     with zipfile.ZipFile(source) as z:
@@ -217,12 +246,14 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
     has_formulas = any(o.get('source_kind') == 'formula' for o in objects)
     rels_document = XmlDocument.parse(payloads['ppt/slides/_rels/slide1.xml.rels'], 'slide1.xml.rels') if has_formulas else None
     types_document = XmlDocument.parse(payloads['[Content_Types].xml'], '[Content_Types].xml') if has_formulas else None
-    formula_records, text_layout_records = [], []
+    formula_records, text_layout_records, gradient_records = [], [], []
     page = page_document.root
     tree = page.find('p:cSld/p:spTree', NS)
     elements = [e for e in tree if e.tag in {f"{{{NS['p']}}}sp", f"{{{NS['p']}}}pic", f"{{{NS['p']}}}grpSp"}]
     if len(elements) != len(objects): raise ValueError(f'Exported object count mismatch: {len(elements)} != {len(objects)}')
-    mapping, raster_crops, cubic_paths = [], [], []
+    mapping, raster_crops, cubic_paths, stroke_styles, winding_fills = [], [], [], [], []
+    from .native_winding import normalize_native_polygon_fill, root_group_is_identity
+    parent_identity = root_group_is_identity(tree)
     for element, obj in zip(elements, objects):
         pr = native(element)
         if pr is None: raise ValueError('Missing native identity')
@@ -230,15 +261,50 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
             raise ValueError('Exporter reordered named objects: ' + obj['id'])
         pr.set('name', obj['id'])
         pr.set('descr', 'source_id=' + obj['id'] + ('; semantic_group=' + obj['group_id'] if obj.get('group_id') else ''))
+        if obj['id'] in canvas_clip_ids:
+            pr.set('descr', pr.get('descr') + '; source_canvas_clip_required=true')
         if obj['kind'] == 'text' and element.find('p:txBody', NS) is None: raise ValueError('Text was flattened')
-        if obj['kind'] == 'text' and (obj.get('line_height') is not None or obj.get('baseline_offset') is not None):
+        text_entry = mapped_frames.get(obj['id']) if mapped_frames and obj['kind'] == 'text' else None
+        has_renderer_baseline = isinstance(text_entry, dict) and isinstance(text_entry.get('text_layout'), dict) and \
+            text_entry['text_layout'].get('renderer_baseline') is not None
+        if obj['kind'] == 'text' and (obj.get('line_height') is not None or obj.get('baseline_offset') is not None or has_renderer_baseline):
             from .semantic_ooxml import apply_text_layout
-            entry = mapped_frames.get(obj['id']) if mapped_frames else None
+            entry = text_entry
             if not entry: raise ValueError('Text layout requires a mapped frame: ' + obj['id'])
             text_layout_records.append(apply_text_layout(element, obj, entry, entry['scale']))
         if obj['kind'] == 'path' and element.find('p:spPr/a:custGeom', NS) is None: raise ValueError('Vector path was flattened')
-        if obj['kind'] == 'path' and any('cubicTo' in command for command in obj.get('commands', [])):
+        if obj['kind'] == 'path':
+            from .linear_gradient import verify_native_gradient, apply_gradient_angle_precision
+            angle_correction = apply_gradient_angle_precision(element, obj)
+            gradient_record = verify_native_gradient(element, obj)
+            if gradient_record is not None:
+                if angle_correction is not None:
+                    gradient_record['angle_serialization_correction'] = angle_correction
+                gradient_records.append(gradient_record)
+            from .stroke_style import apply_stroke_style, verify_hairline_xml
+            stroke_record = apply_stroke_style(element, obj)
+            if stroke_record is not None:
+                stroke_styles.append(stroke_record)
+            verify_hairline_xml(element, obj)
+        if obj['kind'] == 'path' and (obj['id'] in canvas_clip_ids or any('cubicTo' in command for command in obj.get('commands', []))):
             cubic_paths.append(_restore_cubic_path(element, obj, mapped_frames))
+        if obj['kind'] == 'path' and obj['id'] in canvas_clip_ids:
+            winding_fills.append({'id': obj['id'], 'status': 'not_applicable',
+                                  'reason_code': 'keep_original_canvas_clip_geometry',
+                                  'reason': 'Verified source viewport glyph retains complete original commands',
+                                  'geometry_preserved': True, 'manifest_modified': False,
+                                  'visual_review_required': True})
+        elif obj['kind'] == 'path':
+            if any('cubicTo' in command for command in obj.get('commands', [])):
+                from .native_cubic_winding import normalize_native_cubic_fill
+                winding_fills.append(normalize_native_cubic_fill(
+                    page, object_id=obj['id'], manifest=manifest,
+                    object_map=object_map_data, placement=occupied_placement,
+                    proof_mode='classified_contact_or_transverse', max_operations=4_000_000))
+            else:
+                winding_fills.append(normalize_native_polygon_fill(
+                    element, obj, mapped_frames.get(obj['id']) if mapped_frames else None,
+                    parent_identity=parent_identity))
         if obj['kind'] == 'image' and element.tag != f"{{{NS['p']}}}pic": raise ValueError('Raster asset classification mismatch')
         if obj['kind'] == 'image':
             rect = element.find('p:blipFill/a:srcRect', NS)
@@ -322,13 +388,30 @@ def process(source, output, manifest_path, receipt, object_map=None, asset_root=
         for info in infos: z.writestr(info, payloads[info.filename])
         for name in payloads.keys() - {info.filename for info in infos}: z.writestr(name, payloads[name])
     data = {'native_objects': mapping, 'native_groups': grouped, 'raster_crops': raster_crops, 'native_cubic_paths': cubic_paths, 'native_cubic_segment_count': sum(path['native_cubic_segments'] for path in cubic_paths), 'warnings': warnings, 'path_count': sum(o['kind'] == 'path' for o in objects), 'text_count': sum(o['kind'] == 'text' for o in objects), 'raster_count': sum(o['kind'] == 'image' for o in objects), 'fully_native': not any(o['kind'] == 'image' for o in objects)}
+    data['stroke_styles'] = stroke_styles
+    data['native_winding_fills'] = winding_fills
+    if canvas_clip_receipt is not None:
+        data['source_canvas_clip'] = canvas_clip_receipt
+    data['native_gradients'] = gradient_records
     data.update(formula_assets=formula_records, formula_count=len(formula_records),
                 svg_formula_count=sum(row.get('representation') == 'svg' for row in formula_records),
                 native_connectors=connectors, text_layout=text_layout_records)
-    Path(receipt).write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+    _write_editability_receipt(receipt, data)
     return data
 
-if __name__ == '__main__':
+def main(argv=None):
     p = argparse.ArgumentParser(); p.add_argument('--input', required=True); p.add_argument('--output', required=True); p.add_argument('--manifest', required=True); p.add_argument('--receipt', required=True); p.add_argument('--object-map')
     p.add_argument('--asset-root')
-    a = p.parse_args(); print(json.dumps(process(a.input, a.output, a.manifest, a.receipt, object_map=a.object_map, asset_root=a.asset_root), ensure_ascii=False))
+    p.add_argument('--placement', type=float, nargs=4, metavar=('X', 'Y', 'WIDTH', 'HEIGHT'))
+    p.add_argument('--quiet', action='store_true',
+                   help='Write the complete receipt file without repeating it on stdout')
+    a = p.parse_args(argv)
+    result = process(a.input, a.output, a.manifest, a.receipt,
+                     object_map=a.object_map, asset_root=a.asset_root, occupied_placement=a.placement)
+    if not a.quiet:
+        print(json.dumps(result, ensure_ascii=False))
+    return 0
+
+
+if __name__ == '__main__':
+    raise SystemExit(main())

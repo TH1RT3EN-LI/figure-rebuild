@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "id": "creation-training-feedback",
+  "brief": "Synthetic supervised-learning diagram. Samples enter an encoder, features go to a prediction head, and the head emits predictions. Predictions and ground-truth targets enter the objective. The objective supplies a parameter-update relation to the encoder. Explicitly distinguish this training relation from the forward data flow; do not imply that the loss output is an inference input. Only show the stated encoder update, not unstated gradients to other modules.",
+  "title": "Forward computation and training feedback",
+  "caption": "Illustrative architecture. Solid: forward data flow. Orange dashed: objective inputs. Gray dashed: encoder parameter update during training.",
+  "nodes": [
+    {"id": "samples", "label": "Samples", "kind": "input", "stage": 0, "lane": 0},
+    {"id": "encoder", "label": "Encoder", "detail": "Trainable representation", "stage": 1, "lane": 0, "emphasis": true},
+    {"id": "features", "label": "Features", "kind": "tensor", "stage": 2, "lane": 0},
+    {"id": "head", "label": "Prediction head", "stage": 3, "lane": 0},
+    {"id": "predictions", "label": "Predictions", "kind": "output", "stage": 4, "lane": 0},
+    {"id": "targets", "label": "Targets", "kind": "input", "stage": 2, "lane": 1},
+    {"id": "objective", "label": "Objective", "detail": "Supervised loss", "kind": "loss", "stage": 3, "lane": 1}
+  ],
+  "edges": [
+    {"id": "samples-encoder", "from": "samples", "to": "encoder"},
+    {"id": "encoder-features", "from": "encoder", "to": "features"},
+    {"id": "features-head", "from": "features", "to": "head"},
+    {"id": "head-predictions", "from": "head", "to": "predictions"},
+    {"id": "targets-objective", "from": "targets", "to": "objective", "kind": "training"},
+    {"id": "predictions-objective", "from": "predictions", "to": "objective", "kind": "training"},
+    {"id": "objective-update", "from": "objective", "to": "encoder", "kind": "feedback", "label": "parameter update"}
+  ]
+}

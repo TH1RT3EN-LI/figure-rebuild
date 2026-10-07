@@ -8,7 +8,14 @@ absolute file path, SHA256 and registered `face_index`. A text object may set
 `font_family` to one of those exact families. Family identity and weight are
 verified from the file, and glyph coverage is checked only against the objects
 that use that face. Unknown families fail before output, without system fallback.
-`regular` and `bold` remain required. Register actual static `italic` and
+The default family requires `regular` and `bold`; its regular face also renders
+the comparison captions. An additional family needs at least one real face,
+and only its explicitly used roles must exist. This permits a supplied PDF
+subset with only a regular, bold or italic face. Comparison-caption characters
+are checked against the default family, not against every subset. A subset
+still rejects any label containing missing characters, and no missing style is
+synthesized. Keep its character repertoire explicit in the delivery notes.
+Register actual static `italic` and
 `boldItalic` files whenever the scene requests those styles. The face-selection
 table is exact:
 
@@ -59,20 +66,83 @@ preview because font hinting and application rendering can still differ.
 Text may set `line_height` (positive pixels), `baseline_offset` (nonnegative
 pixels from the content frame's top to its first baseline), and
 `insets:{left,right,top,bottom}` (nonnegative pixels, omitted sides default to
-zero). These values are measured source/calibration inputs, not new defaults.
-Without them, existing baseline and leading behavior remains unchanged.
+zero). These values are measured source/calibration inputs. Without them, the
+source frame retains its registered-font default baseline and leading contract.
 Wrapping and overflow checks use the frame after subtracting all insets.
-For `anchor` text, the anchor is the first content baseline; asymmetric insets
-do not move that baseline or horizontal alignment. The build report retains
+For `anchor` text, the anchor is the first content baseline, including when
+`rotation` is set; the text frame rotates around that fixed source point.
+Asymmetric insets do not move that baseline or horizontal alignment. The build report retains
 the content frame, insets, resolved baseline and whether leading/baseline came
 from explicit measurements. Explicit leading is saved as native DrawingML point
-spacing; first-baseline calibration adjusts the top inset from the registered
-font's native ascent/leading estimate. Unsupported negative top insets or missing
-mapped font metrics fail rather than silently treating calibration as exact.
+spacing. The same audited font bytes are registered with the measurer and the
+presentation renderer. The first-baseline correction uses the renderer's actual
+metrics, its default/exact-spacing branch, paint adjustment and physical PPT
+point rounding. It increases the native top inset and decreases the bottom
+inset by the same amount, preserving content height, vertical alignment and
+the rotation center. Derived native insets may be signed; source insets remain
+nonnegative. Missing renderer metrics or inconsistent mapped scale fail clearly.
+This renderer model is verified with Artifact Tool 2.8.59; other backend versions
+need the actual rendering regression, not just API-name compatibility.
 Verify actual exported PPT rendering before treating
 the calibrated values as an accepted source match.
 
+The opt-in regression covers 160 exported cases, including explicit/default
+spacing, multiline text, placement scaling, rotation and vertical alignment:
+
+```bash
+FIGURE_REBUILD_RENDER_TESTS=1 python -m unittest discover -s tests -p test_text_baseline_render.py
+```
+
+Set `FIGURE_REBUILD_RENDER_EVIDENCE_ROOT` to a fresh directory to retain all
+references, PPTs, previews and measurements. Default test discovery skips it.
+
 ## Read author metadata
+
+### Prove the used SFNT glyphs
+
+After independently binding a source PDF font program and its native glyph IDs,
+compare its used glyphs with a supplied static Unicode face. The read-only
+`figure_rebuild.source_font` module checks exact decomposed contours, horizontal
+advance/side-bearing values and units per em. A matching family name is neither
+required nor sufficient. Input font bytes are bound by SHA256; collections
+require an explicit face index. `.notdef`, variable fonts, raw Type1/CFF,
+ambiguous Unicode bindings and exceeded byte/contour/component budgets fail.
+These budgets do not claim to bound all font parser memory.
+
+The spec has `source` and `candidate` definitions containing absolute `path`,
+`sha256` and optional `face_index`, and `bindings` containing unique pairs such
+as `{"unicode":65,"source_gid":17}`. Source GIDs must come from independently
+bound native paint records. The helper does not infer them from a font name,
+nearby box or the candidate's cmap. Negative GIDs used for ligature components
+need a separate source sequence/shaping proof and are not ordinary glyphs.
+
+```sh
+python -m figure_rebuild.source_font \
+  --spec /caller/job/source-font-spec.json \
+  --output /caller/job/source-font-proof-001.json
+```
+
+Exit status 0 means the recorded glyphs match, 1 means a supported comparison
+differs, and 2 rejects an invalid input. Existing reports are never overwritten.
+A PASS proves only the listed contours and horizontal metrics. It does not
+prove whole-family identity, font style roles, hinting, ligature shaping,
+baseline placement, automatic semantics or final PPT appearance. Keep the
+source native context binding and actual exported-PPT review alongside it.
+
+If a source subset is explicitly re-encoded under a job-local alias, preserve
+the original program and derivation proof. Record its limited Unicode coverage
+and retain the exact profile/fonts with the job. A correct local rendering
+does not establish font embedding, extended editing repertoire or reopening
+in PowerPoint/WPS without those dependencies.
+
+For a separately audited raw-CFF wrapper, an OpenType `CFF ` font must use the
+`OTTO` SFNT signature; a TrueType signature can make the native font loader
+reject otherwise preserved contours. The used-SFNT helper rejects signature
+and outline-table mismatches. Preserve original Type2 charstring bytes before
+any lazy parser rewrites them, then compare the derived used contours and
+advances independently. Names and a successfully loaded font are not identity
+proofs. Raw CFF/Type1 conversion and source native handle binding remain outside
+the used-SFNT helper's supported input contract.
 
 Use the author's vector PDF when available. The normal text in a diagram can
 have several real font families; source reconstruction must not silently apply
@@ -129,3 +199,36 @@ user requires retypeset formulas, transcribe and verify the expression, render
 it with an actual TeX engine, retain its source and vector PDF, and insert a
 transparent high-resolution asset. Do not use source-text screenshots as the
 formula asset.
+
+For manually transcribed ordinary labels with no source text layer or font
+programme, an explicit source-specific driver may derive used Unicode glyphs
+from the original visible paths. Bind the complete native paint order, original
+contours, fill rule, colors and clip containment before partitioning. Similar
+font outlines may suggest a partition, but their diagnostic matching tolerance
+is separate from the fixed source-control guard. Preserve every source glyph
+contour and independently compare all occurrences to the actual saved font.
+Record manual Unicode, spaces, synthetic metrics and limited glyph coverage;
+this is neither original-font identity nor automatic text/formula recognition.
+
+Use shared glyphs only after verifying their control points and physical line
+origins. Keep measured text frames inside the source canvas and retain the
+authoring runtime's font-family limit. The renderer's `Mg` metric probe also
+needs explicit glyph coverage: any supplemental metric-only glyphs must be
+identified, and actual current labels must be independently proven not to use
+them. Font delivery and editing with unseen characters remain separate checks.
+
+Inspect the actual application's exported font programme as well as the input
+font. In the audited [LibreOffice 26.2.5.2 CFF converter](https://github.com/LibreOffice/core/blob/libreoffice-26.2.5.2/vcl/source/fontsubset/cff.cxx#L1300-L1317),
+the optional final-axis operand of compact `hvcurveto`/`vhcurveto` becomes an
+integer. An explicitly derived font can retain the same target controls while
+encoding full move/line/cubic operators. Verify saved input contours, actual
+subset operands and advances, actual native font handles, and matched-scale
+layout again; do not widen a source-fidelity tolerance to accept truncation.
+
+Raw exported Type1 hashes can also change with the exporter's `UniqueID`. Keep
+both actual programmes and the observed values. Before treating this as a
+metadata change, compare every other font/private dictionary field, encoding,
+all glyph and subroutine operands, and the used native-handle controls and
+advances. Matching names or a removed `UniqueID` alone is insufficient. Such a
+comparison preserves a verified parent result; it does not establish identity
+with the original source font programme.

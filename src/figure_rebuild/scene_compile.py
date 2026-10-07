@@ -23,6 +23,8 @@ def validate_delivery_sampling(audit, scale=1):
 def compile_scene(manifest, job_dir, asset_root=None):
     from .formula_asset import resolve_formula_asset
     from .connections import resolve_scene
+    from .source_inventory import audit_source_inventory
+    inventory = audit_source_inventory(manifest, asset_root or job_dir)
     scene = copy.deepcopy(manifest)
     if any(isinstance(obj, dict) and (obj.get('source_kind') in ('formula', 'connector') or
            any(key in obj for key in ('formula_asset', 'connection_record', 'source_attachment')))
@@ -71,7 +73,14 @@ def compile_scene(manifest, job_dir, asset_root=None):
                 anchor['x'] += final['x'] - initial['x']
                 anchor['y'] += final['y'] - initial['y']
             obj['formula_asset'] = copy.deepcopy(record)
+    from .content_audit import audit_source_content
+    for record in inventory['hash_files']:
+        if record['path'] in assets and assets[record['path']] != record['sha256']:
+            raise ValueError('Conflicting source inventory asset hashes: ' + record['path'])
+        assets[record['path']] = record['sha256']
     return scene, {'formulas': formulas, 'connections': connections,
+                   'source_content': audit_source_content(scene),
+                   **({'source_inventory': inventory} if 'source_inventory' in manifest else {}),
                    'hash_files': [{'path': p, 'sha256': h} for p, h in assets.items()]}
 
 
@@ -84,5 +93,14 @@ if __name__ == '__main__':
     parser.add_argument('--audit', required=True)
     args = parser.parse_args()
     scene, audit = compile_scene(json.loads(Path(args.manifest).read_text()), args.job, args.asset_root)
+    Path(args.audit).with_name('source-content-audit.json').write_text(
+        json.dumps(audit['source_content'], ensure_ascii=False, indent=2) + '\n')
+    if audit['source_content']['status'] == 'FAIL':
+        raise ValueError('Source content has mismatches or unresolved evidence; inspect source-content-audit.json')
+    if 'source_inventory' in audit:
+        Path(args.audit).with_name('source-inventory-audit.json').write_text(
+            json.dumps(audit['source_inventory'], ensure_ascii=False, indent=2) + '\n')
+        if audit['source_inventory']['status'] == 'FAIL':
+            raise ValueError('Source inventory has mismatches or unknowns; inspect source-inventory-audit.json')
     Path(args.output).write_text(json.dumps(scene, ensure_ascii=False, indent=2) + '\n')
     Path(args.audit).write_text(json.dumps(audit, ensure_ascii=False, indent=2) + '\n')

@@ -35,6 +35,7 @@ def check_wheel(path):
             "figure_rebuild/__init__.py", "figure_rebuild/__main__.py",
             "figure_rebuild/cli.py", "figure_rebuild/paths.py",
             "figure_rebuild/placement.py",
+            "figure_rebuild/authoring.py",
             "figure_rebuild/_bootstrap.py", "figure_rebuild/runtime_probe.py",
             *{"figure_rebuild/powerpoint/" + name for name in BACKENDS},
         }
@@ -80,9 +81,14 @@ def check_sdist(path):
             "scripts/run.py", "scripts/install.py", "src/figure_rebuild/cli.py",
             "src/figure_rebuild/_bootstrap.py", "src/figure_rebuild/runtime_probe.py",
             "src/figure_rebuild/placement.py",
+            "src/figure_rebuild/authoring.py", "references/academic-creation.md",
+            "docs/assets/creation-pipeline.json", "docs/assets/creation-parallel-fusion.json",
+            "docs/assets/creation-training-feedback.json",
             "tests/fixtures/connector-presets.xml",
             "tests/fixtures/connector-presets.LICENSE",
             "tests/fixtures/connector-presets.NOTICE",
+            "tests/fixtures/sam2-fill-ring.json",
+            "tests/fixtures/d4rt-stroke248.json",
             *{"src/figure_rebuild/powerpoint/" + name for name in BACKENDS},
         }
         if required - relative:

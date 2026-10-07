@@ -163,6 +163,70 @@ class FormulaSVGTests(unittest.TestCase):
 
 
 class NativeTextLayoutTests(unittest.TestCase):
+    def test_percentage_spacing_preserves_paragraph_editability_and_reports_fractional_precision(self):
+        element = textbox()
+        original_text = [node.text for node in element.findall('.//a:t', NS)]
+        mapped = {'text_layout': {'native_baseline_ascent': 20, 'baseline_adjustment_px': 4, 'line_count': 50,
+            'renderer_baseline': {'model': 'artifact_presentation_v1', 'first_baseline_px': 16, 'scale': 1,
+                'spacing': 'percent_of_natural_line', 'spacing_thousandths_percent': 83333,
+                'natural_line_height_px': 24, 'line_height_px': 24 * 83333 / 100000}}}
+        audit = apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20}, mapped, 1)
+        properties = element.findall('p:txBody/a:p/a:pPr', NS)
+        self.assertTrue(all(node.find('a:lnSpc/a:spcPct', NS).get('val') == '83333' for node in properties))
+        self.assertTrue(all(node.find('a:lnSpc/a:spcPts', NS) is None for node in properties))
+        self.assertEqual([node.text for node in element.findall('.//a:t', NS)], original_text)
+        self.assertTrue(audit['fractional_native_percent'])
+        self.assertTrue(audit['native_precision_review_required'])
+        self.assertAlmostEqual(audit['whole_percent_fallback_accumulated_loss_px'], 49 * 24 * .00333)
+        self.assertNotIn('spacing_hundredths_pt', audit)
+        before = ET.tostring(element)
+        mapped['text_layout']['renderer_baseline']['line_height_px'] = 21
+        with self.assertRaisesRegex(ValueError, 'percentage line height is inconsistent'):
+            apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20}, mapped, 1)
+        self.assertEqual(ET.tostring(element), before)
+
+    def test_renderer_baseline_correction_preserves_content_height_and_all_vertical_alignments(self):
+        for anchor in ('t', 'ctr', 'b'):
+            for adjustment in (-2.25, 3.75):
+                element = textbox(top_inset='19050')
+                body = element.find('p:txBody/a:bodyPr', NS)
+                body.set('anchor', anchor)
+                body.set('bIns', '28575')
+                mapped = {'text_layout': {'native_baseline_ascent': 14,
+                    'baseline_adjustment_px': adjustment,
+                    'renderer_baseline': {'model': 'artifact_presentation_v1',
+                                          'first_baseline_px': 14 - adjustment, 'scale': .5}}}
+                audit = apply_text_layout(element, {'id': 'label', 'kind': 'text'}, mapped, .5)
+                self.assertEqual(int(body.get('tIns')) + int(body.get('bIns')), 47625)
+                self.assertEqual(body.get('anchor'), anchor)
+                self.assertEqual(body.get('lIns'), '1234')
+                self.assertTrue(audit['native_content_height_preserved'])
+                self.assertTrue(audit['baseline_calibrated'])
+
+    def test_exact_line_height_can_use_a_negative_derived_bottom_inset(self):
+        element = textbox()
+        mapped = {'text_layout': {'native_baseline_ascent': 20, 'baseline_adjustment_px': 4,
+            'renderer_baseline': {'model': 'artifact_presentation_v1', 'first_baseline_px': 16, 'scale': 2}}}
+        audit = apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20,
+                                            'baseline_offset': 20}, mapped, 2)
+        body = element.find('p:txBody/a:bodyPr', NS)
+        self.assertEqual(body.get('tIns'), '76200')
+        self.assertEqual(body.get('bIns'), '-76200')
+        self.assertEqual(audit['spacing_hundredths_pt'], 3000)
+
+    def test_inconsistent_renderer_metrics_fail_before_mutating_spacing_or_insets(self):
+        base = {'native_baseline_ascent': 20, 'baseline_adjustment_px': 4,
+            'renderer_baseline': {'model': 'artifact_presentation_v1', 'first_baseline_px': 16, 'scale': 1}}
+        for changed in ({'baseline_adjustment_px': 5}, {'native_baseline_ascent': 21},
+                        {'renderer_baseline': {**base['renderer_baseline'], 'scale': 2}},
+                        {'renderer_baseline': {**base['renderer_baseline'], 'first_baseline_px': float('nan')}}):
+            element = textbox()
+            before = ET.tostring(element)
+            with self.assertRaises(ValueError):
+                apply_text_layout(element, {'id': 'label', 'kind': 'text', 'line_height': 20},
+                                  {'text_layout': {**base, **changed}}, 1)
+            self.assertEqual(ET.tostring(element), before)
+
     def test_explicit_line_height_updates_all_native_paragraphs(self):
         element = textbox()
         content = [node.text for node in element.findall('.//a:t', NS)]

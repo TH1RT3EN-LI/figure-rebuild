@@ -62,6 +62,45 @@ def one_slide_package(path, image_bytes, crop=None, frame=(100000, 100000, 10000
             archive.writestr(member, content)
 
 
+class PostprocessTextBaselineTests(unittest.TestCase):
+    def test_default_spacing_still_dispatches_renderer_baseline_preservation(self):
+        with tempfile.TemporaryDirectory() as folder:
+            root = Path(folder)
+            page = ET.Element(f'{{{P}}}sld')
+            tree = ET.SubElement(ET.SubElement(page, f'{{{P}}}cSld'), f'{{{P}}}spTree')
+            shape = ET.SubElement(tree, f'{{{P}}}sp')
+            nv = ET.SubElement(shape, f'{{{P}}}nvSpPr')
+            ET.SubElement(nv, f'{{{P}}}cNvPr', id='2', name='plain-label')
+            props = ET.SubElement(shape, f'{{{P}}}spPr')
+            transform = ET.SubElement(props, f'{{{A}}}xfrm')
+            ET.SubElement(transform, f'{{{A}}}off', x='95250', y='95250')
+            ET.SubElement(transform, f'{{{A}}}ext', cx='476250', cy='285750')
+            body = ET.SubElement(shape, f'{{{P}}}txBody')
+            ET.SubElement(body, f'{{{A}}}bodyPr', anchor='t', tIns='0', bIns='0')
+            paragraph = ET.SubElement(body, f'{{{A}}}p')
+            ET.SubElement(ET.SubElement(paragraph, f'{{{A}}}r'), f'{{{A}}}t').text = 'Text'
+            source, output = root / 'before.pptx', root / 'after.pptx'
+            with zipfile.ZipFile(source, 'w') as archive:
+                archive.writestr('ppt/slides/slide1.xml', xml(page))
+            box = dict(x=10, y=10, width=50, height=30)
+            manifest, mapped = root / 'manifest.json', root / 'objects.json'
+            manifest.write_text(json.dumps({'canvas': {'width': 100, 'height': 100}, 'objects': [
+                {'id': 'plain-label', 'kind': 'text', 'text': 'Text', 'font_size': 20, 'box': box}]}))
+            mapped.write_text(json.dumps({'placement': [0, 0, 100, 100], 'objects': [
+                {'id': 'plain-label', 'kind': 'text', 'box': box, 'text_layout': {
+                    'native_baseline_ascent': 20, 'baseline_adjustment_px': 1,
+                    'renderer_baseline': {'model': 'artifact_presentation_v1',
+                                          'first_baseline_px': 19, 'scale': 1}}}]}))
+            report = postprocess.process(source, output, manifest, root / 'receipt.json', object_map=mapped)
+            self.assertTrue(report['text_layout'][0]['baseline_calibrated'])
+            with zipfile.ZipFile(output) as archive:
+                actual = ET.fromstring(archive.read('ppt/slides/slide1.xml'))
+            body_pr = actual.find('.//p:txBody/a:bodyPr', NS)
+            self.assertEqual(body_pr.get('tIns'), '9525')
+            self.assertEqual(body_pr.get('bIns'), '-9525')
+            self.assertIsNone(actual.find('.//a:lnSpc', NS))
+
+
 class PostprocessCropTests(unittest.TestCase):
     def setUp(self):
         temp = tempfile.TemporaryDirectory()

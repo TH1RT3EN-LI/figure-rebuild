@@ -5,7 +5,7 @@
 <h1 align="center">Figure Rebuild</h1>
 
 <p align="center">
-  从参考图到可编辑的 PowerPoint。
+  从方法说明创作学术架构图，从参考图复建可编辑 PowerPoint。
 </p>
 
 <p align="center">
@@ -20,7 +20,9 @@
   <strong>简体中文</strong> · <a href="docs/i18n/README.en.md">English</a> · <a href="docs/i18n/README.ko.md">한국어</a> · <a href="docs/i18n/README.es.md">Español</a>
 </p>
 
-Figure Rebuild 将论文方法图、流程图和机制示意图重绘为可编辑的 PowerPoint，保留参考图的文字、布局与连接关系。
+Figure Rebuild 从方法说明或代码创作学术架构图，也将已有论文方法图、流程图和机制示意图重绘为可编辑的 PowerPoint。
+
+原创模式由调用方智能体理解方法、设计模块与关系，再用 `create` 生成布局、活动文字、张量示意和有向连线。提供串行流程、并行汇合、训练反馈的可执行起点，保留原始说明与设计规格；导出后检查真实 PPT 预览。创作规则与边界见[学术创作指南](references/academic-creation.md)。
 
 项目以 Codex 开发和测试，提供本地命令行工具与 Codex skill。命令行接口也可用于接入其他智能体。
 
@@ -38,7 +40,14 @@ npx skills add TH1RT3EN-LI/figure-rebuild
 
 | 功能 | 用法 |
 | --- | --- |
+| 从方法说明创作 | 调用方填写结构规格，`create --spec creation.json --job new-job`，无需参考图；审阅后用 `build` 导出 |
 | 导出独立 PPTX | `build --manifest manifest.json`，从审阅后的清单生成可编辑单页 |
+| 检查原生 PDF 预览 | `build --preview-backend libreoffice-pdf`，从最终 PPT 的 PDF 导出生成预览，并保留直接 PNG；[零宽细线及验收边界](references/native-pdf-preview.md) |
+| 检查原生路径预览 | `build --preview-backend native-svg`，按最终 PPT 的实际平铺纯色路径生成三尺寸预览；[支持域和独立重放](references/native-svg-preview.md) |
+| 统一采样原生填充前景 | `build --artifact-path-prefix-grid request.json`，将实际填充路径前缀及其不透明画布背景共同采样，交付路径保持可编辑；[有限网格与顺序核验](references/native-path-prefix-grid.md) |
+| 检查透明图像的 PDF 预览 | `build --preview-backend libreoffice-pdf-rgb`，保留原始导出，并生成仅修改零透明度 RGB 的独立 PDF；[逐像素证明与验收边界](references/pdf-zero-alpha-rgb.md) |
+| 修复照片导出坐标舍入 | `build --preview-backend libreoffice-pdf-photos`，在独立 PDF 中恢复最终 PPT 的不透明照片坐标，原始导出和媒体保留；[精确样本匹配及验收边界](references/native-photo-matrices.md) |
+| 恢复缺失的字形 Unicode | `python -m figure_rebuild.font_unicode --spec glyphs.json --output receipt.json`，由精确轮廓及度量匹配唯一候选；[字体绑定与数学脚本范围](references/font-unicode-recovery.md) |
 | 生成时插入指定位置 | `build --manifest manifest.json --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx` |
 | 生成后插入指定位置 | `insert --input figure.pptx --base base.pptx --slide-id ID --placement x y width height --output new-deck.pptx`，直接复用已生成的单页 PPTX |
 
@@ -97,6 +106,18 @@ python3 -m venv .venv
 > 请用 $figure-rebuild 将这张图重绘成可编辑的 PPT。保留原图文字、布局和连线，公式用 LaTeX 重排，并提供预览供我核对。
 
 输出包括 PPTX、导出预览和原图对照，也可继续调整局部内容。
+
+也可直接描述研究方法：
+
+> 请用 $figure-rebuild 为这个方法创作论文架构图：图像和文本分别编码，再融合特征并预测。突出融合模块，交付可编辑 PPT 和预览，不增加未说明的科学关系。
+
+调用方先设计结构，再调用项目绘制。三个原创示例规格为[串行流程](docs/assets/creation-pipeline.json)、[双分支融合](docs/assets/creation-parallel-fusion.json)和[训练反馈](docs/assets/creation-training-feedback.json)，均为合成示例，不对应真实论文结论。
+
+**原创双分支示例的实际 PPT 预览**
+
+![原创双分支融合架构图](docs/assets/creation-parallel-fusion.png)
+
+[可编辑 PPT](docs/assets/creation-parallel-fusion.pptx) · [创作规格](docs/assets/creation-parallel-fusion.json)
 
 ## 项目文档
 

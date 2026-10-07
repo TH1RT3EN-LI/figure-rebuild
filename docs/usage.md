@@ -2,7 +2,7 @@
 
 以下命令均在仓库根目录执行。项目介绍和最短开始方式见 [README](../README.md)。
 
-把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或在生成时、生成后按稳定 slide ID 等比插入已有模板的指定区域。
+从方法说明创作或把参考图复建为可编辑 PowerPoint：几何是原生路径，普通文字是独立文本框，照片保留来源审计；重绘公式使用带 LaTeX 源码的 SVG 轮廓与高清 PNG 兼容图版。支持单页导出，或在生成时、生成后按稳定 slide ID 等比插入已有模板的指定区域。
 
 位图由使用者或调用方智能体对照参考图填写清单，SVG 的受支持几何可自动导入。运行时、审阅与交付之间的关系见 [架构说明](architecture.md)。
 
@@ -108,6 +108,20 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 
 运行时会检查包、适配器、字体及字形覆盖；无法满足要求时报错，不静默换字体。目标项目可以指定微软雅黑等具体字体，通用 skill 不硬编码个人排版偏好。
 
+## 原创学术架构图
+
+调用方模型先从用户的方法说明或代码设计明确的模块、依赖与逻辑布局，不需要参考图。规则、创作规格与限制见[学术创作指南](../references/academic-creation.md)。可先复用合成示例：
+
+```bash
+.venv/bin/figure-rebuild create --spec docs/assets/creation-parallel-fusion.json --job .local/jobs/my-original-figure
+.venv/bin/figure-rebuild review --manifest .local/jobs/my-original-figure/manifest.json --note '已对照创作说明核对模块与有向关系'
+.venv/bin/figure-rebuild build --manifest .local/jobs/my-original-figure/manifest.json
+```
+
+`create` 使用实际常规/粗体字体测量文字，计算阶段/泳道布局，生成模块、张量层、平面组与避开模块的正交路径。输入 brief/结构、生成 SVG 与布局回执绑定为 `generated_diagram`，默认尚未审阅；构建保存输入快照。该命令不解析自然语言或判断科研意义。
+
+单独传 `--font-profile /path/to/fonts.json` 时，创建 SVG/清单不需要 PPT 后端。`build` 仍需配置导出运行时。方法结构、布局或文字需要修改时，编辑规格并创建新 job，保留旧版；生成后实际复查文字、方向、交叉与最终尺寸，不能仅凭布局检查宣称论文质量已验收。
+
 ## 复建
 
 ```bash
@@ -129,6 +143,18 @@ Python 核心需要 Python 3.10+、Pillow 和 fontTools。PPT 后端需要 Node 
 每次改内容递增 `revision` 并重新 `review`。审阅绑定内容摘要；改了坐标或文字而沿用旧审阅会被阻止。调用方审阅与用户视觉接受分别记录。
 
 输出包括 PPT、实际导出的 1x/2x 预览、并排比较图、文字测量、原生对象/图片审计、内容快照和交付摘要。文字溢出、XML 禁用字符、失效裁剪和来源字节变动会阻止交付。输出独占发布，不覆盖已存在文件；完整 PPT 是交付提交点。若进程在提交前被终止，残留回执只有在 PPT 存在且哈希一致时才算有效。
+
+需要用 LibreOffice 直接重渲最终 PPT 时，配置独立的[原生预览运行时](../references/native-preview.md)，并显式选择 `--preview-backend libreoffice`。若原始 PDF 的透明图片边缘出现额外灰框，可再指定 `--pdf-alpha-derivation binary-alpha-white-matte-v1` 生成单独命名的 PDF 派生件。原始 PDF 和直接 PNG 预览保留；半透明及不支持的上下文不改写，派生件也须另行复核。支持域、回执和预算见 [PDF 派生说明](../references/pdf-binary-alpha.md)。
+
+独立 Artifact 成品可显式使用 `build --artifact-image-preview`，按最终 PPT 的实际图片字节与坐标生成设备网格采样，再绘制完整混合场景。默认预览方式保留；不支持的图片状态记录限制，输出审阅重算采样证据。支持域和验证要求见[图片预览采样](../references/preview-image-sampling.md#explicit-native-picture-device-grid-previews)。 需要共同采样的整数图片窗口可使用 `--artifact-image-shared-grid request.json`；请求会冻结，实际图片字节、裁切和共同坐标必须通过核验。
+
+由原始 PDF 图片片段生成的 4x/8x 媒体可使用 `--artifact-image-source-sampling request.json`，先逐字节重放最终 PPT 的实际媒体，再按目标 1x/2x/4x 全图坐标直接采样。原始 PDF 和请求会冻结；仅支持无透明组的连续纯图片片段，文字、路径和遮挡仍由完整原生场景绘制。该预览方式不改变交付 PPT；来源、坐标、媒体或合成状态不符会拒绝。请求格式与限制见[原始图片片段采样](../references/preview-image-sampling.md#explicit-source-image-interval-grids)。
+
+单个原始图片需要沿用已有的受限 RGB 组上下文时，可显式选择 `--artifact-image-source-rgb-groups request.json`，并在请求中声明组策略。每次只采样一个图片出现；实际交付媒体仍须逐字节重放。共有组拆分后的合成误差须另行量化和逐尺寸复核，详见[单图片 RGB 组采样](../references/preview-image-sampling.md#explicit-single-image-rgb-group-grids)。
+
+仅含平铺纯色原生路径的独立 PPT 可选择 `--preview-backend native-svg`，从最终 PPT 的实际控制点、颜色、线型和顺序生成 MuPDF 预览。输出审阅会重建 SVG 并重新渲染三份原始 PNG；支持域与验收边界见[原生路径 SVG 预览](../references/native-svg-preview.md)。
+
+源像素单元重建为多个独立颜色路径后，可用 `--artifact-path-prefix-grid request.json` 将实际填充路径前缀与不透明画布背景先共同采样，再生成 1×/2×/4× 预览。该显式策略限定从第一笔绘制开始的连续纯填充前缀；完整控制包络必须位于声明的整数 EMU 框内。后续标签与对象保留原有遮挡顺序，交付 PPT 的全部路径不变。请求、支持域和资源限制见[原生路径前缀网格](../references/native-path-prefix-grid.md)。
 
 ## 裁剪精修与位置诊断
 
@@ -209,6 +235,14 @@ refine-crop 在人或调用模型选定的区域内定位内容边界，保留�
 - 暂未支持 SVG 渐变、mask/clip/filter、资源引用、evenodd 填充、旋转 SVG 文字和特殊描边等；遇到这些效果明确报错，可制作混合清单。
 
 像素差异用于诊断，不能证明连接语义正确、恢复了科研数值，或已通过 WPS/PowerPoint 播放验收。参考图中的文字不作为任务指令。
+
+## 独立来源保真检查与边缘字形
+
+有源文件并已逐区核对时，可添加[来源组件清单](../references/source-inventory.md)。它比较独立参考场景的全部对象，检测改字、移/删符号和反转箭头，冻结核对证据并绑定输出审阅；数学轮廓和未覆盖区域保留明确限制，不由 text-fit `PASS` 推导语义正确。
+
+有原始 PDF 时，可另用 `figure-rebuild verify-source-fidelity` 重新读取来源，核对源绘制、清单、resolved scene 及实际 PPT 的路径、图片字节和放置。请求文件绑定 PDF 哈希、页码和 ROI；证据目录必须是新目录。当前仅支持明确声明的有限来源配置，未知效果返回 `UNRESOLVED`，检测到变更返回 `FAIL`；退出 0 只表示该范围内对应关系已验证，不代表识别了公式含义、完成视觉审查或获得用户验收。参数与示例见[公开命令说明](../references/source-fidelity-cli.md)，完整限制见[来源保真契约](../references/source-fidelity.md)。
+
+原 ROI 刚好切过字形时，显式 `source_canvas_clip` 可以在有限支持条件下保留完整源字形曲线，并由独立幻灯片边界提供原裁切。构建会冻结 PDF/SVG、重新核对源 PNG 与字形、验证最终原生整数控制点，并将证据纳入输出审查。该声明不允许普通对象任意越界，也不允许把依赖原画布裁切的成品作为覆盖层移入其他画布。详见[字形与画布裁切](../references/source-canvas-clip.md)。
 
 ## 测试与维护
 

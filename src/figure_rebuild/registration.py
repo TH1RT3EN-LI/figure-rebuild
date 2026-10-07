@@ -13,6 +13,13 @@ from PIL import Image
 MAX_ANALYSIS_SIDE = 1280
 MAX_REGIONS = 256
 MAX_ROI_PIXELS = 8_000_000
+SOURCE_GRID_CELL_SIZE = 128
+
+
+def _bounded_integer(name, value, minimum, maximum):
+    if isinstance(value, bool) or not isinstance(value, int) or not minimum <= value <= maximum:
+        raise ValueError(f'{name} must be an integer between {minimum} and {maximum}')
+    return value
 
 
 def _load_vision():
@@ -78,23 +85,67 @@ def _validate_regions(regions):
     return result
 
 
-def diagnose_registration(source, target, *, regions=None, max_shift_px=32.0):
+def _pixel_box(box, size, comparison_size, margin=0):
+    sx, sy = size[0] / comparison_size[0], size[1] / comparison_size[1]
+    return (max(0, min(size[0], math.floor((box['x'] - margin) * sx))),
+            max(0, min(size[1], math.floor((box['y'] - margin) * sy))),
+            max(0, min(size[0], math.ceil((box['x'] + box['width'] + margin) * sx))),
+            max(0, min(size[1], math.ceil((box['y'] + box['height'] + margin) * sy))))
+
+
+def _area(bounds):
+    x0, y0, x1, y1 = bounds
+    return max(0, x1-x0) * max(0, y1-y0)
+
+
+def _region_geometry(region, core_bounds, context_bounds, margin, source, target, cv2, np, scale):
+    def measure(bounds, empty_status):
+        x0, y0, x1, y1 = bounds
+        return (_edge_metrics(source[y0:y1, x0:x1], target[y0:y1, x0:x1], cv2, np, scale)
+                if _area(bounds) else {'status': empty_status})
+    result = dict(id=region['id'], kind=region.get('kind'), source_box=region['box'],
+                  source_box_basis=region.get('box_basis', 'provided_region'),
+                  context_margin_px=margin,
+                  source_box_geometry=measure(core_bounds, 'empty_or_outside_canvas'),
+                  **measure(context_bounds, 'outside_canvas'))
+    if 'actual_frame' in region:
+        result['actual_frame'] = region['actual_frame']
+    return result
+
+
+def diagnose_registration(source, target, *, regions=None, max_shift_px=32.0,
+                          max_regions=MAX_REGIONS, max_roi_pixels=MAX_ROI_PIXELS,
+                          max_analysis_side=MAX_ANALYSIS_SIDE,
+                          source_grid_cell_size=SOURCE_GRID_CELL_SIZE):
     """Return a JSON-safe report; optional dependencies may be unavailable.
 
     Global translation uses phase correlation, then translation-only ECC.  Both
     need enough edges and confidence; a non-convergent ECC is never reliable.
     A temporary aligned edge mask is used ONLY to gate a transform estimate.
     It is never used for the raw or local geometry errors.  For bounded CPU use,
-    long sides above 1280 are downsampled. Local diagnostics cover at most 256
-    ROIs and 8 million combined core/context pixels; omitted ROIs are counted.
+    long sides above 1280 are downsampled by default. A deterministic grid over
+    the source canvas is checked before object ROIs, so missing/unrecognized
+    objects outside every output box remain visible to local diagnostics. The
+    grid and object ROIs share a bounded core/context pixel budget; all skipped
+    cells/objects and their reasons are reported. Limits can be raised for full
+    object coverage, or max_regions=0 can request just source-grid coverage.
+    Coverage describes sampling at the analysis resolution, never acceptance.
     """
     regions = _validate_regions(regions)
     if isinstance(max_shift_px, bool) or not isinstance(max_shift_px, (int, float)) or not math.isfinite(max_shift_px) or max_shift_px <= 0:
         raise ValueError('max_shift_px must be finite and positive')
+    limits = {'max_regions': _bounded_integer('max_regions', max_regions, 0, 16_384),
+              'max_roi_pixels': _bounded_integer('max_roi_pixels', max_roi_pixels, 1, 256_000_000),
+              'max_analysis_side': _bounded_integer('max_analysis_side', max_analysis_side, 8, 4096),
+              'source_grid_cell_size': _bounded_integer('source_grid_cell_size', source_grid_cell_size, 64, 1024)}
     base = {'status': 'unavailable', 'method': 'phase_correlation_then_translation_ecc',
             'shift_convention': 'target_minus_source', 'shift_units': 'comparison_canvas_px',
             'max_shift_px': float(max_shift_px), 'transform_applied': False,
-            'raw_geometry': None, 'regions': [], 'diagnostic_only': True,
+            'raw_geometry': None, 'regions': [], 'source_grid_regions': [], 'diagnostic_only': True,
+            'coverage': {'status': 'not_evaluated', 'limits': limits,
+                         'scope': 'unaligned_diagnostics_at_analysis_resolution',
+                         'source_grid': {'status': 'not_evaluated', 'basis': 'source_canvas'},
+                         'object_regions': {'status': 'not_evaluated', 'requested': len(regions), 'diagnosed': 0}},
             'reliability_scope': 'translation_estimate_only', 'visual_acceptance': 'pending'}
     if source.size != target.size:
         return dict(base, status='failure', reason='different_canvas_sizes',
@@ -107,7 +158,7 @@ def diagnose_registration(source, target, *, regions=None, max_shift_px=32.0):
     width, height = source.size
     if min(width, height) < 8:
         return dict(base, status='low_confidence', reason='canvas_too_small')
-    scale = min(1.0, MAX_ANALYSIS_SIDE / max(width, height))
+    scale = min(1.0, max_analysis_side / max(width, height))
     size = (max(8, round(width * scale)), max(8, round(height * scale)))
     # Record the actual X/Y ratio; choosing the smallest keeps reported errors
     # conservative when integer resize rounding differs by a fraction of a px.
@@ -125,38 +176,67 @@ def diagnose_registration(source, target, *, regions=None, max_shift_px=32.0):
                 analysis_scale=pixel_scale,
                 raw_geometry=_edge_metrics(edge_source, edge_target, cv2, np, pixel_scale))
     region_pixels = 0
-    for region in regions[:MAX_REGIONS]:
+    margin = max(8.0, min(32.0, float(max_shift_px)))
+    # Grid membership depends only on the source canvas, never the output's
+    # detected objects. Slice the existing unaligned edge masks without any
+    # per-cell scaling, registration, or changes to the global raw metrics.
+    grid_omitted, grid_area, grid_count = [], 0, 0
+    sx, sy = size[0] / width, size[1] / height
+    for row, y0 in enumerate(range(0, size[1], source_grid_cell_size)):
+        for column, x0 in enumerate(range(0, size[0], source_grid_cell_size)):
+            x1, y1 = min(size[0], x0 + source_grid_cell_size), min(size[1], y0 + source_grid_cell_size)
+            core_bounds = (x0, y0, x1, y1)
+            box = dict(x=x0/sx, y=y0/sy, width=(x1-x0)/sx, height=(y1-y0)/sy)
+            region = {'id': f'source-grid-{row:03d}-{column:03d}', 'kind': 'source_grid',
+                      'box': box, 'box_basis': 'source_canvas_grid'}
+            context_bounds = _pixel_box(box, size, (width, height), margin)
+            cost = _area(core_bounds) + _area(context_bounds)
+            grid_count += 1
+            if region_pixels + cost > max_roi_pixels:
+                grid_omitted.append({'id': region['id'], 'source_box': box, 'reason': 'pixel_budget'})
+                continue
+            region_pixels += cost
+            grid_area += _area(core_bounds)
+            base['source_grid_regions'].append(_region_geometry(region, core_bounds, context_bounds,
+                                margin, edge_source, edge_target, cv2, np, pixel_scale))
+    grid_pixels = region_pixels
+    omitted = []
+    for region in regions:
+        if len(base['regions']) >= max_regions:
+            omitted.append({'id': region['id'], 'reason': 'region_limit'})
+            continue
         box = region['box']
         # Neighbouring context is intentionally retained: a moved/missing part
         # must not escape a tight source bbox and disappear from the diagnostic.
-        margin = max(8.0, min(32.0, float(max_shift_px)))
-        sx, sy = size[0] / width, size[1] / height
-        x0 = max(0, int(math.floor((box['x'] - margin) * sx)))
-        y0 = max(0, int(math.floor((box['y'] - margin) * sy)))
-        x1 = min(size[0], int(math.ceil((box['x'] + box['width'] + margin) * sx)))
-        y1 = min(size[1], int(math.ceil((box['y'] + box['height'] + margin) * sy)))
-        cx0, cy0 = max(0, int(math.floor(box['x']*sx))), max(0, int(math.floor(box['y']*sy)))
-        cx1 = min(size[0], int(math.ceil((box['x']+box['width'])*sx)))
-        cy1 = min(size[1], int(math.ceil((box['y']+box['height'])*sy)))
-        cost = max(0, x1-x0)*max(0, y1-y0) + max(0, cx1-cx0)*max(0, cy1-cy0)
-        if region_pixels + cost > MAX_ROI_PIXELS:
-            break
+        context_bounds = _pixel_box(box, size, (width, height), margin)
+        core_bounds = _pixel_box(box, size, (width, height))
+        cost = _area(context_bounds) + _area(core_bounds)
+        if region_pixels + cost > max_roi_pixels:
+            omitted.append({'id': region['id'], 'reason': 'pixel_budget'})
+            continue
         region_pixels += cost
-        if x1 <= x0 or y1 <= y0:
-            local = {'status': 'outside_canvas'}
-        else:
-            local = _edge_metrics(edge_source[y0:y1, x0:x1], edge_target[y0:y1, x0:x1], cv2, np, pixel_scale)
         # Report the original footprint separately so a correct neighbouring
         # object in the context window cannot hide a missing local object.
-        core = (_edge_metrics(edge_source[cy0:cy1, cx0:cx1], edge_target[cy0:cy1, cx0:cx1], cv2, np, pixel_scale)
-                if cx1 > cx0 and cy1 > cy0 else {'status': 'empty_or_outside_canvas'})
-        base['regions'].append(dict(id=region['id'], kind=region.get('kind'), source_box=box,
-                                    context_margin_px=margin, source_box_geometry=core, **local))
+        base['regions'].append(_region_geometry(region, core_bounds, context_bounds,
+                                margin, edge_source, edge_target, cv2, np, pixel_scale))
     base['region_count'] = len(regions)
     base['regions_diagnosed'] = len(base['regions'])
     base['regions_omitted_for_budget'] = len(regions) - len(base['regions'])
     base['roi_analysis_pixels'] = region_pixels
-    base['roi_pixel_budget'] = MAX_ROI_PIXELS
+    base['roi_pixel_budget'] = max_roi_pixels
+    base['coverage'].update(status='partial' if omitted or grid_omitted else 'complete',
+        analysis_downsampled=pixel_scale < 1, analysis_scale=pixel_scale,
+        source_grid={'status': 'partial' if grid_omitted else 'complete', 'basis': 'source_canvas',
+                     'cell_size_analysis_px': source_grid_cell_size, 'requested': grid_count,
+                     'diagnosed': len(base['source_grid_regions']), 'omitted': grid_omitted,
+                     'covered_analysis_pixels': grid_area, 'canvas_analysis_pixels': size[0]*size[1],
+                     'covered_canvas_fraction': grid_area / (size[0]*size[1]),
+                     'core_and_context_analysis_pixels': grid_pixels},
+        object_regions={'status': 'partial' if omitted else 'complete', 'requested': len(regions),
+                        'diagnosed': len(base['regions']), 'omitted': omitted,
+                        'core_and_context_analysis_pixels': region_pixels-grid_pixels,
+                        'expected_source_box_count': sum(r.get('box_basis') == 'expected_source_box' for r in regions),
+                        'actual_frame_fallback_count': sum(r.get('box_basis') == 'actual_frame_fallback' for r in regions)})
     edges = base['raw_geometry']
     if min(edges['source_edge_pixels'], edges['target_edge_pixels']) < 24:
         return dict(base, status='low_confidence', reason='insufficient_edges',
@@ -223,7 +303,10 @@ def manifest_regions(manifest, comparison_size):
     are errors, not an unavailable-OpenCV fallback. Path control points form a
     conservative hull; rotation expands image/text boxes around their centre.
     Text needs the resolved renderer box, not an estimated box from its anchor.
-    The builder supplies measured text/fitted image bounds in a derived scene.
+    The builder supplies expected_source_box and actual_frame in source-canvas
+    coordinates where available. Expected bounds take precedence over fitted
+    output frames: a missing part must not disappear from its own diagnostic.
+    Both boxes are unrotated; rotation expands them into axis-aligned hulls.
     """
     if not isinstance(manifest, dict):
         raise ValueError('Diagnostic manifest must be an object')
@@ -241,7 +324,14 @@ def manifest_regions(manifest, comparison_size):
         if not isinstance(obj, dict) or not isinstance(obj.get('id'), str) or not obj['id'] or obj['id'] in ids:
             raise ValueError('Diagnostic objects need unique stable ids')
         ids.add(obj['id'])
-        box = obj.get('box')
+        if 'expected_source_box' in obj:
+            box, box_basis = obj['expected_source_box'], 'expected_source_box'
+            _validate_regions([{'id': obj['id'], 'box': box}])
+        elif 'actual_frame' in obj:
+            box, box_basis = obj['actual_frame'], 'actual_frame_fallback'
+            _validate_regions([{'id': obj['id'], 'box': box}])
+        else:
+            box, box_basis = obj.get('box'), 'scene_box'
         if box is None and obj.get('kind') == 'path':
             points = []
             def collect(value):
@@ -267,15 +357,23 @@ def manifest_regions(manifest, comparison_size):
                 raise ValueError('Diagnostic path stroke width must be finite: ' + obj['id'])
             pad = stroke_width / 2
             box = dict(x=min(xs)-pad, y=min(ys)-pad, width=max(xs)-min(xs)+2*pad, height=max(ys)-min(ys)+2*pad)
+            box_basis = 'path_geometry'
         _validate_regions([{'id': obj['id'], 'box': box}])
         angle = obj.get('rotation', 0)
         if isinstance(angle, bool) or not isinstance(angle, (int, float)) or not math.isfinite(angle):
             raise ValueError('Diagnostic rotation must be finite: ' + obj['id'])
-        if angle:
-            radians = math.radians(angle)
-            bw = abs(box['width'] * math.cos(radians)) + abs(box['height'] * math.sin(radians))
-            bh = abs(box['width'] * math.sin(radians)) + abs(box['height'] * math.cos(radians))
-            box = dict(x=box['x']+(box['width']-bw)/2, y=box['y']+(box['height']-bh)/2, width=bw, height=bh)
-        result.append({'id': obj['id'], 'kind': obj.get('kind'), 'box':
-                       dict(x=box['x']*sx, y=box['y']*sy, width=box['width']*sx, height=box['height']*sy)})
+        def project(bounds):
+            _validate_regions([{'id': obj['id'], 'box': bounds}])
+            if angle:
+                radians = math.radians(angle)
+                bw = abs(bounds['width'] * math.cos(radians)) + abs(bounds['height'] * math.sin(radians))
+                bh = abs(bounds['width'] * math.sin(radians)) + abs(bounds['height'] * math.cos(radians))
+                bounds = dict(x=bounds['x']+(bounds['width']-bw)/2,
+                              y=bounds['y']+(bounds['height']-bh)/2, width=bw, height=bh)
+            return dict(x=bounds['x']*sx, y=bounds['y']*sy,
+                        width=bounds['width']*sx, height=bounds['height']*sy)
+        region = {'id': obj['id'], 'kind': obj.get('kind'), 'box': project(box), 'box_basis': box_basis}
+        if 'actual_frame' in obj:
+            region['actual_frame'] = project(obj['actual_frame'])
+        result.append(region)
     return result

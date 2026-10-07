@@ -163,7 +163,13 @@ def add_formula_svg(element, obj, payloads, rels_document, content_types_documen
 
 
 def apply_text_layout(element, obj, mapped_entry, scale):
-    """Set explicit paragraph leading and a measured first-baseline correction."""
+    """Set paragraph leading while preserving the source frame's first baseline.
+
+    A renderer correction translates the native content frame by changing top
+    and bottom insets oppositely. Its height and the shape's rotation center stay
+    unchanged, so top, middle and bottom alignment retain their meaning. These
+    derived DrawingML coordinates may be signed; source insets remain unchanged.
+    """
     label = str(obj.get('id', '(unknown)'))
     if obj.get('kind') != 'text':
         raise ValueError('Text layout helper requires a text element: ' + label)
@@ -174,18 +180,69 @@ def apply_text_layout(element, obj, mapped_entry, scale):
     paragraphs = body.findall('a:p', NS)
     if not paragraphs:
         raise ValueError('Text layout requires native paragraphs: ' + label)
+    from .text_spacing import prepare_native_character_spacing, apply_prepared_character_spacing
+    character_spacing = prepare_native_character_spacing(element, obj, scale)
     result = {'id': label, 'line_height_applied': False, 'baseline_calibrated': False,
               'visual_verification_required': True}
     spacing = None
     if 'line_height' in obj:
         height = _finite(obj['line_height'], 'Text line_height', positive=True)
         spacing = math.floor(height * scale * .75 * 100 + .5)
-        if not 0 < spacing <= 20116800:
-            raise ValueError('Text line_height is outside DrawingML point spacing range: ' + label)
-    inset = None
-    if 'baseline_offset' in obj:
+    inset = bottom_inset = None
+    layout = mapped_entry.get('text_layout') if isinstance(mapped_entry, dict) else None
+    renderer = layout.get('renderer_baseline') if isinstance(layout, dict) else None
+    spacing_percent = None
+    if renderer is not None:
+        if not isinstance(renderer, dict) or renderer.get('model') != 'artifact_presentation_v1':
+            raise ValueError('Unsupported mapped renderer baseline metrics: ' + label)
+        rendered_scale = _finite(renderer.get('scale'), 'Renderer text scale', positive=True)
+        if abs(rendered_scale - scale) > 1e-8:
+            raise ValueError('Renderer baseline metrics disagree with placement scale: ' + label)
+        if renderer.get('spacing') == 'percent_of_natural_line':
+            spacing_percent = _finite(renderer.get('spacing_thousandths_percent'),
+                                      'Renderer percentage line spacing', positive=True)
+            if spacing is None or int(spacing_percent) != spacing_percent:
+                raise ValueError('Percentage line spacing requires an explicit height and integer native value: ' + label)
+            natural_height = _finite(renderer.get('natural_line_height_px'),
+                                     'Renderer natural line height', positive=True)
+            represented_height = _finite(renderer.get('line_height_px'),
+                                         'Renderer line height', positive=True)
+            if abs(represented_height - natural_height * spacing_percent / 100000) > 1e-8:
+                raise ValueError('Mapped percentage line height is inconsistent: ' + label)
+            if spacing_percent != math.floor(height / natural_height * 100000 + .5):
+                raise ValueError('Mapped percentage spacing disagrees with the requested line height: ' + label)
+            spacing_percent = int(spacing_percent)
+            line_count = layout.get('line_count', len(paragraphs))
+            if not isinstance(line_count, int) or isinstance(line_count, bool) or line_count < 1:
+                raise ValueError('Mapped native text line count must be a positive integer: ' + label)
+        actual = _finite(renderer.get('first_baseline_px'), 'Renderer first baseline', nonnegative=True)
+        desired = _finite(layout.get('native_baseline_ascent'), 'Source first baseline', nonnegative=True)
+        adjustment = _finite(layout.get('baseline_adjustment_px'), 'Renderer baseline adjustment')
+        if abs(adjustment - (desired - actual)) > 1e-8:
+            raise ValueError('Mapped renderer baseline adjustment is inconsistent: ' + label)
+        if 'baseline_offset' in obj and abs(desired - _finite(
+                obj['baseline_offset'], 'Text baseline_offset', nonnegative=True)) > 1e-8:
+            raise ValueError('Mapped baseline disagrees with the requested calibrated baseline: ' + label)
+        body_pr = body.find('a:bodyPr', NS)
+        if body_pr is None or body_pr.get('anchor', 't') not in ('t', 'ctr', 'b') or body_pr.get('vert', 'horz') != 'horz':
+            raise ValueError('Baseline preservation needs a horizontal native text body: ' + label)
+        try:
+            original = int(body_pr.get('tIns', '0'))
+            original_bottom = int(body_pr.get('bIns', '0'))
+        except ValueError as error:
+            raise ValueError('Invalid native text vertical insets: ' + label) from error
+        delta = math.floor(adjustment * scale * EMU_PER_PX + .5)
+        inset, bottom_inset = original + delta, original_bottom - delta
+        if not all(-2147483648 <= value <= 2147483647 for value in (inset, bottom_inset)):
+            raise ValueError('Derived native text inset exceeds DrawingML coordinate range: ' + label)
+        result.update(baseline_calibrated=True, source_baseline_px=desired,
+                      renderer_baseline_px=actual, baseline_adjustment_px=adjustment,
+                      top_inset_before_emu=original, top_inset_after_emu=inset,
+                      bottom_inset_before_emu=original_bottom, bottom_inset_after_emu=bottom_inset,
+                      native_content_height_preserved=True,
+                      baseline_basis='source baseline preserved using registered renderer metrics')
+    elif 'baseline_offset' in obj:
         baseline = _finite(obj['baseline_offset'], 'Text baseline_offset', nonnegative=True)
-        layout = mapped_entry.get('text_layout') if isinstance(mapped_entry, dict) else None
         if not isinstance(layout, dict):
             raise ValueError('Baseline calibration requires mapped registered-font layout metrics: ' + label)
         default = _finite(layout.get('default_native_baseline_ascent'), 'Default native text baseline', nonnegative=True)
@@ -206,6 +263,8 @@ def apply_text_layout(element, obj, mapped_entry, scale):
                       default_native_baseline_px=default, top_inset_before_emu=original,
                       top_inset_after_emu=inset, baseline_basis='registered-font ascent plus native leading; explicit calibration')
     # Validate all requested operations before any OOXML changes.
+    if spacing is not None and spacing_percent is None and not 0 < spacing <= 20116800:
+        raise ValueError('Text line_height is outside DrawingML point spacing range: ' + label)
     if spacing is not None:
         for paragraph in paragraphs:
             properties = paragraph.find('a:pPr', NS)
@@ -216,9 +275,28 @@ def apply_text_layout(element, obj, mapped_entry, scale):
                 properties.remove(existing)
             leading = ET.Element(f'{{{A}}}lnSpc')
             properties.insert(0, leading)
-            ET.SubElement(leading, f'{{{A}}}spcPts', {'val': str(spacing)})
+            ET.SubElement(leading, f'{{{A}}}' + ('spcPct' if spacing_percent is not None else 'spcPts'),
+                          {'val': str(spacing_percent if spacing_percent is not None else spacing)})
         result.update(line_height_applied=True, line_height_px=obj['line_height'],
-                      spacing_hundredths_pt=spacing, paragraph_count=len(paragraphs))
+                      paragraph_count=len(paragraphs))
+        if spacing_percent is None:
+            result['spacing_hundredths_pt'] = spacing
+        else:
+            fractional = spacing_percent % 1000 != 0
+            # LibreOffice 26.2 retains only integer percentages on import. Keep
+            # the requested fractional value in OOXML; expose its measurable
+            # cumulative consequence instead of silently rounding the design.
+            whole_percent_pitch_loss = natural_height * (spacing_percent % 1000) / 100000
+            result.update(spacing_thousandths_percent=spacing_percent,
+                          rendered_line_height_px=renderer['line_height_px'],
+                          line_count=line_count, fractional_native_percent=fractional,
+                          whole_percent_fallback_pitch_loss_px=whole_percent_pitch_loss,
+                          whole_percent_fallback_accumulated_loss_px=max(0, line_count - 1) * whole_percent_pitch_loss,
+                          native_precision_review_required=fractional and line_count > 1)
     if inset is not None:
         body_pr.set('tIns', str(inset))
+    if bottom_inset is not None:
+        body_pr.set('bIns', str(bottom_inset))
+    if character_spacing is not None:
+        result['character_spacing'] = apply_prepared_character_spacing(character_spacing)
     return result

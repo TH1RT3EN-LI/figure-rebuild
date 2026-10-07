@@ -5,13 +5,13 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "figure-rebuild"
 dynamic = ["version"]
-description = "Rebuild reference diagrams as editable PowerPoint objects with audited assets."
+description = "Create academic architecture figures and rebuild reference diagrams as editable PowerPoint objects."
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE", "docs/THIRD_PARTY_NOTICES.md"]
 authors = [{name = "TH1RT3EN-LI"}]
-keywords = ["powerpoint", "diagrams", "figure-reconstruction", "codex-skill"]
+keywords = ["powerpoint", "diagrams", "academic-figures", "figure-reconstruction", "codex-skill"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",

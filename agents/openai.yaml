@@ -1,4 +1,4 @@
 interface:
   display_name: "Figure Rebuild"
-  short_description: "Rebuild diagrams as editable PowerPoint objects"
-  default_prompt: "Use $figure-rebuild to reconstruct this reference diagram as an editable PowerPoint."
+  short_description: "Create academic figures and rebuild editable diagrams"
+  default_prompt: "Use $figure-rebuild to create an editable academic architecture diagram from my method description, with a preview for review."

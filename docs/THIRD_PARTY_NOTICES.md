@@ -10,6 +10,32 @@ Optional vision dependencies are NumPy and opencv-python-headless, installed sep
 
 Font files must be provided by the user under suitable permissions. Font files and original paper PDFs used in integration checks are excluded from Git. README demonstration assets are listed below. Generated local receipts may contain filesystem paths and should be reviewed before sharing.
 
+## SAM 2 curve regression geometry
+
+The four `cases` in `tests/fixtures/cubic-transverse-native.json` contain
+integer path commands decoded from a local reconstruction of Figure 11
+(source PDF page 21) in **SAM 2: Segment Anything in Images and Videos**,
+Nikhila Ravi et al. Source: [the authors' paper](https://arxiv.org/abs/2408.00714).
+The fixture records the reconstruction PPT's SHA256, the four curve/line
+command sequences, their expected re-encoded fragments, and a reduced
+geometry example for regression checks. It does not include the paper,
+complete figure, photographs, fonts, or slide assets. The cases and reduced
+example are source-derived geometry, not authored synthetic cases.
+The repository's MIT license does not grant rights to the original figure.
+
+## Original PDF stroke regression geometry
+
+The six cases in `tests/fixtures/sampled-native-strokes.json` are small original
+PDF stroke excerpts: three circles and a rounded frame from figures 2/3 of
+[GCC: Graph Contrastive Coding for Graph Neural Network Pre-Training](https://arxiv.org/abs/2006.09963),
+and two curved dashed strokes from figure 1 of
+[Maximum Flow and Minimum-Cost Flow in Almost-Linear Time](https://arxiv.org/abs/2203.00671).
+The fixture records source PDF hashes, pages, native paint identities, actual
+control points, stroke states and rectangular clipping callbacks. It contains
+no complete figure, paper, image, font or slide asset. These are source-derived
+geometry excerpts; the repository's MIT license does not grant rights to the
+original paper figures.
+
 ## MambaVO reconstruction demonstration
 
 `docs/assets/mambavo-figure1-original.png` is a crop of the original Figure 1.
