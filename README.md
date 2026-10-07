@@ -114,12 +114,6 @@ python3 -m venv .venv
 
 调用方先设计结构，再调用项目绘制。三个原创示例规格为[串行流程](docs/assets/creation-pipeline.json)、[双分支融合](docs/assets/creation-parallel-fusion.json)和[训练反馈](docs/assets/creation-training-feedback.json)，均为合成示例，不对应真实论文结论。
 
-**原创双分支示例的实际 PPT 预览**
-
-![原创双分支融合架构图](docs/assets/creation-parallel-fusion.png)
-
-[可编辑 PPT](docs/assets/creation-parallel-fusion.pptx) · [创作规格](docs/assets/creation-parallel-fusion.json)
-
 ## 项目文档
 
 [使用指南](docs/usage.md) · [架构与目录](docs/architecture.md) · [贡献指南](.github/CONTRIBUTING.md) · [更新记录](docs/CHANGELOG.md)
