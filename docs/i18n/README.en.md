@@ -76,6 +76,11 @@ For an existing source checkout, you can also register it as a Codex skill with 
 
 Before exporting PPTX, [configure the export environment](../usage.md#配置和检查): Node.js 20.9+, Codex Artifact Tool, the Presentations validators, and local fonts.
 
+For supported PDF exports whose `ToUnicode` table contains replacement characters,
+`repair-pdf-unicode --manifest unicode-repair.json --output repaired.pdf --receipt receipt.json`
+restores independently proved mappings while preserving painted glyphs. See the
+[bounded repair and verification policy](../../references/pdf-unicode-repair.md).
+
 ## Usage
 
 The `figure-rebuild` command prepares assets, reviews scenes, and exports PPTX. Image interpretation and the scene manifest are supplied by the user or the calling agent. See the [usage guide](../usage.md) for the full workflow.

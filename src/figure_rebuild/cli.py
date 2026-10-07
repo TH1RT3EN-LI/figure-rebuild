@@ -462,6 +462,75 @@ def verify_source_fidelity(a):
     return 0 if result.get('status') == 'VERIFIED_IN_DECLARED_SCOPE' else 1
 
 
+def repair_pdf_unicode_command(a):
+    """Repair only independently proved replacement-character mappings."""
+    from .pdf_unicode import repair_pdf_unicode
+    manifest = Path(a.manifest).expanduser().resolve()
+    with manifest.open('rb') as stream:
+        raw = stream.read(1048577)
+    if len(raw) > 1048576:
+        raise ValueError('PDF Unicode manifest exceeds 1 MiB')
+    def pairs(items):
+        result = {}
+        for key, value in items:
+            if key in result:
+                raise ValueError('Duplicate JSON field: ' + key)
+            result[key] = value
+        return result
+    def constant(value):
+        raise ValueError('Non-finite JSON number is unsupported: ' + value)
+    try:
+        data = json.loads(raw.decode('utf-8'), object_pairs_hook=pairs, parse_constant=constant)
+    except (RecursionError, UnicodeError) as exc:
+        raise ValueError('Invalid PDF Unicode manifest encoding or nesting') from exc
+    if (not isinstance(data, dict) or set(data) != {'schema_version', 'source', 'fonts'} or
+            type(data['schema_version']) is not int or data['schema_version'] != 1):
+        raise ValueError('PDF Unicode manifest needs exactly schema_version=1, source and fonts')
+    if not isinstance(data['source'], dict) or not isinstance(data['fonts'], list):
+        raise ValueError('PDF Unicode source must be a record and fonts must be a list')
+    inputs = [manifest]
+    def resolve_record_path(record):
+        if not isinstance(record, dict) or not isinstance(record.get('path'), str) or not record['path'].strip():
+            raise ValueError('PDF Unicode source and candidates need explicit file paths')
+        path = Path(record['path']).expanduser()
+        path = (manifest.parent / path).resolve() if not path.is_absolute() else path.resolve()
+        record['path'] = str(path)
+        inputs.append(path)
+    resolve_record_path(data['source'])
+    for font in data['fonts']:
+        if not isinstance(font, dict):
+            raise ValueError('PDF Unicode font declarations must be records')
+        resolve_record_path(font.get('candidate'))
+    destinations = []
+    for value in (a.output, a.receipt):
+        path = Path(value).expanduser().absolute()
+        if path.exists() or path.is_symlink():
+            raise ValueError('PDF Unicode output and receipt must be new files')
+        destinations.append(path.resolve())
+    output, receipt = destinations
+    if output == receipt or any(path in inputs for path in destinations):
+        raise ValueError('PDF Unicode inputs, output and receipt must be distinct')
+    receipt.parent.mkdir(parents=True, exist_ok=True)
+    result = None
+    receipt_created = False
+    try:
+        try:
+            result = repair_pdf_unicode(data['source'], output, data['fonts'])
+        except ImportError as exc:
+            raise ValueError('PDF Unicode repair needs source dependencies; install figure-rebuild[source]') from exc
+        encoded = json.dumps(result, ensure_ascii=False, indent=2, allow_nan=False) + '\n'
+        with receipt.open('x', encoding='utf-8') as stream:
+            receipt_created = True
+            stream.write(encoded); stream.flush(); os.fsync(stream.fileno())
+    except BaseException:
+        if receipt_created:
+            receipt.unlink(missing_ok=True)
+        if result is not None:
+            output.unlink(missing_ok=True)
+        raise
+    print(json.dumps({'pdf': str(output), 'receipt': str(receipt)}, ensure_ascii=False))
+
+
 def insert(a):
     """Place an already generated native slide without an authoring runtime."""
     from .package import merge_overlay
@@ -634,6 +703,11 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--version', action='version', version='figure-rebuild ' + __version__)
     sub = p.add_subparsers(dest='command', required=True)
+    c = sub.add_parser('repair-pdf-unicode', help='Restore proved U+FFFD PDF mappings without changing painted glyphs; requires source extras')
+    c.add_argument('--manifest', required=True, help='Hash-bound source PDF and exact candidate-font declarations JSON')
+    c.add_argument('--output', required=True, help='New incrementally repaired PDF path')
+    c.add_argument('--receipt', required=True, help='New repair audit JSON path')
+    c.set_defaults(func=repair_pdf_unicode_command)
     c = sub.add_parser('embed-fonts', help='Embed exact used registered font faces; preserves permission bits and live slide bytes')
     c.add_argument('--input', required=True, help='Existing figure PPTX')
     c.add_argument('--font-audit', required=True, help='Hash-bound font-audit.json from the figure build')
