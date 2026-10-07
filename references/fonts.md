@@ -200,6 +200,14 @@ font provisioning and actual save/reopen checks; a successful LibreOffice
 import cannot establish WPS portability. Windows PowerPoint and macOS checks
 remain pending.
 
+An actual PDF export can retain the correct embedded program and painted GIDs
+while losing text semantics in `ToUnicode`. For a hash-bound static TrueType
+Identity-H export with proved `U+FFFD` entries, the separate
+[`repair-pdf-unicode` command](pdf-unicode-repair.md) restores unique candidate
+Unicode mappings without changing the painted glyphs. It preserves the original
+export, refuses unsupported encodings and does not change the office exporter
+or establish font portability.
+
 The container format follows [Microsoft's PowerPoint font-part notes](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oe376/1663dabc-5d98-463f-889e-bcd9b77c3d34)
 and the [EOT structure specification](https://www.w3.org/submissions/EOT/).
 Implementation: `src/figure_rebuild/font_embedding.py`; regression controls:
