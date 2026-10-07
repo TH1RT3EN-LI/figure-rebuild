@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-10-06T13:50:43.791151+00:00",
+  "updated_at": "2026-10-07T04:55:18.819042+00:00",
   "scope": "Model source/actual-output review; no user acceptance or arbitrary first-pass guarantee",
   "frozen_audit_sha256": "b146da4a74d04f8be8a2ca580401acf1dc7a009f1d27817893365fce2198fecf",
   "issue_count": 296,
@@ -118217,7 +118217,7 @@
       "status": "open",
       "severity": "major",
       "category": "font_delivery",
-      "description": "48 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts remain unembedded and complete original family/hinting/unseen Unicode and PowerPoint/WPS editing are unverified. MaxFlow1 adds28 separate finite native-ink/EM aliases for23 actual source Type1/rawCID CFF programs, with33 independent missing/wrong UCS corrections. All95 used source/actual pairs pass unchanged .001px control and advance guards, maximum .000321918196/.000660636733px. Two contiguous native parts finalize under the unchanged16-family policy and public native insert preserves full source order; whole29-family policy is explicitly not performed. Eighteen inferred layout gaps are not added to181 original/recovered native characters, and finite math-script readings are not complete formula AST. Earlier GCC2 three TrueType used-cmap exactness, Swift1 stripped-font ligature scaffolds and all Type1/full raw program and general pixel/hinting limitations remain open. SAM11 adds eight finite original-ink CFF operator/control variants for894 visible glyphs,1038 ordinary Unicode characters and30 standard two-character GSUB contact continuations. Actual eight native Type1 subsets and144 used program/glyph pairs pass unchanged0.001px source design-control guard, maximum0.000932093850px. Manual spaces and synthetic metrics are explicit; original full font/hinting/unseen repertoire and portable embedding/PowerPoint-WPS acceptance remain unverified.",
+      "description": "48 associated figures embed296 used prepared static font roles, plus ColBERT4 roles in49 unified-release packages. Independent readback binds all300 EOT/SFNT payloads, original permission bits, current used Unicode, role relationships and unchanged slide/media/layout/notes bytes.237 roles are preview/print-only,48 editable and15 installable;42 files include preview/print-only roles. Prior49 packages passed clean-font LibreOffice26.2.5.2 actual imports with all registered font names observed; that application result is not mislabeled as a new complete final-package render. The API now deduplicates valid aliases sharing a font part and refuses reachable inherited layout/master live text or fields. Clean-font Linux WPS imports of the peer font delivery substituted fonts despite EOT embedding; provisioning registered fonts improves finite name checks, but is an external dependency. Seven eligible native documents with temporary source fonts passed finite text edit/save/reopen checks. Complete original family/hinting/unseen Unicode, whole-suite final appearance, Windows PowerPoint and macOS acceptance remain unverified. Keep native editing and embedded-preview variants separate. Font rights, original finite source-glyph proofs and16-family single-build policy are unchanged; this shared major issue remains open.",
       "associated_figure_ids": [
         "ccf-2020-02-f02",
         "ccf-2020-03-f04",
@@ -118388,6 +118388,34 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-023.json",
           "sha256": "b60aebfd0ea6b460cd2b18c3bd58a0500155bc89b4bfe3c2bc025b49481ed383"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+          "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/delivery-index.json",
+          "sha256": "e98d53b07d96ddc4cce3d2546c567846d8295e084b83c02f26e2be5bb57c12ed"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+          "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/WPS-STATUS-AT-RELEASE.json",
+          "sha256": "d37a36496f4326e891b9d10d50a2e9cd32664321f8bc1880f75e1792ed0aa667"
         }
       ],
       "user_acceptance": "pending",
@@ -119934,9 +119962,407 @@
             "user_acceptance": "pending",
             "aggregate_source_font_family_policy_over_16_verified": false
           }
+        },
+        {
+          "recorded_at": "2026-10-07T04:25:33.762679+00:00",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "48 reviewed figure repairs use job-local source aliases, original subsets or source-derived ink/FontMatrix/em variants. Current used source/native ink is verified; fonts remain unembedded and complete original family/hinting/unseen Unicode and PowerPoint/WPS editing are unverified. MaxFlow1 adds28 separate finite native-ink/EM aliases for23 actual source Type1/rawCID CFF programs, with33 independent missing/wrong UCS corrections. All95 used source/actual pairs pass unchanged .001px control and advance guards, maximum .000321918196/.000660636733px. Two contiguous native parts finalize under the unchanged16-family policy and public native insert preserves full source order; whole29-family policy is explicitly not performed. Eighteen inferred layout gaps are not added to181 original/recovered native characters, and finite math-script readings are not complete formula AST. Earlier GCC2 three TrueType used-cmap exactness, Swift1 stripped-font ligature scaffolds and all Type1/full raw program and general pixel/hinting limitations remain open. SAM11 adds eight finite original-ink CFF operator/control variants for894 visible glyphs,1038 ordinary Unicode characters and30 standard two-character GSUB contact continuations. Actual eight native Type1 subsets and144 used program/glyph pairs pass unchanged0.001px source design-control guard, maximum0.000932093850px. Manual spaces and synthetic metrics are explicit; original full font/hinting/unseen repertoire and portable embedding/PowerPoint-WPS acceptance remain unverified.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f02",
+              "ccf-2020-14-f03",
+              "ccf-2020-17-f01",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-09-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-01-f11",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-03-f02",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+                "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+                "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json",
+                "sha256": "ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-021.json",
+                "sha256": "b8895a63ecff59fe9933e435e3aa0c19a1c471eb378a1139792136bb86d3106c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-022.json",
+                "sha256": "5fbd74b34b66fbfce95b1c9fa3ab4f2b09f4ca9c8049e7a631c35b1e1824cc48"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-023.json",
+                "sha256": "b60aebfd0ea6b460cd2b18c3bd58a0500155bc89b4bfe3c2bc025b49481ed383"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-07T04:55:18.819042+00:00",
+          "context": "Independent unified-release successor; earlier attempts and their evidence retained.",
+          "previous": {
+            "figure_id": "project-source-fonts",
+            "issue_id": "source-font-delivery-editing-repertoire-001",
+            "status": "open",
+            "severity": "major",
+            "category": "font_delivery",
+            "description": "48 reviewed figures now embed all296 used prepared static font roles as uncompressed EOT with exact SFNT bytes, original permission bits and unchanged available Unicode. All final slide/media/layout bytes remain unchanged by font packaging. Independent EOT/relationship/role-order readbacks pass; all48 plus the additional ColBERT figure import and export in fresh LibreOffice26.2.5.2 profiles with only an unrelated DejaVu bootstrap font, observing every actual embedded face and no substitute fonts. The registered faces include237 preview/print-only roles(fsType4), so these embedded-preview files do not grant document editing permission. Separate native editing files retain the existing font dependencies. Complete original family/hinting/unseen Unicode and PowerPoint/WPS reopening, editing and playback are still unverified; the shared major issue remains open only for those residuals. Prior finite glyph proofs, manual whitespace/GSUB contacts, synthetic metrics and unchanged16-family single-build limits are retained.",
+            "associated_figure_ids": [
+              "ccf-2020-02-f02",
+              "ccf-2020-03-f04",
+              "ccf-2020-04-f01",
+              "ccf-2020-06-f01",
+              "ccf-2020-06-f03",
+              "ccf-2020-09-f02",
+              "ccf-2020-12-f03",
+              "ccf-2020-14-f02",
+              "ccf-2020-14-f03",
+              "ccf-2020-17-f01",
+              "ccf-2020-18-f01",
+              "ccf-2021-01-f01",
+              "ccf-2021-09-f02",
+              "ccf-2021-10-f01",
+              "ccf-2021-13-f08",
+              "ccf-2021-17-f02",
+              "ccf-2021-17-f05",
+              "ccf-2022-01-f03",
+              "ccf-2022-02-f02",
+              "ccf-2022-07-f01",
+              "ccf-2022-09-f01",
+              "ccf-2022-12-f01",
+              "ccf-2022-12-f04",
+              "ccf-2022-13-f01",
+              "ccf-2022-14-f01",
+              "ccf-2022-14-f02",
+              "ccf-2023-01-f01",
+              "ccf-2023-03-f01",
+              "ccf-2023-05-f02",
+              "ccf-2023-05-f04",
+              "ccf-2023-06-f01",
+              "ccf-2024-03-f01",
+              "ccf-2024-03-f02",
+              "ccf-2024-03-f12",
+              "ccf-2024-06-f02",
+              "ccf-2024-07-f02",
+              "ccf-2024-08-f02",
+              "ccf-2025-01-f01",
+              "ccf-2025-01-f02",
+              "ccf-2025-01-f03",
+              "ccf-2025-01-f07",
+              "ccf-2025-01-f08",
+              "ccf-2025-01-f11",
+              "ccf-2025-03-f02",
+              "ccf-2025-05-f13",
+              "ccf-2026-01-f05",
+              "ccf-2026-03-f02",
+              "ccf-2026-05-f01"
+            ],
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-001.json",
+                "sha256": "cc497be1393831411c99ed466cd45836c2e0d503d77ea1810db5ab6dbf9df9e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-003.json",
+                "sha256": "db1e065d8d70457c231793c66bb1a10d89f5b3d9e5697ed82461d28c08493ccd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-002.json",
+                "sha256": "f8efe6d264f1e043f47b6cbad967b025e1f3db1a0afead105b03aa8b77668316"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-004.json",
+                "sha256": "c05d1c0682669e57d9fac7e7ead4c4211a9a4ff6815f45a335e5af6cec2728f1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-003.json",
+                "sha256": "596cf6d6d18f9a92aa638141440d35e92d0156116514810294aabf6206e35a6d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-005.json",
+                "sha256": "ec8023927ec07bc0308b22ee3156bcf2c7f15c3d184ced8dc1e019cd7fa39534"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-004.json",
+                "sha256": "e27011e733c53c7f947c4f757da453f815595b51765b3d6ab990c2c785b08919"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FONT-REVIEW-RESULTS-006.json",
+                "sha256": "6dc271a8ac27bc54401854bac23c67e49b71fd77a9b2c1b51c0d15d794fb4c19"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-005.json",
+                "sha256": "1622485306ff0ea26d4b35c7f0434022d17d0b7cf64006710dc7e9dfa508c4ec"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/VMAMBA-REVIEW-RESULT-027.json",
+                "sha256": "13174e32b60ccc1ccb329d16bdd90e2e4b3f9bf23b715dfc48ebf77f5f561e7b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-006.json",
+                "sha256": "0b9497f29409e0aab0f7ada52366320881689aa02fd86cb13163172793efe42c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SIMCLR-REVIEW-RESULT-024.json",
+                "sha256": "f576bdd722faf61d4b5a48cb4f731648909dd065eaf0c88165bbadc46133fc6a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-007.json",
+                "sha256": "8aab53e71a0bb4ec079fa4ba335f59b242f0c46e78f1a4f894697360069bd3fe"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/GEOMETRY-REVIEW-RESULT-015.json",
+                "sha256": "7014803925e8fdc6d429c38e7a8ae2644c6060a5a3e97467ec96d35c523dc923"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-008.json",
+                "sha256": "e36cd5983aeb3b610ddd2814eeb2ec6e5acfd578ebc1c0a9bea6d388094b383d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-010.json",
+                "sha256": "d7da451daf00ad67d771370df53b8f0d0bb90334bece008a17def5ccbcefacb5"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-012.json",
+                "sha256": "c64cc99388c154cb4c34b4590b0f81b90800aca198f16274747a317dccdd9b88"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-013.json",
+                "sha256": "0e67ff67544dfb80efd66c8cae5b0851c3684cf91f5eb36caeb99f391eaae790"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-014.json",
+                "sha256": "a230142361204b9fcc9aee4f9f8321d93b7705916f8bfaf43211c616f8890912"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-015.json",
+                "sha256": "615b40a1c57ccebb14bc8d16b1270e588bee5c93b80144f97961a0ac52ccfee0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-016.json",
+                "sha256": "ba88abafc6258736a58a24ed98d463100545f873e28cea955f4fe15bc0eba123"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-017.json",
+                "sha256": "bbd67c2c6a8e19aaeaecd10430f941f360fc0874acf1af9b410e9656b12b32b1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-018.json",
+                "sha256": "58acc8f79ab036b5209a0c6aff7ca995c0c5ca2f6da73f5d966203b2b3710115"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-019.json",
+                "sha256": "41e86137e2067482685f1af2a189f126816db60806738871d8b1aff29d55802a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-020.json",
+                "sha256": "ad884642395f22c258b99e5d5667446800776dac953ee9eaa7ad16b5d3d8a449"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-021.json",
+                "sha256": "b8895a63ecff59fe9933e435e3aa0c19a1c471eb378a1139792136bb86d3106c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-022.json",
+                "sha256": "5fbd74b34b66fbfce95b1c9fa3ab4f2b09f4ca9c8049e7a631c35b1e1824cc48"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-023.json",
+                "sha256": "b60aebfd0ea6b460cd2b18c3bd58a0500155bc89b4bfe3c2bc025b49481ed383"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-index.json",
+                "sha256": "e98d53b07d96ddc4cce3d2546c567846d8295e084b83c02f26e2be5bb57c12ed"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ],
+            "user_acceptance": "pending",
+            "aggregate_source_font_family_policy_over_16_verified": false,
+            "partial_resolution": "Font embedding and a finite clean-font LibreOffice import test are complete for every associated figure. Editing rights/repertoire and actual PowerPoint/WPS acceptance remain open.",
+            "font_embedding_verified": true,
+            "isolated_LibreOffice_import_verified": true,
+            "PowerPoint_WPS_verified": false,
+            "editing_permission_for_all_embedded_fonts": false
+          }
         }
       ],
-      "aggregate_source_font_family_policy_over_16_verified": false
+      "aggregate_source_font_family_policy_over_16_verified": false,
+      "partial_resolution": "Complete registered-face EOT packaging and API boundary regressions are verified; finite prior LibreOffice font import and seven peer Linux WPS edit/save/reopen checks are recorded separately. Self-contained WPS use, full repertoire/family and Windows/macOS acceptance remain open.",
+      "font_embedding_verified": true,
+      "isolated_LibreOffice_import_verified": true,
+      "PowerPoint_WPS_verified": false,
+      "editing_permission_for_all_embedded_fonts": false,
+      "isolated_LibreOffice_import_scope": "Prior49 packages and their exact registered font programs; the unified release independently binds its new49 packages, without claiming a complete new app-render run.",
+      "Linux_WPS_self_contained_verified": false,
+      "Windows_PowerPoint_verified": false,
+      "macOS_verified": false,
+      "api_alias_and_inherited_text_regressions_verified": true
     },
     {
       "figure_id": "ccf-2025-01-f02",
@@ -120057,13 +120483,13 @@
     {
       "figure_id": "ccf-2025-01-f02",
       "issue_id": "ccf-2025-01-f02-E02",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "category": "shape_edges",
       "description": "Independent opaque white original subpaths retain thin antialias seams in direct native previews. Exact set union is not exact raster compositing. A one-shape/multiple-path private preview probe retains the seams and is not used for delivery.",
       "region": "White source arrow underpaint; most visible at arrowhead joins and shaft ends",
-      "resolution": null,
-      "latest_verified_attempt": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001",
+      "resolution": "Replace eight independently painted white native component groups with eight continuous editable compound outlines, computed by an explicit case-specific Skia union of the original delivered integer-EMU paths. No bitmap or stroke widening is added. All other paths, live text, source photograph media and their relative native order are independently byte-preserved. Source/final whole1x, unscaled covering native2x tiles and all10 matched4x arrow/control crops were actually viewed; shaft-end and arrowhead-join seams disappear. Floating-point Boolean geometry is explicitly approximate and is not the prior exact-C set-union certificate; generic geometry admission and budgets are unchanged. Used registered fonts are separately embedded with original permission bits. PowerPoint/WPS and user acceptance remain unverified. Independent successor corrects only eight nonpaint descriptions: source_id binds each actual continuous union object and semantic_group retains its parent group. Component membership remains in the external receipt. Exact reversal restores complete prior slide bytes; all other package parts and paint properties are unchanged. The unified-release package has a fresh font-embedding receipt.",
+      "latest_verified_attempt": "reports/remaining-four-release-20261007/editing-native/ccf-2025-01-f02.pptx",
       "evidence": [
         {
           "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f02-geometry-readback-050/output-review-052.json",
@@ -120164,22 +120590,404 @@
         {
           "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
           "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+          "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+          "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/repair-receipt.json",
+          "sha256": "635821489218c44665d03c0f9047456d14a184464392ba76ec07eb124b7b36c8"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/preview-provenance.json",
+          "sha256": "f14ced7bf14ee42b2d4eacadd23957458cf6c1782c66f658cab525c03a30c8e6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+          "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/readback.json",
+          "sha256": "b7da34f1585812cd980e02dbc492cc9ea2c34e87be9f640d4a70b3896d194fcc"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/visual-review.json",
+          "sha256": "1f3e6a78cc7d0afaa1947c92154fe6531772793da5711c3bee6b2cd723dd1c99"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/provenance-fix-receipt.json",
+          "sha256": "8fc33daeec32875293c610089bca245a799ee72ce0c95320285f7731c08ba63f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2025-01-f02.pptx",
+          "sha256": "5d6c8f03e3256d705e969cc114f868bb68a34da8380ad28c876e4fc4853da637"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2025-01-f02.pptx",
+          "sha256": "6669d04207938dee5bd0bfa50127928a840c0ba69d6ddd0ae6fc80b4b4aad485"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2025-01-f02.font-receipt.json",
+          "sha256": "4a61d05c06a44cb035afe64bbe1c7dbe968ecffd7e76d4b37058c18f9a05745d"
         }
       ],
       "user_acceptance": "pending",
       "discovered_during_remaining_153_request": true,
-      "part_of_original_frozen_153": false
+      "part_of_original_frozen_153": false,
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-07T04:25:33.762679+00:00",
+          "previous": {
+            "figure_id": "ccf-2025-01-f02",
+            "issue_id": "ccf-2025-01-f02-E02",
+            "status": "open",
+            "severity": "minor",
+            "category": "shape_edges",
+            "description": "Independent opaque white original subpaths retain thin antialias seams in direct native previews. Exact set union is not exact raster compositing. A one-shape/multiple-path private preview probe retains the seams and is not used for delivery.",
+            "region": "White source arrow underpaint; most visible at arrowhead joins and shaft ends",
+            "resolution": null,
+            "latest_verified_attempt": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f02-geometry-readback-050/output-review-052.json",
+                "sha256": "1fc64ea60de03c5db5153b92571284bc3321bc9d3d6ab7a724bf20cb85f732d7"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f02-geometry-readback-050/native-readback.json",
+                "sha256": "ce17df8a1063b5eefaf01530f51dd6c507ac931f445160715679bb35e2539837"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-galleries-049/ccf-2025-01-f02/visual-review-052.json",
+                "sha256": "dd149f4c57a7d0bd381ba58279450bb7048aee51fffaf5a85ed4c4c0aa083225"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-galleries-049/ccf-2025-01-f02/bindings.json",
+                "sha256": "a76975a3c3187654672f3dfc69a4818cc75b8b71908febf5802c4dacbda94e76"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/output-review-052.json",
+                "sha256": "1fc64ea60de03c5db5153b92571284bc3321bc9d3d6ab7a724bf20cb85f732d7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/manifest-snapshot.json",
+                "sha256": "52c9443846441409ca1a9a49af5cd97d161db90fef7f8e338f37f2561fd7ec54"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/render-audit.json",
+                "sha256": "39066bd632574d3a4260ddb82ac305f21daaf34ca566f62c4255175b785d65ab"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/font-audit.json",
+                "sha256": "661063b2bf2611b05a6a409ff1615a330fb8c33fc6a477bc06b39d4fd2e06460"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/editability.json",
+                "sha256": "ae70a4c12e0e98c142452fdaee5c19f0d9b2f2eb9d4fd2526b32861b43d095db"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "e5cf6244393892aea84517314cd7dbeb8d2e61e7b0ed43195803885eb7e0c5a5"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/font-profile.json",
+                "sha256": "1315f42762dcec3655a0a57912ab151793b7abaf8dddda8837c2b1e138498a66"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/source-evidence/manifest-before-repair.json",
+                "sha256": "e5dc7ec38cc05dbbc494c6a014ae8fb6a4bc92b18f445755791daa29ca7fbc7a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+                "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-ink-capture-013/ccf-2025-01-f02/proof.json",
+                "sha256": "00b15ace22d70540a6ae6d595ca1a43cad19f3791a75a9621d7ea9621472b581"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-derived-ink-fonts-014/ccf-2025-01-f02/proof.json",
+                "sha256": "d9c9898b6c46c7816eb1f57d27d321c8a43eceab788afa3dd19262c40790fdd4"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-048/ccf-2025-01-f02/full-native-font-trace.json",
+                "sha256": "d257bf6fabee9e92a51b4137285d579c410ad1fb4be8e585a8c0ee0753f9afaf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-048/ccf-2025-01-f02/proof.json",
+                "sha256": "2840c1440de5c1b5082e4459ce38d1e96303ab2c1b9401372312a2ca9d226313"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-photos-extraction-029/proof.json",
+                "sha256": "07b0ce82b58b313ae84288592a3d0e71e06f819e99ae327088e72c53a7fbc262"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-paths-capture-039/ccf-2025-01-f02/proof.json",
+                "sha256": "c50fb473b1769e88e9435af56601d10d480d32ac9f7af50259bfda865c9de374"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SAM-WHITE-OPAQUE-UNION-PROOF-045.json",
+                "sha256": "d15f6d30aad58e762c422e31cb9c729543a6ef6c9961fd2825a1bb23b2f41607"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-033/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "571d72bd4c260b8907d4835b10e483062e59927c28729a5d223ae19a3ffcfad6"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-034/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "734f0efc4540a8fc426b0ed9f2023852522ee442c5ef611afb79b5553a16901c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-white-multipath-probe-051/geometry-probe.json",
+                "sha256": "7006227fc4952a080105ee9cc451533f02259c35f0c04f8c22a2d2fe5310b288"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-white-multipath-probe-051/preview-provenance.json",
+                "sha256": "f5c359ffd5f915b08f96f6aad21875743dad097444aa61158a5e22b64acff458"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              }
+            ],
+            "user_acceptance": "pending",
+            "discovered_during_remaining_153_request": true,
+            "part_of_original_frozen_153": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-07T04:55:18.819042+00:00",
+          "context": "Independent unified-release successor; earlier attempts and their evidence retained.",
+          "previous": {
+            "figure_id": "ccf-2025-01-f02",
+            "issue_id": "ccf-2025-01-f02-E02",
+            "status": "closed_model_visual_review",
+            "severity": "minor",
+            "category": "shape_edges",
+            "description": "Independent opaque white original subpaths retain thin antialias seams in direct native previews. Exact set union is not exact raster compositing. A one-shape/multiple-path private preview probe retains the seams and is not used for delivery.",
+            "region": "White source arrow underpaint; most visible at arrowhead joins and shaft ends",
+            "resolution": "Replace eight independently painted white native component groups with eight continuous editable compound outlines, computed by an explicit case-specific Skia union of the original delivered integer-EMU paths. No bitmap or stroke widening is added. All other paths, live text, source photograph media and their relative native order are independently byte-preserved. Source/final whole1x, unscaled covering native2x tiles and all10 matched4x arrow/control crops were actually viewed; shaft-end and arrowhead-join seams disappear. Floating-point Boolean geometry is explicitly approximate and is not the prior exact-C set-union certificate; generic geometry admission and budgets are unchanged. Used registered fonts are separately embedded with original permission bits. PowerPoint/WPS and user acceptance remain unverified.",
+            "latest_verified_attempt": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f02-geometry-readback-050/output-review-052.json",
+                "sha256": "1fc64ea60de03c5db5153b92571284bc3321bc9d3d6ab7a724bf20cb85f732d7"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2025-01-f02-geometry-readback-050/native-readback.json",
+                "sha256": "ce17df8a1063b5eefaf01530f51dd6c507ac931f445160715679bb35e2539837"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-galleries-049/ccf-2025-01-f02/visual-review-052.json",
+                "sha256": "dd149f4c57a7d0bd381ba58279450bb7048aee51fffaf5a85ed4c4c0aa083225"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-galleries-049/ccf-2025-01-f02/bindings.json",
+                "sha256": "a76975a3c3187654672f3dfc69a4818cc75b8b71908febf5802c4dacbda94e76"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/output-review-052.json",
+                "sha256": "1fc64ea60de03c5db5153b92571284bc3321bc9d3d6ab7a724bf20cb85f732d7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/manifest-snapshot.json",
+                "sha256": "52c9443846441409ca1a9a49af5cd97d161db90fef7f8e338f37f2561fd7ec54"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/render-audit.json",
+                "sha256": "39066bd632574d3a4260ddb82ac305f21daaf34ca566f62c4255175b785d65ab"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/font-audit.json",
+                "sha256": "661063b2bf2611b05a6a409ff1615a330fb8c33fc6a477bc06b39d4fd2e06460"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/build/run-001/editability.json",
+                "sha256": "ae70a4c12e0e98c142452fdaee5c19f0d9b2f2eb9d4fd2526b32861b43d095db"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "e5cf6244393892aea84517314cd7dbeb8d2e61e7b0ed43195803885eb7e0c5a5"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/font-profile.json",
+                "sha256": "1315f42762dcec3655a0a57912ab151793b7abaf8dddda8837c2b1e138498a66"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-035/jobs/ccf-2025-01-f02/source-evidence/manifest-before-repair.json",
+                "sha256": "e5dc7ec38cc05dbbc494c6a014ae8fb6a4bc92b18f445755791daa29ca7fbc7a"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+                "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-ink-capture-013/ccf-2025-01-f02/proof.json",
+                "sha256": "00b15ace22d70540a6ae6d595ca1a43cad19f3791a75a9621d7ea9621472b581"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-derived-ink-fonts-014/ccf-2025-01-f02/proof.json",
+                "sha256": "d9c9898b6c46c7816eb1f57d27d321c8a43eceab788afa3dd19262c40790fdd4"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-048/ccf-2025-01-f02/full-native-font-trace.json",
+                "sha256": "d257bf6fabee9e92a51b4137285d579c410ad1fb4be8e585a8c0ee0753f9afaf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-native-font-readback-048/ccf-2025-01-f02/proof.json",
+                "sha256": "2840c1440de5c1b5082e4459ce38d1e96303ab2c1b9401372312a2ca9d226313"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-photos-extraction-029/proof.json",
+                "sha256": "07b0ce82b58b313ae84288592a3d0e71e06f819e99ae327088e72c53a7fbc262"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-source-paths-capture-039/ccf-2025-01-f02/proof.json",
+                "sha256": "c50fb473b1769e88e9435af56601d10d480d32ac9f7af50259bfda865c9de374"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SAM-WHITE-OPAQUE-UNION-PROOF-045.json",
+                "sha256": "d15f6d30aad58e762c422e31cb9c729543a6ef6c9961fd2825a1bb23b2f41607"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-033/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "571d72bd4c260b8907d4835b10e483062e59927c28729a5d223ae19a3ffcfad6"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-034/jobs/ccf-2025-01-f02/repair-proof.json",
+                "sha256": "734f0efc4540a8fc426b0ed9f2023852522ee442c5ef611afb79b5553a16901c"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-white-multipath-probe-051/geometry-probe.json",
+                "sha256": "7006227fc4952a080105ee9cc451533f02259c35f0c04f8c22a2d2fe5310b288"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/sam-white-multipath-probe-051/preview-provenance.json",
+                "sha256": "f5c359ffd5f915b08f96f6aad21875743dad097444aa61158a5e22b64acff458"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-009.json",
+                "sha256": "cc20b37a9a8d974a5c471385066b98aa4bc0c9e19273163444b0f4f02dc4a2d9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/repair-receipt.json",
+                "sha256": "635821489218c44665d03c0f9047456d14a184464392ba76ec07eb124b7b36c8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/preview-provenance.json",
+                "sha256": "f14ced7bf14ee42b2d4eacadd23957458cf6c1782c66f658cab525c03a30c8e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ],
+            "user_acceptance": "pending",
+            "discovered_during_remaining_153_request": true,
+            "part_of_original_frozen_153": false,
+            "closure_evidence": [
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/repair-receipt.json",
+                "sha256": "635821489218c44665d03c0f9047456d14a184464392ba76ec07eb124b7b36c8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2025-01-f02/preview-provenance.json",
+                "sha256": "f14ced7bf14ee42b2d4eacadd23957458cf6c1782c66f658cab525c03a30c8e6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ]
+          }
+        }
+      ],
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/readback.json",
+          "sha256": "b7da34f1585812cd980e02dbc492cc9ea2c34e87be9f640d4a70b3896d194fcc"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/visual-review.json",
+          "sha256": "1f3e6a78cc7d0afaa1947c92154fe6531772793da5711c3bee6b2cd723dd1c99"
+        },
+        {
+          "audit_relative_path": "reports/independent-sam2-seam-20261007/provenance-fix-receipt.json",
+          "sha256": "8fc33daeec32875293c610089bca245a799ee72ce0c95320285f7731c08ba63f"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2025-01-f02.pptx",
+          "sha256": "5d6c8f03e3256d705e969cc114f868bb68a34da8380ad28c876e4fc4853da637"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2025-01-f02.pptx",
+          "sha256": "6669d04207938dee5bd0bfa50127928a840c0ba69d6ddd0ae6fc80b4b4aad485"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2025-01-f02.font-receipt.json",
+          "sha256": "4a61d05c06a44cb035afe64bbe1c7dbe968ecffd7e76d4b37058c18f9a05745d"
+        }
+      ],
+      "final_delivery": {
+        "raw_sha256": "5d6c8f03e3256d705e969cc114f868bb68a34da8380ad28c876e4fc4853da637",
+        "sha256": "6669d04207938dee5bd0bfa50127928a840c0ba69d6ddd0ae6fc80b4b4aad485",
+        "receipt_sha256": "4a61d05c06a44cb035afe64bbe1c7dbe968ecffd7e76d4b37058c18f9a05745d"
+      }
     },
     {
       "figure_id": "ccf-2022-02-f02",
       "issue_id": "ccf-2022-02-f02-E01",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "severity": "minor",
       "category": "source_component_editability",
       "description": "Two original circular portrait borders and their circular clip/blend contexts are faithfully retained within small8x source-composited badge images. Their original cubic vector borders cannot yet be edited independently in the final PPT. Recover separate clipped native border geometry and source-aware image alpha without losing current source appearance.",
       "region": "Two circular labeler portrait outlines in Step1 and Step2",
-      "resolution": null,
-      "latest_verified_attempt": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001",
+      "resolution": "Suppress only the two independently bound original source frame paints62/106 in the two small composited portrait assets, preserving actual source clip/group/Multiply/mask callbacks. Unsuppressed baseline forwarding independently reproduces fresh source RGB bytes. Restore both frame paints as separate editable native filled paths and intersect them with the actual source circular clip; the original clip trims half the radial ring thickness, so the untrimmed thicker candidate is retained as a failed attempt. Both source/final matched4x portraits and full1x/2x scenes were actually viewed. All original native text/path objects remain byte-identical, both image frames retain their transforms, only their media relationships change, and the two borders are independently named and editable. Float Boolean curve exactness, original family/unseen repertoire and PowerPoint/WPS acceptance are not claimed. Independent successor corrects only two copied source descriptions to the actual native ring names. All other package parts and paint properties are unchanged; fresh direct native PNGs at 1x/2x/4x are RGBA-identical to the reviewed geometry successor. The unified-release package and its new embedding receipt bind the final metadata-corrected native rings.",
+      "latest_verified_attempt": "reports/remaining-four-release-20261007/editing-native/ccf-2022-02-f02.pptx",
       "evidence": [
         {
           "audit_relative_path": "reports/remaining-153-001/ccf-2022-02-f02-geometry-readback-016/output-review-019.json",
@@ -120352,11 +121160,529 @@
         {
           "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_scene016.py",
           "sha256": "098fe301341cef69788c2c85e34848bb5580a55b7ed564862bea7913f72b5a64"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+          "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+          "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/repair-receipt.json",
+          "sha256": "852d94a3cd0cb85c41396dc0dfd652594e9a2b7d4e1d0b8e8a5b7f648c8e6452"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/preview-provenance.json",
+          "sha256": "6b5b5b6dad203d6049300a2d7b7c3797dff951a5e8c7cadf6368a18aa2cc9609"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+          "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-instructgpt-border-20261007/RESULT.json",
+          "sha256": "3e840c3931f95c9c1232e20df7b2b22c9f9e0df9163ddc76bf73c4bad8f61051"
+        },
+        {
+          "audit_relative_path": "reports/independent-instructgpt-border-20261007/rerender-002/preview-provenance.json",
+          "sha256": "c85a59f3d9538de7745016a118795fc188b41ca18bd11a4a8136b3fe58ae0a04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2022-02-f02.pptx",
+          "sha256": "26899cc2ef38dc731b739d483162533f3e187762ef2abdb5da20211d099d99f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2022-02-f02.pptx",
+          "sha256": "d22d2a94e1a5ab04e393b7a9bcc78f39e58fb09f89a071e07a6688f001fa11c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2022-02-f02.font-receipt.json",
+          "sha256": "a87cf8fd7697b935dc61516a189625dc243e8017321f281c5bef05d4afddd4cc"
         }
       ],
       "user_acceptance": "pending",
       "discovered_during_remaining_153_request": true,
-      "part_of_original_frozen_153": false
+      "part_of_original_frozen_153": false,
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-07T04:25:33.762679+00:00",
+          "previous": {
+            "figure_id": "ccf-2022-02-f02",
+            "issue_id": "ccf-2022-02-f02-E01",
+            "status": "open",
+            "severity": "minor",
+            "category": "source_component_editability",
+            "description": "Two original circular portrait borders and their circular clip/blend contexts are faithfully retained within small8x source-composited badge images. Their original cubic vector borders cannot yet be edited independently in the final PPT. Recover separate clipped native border geometry and source-aware image alpha without losing current source appearance.",
+            "region": "Two circular labeler portrait outlines in Step1 and Step2",
+            "resolution": null,
+            "latest_verified_attempt": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-02-f02-geometry-readback-016/output-review-019.json",
+                "sha256": "e085bc69334229190521d8f85019c141f9e21bc7f94438d0d0de85da3a4ef03f"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-02-f02-geometry-readback-016/native-readback.json",
+                "sha256": "b659d9838434819519804ca89d902e4869bdb0251a8165128f74b0cbdbde4747"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-galleries-015/visual-review-019.json",
+                "sha256": "615af3c307fb8f00511ec67383ca891b99ce3131e698878efca2388667d01772"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-galleries-015/bindings.json",
+                "sha256": "76e606b0441090985c5322561a2dceeafa8cbc1980c198274afcbefaffeb7526"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/output-review-019.json",
+                "sha256": "e085bc69334229190521d8f85019c141f9e21bc7f94438d0d0de85da3a4ef03f"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/manifest-snapshot.json",
+                "sha256": "b3ee92e4bee9368ecb97915a7eb3d3f76e59afe4e8d456dfabd9ad3e7d8a155d"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/render-audit.json",
+                "sha256": "a420144dbb883086d0f9d421f32e584e009c84af24deb627800d25fd6f809081"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/font-audit.json",
+                "sha256": "0ec0b4f18e5dfbc967a741b6888e3c2d980dc2c03b177d655418462639daaa3c"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/editability.json",
+                "sha256": "8f81d7dee46faba23204964cff5a90d5bf2124ad0037a9d3c0e51ca555edf8b7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/delivery.json",
+                "sha256": "55620d49c44ecf59069c502acb40855a7e2ff17db354a9874b8bbcf3dc9633ed"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/repair-proof.json",
+                "sha256": "bbb15e63b74ac619e50006b26efc3046788182e438682229ebe2b78d697d9b4c"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/font-profile.json",
+                "sha256": "51d52f082d831d14961d18c4073e7eab2594682e64501b810a647ec74f2416e7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/source-evidence/manifest-before-repair.json",
+                "sha256": "8fda80f1bca0db811bbb721cfb2e6c37db72ec6dbc3065d7c25ee51019f190b8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-source-context-009/trace.json",
+                "sha256": "492c128f3e2d20027babb7d6519c5b93b5c03e9840b00bcefb1b5687b527c8f9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-source-shades-008/proof.json",
+                "sha256": "7eab50a59307c543324c66362160203a30aaa4ea8898ffcb02c628b0c5135034"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-derived-geometry-012/proof.json",
+                "sha256": "0173f99356ab985c8343790cfd16ecc9a83619c36bcf2496ea3020541ff76f9d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-composited-photos-013/proof.json",
+                "sha256": "b967133784367d7d3a533f9e1e657f5d873bd4d7297a0665277ae059b5b5752f"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/proof.json",
+                "sha256": "1763e07ad5e0923af3bd904fd2b3be907ace72cc5810ff95bdb614fe90fb3c01"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/source-trace.json",
+                "sha256": "6a0a43e1927db6723115c079d85c1fc6691db70d22481c6c3b8b187c9b6142dd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/native-trace.json",
+                "sha256": "ffbf83e5f0a2d007e4ed42f0d9b508cb655c8662edf8591ced9883160986a1ed"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/INSTRUCTGPT-PROCESS-ATTEMPTS-020.json",
+                "sha256": "594cc4c87514eb668c67a21a3c7c3018d705c679523898cbcc07c2e838c637eb"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+                "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry010.py",
+                "sha256": "793f95a6ec4f7b13d62d0cd0032b905ac0fad2fc03ab1c6439b0b1d324d7dc77"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry011.py",
+                "sha256": "36f3b15565cae14d2dd7fd7581b6c875ed0bd0ae7114b83d4c2fd13b96e81c24"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry012.py",
+                "sha256": "875b3a0470f7247f1ba9f422d1547248d96dbb5642bf280e7894965bd0ac4de9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/extract_instructgpt_composites013.py",
+                "sha256": "734d1e2283c287fbde3f2334146302b67a966c05fc2305639797ad80f26e7e6e"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/extract_instructgpt_photos001.py",
+                "sha256": "15f43478cb435ce497b51f95923f1447f1e9410de2d969bead529e890cd197cf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context002.py",
+                "sha256": "a6e188f5bccd4692eb478e38fa4094b87a3a5a2da5beb6257263eef3ee19b0e1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context003.py",
+                "sha256": "f39d3face14c69d7afb6d770926be7f3faeead7b72c1c06031a28b7ff023f904"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context004.py",
+                "sha256": "25b955f6f42c4452b1b2220a23af831f056aa0fdfa3c4e1ad74796d3c7c10313"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context005.py",
+                "sha256": "045d8895fa43869afbb3765f97a0d80634cba49b3fe70536612f2a09819a3bc4"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context009.py",
+                "sha256": "d48e17711c0f0c763c9f97524e03c0caaad2fb0891d9bbd8a9a02b367eeacd58"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades006.py",
+                "sha256": "f772d5523aa233f6dc32ead33960fe0f2a78901805d57a26df5e9872d10db529"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades007.py",
+                "sha256": "ea4c04f566d92eebd9e4e900b0052b0b5caf007e6243417793f171e263ed1c67"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades008.py",
+                "sha256": "f9fc45a3c21d942b19259a489edbce4197f17a512e5c6cb74863e91f14609f47"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/instructgpt_cubic_clip011.py",
+                "sha256": "2b3d334e95d38f299593dfcc92d3636777f7608608becef4e3d829a787216cfc"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/instructgpt_galleries015.py",
+                "sha256": "3299b9e4bfb0e16ff7cd26bed86dd41390fb2bce1e03554cc63c79f513776050"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/rebuild_instructgpt014.py",
+                "sha256": "155e8db8bb8b89bef1c3d931d6d2bdbe953e9e1b02d27d320ddac3dea461c2c6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/record_instructgpt019.py",
+                "sha256": "864bc5d0e56b8164fd127b9caa00a6ad0479d2e0967841ebe9e75ec60c33c640"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_fonts017.py",
+                "sha256": "f65fcac014011be85c18e33b74ee8122eef4bae6cdd87c243fdfbeccd466ff87"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_fonts018.py",
+                "sha256": "6a3e936cedbad4d95b38c85ec89ac5206a113457d829fa348bec4ce9dacf3b15"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_scene016.py",
+                "sha256": "098fe301341cef69788c2c85e34848bb5580a55b7ed564862bea7913f72b5a64"
+              }
+            ],
+            "user_acceptance": "pending",
+            "discovered_during_remaining_153_request": true,
+            "part_of_original_frozen_153": false
+          }
+        },
+        {
+          "recorded_at": "2026-10-07T04:55:18.819042+00:00",
+          "context": "Independent unified-release successor; earlier attempts and their evidence retained.",
+          "previous": {
+            "figure_id": "ccf-2022-02-f02",
+            "issue_id": "ccf-2022-02-f02-E01",
+            "status": "closed_model_visual_review",
+            "severity": "minor",
+            "category": "source_component_editability",
+            "description": "Two original circular portrait borders and their circular clip/blend contexts are faithfully retained within small8x source-composited badge images. Their original cubic vector borders cannot yet be edited independently in the final PPT. Recover separate clipped native border geometry and source-aware image alpha without losing current source appearance.",
+            "region": "Two circular labeler portrait outlines in Step1 and Step2",
+            "resolution": "Suppress only the two independently bound original source frame paints62/106 in the two small composited portrait assets, preserving actual source clip/group/Multiply/mask callbacks. Unsuppressed baseline forwarding independently reproduces fresh source RGB bytes. Restore both frame paints as separate editable native filled paths and intersect them with the actual source circular clip; the original clip trims half the radial ring thickness, so the untrimmed thicker candidate is retained as a failed attempt. Both source/final matched4x portraits and full1x/2x scenes were actually viewed. All original native text/path objects remain byte-identical, both image frames retain their transforms, only their media relationships change, and the two borders are independently named and editable. Float Boolean curve exactness, original family/unseen repertoire and PowerPoint/WPS acceptance are not claimed.",
+            "latest_verified_attempt": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-02-f02-geometry-readback-016/output-review-019.json",
+                "sha256": "e085bc69334229190521d8f85019c141f9e21bc7f94438d0d0de85da3a4ef03f"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/ccf-2022-02-f02-geometry-readback-016/native-readback.json",
+                "sha256": "b659d9838434819519804ca89d902e4869bdb0251a8165128f74b0cbdbde4747"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-galleries-015/visual-review-019.json",
+                "sha256": "615af3c307fb8f00511ec67383ca891b99ce3131e698878efca2388667d01772"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-galleries-015/bindings.json",
+                "sha256": "76e606b0441090985c5322561a2dceeafa8cbc1980c198274afcbefaffeb7526"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/output-review-019.json",
+                "sha256": "e085bc69334229190521d8f85019c141f9e21bc7f94438d0d0de85da3a4ef03f"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/manifest-snapshot.json",
+                "sha256": "b3ee92e4bee9368ecb97915a7eb3d3f76e59afe4e8d456dfabd9ad3e7d8a155d"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/render-audit.json",
+                "sha256": "a420144dbb883086d0f9d421f32e584e009c84af24deb627800d25fd6f809081"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/font-audit.json",
+                "sha256": "0ec0b4f18e5dfbc967a741b6888e3c2d980dc2c03b177d655418462639daaa3c"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/editability.json",
+                "sha256": "8f81d7dee46faba23204964cff5a90d5bf2124ad0037a9d3c0e51ca555edf8b7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/build/run-001/delivery.json",
+                "sha256": "55620d49c44ecf59069c502acb40855a7e2ff17db354a9874b8bbcf3dc9633ed"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/repair-proof.json",
+                "sha256": "bbb15e63b74ac619e50006b26efc3046788182e438682229ebe2b78d697d9b4c"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/font-profile.json",
+                "sha256": "51d52f082d831d14961d18c4073e7eab2594682e64501b810a647ec74f2416e7"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-native-geometry-041/jobs/ccf-2022-02-f02/source-evidence/manifest-before-repair.json",
+                "sha256": "8fda80f1bca0db811bbb721cfb2e6c37db72ec6dbc3065d7c25ee51019f190b8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-source-context-009/trace.json",
+                "sha256": "492c128f3e2d20027babb7d6519c5b93b5c03e9840b00bcefb1b5687b527c8f9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-source-shades-008/proof.json",
+                "sha256": "7eab50a59307c543324c66362160203a30aaa4ea8898ffcb02c628b0c5135034"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-derived-geometry-012/proof.json",
+                "sha256": "0173f99356ab985c8343790cfd16ecc9a83619c36bcf2496ea3020541ff76f9d"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-composited-photos-013/proof.json",
+                "sha256": "b967133784367d7d3a533f9e1e657f5d873bd4d7297a0665277ae059b5b5752f"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/proof.json",
+                "sha256": "1763e07ad5e0923af3bd904fd2b3be907ace72cc5810ff95bdb614fe90fb3c01"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/source-trace.json",
+                "sha256": "6a0a43e1927db6723115c079d85c1fc6691db70d22481c6c3b8b187c9b6142dd"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/instructgpt-native-fonts-018/native-trace.json",
+                "sha256": "ffbf83e5f0a2d007e4ed42f0d9b508cb655c8662edf8591ced9883160986a1ed"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/INSTRUCTGPT-PROCESS-ATTEMPTS-020.json",
+                "sha256": "594cc4c87514eb668c67a21a3c7c3018d705c679523898cbcc07c2e838c637eb"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/SOURCE-FONT-DELIVERY-LIMITS-011.json",
+                "sha256": "3652f7b023a476f0d50593a277e5a3e0a68a63e4b5bd786f015ad36321cc583b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/FREEZE-012.json",
+                "sha256": "1c1a901795edbc8b29a2dd9ac80d4adbc07cb4ff08f886d8990a5d7f06290ef8"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry010.py",
+                "sha256": "793f95a6ec4f7b13d62d0cd0032b905ac0fad2fc03ab1c6439b0b1d324d7dc77"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry011.py",
+                "sha256": "36f3b15565cae14d2dd7fd7581b6c875ed0bd0ae7114b83d4c2fd13b96e81c24"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/derive_instructgpt_geometry012.py",
+                "sha256": "875b3a0470f7247f1ba9f422d1547248d96dbb5642bf280e7894965bd0ac4de9"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/extract_instructgpt_composites013.py",
+                "sha256": "734d1e2283c287fbde3f2334146302b67a966c05fc2305639797ad80f26e7e6e"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/extract_instructgpt_photos001.py",
+                "sha256": "15f43478cb435ce497b51f95923f1447f1e9410de2d969bead529e890cd197cf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context002.py",
+                "sha256": "a6e188f5bccd4692eb478e38fa4094b87a3a5a2da5beb6257263eef3ee19b0e1"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context003.py",
+                "sha256": "f39d3face14c69d7afb6d770926be7f3faeead7b72c1c06031a28b7ff023f904"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context004.py",
+                "sha256": "25b955f6f42c4452b1b2220a23af831f056aa0fdfa3c4e1ad74796d3c7c10313"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context005.py",
+                "sha256": "045d8895fa43869afbb3765f97a0d80634cba49b3fe70536612f2a09819a3bc4"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_context009.py",
+                "sha256": "d48e17711c0f0c763c9f97524e03c0caaad2fb0891d9bbd8a9a02b367eeacd58"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades006.py",
+                "sha256": "f772d5523aa233f6dc32ead33960fe0f2a78901805d57a26df5e9872d10db529"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades007.py",
+                "sha256": "ea4c04f566d92eebd9e4e900b0052b0b5caf007e6243417793f171e263ed1c67"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/inspect_instructgpt_shades008.py",
+                "sha256": "f9fc45a3c21d942b19259a489edbce4197f17a512e5c6cb74863e91f14609f47"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/instructgpt_cubic_clip011.py",
+                "sha256": "2b3d334e95d38f299593dfcc92d3636777f7608608becef4e3d829a787216cfc"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/instructgpt_galleries015.py",
+                "sha256": "3299b9e4bfb0e16ff7cd26bed86dd41390fb2bce1e03554cc63c79f513776050"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/rebuild_instructgpt014.py",
+                "sha256": "155e8db8bb8b89bef1c3d931d6d2bdbe953e9e1b02d27d320ddac3dea461c2c6"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/record_instructgpt019.py",
+                "sha256": "864bc5d0e56b8164fd127b9caa00a6ad0479d2e0967841ebe9e75ec60c33c640"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_fonts017.py",
+                "sha256": "f65fcac014011be85c18e33b74ee8122eef4bae6cdd87c243fdfbeccd466ff87"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_fonts018.py",
+                "sha256": "6a3e936cedbad4d95b38c85ec89ac5206a113457d829fa348bec4ce9dacf3b15"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/tools/verify_instructgpt_scene016.py",
+                "sha256": "098fe301341cef69788c2c85e34848bb5580a55b7ed564862bea7913f72b5a64"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/repair-receipt.json",
+                "sha256": "852d94a3cd0cb85c41396dc0dfd652594e9a2b7d4e1d0b8e8a5b7f648c8e6452"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/preview-provenance.json",
+                "sha256": "6b5b5b6dad203d6049300a2d7b7c3797dff951a5e8c7cadf6368a18aa2cc9609"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ],
+            "user_acceptance": "pending",
+            "discovered_during_remaining_153_request": true,
+            "part_of_original_frozen_153": false,
+            "closure_evidence": [
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/repair-receipt.json",
+                "sha256": "852d94a3cd0cb85c41396dc0dfd652594e9a2b7d4e1d0b8e8a5b7f648c8e6452"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-002/ccf-2022-02-f02/preview-provenance.json",
+                "sha256": "6b5b5b6dad203d6049300a2d7b7c3797dff951a5e8c7cadf6368a18aa2cc9609"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ]
+          }
+        }
+      ],
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-instructgpt-border-20261007/RESULT.json",
+          "sha256": "3e840c3931f95c9c1232e20df7b2b22c9f9e0df9163ddc76bf73c4bad8f61051"
+        },
+        {
+          "audit_relative_path": "reports/independent-instructgpt-border-20261007/rerender-002/preview-provenance.json",
+          "sha256": "c85a59f3d9538de7745016a118795fc188b41ca18bd11a4a8136b3fe58ae0a04"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2022-02-f02.pptx",
+          "sha256": "26899cc2ef38dc731b739d483162533f3e187762ef2abdb5da20211d099d99f5"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2022-02-f02.pptx",
+          "sha256": "d22d2a94e1a5ab04e393b7a9bcc78f39e58fb09f89a071e07a6688f001fa11c6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2022-02-f02.font-receipt.json",
+          "sha256": "a87cf8fd7697b935dc61516a189625dc243e8017321f281c5bef05d4afddd4cc"
+        }
+      ],
+      "final_delivery": {
+        "raw_sha256": "26899cc2ef38dc731b739d483162533f3e187762ef2abdb5da20211d099d99f5",
+        "sha256": "d22d2a94e1a5ab04e393b7a9bcc78f39e58fb09f89a071e07a6688f001fa11c6",
+        "receipt_sha256": "a87cf8fd7697b935dc61516a189625dc243e8017321f281c5bef05d4afddd4cc"
+      }
     },
     {
       "figure_id": "ccf-2026-01-f05",
@@ -120574,12 +121900,12 @@
       "figure_id": "ccf-2020-11-f02",
       "issue_id": "ccf-2020-11-f02-E01-CLIP-AA",
       "severity": "minor",
-      "status": "open",
+      "status": "closed_model_visual_review",
       "category": "native_clip_antialias_compositing",
       "description": "Three restored source-cubic blue node strokes cross the actual right source clip. Their rigorously source-bound native white background restoration preserves geometry but shows a fine light antialias rim in actual native4x raster views. Recover original clip raster behavior while retaining source curves and independent native editability.",
       "region": "Right edge of three blue nodes in ColBERT panel(d)",
-      "resolution": null,
-      "latest_verified_attempt": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001",
+      "resolution": "Outline and clip the three original source strokes in PDF-local user coordinates, using independently replayed original controls, width1.600000023841858, butt cap and miter limit8; then apply the original CTM exactly once and round to integer EMU once. Remove the three local white clip overlays. Independently replay445 source paints,43 clips and88 fill/stroke pairs. Of486 native leaves, 483 unaffected leaves are byte-identical;34 live labels,14 dot groups and original blue fill controls remain unchanged. Actual clean-font native1x/2x/4x output retains rounded corners and removes all three pale rims; visual changes are confined to the three node regions. Borders are separately editable filled contours, with move/color/node editing rather than the original line-width property. Floating Skia outline/Boolean results have no exact global source-offset, topology or pixel-equivalence proof; shared geometry guards and budgets are unchanged. The earlier global-EMU corner regression and wrong source-page probe are preserved and excluded. Fresh unified-release embedding receipts preserve all native slide/media payloads. PowerPoint/WPS final-appearance and user acceptance remain pending.",
+      "latest_verified_attempt": "reports/remaining-four-release-20261007/editing-native/ccf-2020-11-f02.pptx",
       "evidence": [
         {
           "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/source-clipped-right-blue-nodes-4x.png",
@@ -120600,8 +121926,223 @@
         {
           "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/output-review-source-brush-curves-146.json",
           "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+          "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+          "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/repair-receipt.json",
+          "sha256": "4713f1b395654deb5d58c717dd73d427e00d10488ad3a151a62d0513eb7f3658"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/preview-provenance.json",
+          "sha256": "301ca0ddd004b92f71c7112fa92478689413b01d8012bfd616d6440da33db14b"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+          "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-colbert-clip-20261007/SUMMARY.json",
+          "sha256": "c2c1dbd44bfde6c8100fd0c34ec7666b9244b55bd9a244d02718e464c307d15f"
+        },
+        {
+          "audit_relative_path": "reports/independent-colbert-clip-20261007/REPORT.md",
+          "sha256": "8f3677042062b47fa7ac232edb3e6673d6296e55fed93a878dd85039c65b7e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2020-11-f02.pptx",
+          "sha256": "1053ea62445886713a27bf544edd273ff9200aafdfcf351a24a60042f8c3dfe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2020-11-f02.pptx",
+          "sha256": "a7b898a741960c81246cb436999d1160f544a90338cf9a76a10b2ce36c7aec2c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2020-11-f02.font-receipt.json",
+          "sha256": "8f4cc092902b345ed9582ca7ec7471a403c5202a0c8cbe641256a6e1fe1f5781"
         }
-      ]
+      ],
+      "resolution_history": [
+        {
+          "recorded_at": "2026-10-07T04:25:33.762679+00:00",
+          "previous": {
+            "figure_id": "ccf-2020-11-f02",
+            "issue_id": "ccf-2020-11-f02-E01-CLIP-AA",
+            "severity": "minor",
+            "status": "open",
+            "category": "native_clip_antialias_compositing",
+            "description": "Three restored source-cubic blue node strokes cross the actual right source clip. Their rigorously source-bound native white background restoration preserves geometry but shows a fine light antialias rim in actual native4x raster views. Recover original clip raster behavior while retaining source curves and independent native editability.",
+            "region": "Right edge of three blue nodes in ColBERT panel(d)",
+            "resolution": null,
+            "latest_verified_attempt": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/source-clipped-right-blue-nodes-4x.png",
+                "sha256": "c110649c3e6fbee409648f3f66e393d001580b65defb794c1ae3c9f7bfe3ee61"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/visual-review-146.json",
+                "sha256": "841c8fa8b2f7e1a90248ad7f98d01ebf1f9066b0e21efc11ee1ac12124cca975"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/bindings.json",
+                "sha256": "9ee397c1f295132bcae1fcbeffa67720ef3026cf770cd0265f5e60d5c12486e0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/readback.json",
+                "sha256": "062927792337a4bf16d44dffa50af3581c2fb5cc431c1c41cf793cdab072d2b9"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/output-review-source-brush-curves-146.json",
+                "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+              }
+            ]
+          }
+        },
+        {
+          "recorded_at": "2026-10-07T04:55:18.819042+00:00",
+          "context": "Independent unified-release successor; earlier attempts and their evidence retained.",
+          "previous": {
+            "figure_id": "ccf-2020-11-f02",
+            "issue_id": "ccf-2020-11-f02-E01-CLIP-AA",
+            "severity": "minor",
+            "status": "closed_model_visual_review",
+            "category": "native_clip_antialias_compositing",
+            "description": "Three restored source-cubic blue node strokes cross the actual right source clip. Their rigorously source-bound native white background restoration preserves geometry but shows a fine light antialias rim in actual native4x raster views. Recover original clip raster behavior while retaining source curves and independent native editability.",
+            "region": "Right edge of three blue nodes in ColBERT panel(d)",
+            "resolution": "Remove the three local white source-clip overlay rectangles. Expand only the three original crossing native blue strokes and intersect their filled contours with the exact original native clip edge; deliver three editable cubic/line compound fill paths in the existing source paint slots. All486 retained leaves, original14 dot groups and all unaffected native properties/relative order are independently preserved; fonts, captions and other media remain unchanged. Source/old/new matched4x edge crop and whole1x/2x scenes were actually viewed, with the fine white rim removed. This explicit floating-point stroke/Boolean construction does not claim exact source offset curves, generic clipping or all-scale pixel equality. Original source and failed prior candidates remain preserved; user and PowerPoint/WPS acceptance pending.",
+            "latest_verified_attempt": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02",
+            "evidence": [
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/source-clipped-right-blue-nodes-4x.png",
+                "sha256": "c110649c3e6fbee409648f3f66e393d001580b65defb794c1ae3c9f7bfe3ee61"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/visual-review-146.json",
+                "sha256": "841c8fa8b2f7e1a90248ad7f98d01ebf1f9066b0e21efc11ee1ac12124cca975"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-galleries-145/bindings.json",
+                "sha256": "9ee397c1f295132bcae1fcbeffa67720ef3026cf770cd0265f5e60d5c12486e0"
+              },
+              {
+                "audit_relative_path": "reports/remaining-153-001/colbert-native-curves-145/readback.json",
+                "sha256": "062927792337a4bf16d44dffa50af3581c2fb5cc431c1c41cf793cdab072d2b9"
+              },
+              {
+                "audit_relative_path": "source-regeneration/remaining-153-colbert-native-curves-003/jobs/ccf-2020-11-f02/build/run-001/output-review-source-brush-curves-146.json",
+                "sha256": "e87b5b2114ee43892c6041c0d164035101d03039c6c2e29e956e4992fb8b1e0b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/repair-receipt.json",
+                "sha256": "4713f1b395654deb5d58c717dd73d427e00d10488ad3a151a62d0513eb7f3658"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/preview-provenance.json",
+                "sha256": "301ca0ddd004b92f71c7112fa92478689413b01d8012bfd616d6440da33db14b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ],
+            "user_acceptance": "pending",
+            "closure_evidence": [
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/RESULT.json",
+                "sha256": "11b11a240cae67fa667e5abc1cd3c6ffbb761f19b6b1c3e6dc928601672e3acf"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-readback.json",
+                "sha256": "844f3ea20aec5a5c1e122538dfdaca33a012ec2536f73706edf18dbe0ae16945"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/repair-receipt.json",
+                "sha256": "4713f1b395654deb5d58c717dd73d427e00d10488ad3a151a62d0513eb7f3658"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/geometry-001/ccf-2020-11-f02/preview-provenance.json",
+                "sha256": "301ca0ddd004b92f71c7112fa92478689413b01d8012bfd616d6440da33db14b"
+              },
+              {
+                "audit_relative_path": "reports/remaining-four-20261007/delivery-verification-002/summary.json",
+                "sha256": "c9b0a553d1403749bb4238e6d2d35aa0b12dc00d22bab6a144b6f1e04d02a0fc"
+              }
+            ]
+          }
+        }
+      ],
+      "user_acceptance": "pending",
+      "closure_evidence": [
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/INTEGRATION-RESULT.json",
+          "sha256": "d2b2e1f61601a29c33fbf3de354f39d2e409b25310d0388cda8d68bfcf8d8634"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/delivery-index.json",
+          "sha256": "c3fde4e98a971a1275f5a24f81cf6527041e739ae2352ae4947845f9204f2ec6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/independent-font-release-review.json",
+          "sha256": "e686f91db0cd3806a74ba0566572a6bf1dcd32d26a271eb89691f269cf48dcef"
+        },
+        {
+          "audit_relative_path": "reports/independent-colbert-clip-20261007/SUMMARY.json",
+          "sha256": "c2c1dbd44bfde6c8100fd0c34ec7666b9244b55bd9a244d02718e464c307d15f"
+        },
+        {
+          "audit_relative_path": "reports/independent-colbert-clip-20261007/REPORT.md",
+          "sha256": "8f3677042062b47fa7ac232edb3e6673d6296e55fed93a878dd85039c65b7e14"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/editing-native/ccf-2020-11-f02.pptx",
+          "sha256": "1053ea62445886713a27bf544edd273ff9200aafdfcf351a24a60042f8c3dfe6"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2020-11-f02.pptx",
+          "sha256": "a7b898a741960c81246cb436999d1160f544a90338cf9a76a10b2ce36c7aec2c"
+        },
+        {
+          "audit_relative_path": "reports/remaining-four-release-20261007/embedded-preview/ccf-2020-11-f02.font-receipt.json",
+          "sha256": "8f4cc092902b345ed9582ca7ec7471a403c5202a0c8cbe641256a6e1fe1f5781"
+        }
+      ],
+      "final_delivery": {
+        "raw_sha256": "1053ea62445886713a27bf544edd273ff9200aafdfcf351a24a60042f8c3dfe6",
+        "sha256": "a7b898a741960c81246cb436999d1160f544a90338cf9a76a10b2ce36c7aec2c",
+        "receipt_sha256": "8f4cc092902b345ed9582ca7ec7471a403c5202a0c8cbe641256a6e1fe1f5781"
+      },
+      "superseded_candidate_failure": "The first global-EMU outline candidate removed the rim but replaced rounded corners with diagonals in actual XML and 4x application output. Its prior closure is superseded and the failed candidate/evidence are preserved in resolution_history and the independent report."
     }
-  ]
+  ],
+  "additional_status_counts": {
+    "closed_or_resolved": 82,
+    "open": 1
+  }
 }

@@ -634,6 +634,23 @@ def main():
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('--version', action='version', version='figure-rebuild ' + __version__)
     sub = p.add_subparsers(dest='command', required=True)
+    c = sub.add_parser('embed-fonts', help='Embed exact used registered font faces; preserves permission bits and live slide bytes')
+    c.add_argument('--input', required=True, help='Existing figure PPTX')
+    c.add_argument('--font-audit', required=True, help='Hash-bound font-audit.json from the figure build')
+    c.add_argument('--output', required=True, help='New PPTX path')
+    c.add_argument('--receipt', required=True, help='New embedding audit JSON path')
+    def embed_font_command(a):
+        from .font_embedding import embed_fonts
+        receipt = Path(a.receipt).resolve()
+        paths = [Path(v).resolve() for v in (a.input, a.font_audit, a.output)]
+        if receipt.exists() or receipt in paths or len(set(paths)) != len(paths):
+            raise ValueError('Embedding input, audit, output and new receipt must be distinct')
+        result = embed_fonts(a.input, a.output, json.loads(Path(a.font_audit).read_text(encoding='utf-8')))
+        receipt.parent.mkdir(parents=True, exist_ok=True)
+        with receipt.open('x', encoding='utf-8') as stream:
+            json.dump(result, stream, ensure_ascii=False, indent=2); stream.write('\n')
+        print(json.dumps({'pptx': str(paths[2]), 'receipt': str(receipt), 'embedded_faces': len(result['embedded_faces'])}, ensure_ascii=False))
+    c.set_defaults(func=embed_font_command)
     c = sub.add_parser('configure')
     for k in ['node', 'python', 'node_modules', 'presentation_skill']: c.add_argument('--' + k.replace('_', '-'), required=True)
     c.add_argument('--font-profile', required=True)

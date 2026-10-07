@@ -135,6 +135,57 @@ and retain the exact profile/fonts with the job. A correct local rendering
 does not establish font embedding, extended editing repertoire or reopening
 in PowerPoint/WPS without those dependencies.
 
+### Embed the registered fonts in an existing figure
+
+`embed-fonts` reads the final slide's explicit family/style runs and the build's
+hash-bound `font-audit.json`. It embeds only used roles as uncompressed EOT
+font parts, preserving the complete prepared SFNT bytes, Unicode repertoire,
+permission bits and every slide/media/layout payload. It does not subset again
+or require the source-font importer's 16-family single-build policy for an
+already assembled presentation. The command requires a new output and receipt:
+
+```sh
+python -m figure_rebuild embed-fonts \
+  --input /caller/job/build/run-001/validated-output/reconstruction.pptx \
+  --font-audit /caller/job/build/run-001/font-audit.json \
+  --output /caller/delivery/embedded-preview.pptx \
+  --receipt /caller/delivery/embedded-preview.font-receipt.json
+```
+
+Restricted, bitmap-only, contradictory or unknown embedding rights, variable
+fonts, signature/outline mismatch, changed font bytes, missing used glyphs,
+inherited/theme text faces, fields and existing embeddings are refused.
+Reachable slide layouts and masters are checked recursively: inherited live
+text or fields require a separate policy and are refused, while empty figure
+scaffolding is preserved. Valid family aliases for the same registered face
+share one font part and content-type declaration, with separate family entries;
+collisions with original package parts or declarations are refused.
+`fsType=4` allows preview/print embedding and is recorded as lacking editing
+permission. Such an embedded file may open read-only in an application; retain
+a separately named native editing version and its original font dependencies.
+Do not change rights bits to make the file appear editable. A complete registered
+subset still provides only its existing repertoire, not the original family.
+
+Independently parse each actual EOT header and compare the full recovered SFNT
+payload and rights. Check presentation relationships, unique used families and
+the `regular → bold → italic → boldItalic` schema order, plus unchanged slide
+bytes. For a native portability check, use a fresh application profile and an
+isolated font directory with only one unrelated bootstrap face: LibreOffice
+cannot initialize with zero system fonts. Compare actual exported font names
+with the name-ID-6 alternatives in the embedded bytes, requiring an observed
+name for each used role; an audit's alternative names need not all occur.
+PowerPoint/WPS reopening, editing and playback remain separate checks.
+In the remaining-four audit, clean-font Linux WPS imports substituted fonts
+despite the embedded EOT parts. That application still needs its own verified
+font provisioning and actual save/reopen checks; a successful LibreOffice
+import cannot establish WPS portability. Windows PowerPoint and macOS checks
+remain pending.
+
+The container format follows [Microsoft's PowerPoint font-part notes](https://learn.microsoft.com/en-us/openspecs/office_standards/ms-oe376/1663dabc-5d98-463f-889e-bcd9b77c3d34)
+and the [EOT structure specification](https://www.w3.org/submissions/EOT/).
+Implementation: `src/figure_rebuild/font_embedding.py`; regression controls:
+`tests/test_font_embedding.py`.
+
 For a separately audited raw-CFF wrapper, an OpenType `CFF ` font must use the
 `OTTO` SFNT signature; a TrueType signature can make the native font loader
 reject otherwise preserved contours. The used-SFNT helper rejects signature
